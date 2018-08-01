@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/require_style/publishRequireList.css">
+    <style>
+        
+        tbody>tr>td>.btn{
+            color: #6ba1ff;
+            cursor: pointer;
+        }
+        .ll{
+            margin-right: 12px;
+        }
+        .listBox table{
+            border-bottom: 1px solid #ebe9ea;
+        }
+        .bottomOperiat{
+            border-top: 1px solid #ebe9ea;
+            border-bottom: 1px solid #ebe9ea;
+            height: 60px;
+            box-sizing: border-box; 
+            font-size: 14px;
+        }
+        .bottomOperiat>span{
+            float: left;
+            line-height: 60px;
+            cursor: pointer;
+        }
+        .bottomOperiat .squre{
+            border: 1px solid #ebe9ea;
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            margin-left: 20px;
+            margin-right: 8px;
+            margin-top: 23px;
+            border-radius: 3px;
+        }
+        .bottomOperiat .squre.active{
+            background: #6ba1ff;
+        }
+        .bottomOperiat>.selsectAll{
+            margin-right: 20px;
+        }
+        .bottomOperiat>.closeBtn{
+            margin-right: 16px;
+        }
+        .bottomOperiat>.delBtn, .bottomOperiat>.closeBtn{
+            margin-top: 10px;
+            width: 112px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            background: #6BA1FF;
+            border-radius: 3px;
+        }
+        .pageBox{
+            height: 76px;
+            line-height: 76px;
+            box-sizing: border-box;
+        }
+        .btn.orange{
+            color: #ff434e;
+        }
+        /*.listBox{height: 1116px;}*/
+        .cfRefresh {
+            display: block; 
+        }
+        
+        .pageJump input[type="text"] {
+            text-align: center;
+            text-indent: 0px;
+        }
+
+        .cf_select {
+            background: url('');
+            cursor: pointer;
+        }
+
+        span.select_all {
+            margin-left: 21px;
+            margin-right: 7px;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <div class="contbox">
+        <div class="topTitle">调价申请<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="inputBox">
+            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="" style="margin-left: 25px;">调令类型</label>
+            <div class="goodsType input select" data-selectedindex="0" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >
+                <ul style="">
+                    <li data-index="1">-请选择-</li>
+                </ul>
+            </div>
+            <label for="" style="margin-left: 10px;">提交时间</label><input type="text" class="date-input laydate-icon publishTime input time_inp" placeholder="请选择日期" id="test1">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-top: 10px;float: right;">
+        </div>
+        <!-- <div class="opciationBox" style="padding-right: 8px;">
+            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
+                <ul>
+                    <li data-index="1">10</li>
+                    <li data-index="2">20</li>
+                    <li data-index="3">30</li>
+                </ul>
+            </div>
+        </div> -->
+        <div class="listBox">
+            <table>
+                <thead>
+                    <tr>
+                        <!-- <th style="width: 56px;text-align: center;"></th> -->
+                        <td>订单编号</td>
+                        <td>公司名称</td>
+                        <td>提交时间</td>
+                        <td>原价</td>
+                        <td>现价</td>
+                        <td>类型</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody class="myTbody">
+                    <!-- <tr>
+                        <td><div class="cf_select"></div></td>
+                        <td>3001804091631062137</td>
+                        <td>化动力有限公司</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td>供货商</td>
+                        <td><span class="btn">查看详情</span></td>
+                    </tr> -->
+                    
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="bottomOperiat">
+            <span class="squre"></span>
+            <span class="selsectAll">全选</span>
+            <span class="closeBtn">关闭订单</span>
+            <span class="delBtn">删除订单</span>
+        </div> -->
+        <div class="mypage" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/200</span>
+                <i style="margin-left: 12px;">共200页</i>，
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
+        <!--<div class="pageBox">-->
+        <!--共100张 当前为1页 共5页-->
+        <!--</div>-->
+    </div>
+
+
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+    <script type="text/javascript">
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#Iframe").css("height","977");
+        })
+        //        时间初始化
+        var startTime = '';
+        var endTime = '';
+        laydate({
+            elem: '#test1',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime = dates;
+            }
+        });
+        laydate({
+            elem: '#test2',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                endTime = dates;
+            }
+        });
+        laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
+
+     
+        // 模拟单选按钮
+        $('.bottomOperiat .squre').click(function(){
+            $(this).toggleClass('active');
+        });
+        $('.bottomOperiat .selsectAll').click(function(){
+            $('.bottomOperiat .squre').toggleClass('active');
+        });
+        //列表
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");//必须先置空
+            $.ajax({
+                url: pubIP + 'OrderPricesChanged/getCarrierPricesChangedList', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    companyId:companyId,
+                    orderId: $(".orderNo").val(),
+                    time: $(".time_inp").val(),
+                    size:pageSize,
+                    page:currentPage
+                },
+                success: function (res) {
+                    console.log(res)
+                    if(res.code===1){
+                        //首次请求时 改变分页数据
+                        if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                        $(".pagination").parent().css("display","block");
+                        if(currentPage===1 ){
+                            //修改底部分页
+                            //debugger
+                            var pageNum=Math.ceil(res.count/pageSize);
+                            $(".allPageN").attr("pageTotal",pageNum);
+                            $(".pageJump i").text("共"+pageNum+"页");
+                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                            Page({
+                                num: pageNum,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    // console.log(n);
+                                    getData(n);//加载n页数据
+                                }
+                            });
+                        }
+                        //修改底部页数
+                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                        cf_dataRender(res.data)
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-id="'+item.id+'"  data-orderId="'+item.orderid+'">';
+                str+='<td>'+item.orderid+'</td>';
+                str+='<td>'+item.companyname+'</td>';
+                str+='<td>'+timestampToTime(item.createTime)+'</td>';
+                str+='<td>'+item.oldPrice+'</td>';
+                str+='<td>'+item.quotedPrice+'</td>';
+                str+='<td>'+item.quotesSatus+'</td>';
+                if(item.status==0&&item.type==0){
+                    str+='<td ><span class="btn agree" style="color: #6ba1ff;">同意</span> <span  class="btn bohui" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
+                }else{
+                    str+='<td> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
+                }
+                str+='</tr>';
+            })
+            $(".myTbody").html(str);
+            //详情
+            $(".seeDetail").click(function () {
+                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
+                window.location.href="../vehicle/lineDetails.html";
+            })
+            //同意
+            $(".agree").click(function () {
+                upPricesChanged(1,$(this).parents("tr").attr("data-id"),$(this).parents("tr").attr("data-orderId"));
+            })
+//            驳回
+            $(".bohui").click(function () {
+                upPricesChanged(2,$(this).parents("tr").attr("data-id"),$(this).parents("tr").attr("data-orderId"));
+            })
+        }
+        //选择排序方式
+        $(".select ul li").click(function () {
+            getData(1);
+        })
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage = $('.pageCont li.active>a').text();
+            getData(currentPage);
+        })
+        //        同意驳回调价申请
+        function upPricesChanged(type,id,orderId) {
+            $.ajax({
+                url: pubIP + 'OrderPricesChanged/upPricesChanged', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    companyId:companyId,
+                    status: type,
+                    orderId: orderId,
+                    id:id
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.code === 1) {
+                        alert(res.msg);
+                        window.location.reload()
+                    } else {
+                        alert(res.msg);
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>

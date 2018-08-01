@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="css/commin.css"/>
+    <link rel="stylesheet" href="./css/starTrade.css">
+    <style>
+        #type span{
+            width: 256px;
+        }
+        .carrierList li .middle{
+            position: relative;
+            height: 260px;
+        }
+        .briefIntroduction{
+            position: absolute;
+            bottom: 20px;
+            max-height: 74px;
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body>
+<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/header.js" type="text/javascript" charset="utf-8"></script>
+<div class="mianCont" style="margin-top: 10px;padding-bottom:16px;">
+    <div class="leftTab">
+        <div class="tabHead">金牌货主</div>
+        <ul id="tuijian">
+            <li class="active">物流公司甲</li>
+            <li>物流公司乙</li>
+            <li>物流公司丙</li>
+            <li>物流公司甲</li>
+            <li>物流公司乙</li>
+            <li>物流公司丙</li>
+            <li>物流公司丁</li>
+        </ul>
+    </div>
+    <div class="rightContBox">
+        <ul class="contHeadBox">
+            <li style="border-bottom: 1px solid #dedede;">
+                <div class="left">城市搜索：</div>
+                <div class="right" id="cityList">
+                    <span class="actived">北京</span>
+                    <span>呼和浩特</span>
+                    <span>北京</span>
+                    <span>呼和浩特</span>
+                    <span>北京</span>
+                    <span>呼和浩特</span>
+                    <span>北京</span>
+                    <span>呼和浩特</span>
+                    <span>北京</span>
+                    <span>呼和浩特</span>
+                    <span>北京</span>
+                    <span>呼和浩特</span>
+                </div>
+            </li>
+            <li style="border-bottom: 1px solid #dedede;">
+                <div class="left">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</div>
+                <div class="right" id="type">
+                    <!--<span class="actived">全部</span>-->
+                    <span data-id="9001805260008040002">危险化学品经营许可证</span>
+                    <span data-id="9001805260008040003">危险化学品生产许可证</span>
+                    <span data-id="9001806251600150004">危险化学品使用许可证</span>
+                </div>
+            </li>
+            <!--<li>-->
+                <!--<div class="left">公司规模：</div>-->
+                <!--<div class="right">-->
+                    <!--<span class="actived">全部</span>-->
+                    <!--<span>1～50人</span>-->
+                    <!--<span>50～100人</span>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+        <div class="btnBox">
+            <div>
+                <input type="text" id="companyName" class="searchInput" placeholder="公司地址">
+                <input type="button" class="searchBtn" value="" onclick="getData(1)">
+            </div>
+            <div>
+                <input type="text" class="searchInput" id="address" placeholder="公司名称">
+                <input type="button" class="searchBtn" value="" onclick="getData(1)">
+            </div>
+        </div>
+        <ul class="carrierList">
+            <!--<li>-->
+                <!--<img class="Lf" src="./img/dgs-xqt.png" alt="" width="222" height="222">-->
+                <!--<div class="middle Lf">-->
+                    <!--<div class="companyName">化苯物联有限责任公司</div>-->
+                    <!--<div class="dangerClass"><img src="./img/sc-qiye.png" alt="" width="21" height="23">一级危化企业</div>-->
+                    <!--<div class="address">北京市-朝阳区</div>-->
+                    <!--<div class="briefIntroduction">企业简介：如果你无法简洁的表达你的想法，那只说明你的表达你的想法，那只说明你还不够了解他。如果你无法-->
+                            <!--那只说明你还不够了解他。如果你无法简洁的表达你的想了解他</div>-->
+                    <!--<div class="midb">-阿尔伯特 爱因斯坦</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<img class="Lf" src="./img/dgs-xqt.png" alt="" width="222" height="222">-->
+                <!--<div class="middle Lf">-->
+                    <!--<div class="companyName">化苯物联有限责任公司</div>-->
+                    <!--<div class="dangerClass"><img src="./img/sc-qiye.png" alt="" width="21" height="23">一级危化企业</div>-->
+                    <!--<div class="address">北京市-朝阳区</div>-->
+                    <!--<div class="briefIntroduction">企业简介：如果你无法简洁的表达你的想法，那只说明你的表达你的想法，那只说明你还不够了解他。如果你无法-->
+                            <!--那只说明你还不够了解他。如果你无法简洁的表达你的想了解他</div>-->
+                    <!--<div class="midb">-阿尔伯特 爱因斯坦</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<img class="Lf" src="./img/dgs-xqt.png" alt="" width="222" height="222">-->
+                <!--<div class="middle Lf">-->
+                    <!--<div class="companyName">化苯物联有限责任公司</div>-->
+                    <!--<div class="dangerClass"><img src="./img/sc-qiye.png" alt="" width="21" height="23">一级危化企业</div>-->
+                    <!--<div class="address">北京市-朝阳区</div>-->
+                    <!--<div class="briefIntroduction">企业简介：如果你无法简洁的表达你的想法，那只说明你的表达你的想法，那只说明你还不够了解他。如果你无法-->
+                            <!--那只说明你还不够了解他。如果你无法简洁的表达你的想了解他</div>-->
+                    <!--<div class="midb">-阿尔伯特 爱因斯坦</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0     ;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/200</span>
+                <i style="margin-left: 12px;">共200页</i>，
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/footer.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="js/pager.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" >
+    //控制头部状态
+    $(function () {
+        $(".cfnav").removeClass("on");
+        $(".cfnav2").addClass("on");
+    })
+
+
+    var currentPage=1;
+    //进入页面加载数据
+    getProvence();//获取省----》获取类型------》获取数据列表
+    getTuijian();//获取推荐
+
+    //获取数据
+    function getData(currentPage) {
+        var ziZhitype="";
+        var first=1;
+        $("#type .actived").each(function (idx,item) {
+            if(first!=1){
+                ziZhitype+=',';
+            }
+            ziZhitype+=$(item).attr("data-id");
+        })
+        $(".carrierList").html("");//////////////////////所有的查询前必须先把列表置空
+        $.ajax({
+            url: pubIP + 'wltCompanyUp/selectCompanyList', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                //token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                size:pageSize,
+                page:currentPage,
+                ty:1,//1:明星贸易 2:明星货运
+                cityId:$("#cityList .actived").attr("data-proviceid"),
+                type:ziZhitype,
+                companyName:$("#companyName").val(),
+                address:$("#address").val()
+            },
+            success: function (res) {
+                if(res.code===1){
+                    //首次请求时 改变分页数据
+                    if(res.data.length==0){
+                        $(".listBox tbody").html("");
+                        $(".pagination").parent().css("display","none");
+                        return;
+                    }
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage===1){
+                        //修改底部分页
+                        //debugger
+                        var pageNum=Math.ceil(res.count/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                currentPage=n;
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.data)
+                }else{
+                    alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+        str+='<li data-id="'+item.companyId+'">';
+            str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
+            str+=' <div class="middle Lf">'
+            str+='    <div class="companyName">'+item.companyName+'</div>'
+            str+='<div class="dangerClass">'
+            if(item.qualifications!=null){
+                if(item.qualifications.length!=0){
+                    $.each(item.qualifications,function (idx1,item1) {
+                        str+=item1.qualifiStr+' ';
+                    })
+                }
+            }
+
+            str+='</div>'
+            str+='<div class="address">'+item.province+'-'+item.city+'</div>'
+            str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
+            str+='</div>'
+            str+='</li>'
+        })
+        $(".carrierList").html(str);
+        //详情
+        $(".carrierList li").click(function () {
+            sessionStorage.setItem("detailId",$(this).attr("data-id"));
+            window.location.href="./starTradeDetail.html";
+        })
+    }
+
+    $("#type span").click(function () {
+        $(this).toggleClass("actived");
+//        $(this).addClass("actived");
+        currentPage=1;
+        getData(1);
+    })
+    // 点击go刷新数据
+    $('.pageCont').on('click', '.button',function(){
+        var currentPage1 = $('.pageCont li.active>a').text();
+        currentPage=currentPage1;
+        getData(currentPage1);
+    })
+
+
+    //获取城市列表
+    function getProvence() {
+        //type  0发货地  1收货地
+        /*查询所有省份*/
+        $.ajax({
+            url: pubIP + 'address/listProvince', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    if(i==0) {
+                        str += '<span class="actived" data-proviceId="" data-province="">全部</span>';
+                    }
+                    str += '<span data-proviceId="'+data.data[i].provinceid+'" data-province="'+data.data[i].province+'">'+data.data[i].province+'</span>';
+
+                }
+                $("#cityList").html(str);
+                $("#cityList span").click(function () {
+                    $("#cityList span").removeClass("actived");
+                    $(this).addClass("actived");
+                    currentPage=1;
+                    getData(1);
+                })
+                getData(1);//获取列表数据
+//                getType();//获取类型
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+    }
+    //获取九大类  这里不需要
+    function getType() {
+        $.ajax({
+            url: pubIP + 'chemicalType/getChemicalType', /*v1.0*/
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    if(i==0){
+                        str += '<span class="actived" data-type_id="">全部</span>';
+                    }
+                    str += '<span  data-type_id="'+data.data[i].type_id+'">'+data.data[i].type_name+data.data[i].type_title+'</span>';
+
+
+                }
+                $("#type").html(str);
+                $("#type span").click(function () {
+                    $("#type span").removeClass("actived");
+                    $(this).addClass("actived");
+                    currentPage=1;
+                    getData(1);
+                })
+
+                getData(1);//获取列表数据
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+    }
+    //获取tuijian
+    function getTuijian() {
+        $.ajax({
+            url: pubIP + 'wltCompanyUp/selectRecommend', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            data:{
+                type:'1',//1:承运商 2:供应商
+            },
+            ansyc: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    if(i==0){
+                        str += '<li class="active" data-companyId="'+data.data[i].companyId+'">'+data.data[i].companyName+'</li>';
+                    }else{
+                        str += '<li  data-companyId="'+data.data[i].companyId+'">'+data.data[i].companyName+'</li>';
+                    }
+                }
+                $("#tuijian").html(str);
+                $("#tuijian li").click(function () {
+                    $("#tuijian li").removeClass("active");
+                    $(this).addClass("active");
+                })
+
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

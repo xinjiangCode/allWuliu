@@ -1,0 +1,665 @@
+<!--待分配-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/require_style/publishRequireList.css">
+    <style>
+        .opciationBox>.btn {
+            float: right;
+            margin-top: 9px;
+            margin-right: 9px;
+            text-align: center;
+            border: 1px solid #ebe9ea;
+            width: 93px;
+            height: 37px;
+            box-sizing: border-box;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
+        }
+        tbody>tr>td>.btn{
+            color: #6ba1ff;
+            cursor: pointer;
+        }
+        .ll{
+            margin-right: 12px;
+        }
+        .listBox table{
+            border-bottom: 1px solid #ebe9ea;
+        }
+        .bottomOperiat{
+            border-top: 1px solid #ebe9ea;
+            border-bottom: 1px solid #ebe9ea;
+            height: 60px;
+            box-sizing: border-box; 
+            font-size: 14px;
+        }
+        .bottomOperiat>span{
+            float: left;
+            line-height: 60px;
+            cursor: pointer;
+        }
+        .bottomOperiat .squre{
+            border: 1px solid #ebe9ea;
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            margin-left: 20px;
+            margin-right: 8px;
+            margin-top: 23px;
+            border-radius: 3px;
+        }
+        .bottomOperiat .squre.active{
+            background: #6ba1ff;
+        }
+        .bottomOperiat>.selsectAll{
+            margin-right: 20px;
+        }
+        .bottomOperiat>.closeBtn{
+            margin-right: 16px;
+        }
+        .bottomOperiat>.delBtn, .bottomOperiat>.closeBtn{
+            margin-top: 10px;
+            width: 112px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            background: #6BA1FF;
+        }
+        .pageBox{
+            height: 76px;
+            line-height: 76px;
+            box-sizing: border-box;
+        }
+        /*.listBox{height: 1116px;}*/
+        .cf_select{
+            margin: 0 auto;
+            width: 13px;
+            height: 13px;
+            background: url("../img/cf_noselect.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .cf_select.on{
+            background: url("../img/cf_selct.png") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .cfRefresh {
+            display: block; 
+        }
+        
+        .pageJump input[type="text"] {
+            text-align: center;
+            text-indent: 0px;
+        }
+
+        .cf_select {
+            background: url('');
+            cursor: pointer;
+        }
+
+        span.select_all {
+            margin-left: 21px;
+            margin-right: 7px;
+        }
+
+    </style>
+    
+    
+</head>
+<body>
+    <div class="contbox">
+        <div class="topTitle">待分配订单<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="inputBox">
+            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">货物类型</label>
+            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+                <ul>
+                    <li data-index="1">全部</li>
+                    <li data-index="2">普化品</li>
+                    <li data-index="3">危化品</li>
+                    <li data-index="4">特殊品</li>
+                </ul>
+            </div>
+            <label for="">确认时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
+            <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
+        </div>
+        <div class="opciationBox">
+            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
+                <ul>
+                    <li data-index="1">10</li>
+                    <li data-index="2">30</li>
+                    <li data-index="3">50</li>
+                </ul>
+            </div>
+            <input class="exportOrderBtn btn" type="button" value="导出订单">
+        </div>
+        <div class="listBox"  style="overflow-x: auto;">
+            <table style="width: 1280px;">
+                <thead>
+                    <tr>
+                        <!-- <th style="width: 56px;text-align: center;"></th> -->
+                        <th>订单编号</th>
+                        <th>接货时间</th>
+                        <th>货物类型</th>
+                        <th>货物名称</th>
+                        <th>始发地</th>
+                        <th>目的地</th>
+                        <th>公司名称</th>
+                        <th>重量</th>
+                        <th>单价</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="orderListInfo">
+                    <!-- <tr>
+                        <td><div class="cf_select"></div></td>
+                        <td>3001804091631062137</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>危化-罐装</td>
+                        <td>氢氧化钠</td>
+                        <td>新疆-乌鲁木齐</td>
+                        <td>北京-朝阳区</td>
+                        <td>化动力企业</td>
+                        <td>4000吨</td>
+                        <td>12</td>
+                        <td><span class="see seeDetail ll">查看详情</span><span class="btn ll">分配车辆</span><span class="btn">取消订单</span><span class="btn" style="margin-left: 12px;">上传合同</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="cf_select on"></div></td>
+                        <td>3001804091631062137</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>危化-罐装</td>
+                        <td>氢氧化钠</td>
+                        <td>新疆-乌鲁木齐</td>
+                        <td>北京-朝阳区</td>
+                        <td>化动力企业</td>
+                        <td>4000吨</td>
+                        <td>12</td>
+                        <td><span class="see seeDetail ll">查看详情</span><span class="btn ll">分配车辆</span><span class="btn">取消订单</span><span class="btn" style="margin-left: 12px;">上传合同</span></td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="bottomOperiat">
+            
+            <span class="select_all"><img src="../img/cf_noselect.png" alt=""></span>
+            <span class="selsectAll">全选</span>
+            <span class="closeBtn">关闭订单</span>
+            <span class="delBtn">删除订单</span>
+        </div> -->
+
+        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/1</span>
+                <i style="margin-left: 12px;">共<span class="total">1</span>页</i>，
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
+        <!--<div class="pageBox">-->
+        <!--共100张 当前为1页 共5页-->
+        <!--</div>-->
+    </div>
+
+
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+    <script src="../js/template.js"></script>
+    <script type="text/html" id="orderListTpl">
+        <%for(i in list) {%>
+        <tr>
+            <!-- <td><div class="cf_select"><img src="../img/cf_noselect.png" alt=""></div></td> -->
+            <td><%=list[i].orderNo%></td>
+            <td><%=list[i].tloCreateTime%></td>
+            <td><%=list[i].goodsType%></td>
+            <td><%=list[i].goodsName%></td>
+            <td><%=list[i].sendAddress%></td>
+            <td><%=list[i].receiveAddress%></td>
+            <td><%=list[i].companyName%></td>
+            <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
+            <td><%=list[i].unitPrice%></td>
+            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看详情</span><span class="btn ll" onclick="fenPei('<%=list[i].tloId%>')">分配车辆</span><span class="btn cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>
+                <span class="btn update" style="margin-left: 12px;" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-sendCompanyId="<%=list[i].sendCompanyId%>" data-sendCompanyName="<%=list[i].sendCompanyName%>" data-receiveCompanyId="<%=list[i].receiveCompanyId%>" data-receiveCompanyName="<%=list[i].receiveCompanyName%>">上传合同</span><span class="btn ll diaoling" style="margin-left: 10px;" data-tloContractAmount="<%=list[i].unitPrice%>" data-orderId="<%=list[i].tloId%>" data-companyname="<%=list[i].companyName%>" data-quotesSatus="<%=list[i].goodsType%>">发起调令</span></td>
+        </tr>
+        <%}%>
+    </script>
+    <script type="text/javascript">
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#Iframe").css("height","977");
+        })
+        //        时间初始化
+        var startTime = '';
+        var endTime = '';
+        laydate({
+            elem: '#test1',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime = dates;
+            }
+        });
+        laydate({
+            elem: '#test2',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                endTime = dates;
+            }
+        });
+        laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
+
+        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+        // Page({
+        //     num: 200,
+        //     elem: $('#page1'),
+        //     callback: function(n) {
+        //         console.log(n);
+        //     }
+        // });
+
+
+        // 发起调令
+        $(document).on('click', '.diaoling', function() {
+            console.log($(this).attr('data-tloContractAmount'));
+            $(window.parent.document).find('.ok_shenqing').attr('data-orderid', $(this).attr('data-orderId'));
+            $(window.parent.document).find('.hetongyuanjia').text($(this).attr('data-tloContractAmount'));
+            $(window.parent.document).find('.ok_shenqing').attr('data-companyname', $(this).attr('data-companyname'));
+            $(window.parent.document).find('.ok_shenqing').attr('data-quotesSatus', $(this).attr('data-quotesSatus'));
+
+
+            window.parent.showModelBox('.modelBox37');
+
+
+        });
+
+        $(window.parent.document).on('click', '.modelBox37 .ok_shenqing', function() {
+
+            var orderid = $(this).attr('data-orderid');
+            var companyname = $(this).attr('data-companyname');
+
+            var quotesSatus = $(this).attr('data-quotesSatus');
+
+            var oldPrice = $(window.parent.document).find('.hetongyuanjia').text();
+            var quotedPrice = $(window.parent.document).find('.update_unit').val();
+            var remark = $(window.parent.document).find('.tiaojia_yuanyin').val();
+
+            $.ajax({
+                url: pubIP + 'OrderPricesChanged/addPricesChanged',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    orderid: orderid,
+                    companyid: companyId,
+                    companyname: companyname,
+                    quotesSatus: quotesSatus,
+                    oldPrice: oldPrice,
+                    quotedPrice: quotedPrice,
+                    remark: remark
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+                        $(window.parent.document).find('.modelBox37').css('display', 'none');
+                        $('.update_unit').val('');
+                        $('.tiaojia_yuanyin').val();
+                        window.parent.showModelBox('.modelBoxdiaoling');
+
+                        window.parent.$("#sureDiaoLingOver").click(function () {
+                            window.location.reload();
+                        })
+                    }
+
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+
+            });
+
+        });
+
+        //上传合同
+        $(document).on('click', '.update', function() {
+            $(".update").removeClass("thisUpdate");
+            $(this).addClass("thisUpdate");
+            window.parent.showModelBox('.modelBox1');
+
+        });
+
+        $(window.parent.document).on('click', '.ok_upload', function() {
+            // console.log('..');
+            //debugger
+            $.ajax({
+                url: pubIP + 'tContractTrade/insertWLtContractTrade',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    orderid: $('.thisUpdate').attr('data-tloId'),
+                    orderNo: $('.thisUpdate').attr('data-orderNo'),
+                    sendCompanyid: $('.thisUpdate').attr('data-sendCompanyId'),
+                    sendCompanyname: $('.thisUpdate').attr('data-sendCompanyName'),
+                    receiveCompanyid: $('.thisUpdate').attr('data-receiveCompanyId'),
+                    receiveCompanyname: $('.thisUpdate').attr('data-receiveCompanyName'),
+                    url: $(window.parent.document).find('#upload_hetong_hidden').val(),
+                    type: 1,
+                    signDate: $(window.parent.document).find('.qianding_time').val()
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+                        $(window.parent.document).find('.modelBox1').css('display', 'none');
+                        $(window.parent.document).find('.modelBoxaddqita p span').html('合同上传成功！');
+                        window.parent.showModelBox('.modelBoxaddqita');
+                        window.location.reload();
+                    }
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        });
+
+        // 点击多选框
+        $(document).on('click', '.cf_select', function() {
+
+            if ($(this).find('img').attr('src') == '../img/cf_noselect.png') {
+                $(this).find('img').attr('src', '../img/cf_selct.png');
+            } else {
+                $(this).find('img').attr('src', '../img/cf_noselect.png');
+            }
+
+        });
+
+        // 点击全选
+        $(document).on('click', '.bottomOperiat .select_all', function(){
+
+            if ($(this).find('img').attr('src') == '../img/cf_noselect.png') {
+                $(this).find('img').attr('src', '../img/cf_selct.png');
+
+                $('#orderListInfo .cf_select img').each(function(i ,e) {
+                    $(this).attr('src', '../img/cf_selct.png');
+                });
+
+            } else {
+                $(this).find('img').attr('src', '../img/cf_noselect.png');
+
+                $('#orderListInfo .cf_select img').each(function(i ,e) {
+                    $(this).attr('src', '../img/cf_noselect.png');
+                });
+
+            }
+
+        });
+
+
+
+        var isFirst = true;
+
+        var isSearch = 0;
+
+        // 点击进入订单详情
+        $(document).on('click', '.seeDetail', function() {
+            window.localStorage.setItem('data-companyId', $(this).attr('data-companyId'));
+            window.localStorage.setItem('data-tloId', $(this).attr('data-tloId'));
+            window.localStorage.setItem('data-orderNo', $(this).attr('data-orderNo'));
+            window.location.href = "notDistributeOrder-detail.html";
+           // window.location.reload();
+//            order_list(1 , '', '', '', 10);
+        });
+
+
+        //显示条数
+        $('.displayNum ul li').click(function(){
+            isSearch=1;
+            order_list(1 , '', '', '', $('.displayNum span').text());
+        });
+        
+
+        //点击查询
+        $(document).on('click', '.searchResultBtn', function() {
+            
+            var orderNo = $('.orderNo').val();
+            var goodsType = $('.goodsType span').text();
+            var publishTime = $('.publishTime').val();
+            if (goodsType == '全部' ) {
+                console.log(goodsType);
+                goodsType = '';
+            }
+            
+            isSearch=1;
+            order_list(1, orderNo, goodsType, publishTime, 10);
+
+        });
+
+        
+
+        order_list(1 , '', '', '', 10);
+
+        //待分配订单列表
+        function order_list(num, orderNo, goodsType, publishTime, size) {
+            $('#orderListInfo').html('');
+            $.ajax({
+                url: pubIP + 'order/getAllocatedList',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    companyId: companyId,
+                    page: num,
+                    size: size,
+                    status: 1,
+                    orderNo: orderNo,
+                    time: publishTime,
+                    goodType: goodsType
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+
+                    if (json.code == 1) {
+                        if (json.data.length != 0) {
+                            for (var i = 0; i < json.data.length; i++) {
+                            
+                                json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm");
+                            }
+                            
+
+                            var result = template('orderListTpl', {list: json.data});
+                            $('#orderListInfo').html(result);
+
+                           
+                            if (isSearch == 1) {
+                                // if (isFirst) {
+                                    Page({
+                                        num: json.totalPage,
+                                        elem: $('#page1'),
+                                        callback: function(n) {
+                                            order_list(n, orderNo, goodsType, publishTime, size);
+                                        }
+                                    });
+                                    
+                                    $('.total').text(json.totalPage);
+                                    isFirst = false;
+
+                                // }
+
+                                $('.allPageN').text(num+1+'/'+json.totalPage);
+                            }
+
+                            isSearch = 0;
+
+                            if (isFirst) {
+
+                                Page({
+                                    num: json.totalPage,
+                                    elem: $('#page1'),
+                                    callback: function(n) {
+                                        order_list(n, orderNo, goodsType, publishTime, size);
+                                    }
+                                });
+                                
+                                $('.total').text(json.totalPage);
+
+                                isFirst = false;
+                            }
+
+                            $('.allPageN').text(num+'/'+json.totalPage);
+                        } else {
+                            $('.pageJump').css('display', 'none');    
+                        }
+                    } else {
+                        $('.pageJump').css('display', 'none');
+                    }
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+
+            });
+        }
+
+
+        // 取消订单
+        $(document).on('click', '.cancel_order', function() {
+
+            var tloId = $(this).attr('data-tloId');
+
+            $.ajax({
+                url: pubIP + 'order/updateCarrierCancelOrder',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: tloId
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+
+                    if (json.code == 1) {
+                        $(window.parent.document).find('.modelBoxaddqita p').html('<span>订单取消成功!</span>');
+                        window.parent.showModelBox('.modelBoxaddqita');
+                        window.location.reload();
+                    }
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+        });
+
+        $(window.parent.document).on('click', '.modelBox12 .ook4', function() {
+            
+            window.location.reload();
+        });
+
+        // 模拟单选按钮
+        // $('.bottomOperiat .squre').click(function(){
+        //     $(this).toggleClass('active');
+        // });
+        $('.bottomOperiat .selsectAll').click(function(){
+            $('.bottomOperiat .squre').toggleClass('active');
+        });
+
+
+        //分配车辆
+        function fenPei(id){
+            window.parent.$(".modelBox17").show();
+            window.parent.$(".modelBox17").attr("orderId",id);
+            getData(id);
+            window.parent.$("#ok_fenpei").hide();
+            window.parent.$("#car_info").hide();
+        }
+
+        //获取数据
+        function getData(id) {
+            $.ajax({
+                url: pubIP + 'order/getOrderByid', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    tloid:id
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        cf_dataRender(res.data)
+                    }else if(res.code==401){
+
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+
+        //渲染上面数据
+        function cf_dataRender(data) {     //下需要重新写
+            window.parent.$("#demandNo").text(data.demandNo);
+            window.parent.$("#startDate").text(data.startDate);
+            window.parent.$("#createTime").text(data.createTime);
+            window.parent.$("#goodsType").text(data.goodsType);
+            window.parent.$("#selectInput7").text(data.goodsType);
+            window.parent.$("#packageType").text(data.packageType);
+            window.parent.$("#goodsName").text(data.goodsName);
+            if(data.goodsUnit=='重量/吨'){
+                window.parent.$("#goodsweight").eq(0).text(data.goodsNum+'吨');
+            }else{
+                window.parent.$("#goodsweight").eq(0).text(data.goodsNum+'m³');
+            }
+            window.parent.$("#sendAddress").text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$("#receiveAddress").text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$("#carType1").text(data.carType1);
+            window.parent.$("#paymentMode").text(data.paymentMode);
+            window.parent.$("#paymentType").text(data.paymentType);
+        }
+
+    </script>
+</body>
+</html>

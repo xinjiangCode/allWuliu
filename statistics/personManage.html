@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/personManage.css">
+    <style>
+
+    </style>
+    
+    
+</head>
+<body>
+    <div class="contbox">
+        <div class="topTitle">人员管理
+            <div class="fr  cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="inputBox">
+            <label for="">输入搜索</label>
+            <input type="text" placeholder="订单编号/企业名称"  style="height: 32px;width: 160px;line-height: 34px;border:1px solid #D3D3D3;">
+            <label for="" style="margin-left: 5px;">订单状态</label>
+            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+                <ul>
+                    <li data-index="1">城市1</li>
+                    <li data-index="2">城市1</li>
+                    <li data-index="3">城市1</li>
+                    <li data-index="3">城市1</li>
+                </ul>
+            </div>
+
+            <input type="text" class="date-input laydate-icon kuang start" style="width: 139px;height: 34px;" placeholder="请选择日期" id="test1">
+            <span style="height: 38px;line-height: 38px;">&nbsp;-&nbsp; </span>
+            <input type="text" class="date-input laydate-icon kuang end" style="width: 139px;height: 34px;" placeholder="请选择日期" id="test2">
+        </div>
+        <div class="inputBox">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="float: right;margin-top: 8px;">
+        </div>
+        <div class="opciationBox" style="padding-left: 20px;">
+            <div class="select displayNum" data-selectedindex="0" style="margin-right: 13px;"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
+                <ul>
+                    <li data-index="1">10</li>
+                    <li data-index="2">20</li>
+                    <li data-index="3">30</li>
+                </ul>
+            </div>
+            <input class="exportOrderBtn btn" type="button" value="导出订单">
+        </div>
+        <div class="listBox" >
+            <table >
+                <thead>
+                    <tr>
+                        <th style="width: 56px;text-align: center;"></th>
+                        <th>订单编号</th>
+                        <th>司机</th>
+                        <th>企业名称</th>
+                        <th>订单金额</th>
+                        <th>结算金额</th>
+                        <th>税后金额</th>
+                        <th>提交时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="cf_select"></div></td>
+                        <td>3001804091631062137</td>
+                        <td>王小二</td>
+                        <td>化动力有限公司</td>
+                        <td>¥200.00</td>
+                        <td>¥200.00</td>
+                        <td>¥200.00</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>未结算</td>
+                        <td><span class="seeDetail btn">查看详情</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="cf_select"></div></td>
+                        <td>3001804091631062137</td>
+                        <td>王小二</td>
+                        <td>化动力有限公司</td>
+                        <td>¥200.00</td>
+                        <td>¥200.00</td>
+                        <td>¥200.00</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>未结算</td>
+                        <td><span class="seeDetail btn">查看详情</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--<div class="listBox1 listBox" style="margin-top: -65px;">-->
+            <!--<table style="width: 1700px;">-->
+                <!--<thead>-->
+                <!--<tr style="border-top: 1px solid #f0eeef; ">-->
+                    <!--<th>金额</th>-->
+                    <!--<th>油卡</th>-->
+                    <!--<th>订单号</th>-->
+                    <!--<th>矿发日期</th>-->
+                    <!--<th>到期日期</th>-->
+                    <!--<th>磅单号</th>-->
+                    <!--<th>矿发磅单号</th>-->
+                    <!--<th>车号</th>-->
+                    <!--<th>过路费</th>-->
+                    <!--<th>到货单位</th>-->
+                    <!--<th>矿发吨位</th>-->
+                    <!--<th>矿发单价</th>-->
+                    <!--<th>接收数</th>-->
+                    <!--<th>实际结算</th>-->
+                    <!--<th>运费单价</th>-->
+                    <!--<th>运费金额</th>-->
+                    <!--<th>磅差</th>-->
+                    <!--<th>合理损耗2‰</th>-->
+                    <!--<th>司机承担数量</th>-->
+                    <!--<th>司机承担金额</th>-->
+                    <!--<th>实际应付金额</th>-->
+                    <!--<th>自由车辆扣款</th>-->
+                    <!--<th>多打款项</th>-->
+                    <!--<th>少打款项</th>-->
+                    <!--<th>油卡</th>-->
+                    <!--<th>疆外油卡</th>-->
+                    <!--<th>轮胎券</th>-->
+                    <!--<th>气卡</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>¥1200.00</td>-->
+                    <!--<td>¥1200.00</td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>¥1200.00</td>-->
+                    <!--<td>¥1200.00</td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+        <div class="bottomOperiat">
+            <span class="squre"></span>
+            <span class="selsectAll">全选</span>
+            <!--<span style="margin-left: 20px;">总毛利</span>-->
+            <span class="closeBtn">关闭订单</span>
+            <span class="delBtn">删除订单</span>
+        </div>
+        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/200</span>
+                <i style="margin-left: 12px;">共200页</i>
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
+        <!--<div class="pageBox">-->
+        <!--共100张 当前为1页 共5页-->
+        <!--</div>-->
+    </div>
+
+
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+    <script type="text/javascript">
+        $(function () {
+            window.parent.$("#Iframe").css("height","1037");
+        })
+
+        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+        Page({
+            num: 200,
+            elem: $('#page1'),
+            callback: function(n) {
+                console.log(n);
+            }
+        });
+        //查看详情
+        $(".seeDetail").click(function () {
+//            window.location.href="./onGoingOrder-detail.html";
+        })
+
+        laydate({
+            elem: '#test1',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime1 = dates;
+            }
+        })
+        laydate({
+            elem: '#test2',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                endTime1 = dates;
+            }
+        })
+
+        function lay(id) {
+            laydate({
+                elem: '#'+id,
+                format: 'YYYY-MM-DD',
+                istime: true,
+                choose: function(dates){ //选择好日期的回调
+                    /*endTime1 = dates;*/
+                }
+            })
+        }
+    </script>
+</body>
+</html>

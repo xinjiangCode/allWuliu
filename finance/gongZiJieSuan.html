@@ -1,0 +1,157 @@
+<!--工资结算-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/gongZiJieSuan.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="contbox">
+        <div class="topTitle">工资结算<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="inputBox">
+            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">审批类型</label>
+            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+                <ul>
+                    <li data-index="1">类型1</li>
+                    <li data-index="2">类型2</li>
+                    <li data-index="3">类型3</li>
+                </ul>
+            </div>
+            <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
+        </div>
+        <div class="opciationBox clearFloat">
+            <div class="Lf"></div>
+            <div style="float: right;">
+                <span class="btn1" style="float: left; ">工资结算</span>
+                <span class="btn1" style="float: left;">批量导出</span>
+
+                <div class="goodsType input select" style="float: left;width: 160px;height: 38px;line-height: 38px;" data-selectedindex="-1"><span>显示条目</span><img src="../img/prl-select.jpg" >
+                    <ul>
+                        <li data-index="1">1</li>
+                        <li data-index="2">2</li>
+                        <li data-index="3">3</li>
+                    </ul>
+                </div>
+                <div class="goodsType input select" style="float: left;width: 160px;height: 38px;line-height: 38px;" data-selectedindex="-1"><span>排序方式</span><img src="../img/prl-select.jpg" >
+                    <ul>
+                        <li data-index="1">方式1</li>
+                        <li data-index="2">方式2</li>
+                        <li data-index="3">方式3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="listBox">
+            <table>
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>所属部门</th>
+                        <th>职务</th>
+                        <th>上次工资结算</th>
+                        <th>本月工资</th>
+                        <th>未结工资</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>王小二</td>
+                        <td>车辆管理</td>
+                        <td>司机</td>
+                        <td>2017-08-05 15：46：54</td>
+                        <td>¥111111</td>
+                        <td>¥111111</td>
+                        <td><span class="btn ll">工资发放</span><span class="btn ll seeDetail">查看详情</span></td>
+                    </tr>
+                    <tr>
+                        <td>王小二</td>
+                        <td>车辆管理</td>
+                        <td>司机</td>
+                        <td>2017-08-05 15：46：54</td>
+                        <td>¥111111</td>
+                        <td>¥111111</td>
+                        <td><span class="btn ll">工资发放</span><span class="btn ll seeDetail">查看详情</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/200</span>
+                <i style="margin-left: 12px;">共200页</i>，
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+    <script type="text/javascript">
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#Iframe").css("height","924");
+        })
+        //        时间初始化
+        var startTime = '';
+        var endTime = '';
+        laydate({
+            elem: '#test1',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime = dates;
+            }
+        });
+        laydate({
+            elem: '#test2',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                endTime = dates;
+            }
+        });
+        laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
+
+        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+        Page({
+            num: 200,
+            elem: $('#page1'),
+            callback: function(n) {
+                console.log(n);
+            }
+        });
+        //查看详情
+        $(".seeDetail").click(function () {
+            window.location.href="./wegeCalculationDetail.html";
+        })
+        // 模拟单选按钮
+        $('.bottomOperiat .squre').click(function(){
+            $(this).toggleClass('active');
+        });
+        $('.bottomOperiat .selsectAll').click(function(){
+            $('.bottomOperiat .squre').toggleClass('active');
+        });
+    </script>
+</body>
+</html>

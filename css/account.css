@@ -1,0 +1,404 @@
+body{
+    background-color: white;
+}
+.footerTop{border-top: 1px solid #e1e1e8;}
+.line{
+    width: 100%;
+    height: 0;
+    /*min-width: 1229px;*/
+    border-bottom: 2px solid #e1e1e8;
+}
+.tabLinkMaxBox{
+    display: none;
+}
+
+.stateList{
+    background-color: white;
+    padding-top: 14px;
+}
+.stateList>div{
+    float:left;
+    padding: 2px 6px;
+}
+.stateList>.last{
+
+}
+
+
+.countContainer{
+    overflow: hidden;
+    margin-top: 15px;
+}
+.manageList{
+    width: 210px;
+}
+.manageList  .manageList1{
+    border: 2px solid #f7f7f7;
+    width: 210px;
+}
+.manageList .manageList1 a{
+   display: block;
+   /*width: 190px;*/
+   padding-left: 30px;
+   font-size: 16px;
+   height: 70px;
+   line-height: 70px;
+    color: #6c9efb;
+   background-color: #ffffff;
+}
+.manageList .manageList2{
+    display: none;
+}
+.manageList .manageList2 a{
+    display: block;
+    /*width: 175px;*/
+    padding-left: 45px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #828282;
+    background-color: #ffffff;
+}
+.manageList .manageList2 .active{
+    border-top: 1px solid #f7f7f7;
+    border-bottom: 1px solid #f7f7f7;
+    height: 48px;
+    line-height: 48px;
+    background-color: #fdfdfd;
+}
+.manageList .manageList2 .active1{
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid;
+    color: white;
+    background-color: #5590f6;
+}
+
+.countRight{
+    float: right;
+    /*//height: 1200px;*/
+    /*//width: 980px;*/
+}
+
+input{
+    outline:none;
+}
+header{margin-bottom: 0;}
+header>.headerBot{display: none;}
+.xiaoshi{display: none;}
+.mianCont_box{display: none;}
+.topTitle{background: url("../img/cf_headerBAck.png") no-repeat;background-position: center;height: 98px;background-size: cover; }
+.topTitle .headerBot{
+    /*height: 83px;*/
+    padding-top: 41px;
+}
+.topTitle .navList .cfnav{
+    float: left;
+    /*width: 74px;*/
+    padding: 0 15px;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    /*//margin-right: 15px;*/
+    color: #737373;
+}
+.topTitle .navList .cfnav a{
+    /*color: #666666;*/
+    display:inline-block;
+    height: 100%;
+    width: 100%;
+}
+.topTitle .navList .cfnav.on{
+    color: #1C93DB;
+    border-bottom: 2px solid #1C93DB;
+}
+.topTitle .navList .cfnav:hover{
+    color: #1C93DB;
+    border-bottom: 2px solid #1C93DB;
+}
+.red{color: red;}
+.pop{display: none;}
+.pop{position: fixed;top: 0;left: 0;right:0;bottom: 0;width: 100%;height: 100%;z-index: 999;background-color: rgba(102,102,102,0.5);}
+.pop>.cont{position: fixed;top: 50%;left: 50%;width: 628px;height: 363px;background-color: #ffffff;transform: translate(-50%,-50%);}
+.pop>.cont>.cancel{text-align: right;color: #9E9E9E;margin-bottom: 37px;margin-top: 18px;margin-right: 18px;}
+.pop>.cont>.cance2{margin: 0;padding: 0 20px;height: 50px;line-height: 50px;background: url("../img/cf_popbackgr.png") no-repeat ; margin-bottom: 27px;background-size: contain;}
+.pop>.cont>.cance2>.popTitle{color:#5992f3;font-size: 16px;}
+.pop>.cont>div{overflow: hidden;padding: 0;margin-top: 10px;}
+.pop>.cont>div>.leftTitle{margin-left:53px;width: 120px;text-align: right;margin-right: 18px;height:36px;line-height: 36px;}
+.pop>.cont>div>.popInput{width: 337px;height:38px;}
+.pop>.cont>div>.popInput>input{width: 100%;height:28px; color: #C6C6C6;margin-top: 1px;border: 1px solid #C6C6C6;text-indent: 10px;}
+.pop>.cont>.forget2{text-align: right;margin-right: 100px;margin-top: 10px;}
+.pop>.cont>.forget2>a{color: #007aff;}
+.pop>.cont>.popBottom{margin-left: 90px;margin-top: 35px;}
+.pop>.cont>.popBottom>.btn{margin-left: 58px;width: 137px;height: 39px;line-height: 39px;background-color: #007aff;color: white;text-align: center;border-radius: 5px;}
+
+.pop>.cont>.popBottom>.popReset{color:#ff7524;border: 1px solid #ff7524;background-color: white;}
+.pop>.cont>.popBottom>.popReset:hover{color:#ffffff;border: 1px solid #ff7524;background-color: #ff7524;}
+.pop>.cont>.popBottom>.popCancel{background-color: white;border: 1px solid #007aff;color: #007aff;}
+.pop>.cont>.popBottom>.popCancel:hover{background-color: #007aff;color: #ffffff;}
+.pop>.cont>.popBottom>.popSure:hover{background-color: #026ee4;color: #ffffff;}
+
+
+.input_height input {
+    height: 30px;
+    width: 190px;
+    margin-bottom: 17px;
+    text-indent: 10px;
+}
+
+.info label {
+    width: 110px;
+    text-align: right;
+    display: inline-block;
+}
+
+
+.modelBox23 .modelcontent p {
+    padding: 5px 68px;
+}
+
+.modelcontent p {
+    color: #949495;
+    font-size: 14px;
+    padding: 0 80px;
+}
+
+.modelcontent p span {
+    color: #5992f3;
+}
+
+
+
+
+
+
+
+
+
+
+/* 模态框 */
+.modelBox{
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modelCont{
+    position: absolute;
+    width: 450px;
+    min-height: 276px;
+    left: 50%;
+    top: 50%;
+    /*margin-left: -225px;
+    margin-top: -200px;*/
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);-ms-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-o-transform: translate(-50%,-50%);
+    font-family: 'microsoft yahei';
+    /* background-color: red; */
+}
+.modeltitle{
+    width: 450px;
+    height: 50px;
+    background-image: url(../img/gsxq.gif);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    color: #5690f6;
+    line-height: 50px;
+}
+.modeltitle span{
+    margin-left: 16px;
+}
+
+.modelcontent, .cont{
+    width: 450px;
+    min-height: 226px;
+    background-image: url('../img/gsxq_cont.gif');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    font-size: 18px;
+}
+
+.modelBtnBox{
+    width: 302px;
+    height: 45px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+.modelbtn{
+    float: left;
+    width: 145px;
+    height: 45px;
+    border: 1px solid #5690f6;
+    font-size: 18px;
+    color: #fff;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 18px auto 0 80px;
+}
+
+.modelbtn.ml75 {
+    margin: 18px auto 0 75px;
+}
+
+.modelbtn.modelbtn2 {
+    margin: 18px 0px;
+}
+
+.modelbtn.modelbtn2.ml10 {
+    margin-left: 10px;
+}
+
+
+
+.jiesuan_alert,.all_error_alert,.all_success_alert,.modelBoxdiaoling,.ok_success, .modelBox0, .modelBox1, .modelBox2, .modelBox3, .modelBox4, .modelBox5, .modelBox6, .modelBox7, .modelBox8, .modelBox9, .modelBox10, .modelBox11, .modelBox12, .modelBox13, .modelBox14, .modelBox15, .modelBox16, .modelBox17, .modelBox18, .modelBox19, .modelBox20, .modelBox21, .modelBox22, .modelBox23, .modelBox24, .modelBox25, .modelBox26, .modelBox27, .modelBox28,.modelBox29,.modelBox30,.modelBox31,.modelBox32,.modelBox33,.modelBox34,.modelBox35,.modelBox36,.modelBox37,.modelBox38,.modelBox39,.modelBox40,.modelBox41,.modelBox42,.modelBox43,.modelBox44,.modelBox45,.modelBox46,.modelBox47,.modelBox48,.modelBox49,.modelBox50,.modelBox51,.modelBox52,.modelBox53,.modelBox54,.modelBox55,.closeRequirement, .okClose, #renzheng1, #addCustomerRelationship, #lijiBaoming, #activityDetail {
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.ok_success p, .modelBox3 .modelcontent p, .modelBox4 .modelcontent p, .modelBox5 .modelcontent p, .modelBox6 .modelcontent p, .modelBox7 .modelcontent p, .modelBox10 .modelcontent p, .modelBox14 .modelcontent p, .modelBox15 .modelcontent p, .modelBox16 .modelcontent p, .modelBox18 .modelcontent p, .modelBox19 .modelcontent p, .modelBox20 .modelcontent p, .modelBox21 .modelcontent p,  .modelBox23 .modelcontent p, .modelBox24 .modelcontent p, .modelBox25 .modelcontent p, .modelBox26 .modelcontent p, .modelBox27 .modelcontent p,.modelBox28 .modelcontent p,.modelBox29 .modelcontent p,.modelBox30 .modelcontent p,.modelBox31 .modelcontent p,.modelBox32 .modelcontent p,.modelBox33 .modelcontent p,.modelBox34 .modelcontent p,.modelBox35 .modelcontent p,.modelBox36 .modelcontent p,.modelBox37 .modelcontent p,.modelBox38 .modelcontent p,.modelBox39 .modelcontent p,.modelBox40 .modelcontent p,.modelBox41 .modelcontent p,.modelBox42 .modelcontent p,.modelBox43 .modelcontent p,.modelBox44 .modelcontent p,.modelBox45 .modelcontent p,.modelBox46 .modelcontent p,.modelBox47 .modelcontent p,.modelBox48 .modelcontent p,.modelBox49 .modelcontent p,.modelBox50 .modelcontent p,.modelBox51 .modelcontent p,.modelBox52 .modelcontent p,.modelBox53 .modelcontent p,.modelBox54 .modelcontent p,.modelBox55 .modelcontent p, .okClose p, #renzheng1 p {
+    text-align: center;
+}
+
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 190px;height: 39px;line-height: 39px;margin-right: 20px;border: 1px solid #dbdbdc; }
+.modelBox34 .cfClose:hover,.modelBox35 .cfClose:hover,.modelBox36 .cfClose:hover,.modelBox37 .cfClose:hover,.modelBox38 .cfClose:hover,.modelBox39 .cfClose:hover,.modelBox40 .cfClose:hover,.modelBox41 .cfClose:hover,.modelBox42 .cfClose:hover,.modelBox43 .cfClose:hover,.modelBox44 .cfClose:hover,.modelBox45 .cfClose:hover,.modelBox46 .cfClose:hover,.modelBox47 .cfClose:hover{color: white;background-color: #5388ff;border-color: #5388ff;}
+/*蓝色字体返回*/
+.modelBox42 .cfClose,.modelBox43 .cfClose {
+    background:inherit;border: 1px solid #5992f3;width: 140px;
+}
+.modelBox44 .cfClose{
+    background:#5690f6;color: white;margin: auto;border: 1px solid #5690f6;margin-top: 35px;
+}
+.modelBox45 .cfClose{
+    color: #5690f6;
+}
+.modelBox46 .cfClose,.modelBox47 .cfClose{
+    background-color: #5690f6;
+}
+.modelBox48 .modelbtn,.modelBox49 .modelbtn {background-color: #5690f6;}
+
+
+.cf_btn{width: 120px;height: 40px;line-height: 40px; cursor: pointer; text-align: center;border-radius: 3px;background-color: #6ba1ff;color: white;}
+.cf_btn:hover{background-color: #5388ff;color: white;}
+.cf_btnA{color: #6ba1ff;}
+
+.jiesuan_main{
+    width: 80%;
+    margin: 0 auto;
+}
+.jie_title{
+    overflow: hidden;
+    width: 100%;
+}
+.jie_title>li{
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    color: red;
+    line-height: 90px;
+}
+.sjff{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #666;
+    margin-top: 30px;
+}
+.sjff>span{
+    display: inline-block;
+    width: 90px;
+    line-height: 40px;
+    text-align: right;
+}
+.sjff>input{
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    margin-left: 20px;
+}
+.ff_beizhu{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #666;
+    margin-top: 40px;
+}
+.ff_beizhu>span{
+    display: inline-block;
+    width: 90px;
+    line-height: 40px;
+    text-align: right;
+}
+.ff_beizhu>textarea{
+    width: 460px;
+    height: 140px;
+    outline: none;
+    margin-left: 20px;
+}
+.js_btn{
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    border-radius: 2px;
+    background: #026ee4;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

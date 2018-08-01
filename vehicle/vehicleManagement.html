@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/vehicleManagement.css">
+
+</head>
+<body>
+<!--部门管理-->
+
+    <div class="rightContBox"  style="float: none">
+    	<!--头部-->
+    	<div class="boxHead">
+    		<div class="headLeft">车辆管理</div>
+    		<div class="headRight cfRefresh">
+    			<img src="../img/yh_refresh2.png"/>
+    			<span>刷新</span>
+    		</div>
+    	</div>
+    	<div class="record">
+    		<span></span>
+			<div class="select sort" data-selectedindex="0" style="width: 170px;"><span>排序方式</span><img src="../img/prl-select.jpg" alt="">
+				<ul>
+					<li data-index="0">年审日期顺序</li>
+					<li data-index="1">初次上牌日期顺序</li>
+					<li data-index="2">初次上牌日期倒序</li>
+					<li data-index="3">车辆添加时间顺序</li>
+					<li data-index="4">车辆添加时间倒序</li>
+				</ul>
+			</div>
+			<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
+				<ul>
+					<li data-index="1">10</li>
+					<li data-index="2">20</li>
+					<li data-index="3">30</li>
+				</ul>
+			</div>
+    		<!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
+    		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
+            <div style="width: 102px;text-align: center;" id="addVehicle">添加车辆</div>
+            <div style="width: 102px;text-align: center;">批量导入</div>
+    	</div>
+    	<div class="listBox">
+			<table class="contentslist">
+				<thead>
+				<tr>
+					<th>车牌号</th>
+					<th>车辆分类</th>
+					<th>车辆品牌</th>
+					<th>车辆类型</th>
+					<th>车辆档案号</th>
+					<th>年审日期</th>
+					<th>是否启用</th>
+					<th>车牌号</th>
+
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>新B ER3001</td>
+					<td>内部车辆</td>
+					<td>XXXXX牌</td>
+					<td>乙醚-罐车</td>
+					<td class="">车辆档案号</td>
+					<td>2017-11-11 05：12</td>
+					<td class="chooseswitch">
+						<input id="checked_1" type="checkbox" class="switch"  checked="checked"/>
+						<label for="checked_1"></label>
+					</td>
+					<td><a>车辆详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>
+				</tr>
+				<tr>
+					<td>新B ER3001</td>
+					<td>内部车辆</td>
+					<td>XXXXX牌</td>
+					<td>乙醚-罐车</td>
+					<td class="">车辆档案号</td>
+					<td>2017-11-11 05：12</td>
+					<td class="chooseswitch">
+						<input id="checked_2" type="checkbox" class="switch" />
+						<label for="checked_1"></label>
+					</td>
+					<td><a>车辆详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+			<ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+			<div class="pageJump">
+				<span class="allPageN">1/200</span>
+				<i style="margin-left: 12px;">共200页</i>，
+				<span>到第</span>
+				<input type="text"/>
+				<span>页</span>
+				<button type="button" class="button">GO</button>
+			</div>
+		</div>
+
+	</div>
+
+<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/javascript" >
+
+    $(function () {
+        //Iframe 的高度
+        window.parent.$("#Iframe").css("height","843");
+
+    })
+var currentPage=1;
+    //进入页面加载数据
+    getData(1);
+	//获取数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");
+        $.ajax({
+            url: pubIP + 'tLogisticsVehicle/selectLogisticsVehicleList', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                companyId:"9041805231046330013",
+                sort:$(".sort").attr("data-selectedindex"),
+                size:pageSize,
+                page:currentPage
+            },
+            success: function (res) {
+                if(res.code===1){
+                    //首次请求时 改变分页数据
+                    if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.count/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                               // console.log(n);
+                                currentPage=n;
+                                getData(n);//加载n页数据
+                            }
+                        });
+					}
+					//修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+					cf_dataRender(res.data)
+                }else{
+                    alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+			str+='<tr data-id="'+item.id+'">';
+            str+='<td>'+item.carNo+'</td>';
+            if(item.type===0){
+                str+='<td>内部车辆</td>';
+            }else{
+                str+='<td>外部车辆</td>';
+            }
+            str+='<td>'+item.carBrand+'</td>';
+            str+='<td>'+item.carType+'</td>';
+            str+='<td>'+item.archivesNo+'</td>';
+            str+='<td>'+timestampToTime(item.annualVerificationDate)+'</td>';
+            if(item.status==0){
+                str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox" name="status" class="switch" checked="checked" /><label for="checked_'+idx+'"></label></td>';
+			}else{
+                str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox"  name="status" class="switch" /><label for="checked_'+idx+'"></label></td>';
+			}
+
+            str+='<td data-id="'+item.id+'"><a class="seeDetail">车辆详情</a><a class="lookover editList">编辑</a><a class="delect">删除</a></td>';
+            str+='</tr>';
+        })
+		$(".listBox tbody").html(str);
+        //详情
+        $(".seeDetail").click(function () {
+            sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
+            window.location.href="./vehicleDetail.html";
+        })
+//		编辑
+		$(".editList").click(function () {
+            resetModelBox12()//先清空框
+		    window.parent.getDynamic();
+            window.parent.getCarTypeList();
+            window.parent.getLineList();
+			window.parent.$(".modelBox12").show();
+            window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
+            returnShow($(this).parents("tr").attr("data-id"));
+        })
+		//删除
+        $(".delect").click(function () {
+            upadtaState(1,this);
+        })
+		//启用和禁用
+        $(".chooseswitch input[type='checkbox']").change(function() {
+            console.log($(this).prop("checked"));
+            if($(this).prop("checked")){
+                upadtaState(2,this);
+			}else {
+                upadtaState(3,this);
+			}
+
+        });
+    }
+    //选择排序方式
+	$(".select ul li").click(function () {
+        currentPage=1;
+        getData(1);
+    })
+    // 点击go刷新数据
+    $('.pageCont').on('click', '.button',function(){
+        var currentPage1 = $('.pageCont li.active>a').text();
+        currentPage=currentPage1;
+        getData(currentPage1);
+    })
+	//添加车辆
+	$("#addVehicle").click(function () {
+        resetModelBox12()//先清空框
+        window.parent.getDynamic();
+        window.parent.getCarTypeList();
+        window.parent.getLineList();
+		window.parent.$(".modelBox12").show();
+        window.parent.$(".modelBox12").attr("data-id","");
+    })
+//启用禁用 删除  事件
+	function upadtaState(type,that) {
+		$.ajax({
+            url: pubIP + 'tLogisticsVehicle/updateCarDoIng', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                companyId:companyId,
+                sort:$(".sort").attr("data-selectedindex"),
+                carId:$(that).parents("tr").attr("data-id"),
+                type:type
+            },
+            success: function (res) {
+                if(res.code==1){
+					if(type==1){
+                        alert("删除车辆成功")
+					}else if(type==2){
+                        alert("启用车辆成功")
+                    }else if(type==3){
+                        alert("禁用车辆成功")
+                    }
+                    getData(currentPage);
+                }else{
+                    alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+		})
+    }
+//    点击确认按钮
+    window.parent.$(".modelBox12 .conFirm").unbind();
+	window.parent.$(".modelBox12 .conFirm").click(function () {
+        addCar();
+    })
+// 添加车辆方法
+    function addCar() {
+	    var s='';
+	    $("#dynamic li").each(function (idx,item) {
+	        if(idx!=0){
+	            s+='@#@';
+			}
+	        s+=$(this).attr("data-id")+'@#@';
+//	        s+=$(this).find(".dynamicTitle").attr("data-title");
+			if($(item).attr("data-type")==0){
+				s+=$(this).find("input").val();
+			}else if($(item).attr("data-type")==1){//下拉框
+				s+=$(this).find(".select span").val();
+            }else if($(item).attr("data-type")==2){//时间框
+                s+=$(this).find("input").val();
+            }
+        })
+	    
+        $.ajax({
+            url: pubIP + 'tLogisticsVehicle/insertCar', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                companyId:companyId,
+                carId:window.parent.$(".modelBox12").attr("data-id"),
+                carType:window.parent.$("#carTypeList").attr("data-id"),//	是	string	车辆类型
+                type:window.parent.$("#carTypeOut").attr("data-selectedindex"),	//是	int	0:内部 1:外部
+				carNo:window.parent.$("#addCarNo").val(),//	是	String	车牌号
+				carBrand:window.parent.$("#carBrand").val(),//	是	String	车品牌
+				archivesNo:window.parent.$("#archivesNo").val(),//	是	String	车辆档案号
+				frameNo:window.parent.$("#frameNo").val(),//	是	String	车架号
+				engineNo:window.parent.$("#engineNo").val(),//	是	String	发动机
+				annualVerificationDate:window.parent.$("#annualVerificationDate").val(),//		是	date	年审日期
+				firstDate:window.parent.$("#firstDate").val(),//		是	Sring	初次上牌日期
+				vehicleLoad:window.parent.$("#vehicleLoad").val(),//		是	String	车辆
+				insuranceDate:window.parent.$("#insuranceDate").val(),//		是	String	保险日期
+				routeid:window.parent.$("#chooseAbleLine").attr("data-id"),//		是	String	线路id
+				purchaseAmount:window.parent.$("#purchaseAmount").val(),//		是	String	购买金额
+				insuranceAmount:window.parent.$("#insuranceAmount").val(),//		是	String	保险金额
+				insuranceYears:window.parent.$("#insuranceYears").val(),//		是	String	保险年限
+				drivingLicense:window.parent.$("#cf_xingshizheng1").val(),//		是	String	行驶证url
+				carOperation:window.parent.$("#cf_cheliangyunying1").val(),//		是	String	车辆运营url
+				values:s,//		是	String	获取车辆设置的属性”id @#@ value @,@ id @#@ value “
+            },
+            success: function (res) {
+                if(res.code==1){
+                   cf_alert(1,"添加车辆成功");
+                }else{
+                    cf_alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        })
+		
+    }
+
+function resetModelBox12() {
+        window.parent.$(".modelBox12").attr("data-id",'')
+        window.parent.$("#carTypeList").attr("data-id","")//	是	string	车辆类型
+        window.parent.$("#carTypeOut").attr("data-selectedindex","0")	//是	int	0:内部 1:外部
+        window.parent.$("#carTypeOut span").text("内部")
+        window.parent.$("#addCarNo").val("")//	是	String	车牌号
+        window.parent.$("#carBrand").val("")//	是	String	车品牌
+        window.parent.$("#archivesNo").val("")//	是	String	车辆档案号
+        window.parent.$("#frameNo").val("")//	是	String	车架号
+        window.parent.$("#engineNo").val("")//	是	String	发动机
+        window.parent.$("#annualVerificationDate").val("")//		是	date	年审日期
+        window.parent.$("#firstDate").val("")//		是	Sring	初次上牌日期
+        window.parent.$("#vehicleLoad").val("")//		是	String	车辆
+        window.parent.$("#insuranceDate").val("")//		是	String	保险日期
+        window.parent.$("#chooseAbleLine").attr("data-id")//		是	String	线路id
+        window.parent.$("#purchaseAmount").val("")//		是	String	购买金额
+        window.parent.$("#insuranceAmount").val("")//		是	String	保险金额
+        window.parent.$("#insuranceYears").val("")//		是	String	保险年限
+        window.parent.$("#cf_xingshizheng1").val("")//		是	String	行驶证url
+    	window.parent.$("#cf_xingshizheng").val("")//		是	String	行驶证url
+   	 	window.parent.$("#cf_cheliangyunying1").val("")//		是	String	车辆运营url
+        window.parent.$("#cf_cheliangyunying").val("")//		是	String	车辆运营url
+}
+//车辆详情回显
+function returnShow(id) {
+    $.ajax({
+        url: pubIP + 'tLogisticsVehicle/insertCar', /*v1.0*/
+        type: 'post',
+        headers: {
+            Accept: "application/json; charset=utf-8",
+            token: token
+        },
+        cache: false,
+        ansyc: true,
+        dataType: 'json',
+        data:{
+            companyId:companyId,
+            carId:id
+        },
+        success: function (res) {
+            if(res.code==1){
+                var data1=res.data.data;
+                	//window.parent.$("#carTypeList").attr("data-id","")//	是	string	车辆类型
+                if (data1.type==1){
+                    window.parent.$("#carTypeOut").attr("data-selectedindex","1")	//是	int	0:内部 1:外部
+                    window.parent.$("#carTypeOut span").text("内部")
+				}
+
+                window.parent.$("#addCarNo").val(data1.carNo)//	是	String	车牌号
+                window.parent.$("#carBrand").val(data1.carBrand)//	是	String	车品牌
+                window.parent.$("#archivesNo").val(data1.archivesNo)//	是	String	车辆档案号
+                window.parent.$("#frameNo").val(data1.frameNo)//	是	String	车架号
+                window.parent.$("#engineNo").val(data1.engineNo)//	是	String	发动机
+                window.parent.$("#annualVerificationDate").val(data1.annualVerificationDate)//		是	date	年审日期
+                window.parent.$("#firstDate").val(data1.firstDate)//		是	Sring	初次上牌日期
+                window.parent.$("#vehicleLoad").val(data1.vehicleLoad)//		是	String	车辆
+                window.parent.$("#insuranceDate").val(data1.insuranceDate)//		是	String	保险日期
+//                window.parent.$("#chooseAbleLine").attr("data-id")//		是	String	线路id
+                window.parent.$("#purchaseAmount").val(data1.insuranceAmount)//		是	String	购买金额
+                window.parent.$("#insuranceAmount").val(data1.insuranceAmount)//		是	String	保险金额
+                window.parent.$("#insuranceYears").val(data1.insuranceYears)//		是	String	保险年限
+                window.parent.$("#cf_xingshizheng1").val(data1.drivingLicense)//		是	String	行驶证url
+                window.parent.$("#cf_xingshizheng").val(data1.drivingLicense)//		是	String	行驶证url
+                window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
+                window.parent.$("#cf_cheliangyunying").val(data1.carOperation)//		是	String	车辆运营url
+            }else{
+                cf_alert(res.msg);
+            }
+        },
+        error: function(err){
+            console.log(err);
+        }
+    })
+}
+
+
+
+
+
+
+
+
+    //9类
+    function  getJiuType() {
+        $.ajax({
+            url: pubIP + 'chemicalType/getChemicalType', /*v1.0*/
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                sort:$(".sort").attr("data-selectedindex"),
+            },
+            success: function (res) {
+                if(res.code===1){
+                    var str="";
+                    $.each(res.data,function (idx,item) {
+                        if(idx==0){
+                            window.parent.$("#jiuType ul").attr("data-selectedindex",item.type_id);
+                            window.parent.$("#jiuType span").text(item.type_name);
+						}
+						str+='<li data-index="'+item.type_id+'">'+item.type_name+'</li>'
+                    })
+
+					window.parent.$("#jiuType ul").html(str);
+                    getErShiWUXiang(window.parent.$("#jiuType").attr("data-selectedindex"));
+                    window.parent.$("#jiuType li").click(function () {
+                        getErShiWUXiang($(this).attr("data-index"));
+                        window.parent.$("#jiuType").attr("data-selectedindex",$(this).attr("data-index"));
+                        window.parent.$("#jiuType span").text($(this).text());
+                    })
+
+
+                }else{
+                    alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+//    25项
+    function getErShiWUXiang(id) {
+        $.ajax({
+            url: pubIP + 'chemicalType/getChemicalTypeByid', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function (res) {
+                if (res.code === 1) {
+                    var str = "";
+                    if(res.data.length==0){
+                        window.parent.$("#erShiWuXiang ul").attr("data-selectedindex", "-1");
+                        window.parent.$("#erShiWuXiang span").text("暂无");
+					}
+                    $.each(res.data, function (idx, item) {
+                        if (idx == 0) {
+                            window.parent.$("#erShiWuXiang ul").attr("data-selectedindex", item.type_id);
+                            window.parent.$("#erShiWuXiang span").text(item.type_name);
+                        }
+                        str += '<li data-index="' + item.type_id + '">' + item.type_name + '</li>'
+                    })
+                    window.parent.$("#erShiWuXiang ul").html(str);
+                    window.parent.$("#erShiWuXiang li").click(function () {
+                        window.parent.$("#erShiWuXiang").attr("data-selectedindex",$(this).attr("data-index"));
+                        window.parent.$("#erShiWuXiang span").text($(this).text());
+                    })
+
+                } else {
+                    alert(res.msg);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+</script>
+</body>
+</html>
