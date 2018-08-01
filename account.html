@@ -669,15 +669,10 @@
                 <ul class="manageList2">
                     <!--<li><a href="##" class="manageItem" data-src="caiwu" data-height="1032">平台资产</a></li>-->
                     <!--<li><a href="##" class="manageItem " data-src="./financialManage/settlementAudit.html" data-height="715">待审核列表</a></li>-->
-<<<<<<< HEAD
                     <!-- <li><a href="##" class="manageItem" data-src="./finance/replenish.html" data-height="767">网点卡券申请</a></li>  -->
                     <!-- <li><a href="##" class="manageItem" data-src="./finance/returnedMoney.html" data-height="767">订单回款申请</a></li> -->
 
                     
-=======
-                    <li><a href="##" class="manageItem" data-src="./finance/replenish.html" data-height="767">油卡补充申请</a></li>
-                    <li><a href="##" class="manageItem" data-src="./finance/returnedMoney.html" data-height="767">订单回款申请</a></li>
->>>>>>> 8904fc3928ba0f20d002cdaa04145e99c91fa263
                     <li><a href="##" class="manageItem" data-src="./finance/imprest.html" data-height="767">预付款申请</a></li>
                     <li><a href="##" class="manageItem" data-src="./finance/wageCalculation.html" data-height="767">工资结算</a></li>
                     <li><a href="##" class="manageItem" data-src="./finance/outWage.html" data-height="767">外部工资申请</a></li>
@@ -2781,7 +2776,7 @@
 </div>
 
 
-<div class="all_error_alert">
+<div class="all_error_alert" style="z-index: 99999;">
     <div class="modelCont">
         <div class="modeltitle">
             <span>消息提示</span>
@@ -2798,7 +2793,7 @@
         </div>
     </div>
 </div>
-<div class="all_success_alert">
+<div class="all_success_alert" style="z-index: 99999;">
     <div class="modelCont">
         <div class="modeltitle">
             <span>消息提示</span>
@@ -2835,6 +2830,12 @@
                 <span>备注</span>
                 <textarea></textarea>
             </div> -->
+            <div class="jiesuan_type">
+                <input type="radio" name="xuan_type" id="xuan_type1" value="0" checked>
+                <label for="xuan_type">全部结算</label>
+                <input type="radio" name="xuan_type" id="xuan_type2" value="1" style="margin-left: 20px;">
+                <label for="xuan_type">暂时结算</label>
+            </div>
             <div class="js_btn">立即结算</div>
         </div>
     </div>
@@ -4245,36 +4246,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         });
 
     }
-    //结算框显示
-    function jiesuan_alert_show(obj,obj1,obj2){
-        $(".jiesuan_alert").show();
-        $(".djs_money").html(obj1);
-        $(".by_money").html(obj2);
-        $(".js_btn").on("click",function(){
-            $.ajax({
-                url: pubIP + 'carrierFinance/updatewagesvo',
-                type: 'POST',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    wages_id: obj,
-                    sign: 0,
-                    money: $(".sjff_inp").val(),
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (json) {
-                    console.log("+++++++++++++++++++++++++++++");
-                    console.log(json.data);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-        })
-    }
+   
     //获取车辆动态字段
     function getDynamic() {
         $.ajax({
