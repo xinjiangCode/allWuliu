@@ -267,12 +267,14 @@
                         localStorage.setItem("isAuto",isAuto);
                         localStorage.setItem("token",json.data.token);
                         //sessionStorage.setItem("token",json.data.token);//hzf  20180716
-	                	window.location.href = 'index.html';
+	                	// window.location.href = 'index.html';
 						window.localStorage.setItem('data-logout', 'false');
 						if (json.data.companyType == 1) { //未认证和供应商
-							// window.location.href = "http://192.168.1.159:8080/xj_wuliu_gys/index.html";	
-							// window.location.href = "http://127.0.0.1:8082/wuliu-gys/xj_wuliu_gys/index.html";	
+							
+							localStorage.setItem('company_type', '1');
+							window.location.href = "index.html";
 						} else if (json.data.companyType == 2) { //承运商
+							localStorage.setItem('company_type', '2');
 							window.location.href = "index.html";
 						}
 						$('#logout').show();
@@ -285,7 +287,37 @@
 	              
 	          }
 	        });
-          })
+        })
+
+     //    function companyType(token) {
+     //    	$.ajax({ 
+	    //       	type:"post",
+	    //       	url:pubIP + "wltCompanyUp/getCompanyByToken",//v1.0
+	    //       	cache:false,
+	    //       	dataType: "json",
+	    //       	data:{
+		   //      	token: token
+	    //       	},
+	    //       	success: function(json){
+	    //         	console.log(json);
+
+	    //         	if (json.data.companyType == 1) { //承运商
+					// 	localStorage.setItem('company_type', '1');
+					// 	window.location.href = "index.html";
+					// } else if (json.data.companyType == 2) { //供应商
+					// 	localStorage.setItem('company_type', '2');
+					// 	window.location.href = "index.html";
+					// } else if (json.data.companyType == 3) { //未认证
+					// 	localStorage.setItem('company_type', '3');
+					// 	window.location.href = "index.html";
+					// }
+
+	    //         },
+	    //         error: function(err) {
+	    //         	console.log(err);
+	    //         }
+	    //     });
+     //    }
 	  </script>
 	</body>
 </html>
