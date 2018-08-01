@@ -1,0 +1,94 @@
+<!--基本资料-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title adct="2">新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="../css/base.css"/>-->
+    <style>
+        body{background-color: #ffffff;}
+        .container{border: 1px solid #EBE9EA  ;padding: 51px 0;width: 970px }
+        .headerImg{width: 110px;height: 100px;border: 1px solid #EBE9EA;margin-left: 381px;}
+        .updataImg{margin-left: 408px;position: relative; margin-top: 16px; margin-bottom: 31px;}
+        .leftTitle{width: 381px;float: left;text-align: right;height: 38px;line-height: 38px;}
+        .rightInput{width: 358px;float: left;}
+        .uploadIMg{ width: 100%;height: 100%;display: inline-block;position: absolute;top: 0;left: 0;right: 0;bottom: 0;opacity: 0;}
+        .list{margin-bottom: 19px;}
+        .list::after{display: block;content: "";clear: both;}
+        .list input{height: 38px;line-height: 38px;width: 358px;}
+        .updataPWD{width: 169px;height: 42px;line-height: 42px;text-align: center;color: #ffffff;font-size:14px; background-color: #6EA3FF;border-radius: 3px;}
+    </style>
+
+
+
+</head>
+<body>
+<div class="container clearFloat">
+    <div class="headerImg">
+        <img src="" alt="">
+    </div>
+    <div class="updataImg">
+       <span style="position: relative;color: #6EA3FF;font-size:14px;">修改头像<input class="uploadIMg" type="file" style=""></span>
+    </div>
+    <div class="userName list">
+        <div class="leftTitle">用户名：</div>
+        <div class="rightInput">
+            <input type="text">
+        </div>
+    </div>
+    <div class="userName list">
+        <div class="leftTitle">所属角色：</div>
+        <div class="rightInput">
+            <input type="text">
+        </div>
+    </div>
+    <div class="userName list">
+        <div class="leftTitle">身份证号：</div>
+        <div class="rightInput">
+            <input type="text">
+        </div>
+    </div>
+
+    <div class="userName list">
+        <div class="leftTitle" style="color: transparent;"> 0</div>
+        <div class="rightInput">
+            <div class="Rt updataPWD">修改密码</div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/javascript" >
+$(function () {
+    window.parent.$("#Iframe").css("height","534");
+})
+
+
+$(".updataPWD").click(function () {
+    window.parent.$("#updataPwd").css("display","block");
+})
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

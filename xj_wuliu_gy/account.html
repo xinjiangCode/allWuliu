@@ -1,0 +1,2322 @@
+<!--账户公共部分-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title adct="account">新疆化学品经营服务平台</title>
+    <link rel="stylesheet" type="text/css" href="./css/commin.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/account.css"/>
+
+
+    <style>
+        .modelBox11 p, .modelBox1 p, .modelBox12 p, .modelBoxdiaoling p, .no_zizhi p {
+            text-align: center;
+        }
+
+        /* requireInfo */
+        .requireInfo .contBox{
+            /*min-height: 244px;*/
+        }
+        .contlist{
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .contlistone .ll{
+            width: 327px;
+        }
+        .contlistone .rr{
+            width: 420px;
+        }
+        .contlistone .desti{
+            overflow: hidden;
+        }
+        .contlistone .destination{
+            float: right;
+            display: inline-block;
+            width: 347px;
+        }
+        .contlisttwo .ll{
+            width: 327px;
+        }
+        .contlisttwo .mm{
+            width: 320px;
+        }
+        .contlisttwo .rr{
+            width: 285px;
+        }
+        
+        .jujue_liyou {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 7px;
+        }
+
+    </style>
+</head>
+<body>
+<script src="./js/header.js" type="text/javascript" charset="utf-8"></script>
+<div class="topTitle">
+    <div class="headerBot">
+        <div class="mianCont">
+            <div class="logo Lf" onclick="goIndex()" style="width: 167px;height: 44px;margin: 0;margin-right: 44px;margin-left: 25px;"></div>
+            <div class="navList Lf">
+                <div class="cfnav cfnav1 on" onclick="showMangeList('.cfidx1')"><a href="##">首页</a></div>
+                <div class="cfnav cfnav2 yrz" onclick="showMangeList('.cfidx2')"><a href="##">需求</a></div>
+                <div class="cfnav cfnav3 yrz" onclick="showMangeList('.cfidx3')"><a href="##">订单</a></div>
+                <div class="cfnav cfnav4 yrz" onclick="showMangeList('.cfidx4')"><a href="##">多单</a></div>
+                <div class="cfnav cfnav5 yrz" onclick="showMangeList('.cfidx5')"><a href="##">财务</a></div>
+                <div class="cfnav cfnav6 yrz" onclick="showMangeList('.cfidx6')"><a href="##">设置</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="line"></div>
+
+<div class="countContainer mianCont">
+    <!--首页-->
+    <div class="manageList Lf cfidx1" data-idx=".cfnav1">
+        <ul>
+            <li class="yrz">
+                <a href="##" class="manage"><strong>个人中心</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem" data-src="./personal/mine.html" data-height="860">企业基本信息</a></li>
+                    <li><a href="##" class="manageItem " data-src="./personal/information.html" data-height="576">企业信息设置</a></li>
+                </ul>
+            </li>
+            <li class="yrz">
+                <a href="##" class="manage"><strong>用户中心</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem"  data-src="./personal/grow.html"  data-height="1600">个人资料</a></li>
+                    <!--<li><a href="##" class="manageItem" data-src="./personal/integral.html" data-height="1479">积分兑换记录</a></li>-->
+                    <!--<li><a href="##" class="manageItem" data-src="./personal/myOrder.html" data-height="1420">会员商品订单</a></li>-->
+                </ul>
+            </li>
+            <li>
+                <a href="##" class="manage"><strong>企业资质</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem qiye_renzheng" data-src="./personal/identification1.html" data-height="1715">企业认证</a></li>
+                    <li><a href="##" class="manageItem zizhi" data-src="./personal/Special1.html" data-height="1715">资质认证</a></li>
+                    <!--<li><a href="##" class="manageItem" data-src="./personal/identification2.html" data-height="1715">运营者信息</a></li>-->
+                    <!--<li><a href="##" class="manageItem" data-src="./personal/identification4.html" data-height="1715">出金账户绑定</a></li>-->
+                    <!--<li><a href="##" class="manageItem" data-src="./personal/identification3.html" data-height="1715">发票信息</a></li>-->
+                    <!--<li><a href="##" class="manageItem" data-src="./personal/identification5.html" data-height="1600">财务信息</a></li>-->
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--需求-->
+    <div class="manageList Lf cfidx2" data-idx=".cfnav2">
+        <ul>
+            <li>
+                <a href="##" class="manage"><strong>需求列表</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem" data-src="./requuire/publishRequireList.html" data-height="1447">发布需求列表</a></li>
+                    <li><a href="##" class="manageItem " data-src="./requuire/toConfirmRequire.html" data-height="1447">待确认需求</a></li>
+                    <li><a href="##" class="manageItem" data-src="./requuire/historicalRecords.html" data-height="1447">历史记录</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--订单-->
+    <div class="manageList Lf cfidx3" data-idx=".cfnav3">
+        <ul>
+            <li>
+                <a href="##" class="manage"><strong>订单管理</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem" data-src="./order/notDistributeOrder.html" data-height="1445">待分配订单</a></li>
+                    <li><a href="##" class="manageItem " data-src="./order/onGoingOrder.html" data-height="1445">进行中订单</a></li>
+                    <li><a href="##" class="manageItem" data-src="./order/sureTakengoodsOrder.html" data-height="1445">确认收货订单</a></li>
+                    <li><a href="##" class="manageItem" data-src="./order/reimbursementAuditedOrder.html" data-height="1445">回款审核订单</a></li>
+                    <li><a href="##" class="manageItem" data-src="./order/financeNotAuditOrder.html" data-height="1445">财务待审核订单</a></li>
+                    <li><a href="##" class="manageItem" data-src="./order/finishedOrder.html" data-height="1445">已完成订单</a></li>
+                    <li><a href="##" class="manageItem" data-src="./order/priceAjustApplication.html" data-height="1445">调价申请</a></li>
+                    <li><a href="##" class="manageItem" data-src="./order/cancelOrder.html" data-height="1445">取消订单</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--多单-->
+    <div class="manageList Lf cfidx4" data-idx=".cfnav4">
+        <ul>
+            <li>
+                <a href="##" class="manage"><strong>多单列表</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem" data-src="./order/totalOrderList.html" data-height="1450">总订单列表</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--财务-->
+    <div class="manageList Lf cfidx5" data-idx=".cfnav5">
+        <ul>
+            <li>
+                <a href="##" class="manage"><strong>财务管理</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem" data-src="./financialManage/financialManage.html" data-height="1032">财务管理</a></li>
+                    <li><a href="##" class="manageItem " data-src="./financialManage/settlementAudit.html" data-height="715">结算审核</a></li>
+                    <li><a href="##" class="manageItem" data-src="./financialManage/servicePay.html" data-height="767">服务费支付</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--设置-->
+    <div class="manageList Lf cfidx6" data-idx=".cfnav6">
+        <ul>
+            <li>
+                <a href="##" class="manage"><strong>基础设置</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_open.png" alt=""></div></a>
+                <ul>
+                    <li><a href="##" class="manageItem" data-src="./setUp/setting-tradeContract.html" data-height="1442">贸易合同</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setUp_departmentManage.html" data-height="1054">部门管理</a></li>
+                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_roleManage.html" data-height="1054">角色管理</a></li>
+                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_staffManage.html" data-height="1126">员工管理</a></li>
+                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_automaticPush.html" data-height="1054">自动推送设置</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setting-logManage.html" data-height="1050">日志管理</a></li>
+                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_messageManage.html" data-height="1110">消息管理</a></li>
+                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_commonFunction.html" data-height="1111">常用功能设置</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <script type="text/javascript" >
+        function ssaa() {
+            alert(22);
+        }
+        </script>
+    <div class="countRight">
+        <!--<div>当前位置:<a href="##">个人中心</a></div>-->
+        <iframe src=""
+                name="ifd"
+                width="980"
+                frameborder="0"
+                id="Iframe"
+                style="overflow: hidden;"
+                scrolling="no"
+        ></iframe>
+    </div>
+
+    <!--修改密码弹框-->
+    <div class="pop" id="updataPwd">
+        <div class="cont">
+            <div class="cance2">
+                <span class="popTitle Lf">修改密码</span>
+                <span class="close Rt" onclick="close1(this)"><img src="./img/gsxq_del.png" alt=""></span>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>您的密码：</span>
+                </div>
+                <div class="popInput Lf">
+                    <input type="password" id="oldPwd" maxlength="20" placeholder="长度6-20个字母、数字、特殊符号组成" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>新密码：</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPwd1" type="password"  maxlength="20" placeholder="长度6-20个字母、数字、特殊符号组成" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>确认密码：</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPwd2" type="password" maxlength="20" placeholder="必须和设置的密码一致" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>
+            <!--<div class="forget2"><a href="../login/findPass.html">忘记密码?</a></div>-->
+            <div class="popBottom">
+                <!--<div class="btn Lf popCancel close" onclick="close1()">取消</div>-->
+                <div class="btn Lf popReset" onclick="reset(this)">重置</div>
+                <div class="btn Lf popSure" id="updataPwdSub">确定</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modelBox1">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <!--  <p><span>危险化学品认证信息审核中</span>，请等待危险化学品认证审核通过后，再进行特殊资质认证！</p> -->
+                    <p><span>危险化学品认证信息正在审核或未进行危险化学品认证！</span></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox2">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>未进行危险化学品认证，请先进行危险化学品认证！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox9">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>特殊资质认证提交成功</span>，我们将于1-3个工作日内帮您审核，请耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox10">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>其他资质认证提交成功！</span></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改手机号弹框-->
+    <div class="pop" id="updataPhone" >
+        <div class="cont" style="width: 650px;">
+            <div class="cance2">
+                <span class="popTitle Lf">获取验证码</span>
+                <span class="close Rt" onclick="close1(this)"><img src="./img/cf_close1.png" alt=""></span>
+            </div>
+            <div style="width: 650px; height: 35px;line-height: 35px;color: #fb6047;background-color: #fff7e9;font-size: 14px;margin: auto;text-align: center;margin-bottom: 20px;">提示：若手机丢失或者损坏，则不能直接更换手机，请联系客服400-0012-556（10:00～19:00）</div>
+            <div>
+                <div class="leftTitle Lf"> <!--<i class="red">*</i>-->
+                    <span>您当前手机号</span>
+                </div>
+                <div class="popInput Lf">
+                    <input type="text" id="oldPhone" maxlength="11" placeholder="" onkeyup="this.value=chaneseCheck(this.value)" disabled="disabled">
+
+                </div>
+            </div>
+            <div>
+                <div class="leftTitle Lf"> <!--<i class="red">*</i>-->
+                    <span>手机验证码</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPhone" type="text"  maxlength="20" placeholder="" onkeyup="this.value=chaneseCheck(this.value)" style="width: 50%;">
+                    <button style="outline:none;border:none;padding: 6px 15px;background-color: #00ABEB;color: #fff;border-radius: 15px;font-size: 16px;cursor: pointer;margin-left: 15px;min-width: 142px;" the-id='getCode'>获取手机验证码</button>
+                </div>
+            </div>
+            <!--<div>
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>确认密码</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPwd2" type="text" maxlength="20" placeholder="必须和设置的密码一致" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>-->
+
+            <!--<div class="forget2"><a href="##">忘记密码?</a></div>-->
+            <div class="popBottom">
+                <div class="btn Lf popCancel theNext" onclick="show1('#updataNewPhone')">下一步</div>
+                <!--<div class="btn Lf popReset" onclick="reset(this)">重置</div>
+                <div class="btn Lf popSure" id="updataPhoneSub">确定</div>-->
+            </div>
+        </div>
+    </div>
+    <!--修改新手机号弹框-->
+    <div class="pop" id="updataNewPhone">
+        <div class="cont" style="width: 650px;">
+            <div class="cance2">
+                <span class="popTitle Lf">新手机号更换</span>
+                <span class="close Rt" onclick="close1(this)"><img src="./img/cf_close1.png" alt=""></span>
+            </div>
+            <div style="width: 650px; height: 35px;line-height: 35px;color: #fb6047;background-color: #fff7e9;font-size: 14px;margin: auto;text-align: center;margin-bottom: 20px;">提示：若手机丢失或者损坏，则不能直接更换手机，请联系客服400-0012-556（10:00～19:00）</div>
+            <div>
+                <div class="leftTitle Lf"> <!--<i class="red">*</i>-->
+                    <span>新手机号</span>
+                </div>
+                <div class="popInput Lf">
+                    <input type="text" id="oldNewPwd" maxlength="11" placeholder="" onkeyup="this.value=chaneseCheck(this.value)">
+
+                </div>
+            </div>
+            <div>
+                <div class="leftTitle Lf"> <!--<i class="red">*</i>-->
+                    <span>手机验证码</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newNewPwd1" type="text"  maxlength="20" placeholder="" onkeyup="this.value=chaneseCheck(this.value)" style="width: 50%;">
+                    <button style="outline:none;border:none;padding: 6px 15px;background-color: #00ABEB;color: #fff;border-radius: 15px;font-size: 16px;cursor: pointer;" the-id='getNewCode'>获取手机验证码</button>
+                </div>
+            </div>
+            <!--<div>
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>确认密码</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPwd2" type="text" maxlength="20" placeholder="必须和设置的密码一致" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>-->
+
+            <!--<div class="forget2"><a href="##">忘记密码?</a></div>-->
+            <div class="popBottom">
+                <div class="btn Lf popSure" id="updataPhoneSub">提交</div>
+                <div class="btn Lf popCancel close">取消</div>
+                <!--<div class="btn Lf popReset" onclick="reset(this)">重置</div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <!--&lt;!&ndash;修改密码弹框&ndash;&gt;-->
+    <!--<div class="pop" id="updataPwd">-->
+        <!--<div class="cont">-->
+            <!--<div class="cance2">-->
+                <!--<span class="popTitle Lf">修改密码</span>-->
+                <!--<span class="close Rt" onclick="close1(this)"><img src="./img/gsxq_del.png" alt=""></span>-->
+            <!--</div>-->
+
+            <!--<div style="margin-bottom: 20px;">-->
+                <!--<div class="leftTitle Lf"> <i class="red">*</i>-->
+                    <!--<span>您的密码：</span>-->
+                <!--</div>-->
+                <!--<div class="popInput Lf">-->
+                    <!--<input type="password" id="oldPwd" maxlength="20" placeholder="长度6-20个字母、数字、特殊符号组成" onkeyup="this.value=chaneseCheck(this.value)">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div style="margin-bottom: 20px;">-->
+                <!--<div class="leftTitle Lf"> <i class="red">*</i>-->
+                    <!--<span>新密码：</span>-->
+                <!--</div>-->
+                <!--<div class="popInput Lf">-->
+                    <!--<input id="newPwd1" type="password"  maxlength="20" placeholder="长度6-20个字母、数字、特殊符号组成" onkeyup="this.value=chaneseCheck(this.value)">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div style="margin-bottom: 20px;">-->
+                <!--<div class="leftTitle Lf"> <i class="red">*</i>-->
+                    <!--<span>确认密码：</span>-->
+                <!--</div>-->
+                <!--<div class="popInput Lf">-->
+                    <!--<input id="newPwd2" type="password" maxlength="20" placeholder="必须和设置的密码一致" onkeyup="this.value=chaneseCheck(this.value)">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="forget2"><a href="##">忘记密码?</a></div>-->
+            <!--<div class="popBottom">-->
+                <!--&lt;!&ndash;<div class="btn Lf popCancel close" onclick="close1()">取消</div>&ndash;&gt;-->
+                <!--<div class="btn Lf popReset" onclick="reset(this)">重置</div>-->
+                <!--<div class="btn Lf popSure" id="updataPwdSub">确定</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--修改交易密码弹框-->
+    <div class="pop " id="updataPayPwd">
+        <div class="cont">
+            <div class="cancel">
+                <span class="popTitle Lf">修改密码</span>
+                <span class="close" style="float: right;cursor: pointer;" onclick="close1(this)"><img src="./img/gsxq_del.png" alt=""></span>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>原支付密码：</span>
+                </div>
+                <div class="popInput Lf">
+                    <input type="password" id="oldPayPwd" maxlength="20" placeholder="长度6-20个字母、数字、特殊符号组成" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>新密码：</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPayPwd1" type="password"  maxlength="20" placeholder="长度6-20个字母、数字、特殊符号组成" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>确认密码：</span>
+                </div>
+                <div class="popInput Lf">
+                    <input id="newPayPwd2" type="password" maxlength="20" placeholder="必须和设置的密码一致" onkeyup="this.value=chaneseCheck(this.value)">
+                </div>
+            </div>
+
+            <div class="forget2"><a href="##">忘记密码?</a></div>
+            <div class="popBottom">
+                <div class="btn Lf popCancel close" onclick="close1(this)">取消</div>
+                <div class="btn Lf popSure" id="updataPayPwdSub">确定</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop " id="forget">
+        <div class="cont">
+            <div class="cancel"><img class="close" style="float: right;cursor: pointer;" src="./img/gsxq_del.png" alt=""></div>
+            <div>
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>消息标题:</span>
+                </div>
+                <div class="popInput lineHeight Lf DetTit">
+
+                </div>
+            </div>
+            <div>
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>消息内容:</span>
+                </div>
+                <div class="popInput infoCont Lf DeCont">
+
+                </div>
+            </div>
+            <div>
+                <div class="leftTitle Lf"> <i class="red">*</i>
+                    <span>发送时间:</span>
+                </div>
+                <div class="popInput Lf Detime" style="line-height: 38px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 调令成功 -->
+    <div class="modelBoxdiaoling clearFloat dasdas">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p>发起调令成功！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm ook2">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- 企业认证基本信息是否审核 -->
+    <div class="modelBox3">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>企业认证正在等待审核中</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 企业认证正在审核中 -->
+    <div class="modelBox4">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>企业认证正在审核中</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>新增收货地址</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="modelTxt"></div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                    <div style="color:#5690f6;margin-left: 12px;" class="modelbtn cancel cfClose">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox5">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>企业认证的审核未通过，请重新修改提交</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox6">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p><span>企业资料正在审核中</span>，请耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox7">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p><span>出金账户资料正在审核中</span>，请耐心等待!</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox8">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>企业认证信息提交成功</span>，我们将于1-3个工作日内帮您审核，请耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox11">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>欢迎回来，请继续您的填写企业信息！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox12">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>出金账户修改提交成功</span>，我们将于1-3个工作日内帮您审核，请耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm ook4">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox13">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>企业信息修改提交成功</span>，我们将于1-3个工作日内帮您审核，请耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox14">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p>运营者信息修改成功！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm ook1">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox15">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p>发票信息修改成功！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm ook2">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modelBox16">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p>财务信息修改成功！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm ook3">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除资质 -->
+    <div class="modelBox17">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p style="text-align:center;">删除成功！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm ok_ok1">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 资质正在审核 -->
+    <div class="modelBox18">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p><span>资质正在审核</span>，请您耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 资质审核未通过 -->
+    <div class="modelBox19">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p><span>资质审核未通过</span>，请您重新填写进行认证！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加商品成功 -->
+    <div class="modelBox20">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>商品添加成功</span>，您可以：</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 addShop_too confirm" data-src="../shopManage/addShop.html">继续添加商品</div>
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 ml10 backShopList cfClose" data-src="../shopManage/shopManage.html">返回商品列表</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改商品成功 -->
+    <div class="modelBox21">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>商品修改成功</span>，您可以：</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn backShopList ml75 cfClose" data-src="../shopManage/shopManage.html">返回商品列表</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实名认证 642px -->
+    <div class="modelBox22">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>实名认证信息</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="input_height pn">
+                        <label for="">个人姓名：</label>
+                        <input type="text" class="person_name">
+                        <span class="ts">个人姓名不能为空</span>
+                    </div>
+                    <div class="input_height">
+                        <label for="">出生日期：</label>
+                        <input type="text" class="date-input laydate-icon date_of_birth" style="text-indent: 4px;" placeholder="请选择日期" id="test1">
+                        <span class="ts">出生日期不能为空</span>
+                    </div>
+                    <div class="input_height">
+                        <label for="">从事的职业：</label>
+                        <input type="text" class="job">
+                        <span class="ts">职业不能为空</span>
+                    </div>
+                    <div class="input_height">
+                        <label for="">身份证号：</label>
+                        <input type="text" class="id_card_num">
+                        <span class="ts">身份证号格式不正确</span>
+                    </div>
+                    <div class="clearfix id_card_pic">
+                        <label for="" style="float: left;">身份证照片：</label>
+                        <div class="id_card_pic1" style="float: left;">
+                            <div class="uploade">
+                                <i style=""></i>
+                                <input type="file" class="input_blur" id="file_input1">
+                                <input type="hidden" class="hd0" id="hidden0" value="">
+                            </div>
+                            <span>身份证正面照</span>
+                        </div>
+                        <div class="id_card_pic2" style="float: left;">
+                            <div class="uploade">
+                                <i style=""></i>
+                                <input type="file" class="input_blur" id="file_input2">
+                                <input type="hidden" class="hd0" id="hidden1" value="">
+                            </div>
+                            <span>身份证背面照</span>
+                        </div>
+                        <i class="ts">照片不能为空</i>
+                    </div>
+                </div>
+                <div class="modelBtnBox width100 clearfix">
+                    <div style="background:#5690f6;" class="modelbtn1 upload_info">上传</div>
+                    <div style="background:#5690f6;" class="modelbtn1 cancel_info cfClose">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实名认证成功 -->
+    <div class="modelBox23">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">实名认证成功</span></span></div>
+                    <p>恭喜您，<span>实名认证成功</span>，将获得*****的积分奖励！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 该地址添加成功 -->
+    <div class="modelBox24">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">该地址添加成功</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确定要删除该地址吗 -->
+    <div class="modelBox25">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">您确定要删除该地址吗？</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 addShop_too del_sure confirm">确定</div>
+                    <div style="border: 2px solid #5690f6; color: #5690f6;" class="modelbtn modelbtn2 ml10 backShopList del_back cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除成功 -->
+    <div class="modelBox26">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">删除成功！</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 地址修改成功 -->
+    <div class="modelBox27">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">修改成功！</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 确认交易 -->
+    <div class="modelBox28">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">您要确认该笔交易吗？</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 addShop_too  confirm suerjiaoyi">确定</div>
+                    <div style="border: 2px solid #5690f6; color: #5690f6;" class="modelbtn modelbtn2 ml10 backShopList  cfClose backSureJiaoyi">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 拒绝交易 -->
+    <div class="modelBox29">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">您要拒绝该笔交易吗？</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 addShop_too  confirm jujuejiaoyi">确定</div>
+                    <div style="border: 2px solid #5690f6; color: #5690f6;" class="modelbtn modelbtn2 ml10 backShopList  cfClose backSureJiaoyi">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确认交易 -->
+    <div class="modelBox30">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">您要确认收货吗？</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 addShop_too  confirm suershouhuo">确定</div>
+                    <div style="border: 2px solid #5690f6; color: #5690f6;" class="modelbtn modelbtn2 ml10 backShopList  cfClose backSureJiaoyi">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--订单支付-->
+    <div class="modelBox31" style="font-size: 14px;">
+        <div class="modelCont" style="width: 985px;height: 460px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>订单支付</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="width: 100%;height: 413px;">
+                <div class="cf_title" style="padding-top: 58px;margin-left: 47px;">支付方式：现汇+承兑</div>
+                <div style="margin-top: 10px;border-bottom: 1px solid #ebe9ea;margin-left: 47px;padding-bottom: 8px;">总额：<span style="color: #ff732e;">20.00</span>元</div>
+                <div class="clearFloat" style="padding-right: 124px;margin-top: 10px;">
+                    <div style="margin-left: 47px;line-height: 31px;">
+                        <span>现汇方式：</span>
+                        <input type="radio" name="xuNi" value="虚拟账户" style="margin-left: 20px;">虚拟账户
+                        <span style="margin-left: 35px;">可用余额：</span><span>0.00</span>
+                        <span class="cf_btnA" style="margin-left: 18px;">充值</span>
+                        <sapn style="margin-left: 35px;">支付金额: </sapn>
+                        <input type="text" style="width: 130px;height: 31px;line-height: 31px;border: 1px solid #d3d3d3;">
+                        <span style="float: right;color: #ff6d6d;">待支付</span>
+                    </div>
+                    <div class="clearFloat">
+                        <div class="cf_btn Rt"  style="margin-top: 14px;">立即支付</div>
+
+                    </div>
+                    <div class="Rt" style="color: #ff6d6d;margin-top: 6px;">余额不足，请充值</div>
+                </div>
+                <div class="clearFloat" style="padding-right: 124px;margin-top: 10px;">
+                    <div style="margin-left: 47px;">
+                        <span>承兑方式：</span>
+                        <input type="radio" name="chengDui" value="中信银行" style="margin-left: 25px;">中信银行
+                        <input type="radio" name="chengDui" value="库尔勒银行" style="margin-left: 30px;">库尔勒银行
+                        <input type="radio" name="chengDui" value="招商银行" style="margin-left: 30px;">招商银行
+
+                        <sapn style="margin-left: 40px;">支付金额</sapn>
+                        <span>10.00</span>
+                        <span>元</span>
+                        <!--<input type="text">-->
+                        <span style="float: right;color: #ff6d6d;">待支付</span>
+                    </div>
+                    <div class="clearFloat">
+                        <div class="cf_btn Rt"  style="margin-top: 14px;margin-left: 18px;">立即支付</div>
+                        <div class="Rt" style="font-size: 14px;line-height: 40px;margin-top: 14px;">
+                            <input type="radio" name="beishu" style="vertical-align: sub;"> 背书
+                        </div>
+                    </div>
+                    <div class="Rt" style="color: #ff6d6d;margin-top: 6px;">余额不足，请充值</div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <!--32.订单信息-->
+    <div class="modelBox32" style="font-size: 14px;">
+        <div class="modelCont" style="width: 1060px;height: 675px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>订单信息</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="width: 100%;height: 594px;font-size: 14px;padding-top: 33px;">
+                <div class="requireInfo infoBox clearFloat" style="width: 931px;height: 225px;border: 1px solid #efedee;margin: auto;padding: 25px 0 0 40px;">
+                    <div class="contBox">
+                        <div class="contlist contlistone">
+                            <div class="Lf ll" style="line-height: 30px;">
+                                <div>订单编号：<span>201707196369321</span></div>
+                                <div>发布时间：<span>2015-09-08 23:00</span></div>
+                                <div>装车时间：<span>2015-09-08 23:00</span></div>
+                            </div>
+                            <div class="Lf rr" style="width: 420px;line-height: 30px;">
+                                <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span>新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
+                                <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span class="destination">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
+                            </div>
+                        </div>
+                        <div class="contlist contlisttwo" style="line-height: 30px;">
+                            <div class="Lf ll">
+                                <div>货物类型：<span>危化</span></div>
+                                <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span>150吨</span></div>
+                                <div>支付方式：预付</div>
+                                <div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>
+                            </div>
+                            <div class="Lf mm" style="width: 310px;">
+                                <div>包装类型：<span>罐装</span></div>
+                                <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span>普票</span></div>
+                                <div>结算方式：<span>现汇</span></div>
+                                <div>缴纳方式：<span>抵扣</span></div>
+                            </div>
+                            <div class="Lf rr" style="width: 268px;">
+                                <div>货物名称：<span>片碱</span></div>
+                                <div>车辆类型：<span>罐装车</span></div>
+                                <div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></div>
+                                <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span>备注信息</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dangerIntroduce infoBox" style="width: 931px;height: 73px;border: 1px solid #efedee;margin: auto;padding: 15px 0 0 40px;margin-top: 20px;">
+                    <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">危险品介绍<div>查看更多信息</div></div>-->
+                    <div class="contBox" style="line-height: 30px;">
+                        <div class="Lf ll">
+                            <div>报价时间：<span>2015-09-08 23:00</span></div>
+                            <div>报价时间：<span>2015-09-08 23:00</span></div>
+                        </div>
+                        <div class="Lf mm" style="width: 310px;">
+                            <div>报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>120元/吨</span></div>
+                            <div>报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>120元/吨</span></div>
+                        </div>
+                        <div class="Lf rr" style="width: 268px;">
+                            <div>结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>推送中</span></div>
+                            <div>结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>未采纳</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;margin-top: 35px;line-height: 38px;"><span>企业报价：</span><input type="text" style="width: 194px;height: 38px;line-height: 38px;border: 1px solid #d3d3d3;"></div>
+                <div class="cf_btn" style="margin: auto;margin-top: 50px;width: 190px; height: 41px;line-height: 41px;">确认报价</div>
+            </div>
+
+        </div>
+    </div>
+    <!--33.订单信息--选择公司-->
+    <div class="modelBox33" style="font-size: 14px;">
+        <div class="modelCont" style="width: 1060px;height: 675px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>订单信息</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="width: 100%;height: 558px;font-size: 14px;padding-top: 70px;">
+                <div class="requireInfo infoBox clearFloat" style="width: 931px;height: 225px;border: 1px solid #efedee;margin: auto;padding: 25px 0 0 40px;">
+                    <div class="contBox">
+                        <div class="contlist contlistone">
+                            <div class="Lf ll" style="line-height: 30px;">
+                                <div>订单编号：<span>201707196369321</span></div>
+                                <div>发布时间：<span>2015-09-08 23:00</span></div>
+                                <div>装车时间：<span>2015-09-08 23:00</span></div>
+                            </div>
+                            <div class="Lf rr" style="width: 420px;line-height: 30px;">
+                                <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span>新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
+                                <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span class="destination">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
+                            </div>
+                        </div>
+                        <div class="contlist contlisttwo" style="line-height: 30px;">
+                            <div class="Lf ll">
+                                <div>货物类型：<span>危化</span></div>
+                                <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span>150吨</span></div>
+                                <div>支付方式：预付</div>
+                                <div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>
+                            </div>
+                            <div class="Lf mm" style="width: 310px;">
+                                <div>包装类型：<span>罐装</span></div>
+                                <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span>普票</span></div>
+                                <div>结算方式：<span>现汇</span></div>
+                                <div>缴纳方式：<span>抵扣</span></div>
+                            </div>
+                            <div class="Lf rr" style="width: 268px;">
+                                <div>货物名称：<span>片碱</span></div>
+                                <div>车辆类型：<span>罐装车</span></div>
+                                <div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></div>
+                                <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span>备注信息</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dangerIntroduce infoBox" style="width: 931px;border: 1px solid #efedee;margin: auto;padding: 15px 0 15px 40px;margin-top: 26px;">
+                    <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">危险品介绍<div>查看更多信息</div></div>-->
+                    <div class="contBox" style="line-height: 30px;">
+                        <div class="Lf ll">
+                            <div>报价时间：<span>2015-09-08 23:00</span></div>
+                            <div>报价时间：<span>2015-09-08 23:00</span></div>
+                        </div>
+                        <div class="Lf mm" style="width: 310px;">
+                            <div>报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>120元/吨</span></div>
+                            <div>报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>120元/吨</span></div>
+                        </div>
+                        <div class="Lf rr" style="width: 268px;">
+                            <div><span class="cf_btnA">选择</span><span style="margin-left: 10px;">删除</span></div>
+                            <div><span class="cf_btnA">选择</span><span style="margin-left: 10px;">删除</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--34.金额结算-->
+    <div class="modelBox34" style="font-size: 14px;">
+        <div class="modelCont" style="width: 650px;height: 560px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>金额结算</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 550px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
+                <div style="width: 550px;height: 225px;">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="width: 55px;"><div class="cf_select"></div></th>
+                                <th>订单号</th>
+                                <th>完成时间</th>
+                                <th>总金额</th>
+                                <th>待结算金额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="cf_select"></div></td>
+                                <td>30015151054184184185</td>
+                                <td>2017-08-08 14:20</td>
+                                <td>危化-罐装</td>
+                                <td>4000吨</td>
+                            </tr>
+                            <tr>
+                                <td><div class="cf_select"></div></td>
+                                <td>30015151054184184185</td>
+                                <td>2017-08-08 14:20</td>
+                                <td>危化-罐装</td>
+                                <td>4000吨</td>
+                            </tr>
+                            <tr>
+                                <td><div class="cf_select"></div></td>
+                                <td>30015151054184184185</td>
+                                <td>2017-08-08 14:20</td>
+                                <td>危化-罐装</td>
+                                <td>4000吨</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">总&nbsp;&nbsp;订&nbsp;&nbsp;单</span>：<span>订单已提交成功</span></div>
+                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">支付方式</span>：<input type="radio" name="ZFtype">现汇 <input type="radio" name="ZFtype">承兑</div>
+                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">承兑方式</span>：<input type="radio" name="CDtype">中信银行 <input type="radio" name="CDtype">库尔勒银行</div>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;"><span class="modelBox34LeftTitle">现汇金额</span>：<input type="text" style="height: 36px;width: 205px;border: 1px solid #dbdbdc;"> <span class="modelBox34LeftTitle" style="margin-left: 20px;">可用余额</span>：<span>¥1111212</span></div>
+
+                <div class="clearFloat" style="text-align: center;margin-top: 32px;">
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;" >取消</span>
+                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--35.添加部门-->
+    <div class="modelBox35" style="font-size: 14px;">
+        <div class="modelCont" style="width: 655px;height: 500px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>添加部门</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
+                <div >
+                    <span style="display: inline-block; width: 135px;text-align: right;">部门名称：</span>
+                    <input type="text" placeholder="33333"  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                </div>
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span style="display: block; width: 135px;text-align: right;float: left;">职能描述：</span>
+                    <textarea name="" id="" cols="30" rows="10" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                </div>
+                <div class="clearFloat" style="margin-top: 32px;">
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
+                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--36.确认收货-->
+    <div class="modelBox36" style="font-size: 14px;">
+        <div class="modelCont" style="width: 655px;height: 500px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>确认收货</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
+                <div>
+                    <span style="display: inline-block; width: 135px;text-align: right;">合同结算金额：</span>
+                    <span style="color: #666666;" class="hetong_jiesuan_money">¥100000 .00</span>
+                </div>
+                <div style="margin-top: 25px;">
+                    <span style="display: inline-block; width: 135px;text-align: right;"> 实际结算金额：</span>
+                    <input type="text" placeholder="实际结算金额" class="shiji_jiesuan_money" style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                </div>
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span style="display: block; width: 135px;text-align: right;float: left;">备注：</span>
+                    <textarea name="" id="" cols="30" rows="10" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                </div>
+                <div class="clearFloat" style="margin-top: 32px;">
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
+                    <span class=" cf_btn ok_shouhuo" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定收货</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--37.调价申请--发起调令-->
+    <div class="modelBox37" style="font-size: 14px;">
+        <div class="modelCont" style="width: 655px;height: 500px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>调价申请</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
+                <div>
+                    <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>合同原价：</span>
+                    <span style="color: #666666;">¥<span class="hetongyuanjia">100</span> 元／公里／吨</span>
+                </div>
+                <div style="margin-top: 25px;">
+                    <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>更改单价：</span>
+                    <input type="text" placeholder="33333" class="update_unit" style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                    <span style="color: #666666;margin-left: 15px;">元／公里／吨</span>
+                </div>
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>调价原因：</span>
+                    <textarea name="" id="" class="tiaojia_yuanyin" cols="30" rows="10" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                </div>
+                <div class="clearFloat" style="margin-top: 32px;">
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
+                    <span class=" cf_btn ok_shenqing" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定申请</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--38.添加角色-->
+    <div class="modelBox38" style="font-size: 14px;">
+        <div class="modelCont" style="width: 655px;height: 500px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>添加角色</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 100%;height: 417px;font-size: 14px;padding-top: 31px; ">
+                <div>
+                    <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>角色名称：</span>
+                    <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                </div>
+                <div style="margin-top: 25px;">
+                    <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>所属部门：</span>
+                    <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                </div>
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>职能描述：</span>
+                    <textarea name="" id="" cols="30" rows="10" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                </div>
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
+                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--39.添加部门-->
+    <div class="modelBox39" style="font-size: 14px;">
+        <div class="modelCont" style="width: 655px;height: 460px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>添加部门</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 100%;height: 377px;font-size: 14px;padding-top: 31px; ">
+                <div>
+                    <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>部门名称：</span>
+                    <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                </div>
+                <!--<div style="margin-top: 25px;">-->
+                    <!--<span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>所属部门：</span>-->
+                    <!--<input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">-->
+                <!--</div>-->
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>职能描述：</span>
+                    <textarea name="" id="" cols="30" rows="10" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                </div>
+                <div class="clearFloat" style="margin-top: 25px;">
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
+                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--40.秒杀区公告-->
+    <div class="modelBox40" style="font-size: 14px;">
+        <div class="modelCont" style="width: 655px;height: 460px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>公告</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent clearFloat" style="width: 535px;height: 377px;font-size: 14px;padding:31px 60px 0 60px; ">
+                <div style="text-align: center;font-size: 20px;color: #595757;">秒杀专区暂时下线公告</div>
+                <div style="text-align: center;font-size: 18px;color: #999999;margin-top: 10px;">2017-12-26  21:10:30</div>
+                <div style="text-indent: 2rem;color: #949495;font-size: 16px;line-height: 26px;margin-top: 35px;">尊敬的用户，为了给您带来更好的体验，秒杀专区业务将于2017年4月26日22：00-2017年4月27日09:00期间进行系统升级，升级期间秒杀专区入口将暂时下线。升级后可正常充值和查看充值记录，请有需要的用户提前充值或者在系统升级后再充值。给您带来的不便，敬请谅解。感谢您一如既往的支持。</div>
+                <div class="cf_btn" style="margin: auto;margin-top: 75px;width: 140px;font-size: 18px;">确定</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 41.新增采购需求 --成功 -->
+    <div class="modelBox41" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">采购信息发布成功</span></span></div>
+                    <p style="font-size: 14px;color: #949495;">小V正通宵达旦地为您匹配货源呢！</p>
+                </div>
+                <div >
+                    <div style="background:#568ff6;color: white; border: 1px solid #568ff6; margin:0 auto;margin-top: 35px;" class="cf_btn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 42.定制化物流服务-->
+    <div class="modelBox42" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div style="color:#5992f3;font-size: 24px;padding-top: 45px;width: 300px;margin: auto;">
+                    您如需定制化物流服务，请联系平台物流专员。
+                </div>
+                <div style="text-align: center;margin-top: 50px;">
+                    <span class="cf_btn" style="display: inline-block;margin-right: 18px;">
+                        <a href="##" style="display: inline-block;width: 100%;height: 100%;">联系客服</a>
+                    </span>
+                    <span  class="cf_btn cfClose" style=" display: inline-block;">返回</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--43.广告位-->
+    <div class="modelBox43" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div style="color:#5992f3;font-size: 24px;padding-top: 45px;width: 300px;margin: auto;">
+                    您如需广告位购买，请联系平台专属客服。
+                </div>
+                <div style="text-align: center;margin-top: 50px;">
+                    <span class="cf_btn" style="display: inline-block;margin-right: 18px;">
+                        <a href="##" style="display: inline-block;width: 100%;height: 100%;">联系客服</a>
+                    </span>
+                    <span  class="cf_btn cfClose" style=" display: inline-block;">返回</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 44.资质审核未通过 -->
+    <div class="modelBox44" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p style="width: 100%;text-align: center;padding: 0;">您的经营范围不包括此类资质，<span style="color: #ff8a00;">添加车辆失败</span>！</p>
+                </div>
+                <div >
+                    <div style="" class="cf_btn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 45.确认交易 -->
+    <div class="modelBox45" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""><span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;
+                margin-left: 10px; display: inline-block;">您确定要删除该路线吗？</span></span></div>
+                    <p></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn modelbtn2 addShop_too  confirm suershouhuo">确定</div>
+                    <div style="border: 2px solid #5690f6;" class="modelbtn modelbtn2 ml10 backShopList  cfClose backSureJiaoyi">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--46.所有资质填写完成   需要修改span内容-->
+    <div class="modelBox46" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p><span>企业信息修改提交成功</span>，我们将于1-3个工作日内帮您审核，请耐心等待！</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 47.实名认证成功 -->
+    <div class="modelBox47" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div">
+                        <span class="clearfix" ><img style="float: none;" src="./img/gsxq_success.gif" alt="">
+                            <span style="color: #6894FE; font-size: 20px; vertical-align: top; margin-top: 6px;margin-left: 10px; display: inline-block;">实名认证成功</span>
+                        </span>
+                    </div>
+                    <p style="padding: 0;width: 100%;text-align: center;">恭喜您，<span>实名认证成功</span>，将获得*****的积分奖励！</p>
+                </div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="margin-top: 0;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--48.报价被确认-->
+    <div class="modelBox48" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p>该报价已被确认，请进入<span>我的订单</span>查看订单详情。</p>
+                </div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="margin-top: 0;" class="modelbtn ">我的订单</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--49.发布空车成功-->
+    <div class="modelBox49" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></div>
+                    <p>您的空车信息<span>发布成功</span>！小V正通宵达旦地为您匹配货源呢！</p>
+                </div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="margin-top: 0;" class="modelbtn ">我的订单</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 50.发布需求时  未企业认证 -->
+    <div class="modelBox50" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>您尚未进行企业认证，请先<span>认证</span>。</p>
+                </div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="background:#5690f6;margin-top: 0;" class="modelbtn confirm">认证</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--51.发布需求时 首次资质认证-->
+    <div class="modelBox51" >
+        <div class="modelCont" style="width: 650px;height: 460px;">
+            <div class="modeltitle" style="width: 650px;">
+                <span>资质认证</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="height: 365px;width: 530px;padding: 45px 60px 0 60px;">
+                <div style="font-size: 18px;color: #595757;">尊敬的V56用户：</div>
+                <div style="font-size: 18px;color: #595757;margin-top: 8px;">您好！</div>
+                <div style="text-indent: 2rem;margin-top: 30px;font-size: 16px;color: #949495;line-height: 26px;">根据《危险化学品安全管理条例 》等相关法律规定，在互联网上发布易制爆化学品、易制毒、剧毒化学品、放射性物品和其他危险化学的生产、经营、存储、使用，需提供危险物品从业单位的合法资质，并在网站明显位置予以展示。</div>
+                <div style="text-indent: 2rem;font-size: 16px;color: #949495;line-height: 26px;">您要添加的产品需要提交产品资质，请您先进行在线资质认证，通过后为您开通危险化学品添加和购买功能。</div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="background:#5690f6;margin-top: 0;" class="modelbtn confirm">在线资质认证</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 52.发布需求时  没有该类资质 -->
+    <div class="modelBox52" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>该商品属于****，您没有该品类的资格认证，请先<span>认证</span>。</p>
+                </div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="background:#5690f6;margin-top: 0;" class="modelbtn confirm">认证</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 53.未登录 -->
+    <div class="modelBox53" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                    <p>您尚未登录，请先<span>登录</span>。</p>
+                </div>
+                <div class="modelBtnBox" style="margin-top: 40px;">
+                    <div style="background:#5690f6;margin-top: 0;" class="modelbtn confirm">登录</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 54.发布需求 --成功 -->
+    <div class="modelBox54" >
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></span></div>
+                    <p style="font-size: 14px;color: #949495;">您发起的需求已成功提交，请耐心等待物流企业报价反馈！</p>
+                </div>
+                <div >
+                    <div style="background:#568ff6;color: white; border: 1px solid #568ff6; margin:0 auto;margin-top: 35px;" class="cf_btn ">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 暂时是不用-->
+    <div class="modelBox55" style="display: none">
+        <div class="modelCont" style="width: 1060px;">
+            <div class="modeltitle" style="width: 1060px;">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="width: 1000px;padding: 30px;">
+                <div class="requireInfo infoBox">
+                    <div class="title"><img src="./img/prl-titlelogo.png" width="29" height="28" alt="">订单信息</div>
+                    <div class="contBox" id="orderInfo">
+                        <div class="contlist contlistone">
+                            <div class="Lf ll">
+                                <div>订单编号：<span>201707196369321</span></div>
+                                <div>发布时间：<span>2015-09-08 23:00</span></div>
+                                <div>装车时间：<span>2015-09-08 23:00</span></div>
+                            </div>
+                            <div class="Lf rr">
+                                <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span>新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
+                                <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span class="destination">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
+                            </div>
+                        </div>
+                        <div class="contlist contlisttwo">
+                            <div class="Lf ll">
+                                <div>货物类型：<span>危化</span></div>
+                                <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span>150吨</span></div>
+                                <div>支付方式：预付</div>
+                                <div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>
+                            </div>
+                            <div class="Lf mm">
+                                <div>包装类型：<span>罐装</span></div>
+                                <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span>普票</span></div>
+                                <div>结算方式：<span>现汇</span></div>
+                                <div>缴纳方式：<span>抵扣</span></div>
+                            </div>
+                            <div class="Lf rr">
+                                <div>货物名称：<span>片碱</span></span></div>
+                                <div>车辆类型：<span>罐装车</span></span></div>
+                                <div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></span></div>
+                                <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span>备注信息</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <div style="background:#568ff6;color: white; border: 1px solid #568ff6; margin:0 auto;margin-top: 35px;" class="cf_btn ">登录</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 是否要关闭采购需求 -->
+    <div class="closeRequirement">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""></span></div>
+                    <p>您是否确定要<span>关闭采购需求</span>，关闭后待确定的报价将自动拒绝</p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm modelbtn2 sure_ok">确定</div>
+                    <div style="border: 2px solid #5690f6; color: #5690f6;" class="modelbtn modelbtn2 ml10 cfClose cancel_ok">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 采购需求关闭成功 -->
+    <div class="okClose">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/gsxq_success.gif" alt=""></span></div>
+                    <p>采购需求<span>关闭已成功</span></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 未进行危险化学品的认证 -->
+    <div id="renzheng1">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""></span></div>
+                    <p><span>未进行危险化学品资质认证或经营范围不包含该化学品！</span></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 未通过企业认证 -->
+    <div class="no_zizhi">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><span class="clearfix"><img style="float: none;" src="./img/cf_denger1.png" alt=""></span></div>
+                    <p><span>未通过企业认证！</span></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn cfClose">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 添加客户关系 -->
+    <div id="addCustomerRelationship">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>添加客户关系</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="qiye_name_kuang clearfix">
+                        <span class="span fl">企业名称：</span>
+                        <input type="text" class="qiye_name_input fl">
+                    </div>
+                    <div class="qiye_type_kuang clearfix">
+                        <span class="span fl">企业类型：</span>
+                        <div class="selectPub qiye_type_input fl" data-selectedindex="0">
+                            <span></span>
+                            <img src="./img/prl-select.jpg" alt="">
+                            <ul>
+                                <li data-index="1">10</li>
+                                <li data-index="2">20</li>
+                                <li data-index="3">30</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="up_down_relationship clearfix">
+                        <span class="span fl">上下游关系：</span>
+                        <div class="selectPub up_down_relationship_input fl" data-selectedindex="0">
+                            <span></span>
+                            <img src="./img/prl-select.jpg" alt="">
+                            <ul>
+                                <li data-index="1">10</li>
+                                <li data-index="2">20</li>
+                                <li data-index="3">30</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 立即报名 -->
+    <div id="lijiBaoming">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>交纳保证金</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="baozhnegjin_kuang clearfix">
+                        <span class="span fl">保证金金额：</span>
+                        <span class="money_num">1000元</span>
+                    </div>
+                    <div class="pay_pass_kuang clearfix">
+                        <span class="span fl">输入支付密码：</span>
+                        <input type="text" class="pay_pass_input fl">
+                    </div>
+                    <div class="phone_num_kuang clearfix">
+                        <span class="span fl">手机号：</span>
+                        <input type="text" class="phone_num fl">
+                        <span class="huoqu_code">获取验证码</span>
+                    </div>
+                    <div class="code_kuang clearfix">
+                        <span class="span fl">输入验证码：</span>
+                        <input type="text" class="code_input fl">
+                    </div>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 活动列表-查看活动详情 -->
+    <div id="activityDetail">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="activity_title_div clearfix">
+                        <span class="span fl">活动标题：</span>
+                        <span class="title fl">XXXXXX活动</span>
+                    </div>
+                    <div class="activity_cont_div clearfix">
+                        <span class="span fl">活动内容：</span>
+                        <div class="fl activity_cont">新发色热风的闪光点放电饭锅电饭锅的非官方</div>
+                    </div>
+                    <div class="baozhengjin_div clearfix">
+                        <span class="span fl">保证金：</span>
+                        <span class="baozhengjin fl">10元</span>
+                    </div>
+                    <div class="tiaojian_xianzhi_div clearfix">
+                        <span class="span fl">条件限制：</span>
+                        <div class="xianzhi fl">商家信用大于90分，指定鑫汇鑫、盛和兴参加</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" >
+    $(".manageList").css("display","none");
+    function showMangeList(idx) {
+        if(idx==".cfidx1"){
+            if (localStorage.getItem('isOld') == 1 || localStorage.getItem('isOld') == -2) {
+                sessionStorage.setItem("cfsrc","./personal/identification1.html");
+            }else {
+                sessionStorage.setItem("cfsrc","./personal/mine.html");
+            }
+        }else if(idx==".cfidx2"){
+            sessionStorage.setItem("cfsrc","./requuire/publishRequireList.html");
+        }else if(idx==".cfidx3"){
+            sessionStorage.setItem("cfsrc","./order/notDistributeOrder.html");
+        }else if(idx==".cfidx4"){
+            sessionStorage.setItem("cfsrc","./order/totalOrderList.html");
+        }else if(idx==".cfidx5"){
+            sessionStorage.setItem("cfsrc","./financialManage/financialManage.html");
+        }else if(idx==".cfidx6"){
+            sessionStorage.setItem("cfsrc","./setUp/setting-tradeContract.html");
+        }
+        showNav();
+    }
+    function goIndex() {
+        window.location.href="./index.html";
+    }
+
+    // 若未提交，请继续填写
+    // $(document).on('click', '.qiye_renzheng', function() {
+        $.ajax({
+            url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                console.log(data.data.state);
+
+                if (data.data.state && data.data.type == 1) {
+                    $('.qiye_renzheng').attr('data-src', 'personal/identification'+data.data.state+'.html');
+                    // location.href="personal/identification"+data.data.state+".html"; 
+                    $(document).on('click', '.qiye_renzheng', function() {
+                        if (companyId) {
+                            tiao_tan();
+                        }
+                    });
+                } else {
+                    // if (data.data.type == 7) {  //等待审核
+                    //     // window.parent.tan3();
+                    // } else if (data.data.type == 2) {  //正在审核
+                    //     tan4();
+                    // } else if (data.data.type == 4) {  //已拒绝
+                    //     tan5();
+                    // } else if (data.data.type == 5) {  //企业二次审核
+                    //     tan6();
+                    // } else if (data.data.type == 6) {  //出金二次修改
+                    //     tan7();
+                    // }
+  
+                    // $('.qiye_renzheng').attr('data-src', 'personal/identification1.html');
+                }
+
+                          
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    // }); 
+
+
+    function changeFrameHeight(){
+        var ifm= document.getElementById("Iframe");
+        ifm.height=document.documentElement.clientHeight-56;
+    }
+    window.onresize=function(){ changeFrameHeight();}
+    $(function(){changeFrameHeight();});
+
+
+    //禁止输入中文
+    function chaneseCheck(str){
+        var temp=""
+        for(var i=0;i<str.length;i++)
+            if(str.charCodeAt(i)>0&&str.charCodeAt(i)<255)
+                temp+=str.charAt(i)
+        return temp
+    }
+
+    //未认证，不能进入资质认证
+    $(document).on('click', '.zizhi', function() {
+        if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+            // $('#Iframe').attr('src', './personal/identification1.html');
+            $('.qiye_renzheng').click();
+            showModelBox('.no_zizhi');
+            sessionStorage.setItem('isfirstclickqiye', '1');
+
+        }
+    });
+
+    //var state=1;//未认证
+    $(function () {
+        if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+
+            $(".yiRenZheng").addClass('xiaoshi');
+            $('.yrz').css('display', 'none');
+            $(".weiRenZheng .manage").each(function (index) {
+                if(index!=0){
+                    $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
+                }
+            })
+            $('.cfnav1').click();
+
+        }else{
+            $('.yrz').css('display', 'block');
+            $(".weiRenZheng").addClass('xiaoshi');
+            $(".yiRenZheng .manage").each(function (index) {
+                if(index!=0){
+                    $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
+                }
+            })
+        }//
+        $(".manage").click(function () {
+            $(this).parent().find("ul").toggle();
+            $(this).find('img').eq(0).attr('src',$(this).find('img').eq(0).attr('src')==="./img/cf_open.png"?"./img/cf_close.png":"./img/cf_open.png");
+        });
+
+        $(".manageItem").hover(function () {
+            $(".manageItem").removeClass("active");
+            $(this).addClass("active");
+        },function () {
+            $(".manageItem").removeClass("active");
+            $(this).removeClass("active");
+        }).click(function () {
+            /*if (!companyId && $(this).attr("data-src") != './identification1.html') {
+                alert('请先进行企业认证！');
+                return false;
+            }*/
+            $(".manageItem").removeClass("active1");
+            $(this).addClass("active1");
+            $("#Iframe").attr("src",$(this).attr("data-src"));
+            $("#Iframe").attr("height",$(this).attr("data-height"));
+            $("#Iframe").css("height",$(this).attr("data-height"));
+        });
+    })
+//顶部导航 点击切换
+    $(".cfnav").click(function () {
+        $(".cfnav").removeClass("on");
+        $(this).addClass("on");
+    })
+    if(sessionStorage.getItem("cfsrc")){
+
+    }else{
+        sessionStorage.setItem("cfsrc","./personal/mine.html");
+    }
+    showNav();
+    function showNav() {
+        $(".manageItem").each(function (idx,item) {
+            $(this).removeClass("active1");
+            if($(this).attr("data-src")==sessionStorage.getItem("cfsrc")){
+                $(".manageList").css("display","none");
+                $(".cfnav").removeClass("on");
+                $($(this).parent().parent().parent().parent().parent().attr("data-idx")).addClass("on");
+                $($(this).parent().parent().parent().parent().parent().attr("data-idx")).css("display","block");
+
+                $(this).parent().parent().parent().parent().parent().css("display","block");
+                $(this).parent().parent().show();
+                $(this).parent().parent().parent().find("img").eq(0).attr('src',"./img/cf_open.png");
+                $(this).addClass("active1");
+                $("#Iframe").attr("src",$(this).attr("data-src"));
+                $("#Iframe").attr("height",$(this).attr("data-height"));
+            }
+
+        })
+    }
+function close1(that) {
+    $(that).parents(".pop").css("display","none")
+}
+//所有 弹框的 x 关闭
+$("img.close").click(function () {
+    $(this).parents(".modelCont").parent().css("display","none");
+})
+//所有 弹框的 返回按钮 关闭  （需要加上类名 cfClose）
+$(".cfClose").click(function () {
+    $(this).parents(".modelCont").parent().css("display","none");
+})
+
+// 展示所有弹框   传入类名 或者 ID
+//31.订单支付 32.订单信息 33.订单信息--选择公司34.金额结算35.添加部门36.确认收货37.调价申请--发起调令38.添加角色39.添加部门40.秒杀区公告
+// 41.新增采购需求 --成功42.定制化物流服务43.广告位44.资质审核未通过45.确认交易46.所有资质填写完成   需要修改span内容47.实名认证成功48.报价被确认49.发布空车成功
+// 50.发布需求时  未企业认证51.发布需求时 首次资质认证52.发布需求时  没有该类资质53.未登录54.发布需求 --成功
+function showModelBox(cls) {
+    $(cls).css("display","block");
+}
+
+
+
+// 危险化学品认证提交成功
+    function tan() {
+        $('.modelBox0').css('display', 'block');
+    }
+
+    //危险化学品认证信息审核中，请等待危险化学品认证审核通过后，再进行特殊资质认证！
+    function tan1() {
+        $('.modelBox1').css('display', 'block');
+    }
+
+    // 未进行危险化学品认证，请先进行危险化学品认证！
+    function tan2() {
+        $('.modelBox2').css('display', 'block');
+    }
+
+    //等待审核
+    function tan3() {
+        $('.modelBox3').css('display', 'block');
+    }
+
+    //审核中
+    function tan4() {
+        $('.modelBox4').css('display', 'block');
+    }
+
+    //已拒绝
+    function tan5() {
+        $('.modelBox5').css('display', 'block');
+    }
+
+    //企业资料二次审核中
+    function tan6() {
+        $('.modelBox6').css('display', 'block');
+    }
+
+    //出金账户资料二次审核中
+    function tan7() {
+        $('.modelBox7').css('display', 'block');
+    }
+
+    //添加企业认证提交后的弹框
+    function add_tan() {
+        $('.modelBox8').css('display', 'block');
+    }
+
+    //特殊资质认证提交后的弹框
+    function teshu_tan() {
+        $('.modelBox9').css('display', 'block');
+    }
+
+    //其他资质认证提交后的弹框
+    function other_tan() {
+        $('.modelBox10').css('display', 'block');
+    }
+
+    function tiao_tan () {
+        $('.modelBox11').css('display', 'block');
+    }
+
+    //修改出金账户成功
+    function update_chujin() {
+        $('.modelBox12').css('display', 'block');
+    }
+
+    //修改企业信息成功
+    function update_qiye() {
+        $('.modelBox13').css('display', 'block');
+    }
+
+    //修改运营者信息成功
+    function update_runPerson() {
+        $('.modelBox14').css('display', 'block');
+    }
+
+    //修改发票信息成功
+    function update_runFapiao() {
+        $('.modelBox15').css('display', 'block');
+    }
+
+    //修改财务信息成功
+    function update_runcaiwu() {
+        $('.modelBox16').css('display', 'block');
+    }
+
+    //删除资质
+    function del() {
+        $('.modelBox17').css('display', 'block');
+    }
+
+    //资质正在审核
+    function shenhe() {
+        $('.modelBox18').css('display', 'block');
+    }
+
+    //危险化学品认证资质已拒绝
+    function jujue_weixian(reasons) {
+        $(".jj_yuanying span").html(reasons);
+        $('.modelBox19').css('display', 'block');
+    }
+
+    //特殊认证资质已拒绝
+    function jujue_teshu(reasons) {
+        $(".jj_yuanying2 span").html(reasons);
+        $('.modelBox190').css('display', 'block');
+    }
+
+    $(document).on('click', '.confirm', function () {
+        $(this).parent().parent().parent().parent().css('display', 'none');
+    });
+
+
+    $(document).on('click', '.close', function () {
+        $(this).parent().parent().parent().css('display', 'none');
+    });
+
+</script>
+</body>
+</html>

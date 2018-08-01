@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/require_style/publishRequireList.css">
+    <style>
+        .opciationBox>.btn {
+            float: right;
+            margin-top: 9px;
+            margin-right: 9px;
+            text-align: center;
+            border: 1px solid #ebe9ea;
+            width: 93px;
+            height: 37px;
+            box-sizing: border-box;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
+        }
+        tbody>tr>td>.btn{
+            color: #6ba1ff;
+            cursor: pointer;
+        }
+        .ll{
+            margin-right: 12px;
+        }
+        
+        .listBox table{
+            border-bottom: 1px solid #ebe9ea;
+        }
+        .bottomOperiat{
+            border-top: 1px solid #ebe9ea;
+            border-bottom: 1px solid #ebe9ea;
+            height: 60px;
+            box-sizing: border-box; 
+            font-size: 14px;
+        }
+        .bottomOperiat>span{
+            float: left;
+            line-height: 60px;
+            cursor: pointer;
+        }
+        .bottomOperiat .squre{
+            border: 1px solid #ebe9ea;
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            margin-left: 20px;
+            margin-right: 8px;
+            margin-top: 23px;
+            border-radius: 3px;
+        }
+        .bottomOperiat .squre.active{
+            background: #6ba1ff;
+        }
+        .bottomOperiat>.selsectAll{
+            margin-right: 20px;
+        }
+        .bottomOperiat>.closeBtn{
+            margin-right: 16px;
+        }
+        .bottomOperiat>.delBtn, .bottomOperiat>.closeBtn{
+            margin-top: 10px;
+            width: 112px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            background: #6BA1FF;
+        }
+        .pageBox{
+            height: 76px;
+            line-height: 76px;
+            box-sizing: border-box;
+        }
+        .orange{
+            color: #ff434e;
+        }
+        /*.listBox{height: 1116px;}*/
+
+        .cfRefresh {
+            display: block; 
+        }
+        
+        .pageJump input[type="text"] {
+            text-align: center;
+            text-indent: 0px;
+        }
+
+    </style>
+    
+    
+</head>
+<body>
+    <div class="contbox">
+        <div class="topTitle">取消订单<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="inputBox clearFloat">
+            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">货物类型</label>
+            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+                <ul>
+                    <li data-index="1">全部</li>
+                    <li data-index="2">普化品</li>
+                    <li data-index="3">危化品</li>
+                    <li data-index="4">特殊品</li>
+                </ul>
+            </div>
+            <label for="">取消时间</label>
+            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 115px;">
+            <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
+        </div>
+        <div class="opciationBox">
+            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
+                <ul>
+                    <li data-index="1">1</li>
+                    <li data-index="2">30</li>
+                    <li data-index="3">50</li>
+                </ul>
+            </div>
+            <input class="exportOrderBtn btn" type="button" value="导出订单">
+        </div>
+        <div class="listBox">
+            <table>
+                <thead>
+                    <tr>
+                        <td>订单编号</td>
+                        <td>取消时间</td>
+                        <td>货物类型</td>
+                        <td>货物名称</td>
+                        <td>始发地</td>
+                        <td>目的地</td>
+                        <td>公司名称</td>
+                        <td>重量</td>
+                        <td>单价</td>
+                        <td>取消状态</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody id="orderListInfo">
+                    <!-- <tr>
+                        <td>3001804091631062137</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>危化-罐装</td>
+                        <td>氢氧化钠</td>
+                        <td>新疆-乌鲁木齐</td>
+                        <td>北京-朝阳区</td>
+                        <td>化动力企业</td>
+                        <td>100吨</td>
+                        <td>12</td>
+                        <td class="">待分配</td>
+                        <td><span class="btn">查看订单</span></td>
+                    </tr>
+                    <tr>
+                        <td>3001804091631062137</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>危化-罐装</td>
+                        <td>氢氧化钠</td>
+                        <td>新疆-乌鲁木齐</td>
+                        <td>北京-朝阳区</td>
+                        <td>化动力企业</td>
+                        <td>100吨</td>
+                        <td>12</td>
+                        <td>已合作</td>
+                        <td><span class="btn">查看订单</span></td>
+                    </tr>
+                    <tr>
+                        <td>3001804091631062137</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>危化-罐装</td>
+                        <td>氢氧化钠</td>
+                        <td>新疆-乌鲁木齐</td>
+                        <td>北京-朝阳区</td>
+                        <td>化动力企业</td>
+                        <td>100吨</td>
+                        <td>12</td>
+                        <td class="">待分配</td>
+                        <td><span class="btn">查看订单</span></td>
+                    </tr>
+                    <tr>
+                        <td>3001804091631062137</td>
+                        <td>2017-07-19 14:48</td>
+                        <td>危化-罐装</td>
+                        <td>氢氧化钠</td>
+                        <td>新疆-乌鲁木齐</td>
+                        <td>北京-朝阳区</td>
+                        <td>化动力企业</td>
+                        <td>100吨</td>
+                        <td>12</td>
+                        <td>已合作</td>
+                        <td><span class="btn">查看订单</span></td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <!--<div class="bottomOperiat">-->
+            <!--<span class="squre"></span>-->
+            <!--<span class="selsectAll">全选</span>-->
+            <!--<span class="closeBtn">关闭订单</span>-->
+            <!--<span class="delBtn">删除订单</span>-->
+        <!--</div>-->
+        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/1</span>
+                <i style="margin-left: 12px;">共<span class="total">1</span>页</i>，
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
+        <!--<div class="pageBox">-->
+            <!--共100张 当前为1页 共5页-->
+        <!--</div>-->
+    </div>
+    
+    
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+    <script src="../js/template.js"></script>
+    <script type="text/html" id="orderListTpl">
+        <%for(i in list) {%>
+        <tr>
+            <td><%=list[i].orderNo%></td>
+            <td><%=list[i].tloUpdateTime%></td>
+            <td><%=list[i].goodsType%></td>
+            <td><%=list[i].goodsName%></td>
+            <td><%=list[i].sendAddress%></td>
+            <td><%=list[i].receiveAddress%></td>
+            <td><%=list[i].companyName%></td>
+            <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
+            <td><%=list[i].unitPrice%></td>
+            <td>
+                <%if(list[i].tloStatus == 1) {%>
+                待分配
+                <%}else if (list[i].tloStatus == 2){%>
+                已分配
+                <%} else if(list[i].tloStatus == 3) {%>
+                已合作
+                <%}%>
+            </td>
+            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span></td>
+        </tr>
+        <%}%>
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            window.parent.$("#Iframe").css("height","917");
+        })
+        var startTime = '';
+        var endTime = '';
+        laydate({
+            elem: '#test1',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime = dates;
+            }
+        });
+        laydate({
+            elem: '#test2',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                endTime = dates;
+            }
+        });
+        laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
+
+        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+        // Page({
+        //     num: 200,
+        //     elem: $('#page1'),
+        //     callback: function(n) {
+        //         console.log(n);
+        //     }
+        // });
+
+        var isFirst = true;
+
+        var isSearch = 0;
+
+        // 点击进入订单详情
+        $(document).on('click', '.seeDetail', function() {
+            window.localStorage.setItem('data-companyId', $(this).attr('data-companyId'));
+            window.localStorage.setItem('data-tloId', $(this).attr('data-tloId'));
+            window.localStorage.setItem('data-orderNo', $(this).attr('data-orderNo'));
+            window.location.href = "cancelOrder-detail.html";
+
+        });
+
+        //显示条数
+        $('.displayNum ul li').click(function(){
+            isSearch=1;
+            order_list(1 , '', '', '', $('.displayNum span').text());
+        });
+        
+
+        //点击查询
+        $(document).on('click', '.searchResultBtn', function() {
+            
+            var orderNo = $('.orderNo').val();
+            var goodsType = $('.goodsType span').text();
+            var publishTime = $('.publishTime').val();
+            if (goodsType == '全部' ) {
+                console.log(goodsType);
+                goodsType = '';
+            }
+            
+            isSearch=1;
+            order_list(1, orderNo, goodsType, publishTime, 10);
+
+        });
+
+        
+
+        order_list(1 , '', '', '', 10);
+
+        //待分配订单列表
+        function order_list(num, orderNo, goodsType, publishTime, size) {
+            $('#orderListInfo').html('');
+            $.ajax({
+                url: ip + 'order/getSupplierCancelOrderList',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    companyId: companyId,
+                    page: num,
+                    size: size,
+                    status: 0,
+                    orderNo: orderNo,
+                    time: publishTime,
+                    goodType: goodsType
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+
+                    if (json.code == 1) {
+                        if (json.data.length != 0) {
+                            for (var i = 0; i < json.data.length; i++) {
+                            
+                                json.data[i].tloUpdateTime = new Date(json.data[i].tloUpdateTime).Format("yyyy-MM-dd hh:mm");
+                            }
+                            
+
+                            var result = template('orderListTpl', {list: json.data});
+                            $('#orderListInfo').html(result);
+
+                           
+                            if (isSearch == 1) {
+                                // if (isFirst) {
+                                    Page({
+                                        num: json.totalPage,
+                                        elem: $('#page1'),
+                                        callback: function(n) {
+                                            order_list(n, orderNo, goodsType, publishTime, size);
+                                        }
+                                    });
+                                    
+                                    $('.total').text(json.totalPage);
+                                    isFirst = false;
+
+                                // }
+
+                                $('.allPageN').text(num+1+'/'+json.totalPage);
+                            }
+
+                            isSearch = 0;
+
+                            if (isFirst) {
+
+                                Page({
+                                    num: json.totalPage,
+                                    elem: $('#page1'),
+                                    callback: function(n) {
+                                        order_list(n, orderNo, goodsType, publishTime, size);
+                                    }
+                                });
+                                
+                                $('.total').text(json.totalPage);
+
+                                isFirst = false;
+                            }
+
+                            $('.allPageN').text(num+'/'+json.totalPage);
+                        } else {
+                            $('.pageJump').css('display', 'none');    
+                        }
+                    } else {
+                        $('.pageJump').css('display', 'none');
+                    }
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+
+            });
+        }
+
+        // 模拟单选按钮
+        $('.bottomOperiat .squre').click(function(){
+            $(this).toggleClass('active');
+        });
+        $('.bottomOperiat .selsectAll').click(function(){
+            $('.bottomOperiat .squre').toggleClass('active');
+        });
+    </script>
+</body>
+</html>

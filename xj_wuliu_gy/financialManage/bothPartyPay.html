@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/financialManage/bothPartyPay.css">
+    
+</head>
+<body>
+    <div class="contbox">
+        <div class="topTitle">订单支付</div>
+        <div class="inputBox">
+            <div class="inputBoxItem inputBoxItemOne">
+                <div class="payMethods">
+                    支付方式：<span>现汇+承兑</span>
+                </div>
+                <div class="totalMoney">
+                    总 额：<span>20.00</span>元
+                </div>
+            </div>
+            <div class="inputBoxItem inputBoxItemTwo">
+                <div class="itemBox">
+                    <div class="ibit Lf">
+                        <span style="margin-right: 15px;">现汇方式：</span>
+                        <input type="radio" name="payType" id="paytype" value="0" checked="checked"><label for="paytype" name="paytype" class="checked">虚拟账户</label>
+                        <span>可用余额： 0.00元</span>
+                        <span class="chongzhiBtn">充值</span>
+                    </div>
+                    <div class="Lf rightBox">
+                        <span style="margin-right:4px;">支付金额：</span><input type="text"><span class="payStatus">待支付</span>
+                        <div class="toPayBtnBox"><span class="toPayBtn">立即支付</span></div>
+                        <div class="yue">余额不足，请充值</div>
+                    </div>
+                </div>
+                <div class="itemBox">
+                    <div class="ibit Lf">
+                        <span style="margin-right: 15px;">承兑方式：</span>
+                        <input type="radio" name="type" id="t-typeone" value="0" checked="checked"><label for="t-typeone" name="t-typeone" class="checked">中信银行</label>
+                        <input type="radio" name="type" id="t-typetwo" value="1"><label for="t-typetwo" name="t-typetwo">库尔勒银行</label>
+                        <input type="radio" name="type" id="t-typethree" value="2"><label for="t-typethree" name="t-typethree">招商银行</label>
+                    </div>
+                    <div class="Lf rightBox">
+                        <span style="margin-right: 20px;">支付金额： 10.00元</span><span class="payStatus">待支付</span>
+                        <div class="radioAndBtnBoxContainer">
+                            <div class="radioAndBtnBox">
+                                <input type="radio" name="beishu" id="beishu"><label for="beishu" name="beishu">背&nbsp;&nbsp;书</label>
+                                <span class="toPayBtn">立即支付</span>
+                            </div>
+                        </div>
+                        <div class="yue">余额不足，请充值</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+        // 模拟单选按钮
+        $('.bottomOperiat .squre').click(function(){
+            $(this).toggleClass('active');
+        });
+        $('.bottomOperiat .selsectAll').click(function(){
+            $('.bottomOperiat .squre').toggleClass('active');
+        });
+        
+        // 模拟单选按钮
+        $('.ibit label').click(function(){
+            var radioId = $(this).attr('name');
+            if(!$(this).hasClass('checked')){
+                $(this).parent('.ibit').find('input').removeAttr('checked');
+                $(this).parent('.ibit').find('label').removeClass('checked');
+                $(this).addClass('checked');
+                $('#'+radioId).attr('checked', 'checked');
+            }
+        })
+        $('.radioAndBtnBox label').click(function(){
+            var radioId = $(this).attr('name');
+            if(!$(this).hasClass('checked')){
+                $(this).addClass('checked');
+                $('#'+radioId).attr('checked', 'checked');
+            }
+        })
+
+        // 控制td宽度
+        $('tbody tr td').eq(0).css('width','110px');
+        $('tbody tr td').eq(1).css('width','225px');
+        $('tbody tr td').eq(3).css('width','270px');
+    </script>
+</body>
+</html>
