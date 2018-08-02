@@ -4193,9 +4193,21 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     $(this).parent().css('display','none');
                 });
                 //默认选中
-                $("#carTypeList").attr('data-selectedindex', 0);
-                $("#carTypeList").attr('data-id', data.data[0].id);
-                $("#carTypeList").find('span').text(data.data[0].typeName);
+                debugger
+                if($(".modelBox12").attr("data-cartype")=="") {
+                    $("#carTypeList").attr('data-selectedindex', 0);
+                    $("#carTypeList").attr('data-id', data.data[0].id);
+                    $("#carTypeList").find('span').text(data.data[0].typeName);
+                }else{
+                    $("#carTypeList li").each(function (idx,item) {
+                        if($(".modelBox12").attr("data-cartype")==$(item).attr("data-id")){
+                            $("#carTypeList").attr('data-selectedindex', $(item).attr("data-index"));
+                            $("#carTypeList").attr('data-id',$(item).attr("data-id"));
+                            $("#carTypeList").find('span').text($(item).text());
+                        }
+                    })
+                }
+
             },
             error: function(err){
                 console.log(err);
@@ -4216,7 +4228,6 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             ansyc: false,
             dataType: 'json',
             data:{
-
             },
             success: function (data) {
                 console.log(data);
@@ -4235,9 +4246,21 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     $(this).parent().css('display','none');
                 });
                 //默认选中
-                $("#chooseAbleLine").attr('data-selectedindex', 0);
-                $("#chooseAbleLine").attr('data-id', data.data[0].id);
-                $("#chooseAbleLine").find('span').text(data.data[0].routeName);
+                if($(".modelBox12").attr("data-cartype")==""){
+                    $("#chooseAbleLine").attr('data-selectedindex', 0);
+                    $("#chooseAbleLine").attr('data-id', data.data[0].id);
+                    $("#chooseAbleLine").find('span').text(data.data[0].routeName);
+                }else{
+                    $("#chooseAbleLine li").each(function (idx,item) {
+                        if($(".modelBox12").attr("data-routeid")==$(item).attr("data-id")){
+                            $("#chooseAbleLine").attr('data-selectedindex', $(item).attr("data-index"));
+                            $("#chooseAbleLine").attr('data-id',$(item).attr("data-id"));
+                            $("#chooseAbleLine").find('span').text($(item).text());
+                        }
+                    })
+                }
+
+
             },
             error: function(err){
                 console.log(err);

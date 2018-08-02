@@ -209,12 +209,10 @@ var currentPage=1;
 //		编辑
 		$(".editList").click(function () {
             resetModelBox12()//先清空框
-		    window.parent.getDynamic();
-            window.parent.getCarTypeList();
-            window.parent.getLineList();
 			window.parent.$(".modelBox12").show();
             window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
             returnShow($(this).parents("tr").attr("data-id"));
+
         })
 		//删除
         $(".delect").click(function () {
@@ -244,12 +242,14 @@ var currentPage=1;
     })
 	//添加车辆
 	$("#addVehicle").click(function () {
+        window.parent.$(".modelBox12").attr("data-id","");
+        window.parent.$(".modelBox12").attr("data-carType","");
+        window.parent.$(".modelBox12").attr("data-routeid","");
         resetModelBox12()//先清空框
         window.parent.getDynamic();
         window.parent.getCarTypeList();
         window.parent.getLineList();
 		window.parent.$(".modelBox12").show();
-        window.parent.$(".modelBox12").attr("data-id","");
     })
 //启用禁用 删除  事件
 	function upadtaState(type,that) {
@@ -347,7 +347,7 @@ var currentPage=1;
                 if(res.code==1){
                    cf_alert(1,"添加车辆成功");
                 }else{
-                    cf_alert(res.msg);
+                    cf_alert(0,res.msg);
                 }
             },
             error: function(err){
@@ -383,7 +383,7 @@ function resetModelBox12() {
 //车辆详情回显
 function returnShow(id) {
     $.ajax({
-        url: pubIP + 'tLogisticsVehicle/insertCar', /*v1.0*/
+        url: pubIP + 'tLogisticsVehicle/selectByCarIdDo', /*v1.0*/
         type: 'post',
         headers: {
             Accept: "application/json; charset=utf-8",
@@ -398,11 +398,17 @@ function returnShow(id) {
         },
         success: function (res) {
             if(res.code==1){
-                var data1=res.data.data;
+                debugger
+                var data1=res.data;
+                window.parent.$(".modelBox12").attr("data-carType",data1.carType);
+                window.parent.$(".modelBox12").attr("data-routeid",data1.routeid);
                 	//window.parent.$("#carTypeList").attr("data-id","")//	是	string	车辆类型
                 if (data1.type==1){
-                    window.parent.$("#carTypeOut").attr("data-selectedindex","1")	//是	int	0:内部 1:外部
+                    window.parent.$("#carTypeOut").attr("data-selectedindex","0")	//是	int	0:内部 1:外部
                     window.parent.$("#carTypeOut span").text("内部")
+				}else{
+                    window.parent.$("#carTypeOut").attr("data-selectedindex","1")	//是	int	0:内部 1:外部
+                    window.parent.$("#carTypeOut span").text("外部")
 				}
 
                 window.parent.$("#addCarNo").val(data1.carNo)//	是	String	车牌号
@@ -410,18 +416,35 @@ function returnShow(id) {
                 window.parent.$("#archivesNo").val(data1.archivesNo)//	是	String	车辆档案号
                 window.parent.$("#frameNo").val(data1.frameNo)//	是	String	车架号
                 window.parent.$("#engineNo").val(data1.engineNo)//	是	String	发动机
-                window.parent.$("#annualVerificationDate").val(data1.annualVerificationDate)//		是	date	年审日期
-                window.parent.$("#firstDate").val(data1.firstDate)//		是	Sring	初次上牌日期
+                window.parent.$("#annualVerificationDate").val(timestampToTime(data1.annualVerificationDate))//		是	date	年审日期
+                window.parent.$("#firstDate").val(timestampToTime(data1.firstDate))//		是	Sring	初次上牌日期
                 window.parent.$("#vehicleLoad").val(data1.vehicleLoad)//		是	String	车辆
-                window.parent.$("#insuranceDate").val(data1.insuranceDate)//		是	String	保险日期
+                window.parent.$("#insuranceDate").val(timestampToTime(data1.insuranceDate))//		是	String	保险日期
 //                window.parent.$("#chooseAbleLine").attr("data-id")//		是	String	线路id
                 window.parent.$("#purchaseAmount").val(data1.insuranceAmount)//		是	String	购买金额
                 window.parent.$("#insuranceAmount").val(data1.insuranceAmount)//		是	String	保险金额
                 window.parent.$("#insuranceYears").val(data1.insuranceYears)//		是	String	保险年限
+                window.parent.$("#cf_xingshizheng").parent().css({
+                    'background':'url('+data1.drivingLicense+') no-repeat',
+                    'background-position':'center',
+                    'background-size':'contain',
+                    'background-color':'#f6f6f6'
+                })
+                window.parent.$("#cf_cheliangyunying").parent().css({
+                    'background':'url('+data1.carOperation+') no-repeat',
+                    'background-position':'center',
+                    'background-size':'contain',
+                    'background-color':'#f6f6f6'
+                })
+
+//                window.parent.$("#cf_xingshizheng1").val(data1.drivingLicense)//		是	String	行驶证url
                 window.parent.$("#cf_xingshizheng1").val(data1.drivingLicense)//		是	String	行驶证url
-                window.parent.$("#cf_xingshizheng").val(data1.drivingLicense)//		是	String	行驶证url
+//                window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
                 window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
-                window.parent.$("#cf_cheliangyunying").val(data1.carOperation)//		是	String	车辆运营url
+
+                window.parent.getDynamic();
+                window.parent.getCarTypeList();
+                window.parent.getLineList();
             }else{
                 cf_alert(res.msg);
             }

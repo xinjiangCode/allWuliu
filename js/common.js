@@ -25,6 +25,7 @@ function timestampToTime(timestamp) {
     h = date.getHours() + ':';
     m = date.getMinutes() + ':';
     s = date.getSeconds();
+    D=D<10?"0"+D:D;
     return Y+M+D;
 }
 // 对Date的扩展，将 Date 转化为指定格式的String
