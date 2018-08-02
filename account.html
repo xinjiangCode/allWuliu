@@ -2844,7 +2844,11 @@
     </div>
 </div>
 <!-- 所有删除 二次提示 -->
+<<<<<<< HEAD
 <div class="all_warn_alert" style="z-index: 99999; display: block;">
+=======
+<div class="all_warn_alert" style="z-index: 99999;">
+>>>>>>> 6a55e701fc42576e55365d9d29b134ce9ddd9510
     <div class="modelCont">
         <div class="modeltitle">
             <span>警告</span>
@@ -2857,7 +2861,9 @@
             </div>
             <div class="modelBtnBox" style="width: 321px;margin-top: 30px;">
                 <div style="border:1px solid #5690f6;color: #333;margin: 0;" class="modelbtn confirm" class="allCancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+
                 <div style="background:#5690f6;margin-top: 0px;margin-left: 30px;" class="modelbtn confirm allSure all_sure">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                
             </div>
         </div>
     </div>
@@ -3017,17 +3023,6 @@
             console.log(dates);
         }
     });
-
-    //警告弹窗
-    function warnAlert(){
-        var allWarnType = '';
-        $(".all_warn_alert").show();
-        if($(".allSure").click()){
-            allWarnType=1;
-        }
-        return allWarnType;
-    }
-
     // 所属部门select
     $.ajax({
         url: pubIP + 'tLtDriverOrg/selectWLtDriverOrgList',
