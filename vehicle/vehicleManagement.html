@@ -246,7 +246,7 @@ var currentPage=1;
         window.parent.$(".modelBox12").attr("data-carType","");
         window.parent.$(".modelBox12").attr("data-routeid","");
         resetModelBox12()//先清空框
-        window.parent.getDynamic();
+        window.parent.getDynamic("");
         window.parent.getCarTypeList();
         window.parent.getLineList();
 		window.parent.$(".modelBox12").show();
@@ -296,18 +296,18 @@ var currentPage=1;
 // 添加车辆方法
     function addCar() {
 	    var s='';
-	    $("#dynamic li").each(function (idx,item) {
+	    window.parent.$("#dynamic>li").each(function (idx,item) {
 	        if(idx!=0){
-	            s+='@#@';
+	            s+='@,@';
 			}
-	        s+=$(this).attr("data-id")+'@#@';
+	        s+=$(item).attr("data-id")+'@#@';
 //	        s+=$(this).find(".dynamicTitle").attr("data-title");
 			if($(item).attr("data-type")==0){
-				s+=$(this).find("input").val();
+				s+=$(item).find("input").val();
 			}else if($(item).attr("data-type")==1){//下拉框
-				s+=$(this).find(".select span").val();
+				s+=$(this).find(".select").attr("data-id");
             }else if($(item).attr("data-type")==2){//时间框
-                s+=$(this).find("input").val();
+                s+=$(item).find("input").val();
             }
         })
 	    
@@ -376,9 +376,19 @@ function resetModelBox12() {
         window.parent.$("#insuranceAmount").val("")//		是	String	保险金额
         window.parent.$("#insuranceYears").val("")//		是	String	保险年限
         window.parent.$("#cf_xingshizheng1").val("")//		是	String	行驶证url
-    	window.parent.$("#cf_xingshizheng").val("")//		是	String	行驶证url
    	 	window.parent.$("#cf_cheliangyunying1").val("")//		是	String	车辆运营url
-        window.parent.$("#cf_cheliangyunying").val("")//		是	String	车辆运营url
+		window.parent.$("#cf_xingshizheng").parent().css({
+			'background':'url("") no-repeat',
+			'background-position':'center',
+			'background-size':'contain',
+			'background-color':'#f6f6f6'
+		})
+		window.parent.$("#cf_cheliangyunying").parent().css({
+			'background':'url("") no-repeat',
+			'background-position':'center',
+			'background-size':'contain',
+			'background-color':'#f6f6f6'
+		})
 }
 //车辆详情回显
 function returnShow(id) {
@@ -398,7 +408,6 @@ function returnShow(id) {
         },
         success: function (res) {
             if(res.code==1){
-                debugger
                 var data1=res.data;
                 window.parent.$(".modelBox12").attr("data-carType",data1.carType);
                 window.parent.$(".modelBox12").attr("data-routeid",data1.routeid);
@@ -410,7 +419,6 @@ function returnShow(id) {
                     window.parent.$("#carTypeOut").attr("data-selectedindex","1")	//是	int	0:内部 1:外部
                     window.parent.$("#carTypeOut span").text("外部")
 				}
-
                 window.parent.$("#addCarNo").val(data1.carNo)//	是	String	车牌号
                 window.parent.$("#carBrand").val(data1.carBrand)//	是	String	车品牌
                 window.parent.$("#archivesNo").val(data1.archivesNo)//	是	String	车辆档案号
@@ -442,7 +450,8 @@ function returnShow(id) {
 //                window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
                 window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
 
-                window.parent.getDynamic();
+
+                window.parent.getDynamic(res.data1);
                 window.parent.getCarTypeList();
                 window.parent.getLineList();
             }else{

@@ -1615,31 +1615,31 @@
                     </div>
                 </div>
                 <ul id="dynamic" class="clearFloat">
-                    <li>
-                        <div>
-                            <span class="dynamicTitle">asdasd：</span>
-                            <div class="selectPub" data-selectedindex="-1" style="width: 198px; margin-right: 0px; margin-top: 0px;">
-                                <span style="display: inline-block;max-width: 70px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
-                                <ul>
-                                    <li data-index="1">1</li>
-                                    <li data-index="2">2</li>
-                                    <li data-index="3">3</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <span class="dynamicTitle">asdasd：</span>
-                            <input type="text" style="width: 197px;height: 36px;border: 1px solid #dbdbdc;">
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <span class="dynamicTitle">asdasd：</span>
-                            <input type="text" class="date-input laydate-icon"  type="text" style="height: 36px;width: 176px;border: 1px solid #dbdbdc;">
-                        </div>
-                    </li>
+                    <!--<li>-->
+                        <!--<div>-->
+                            <!--<span class="dynamicTitle">asdasd：</span>-->
+                            <!--<div class="selectPub" data-selectedindex="-1" style="width: 198px; margin-right: 0px; margin-top: 0px;">-->
+                                <!--<span style="display: inline-block;max-width: 70px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">-->
+                                <!--<ul>-->
+                                    <!--<li data-index="1">1</li>-->
+                                    <!--<li data-index="2">2</li>-->
+                                    <!--<li data-index="3">3</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div>-->
+                            <!--<span class="dynamicTitle">asdasd：</span>-->
+                            <!--<input type="text" style="width: 197px;height: 36px;border: 1px solid #dbdbdc;">-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div>-->
+                            <!--<span class="dynamicTitle">asdasd：</span>-->
+                            <!--<input type="text" class="date-input laydate-icon"  type="text" style="height: 36px;width: 176px;border: 1px solid #dbdbdc;">-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
                 <div class="clearfix">
                     <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">上传发票：&nbsp;</span>
@@ -4194,7 +4194,6 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     $(this).parent().css('display','none');
                 });
                 //默认选中
-                debugger
                 if($(".modelBox12").attr("data-cartype")=="") {
                     $("#carTypeList").attr('data-selectedindex', 0);
                     $("#carTypeList").attr('data-id', data.data[0].id);
@@ -4271,7 +4270,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
     }
    
     //获取车辆动态字段
-    function getDynamic() {
+    function getDynamic(dataVal) {
         $.ajax({
             url: pubIP + 'wLtLogisticsVehicleAttribute/selectCarShezhi', /*v1.0*/
             type: 'post',
@@ -4289,7 +4288,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 console.log(data);
                 var str = '';
                 for (var i = 0; i < data.data.length; i++) {
-                    str+='<li data-type="'+data.data[i].type+'" data-id="data.data[i].id">';
+                    str+='<li data-type="'+data.data[i].type+'" data-id="'+data.data[i].id+'">';
                     str+='<div>';
                     str+='<span class="dynamicTitle" data-title="'+data.data[i].name+'">'+data.data[i].name+'：</span>';
                     if(data.data[i].type==1){//下拉框
@@ -4298,19 +4297,37 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                             var id=list[j].split(",")[0];
                             var name=list[j].split(",")[1];
                             if(j==0){
-                                str+='<div class="select" data-id="'+id+'" data-selectedindex="'+j+'" style="width: 198px; margin-right: 0px; margin-top: 0px;">';
+                                if(dataVal==""){
+                                    id=id;
+                                }else{
+                                    id=dataVal[i].value;
+                                }
+                                str+='<div class="select" data-id="'+id+'" data-selectedindex="'+id+'" style="width: 198px; margin-right: 0px; margin-top: 0px;">';
                                 str+='<span style="display: inline-block;max-width: 70px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">'+name+'</span><img src="img/prl-select.jpg" alt="">';
                                 str+='<ul>';
                             }
-                            str+='<li data-index="'+j+'" data-id="'+id+'">'+name+'</li>';
+                            str+='<li data-index="'+id+'" data-id="'+id+'">'+name+'</li>';
                         }
                         str+='</ul>';
                         str+='</div>';
 
                     }else if(data.data[i].type==2){//日期框
-                        str+='<input type="text" class="date-input laydate-icon" id="dynamicData'+i+'" type="text" style="height: 36px;width: 176px;border: 1px solid #dbdbdc;">'
+                        var values="";
+                        if(dataVal==""){
+                            values="";
+                        }else{
+                            values=dataVal[i].value;
+                        }
+                        str+='<input type="text" class="date-input laydate-icon" id="dynamicData'+i+'" type="text" style="height: 36px;width: 176px;border: 1px solid #dbdbdc;" value="'+values+'">'
                     }else if(data.data[i].type==0){//input
-                        str+='<input type="text" style="width: 197px;height: 36px;border: 1px solid #dbdbdc;">'
+                        var values="";
+                        if(dataVal==""){
+                            values="";
+                        }else{
+                            values=dataVal[i].value;
+                        }
+                       str += '<input type="text" style="width: 197px;height: 36px;border: 1px solid #dbdbdc;" value="'+values+'">'
+
                     }
                     str+='</div>';
                     str+=' </li>';
@@ -4319,6 +4336,13 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 //    动态添加的LI样式
                 $("#dynamic>li:nth-child(2n)").css("margin-right","0");
                 //select 处理
+                $('#dynamic .select').find('li').each(function(idx,item){
+                    if($(item).attr('data-index') == $('#dynamic .select').attr('data-selectedindex')){
+                        $(item).css({'background': '#6ea3ff','color': '#fff'});
+                        $(item).siblings('li').css({'background': '#fff','color': '#999'});
+                        $(item).parents(".select").find("span").text($(item).text());
+                    }
+                });
                 // 模拟下拉框
                 $('#dynamic .select').click(function(event){
                     if($(this).attr("disabled")=="disabled"){return;}//不可选
