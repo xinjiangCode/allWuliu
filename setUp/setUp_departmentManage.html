@@ -47,7 +47,7 @@
 			</div>
     		<!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
     		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
-    		<div style="width: 102px;">添加</div>
+    		<div style="width: 102px;" class="add_apartment">添加</div>
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -147,7 +147,7 @@
 
     var isSearch = 0;
 
-    apartment_list(1, '', 10);
+    apartment_list(1, 10);
 
     // 部门列表
     function apartment_list(num, size) {
@@ -197,7 +197,7 @@
 									}
 										
 									str += '</td>'
-									+'<td><a href="" class="lookover" style="color:#6ba1ff;">编辑</a><a href="" class="delect delete" style="color: #6ba1ff;">删除</a></td>'
+									+'<td><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" class="delect delete" onclick="del($(this));" style="color: #6ba1ff;">删除</a></td>'
 								+'</tr>'
                         }
 						
@@ -210,17 +210,18 @@
                         //启用和禁用
 						$(".chooseswitch input[type='checkbox']").change(function() {
 						    console.log($(this).prop("checked"));
+						    
 						    if($(this).prop("checked")){
-						        status_apartment(0, $(this));
+						        status_apartment($(this).parent().parent().attr('data-id'), 0);
 						        console.log('开启');
 						    }else {
-						        status_apartment(1, $(this));
+						        status_apartment($(this).parent().parent().attr('data-id'), 1);
 						        console.log('禁用');
 						    }
 						});
 
-
-                       
+                       //  totalPage = json.count%size == 0 ? totalPage : (totalPage + 1);
+                       // console.log(totalPage);
                         if (isSearch == 1) {
                             // if (isFirst) {
 
@@ -228,7 +229,7 @@
                                     num: json.totalPage,
                                     elem: $('#page1'),
                                     callback: function(n) {
-                                        apartment_list(n, sort, size);
+                                        apartment_list(n, size);
                                     }
                                 });
                                 
@@ -248,7 +249,7 @@
                                 num: json.totalPage,
                                 elem: $('#page1'),
                                 callback: function(n) {
-                                    apartment_list(n, sort, size);
+                                    apartment_list(n, size);
                                 }
                             });
                             
@@ -390,12 +391,12 @@
     });
 
    	// 删除
-   	$(document).on('click', '.delete', function() {
-
-   		var data_id = $(this).parent().parent().attr('data-id');
-
+   	// $(document).on('click', '.delete', function() {
+    function del(_this) {
+   		var data_id = _this.parent().parent().attr('data-id');
+        
    		$.ajax({
-            url: pubIP + 'tLtDriverOrg/updateStar',
+            url: pubIP + 'receptionDepartment/delTReceptionDepartment',
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -406,11 +407,8 @@
             },
             dataType: 'json',
             success: function (json) {
-                console.log(json);
                 if (json.code == 1) {
-                	if (type == 1) {
-                		cf_alert(1, '删除成功！');
-                	}
+                	cf_alert(1, '删除成功！');
                 }
 
             },
@@ -418,8 +416,9 @@
             	console.log(err);
             }
         });
+    }
 
-   	});
+   	// });
 
    	function status_apartment(id, status) {
     	$.ajax({

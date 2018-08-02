@@ -177,7 +177,7 @@
 									if (json.data[i].dutyDescribe != '') {
 										str += '<td class="describe">'+json.data[i].dutyDescribe+'</td>'
 									} else {
-										str += '<td class="describe">'+暂无描述+'</td>'
+										str += '<td class="describe">暂无描述</td>'
 									}
 									
 									str += '<td class="suoshu_apartment" data-apartid2="'+json.data[i].orgId+'">'+json.data[i].reserved2+'</td>'
@@ -398,7 +398,6 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                json = JSON.parse(json);
                 if (json.code == 1) {
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');
