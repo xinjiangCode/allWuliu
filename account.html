@@ -490,7 +490,7 @@
         #quanList{margin-bottom: 32px;overflow: hidden;}
         #quanList li{margin-top: 32px;display: block;}
         #quanList li input{height: 31px;line-height: 31px;border: 1px solid #dbdbdc;}
-    
+
 
         .modelBox18_ifrm{
             z-index: 9999;
@@ -502,7 +502,26 @@
             bottom: 0;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .modelBox18_ifrm iframe{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .modelBox18_01_ifrm{
+            z-index: 9999;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modelBox18_01_ifrm iframe{
             position: fixed;
             top: 0;
             left: 0;
@@ -2178,6 +2197,11 @@
 <!-- 确认送达 -->
 <div class="modelBox18_ifrm">
     <iframe id="suerSongda" src="##" frameborder="0" style="width: 1070px;height: 625px;"></iframe>
+</div>
+
+<!-- 车辆-合同- 新 增 详情 -->
+<div class="modelBox18_01_ifrm">
+    <iframe id="suerCarConWin" src="##" frameborder="0" style="width: 1070px;height: 625px;"></iframe>
 </div>
 
 

@@ -29,16 +29,9 @@
                 </div>
             </div>
             <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">车辆类型：&nbsp;</span>
-                    <div class="select ty" data-selectedindex="-1" style="float: left;width: 80px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
-                        <ul>
-                            <li data-index="0">内部</li>
-                            <li data-index="1">外部</li>
-                        </ul>
-                    </div>
-                    <div class="select carType" data-selectedindex="-1" style="float: left;width: 80px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">部门：&nbsp;</span>
+                    <div class="select dept" data-selectedindex="-1" style="float: left;width: 190px; margin-top: 0px;">
+                        <span style="display: inline-block;max-width: 190px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
                         <ul>
                             <!--<li data-index="槽车">槽车</li>-->
                             <!--<li data-index="罐车">罐车</li>-->
@@ -48,16 +41,39 @@
                         </ul>
                     </div>
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix carNo"><span class="modelBox34LeftTitle fl">车牌号：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">职务：&nbsp;</span>
+                    <div class="select org" data-selectedindex="-1" style="float: left;width: 190px; margin-top: 0px;">
+                        <span style="display: inline-block;max-width: 190px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
+                        <ul>
+                            <!--<li data-index="槽车">槽车</li>-->
+                            <!--<li data-index="罐车">罐车</li>-->
+                            <!--<li data-index="高栏车">高栏车</li>-->
+                            <!--<li data-index="平板车">平板车</li>-->
+                            <!--<li data-index="厢货车">厢货车</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">员工：&nbsp;</span>
+                    <div class="select user" data-selectedindex="-1" style="float: left;width: 190px; margin-top: 0px;">
+                        <span style="display: inline-block;max-width: 190px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
+                        <ul>
+                            <!--<li data-index="槽车">槽车</li>-->
+                            <!--<li data-index="罐车">罐车</li>-->
+                            <!--<li data-index="高栏车">高栏车</li>-->
+                            <!--<li data-index="平板车">平板车</li>-->
+                            <!--<li data-index="厢货车">厢货车</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix contractYears"><span class="modelBox34LeftTitle fl">合同年限：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl ">签订日期：&nbsp;</span>
                     <input type="text" id="test1" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 170px;border: 1px solid #dbdbdc; ">
-                </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix contractYears"><span class="modelBox34LeftTitle fl">合同年限：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div style="margin-top: 25px; margin-bottom: 20px;" class="clearfix">
@@ -91,18 +107,23 @@
 
         var contractTitle = "新增合同";
 
-        //链接：获取车辆类型list
-        var getCarTypeUrl = pubIP + 'tLogisticsVehicle/selectCarTypeList';
+        //链接：获取部门list - 与职务 联动
+        var getDeptUrl = pubIP + 'tLtDriverOrg/selectAllIsShow';
+        //链接：获取职务list - 与员工 联动
+        var getOrgUrl = pubIP + 'tLtDriverOrgDute/selectByOrgId';
+        //链接：获取员工list
+        var getUserUrl = pubIP + 'tLtDriver/selectDriverDoing';
+
         //链接：获取车辆合同详情
-        var getDetailInfoUrl = pubIP + 'tContractCar/selectById';
+        var getDetailInfoUrl = pubIP + 'tContractUser/selectById';
         //链接：新增 / 编辑
-        var modeUrl = pubIP + 'tContractCar/updateContractCar';
+        var modeUrl = pubIP + 'tContractUser/updateContractUser';
 
         if(contractMode == 'add'){
-            modeUrl = pubIP + 'tContractCar/updateContractCar';
+            modeUrl = pubIP + 'tContractUser/updateContractUser';
             contractTitle = "新增合同";
         }else if(contractMode == 'edit') {
-            modeUrl = pubIP + 'tContractCar/updateContractCar';
+            modeUrl = pubIP + 'tContractUser/updateContractUser';
             contractTitle = "编辑合同";
         }else {
             contractTitle = "详情";
@@ -175,10 +196,10 @@
         }
 
 
-        //获取车辆类型
-        function getCarType() {
+        //TODO 获取部门
+        function getDept() {
             $.ajax({
-                url: getCarTypeUrl, /*v1.0*/
+                url: getDeptUrl,
                 type: 'post',
                 headers: {
                     Accept: "application/json; charset=utf-8",
@@ -192,19 +213,24 @@
                     var str = '';
                     // str += '<li  data-index="" value="" data-id="">请选择</li>';
                     for (var i = 0; i < data.data.length; i++) {
-                        str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
+                        str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].ordName+'</li>';
                     }
-                    $('.carType ul').html(str);
+                    $('.dept ul').html(str);
 
 
                     // TODO
                     // 动态加载事件
-                    $('.carType ul li').click(function(){
+                    $('.dept ul li').click(function(){
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
                         $(this).parent().css('display','none');
+
+                        //初始化
+                        diySelectInit('.org');
+                        //TODO 查询职务
+                        getOrg($(this).attr('data-index'));
                     });
 
                     // TODO
@@ -218,7 +244,102 @@
 
         };
 
+        //TODO 获取职务
+        function getOrg(deptId) {
+            $.ajax({
+                url: getOrgUrl,
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: deptId
+                },
+                cache: false,
+                ansyc: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var str = '';
+                    // str += '<li  data-index="" value="" data-id="">请选择</li>';
+                    for (var i = 0; i < data.data.length; i++) {
+                        str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].dutyName+'</li>';
+                    }
+                    $('.org ul').html(str);
+
+                    // TODO
+                    // 动态加载事件
+                    $('.org ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+
+                        //初始化
+                        diySelectInit('.user');
+                        //TODO 查询员工
+                        getUser($(this).attr('data-index'));
+                    });
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+
+        };
+
+        //获取职务
+        function getUser(orgId) {
+            $.ajax({
+                url: getUserUrl,
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: orgId
+                },
+                cache: false,
+                ansyc: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var str = '';
+                    // str += '<li  data-index="" value="" data-id="">请选择</li>';
+                    for (var i = 0; i < data.data.length; i++) {
+                        str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
+                    }
+                    $('.user ul').html(str);
+
+
+                    // TODO
+                    // 动态加载事件
+                    $('.user ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                    });
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+
+        };
+
         // TODO
+        // 动态select框 初始化
+        var diySelectInit = function(target){
+
+            $(target +" span").attr('data-selectedindex', "");
+            $(target +" span").text("请选择");
+        }
         // 动态select框 设置值
         var diySelectVal = function(target,val){
             if(!val && val != 0 ) return false;
@@ -260,12 +381,12 @@
                     json.data.endDate = new Date(json.data.endDate).Format("yyyy-MM-dd");
                     $('#test1').val(json.data.signDate);
 
-                    $('.carNo').find('input').val(json.data.carNo);
                     $('.contractNo').find('input').val(json.data.contractNo);
                     $('.contractYears').find('input').val(json.data.contractYears);
 
-                    diySelectVal('.ty', json.data.ty);
-                    diySelectVal('.carType', json.data.carType);
+                    diySelectVal('.dept', json.data.duteId);
+                    diySelectVal('.org', json.data.orgid);
+                    diySelectVal('.user', json.data.userId);
 
                     img_show("#upload_btn1",json.data1.address);
 
@@ -277,12 +398,12 @@
                         $('#test1').attr("readonly", "readonly");
                         $('#upload_btn1').attr("readonly", "readonly");
 
-                        $('.carNo').find('input').attr("readonly", "readonly");
                         $('.contractNo').find('input').attr("readonly", "readonly");
                         $('.contractYears').find('input').attr("readonly", "readonly");
 
-                        $(".ty").unbind();
-                        $(".carType").unbind();
+                        $(".dept").unbind();
+                        $(".org").unbind();
+                        $(".user").unbind();
 
                         $(".queding").hide();
 
@@ -295,7 +416,7 @@
             });
         }
         // getDetailInfo();
-        getCarType();
+        getDept();
 
         //TODO 取消
         var clearWin = function(){
@@ -317,10 +438,15 @@
         // TODO 确认提交
         $(".queding").on("click",function(){
 
-            var ty = $('.ty').attr('data-selectedindex');
-            var carType = $('.carType').attr('data-selectedindex');
+            var dept = $('.dept').attr('data-selectedindex');
+            var deptName = $('.dept').text();
 
-            var carNo = $('.carNo').find('input').val();
+            var org = $('.org').attr('data-selectedindex');
+            var orgName = $('.org').text();
+
+            var user = $('.user').attr('data-selectedindex');
+            var userName = $('.user').text();
+
             var contractNo = $('.contractNo').find('input').val();
             var contractYears = $('.contractYears').find('input').val();
 
@@ -338,9 +464,15 @@
                 },
                 data: {
                     id: id,
-                    ty: ty,
-                    carType: carType,
-                    carNo: carNo,
+                    orgid: dept,
+                    orgName: deptName,
+
+                    duteId: org,
+                    dute: orgName,
+
+                    userId: user,
+                    userName: userName,
+
                     contractNo: contractNo,
                     years: contractYears,
                     signDate: signDate,
