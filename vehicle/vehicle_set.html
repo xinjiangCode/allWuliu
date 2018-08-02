@@ -27,7 +27,7 @@
     	</div>
     	<div class="record">
     		<span></span>
-            <div style="width: 102px;text-align: center;">新增选项</div>
+            <div style="width: 102px;text-align: center;" id="add">新增选项</div>
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -127,7 +127,6 @@
                     $(".pagination").parent().css("display","block");
                     if(currentPage===1 ){
                         //修改底部分页
-                        //debugger
                         var pageNum=Math.ceil(res.count/pageSize);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");
@@ -164,16 +163,45 @@
 			}else {
                 str+='<td>外部车辆</td>';
 			}
-            if(item.status===0){
+            if(item.status==0){
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox" name="status" class="switch" checked="checked" /><label for="checked_'+idx+'"></label></td>';
             }else{
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox"  name="status" class="switch" /><label for="checked_'+idx+'"></label></td>';
             }
-            str+='<td>'+item.sort+'</td>';
-            str+='<td data-id="'+item.id+'"><a class="lookover" style="color: #6ba1ff;">编辑</a><a class="delect" style="color: #6ba1ff;">删除</a></td>';
+            str+='<td><input class="sort" type="text" maxlength="9" value="'+item.sort+'"></td>';
+            str+='<td data-id="'+item.id+'"><a class="lookover Edit" style="color: #6ba1ff;">编辑</a><a href="javaScript:;" class="delect" style="color: #6ba1ff;">删除</a></td>';
             str+='</tr>';
         })
        $(".listBox tbody").html(str);
+        //show编辑扣车款
+        $(".Edit").unbind();
+        $(".Edit").click(function () {
+            window.parent.$(".modelBox21").attr("data-id",$(this).parents("tr").attr("data-id"));
+            window.parent.$(".modelBox21").show();
+            returnShow();
+        })
+//		删除
+        $(".delect").unbind();
+		$(".delect").click(function () {
+            addDelUpdata("",1,$(this).parents("tr").attr("data-id"),"");
+        })
+        //启用和禁用
+        $(".chooseswitch input[type='checkbox']").change(function() {
+            console.log($(this).prop("checked"));
+            if($(this).prop("checked")){
+                addDelUpdata(0,"",$(this).parents("tr").attr("data-id"),"");
+            }else {
+                addDelUpdata(1,"",$(this).parents("tr").attr("data-id"),"");
+            }
+        });
+        //校验数字
+        $('.sort').bind('input propertychange',function () {
+			$(this).val($(this).val().replace(/\D/g,''));
+        });
+        $('.sort').unbind();
+        $('.sort').blur(function () {
+            addDelUpdata("","",$(this).parents("tr").attr("data-id"),$(this).val());
+        })
     }
     //选择排序方式
     $(".select ul li").click(function () {
@@ -184,6 +212,192 @@
         var currentPage = $('.pageCont li.active>a').text();
         getData(currentPage);
     })
+
+	//show新增扣车款
+    $("#add").unbind();
+	$("#add").click(function () {
+        resetVehicle();
+        window.parent.$(".modelBox21").attr("data-id","")
+		window.parent.$(".modelBox21").show();
+
+    })
+    //新增扣车款 点击确定
+    window.parent.$("#addVehicleField").unbind();
+	window.parent.$("#addVehicleField").click(function () {
+	    if(window.parent.$(".VehicleField").find("input").val()==""){
+            window.parent.$(".modelBox21 .errMsg").text("字段名不能为空");
+	        return;
+		}else{
+            window.parent.$(".modelBox21 .errMsg").text("");
+		}
+		window.parent.$(".VehicleSelect .VehicleSelectList li").each(function (idx,item) {
+
+			if($(item).find("input").val()==""){
+                window.parent.$(".modelBox21 .errMsg").text("选项不能为空");
+                return;
+			}
+        })
+        if(window.parent.$(".modelBox21 .errMsg").text()!=""){
+            return;
+        }
+        addVehicleField();
+    })
+	//添加字段方法
+	function  addVehicleField() {
+        var lable1='';
+		window.parent.$(".VehicleSelectList input").each(function (idx,item) {
+		    if(idx!=0){
+                lable1+=',';
+			}
+			lable1+=$(item).val()
+        })
+        $.ajax({
+            url: pubIP + 'wLtLogisticsVehicleAttribute/updateLogisticsVehicleAttribute', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                id:window.parent.$(".modelBox21").attr("data-id"),
+                name:window.parent.$(".VehicleField").find("input").val(),
+                type:window.parent.$(".VehicleType").find(".selectPub").attr("data-selectedindex"),
+                label:lable1
+            },
+            success: function (res) {
+                if(res.code===1){
+                    if(window.parent.$(".modelBox21").attr("data-id")==""){
+                        cf_alert(1,"添加车辆字段成功")
+					}else{
+                        cf_alert(1,"修改车辆字段成功")
+					}
+
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+	//编辑回显
+    function returnShow() {
+        $.ajax({
+            url: pubIP + 'wLtLogisticsVehicleAttribute/selectByid', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                id:window.parent.$(".modelBox21").attr("data-id"),
+            },
+            success: function (res) {
+                if(res.code===1){
+                    window.parent.$(".modelBox21").attr("data-id",res.data.id)
+                    window.parent.$(".VehicleField").find("input").val(res.data.name)
+                    window.parent.$(".VehicleType").find(".selectPub").attr("data-selectedindex",res.data.type)
+                    //select 选中处理
+                    $('.VehicleType .selectPub').find('li').each(function(idx,item){
+                        if($(item).attr('data-index') == $('.VehicleType .selectPub').attr('data-selectedindex')){
+                            $(item).css({'background': '#6ea3ff','color': '#fff'});
+                            $(item).siblings('li').css({'background': '#fff','color': '#999'});
+                            $(item).parents(".selectPub").find("span").text($(item).text());
+                        }
+                    });
+                    var str='';
+					if(res.data.type==1){
+                        window.parent.$(".VehicleType").find(".selectPub").find("span").text("下拉框");
+                       var list=res.data.label.split(",");
+                       for (var i=0;i<list.length;i++){
+                           str+='<li>';
+                           str+='<input type="text" style="width: 180px;height: 28px;line-height: 28px;border: 1px solid #ebe9ea;" value="'+list[i]+'">';
+                           str+='<span class="cf_btn upVehicleSelect" onclick="upVehicleSelect(this)">上移</span>';
+                           str+='<span class="cf_btn downVehicleSelect" onclick="downVehicleSelect(this)">下移</span>';
+                           str+='<span class="cf_btn delVehicleSelect" onclick="delVehicleSelect(this)">删除</span>';
+                           str+='<span class="cf_btn addVehicleSelect" onclick="addVehicleSelect(this)">新增</span>';
+                           str+='</li>';
+					   }
+					}else if(res.data.type==2){
+                        window.parent.$(".VehicleType").find(".selectPub").find("span").text("日期插件");
+					}else if(res.data.type==0){
+                        window.parent.$(".VehicleType").find(".selectPub").find("span").text("输入框");
+					}
+                    window.parent.$(".VehicleSelectList").html(str);
+
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+//重置弹框
+	function resetVehicle() {
+        window.parent.$(".modelBox21").attr("data-id","");
+        window.parent.$(".VehicleField").find("input").val("")
+        window.parent.$(".VehicleType").find(".selectPub").attr("data-selectedindex",0)
+        window.parent.$(".VehicleType").find(".selectPub").find("span").text("输入框");
+        window.parent.$(".VehicleSelectList").html("");
+    }
+//    修改状态
+	function addDelUpdata(state,deleteFlag,id,sort) {
+        var data={};
+		data.id=id;
+		if(state=="0"){
+            data.state=state;
+		}else if(state==1){
+            data.state=1;
+		}else if(deleteFlag==1){
+            data.deleteFlag=deleteFlag;
+		}else {
+            data.sort=sort;
+		}
+        $.ajax({
+            url: pubIP + 'wLtLogisticsVehicleAttribute/updateStart', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:data,
+            success: function (res) {
+                if(res.code===1){
+                    if(state=="0"){
+                        cf_alert(1,"启用成功");
+                    }else if(state==1){
+                        cf_alert(1,"禁用成功");
+					}
+                    if(deleteFlag==1){
+                        cf_alert(1,"删除成功");
+                    }
+                    if(sort!=""){
+                        cf_alert(1,"排序成功");
+                    }
+
+
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

@@ -47,7 +47,7 @@
 			</div>
             <!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
     		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
-            <div style="width: 102px;text-align: center;">添加线路</div>
+            <div style="width: 102px;text-align: center;" id="addLine">添加线路</div>
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -216,8 +216,12 @@
         var currentPage = $('.pageCont li.active>a').text();
         getData(currentPage);
     })
+//    modelBox13
 
-
+	//新增线路
+	$("#addLine").click(function () {
+		window.parent.$(".modelBox13").show();
+    })
 </script>
 </body>
 </html>
