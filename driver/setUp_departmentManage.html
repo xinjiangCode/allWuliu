@@ -386,7 +386,7 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-
+                json = JSON.parse(json);
                 if (json.code == 1) {
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');

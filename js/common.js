@@ -77,8 +77,15 @@ function missedLogin() {
 
 //跳回登录页
 function popEffectLogin() {
-	var isOld = localStorage.getItem('isOld');
-    window.top.location.href='login.html';
+	// var isOld = localStorage.getItem('isOld');
+ //    window.top.location.href='login.html';
+
+    var isOld = localStorage.getItem('isOld');
+    if ($("#popLogin").text() == '认证') {
+        window.top.location.href='account.html';
+    } else {
+        window.top.location.href='login.html';
+    }
 	// if(isOld == '0' || isOld == '1'){
 	// 	if(adct=="首页"){
 	//         window.location.href='login.html';
@@ -116,18 +123,8 @@ $(document).on('click', '.exit', function() {
                 $('.exit').hide();
                 $("#loginPub").show();
                 $('#userNamePub').html('你好，游客');
-                if (adct == "1") {
-                    // var company_type = localStorage.getItem('company_type');
-                    // if (company_type == '1') { //供应商
-                    //     location.href = '../login.html';
-                    // } else if (company_type == '2') {
-                    //     location.href = 'login.html';
-                    // }
-                    location.href = 'login.html';
-                } else {
-                    location.href = '../login.html';
-                }
                 
+                location.href = 'login.html';
             }
 
         },
@@ -139,13 +136,19 @@ $(document).on('click', '.exit', function() {
 
 function cf_popEffectClose1(that) {
 	$(that).parent().parent().parent().css("display","none");
-    var company_type = localStorage.getItem('company_type');
-    if (company_type == '1') { //供应商
-        // location.href = '../login.html';
-        window.top.location.href='../login.html';
-    } else if (company_type == '2') {
-        // location.href = 'login.html';
-        window.top.location.href='login.html';
+     var company_type = localStorage.getItem('company_type');
+    if ($('#popLogin').text() == '登录') {
+        if (company_type == '1') { //供应商
+            // location.href = '../login.html';
+            window.top.location.href='../login.html';
+        } else if (company_type == '2') {
+            // location.href = 'login.html';
+            window.top.location.href='login.html';
+        } else if (company_type == '-1') {
+            window.top.location.href='login.html';
+        }
+    } else if ($('#popLogin').text() == '认证') {
+        window.top.location.href='account.html';
     }
     
 }
@@ -319,6 +322,8 @@ $(function () {
             $('.goUser').attr('href', '../index.html');
         } else if (company_type == '2') {
             $('.goUser').attr('href', 'index.html');
+        } else if (company_type == '-1') {
+            $('.goUser').attr('href', 'index.html');
         }
         //window.location.href="./index.html";
     })
@@ -328,6 +333,8 @@ $(function () {
             window.location.href="xj_wuliu_gy/account.html";
         } else if (company_type == '2') {
             window.location.href="./account.html";
+        } else if (company_type == '-1') {
+             window.location.href="./account.html";
         }
         
     })
