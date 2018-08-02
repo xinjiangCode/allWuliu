@@ -80,7 +80,17 @@ function missedLogin() {
 //跳回登录页
 function popEffectLogin() {
 	var isOld = localStorage.getItem('isOld');
-    window.top.location.href='login.html';
+    window.top.location.href='../login.html';
+    // var company_type = localStorage.getItem('company_type');
+    // if (company_type == '1') { //供应商
+    //     // location.href = '../login.html';
+    //     window.top.location.href='../login.html';
+    // } else if (company_type == '2') {
+    //     // location.href = 'login.html';
+    //     window.top.location.href='login.html';
+    // }
+
+
 
 	// if(isOld == '0' || isOld == '1'){
 	// 	//if(adct=="首页"){
@@ -103,7 +113,7 @@ function popEffectLogin() {
 
 function cf_popEffectClose1(that) {
 	$(that).parent().parent().parent().css("display","none");
-    window.location.href='login.html';
+    window.location.href='../login.html';
 }
 
 //退出 按钮
@@ -125,7 +135,12 @@ $(document).on('click', '.exit', function() {
                 $('.exit').hide();
                 $("#loginPub").show();
                 $('#userNamePub').html('你好，游客');
-                location.href = 'login.html';
+                var company_type = localStorage.getItem('company_type');
+                if (company_type == '1') { //供应商
+                    location.href = '../login.html';
+                } else if (company_type == '2') {
+                    location.href = 'login.html';
+                }
             }
 
         },

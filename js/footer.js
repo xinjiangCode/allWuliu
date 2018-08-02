@@ -113,4 +113,11 @@ document.writeln(" <footer>\n" +
     "    </footer>");
 
 
-
+    $(document).on('click', '.logo', function() {
+        var company_type = localStorage.getItem('company_type');
+        if (company_type == '1') { //供应商
+            window.location.href="../index.html"
+        } else if (company_type == '2') {
+            window.location.href="index.html"
+        }
+    });

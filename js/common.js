@@ -1,5 +1,5 @@
 
-//var pubIP = 'http://192.168.1.76:7777/service/';
+//var pubIP = 'http://192.168.1.45:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 
@@ -116,7 +116,18 @@ $(document).on('click', '.exit', function() {
                 $('.exit').hide();
                 $("#loginPub").show();
                 $('#userNamePub').html('你好，游客');
-                location.href = 'login.html';
+                if (adct == "1") {
+                    // var company_type = localStorage.getItem('company_type');
+                    // if (company_type == '1') { //供应商
+                    //     location.href = '../login.html';
+                    // } else if (company_type == '2') {
+                    //     location.href = 'login.html';
+                    // }
+                    location.href = 'login.html';
+                } else {
+                    location.href = '../login.html';
+                }
+                
             }
 
         },
@@ -128,7 +139,15 @@ $(document).on('click', '.exit', function() {
 
 function cf_popEffectClose1(that) {
 	$(that).parent().parent().parent().css("display","none");
-    window.top.location.href='login.html';
+    var company_type = localStorage.getItem('company_type');
+    if (company_type == '1') { //供应商
+        // location.href = '../login.html';
+        window.top.location.href='../login.html';
+    } else if (company_type == '2') {
+        // location.href = 'login.html';
+        window.top.location.href='login.html';
+    }
+    
 }
 
 if(token){
@@ -291,14 +310,26 @@ $('.select ul li').click(function(){
     $(this).parent().css('display','none');
 });
 
+var company_type = localStorage.getItem('company_type');
 
 $(function () {
     $("header  .logo").click(function () {
-        window.location.href="./index.html";
+        
+        if (company_type == '1') { //供应商
+            $('.goUser').attr('href', '../index.html');
+        } else if (company_type == '2') {
+            $('.goUser').attr('href', 'index.html');
+        }
+        //window.location.href="./index.html";
     })
     $(".goUser").click(function () {
-        sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
-        window.location.href="./account.html";
+        
+        if (company_type == '1') { //供应商
+            window.location.href="xj_wuliu_gy/account.html";
+        } else if (company_type == '2') {
+            window.location.href="./account.html";
+        }
+        
     })
 })
 //刷新按钮

@@ -22,6 +22,16 @@
         .fontNum{
             font-family: "YourFont";
         }
+
+        #effect1{display:none;position: fixed;top: 0;left: 0;right:0;bottom: 0;width: 100%;height: 100%;z-index: 999;background-color: rgba(102,102,102,0.5);}
+        #effect1>.cont{position: fixed;top: 50%;left: 50%;width: 450px;height: 279px;background-color: #ffffff;transform: translate(-50%,-50%);background: url('./img/cf_popBackground.png') no-repeat ; background-size: contain;}
+        #effect1>.cont>.cance2{margin: 0;padding: 0 20px;height: 50px;line-height: 50px;background: url('./img/cf_popbackgr.png') no-repeat ;background-size: contain;}
+        #effect1>.cont>.cance2>.popTitle{color:#5992f3;font-size: 16px;}
+        #effect1>.cont>.cance2>.close{width: 16px;height: 16px;margin-top: 17px; background: url('./img/cf_close1.png') no-repeat ; background-size: contain;}
+        #effect1>.cont>.deanger{width: 42px;height: 42px;background: url('./img/cf_denger1.png') no-repeat ; background-size: contain;margin: 0 auto;margin-top: 40px;}
+        #effect1>.cont>.contTitle{margin-top: 20px;font-size: 14px;text-align: center;}
+        #effect1>.cont>.popLogin{width: 140px;height: 45px; line-height: 45px;background-color: #88b0f9;color: white;text-align: center;margin: 0 auto;border-radius: 5px;font-size: 18px;margin-top: 35px; }
+        #effect1>.cont>.popLogin:hover{background-color: #7ea9f9;}
     </style>
 </head>
 <body>
@@ -38,7 +48,7 @@
                 <ul>
                     <li>
                         <div class="headerTopRightImg1 headerTopRightImg"></div>
-                        <div  class="Lf"><a href="account.html" class="goUser">用户中心</a></div>
+                        <div  class="Lf"><a href="##" class="goUser">用户中心</a></div>
                     </li>
                     <li class="liline"></li>
                     <!--<li>-->
@@ -83,7 +93,7 @@
             </div>
         </div>
         <div class="swiper-pagination-custom"></div>
-        <div class="tobuybtn" onclick="getOrder()">发布空车</div>
+        <div class="tobuybtn">发布空车</div>
     </div>
     <!-- 精英介绍 -->
     <div class="jingyingBox">
@@ -466,6 +476,18 @@
 
 
 <script type="text/javascript" >
+document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
+        "\t<div class=\"cont\" >\n" +
+        "\t\t<div class=\"cance2\" >\n" +
+        "\t\t\t<span class=\"popTitle Lf\" >提示</span>\n" +
+        "\t\t\t<div class=\"close Rt\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
+        "\t\t</div>\n" +
+        "\t\t<div class=\"deanger\"></div>\n" +
+        "\t\t<div class=\"contTitle\">您好，<span>您的登陆已经过期</span>,请先<i onclick=\"popEffectLogin()\" style=\"color: #00a0e9;\">登陆</i>，以便使用更多功能。</div>\n" +
+        "\t\t<div class=\"popLogin\" id=\"popLogin\" onclick=\"popEffectLogin()\">登录</div>\n" +
+        "\t</div>\n" +
+        "</div>");
+
     $(function () {
         $.ajax({
             type:"post",
@@ -607,11 +629,85 @@
 
     })
     //发布空车
-    function getOrder() {
-        sessionStorage.setItem("cfsrc","./statistics/dataIndex.html");
-        sessionStorage.setItem("isAdd","1");
-        window.location.href="./account.html";
+    $('.tobuybtn').click(function() { 
+        var isOld = localStorage.getItem('isOld');
+        if(isOld != '2'){
+            if(isOld == '1'){
+                $('#effect1 .contTitle span').text('您尚未登录');
+                $('#effect1').css('display', 'block');
+            } else if (isOld == '0') {
+                $('#effect1').css('display', 'block');
+            } else if (isOld == '-1') {
+                $('#effect1 .contTitle span').text('您尚未认证');
+                $('#effect1 .contTitle i').text('认证');
+                $('#popLogin').text('认证');
+                $('#effect1').css('display', 'block');
+            }
+        } else if (localStorage.getItem('company_type') == '2') { //承运商
+            sessionStorage.setItem("cfsrc","./statistics/dataIndex.html");
+            sessionStorage.setItem("isAdd","1");
+            $('.tobuybtn').text('发布空车');
+            window.location.href="./account.html";
+        } else if (localStorage.getItem('company_type') == '1' || localStorage.getItem('company_type') == '-1') {// 供应商 立即下单
+            sessionStorage.setItem("isAddRequireMent",1);
+            sessionStorage.setItem("cfsrc","./xj_wuliu_gy/requuire/publishRequireList.html");
+            sessionStorage.setItem("isAdd","1");
+            $('.tobuybtn').text('立即下单');
+            window.location.href="./xj_wuliu_gy/account.html";
+        }
+        
+    });
+
+    if (localStorage.getItem('company_type') == '2') { //承运商
+        $('.tobuybtn').text('发布空车');
+        
+    } else if (localStorage.getItem('company_type') == '1' || localStorage.getItem('company_type') == '-1') {// 供应商 立即下单
+        
+        $('.tobuybtn').text('立即下单');
+        
     }
+
+    $('.goUser').click(function() {
+        var company_type = localStorage.getItem('company_type');
+        console.log(company_type);
+        if (company_type == '1' || company_type == '-1') { //供应商
+            $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+        } else if (company_type == '2') {
+            $('.goUser').attr('href', 'account.html');
+        }
+
+    });
+
+    //拦截链接
+    // $(document).on('click','a',function(e){
+    //     e.preventDefault();
+    //     var isOld = localStorage.getItem('isOld');
+    //     if(isOld != '2'){
+    //         var ttxt = $.trim($(this).text());
+    //         console.log(ttxt);
+    //         if(ttxt == '用户中心' || ttxt == '立即下单'){
+    //             if(isOld == '1'){
+    //                 $('#effect .contTitle span').text('您尚未登录');
+    //                 missedLogin() ;
+    //             }else if(isOld == '0'){
+    //                 missedLogin() ;
+    //             }else if(isOld == '-1'){
+    //                 $('#effect .contTitle span').text('您尚未认证');
+    //                 $('#effect .contTitle i').text('认证');
+    //                 $('#popLogin').text('认证');
+    //                 missedLogin() ;
+    //             }else if(isOld == '-2'){
+
+    //                 window.location.href = this.href;
+    //             }
+                
+    //         }else{
+    //             window.location.href = this.href;
+    //         }
+    //     }else{
+    //         window.location.href = this.href;
+    //     }
+    // })
 </script>
 </body>
 </html>
