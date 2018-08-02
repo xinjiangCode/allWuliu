@@ -119,5 +119,7 @@ document.writeln(" <footer>\n" +
             window.location.href="../index.html"
         } else if (company_type == '2') {
             window.location.href="index.html"
+        } else if (company_type == '-1') {
+            window.location.href="index.html"
         }
     });

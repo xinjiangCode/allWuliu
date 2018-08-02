@@ -246,7 +246,7 @@ var currentPage=1;
         window.parent.$(".modelBox12").attr("data-carType","");
         window.parent.$(".modelBox12").attr("data-routeid","");
         resetModelBox12()//先清空框
-        window.parent.getDynamic();
+        window.parent.getDynamic("");
         window.parent.getCarTypeList();
         window.parent.getLineList();
 		window.parent.$(".modelBox12").show();
@@ -291,23 +291,112 @@ var currentPage=1;
 //    点击确认按钮
     window.parent.$(".modelBox12 .conFirm").unbind();
 	window.parent.$(".modelBox12 .conFirm").click(function () {
-        addCar();
+        window.parent.$(".modelBox12").attr("data-id",'')
+        //	是	string	车辆类型
+        window.parent.$("#carTypeOut").attr("data-selectedindex","0")	//是	int	0:内部 1:外部
+        window.parent.$("#carTypeOut span").text("内部")
+        //	是	String	车牌号
+        window.parent.$("#").val("")//	是	String
+        window.parent.$("#").val("")//	是	String
+        window.parent.$("#").val("")//	是	String	车架号
+        window.parent.$("#").val("")//	是	String
+        window.parent.$("#").val("")//		是	date
+        window.parent.$("#").val("")//		是	Sring
+        window.parent.$("#").val("")//		是	String	车辆
+        window.parent.$("#").val("")//		是	String
+        window.parent.$("#chooseAbleLine").attr("data-id")//		是	String	线路id
+        window.parent.$("#").val("")//		是	String
+        window.parent.$("#").val("")//		是	String	保险金额
+        window.parent.$("#").val("")//		是	String	保险年限
+        window.parent.$("#").val("")//		是	String	行驶证url
+        window.parent.$("#").val("")//		是	String	车辆运营url
+	    if(window.parent.$("#addCarNo").val()==""){
+            window.parent.$("#addCarError").text("车牌号不能为空");
+            return;
+		}
+        if(window.parent.$("#carBrand").val()==""){
+            window.parent.$("#addCarError").text("车品牌不能为空");
+            return;
+        }
+        if(window.parent.$("#archivesNo").val()==""){
+            window.parent.$("#addCarError").text("车辆档案号不能为空");
+            return;
+        }
+        if(window.parent.$("#frameNo").val()==""){
+            window.parent.$("#addCarError").text("车架号不能为空");
+            return;
+        }
+        if(window.parent.$("#engineNo").val()==""){
+            window.parent.$("#addCarError").text("发动机不能为空");
+            return;
+        }
+        if(window.parent.$("#annualVerificationDate").val()==""){
+            window.parent.$("#addCarError").text("年审日期不能为空");
+            return;
+        }
+        if(window.parent.$("#vehicleLoad").val()==""){
+            window.parent.$("#addCarError").text("车辆载重不能为空");
+            return;
+        }
+        if(window.parent.$("#insuranceDate").val()==""){
+            window.parent.$("#addCarError").text("保险日期不能为空");
+            return;
+        }
+        if(window.parent.$("#purchaseAmount").val()==""){
+            window.parent.$("#addCarError").text("购买金额不能为空");
+            return;
+        }
+        if(window.parent.$("#insuranceAmount").val()==""){
+            window.parent.$("#addCarError").text("保险金额不能为空");
+            return;
+        }
+        if(window.parent.$("#insuranceYears").val()==""){
+            window.parent.$("#addCarError").text("保险年限不能为空");
+            return;
+        }
+        if(window.parent.$("#cf_xingshizheng1").val()==""){
+            window.parent.$("#addCarError").text("请上传行驶证图片");
+            return;
+        }
+        if(window.parent.$("#cf_cheliangyunying1").val()==""){
+            window.parent.$("#addCarError").text("请上传车辆运营图片");
+            return;
+        }
+		var err=1;
+        window.parent.$("#dynamic>li").each(function (idx,item) {
+            if($(item).attr("data-type")==0 && $(item).find("input").val()==""){
+                if(err){
+                    window.parent.$("#addCarError").text($(item).find(".dynamicTitle").attr("data-title")+"不能为空");
+                    err=0;
+				}
+            }else if($(item).attr("data-type")==1){//下拉框
+
+            }else if($(item).attr("data-type")==2 && $(item).find("input").val()==""){//时间框
+                if(err) {
+                    window.parent.$("#addCarError").text("请选择" + $(item).find(".dynamicTitle").attr("data-title"));
+                    err=0;
+                }
+            }
+        })
+		if(window.parent.$("#addCarError").text()==""){
+            addCar();
+		}
     })
 // 添加车辆方法
     function addCar() {
 	    var s='';
-	    $("#dynamic li").each(function (idx,item) {
+	    window.parent.$("#dynamic>li").each(function (idx,item) {
 	        if(idx!=0){
-	            s+='@#@';
+	            s+='@,@';
 			}
-	        s+=$(this).attr("data-id")+'@#@';
+	        s+=$(item).attr("data-id")+'@#@';
 //	        s+=$(this).find(".dynamicTitle").attr("data-title");
 			if($(item).attr("data-type")==0){
-				s+=$(this).find("input").val();
+				s+=$(item).find("input").val();
 			}else if($(item).attr("data-type")==1){//下拉框
-				s+=$(this).find(".select span").val();
+				s+=$(this).find(".select").attr("data-id");
             }else if($(item).attr("data-type")==2){//时间框
-                s+=$(this).find("input").val();
+                s+=$(item).find("input").val();
             }
         })
 	    
@@ -376,9 +465,19 @@ function resetModelBox12() {
         window.parent.$("#insuranceAmount").val("")//		是	String	保险金额
         window.parent.$("#insuranceYears").val("")//		是	String	保险年限
         window.parent.$("#cf_xingshizheng1").val("")//		是	String	行驶证url
-    	window.parent.$("#cf_xingshizheng").val("")//		是	String	行驶证url
    	 	window.parent.$("#cf_cheliangyunying1").val("")//		是	String	车辆运营url
-        window.parent.$("#cf_cheliangyunying").val("")//		是	String	车辆运营url
+		window.parent.$("#cf_xingshizheng").parent().css({
+			'background':'url("") no-repeat',
+			'background-position':'center',
+			'background-size':'contain',
+			'background-color':'#f6f6f6'
+		})
+		window.parent.$("#cf_cheliangyunying").parent().css({
+			'background':'url("") no-repeat',
+			'background-position':'center',
+			'background-size':'contain',
+			'background-color':'#f6f6f6'
+		})
 }
 //车辆详情回显
 function returnShow(id) {
@@ -398,7 +497,6 @@ function returnShow(id) {
         },
         success: function (res) {
             if(res.code==1){
-                debugger
                 var data1=res.data;
                 window.parent.$(".modelBox12").attr("data-carType",data1.carType);
                 window.parent.$(".modelBox12").attr("data-routeid",data1.routeid);
@@ -410,7 +508,6 @@ function returnShow(id) {
                     window.parent.$("#carTypeOut").attr("data-selectedindex","1")	//是	int	0:内部 1:外部
                     window.parent.$("#carTypeOut span").text("外部")
 				}
-
                 window.parent.$("#addCarNo").val(data1.carNo)//	是	String	车牌号
                 window.parent.$("#carBrand").val(data1.carBrand)//	是	String	车品牌
                 window.parent.$("#archivesNo").val(data1.archivesNo)//	是	String	车辆档案号
@@ -442,7 +539,8 @@ function returnShow(id) {
 //                window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
                 window.parent.$("#cf_cheliangyunying1").val(data1.carOperation)//		是	String	车辆运营url
 
-                window.parent.getDynamic();
+
+                window.parent.getDynamic(res.data1);
                 window.parent.getCarTypeList();
                 window.parent.getLineList();
             }else{

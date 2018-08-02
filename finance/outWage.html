@@ -39,13 +39,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 56px;text-align: center;"></th>
+                        <!-- <th style="width: 56px;text-align: center;"></th> -->
                         <th>订单号</th>
                         <th>姓名</th>
                         <th>结算金额（含税）</th>
                         <th>结算金额（不含税）</th>
                         <th>车牌号</th>
-                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -65,12 +64,12 @@
             </table>
             <p class="no_msg">暂无数据</p>
         </div>
-        <div class="bottomOperiat">
+        <!-- <div class="bottomOperiat">
             <span class="squre"></span>
             <span class="selsectAll">全选</span>
             <span class="closeBtn">批量通过</span>
             <span class="delBtn">批量驳回</span>
-        </div>
+        </div> -->
         <div class="myPage" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
             <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
             <div class="pageJump">
@@ -146,24 +145,25 @@
                     page: currentPage,
                     size: 10,
                     condition: $(".js_select").attr("data-selectedindex"),
-                    value: $(".js_value").val(),
+                    values: $(".js_value").val(),
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (json) {
                     console.log("+++++++++++++++++++++++++++++");
-                    console.log(json.data);
+                    console.log(json);
                     var data = json.data;
                     if(data==null || data.length==0){
                         $(".no_msg").show();
                         $(".bottomOperiat").hide();
                         $(".myPage").hide();
+                        $(".myTbody").html('');
                         return false;
                     }
-                    if(currentPage===1 ){
+                    if(currentPage==1 ){
                         //修改底部分页
                         //debugger
-                        var pageNum=Math.ceil(data.count/10);
+                        var pageNum=Math.ceil(json.count/10);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");
                         $('.objListBox>div:nth-child(5n)').css('margin-right','0');
@@ -176,27 +176,68 @@
                             }
                         });
                     }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
                     
                     var str = ''
                     $.each(data,function(idx,item){
                         str += '<tr>'
+                        str += '<td>'+item.order_no+'</td>'
                         str += '<td>'+item.name+'</td>'
-                        str += '<td>'+item.org_name+'</td>'
-                        str += '<td>'+item.job_name+'</td>'
-                        str += '<td>'+item.updatetime+'</td>'
-                        str += '<td>'+item.money+'</td>'
-                        str += '<td>'+item.wj_money+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.money+'">工资发放</span><span class="btn ll" onclick="ffdetail();">查看详情</span></td>'
+                        str += '<td>'+item.taxAmount+'</td>'
+                        str += '<td>'+item.noTaxAmount+'</td>'
+                        str += '<td>'+item.car_num+'</td>'
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.bc_money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
                     
+                    //发放工资
+                    $(".fafang").on("click",function(){
+                        jiesuan_alert_show($(this).attr("id"),$(this).attr("data-djs"),$(this).attr("data-by"));
+                    })
                 },
                 error: function(err) {
                     console.log(err);
                 }
 
             });
+        }
+        //结算框显示
+        function jiesuan_alert_show(obj,obj1,obj2){
+            window.parent.$(".jiesuan_alert").show();
+            window.parent.$(".djs_money").html(obj1);
+            window.parent.$(".djs_money").prev().html("待结算金额");
+            window.parent.$(".by_money").html(obj2);
+            window.parent.$(".by_money").prev().html("本次工资");
+            window.parent.$(".sjff_inp").val('');
+            window.parent.$("#xuan_type1").prop("checked",true);
+            window.parent.$(".js_btn").on("click",function(){
+                $.ajax({
+                    url: pubIP + 'carrierFinance/updatewagesvo',
+                    type: 'POST',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        wages_id: obj,
+                        sign: 0,
+                        money: window.parent.$(".sjff_inp").val(),
+                        type: window.parent.$('input:radio[name="xuan_type"]:checked').val(),
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (json) {
+                        // console.log("+++++++++++++++++++++++++++++");
+                        // console.log(json);
+                        cf_alert(1,"结算成功");
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            })
         }
     </script>
 </body>
