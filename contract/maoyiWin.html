@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title adct1="acount" adct="首页">新疆化学品经营服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <!-- <title>确认送达</title> -->
+    <link rel="stylesheet" href="../css/querensongda.css">
+
+</head>
+<body>
+
+<!-- 新增订单 -->
+<div class="modelBox3" style="font-size: 14px;">
+    <div class="modelCont" style="width: 845px;height: 560px;">
+        <div class="modeltitle" style="width: 100%;">
+            <span class="winTitle">新增订单</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="width: 745px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
+            <div class="clearfix">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix contractNo"><span class="modelBox34LeftTitle fl">合同编号：&nbsp;</span>
+                    <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
+                </div>
+            </div>
+            <div class="clearfix">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix receiveCompanyname"><span class="modelBox34LeftTitle fl">贸易公司：&nbsp;</span>
+                    <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
+                </div>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl ">签订日期：&nbsp;</span>
+                    <input type="text" id="test1" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 170px;border: 1px solid #dbdbdc; ">
+                </div>
+            </div>
+            <div style="margin-top: 25px; margin-bottom: 20px;" class="clearfix">
+                <span style="float: left; text-align: right;">合同上传：</span>
+                <div class="upload_div" style="position: relative; height: 130px;width: 130px; margin-left: 5px; border: 1px solid #dbdbdc; float: left;">
+                </div>
+                <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_btn1" style="position: absolute;left: 0;opacity: 0;z-index: 99;"><span style="color: #6ea3ff;position: absolute;left: 0;width: 50px;display: block;z-index: 77;">上传</span></div>
+                <input type="hidden" value="" class="upload_div_hide2">
+            </div>
+            <div class="clearFloat" style="text-align: center;margin-top: 32px;">
+                <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
+                <span class=" cf_btn queding" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <input type="hidden" class="inp_hidden">
+
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+
+        // TODO 全局变量
+
+        // 合同id
+        var contractMode = sessionStorage.getItem("contractMode");
+        var id = sessionStorage.getItem("contractId");
+        // id = "2c96901363f34e62bf1f5dff776a6787";
+
+        var contractTitle = "新增合同";
+
+
+        //链接：获取贸易合同详情
+        var getDetailInfoUrl = pubIP + 'tContractTrade/selectById';
+        //链接：新增 / 编辑
+        var modeUrl = pubIP + 'tContractTrade/updateContractTrade';
+
+        if(contractMode == 'add'){
+            modeUrl = pubIP + 'tContractTrade/updateContractTrade';
+            contractTitle = "新增合同";
+        }else if(contractMode == 'edit') {
+            modeUrl = pubIP + 'tContractTrade/updateContractTrade';
+            contractTitle = "编辑合同";
+        }else {
+            contractTitle = "详情";
+        }
+        //设置标题
+        $('.winTitle').html(contractTitle);
+
+
+        laydate({
+            elem: '#test1',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime = dates;
+            }
+        });
+        laydate({
+            elem: '#test2',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            choose: function(dates){ //选择好日期的回调
+                startTime = dates;
+            }
+        });
+
+        // 上传图片
+        $(document).on('change','#upload_btn1,#upload_btn2',function(){
+            xmTanUploadImg11(this);
+        });
+        //图片回显
+        var img_show = function(obj,imgurl){
+
+            $(obj).parent().parent().find('.upload_div').css({
+                'background':'url('+imgurl+') no-repeat',
+                'background-position':'center',
+                'background-size':'contain',
+                'background-color':'#f6f6f6'
+            });
+            $(obj).parent().parent().find('input[type="hidden"]').val(imgurl);
+        }
+
+        function xmTanUploadImg11(obj) {
+            var file = obj.files[0];
+            if (file.size >= 2097152) {
+                window.parent.$(".all_error_alert").show();
+                window.parent.$(".all_error_alert").find(".innerErrmsg").html("上传的图片超过了2MB");
+                return;
+            }
+    
+            var formdata=new FormData();
+    
+            formdata.append('file', file);
+            
+            $.ajax({
+                url: uplodImgPath,
+                type: 'post',
+                processData: false,  // 告诉jQuery不要去处理发送的数据
+                contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+                data: formdata,
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    img_show(obj,data.url);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+    
+        }
+
+        var getDetailInfo = function(id){
+
+            if(contractMode == 'add'){
+                return false;
+            }
+            // 详情信息
+            $.ajax({
+                url: getDetailInfoUrl,
+                type: 'POST',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: id,
+                    1:1
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+
+                    json.data.signDate = new Date(json.data.signDate).Format("yyyy-MM-dd");
+                    json.data.endDate = new Date(json.data.endDate).Format("yyyy-MM-dd");
+                    $('#test1').val(json.data.signDate);
+
+                    $('.contractNo').find('input').val(json.data.contractNo);
+                    $('.receiveCompanyname').find('input').val(json.data.receiveCompanyname);
+
+
+                    img_show("#upload_btn1",json.data1.address);
+
+                    //TODO 设置只读
+                    if(contractMode == 'detail'){
+                        $('input').attr("disabled","disabled")//将input元素设置为disabled
+                        // $('input').removeAttr("disabled");//去除input元素的disabled属性
+
+                        $('#test1').attr("readonly", "readonly");
+                        $('#upload_btn1').attr("readonly", "readonly");
+
+                        $('.contractNo').find('input').attr("readonly", "readonly");
+                        $('.receiveCompanyname').find('input').attr("readonly", "readonly");
+
+
+                        $(".queding").hide();
+
+                    }
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+        getDetailInfo(id);
+
+        //TODO 取消
+        var clearWin = function(){
+            //
+            // $('#test1').val("");
+            //
+            // $('.carNo').find('input').val("");
+            // $('.contractNo').find('input').val("");
+            // $('.contractYears').find('input').val("");
+            //
+            // diySelectVal('.ty', "");
+            // diySelectVal('.carType', "");
+
+            window.parent.$(".modelBox18_01_ifrm").hide();
+            window.parent.$("#suerCarConWin").attr("src","");
+        }
+
+
+        // TODO 确认提交
+        $(".queding").on("click",function(){
+
+
+            var contractNo = $('.contractNo').find('input').val();
+            var receiveCompanyname = $('.receiveCompanyname').find('input').val();
+
+            var signDate = $('#test1').val();
+
+            var url = $(".upload_div_hide2").val();
+
+
+            $.ajax({
+                url: modeUrl,
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: id,
+                    type: 1,
+                    receiveCompanyname: receiveCompanyname,
+
+                    contractNo: contractNo,
+                    signDate: signDate,
+                    url: url
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log("++++++++++++------------------+++++++++++++++");
+                    console.log(data);
+                    window.parent.$(".all_success_alert").show();
+                    window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
+                    clearWin();
+                },
+                error: function(err) {
+                    window.parent.$(".all_error_alert").show();
+                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+                    console.log(err);
+                }
+            })
+
+        });
+
+        // 取消
+        $(".quxiao").on("click",function(){
+            clearWin();
+        })
+
+        // 取消
+        $(".quxiao").on("click",function(){
+            clearWin();
+        })
+
+        //关闭弹窗
+        $("img.close").on("click",function(){
+            clearWin();
+        })
+    </script>
+</body>
+</html>
