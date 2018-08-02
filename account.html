@@ -563,6 +563,14 @@
         .last_add_img .upload_fapiao:last-child {
             display: none;
         }
+        .VehicleField {font-size: 16px;line-height: 32px;}
+        .VehicleType {font-size: 16px;line-height: 37px;}
+        .VehicleSelect .cf_btn{width: 50px;font-size: 14px;display: inline-block;height: 30px;line-height: 30px;margin-left: 8px;}
+        .VehicleSelectList li{margin-top: 20px;}
+        .VehicleSelect{
+            height: 280px;overflow-y: auto;font-size: 16px;line-height: 32px;
+        }
+
 
         .upload_div {
             width: 130px;
@@ -1738,7 +1746,7 @@
     </div>
 </div>
 
-<!-- 添加路线 -->
+<!-- 添加路线  添加线路-->
 <div class="modelBox13" style="font-size: 14px;">
     <div class="modelCont" style="width: 846px;height: 525px;">
         <div class="modeltitle" style="width: 100%;">
@@ -2421,7 +2429,45 @@
     </div>
 </div>
 
-
+<!-- 车辆设置 -->
+<div class="modelBox21" style="font-size: 14px;" data-id="">
+    <div class="modelCont" style="width: 600px;height: 490px;">
+        <div class="modeltitle" style="width: 600px;">
+            <span>车辆字段</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="width: 598px; height: 440px; border: 1px solid #ebe9ea;padding: 15px 0px 0 0px; ">
+            <div class="VehicleField clearFloat">
+                <div class="VehicleFieldTitle Lf" style="width: 160px;text-align: right;">字段名称：</div>
+                <div class="Lf" ><input type="text" style="width: 180px;height: 28px;line-height: 28px;border: 1px solid #ebe9ea;"></div>
+            </div>
+            <div class="VehicleType clearFloat" style="margin-top: 20px;">
+                <div class="Lf" style="width: 160px;text-align: right;">字段类型：</div>
+                <div class="selectPub"  data-selectedindex="0" style="float: left;width: 182px;  margin-right: 0px; margin-top: 0px; background: #fff;">
+                    <span style="display: inline-block;max-width: 80%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">输入框</span><img src="img/prl-select.jpg" alt="">
+                    <ul>
+                        <li data-index="0">输入框</li>
+                        <li data-index="1">下拉框</li>
+                        <li data-index="2">日期插件</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="VehicleSelect clearFloat" style="padding-left: 160px;">
+                <ul class="VehicleSelectList">
+                    <li>
+                        <input type="text" style="width: 180px;height: 28px;line-height: 28px;border: 1px solid #ebe9ea;">
+                        <span class="cf_btn upVehicleSelect" onclick="upVehicleSelect(this)">上移</span>
+                        <span class="cf_btn downVehicleSelect" onclick="downVehicleSelect(this)">下移</span>
+                        <span class="cf_btn delVehicleSelect" onclick="delVehicleSelect(this)">删除</span>
+                        <span class="cf_btn addVehicleSelect" onclick="addVehicleSelect(this)">新增</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="errMsg" style="text-align: center;font-size: 14px;margin: 5px auto;height: 20px;line-height: 20px;color: red;"></div>
+            <div class="cf_btn addVehicleField" id="addVehicleField" style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 5px;">增加</div>
+        </div>
+    </div>
+</div>
 <!-- 未通过企业认证 -->
 <div class="no_zizhi">
     <div class="modelCont">
@@ -2910,9 +2956,9 @@
             </div> -->
             <div class="jiesuan_type">
                 <input type="radio" name="xuan_type" id="xuan_type1" value="0" checked>
-                <label for="xuan_type">全部结算</label>
+                <label for="xuan_type1">全部结算</label>
                 <input type="radio" name="xuan_type" id="xuan_type2" value="1" style="margin-left: 20px;">
-                <label for="xuan_type">暂时结算</label>
+                <label for="xuan_type2">暂时结算</label>
             </div>
             <div class="js_btn">立即结算</div>
         </div>
@@ -4617,6 +4663,56 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 console.log(err);
             }
         });
+    }
+//----------------------------------------------------------------------------添加车辆结束
+
+//---------------车辆新增字段
+//    字段类型的下拉框
+    $('.modelBox21 .selectPub li').unbind();
+    $('.modelBox21 .selectPub li').click(function(){
+        event.stopPropagation();
+        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+        $(this).parent().parent().find('span').text($(this).text());
+        $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+        $(this).parent().css('display','none');
+        if($(this).parent().parent().attr('data-selectedindex')==1){
+            $(".VehicleSelectList").show();
+            $(".VehicleSelectList").html("");
+            addVehicleSelect();
+        }else{
+            $(".VehicleSelectList").hide();
+        }
+    });
+
+//    上移
+    function upVehicleSelect(that) {
+        var text1=$(that).parent().find("input").val();
+        var text2=$(that).parent().prev().find("input").val();
+        $(that).parent().find("input").val(text2);
+        $(that).parent().prev().find("input").val(text1);
+    }
+//    下移
+    function downVehicleSelect(that) {
+        var text1=$(that).parent().find("input").val();
+        var text2=$(that).parent().next().find("input").val();
+        $(that).parents("li").find("input").val(text2);
+        $(that).parents("li").next().find("input").val(text1);
+    }
+//    删除
+    function delVehicleSelect(that) {
+        $(that).parents("li").remove();
+    }
+//    增加
+    function addVehicleSelect(that) {
+        var str='';
+        str+='<li>';
+        str+='<input type="text" style="width: 180px;height: 28px;line-height: 28px;border: 1px solid #ebe9ea;">';
+        str+='<span class="cf_btn upVehicleSelect" onclick="upVehicleSelect(this)">上移</span>';
+        str+='<span class="cf_btn downVehicleSelect" onclick="downVehicleSelect(this)">下移</span>';
+        str+='<span class="cf_btn delVehicleSelect" onclick="delVehicleSelect(this)">删除</span>';
+        str+='<span class="cf_btn addVehicleSelect" onclick="addVehicleSelect(this)">新增</span>';
+        str+='</li>';
+        $(".VehicleSelectList").append(str);
     }
 </script>
 </body>
