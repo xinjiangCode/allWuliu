@@ -3167,7 +3167,7 @@
     });
 
     //上传合同
-    $(document).on('change', '#upload_hetong', function() {
+    $(document).on('change', '#upload_hetong, #fapiao_input1, #fapiao_input2, #fapiao_input3', function() {
 
         xmTanUploadImg1(this);
 
@@ -3196,49 +3196,6 @@
             success: function (data) {
                 console.log(data);
                 $(obj).parent().prev().css({
-                        'background':'url('+data.url+') no-repeat',
-                        'background-position':'center',
-                        'background-size':'contain',
-                        'background-color':'#f6f6f6'
-                });
-                $(obj).parent().parent().find('input[type="hidden"]').val(data.url);
-                // $(obj).parent().parent().next().css('display', 'none');
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
-
-    }
-
-    $(document).on('change', '#fapiao_input1, #fapiao_input2, #fapiao_input3', function() {
-
-        xmTanUploadImg1(this);
-
-    });
-
-    function xmTanUploadImg2(obj) {
-        var file = obj.files[0];
-        if (file.size >= 2097152) {
-            alert('上传的图片超过了2MB');
-            return;
-        }
-
-        var formdata=new FormData();
-
-        formdata.append('file', file);
-        
-        $.ajax({
-            url: uplodImgPath,
-            type: 'post',
-            processData: false,  // 告诉jQuery不要去处理发送的数据
-            contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
-            data: formdata,
-            cache: false,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                $(obj).parent().find('.upload_div').css({
                         'background':'url('+data.url+') no-repeat',
                         'background-position':'center',
                         'background-size':'contain',
