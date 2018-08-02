@@ -643,12 +643,30 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
                 $('#popLogin').text('认证');
                 $('#effect1').css('display', 'block');
             }
+        }
+        if (localStorage.getItem('company_type') == '-1') {
+            sessionStorage.setItem("cfsrc","./finance/identification1.html");
+            sessionStorage.setItem("isAdd","1");
+            $('.tobuybtn').text('发布空车');
+            //window.location.href="./account.html";
+            if(isOld == '1'){
+                $('#effect1 .contTitle span').text('您尚未登录');
+                $('#effect1').css('display', 'block');
+            } else if (isOld == '0') {
+                $('#effect1').css('display', 'block');
+            } else if (isOld == '-1') {
+                $('#effect1 .contTitle span').text('您尚未认证');
+                $('#effect1 .contTitle i').text('认证');
+                $('#popLogin').text('认证');
+                $('#effect1').css('display', 'block');
+                //window.location.href="./account.html";
+            }
         } else if (localStorage.getItem('company_type') == '2') { //承运商
             sessionStorage.setItem("cfsrc","./statistics/dataIndex.html");
             sessionStorage.setItem("isAdd","1");
             $('.tobuybtn').text('发布空车');
             window.location.href="./account.html";
-        } else if (localStorage.getItem('company_type') == '1' || localStorage.getItem('company_type') == '-1') {// 供应商 立即下单
+        } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
             sessionStorage.setItem("isAddRequireMent",1);
             sessionStorage.setItem("cfsrc","./xj_wuliu_gy/requuire/publishRequireList.html");
             sessionStorage.setItem("isAdd","1");
@@ -658,10 +676,10 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
         
     });
 
-    if (localStorage.getItem('company_type') == '2') { //承运商
+    if (localStorage.getItem('company_type') == '2' || localStorage.getItem('company_type') == '-1') { //承运商
         $('.tobuybtn').text('发布空车');
         
-    } else if (localStorage.getItem('company_type') == '1' || localStorage.getItem('company_type') == '-1') {// 供应商 立即下单
+    } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
         
         $('.tobuybtn').text('立即下单');
         
@@ -670,9 +688,9 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
     $('.goUser').click(function() {
         var company_type = localStorage.getItem('company_type');
         console.log(company_type);
-        if (company_type == '1' || company_type == '-1') { //供应商
+        if (company_type == '1') { //供应商
             $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
-        } else if (company_type == '2') {
+        } else if (company_type == '2' || company_type == '-1') {
             $('.goUser').attr('href', 'account.html');
         }
 

@@ -962,7 +962,7 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 395px;font-size: 14px;padding-top: 31px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;">签订日期：</span>
-                <input type="text" placeholder="2016.02.26" class="qianding_time" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                <input type="text" id="qianding_time" placeholder="2016.02.26" class="date-input laydate-icon qianding_time" style="height: 36px;width: 150px;border: 1px solid #dbdbdc;">
             </div>
             <div style="margin-top: 25px;" class="clearfix">
                 <span style="float: left; width: 135px;text-align: right;">上传合同：</span>
@@ -2841,9 +2841,8 @@
     </div>
 </div>
 
-
-<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script src="laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/pager.js" type="text/javascript" charset="utf-8"></script>
@@ -2895,6 +2894,15 @@
         }
     });
 
+    laydate({
+        elem: '#qianding_time',//初次上牌日期
+        format: 'YYYY-MM-DD',
+        istime: false,
+        choose: function(dates){ //选择好日期的回调
+            console.log(dates);
+        }
+    });
+
 
     // 所属部门select
     $.ajax({
@@ -2915,26 +2923,30 @@
         success: function (json) {
             console.log(json);
 
-            var str = '';
-            for (var i = 0; i < json.data.length; i++) {
-                str += '<li data-index="'+json.data[i].id+'">'+json.data[i].ordName+'</li>'
+            if (json.code == 1) {
+                if (json.data.length != 0) {
+                    var str = '';
+                    for (var i = 0; i < json.data.length; i++) {
+                        str += '<li data-index="'+json.data[i].id+'">'+json.data[i].ordName+'</li>'
+                    }
+
+                    $('.shuyu_apartment').html(str);
+
+                    // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
+                    // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
+
+                    $('.apartment_select ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+
+                        selectZhiwu($(this).attr('data-index'));
+
+                    });
+                }
             }
-
-            $('.shuyu_apartment').html(str);
-
-            // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
-            // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
-
-            $('.apartment_select ul li').click(function(){
-                event.stopPropagation();
-                $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                $(this).parent().parent().find('span').text($(this).text());
-                $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                $(this).parent().css('display','none');
-
-                selectZhiwu($(this).attr('data-index'));
-
-            });
 
         },
         error: function(err) {
@@ -2958,22 +2970,26 @@
             success: function (json) {
                 console.log(json);
 
-                var str = '';
-                for (var i = 0; i < json.data.length; i++) {
-                    str += '<li data-index="'+json.data[i].id+'">'+json.data[i].dutyName+'</li>'
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-index="'+json.data[i].id+'">'+json.data[i].dutyName+'</li>'
+                        }
+
+                        $('.zhiwu_ul').html(str);
+
+                        $('.zhiwu_select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+
+                        });
+                    }
                 }
-
-                $('.zhiwu_ul').html(str);
-
-                $('.zhiwu_select ul li').click(function(){
-                    event.stopPropagation();
-                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                    $(this).parent().parent().find('span').text($(this).text());
-                    $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                    $(this).parent().css('display','none');
-
-                });
-
+                
             },
             error: function(err) {
                 console.log(err);
@@ -3003,21 +3019,25 @@
             success: function (json) {
                 console.log(json);
 
-                var str = '';
-                for (var i = 0; i < json.data.length; i++) {
-                    str += '<li data-index="'+json.data[i].id+'">'+json.data[i].carNo+'</li>'
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-index="'+json.data[i].id+'">'+json.data[i].carNo+'</li>'
+                        }
+
+                        $('.suozai_car_ul').html(str);
+
+                        $('.suozai_car_select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+
+                        });
+                    }
                 }
-
-                $('.suozai_car_ul').html(str);
-
-                $('.suozai_car_select ul li').click(function(){
-                    event.stopPropagation();
-                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                    $(this).parent().parent().find('span').text($(this).text());
-                    $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                    $(this).parent().css('display','none');
-
-                });
 
             },
             error: function(err){
@@ -3155,7 +3175,7 @@
     });
 
 
-    // showModelBox('.modelBox2');
+    //showModelBox('.modelBox1');
     function showModelBox(cls) {
         $(cls).css("display","block");
     }
@@ -3225,7 +3245,7 @@
         //$(".manageList").css("display","none");
         //$(idx).css("display","block");
         if(idx==".cfidx1"){//首页
-            if (localStorage.getItem('isOld') == 1 || localStorage.getItem('isOld') == -2) {
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 sessionStorage.setItem("cfsrc","./finance/identification1.html");
             }else {
                 sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
@@ -3321,6 +3341,9 @@
     // var state=1;//未认证
     $(function () {
         if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+
+            sessionStorage.setItem("cfsrc","./finance/identification1.html");
+
             $(".yiRenZheng").addClass('xiaoshi');
             $('.yrz').css('display', 'none');
             $(".weiRenZheng .manage").each(function (index) {
@@ -3328,8 +3351,12 @@
                     $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
                 }
             })
-            $('.cfnav1').click();
+            // $('.cfnav1').click();
         }else{
+
+            sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+
+            $('.cfnav1').click();
             $('.yrz').css('display', 'block');
             $(".weiRenZheng").addClass('xiaoshi');
             $(".yiRenZheng .manage").each(function (index) {
@@ -3339,6 +3366,18 @@
             })
         }
         //
+
+        //首次加载没有session时展示首页
+        // if(sessionStorage.getItem("cfsrc")){
+        // }else{
+        //     if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+                
+        //         sessionStorage.setItem("cfsrc","./finance/identification1.html");
+        //     } else {
+        //         sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+        //     }
+            
+        // }
 
         $(".manage").click(function () {
             $(this).parent().find("ul").toggle();
@@ -3372,11 +3411,7 @@
         $(".cfnav").removeClass("on");
         $(this).addClass("on");
     })
-    //首次加载没有session时展示首页
-    if(sessionStorage.getItem("cfsrc")){
-    }else{
-        sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
-    }
+
     showNav();
     function showNav() {
 
@@ -3588,7 +3623,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
             },
             error: function(err){
@@ -3645,24 +3680,26 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             success: function (res) {
                 console.log(res)
                 if(res.code===1){
-                    var str='';
-                    $.each(res.data,function (idx,item) {
-                        str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
-                    })
-                        $("#peoples"+type+" ul").html(str);
+                    if (res.data.length != 0) {
+                        var str='';
+                        $.each(res.data,function (idx,item) {
+                            str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
+                        })
+                            $("#peoples"+type+" ul").html(str);
 
-                    $("#peoples"+type+" li").click(function () {
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-                    })
+                        $("#peoples"+type+" li").click(function () {
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
+                    }
 
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
             },
             error: function(err){
@@ -3689,25 +3726,27 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             success: function (res) {
                 console.log(res)
                 if(res.code===1){
-                    var str='';
-                    $.each(res.data,function (idx,item) {
-                        str+='<li  data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
-                    })
-                    $("#kaQuan ul").html(str);
+                    if (res.data.length != 0) {
+                        var str='';
+                        $.each(res.data,function (idx,item) {
+                            str+='<li  data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                        })
+                        $("#kaQuan ul").html(str);
 
-                    $("#kaQuan li").click(function () {
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-                    })
+                        $("#kaQuan li").click(function () {
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
+                    }
 
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
             },
             error: function(err){
@@ -3731,30 +3770,34 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var str = '';
-                str += '<li  data-index="" value="" data-id="">全部</li>';
-                for (var i = 0; i < data.data.length; i++) {
-                    str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
-                }
-                $('#carType ul').html(str);
+                if (data.code == 1) {
+                    if (data.data.length != 0) {
+                        var str = '';
+                        str += '<li  data-index="" value="" data-id="">全部</li>';
+                        for (var i = 0; i < data.data.length; i++) {
+                            str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
+                        }
+                        $('#carType ul').html(str);
 
-                $('#carType ul li').click(function(){
-                    event.stopPropagation();
-                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                    $(this).parent().parent().attr('data-id', $(this).attr('data-id'));
-                    $(this).parent().parent().find('span').text($(this).text());
-                    $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg');
-                    $(this).parent().css('display','none');
-                });
-                //默认选中
-//                $("#carType").attr('data-selectedindex', 0);
-//                $("#carType").attr('data-id', data.data[0].id);
-//                $("#carType").find('span').text(data.data[0].typeName);
-                $("#carType").attr('data-selectedindex', "");
-                $("#carType").attr('data-id', "");
-                $("#carType").find('span').text("全部");
-                //获取车辆列表
-                getData(1);
+                        $('#carType ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-id', $(this).attr('data-id'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg');
+                            $(this).parent().css('display','none');
+                        });
+                        //默认选中
+        //                $("#carType").attr('data-selectedindex', 0);
+        //                $("#carType").attr('data-id', data.data[0].id);
+        //                $("#carType").find('span').text(data.data[0].typeName);
+                        $("#carType").attr('data-selectedindex', "");
+                        $("#carType").attr('data-id', "");
+                        $("#carType").find('span').text("全部");
+                        //获取车辆列表
+                        getData(1);
+                    }
+                }
             },
             error: function(err){
                 console.log(err);
@@ -4153,7 +4196,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
 
             },

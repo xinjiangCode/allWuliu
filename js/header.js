@@ -94,6 +94,8 @@ $(function () {
         $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
     } else if (company_type == '2') {
         $('.goUser').attr('href', 'account.html');
+    } else if (company_type == '-1') {
+        $('.goUser').attr('href', 'account.html');
     }
 })
 
