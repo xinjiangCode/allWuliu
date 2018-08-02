@@ -183,7 +183,7 @@
 									if (json.data[i].describe != '') {
 										str += '<td class="describe">'+json.data[i].describe+'</td>'
 									} else {
-										str += '<td class="describe">'+暂无描述+'</td>'
+										str += '<td class="describe">暂无描述</td>'
 									}
 									
 									str += '<td class="">'+json.data[i].num+'</td>'
@@ -198,7 +198,7 @@
 									}
 										
 									str += '</td>'
-									+'<td><a href="" class="lookover" style="color:#6ba1ff;">编辑</a><a href="" class="delect delete" style="color: #6ba1ff;">删除</a></td>'
+									+'<td><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" class="delect delete" onclick="del($(this));" style="color: #6ba1ff;">删除</a></td>'
 								+'</tr>'
                         }
 						
@@ -213,10 +213,8 @@
 						    console.log($(this).prop("checked"));
 						    if($(this).prop("checked")){
 						        delete_qi_jin(2, $(this));
-						        console.log('开启');
 						    }else {
 						        delete_qi_jin(3, $(this));
-						        console.log('禁用');
 						    }
 						});
 
@@ -361,17 +359,17 @@
     });
 
    	// 删除
-   	$(document).on('click', '.delete', function() {
+   	// $(document).on('click', '.delete', function() {
+    function del(_this) {
+   		delete_qi_jin(1, _this);
+    }
 
-   		delete_qi_jin(1, $(this));
-
-   	});
+   	// });
 
    	function delete_qi_jin(type, _that) {
    		
    		var data_id = _that.parent().parent().attr('data-id');
-   		console.log(type);
-   		console.log(data_id);
+   		
    		$.ajax({
             url: pubIP + 'tLtDriverOrg/updateStar',
             type: 'post',
@@ -386,11 +384,13 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-
+               
                 if (json.code == 1) {
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');
                 	}
+                } else if (json.code == -1) {
+                    cf_alert(2, '职务管理中正在占用此部门！');
                 }
 
             },

@@ -43,8 +43,8 @@
 				</ul>
 			</div>
     		<div class="add_apartment">添加</div>
-			<div class="cf_btn Rt">批量导出</div>
-			<div class="cf_btn Rt">批量导入</div>
+			<!-- <div class="cf_btn Rt">批量导出</div>
+			<div class="cf_btn Rt">批量导入</div> -->
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -180,7 +180,7 @@
 										+'<label for="checked_'+i+'"></label>'
 									}
 								str+='</td>'
-								+'<td ><a href="" class="lookover" style="color: #6ea3f4;">编辑</a><a href="" class="delect delete" style="color: #6ea3f4;">删除</a></td>'
+								+'<td ><a href="javascript:;" class="lookover" style="color: #6ea3f4;">编辑</a><a href="javascript:;" class="delect delete" style="color: #6ea3f4;">删除</a></td>'
 							+'</tr>';
 
                         }
@@ -515,7 +515,6 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-
                 if (json.code == 1) {
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');

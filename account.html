@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/account.css"/>
     <style>
 
-        .modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19 {
+        .modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert {
             z-index: 9999;
             display: none;
             position: fixed;
@@ -49,7 +49,7 @@
             color: #5992f3;
         }
         
-        .modelBox1 input[type="file"], .modelBox12 input[type="file"], .modelBox13 input[type="file"], .modelBox18 input[type="file"], .modelBox20 input[type="file"] {
+        .modelBox1 input[type="file"], .modelBox12 input[type="file"], .modelBox13 input[type="file"], .modelBox18 input[type="file"], .modelBox20 input[type="file"], .shenpi_alert input[type="file"] {
             position: absolute;
             top: 0;
             left: 0;
@@ -490,7 +490,7 @@
         #quanList{margin-bottom: 32px;overflow: hidden;}
         #quanList li{margin-top: 32px;display: block;}
         #quanList li input{height: 31px;line-height: 31px;border: 1px solid #dbdbdc;}
-    
+
 
         .modelBox18_ifrm{
             z-index: 9999;
@@ -502,7 +502,26 @@
             bottom: 0;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .modelBox18_ifrm iframe{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .modelBox18_01_ifrm{
+            z-index: 9999;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modelBox18_01_ifrm iframe{
             position: fixed;
             top: 0;
             left: 0;
@@ -551,6 +570,29 @@
         .VehicleSelect{
             height: 280px;overflow-y: auto;font-size: 16px;line-height: 32px;
         }
+
+
+        .upload_div {
+            width: 130px;
+            height: 130px;
+            border: 1px solid #dbdbdb;
+            margin-left: 38px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .parent_div {
+            position: relative; 
+            width: 80px; 
+            background: #6ea3ff; 
+            height: 30px; 
+            text-align: center; 
+            line-height: 30px; 
+            font-size: 12px; 
+            color: #fff;
+            margin-left: 65px;
+        }
+
     </style>
 </head>
 <body>
@@ -765,6 +807,8 @@
                 <a href="##" class="manage"><strong>设置</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_open.png" alt=""></div></a>
                 <ul class="manageList2">
                     <li><a href="##" class="manageItem " data-src="./setUp/setUp_departmentManage.html" data-height="1054">部门管理</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setUp_roleManage.html" data-height="1054">角色管理</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setUp_staffManage.html" data-height="1054">员工管理</a></li>
                     <!--<li><a href="##" class="manageItem" data-src="./setUp/setUp_msgList.html" data-height="1442">短信列表</a></li>-->
                     <li><a href="##" class="manageItem" data-src="./setUp/setUp_automaticPush.html" data-height="1054">自动推送设置</a></li>
                     <li><a href="##" class="manageItem " data-src="./setUp/setting-logManage.html" data-height="1050">日志管理</a></li>
@@ -866,7 +910,7 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
             <div >
                 <span style="display: inline-block; width: 135px;text-align: right;"><span style='color: #e71212; margin-right: 3px;'>*</span>部门名称：</span>
-                <input type="text" class="apartment_name" placeholder="33333"  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                <input type="text" class="apartment_name" placeholder=""  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><span style='color: #e71212; margin-right: 3px;'>*</span>职能描述：</span>
@@ -940,19 +984,27 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 417px;font-size: 14px;padding-top: 31px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>角色名称：</span>
-                <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                <input type="text" placeholder="" class="role_name" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
             </div>
-            <div style="margin-top: 25px;">
-                <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>所属部门：</span>
-                <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+            <div style="margin-top: 25px;" class="clearfix">
+                <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
+                <div class="selectPub fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 483px; margin-left: 4px; height: 40px; border: 1px solid #dbdbdc; float: left;">
+                    <span>请选择</span>
+                    <img src="./img/prl-select.jpg" alt="">
+                    <ul class="suoshu_department_ul">
+                        <li data-index="1">10</li>
+                        <li data-index="2">20</li>
+                        <li data-index="3">30</li>
+                    </ul>
+                </div>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>职能描述：</span>
-                <textarea name="" id="" cols="30" rows="10" placeholder="请输入内容" style="margin-left: 5px; text-indent: 10px; height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                <textarea name="" id="" cols="30" rows="10" class="job_describe" style="height: 185px;width: 476px;border: 1px solid #dbdbdc; margin-left: 4px;"></textarea>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
-                <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 138px;" >取消</span>
+                <span class=" cf_btn model38_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
             </div>
         </div>
     </div>
@@ -968,7 +1020,7 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 395px;font-size: 14px;padding-top: 31px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;">签订日期：</span>
-                <input type="text" placeholder="2016.02.26" class="qianding_time" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                <input type="text" id="qianding_time" placeholder="2016.02.26" class="date-input laydate-icon qianding_time" style="height: 36px;width: 150px;border: 1px solid #dbdbdc;">
             </div>
             <div style="margin-top: 25px;" class="clearfix">
                 <span style="float: left; width: 135px;text-align: right;">上传合同：</span>
@@ -1592,7 +1644,7 @@
                 <div class="clearfix">
                     <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">线路选择：&nbsp;</span>
                         <div class="selectPub" id="chooseAbleLine" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                            <span style="display: inline-block;max-width: 70%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                            <span style="display: inline-block;max-width: 70%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                             <ul>
                                 <li data-index="1">1</li>
                                 <li data-index="2">2</li>
@@ -1713,7 +1765,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">给&nbsp;&nbsp;车&nbsp;价：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1728,7 +1780,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">扣损单价：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1743,7 +1795,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">预计时长：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1771,7 +1823,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">司机类型：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1781,7 +1833,7 @@
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">部门：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1793,7 +1845,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle span_width74 fl">职务：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1803,7 +1855,7 @@
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">所在车辆：&nbsp;</span>
                     <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -1849,7 +1901,7 @@
                     <input type="text" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">薪资：&nbsp;</span>
-                    <input type="text" placeholder="333" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                    <input type="text" placeholder="" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix">
@@ -2078,7 +2130,7 @@
                             <div class="Lf" data-id="" id="che" style="border: 1px solid #e2e2e2;width: 192px;height: 35px;background-color: #ffffff;padding-left: 10px;"></div>
 
                             <!--<div class="selectPub" id="selectInfo" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px; background: #fff;">-->
-                                <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">333</span><img src="img/prl-select.jpg" alt="">-->
+                                <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
                                 <!--<ul>-->
                                     <!--<li data-index="1">1</li>-->
                                     <!--<li data-index="2">2</li>-->
@@ -2185,6 +2237,11 @@
 <!-- 确认送达 -->
 <div class="modelBox18_ifrm">
     <iframe id="suerSongda" src="##" frameborder="0" style="width: 1070px;height: 625px;"></iframe>
+</div>
+
+<!-- 车辆-合同- 新 增 详情 -->
+<div class="modelBox18_01_ifrm">
+    <iframe id="suerCarConWin" src="##" frameborder="0" style="width: 1070px;height: 625px;"></iframe>
 </div>
 
 
@@ -2316,7 +2373,7 @@
                     <input type="text" class="person_login_pass" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">薪资：&nbsp;</span>
-                    <input type="text" class="person_money" placeholder="333" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                    <input type="text" class="person_money" placeholder="" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
             </div> -->
             <div class="clearfix">
@@ -2820,7 +2877,7 @@
     </div>
 </div>
 
-
+<!-- 所有错误提示 -->
 <div class="all_error_alert" style="z-index: 99999;">
     <div class="modelCont">
         <div class="modeltitle">
@@ -2838,6 +2895,7 @@
         </div>
     </div>
 </div>
+<!-- 所有成功提示 -->
 <div class="all_success_alert" style="z-index: 99999;">
     <div class="modelCont">
         <div class="modeltitle">
@@ -2851,6 +2909,27 @@
             </div>
             <div class="modelBtnBox">
                 <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 所有删除 二次提示 -->
+<div class="all_warn_alert" style="z-index: 99999;">
+    <div class="modelCont">
+        <div class="modeltitle">
+            <span>警告</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent">
+            <div class="info">
+                <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
+                <p class="innerErrmsg">是否确认删除？</p>
+            </div>
+            <div class="modelBtnBox" style="width: 321px;margin-top: 30px;">
+                <div style="border:1px solid #5690f6;color: #333;margin: 0;" class="modelbtn confirm" class="allCancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+
+                <div style="background:#5690f6;margin-top: 0px;margin-left: 30px;" class="modelbtn confirm allSure all_sure">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                
             </div>
         </div>
     </div>
@@ -2877,18 +2956,80 @@
             </div> -->
             <div class="jiesuan_type">
                 <input type="radio" name="xuan_type" id="xuan_type1" value="0" checked>
-                <label for="xuan_type">全部结算</label>
+                <label for="xuan_type1">全部结算</label>
                 <input type="radio" name="xuan_type" id="xuan_type2" value="1" style="margin-left: 20px;">
-                <label for="xuan_type">暂时结算</label>
+                <label for="xuan_type2">暂时结算</label>
             </div>
             <div class="js_btn">立即结算</div>
         </div>
     </div>
 </div>
 
+<!-- 财务管理-结算列表-审批 -->
+<div class="shenpi_alert">
+    <div class="modelCont" style="width: 550px;height: 550px;background: white;">
+        <div class="modeltitle" style="width: 550px;">
+            <span>审批</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
+        </div> 
+        <div class="shenpi_main">
+            <div class="clearfix">
+                <div class="fl">
+                    <div class="upload_div upload_1">
+                           
+                    </div>
+                    <div class="parent_div">
+                    上传发票1
+                        <input type="file" id="fapiao_input1">  
+                        <input type="hidden" id="fapiao_hidden1">
+                    </div>
+                </div>
+                <div class="fl">
+                    <div class="upload_div upload_2">
+                           
+                    </div>
+                    <div class="parent_div">
+                    上传发票2
+                        <input type="file" id="fapiao_input2">  
+                        <input type="hidden" id="fapiao_hidden2">
+                    </div>
+                </div>
+                <div class="fl">
+                    <div class="upload_div upload_3">
+                           
+                    </div>
+                    <div class="parent_div">
+                    上传发票3
+                        <input type="file" id="fapiao_input3">  
+                        <input type="hidden" id="fapiao_hidden3">
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix" style="padding: 0 38px; margin-top: 20px;">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;">纳税识别号：&nbsp;</span>
+                    <input type="text" class="person_baoxian_status" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                </div>
+            </div>
+            <div class="clearfix" style="padding: 0 38px">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;">企业银行账户：&nbsp;</span>
+                    <input type="text" class="person_baoxian_status" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                </div>
+            </div>
+            <div class="clearfix" style="padding: 0 38px">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;">企业开户银行：&nbsp;</span>
+                    <input type="text" class="person_baoxian_status" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                </div>
+            </div>
+            <div class="clearFloat" style="text-align: center;margin-top: 50px;">
+                <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
+                <span class=" cf_btn model20_ok_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认上传</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script src="laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/pager.js" type="text/javascript" charset="utf-8"></script>
@@ -2940,7 +3081,14 @@
         }
     });
 
-
+    laydate({
+        elem: '#qianding_time',//初次上牌日期
+        format: 'YYYY-MM-DD',
+        istime: false,
+        choose: function(dates){ //选择好日期的回调
+            console.log(dates);
+        }
+    });
     // 所属部门select
     $.ajax({
         url: pubIP + 'tLtDriverOrg/selectWLtDriverOrgList',
@@ -2960,26 +3108,30 @@
         success: function (json) {
             console.log(json);
 
-            var str = '';
-            for (var i = 0; i < json.data.length; i++) {
-                str += '<li data-index="'+json.data[i].id+'">'+json.data[i].ordName+'</li>'
+            if (json.code == 1) {
+                if (json.data.length != 0) {
+                    var str = '';
+                    for (var i = 0; i < json.data.length; i++) {
+                        str += '<li data-index="'+json.data[i].id+'">'+json.data[i].ordName+'</li>'
+                    }
+
+                    $('.shuyu_apartment').html(str);
+
+                    // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
+                    // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
+
+                    $('.apartment_select ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+
+                        selectZhiwu($(this).attr('data-index'));
+
+                    });
+                }
             }
-
-            $('.shuyu_apartment').html(str);
-
-            // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
-            // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
-
-            $('.apartment_select ul li').click(function(){
-                event.stopPropagation();
-                $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                $(this).parent().parent().find('span').text($(this).text());
-                $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                $(this).parent().css('display','none');
-
-                selectZhiwu($(this).attr('data-index'));
-
-            });
 
         },
         error: function(err) {
@@ -3003,22 +3155,26 @@
             success: function (json) {
                 console.log(json);
 
-                var str = '';
-                for (var i = 0; i < json.data.length; i++) {
-                    str += '<li data-index="'+json.data[i].id+'">'+json.data[i].dutyName+'</li>'
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-index="'+json.data[i].id+'">'+json.data[i].dutyName+'</li>'
+                        }
+
+                        $('.zhiwu_ul').html(str);
+
+                        $('.zhiwu_select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+
+                        });
+                    }
                 }
-
-                $('.zhiwu_ul').html(str);
-
-                $('.zhiwu_select ul li').click(function(){
-                    event.stopPropagation();
-                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                    $(this).parent().parent().find('span').text($(this).text());
-                    $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                    $(this).parent().css('display','none');
-
-                });
-
+                
             },
             error: function(err) {
                 console.log(err);
@@ -3048,24 +3204,67 @@
             success: function (json) {
                 console.log(json);
 
-                var str = '';
-                for (var i = 0; i < json.data.length; i++) {
-                    str += '<li data-index="'+json.data[i].id+'">'+json.data[i].carNo+'</li>'
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-index="'+json.data[i].id+'">'+json.data[i].carNo+'</li>'
+                        }
+
+                        $('.suozai_car_ul').html(str);
+
+                        $('.suozai_car_select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+
+                        });
+                    }
                 }
-
-                $('.suozai_car_ul').html(str);
-
-                $('.suozai_car_select ul li').click(function(){
-                    event.stopPropagation();
-                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                    $(this).parent().parent().find('span').text($(this).text());
-                    $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                    $(this).parent().css('display','none');
-
-                });
 
             },
             error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
+    // 部门列表
+    function department_list() {
+        $.ajax({
+            url: pubIP + 'receptionDepartment/querySelectList',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
+                        }
+
+                        $('.suoshu_department_ul').html(str);
+
+                        $('.selectPub ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        });
+                    }
+                }
+                
+            },
+            error: function(err) {
                 console.log(err);
             }
         });
@@ -3107,7 +3306,7 @@
     });
 
     //上传合同
-    $(document).on('change', '#upload_hetong', function() {
+    $(document).on('change', '#upload_hetong, #fapiao_input1, #fapiao_input2, #fapiao_input3', function() {
 
         xmTanUploadImg1(this);
 
@@ -3200,7 +3399,7 @@
     });
 
 
-    // showModelBox('.modelBox2');
+    //showModelBox('.shenpi_alert');
     function showModelBox(cls) {
         $(cls).css("display","block");
     }
@@ -3270,7 +3469,7 @@
         //$(".manageList").css("display","none");
         //$(idx).css("display","block");
         if(idx==".cfidx1"){//首页
-            if (localStorage.getItem('isOld') == 1 || localStorage.getItem('isOld') == -2) {
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 sessionStorage.setItem("cfsrc","./finance/identification1.html");
             }else {
                 sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
@@ -3366,6 +3565,9 @@
     // var state=1;//未认证
     $(function () {
         if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+
+            sessionStorage.setItem("cfsrc","./finance/identification1.html");
+
             $(".yiRenZheng").addClass('xiaoshi');
             $('.yrz').css('display', 'none');
             $(".weiRenZheng .manage").each(function (index) {
@@ -3373,8 +3575,12 @@
                     $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
                 }
             })
-            $('.cfnav1').click();
+            // $('.cfnav1').click();
         }else{
+
+            sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+
+            $('.cfnav1').click();
             $('.yrz').css('display', 'block');
             $(".weiRenZheng").addClass('xiaoshi');
             $(".yiRenZheng .manage").each(function (index) {
@@ -3384,6 +3590,18 @@
             })
         }
         //
+
+        //首次加载没有session时展示首页
+        // if(sessionStorage.getItem("cfsrc")){
+        // }else{
+        //     if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+                
+        //         sessionStorage.setItem("cfsrc","./finance/identification1.html");
+        //     } else {
+        //         sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+        //     }
+            
+        // }
 
         $(".manage").click(function () {
             $(this).parent().find("ul").toggle();
@@ -3417,11 +3635,7 @@
         $(".cfnav").removeClass("on");
         $(this).addClass("on");
     })
-    //首次加载没有session时展示首页
-    if(sessionStorage.getItem("cfsrc")){
-    }else{
-        sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
-    }
+
     showNav();
     function showNav() {
 
@@ -3633,7 +3847,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
             },
             error: function(err){
@@ -3690,24 +3904,26 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             success: function (res) {
                 console.log(res)
                 if(res.code===1){
-                    var str='';
-                    $.each(res.data,function (idx,item) {
-                        str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
-                    })
-                        $("#peoples"+type+" ul").html(str);
+                    if (res.data.length != 0) {
+                        var str='';
+                        $.each(res.data,function (idx,item) {
+                            str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
+                        })
+                            $("#peoples"+type+" ul").html(str);
 
-                    $("#peoples"+type+" li").click(function () {
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-                    })
+                        $("#peoples"+type+" li").click(function () {
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
+                    }
 
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
             },
             error: function(err){
@@ -3734,25 +3950,27 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             success: function (res) {
                 console.log(res)
                 if(res.code===1){
-                    var str='';
-                    $.each(res.data,function (idx,item) {
-                        str+='<li  data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
-                    })
-                    $("#kaQuan ul").html(str);
+                    if (res.data.length != 0) {
+                        var str='';
+                        $.each(res.data,function (idx,item) {
+                            str+='<li  data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                        })
+                        $("#kaQuan ul").html(str);
 
-                    $("#kaQuan li").click(function () {
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-                    })
+                        $("#kaQuan li").click(function () {
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
+                    }
 
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
             },
             error: function(err){
@@ -3776,30 +3994,34 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var str = '';
-                str += '<li  data-index="" value="" data-id="">全部</li>';
-                for (var i = 0; i < data.data.length; i++) {
-                    str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
-                }
-                $('#carType ul').html(str);
+                if (data.code == 1) {
+                    if (data.data.length != 0) {
+                        var str = '';
+                        str += '<li  data-index="" value="" data-id="">全部</li>';
+                        for (var i = 0; i < data.data.length; i++) {
+                            str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
+                        }
+                        $('#carType ul').html(str);
 
-                $('#carType ul li').click(function(){
-                    event.stopPropagation();
-                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                    $(this).parent().parent().attr('data-id', $(this).attr('data-id'));
-                    $(this).parent().parent().find('span').text($(this).text());
-                    $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg');
-                    $(this).parent().css('display','none');
-                });
-                //默认选中
-//                $("#carType").attr('data-selectedindex', 0);
-//                $("#carType").attr('data-id', data.data[0].id);
-//                $("#carType").find('span').text(data.data[0].typeName);
-                $("#carType").attr('data-selectedindex', "");
-                $("#carType").attr('data-id', "");
-                $("#carType").find('span').text("全部");
-                //获取车辆列表
-                getData(1);
+                        $('#carType ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-id', $(this).attr('data-id'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg');
+                            $(this).parent().css('display','none');
+                        });
+                        //默认选中
+        //                $("#carType").attr('data-selectedindex', 0);
+        //                $("#carType").attr('data-id', data.data[0].id);
+        //                $("#carType").find('span').text(data.data[0].typeName);
+                        $("#carType").attr('data-selectedindex', "");
+                        $("#carType").attr('data-id', "");
+                        $("#carType").find('span').text("全部");
+                        //获取车辆列表
+                        getData(1);
+                    }
+                }
             },
             error: function(err){
                 console.log(err);
@@ -4198,7 +4420,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 }else if(res.code==401){
 
                 }else{
-                    alert(res.msg);
+                    //alert(res.msg);
                 }
 
             },

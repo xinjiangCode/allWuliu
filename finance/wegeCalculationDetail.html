@@ -67,7 +67,7 @@
 <div class="contbox-prld">
     <div class="toptitle title">
         <span>工资详情</span>
-        <div class="fr closeBtn" style="margin-right: 7px;"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div>
+        <!-- <div class="fr closeBtn" style="margin-right: 7px;"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div> -->
         <div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>
     </div>
 
@@ -86,19 +86,19 @@
             <!--</div>-->
             <div class="contlist contlisttwo">
                 <div class="left ll">
-                    <div>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<span>王小二</span></div>
-                    <div>联系电话：<span>15800000000</span></div>
-                    <div>未结工资：<span>￥100000.00</span></div>
+                    <div>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<span class="myName"></span></div>
+                    <div>联系电话：<span class="myPhone"></span></div>
+                    <div><i>未结工资：</i>￥<span class="my_wjmoney"></span></div>
                 </div>
                 <div class="left mm">
-                    <div>所属部门：<span>部门名称</span></div>
-                    <div>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：<span>司机</span></div>
-                    <div>本月工资：<span>￥100000.00</span></div>
+                    <div>所属部门：<span class="myBumen"></span></div>
+                    <div>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：<span class="myJob"></span></div>
+                    <div><i>本月工资：</i>￥<span class="my_money"></span></div>
                 </div>
                 <div class="left rr">
-                    <div>身&nbsp;&nbsp;份&nbsp;&nbsp;证：<span>141155123151561631</span></div>
-                    <div>车辆类型：<span>罐装车</span></div>
-                    <div>入职时间：<span>2015-01-01</span></div>
+                    <div>身&nbsp;&nbsp;份&nbsp;&nbsp;证：<span class="myIdcard"></span></div>
+                    <div>车辆类型：<span class="myCartype"></span></div>
+                    <div>入职时间：<span class="myTime"></span></div>
                 </div>
             </div>
         </div>
@@ -139,51 +139,9 @@
                     <th>气卡</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>¥1.111.00</td>
-                    <td>¥1.111.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>¥1.111.00</td>
-                    <td>¥1.111.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <tbody class="myTbody">
+               
+               
                 </tbody>
             </table>
         </div>
@@ -197,6 +155,63 @@
     $(function () {
         window.parent.$("#Iframe").css("height","897");
     })
+    
+    //获取地址栏参数的方法:		//name:参数名称
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var thisId = getQueryString("thisId");
+    var thisType = getQueryString("type");
+    
+    //console.log(thisId)
+    ffdetail(thisId,thisType);
+    function ffdetail(id){
+        $.ajax({
+            url: pubIP + 'carrierWages/getWagesdetil',
+            type: 'POST',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: id,
+                type: thisType,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log("+++++++++++++++++++++++++++++");
+                console.log(data);
+                var data = data.data;
+                $(".myName").html(data.name);
+                $(".myPhone").html(data.phone);
+                
+                $(".myBumen").html(data.org_name);
+                $(".myJob").html(data.job_name);
+               
+                $(".myIdcard").html(data.card);
+                $(".myCartype").html('');
+                $(".myTime").html(data.creat_time);
+                if(thisType == 0){
+                    $(".my_wjmoney i").html("含税金额：");
+                    $(".my_money i").html("不含税金额：");
+                    $(".my_wjmoney").html(data.wj_money);
+                    $(".my_money").html(data.by_money);
+                }else if(thisType == 1){
+                    $(".my_wjmoney i").html("含税金额：");
+                    $(".my_money i").html("不含税金额：");
+                    $(".my_wjmoney").html(data.taxAmount);
+                    $(".my_money").html(data.noTaxAmount);
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>
