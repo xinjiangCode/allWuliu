@@ -2797,7 +2797,7 @@
     </div>
 </div>
 
-
+<!-- 所有错误提示 -->
 <div class="all_error_alert" style="z-index: 99999;">
     <div class="modelCont">
         <div class="modeltitle">
@@ -2815,6 +2815,7 @@
         </div>
     </div>
 </div>
+<!-- 所有成功提示 -->
 <div class="all_success_alert" style="z-index: 99999;">
     <div class="modelCont">
         <div class="modeltitle">
@@ -2828,6 +2829,25 @@
             </div>
             <div class="modelBtnBox">
                 <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 所有删除 二次提示 -->
+<div class="all_warn_alert" style="z-index: 99999;display: block;">
+    <div class="modelCont">
+        <div class="modeltitle">
+            <span>警告</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent">
+            <div class="info">
+                <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
+                <p class="innerErrmsg">addadadadad</p>
+            </div>
+            <div class="modelBtnBox" style="width: 321px;margin-top: 30px;">
+                <div style="border:1px solid #5690f6;color: #333;margin: 0;" class="modelbtn confirm" class="allCancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+                <div style="background:#5690f6;margin-top: 0px;margin-left: 30px;" class="modelbtn confirm allSure">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
             </div>
         </div>
     </div>
@@ -2988,6 +3008,15 @@
         }
     });
 
+    //警告弹窗
+    function warnAlert(){
+        var allWarnType = '';
+        $(".all_warn_alert").show();
+        if($(".allSure").click()){
+            allWarnType=1;
+        }
+        return allWarnType;
+    }
 
     // 所属部门select
     $.ajax({
