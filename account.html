@@ -1661,6 +1661,7 @@
                 </div>
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 30px;">
+                <div id="addCarError" style="text-align: center;color: red;"></div>
                 <span class=" cf_btn conFirm" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认提交</span>
             </div>
         </div>
@@ -4215,7 +4216,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         });
 
     }
-    //获取线路列表   未对接
+    //获取线路列表
     function getLineList() {
         $.ajax({
             url: pubIP + 'tLogisticsVehicleRoute/selectStatusUp', /*v1.0*/
