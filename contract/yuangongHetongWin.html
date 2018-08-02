@@ -112,7 +112,7 @@
         //链接：获取职务list - 与员工 联动
         var getOrgUrl = pubIP + 'tLtDriverOrgDute/selectByOrgId';
         //链接：获取员工list
-        var getUserUrl = pubIP + 'tLtDriver/selectDriverDoing';
+        var getUserUrl = pubIP + 'tLtDriver/selectByZhiwuId';
 
         //链接：获取车辆合同详情
         var getDetailInfoUrl = pubIP + 'tContractUser/selectById';
@@ -128,6 +128,15 @@
         }else {
             contractTitle = "详情";
         }
+
+        //回显-职务id
+        var show_orgId = '';
+        //回显-用户id
+        var show_userId = '';
+
+
+
+
         //设置标题
         $('.winTitle').html(contractTitle);
 
@@ -282,6 +291,10 @@
                         //TODO 查询员工
                         getUser($(this).attr('data-index'));
                     });
+                    //回显
+                    if(show_orgId){
+                        diySelectVal(".org", show_orgId);
+                    }
                 },
                 error: function(err){
                     console.log(err);
@@ -310,7 +323,7 @@
                     var str = '';
                     // str += '<li  data-index="" value="" data-id="">请选择</li>';
                     for (var i = 0; i < data.data.length; i++) {
-                        str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
+                        str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].userName+'</li>';
                     }
                     $('.user ul').html(str);
 
@@ -324,6 +337,10 @@
                         $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
                         $(this).parent().css('display','none');
                     });
+                    //回显
+                    if(show_userId){
+                        diySelectVal(".user", show_userId);
+                    }
 
                 },
                 error: function(err){
@@ -381,14 +398,14 @@
                     json.data.endDate = new Date(json.data.endDate).Format("yyyy-MM-dd");
                     $('#test1').val(json.data.signDate);
 
-                    $('.contractNo').find('input').val(json.data.contractNo);
+                    $('.contractNo').find('input').val(json.data.contract_no);
                     $('.contractYears').find('input').val(json.data.contractYears);
 
-                    diySelectVal('.dept', json.data.duteId);
-                    diySelectVal('.org', json.data.orgid);
-                    diySelectVal('.user', json.data.userId);
+                    show_orgId = json.data.dute;
+                    show_userId = json.data.userId;
+                    diySelectVal('.dept', json.data.orgid);
 
-                    img_show("#upload_btn1",json.data1.address);
+                    img_show("#upload_btn1",json.data2.address);
 
                     //TODO 设置只读
                     if(contractMode == 'detail'){
@@ -439,13 +456,13 @@
         $(".queding").on("click",function(){
 
             var dept = $('.dept').attr('data-selectedindex');
-            var deptName = $('.dept').text();
+            var deptName = $('.dept').find('span').text();
 
             var org = $('.org').attr('data-selectedindex');
-            var orgName = $('.org').text();
+            var orgName = $('.org').find('span').text();
 
             var user = $('.user').attr('data-selectedindex');
-            var userName = $('.user').text();
+            var userName = $('.user').find('span').text();
 
             var contractNo = $('.contractNo').find('input').val();
             var contractYears = $('.contractYears').find('input').val();
@@ -467,8 +484,8 @@
                     orgid: dept,
                     orgName: deptName,
 
-                    duteId: org,
-                    dute: orgName,
+                    dute: org,
+                    duteName: orgName ,
 
                     userId: user,
                     userName: userName,
