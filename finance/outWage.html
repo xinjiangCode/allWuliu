@@ -187,7 +187,7 @@
                         str += '<td>'+item.taxAmount+'</td>'
                         str += '<td>'+item.noTaxAmount+'</td>'
                         str += '<td>'+item.car_num+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.money+'">工资发放</span><span class="btn ll" onclick="ffdetail();">查看详情</span></td>'
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);

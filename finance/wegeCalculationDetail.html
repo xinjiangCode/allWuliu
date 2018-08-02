@@ -184,12 +184,13 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var thisId = getQueryString("thisId");
+    var thisType = getQueryString("type");
     //console.log(thisId)
     ffdetail(thisId);
     debugger
     function ffdetail(id){
         $.ajax({
-            url: pubIP + 'wages/wagesdetil',
+            url: pubIP + 'carrierWages/getWagesdetil',
             type: 'POST',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -197,6 +198,7 @@
             },
             data: {
                 id: id,
+                type: thisType,
             },
             cache: false,
             dataType: 'json',

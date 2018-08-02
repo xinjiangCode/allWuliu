@@ -86,6 +86,7 @@
         .btn.bohuibtn{
             color: #ff5e5b;
         }
+        .no_msg{display: none;width: 100%;line-height: 80px;text-align: center;font-size: 18px;color: #666;}
     </style>
     
     
@@ -94,19 +95,17 @@
     <div class="contbox" >
         <div class="topTitle">结算审核<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="网店名称">
-            <label for="" style="margin-left: 17px;">审批类型</label>
-            <div class="goodsType input select" data-selectedindex="0" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >
-                <ul style="">
-                    <li data-index="1">待分配订单</li>
-                    <li data-index="2">进行中订单</li>
-                    <li data-index="3">完成待审核订单</li>
-                    <li data-index="3">已完成订单</li>
-                </ul>
-            </div>
-            <label for="" style="margin-left: 8px;">申请时间</label>
-            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 75px;">
+            <!-- <label for="">搜索类型</label>
+                <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+                    <ul>
+                        <li data-index="1">订单号</li>
+                        <li data-index="2">结算公司</li>
+                    </ul>
+                </div> -->
+                <label for="">输入搜索</label><input class="orderNo input seach_inp" type="text" style="width: 280px;" placeholder="请输入订单号或结算公司名称">
+           
+                <!-- <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1"> -->
+                <input class="searchResultBtn btn input" type="button" onclick="jssh_list(1);" value="查询结果" style="margin-left: 100px;">
         </div>
         <div class="listBox" style="">
             <table>
@@ -115,14 +114,15 @@
                         <td>订单号</td>
                         <td>结算公司</td>
                         <td>订单款</td>
-                        <td>回款金额</td>
-                        <td>其他</td>
+                        <td>已支付</td>
+                        <td>未支付</td>
                         <td>备注</td>
                         <td>操作</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody class="myTbody">
+                    
+                    <!-- <tr>
                         <td>3001804091631062137</td>
                         <td>化动力有限公司</td>
                         <td>¥200.00</td>
@@ -130,36 +130,10 @@
                         <td>¥200.00</td>
                         <td style="width:200px;"></td>
                         <td><span class="btn ll">打款</span><span class="btn">查看详情</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td></td>
-                        <td><span class="btn ll">打款</span><span class="btn">查看详情</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td></td>
-                        <td><span class="btn ll">打款</span><span class="btn">查看详情</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td></td>
-                        <td><span class="btn ll">打款</span><span class="btn">查看详情</span></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
+            <p class="no_msg">暂无数据</p>
         </div>
         <!--<div class="bottomOperiat">-->
             <!--<span class="squre"></span>-->
@@ -167,7 +141,7 @@
             <!--<span class="closeBtn">关闭订单</span>-->
             <!--<span class="delBtn">删除订单</span>-->
         <!--</div>-->
-        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+        <div class="myPage" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
             <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
             <div class="pageJump">
                 <span class="allPageN">1/200</span>
@@ -227,6 +201,83 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
+
+         //结算审核列表
+         jssh_list(1)
+        function jssh_list(currentPage){
+            $.ajax({
+                url: pubIP + 'carrierFinance/getSettlementList',
+                type: 'POST',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    iDisplayStart: currentPage,
+                    iDisplayLength: 10,
+                    name: $(".seach_inp").val(),
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log("+++++++++++++++++++++++++++++");
+                    console.log(json);
+                    var data = json.aData;
+                    if(data==null || data.length==0){
+                        $(".no_msg").show();
+                        $(".bottomOperiat").hide();
+                        $(".myPage").hide();
+                        return false;
+                    }
+                    if(currentPage==1){
+                        //修改底部分页
+                        //debugger
+                        var pageNum=Math.ceil(json.iTotalRecords/10);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                js_list(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    // <tr>
+                    //     <td><div class="cf_select"></div></td>
+                    //     <td>3001804091631062137</td>
+                    //     <td>化动力有限公司</td>
+                    //     <td>￥200.00</td>
+                    //     <td>￥200.00</td>
+                    //     <td>￥200.00</td>
+                    //     <td></td>
+                    //     <td><span class="btn ll">审核</span><span class="btn ll seeDetail">查看详情</span></td>
+                    // </tr>
+                        
+                    var str = ''
+                    $.each(data,function(idx,item){
+                        str += '<tr>'
+                        str += '<td>'+item.orderId+'</td>'
+                        str += '<td>'+item.supplierCompanyName+'</td>'
+                        str += '<td>'+item.orderMoney+'</td>'
+                        str += '<td>'+item.returnMoney+'</td>'
+                        str += '<td>'+item.otherMoney+'</td>'
+                        str += '<td>'+item.remarks+'</td>'
+                        str += '<td><span class="btn ll shenhe">审核</span><span class="btn ll" onclick="ffdetail();">查看详情</span></td>'
+                        str += '</tr>'
+                    })
+                    $(".myTbody").html(str);
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
     </script>
 </body>
 </html>
