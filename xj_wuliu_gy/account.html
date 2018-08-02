@@ -1350,10 +1350,10 @@
                 </div>
                 <div class="clearFloat" style="margin-top: 25px;">
                     <span style="display: block; width: 135px;text-align: right;float: left;">职能描述：</span>
-                    <textarea name="" id="" cols="30" rows="10" class="zhineng_descript" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" class="zhineng_descript" style="height: 185px;width: 483px;border: 1px solid #dbdbdc; margin-left: 4px;"></textarea>
                 </div>
                 <div class="clearFloat" style="margin-top: 32px;">
-                    <span class=" cf_btn cancel cfClose model35_cancel_btn" style="display: inline-block;margin-left: 135px;" >取消</span>
+                    <span class=" cf_btn cancel cfClose model35_cancel_btn" style="display: inline-block;margin-left: 138px;" >取消</span>
                     <span class=" cf_btn model35_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
                 </div>
             </div>
@@ -1426,19 +1426,27 @@
             <div class="modelcontent clearFloat" style="width: 100%;height: 417px;font-size: 14px;padding-top: 31px; ">
                 <div>
                     <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>角色名称：</span>
-                    <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                    <input type="text" placeholder="" class="role_name" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
                 </div>
-                <div style="margin-top: 25px;">
-                    <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>所属部门：</span>
-                    <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                <div style="margin-top: 25px;" class="clearfix">
+                    <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
+                    <div class="select fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 483px; margin-left: 4px; height: 40px; border: 1px solid #dbdbdc">
+                        <span>请选择</span>
+                        <img src="./img/prl-select.jpg" alt="">
+                        <ul class="suoshu_department_ul">
+                            <li data-index="1">10</li>
+                            <li data-index="2">20</li>
+                            <li data-index="3">30</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="clearFloat" style="margin-top: 25px;">
                     <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>职能描述：</span>
-                    <textarea name="" id="" cols="30" rows="10" style="height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" class="job_describe" style="height: 185px;width: 476px;border: 1px solid #dbdbdc; margin-left: 4px;"></textarea>
                 </div>
                 <div class="clearFloat" style="margin-top: 25px;">
-                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                    <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 138px;" >取消</span>
+                    <span class=" cf_btn model38_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
                 </div>
             </div>
         </div>
@@ -2131,6 +2139,46 @@
     window.onresize=function(){ changeFrameHeight();}
     $(function(){changeFrameHeight();});
 
+
+    
+    // 部门列表
+    function department_list() {
+        $.ajax({
+            url: pubIP + 'receptionDepartment/querySelectList',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
+                        }
+
+                        $('.suoshu_department_ul').html(str);
+
+                        $('.select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        });
+                    }
+                }
+                
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 
     //禁止输入中文
     function chaneseCheck(str){

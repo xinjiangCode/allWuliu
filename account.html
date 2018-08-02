@@ -780,6 +780,8 @@
                 <a href="##" class="manage"><strong>设置</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_open.png" alt=""></div></a>
                 <ul class="manageList2">
                     <li><a href="##" class="manageItem " data-src="./setUp/setUp_departmentManage.html" data-height="1054">部门管理</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setUp_roleManage.html" data-height="1054">角色管理</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setUp_staffManage.html" data-height="1054">员工管理</a></li>
                     <!--<li><a href="##" class="manageItem" data-src="./setUp/setUp_msgList.html" data-height="1442">短信列表</a></li>-->
                     <li><a href="##" class="manageItem" data-src="./setUp/setUp_automaticPush.html" data-height="1054">自动推送设置</a></li>
                     <li><a href="##" class="manageItem " data-src="./setUp/setting-logManage.html" data-height="1050">日志管理</a></li>
@@ -955,19 +957,27 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 417px;font-size: 14px;padding-top: 31px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>角色名称：</span>
-                <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+                <input type="text" placeholder="" class="role_name" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
             </div>
-            <div style="margin-top: 25px;">
-                <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>所属部门：</span>
-                <input type="text" placeholder="33333"  style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
+            <div style="margin-top: 25px;" class="clearfix">
+                <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
+                <div class="selectPub fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 483px; margin-left: 4px; height: 40px; border: 1px solid #dbdbdc; float: left;">
+                    <span>请选择</span>
+                    <img src="./img/prl-select.jpg" alt="">
+                    <ul class="suoshu_department_ul">
+                        <li data-index="1">10</li>
+                        <li data-index="2">20</li>
+                        <li data-index="3">30</li>
+                    </ul>
+                </div>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>职能描述：</span>
-                <textarea name="" id="" cols="30" rows="10" placeholder="请输入内容" style="margin-left: 5px; text-indent: 10px; height: 185px;width: 483px;border: 1px solid #dbdbdc;"></textarea>
+                <textarea name="" id="" cols="30" rows="10" class="job_describe" style="height: 185px;width: 476px;border: 1px solid #dbdbdc; margin-left: 4px;"></textarea>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
-                <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 138px;" >取消</span>
+                <span class=" cf_btn model38_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
             </div>
         </div>
     </div>
@@ -2834,7 +2844,7 @@
     </div>
 </div>
 <!-- 所有删除 二次提示 -->
-<div class="all_warn_alert" style="z-index: 99999;display: block;">
+<div class="all_warn_alert" style="z-index: 99999; display: block;">
     <div class="modelCont">
         <div class="modeltitle">
             <span>警告</span>
@@ -2843,11 +2853,11 @@
         <div class="modelcontent">
             <div class="info">
                 <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
-                <p class="innerErrmsg">addadadadad</p>
+                <p class="innerErrmsg">是否确认删除？</p>
             </div>
             <div class="modelBtnBox" style="width: 321px;margin-top: 30px;">
                 <div style="border:1px solid #5690f6;color: #333;margin: 0;" class="modelbtn confirm" class="allCancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
-                <div style="background:#5690f6;margin-top: 0px;margin-left: 30px;" class="modelbtn confirm allSure">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                <div style="background:#5690f6;margin-top: 0px;margin-left: 30px;" class="modelbtn confirm allSure all_sure">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
             </div>
         </div>
     </div>
@@ -3155,6 +3165,45 @@
 
             },
             error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
+    // 部门列表
+    function department_list() {
+        $.ajax({
+            url: pubIP + 'receptionDepartment/querySelectList',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
+                        }
+
+                        $('.suoshu_department_ul').html(str);
+
+                        $('.selectPub ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        });
+                    }
+                }
+                
+            },
+            error: function(err) {
                 console.log(err);
             }
         });
