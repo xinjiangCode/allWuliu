@@ -79,8 +79,8 @@
         <div class="myPage" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
             <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
             <div class="pageJump">
-                <span class="allPageN">1/200</span>
-                <i style="margin-left: 12px;">共200页</i>，
+                <span class="allPageN"></span>
+                <i style="margin-left: 12px;"></i>，
                 <span>到第</span>
                 <input type="text"/>
                 <span>页</span>
@@ -150,22 +150,22 @@
                     page: currentPage,
                     size: 10,
                     condition: $(".js_select").attr("data-selectedindex"),
-                    value: $(".js_value").val(),
+                    values: $(".js_value").val(),
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (json) {
-                    console.log("+++++++++++++++++++++++++++++");
-                    console.log(json.data);
+                    // console.log("+++++++++++++++++++++++++++++");
+                    // console.log(json);
                     var data = json.data;
                     if(data==null || data.length==0){
                         $(".no_msg").show();
                         $(".myPage").hide();
                         return false;
                     }
-                    if(currentPage===1 ){
+                    if(currentPage==1){
                         //修改底部分页
-                        var pageNum=Math.ceil(data.count/10);
+                        var pageNum=Math.ceil(json.count/10);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");
                         $('.objListBox>div:nth-child(5n)').css('margin-right','0');
@@ -178,7 +178,9 @@
                             }
                         });
                     }
-                    
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+
                     var str = ''
                     $.each(data,function(idx,item){
                         str += '<tr>'
@@ -188,7 +190,7 @@
                         str += '<td>'+item.updatetime+'</td>'
                         str += '<td>'+item.money+'</td>'
                         str += '<td>'+item.wj_money+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.money+'">工资发放</span><a href="wegeCalculationDetail.html" class="btn ll">查看详情</a></td>'
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
@@ -228,8 +230,8 @@
                     cache: false,
                     dataType: 'json',
                     success: function (json) {
-                        console.log("+++++++++++++++++++++++++++++");
-                        console.log(json);
+                        // console.log("+++++++++++++++++++++++++++++");
+                        // console.log(json);
                         cf_alert(1,"结算成功");
                     },
                     error: function(err) {
@@ -239,28 +241,7 @@
             })
         }
        
-        function ffdetail(){
-            $.ajax({
-                url: pubIP + 'wages/wagesdetil',
-                type: 'POST',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    id: 0,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (json) {
-                    console.log("+++++++++++++++++++++++++++++");
-                    console.log(json.data);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-        }
+       
     </script>
 </body>
 </html>

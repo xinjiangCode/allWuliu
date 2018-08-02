@@ -162,28 +162,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td>¥1.111.00</td>
-                    <td>¥1.111.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+               
                 </tbody>
             </table>
         </div>
@@ -197,6 +176,39 @@
     $(function () {
         window.parent.$("#Iframe").css("height","897");
     })
+    
+    //获取地址栏参数的方法:		//name:参数名称
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var thisId = getQueryString("thisId");
+    //console.log(thisId)
+    ffdetail(thisId);
+    debugger
+    function ffdetail(id){
+        $.ajax({
+            url: pubIP + 'wages/wagesdetil',
+            type: 'POST',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: id,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log("+++++++++++++++++++++++++++++");
+                console.log(json.data);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>
