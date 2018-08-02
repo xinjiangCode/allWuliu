@@ -101,7 +101,7 @@
             <li>
                 <a href="##" class="manage"><strong>企业资质</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
                 <ul>
-                    <li><a href="##" class="manageItem qiye_renzheng" data-src="./personal/identification1.html" data-height="1715">企业认证</a></li>
+                    <li><a href="##" class="manageItem qiye_renzheng" data-src="../finance/identification1.html" data-height="1715">企业认证</a></li>
                     <li><a href="##" class="manageItem zizhi" data-src="./personal/Special1.html" data-height="1715">资质认证</a></li>
                     <!--<li><a href="##" class="manageItem" data-src="./personal/identification2.html" data-height="1715">运营者信息</a></li>-->
                     <!--<li><a href="##" class="manageItem" data-src="./personal/identification4.html" data-height="1715">出金账户绑定</a></li>-->
@@ -1997,18 +1997,23 @@
 
 
 
-<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
     $(".manageList").css("display","none");
     function showMangeList(idx) {
         if(idx==".cfidx1"){
-            if (localStorage.getItem('isOld') == 1 || localStorage.getItem('isOld') == -2) {
-                sessionStorage.setItem("cfsrc","./personal/identification1.html");
-            }else {
-                sessionStorage.setItem("cfsrc","./personal/mine.html");
-            }
+            // if (localStorage.getItem('company_type') == -1) {
+
+                if (localStorage.getItem('isOld') == 1 || localStorage.getItem('isOld') == -2) {
+                    sessionStorage.setItem("cfsrc","./personal/identification1.html");
+                }else {
+                    sessionStorage.setItem("cfsrc","./personal/mine.html");
+                }
+
+            // }
         }else if(idx==".cfidx2"){
             sessionStorage.setItem("cfsrc","./requuire/publishRequireList.html");
         }else if(idx==".cfidx3"){
@@ -2022,8 +2027,15 @@
         }
         showNav();
     }
+
+
     function goIndex() {
-        window.location.href="./index.html";
+        var company_type = localStorage.getItem('company_type');
+        if (company_type == '1') { //供应商
+            window.location.href="../index.html"
+        } else if (company_type == '2') {
+            window.location.href="index.html"
+        }
     }
 
     // 若未提交，请继续填写
@@ -2045,7 +2057,7 @@
                 console.log(data.data.state);
 
                 if (data.data.state && data.data.type == 1) {
-                    $('.qiye_renzheng').attr('data-src', 'personal/identification'+data.data.state+'.html');
+                    $('.qiye_renzheng').attr('data-src', '../finance/identification'+data.data.state+'.html');
                     // location.href="personal/identification"+data.data.state+".html"; 
                     $(document).on('click', '.qiye_renzheng', function() {
                         if (companyId) {

@@ -48,7 +48,7 @@
                 <ul>
                     <li>
                         <div class="headerTopRightImg1 headerTopRightImg"></div>
-                        <div  class="Lf"><a href="account.html" class="goUser">用户中心</a></div>
+                        <div  class="Lf"><a href="##" class="goUser">用户中心</a></div>
                     </li>
                     <li class="liline"></li>
                     <!--<li>-->
@@ -648,8 +648,7 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
             sessionStorage.setItem("isAdd","1");
             $('.tobuybtn').text('发布空车');
             window.location.href="./account.html";
-        } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
-            console.log('.');
+        } else if (localStorage.getItem('company_type') == '1' || localStorage.getItem('company_type') == '-1') {// 供应商 立即下单
             sessionStorage.setItem("isAddRequireMent",1);
             sessionStorage.setItem("cfsrc","./xj_wuliu_gy/requuire/publishRequireList.html");
             sessionStorage.setItem("isAdd","1");
@@ -660,18 +659,24 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
     });
 
     if (localStorage.getItem('company_type') == '2') { //承运商
-        // sessionStorage.setItem("cfsrc","./statistics/dataIndex.html");
-        // sessionStorage.setItem("isAdd","1");
         $('.tobuybtn').text('发布空车');
-        // window.location.href="./account.html";
-    } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
-        // console.log('.');
-        // sessionStorage.setItem("isAddRequireMent",1);
-        // sessionStorage.setItem("cfsrc","./xj_wuliu_gy/requuire/publishRequireList.html");
-        // sessionStorage.setItem("isAdd","1");
+        
+    } else if (localStorage.getItem('company_type') == '1' || localStorage.getItem('company_type') == '-1') {// 供应商 立即下单
+        
         $('.tobuybtn').text('立即下单');
-        // window.location.href="./xj_wuliu_gy/account.html";
+        
     }
+
+    $('.goUser').click(function() {
+        var company_type = localStorage.getItem('company_type');
+        console.log(company_type);
+        if (company_type == '1' || company_type == '-1') { //供应商
+            $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+        } else if (company_type == '2') {
+            $('.goUser').attr('href', 'account.html');
+        }
+
+    });
 
     //拦截链接
     // $(document).on('click','a',function(e){

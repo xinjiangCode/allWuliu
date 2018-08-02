@@ -185,6 +185,7 @@
 		<script type="text/javascript" >
 		$(function(){
 			localStorage.setItem("token","");
+			localStorage.setItem('company_type', '-1');
 		})
 		var isAuto=0;
 
@@ -269,12 +270,15 @@
                         //sessionStorage.setItem("token",json.data.token);//hzf  20180716
 	                	// window.location.href = 'index.html';
 						window.localStorage.setItem('data-logout', 'false');
-						if (json.data.companyType == 1) { //未认证和供应商
+						if (json.data.companyType == 1) { //供应商
 							
 							localStorage.setItem('company_type', '1');
 							window.location.href = "index.html";
 						} else if (json.data.companyType == 2) { //承运商
 							localStorage.setItem('company_type', '2');
+							window.location.href = "index.html";
+						} else if (json.data.companyType == -1) { //未认证和供应
+							localStorage.setItem('company_type', '-1');
 							window.location.href = "index.html";
 						}
 						$('#logout').show();

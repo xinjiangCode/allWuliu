@@ -17,7 +17,7 @@ document.writeln("<header>\n" +
     "                <ul>\n" +
     "                    <li>\n" +
     "                        <div class=\"headerTopRightImg1 headerTopRightImg\"></div>\n" +
-    "                        <div  class=\"Lf\"><a href=\"account.html\" class=\"goUser\">用户中心</a></div>\n" +
+    "                        <div  class=\"Lf\"><a href=\"##\" class=\"goUser\">用户中心</a></div>\n" +
     "                    </li>\n" +
     "                    <li class=\"liline\"></li>\n" +
     "                    <!--<li>-->\n" +
@@ -88,7 +88,13 @@ $(function () {
         $('#userNamePub').html('你好，游客');
     }
 
-
+    var company_type = localStorage.getItem('company_type');
+    console.log(company_type);
+    if (company_type == '1') { //供应商
+        $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+    } else if (company_type == '2') {
+        $('.goUser').attr('href', 'account.html');
+    }
 })
 
 
