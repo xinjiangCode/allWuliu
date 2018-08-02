@@ -190,7 +190,7 @@
                         str += '<td>'+item.updatetime+'</td>'
                         str += '<td>'+item.money+'</td>'
                         str += '<td>'+item.wj_money+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&&type=0" class="btn ll">查看详情</a></td>'
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.by_money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&&type=0" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
@@ -210,7 +210,9 @@
         function jiesuan_alert_show(obj,obj1,obj2){
             window.parent.$(".jiesuan_alert").show();
             window.parent.$(".djs_money").html(obj1);
+            window.parent.$(".djs_money").prev().html("工资待结算");
             window.parent.$(".by_money").html(obj2);
+            window.parent.$(".by_money").prev().html("本月工资");
             window.parent.$(".sjff_inp").val('');
             window.parent.$("#xuan_type1").prop("checked",true);
             window.parent.$(".js_btn").on("click",function(){

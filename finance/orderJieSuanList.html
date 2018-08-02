@@ -192,16 +192,23 @@
                         str += '<td>'+item.returnMoney+'</td>'
                         str += '<td>'+item.otherMoney+'</td>'
                         str += '<td>'+item.remarks+'</td>'
-                        str += '<td><span class="btn ll shenhe">审核</span><span class="btn ll" onclick="ffdetail();">查看详情</span></td>'
+                        str += '<td><span class="btn ll shenhe">审核</span><a href="orderJieSuanDetail.html" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
+                    //shenpi_alert
+                    $(".shenhe").on("click",function(){
+                        shenhe_alert_show();
+                    })
 
                 },
                 error: function(err) {
                     console.log(err);
                 }
             });
+        }
+        function shenhe_alert_show(){
+            window.parent.$(".shenpi_alert").show();
         }
     </script>
 </body>
