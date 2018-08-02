@@ -592,7 +592,7 @@
             color: #fff;
             margin-left: 65px;
         }
-
+        .modelBox13 .selectPub{width: 100px;margin-top: 0;}
     </style>
 </head>
 <body>
@@ -1748,64 +1748,106 @@
 
 <!-- 添加路线  添加线路-->
 <div class="modelBox13" style="font-size: 14px;">
-    <div class="modelCont" style="width: 846px;height: 525px;">
+    <div class="modelCont" style="width: 846px;height: 475px;">
         <div class="modeltitle" style="width: 100%;">
             <span>添加路线</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 744px; font-size: 14px; height: 475px; border: 1px solid #ebe9ea;padding: 45px 50px 0 50px; ">
+        <div class="modelcontent clearFloat" style="width: 744px; font-size: 14px; height: 425px; border: 1px solid #ebe9ea;padding: 45px 50px 0 50px; ">
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">发&nbsp;&nbsp;货&nbsp;地：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                    <div id="province" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
+                        <span>请选择</span>
+                        <img src="img/prl-select.jpg" alt="">
+                        <ul>
+                        </ul>
+                    </div>
+                    <div id="city" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
+                        <span>请选择</span>
+                        <img src="img/prl-select.jpg" alt="">
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div id="area" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
+                        <span>请选择</span>
+                        <img src="img/prl-select.jpg" alt="">
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div class="Lf"><input id="sendAddress1" type="text" style="border: 1px solid #ebe9ea;width: 230px;height: 33px;line-height: 33px;float: left;"></div>
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">到货地：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+
+            </div>
+            <div class="clearfix">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">发&nbsp;&nbsp;货&nbsp;地：&nbsp;</span>
+                    <div id="province1" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
+                        <span>请选择</span>
+                        <img src="img/prl-select.jpg" alt="">
+                        <ul>
+                        </ul>
+                    </div>
+                    <div id="city1" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
+                        <span>请选择</span>
+                        <img src="img/prl-select.jpg" alt="">
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div id="area1" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
+                        <span>请选择</span>
+                        <img src="img/prl-select.jpg" alt="">
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div class="Lf"><input id="receiveAddress1" type="text" style="border: 1px solid #ebe9ea;width: 230px;height: 33px;line-height: 33px;float: left;"></div>
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">给&nbsp;&nbsp;车&nbsp;价：&nbsp;</span>
-                    <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
-                        <ul>
-                            <li data-index="1">1</li>
-                            <li data-index="2">2</li>
-                            <li data-index="3">3</li>
-                        </ul>
-                    </div>
+                    <input type="text" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;" id="toCarPrice">
+                    <!--<div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">-->
+                        <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
+                        <!--<ul>-->
+                            <!--<li data-index="1">1</li>-->
+                            <!--<li data-index="2">2</li>-->
+                            <!--<li data-index="3">3</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">扣损率：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                    <input type="text" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;" id="loss">
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">扣损单价：&nbsp;</span>
-                    <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
-                        <ul>
-                            <li data-index="1">1</li>
-                            <li data-index="2">2</li>
-                            <li data-index="3">3</li>
-                        </ul>
-                    </div>
+                    <input type="text" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;" id="lossPrice">
+                    <!--<div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">-->
+                        <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
+                        <!--<ul>-->
+                            <!--<li data-index="1">1</li>-->
+                            <!--<li data-index="2">2</li>-->
+                            <!--<li data-index="3">3</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">远距：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">运距：&nbsp;</span>
+                    <input type="text" id="transportDistance" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;">
                 </div>
             </div>  
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">预计时长：&nbsp;</span>
-                    <div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
-                        <ul>
-                            <li data-index="1">1</li>
-                            <li data-index="2">2</li>
-                            <li data-index="3">3</li>
-                        </ul>
-                    </div>
+                    <input type="text" id="expectedDuration" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;">
                 </div>
-            </div>  
-            <div class="clearFloat" style="text-align: center;margin-top: 79px;">
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">新增</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">路线名：&nbsp;</span>
+                    <input type="text" id="routeName" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;">
+                </div>
+            </div>
+            <div id="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 30px;">
+                <span class=" cf_btn" id="addRoute" style="display: inline-block; width: 253px;height: 40px;line-height: 40px; ">新增</span>
             </div> 
         </div>
     </div>
@@ -4559,10 +4601,13 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     str+='<div>';
                     str+='<span class="dynamicTitle" data-title="'+data.data[i].name+'">'+data.data[i].name+'：</span>';
                     if(data.data[i].type==1){//下拉框
-                        var list=data.data[i].label.split("@");
+//                        var list=data.data[i].label.split("@");
+                        var list=data.data[i].label.split(",");
                         for(j=0;j<list.length;j++){
-                            var id=list[j].split(",")[0];
-                            var name=list[j].split(",")[1];
+//                            var id=list[j].split(",")[0];
+//                            var name=list[j].split(",")[1];
+                            var id=j;
+                            var name=list[j];
                             if(j==0){
                                 if(dataVal==""){
                                     id=id;
@@ -4713,6 +4758,326 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         str+='<span class="cf_btn addVehicleSelect" onclick="addVehicleSelect(this)">新增</span>';
         str+='</li>';
         $(".VehicleSelectList").append(str);
+    }
+
+    //=====================添加线路弹框
+    //查询省
+    function getProvence(type) {
+        //type  0发货地  1收货地
+        /*查询所有省份*/
+        $.ajax({
+            url: pubIP + 'address/listProvince', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    str += '<li  data-index="'+i+'" value="'+i+'" data-proviceId="'+data.data[i].provinceid+'" data-province="'+data.data[i].province+'">'+data.data[i].province+'</li>';
+                }
+                if(type==0){
+                    $('#province ul').html(str);
+                    //li注册点击事件
+                    $('#province ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-proviceid', $(this).attr('data-proviceid'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                        var provinceID =$("#province").attr('data-proviceid');
+                        $('#city span').text('请选择市');
+                        $('#area span').html('请选择区');
+                        $('#area ul').html("");
+                        selectCity(type,provinceID);
+                    });
+                    if($("#province").attr('data-isselect')==0){
+                        //选中第一个
+                        $("#province").attr('data-selectedindex',0);
+                        $("#province").attr('data-proviceid', data.data[0].provinceid);
+                        $("#province").find('span').text(data.data[0].province);
+                    }else{
+                        $("#province").attr('data-proviceid',  $("#province").attr('data-isselect'));
+                        $("#province li").each(function (idx,item) {
+                            if($(item).attr("data-proviceid")==$("#province").attr('data-isselect')){
+                                $("#province").attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#province span").text($(item).attr("data-province"));
+                            }
+                        })
+                        $("#province").attr('data-isselect',0);
+                    }
+                    selectCity(type,$("#province").attr('data-proviceid'));
+
+                }else if(type==1){
+                    $('#province1 ul').html(str);
+                    $('#province1 ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-proviceid', $(this).attr('data-proviceid'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                        var provinceID =$("#province1").attr('data-proviceid');
+                        $('#city1 span').text('请选择市');
+                        $('#area1 span').html('请选择区');
+                        $('#area1 ul').html("");
+                        selectCity(type,provinceID);
+                    });
+
+                    if($("#province1").attr('data-isselect')==0){
+                        //选中第一个
+                        $("#province1").attr('data-selectedindex',0);
+                        $("#province1").attr('data-proviceid', data.data[0].provinceid);
+                        $("#province1").find('span').text(data.data[0].province);
+                    }else{
+                        $("#province1").attr('data-proviceid', $("#province1").attr('data-isselect'));
+                        $("#province1 li").each(function (idx,item) {
+                            if($(item).attr("data-proviceid")==$("#province1").attr('data-isselect')){
+                                $("#province1").attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#province1 span").text($(item).attr("data-province"));
+                            }
+                        })
+                        $("#province1").attr('data-isselect',0);
+                    }
+                    selectCity(type,$("#province1").attr('data-proviceid'));
+                    //选中第一个
+//                    $("#province1").attr('data-selectedindex',0);
+//                    $("#province1").attr('data-proviceid', data.data[0].provinceid);
+//                    $("#province1").find('span').text(data.data[0].province);
+//                    selectCity(type, data.data[0].provinceid);
+
+                }
+
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+    }
+    /*查询所有城市*/
+    function selectCity(type,provinceID) {
+        console.log(provinceID)
+        $.ajax({
+            url: pubIP + 'address/listCityByProvinceId', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            data: {provinceID: provinceID},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    str += '<li data-index="'+i+'"  value="'+i+'" data-cityId="'+data.data[i].cityid+'" data-city="'+data.data[i].city+'">'+data.data[i].city+'</li>';
+                }
+                if(type==0){
+                    $('#city ul').html(str);
+                    $('#city ul li').click(function() {
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-cityid', $(this).attr('data-cityid'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg');
+                        $(this).parent().css('display', 'none');
+                        var cityID = $("#city").attr('data-cityid');
+                        $('#area span').text('请选择区');
+                        selectArea(type,cityID);
+                    })
+
+                    if($("#city").attr('data-isselect')==0){
+                        //选中第一个
+                        $("#city").attr('data-selectedindex',0);
+                        $("#city").attr('data-cityid', data.data[0].cityid);
+                        $("#city").find('span').text(data.data[0].city);
+
+                    }else{
+                        $("#city").attr('data-cityid', $("#city").attr('data-isselect'))
+                        $("#city li").each(function (idx,item) {
+                            if($(item).attr("data-cityid")==$("#city").attr('data-isselect')){
+                                $("#city").attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#city span").text($(item).attr("data-city"));
+                            }
+                        })
+                        $("#city").attr('data-isselect',0);
+                    }
+                    selectArea(type,$("#city").attr('data-cityid'));
+                }else if(type==1) {
+                    $('#city1 ul').html(str);
+                    $('#city1 ul li').click(function () {
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-cityid', $(this).attr('data-cityid'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
+                        $(this).parent().css('display', 'none');
+                        var cityID = $("#city1").attr('data-cityid');
+                        $('#area1 span').text('请选择区');
+                        selectArea(type,cityID);
+                    })
+
+                    if($("#city1").attr('data-isselect')==0){
+                        //选中第一个
+                        $("#city1").attr('data-selectedindex',0);
+                        $("#city1").attr('data-cityid', data.data[0].cityid);
+                        $("#city1").find('span').text(data.data[0].city);
+
+                    }else{
+                        $("#city1").attr('data-cityid', $("#city1").attr('data-isselect'));
+                        $("#city1").attr('data-cityid', $("#city1").attr('data-isselect'))
+                        $("#city1 li").each(function (idx,item) {
+                            if($(item).attr("data-cityid")==$("#city1").attr('data-isselect')){
+                                $("#city1").attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#city1 span").text($(item).attr("data-city"));
+                            }
+                        })
+                        $("#city1").attr('data-isselect',0);
+                    }
+
+                    selectArea(type,$("#city1").attr('data-cityid'));
+                    //选中第一个
+//                    $("#city1").attr('data-selectedindex',0);
+//                    $("#city1").attr('data-cityid', data.data[0].cityid);
+//                    $("#city1").find('span').text(data.data[0].city);
+//                    selectArea(type, data.data[0].cityid);
+                }
+
+//                // 编辑回显城市
+//                if ($('#city').hasClass('id_id1')) {
+//                    var data_province = $this.parent().parent().find('td')[2];
+//                    $('#city ul li').each(function (index, element) {
+//                        if ($(this).attr('data-city') == $(data_province).attr('data-city')) {
+//                            //$(this)[0].selected = true;
+//                            $(this).parent().parent().attr("data-cityid",$(this).attr("data-cityid"));
+//                            $(this).parent().parent().attr("data-selectedindex",$(this).attr("data-index"));
+//                            $(this).parent().parent().find("span").text($(this).text());
+//                        }
+//                    });
+//
+//                    var cityID = $("#city").attr('data-cityid');
+//                    $('#area').addClass('id_id2');
+//                    selectArea(cityID, $this);
+//                }
+//                $('#city').parent().next().html('');
+
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //    查询县
+    function selectArea(type,cityID) {
+        $.ajax({
+            url: pubIP + 'address/listAreaByCityID', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            data: {cityID: cityID},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    str += '<li data-index="'+i+'" value="'+i+'" data-areaId="'+data.data[i].areaid+'" data-area="'+data.data[i].area+'">'+data.data[i].area+'</li>';
+                }
+
+                if(type==0){
+                    $('#area ul').html(str);
+                    $('#area ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-areaId', $(this).attr('data-areaId'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                        var areaID =$("#area").attr('data-areaId');
+                    });
+                    if($("#area").attr('data-isselect')==0){
+                        //选中第一个
+                        $("#area").attr('data-selectedindex',0);
+                        $("#area").attr('data-areaid', data.data[0].areaid);
+                        $("#area").find('span').text(data.data[0].area);
+
+                    }else{
+                        $("#area").attr('data-areaid', $("#area").attr('data-isselect'));
+                        $("#area li").each(function (idx,item) {
+                            if($(item).attr("data-areaid")==$("#area").attr('data-isselect')){
+                                $("#area").attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#area span").text($(item).attr("data-area"));
+                            }
+                        })
+                        $("#area").attr('data-isselect',0);
+                    }
+                    //选中第一个
+//                    $("#area").attr('data-selectedindex',0);
+//                    $("#area").attr('data-areaId', data.data[0].areaid);
+//                    $("#area").find('span').text(data.data[0].area);
+                }else if(type==1){
+                    $('#area1 ul').html(str);
+                    $('#area1 ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-areaId', $(this).attr('data-areaId'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                        var areaID =$("#area1").attr('data-cityid');
+                    });
+
+                    if($("#area1").attr('data-isselect')==0){
+                        //选中第一个
+                        $("#area1").attr('data-selectedindex',0);
+                        $("#area1").attr('data-areaid', data.data[0].areaid);
+                        $("#area1").find('span').text(data.data[0].area);
+
+                    }else{
+                        $("#area1").attr('data-areaid',  $("#area1").attr('data-isselect'));
+                        $("#area1 li").each(function (idx,item) {
+                            if($(item).attr("data-areaid")==$("#area1").attr('data-isselect')){
+                                $("#area1").attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#area1").attr('data-areaid',$(item).attr("data-areaid"))
+                                $("#area1 span").text($(item).attr("data-area"));
+                            }
+                        })
+                        $("#area1").attr('data-isselect',0);
+                    }
+                    //选中第一个
+//                    $("#area1").attr('data-selectedindex',0);
+//                    $("#area1").attr('data-areaId', data.data[0].areaid);
+//                    $("#area1").find('span').text(data.data[0].area);
+                }
+
+//                //回显
+//                if ($('#area').hasClass('id_id2')) {
+//                    var data_province = $this.parent().parent().find('td')[2];
+//                    $('#area ul li').each(function (index, element) {
+//                        if ($(this).attr('data-area') == $(data_province).attr('data-area')) {
+//                            //  $(this)[0].selected = true;
+//                            $(this).parent().parent().attr("data-areaid",$(this).attr("data-areaid"));
+//                            $(this).parent().parent().attr("data-selectedindex",$(this).attr("data-index"));
+//                            $(this).parent().parent().find("span").text($(this).text())
+//                        }
+//                    });
+//                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
     }
 </script>
 </body>
