@@ -3162,7 +3162,7 @@
                     // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
                     // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
 
-                    $('.apartment_select ul li').click(function(){
+                    $('.apartment_select1 ul li').click(function(){
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().find('span').text($(this).text());
@@ -3390,6 +3390,14 @@
             }
         });
 
+    }
+
+
+    // 调用删除弹框
+    function warn_alert(aa, msg) {
+        $('.all_warn_alert').show();
+        $('.all_warn_alert .innerErrmsg').text(msg);
+        $('.all_sure').attr('data-this', aa);
     }
 
 

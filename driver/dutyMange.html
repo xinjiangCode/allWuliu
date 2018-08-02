@@ -302,11 +302,6 @@
     });
 
     function add_apartment(zhiwu_name, zhiwu_zhineng_descript, id, reserved2, orgId) {
-    	console.log(zhiwu_name);
-    	console.log(zhiwu_zhineng_descript);
-    	console.log(id);
-    	console.log(reserved2);
-    	console.log(orgId);
     	        
         $.ajax({
             url: pubIP + 'tLtDriverOrgDute/updateDriverOrgDute',
@@ -373,23 +368,28 @@
     });
 
    	// 删除二次确认
-   	$(document).on('click', '.delete', function() {
-        window.parent.showModelBox('.all_warn_alert');
+    $(document).on('click', '.delete', function() {
+        
+        window.parent.warn_alert($(this).parent().parent().attr('data-id'), '是否确认要删除？');
 
-   	});
+    });
 
     // 删除
-    $(window.parent.document).on('click', '.all_sure', function() {
-        
-        delete_qi_jin(1, $('.delete'));
+    window.parent.$(".all_sure").click(function() {
+        delete_qi_jin(1, $(this).attr('data-this'));
 
     })
 
-   	function delete_qi_jin(type, _that) {
+    // $(document).on('click', '.delete', function() {
+        
+    //     delete_qi_jin(1, $(this).parent().parent().attr('data-id'));
+
+    // });
+
+   	function delete_qi_jin(type2, data_id) {
    		
-   		var data_id = _that.parent().parent().attr('data-id');
-   		console.log(type);
-   		console.log(data_id);
+   		// console.log(type);
+   		// console.log(data_id);
    		$.ajax({
             url: pubIP + 'tLtDriverOrgDute/updateSture',
             type: 'post',
@@ -399,15 +399,19 @@
             },
             data: {
                 id: data_id,
-                type: type
+                type: type2
             },
             dataType: 'json',
             success: function (json) {
                 console.log(json);
                 if (json.code == 1) {
-                	if (type == 1) {
-                		cf_alert(1, '删除成功！');
-                	}
+                	// if (type2 == 1) {
+                	// 	cf_alert(1, '删除成功！');
+                	// }
+                } else if (json.code == -1) {
+                    //cf_alert(2, '职务管理中正在占用此部门！');
+                     window.parent.$(".all_error_alert").show();
+                    window.parent.$(".all_error_alert .innerErrmsg").html('职务管理中正在占用此部门！');
                 }
 
             },

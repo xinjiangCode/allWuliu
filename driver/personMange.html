@@ -265,6 +265,7 @@
     	$(window.parent.document).find('.driver_type_select').attr('data-selectedindex', '-1');
     	$(window.parent.document).find('.zhiwu_select').attr('data-selectedindex', '-1');
     	$(window.parent.document).find('.zhiwu_select span').text('请选择');
+        $(window.parent.document).find('.zhiwu_select ul').html('');
     	$(window.parent.document).find('.suozai_car_select').attr('data-selectedindex', '-1');
     	$(window.parent.document).find('.suozai_car_select span').text('请选择');
     	$(window.parent.document).find('.person_name').val('');
@@ -277,21 +278,21 @@
     	$(window.parent.document).find('.person_money').val('');
     	$(window.parent.document).find('.person_baoxian_status').val('');
     	$(window.parent.document).find('#upload_hidden0').val('');
-    	$(window.parent.document).find('#upload_hidden0').parent({
-    		'background': 'url("")'
-    	});
+    	$(window.parent.document).find('#upload_hidden0').parent().css({
+            'background': 'url("")'
+        });
     	$(window.parent.document).find('#upload_hidden1').val('');
-    	$(window.parent.document).find('#upload_hidden1').parent({
-    		'background': 'url("")'
-    	});
+    	$(window.parent.document).find('#upload_hidden1').parent().css({
+            'background': 'url("")'
+        });
     	$(window.parent.document).find('#upload_hidden2').val('');
-    	$(window.parent.document).find('#upload_hidden2').parent({
-    		'background': 'url("")'
-    	});
+    	$(window.parent.document).find('#upload_hidden2').parent().css({
+            'background': 'url("")'
+        });
     	$(window.parent.document).find('#upload_hidden3').val('');
-    	$(window.parent.document).find('#upload_hidden3').parent({
-    		'background': 'url("")'
-    	});
+    	$(window.parent.document).find('#upload_hidden3').parent().css({
+            'background': 'url("")'
+        });
     	window.parent.showModelBox('.modelBox20');
     	window.parent.car_select();
     });
@@ -489,18 +490,29 @@
 
     });
 
-   	// 删除
-   	$(document).on('click', '.delete', function() {
+   	// // 删除
+   	// $(document).on('click', '.delete', function() {
    		
-   		delete_qi_jin(1, $(this));
+   	// 	delete_qi_jin(1, $(this));
 
-   	});
+   	// });
 
-   	function delete_qi_jin(type, _that) {
+    // 删除二次确认
+    $(document).on('click', '.delete', function() {
+        
+        window.parent.warn_alert($(this).parent().parent().attr('data-id'), '是否确认要删除？');
+
+    });
+
+    // 删除
+    $(window.parent.document).on('click', '.all_sure', function() {
+        
+        delete_qi_jin(1, $(this).attr('data-this'));
+
+    })
+
+   	function delete_qi_jin(type, data_id) {
    		
-   		var data_id = _that.parent().parent().attr('data-id');
-   		// console.log(type);
-   		// console.log(data_id);
    		$.ajax({
             url: pubIP + 'tLtDriver/updateDoStart',
             type: 'post',
@@ -519,6 +531,8 @@
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');
                 	}
+                } else if (json.code == -1) {
+                    cf_alert(2, '职务管理中正在占用此部门！');
                 }
 
             },
