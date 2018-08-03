@@ -380,7 +380,6 @@ $(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin
 // });
 // 伪alert弹框    //type  1成功   2失败    msg消息   （注：点击该alert框的关闭或者确认，所有弹框将会被关闭，并且刷新当前页面）
 function cf_alert(aa,msg) {
-    debugger
     if(aa==1){
         window.parent.$(".all_success_alert").show();
         window.parent.$(".all_success_alert .innerSuccmsg").text(msg);

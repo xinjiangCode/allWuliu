@@ -42,30 +42,52 @@
     		<div class="headLeft">添加成员</div>
     		<div class="headRight">
     			<img src="../img/yh_backHead.png"/>
-    			<span>返回</span>
+    			<span class="back_btn">返回</span>
     		</div>
     	</div>
     	<!--内容-->
     	<div class="boxContent">
     		
-    		
+    		<div class="ctnsItem">
+                <span><em>*</em>用户名：</span>
+                <input type="" name="" class="username" id="" value="" />
+            </div>
+
     		<div class="ctnsItem">
     			<span><em>*</em>成员手机号：</span>
-    			<input type="" name="" id="" value="" />
+    			<input type="" name="" class="user_phone" id="" value="" />
     		</div>
-    		<div class="ctnsItem">
-    			<span><em>*</em>成员姓名：</span>
-    			<input type="" name="" id="" value="" />
-    		</div>
-    		<div class="ctnsItem">
+    		
+    		<!-- <div class="ctnsItem">
     			<span><em>*</em>登录账号：</span>
     			<input type="" name="" id="" value="" />
-    		</div>
+    		</div> -->
+            <div class="ctnsItem">
+                <span><em>*</em>所属部门：</span>
+                <div class="select fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 262px; margin-left: 9px; margin-right: 0px; height: 40px; border: 1px solid #dbdbdc; float: left;">
+                    <span style='text-align: left;'>请选择</span>
+                    <img src="../img/prl-select.jpg" alt="">
+                    <ul class="suoshu_department_ul">
+                        <!-- <li data-index="1">10</li>
+                        <li data-index="2">20</li>
+                        <li data-index="3">30</li> -->
+                    </ul>
+                </div>
+            </div>
+
     		<div class="ctnsItem">
     			<span><em>*</em>所属角色：</span>
-    			<input placeholder="全部" type="" name="" id="" value="" />
+    			<div class="select fl suoshu_role" data-selectedindex="0" style="margin-top: 0px; width: 262px; margin-left: 9px; margin-right: 0px; height: 40px; border: 1px solid #dbdbdc; float: left;">
+                    <span style='text-align: left;'>请选择</span>
+                    <img src="../img/prl-select.jpg" alt="">
+                    <ul class="suoshu_role_ul">
+                        <!-- <li data-index="1">10</li>
+                        <li data-index="2">20</li>
+                        <li data-index="3">30</li> -->
+                    </ul>
+                </div>
     		</div>
-    		<div class="ctnsItem">
+    		<!-- <div class="ctnsItem">
     			<span><em>*</em>登录密码：</span>
     			<input type="" name="" id="" value="" />
     		</div>
@@ -85,10 +107,10 @@
     			<span>财务绑定手机验证码：</span>
     			<input id="getcode" type="" name="" id="" value="" />
     			<span id="codebtn">获取验证码</span>
-    		</div>
+    		</div> -->
     		<div class="ctnsItem">
     			<span>备注信息：</span>
-    			<textarea name="" rows="" cols="" placeholder="请输入内容"></textarea>
+    			<textarea name="" rows="" cols="" style="margin-left: 5px; width: 248px;" placeholder="请输入内容"></textarea>
     		</div>
     		
     		
@@ -111,7 +133,166 @@
         window.parent.$("#Iframe").css("height","914");
     })
 
+    //返回
+    $('.back_btn').click(function() {
+        window.location.href = "setUp_staffManage.html";
+    });
 
+
+
+    // 判断用户是否注册过账号
+    $('.username').change(function() {
+
+        var username = $(this).val();
+
+        $.ajax({
+            url: pubIP + 'tReceptionDepartmentPersion/getQueryPersion',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                username: username
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    $('.user_phone').val(json.data.mobile);
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+
+    //提交
+    $('.submitbtns').click(function() {
+
+        var username = $('.username').val();
+        var phone = $('.user_phone').val();
+        var suoshu_department = $('.suoshu_department span').text();
+        var suoshu_department_id = $('.suoshu_department').attr('data-selectedindex');
+
+        var suoshu_role = $('.suoshu_role span').text();
+        var suoshu_role_id = $('.suoshu_role').attr('data-selectedindex');
+
+        var beizhu = $('textarea').val();
+
+        $.ajax({
+            url: pubIP + 'tReceptionDepartmentPersion/addDepartmentPersion',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                username: username,
+                roleId: suoshu_role_id,
+                roleName: suoshu_role,
+                suoshu_department_id: departmentId,
+                departmentName: suoshu_department,
+                remark: beizhu,
+                tel: user_phone
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    cf_alert(1, '添加成功！');
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+
+
+    // 查询所属部门
+    // 
+    $.ajax({
+        url: pubIP + 'receptionDepartment/querySelectList',
+        type: 'get',
+        headers: {
+            Accept: "application/json; charset=utf-8",
+            token: token
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (json) {
+            console.log(json);
+            if (json.code == 1) {
+                if (json.data.length != 0) {
+                    var str = '';
+                    for (var i = 0; i < json.data.length; i++) {
+                        str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
+                    }
+
+                    $('.suoshu_department_ul').html(str);
+
+                    $('.select ul li').click(function(){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+
+                        select_role($(this).attr('data-departmentId'));
+                    });
+                }
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+
+    //查询所属角色
+    function select_role(role_id) {
+        $.ajax({
+            url: pubIP + 'tReceptionRole/getSelectRoleList',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                departmentId: role_id
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
+                        }
+
+                        $('.suoshu_role_ul').html(str);
+
+                        $('.select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+
+                        });
+                    }
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>
