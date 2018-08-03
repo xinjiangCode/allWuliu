@@ -15,16 +15,15 @@
     <div class="contbox">
         <div class="topTitle">车辆合同<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="合同单号">
-            <label for="">合同状态</label>
-            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
-                <ul>
-                    <li data-index="1">1</li>
-                    <li data-index="2">2</li>
-                    <li data-index="3">3</li>
-                    <li data-index="3">4</li>
-                </ul>
-            </div>
+            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="车牌号">
+            <!--<label for="">合同状态</label>-->
+            <!--<div class="hetongtype goodsType input select" data-selectedindex=""><span>全部</span><img src="../img/prl-select.jpg" >-->
+                <!--<ul>-->
+                    <!--<li data-index="">全部</li>-->
+                    <!--<li data-index="0">启用</li>-->
+                    <!--<li data-index="1">禁用</li>-->
+                <!--</ul>-->
+            <!--</div>-->
             <label for="">签订时间</label>
             <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
@@ -130,6 +129,8 @@
         $(function () {
             window.parent.$("#Iframe").css("height","977");
         })
+        sessionStorage.setItem("suerCarConWinHeihght",560);
+        sessionStorage.setItem("suerCarConWinWidth",845);
         //        时间初始化
         var startTime = '';
         var endTime = '';
@@ -196,9 +197,9 @@
                     size:pageSize,
                     page:currentPage,
                     companyId:companyId,
-                    //demandNo:$("input.orderNo.input").val(),
-                    startDate:$(".startDate").val(),
-                    goodsName:$("#goodsName").val()
+                    carNo:$("input.orderNo.input").val(),
+                    creatTime:$("#test1").val(),
+//                    type:$(".hetongtype").attr("data-selectedindex")
                 },
                 success: function (res) {
                     if(res.code===1){
@@ -307,7 +308,7 @@
                     dataType: 'json',
                     success: function (json) {
                         console.log(json);
-                        cf_alert(1,"删除成功!")
+                        cf_alert(1,"删除成功");
 //                        window.parent.$(".all_success_alert").show();
 //                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
 

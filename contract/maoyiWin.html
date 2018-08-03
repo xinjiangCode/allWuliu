@@ -17,23 +17,26 @@
 
 <!-- 新增订单 -->
 <div class="modelBox3" style="font-size: 14px;">
-    <div class="modelCont" style="width: 845px;height: 560px;">
+    <div class="modelCont" style="width: 653px;height: 465px;">
         <div class="modeltitle" style="width: 100%;">
             <span class="winTitle">新增订单</span>
-            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 745px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
+        <div class="modelcontent clearFloat" style="width: 553px;height: 400px;font-size: 14px;padding: 15px 50px 0 50px; ">
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix contractNo"><span class="modelBox34LeftTitle fl">合同编号：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
                 </div>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl " style="margin-left: 20px;">签订日期：&nbsp;</span>
+                    <input type="text" id="test1" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 170px;border: 1px solid #dbdbdc; ">
+                </div>
             </div>
             <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix receiveCompanyname"><span class="modelBox34LeftTitle fl">贸易公司：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix receiveCompanyname"><span class="modelBox34LeftTitle fl" >贸易公司：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl ">签订日期：&nbsp;</span>
-                    <input type="text" id="test1" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 170px;border: 1px solid #dbdbdc; ">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl " style="margin-left: 20px;">完成日期：&nbsp;</span>
+                    <input type="text" id="test2" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 170px;border: 1px solid #dbdbdc; ">
                 </div>
             </div>
             <div style="margin-top: 25px; margin-bottom: 20px;" class="clearfix">
@@ -43,7 +46,8 @@
                 <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_btn1" style="position: absolute;left: 0;opacity: 0;z-index: 99;"><span style="color: #6ea3ff;position: absolute;left: 0;width: 50px;display: block;z-index: 77;">上传</span></div>
                 <input type="hidden" value="" class="upload_div_hide2">
             </div>
-            <div class="clearFloat" style="text-align: center;margin-top: 32px;">
+            <div class="errMsg" style="margin: 5px auto;height: 20px;line-height: 20px;font-size: 14px;color: red;text-align: center;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 15px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
                 <span class=" cf_btn queding" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
             </div>
@@ -57,7 +61,11 @@
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script src="../laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
     <script>
-
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#suerCarConWin").css("width", sessionStorage.getItem("suerCarConWinWidth"));
+            window.parent.$("#suerCarConWin").css("height", sessionStorage.getItem("suerCarConWinHeihght"));
+        })
         // TODO 全局变量
 
         // 合同id
@@ -174,12 +182,10 @@
                     json.data.signDate = new Date(json.data.signDate).Format("yyyy-MM-dd");
                     json.data.endDate = new Date(json.data.endDate).Format("yyyy-MM-dd");
                     $('#test1').val(json.data.signDate);
-
+                    $('#test2').val(json.data.endDate);
                     $('.contractNo').find('input').val(json.data.contractNo);
                     $('.receiveCompanyname').find('input').val(json.data.receiveCompanyname);
-
-
-                    img_show("#upload_btn1",json.data1.address);
+                    img_show("#upload_btn1",json.data2.url);
 
                     //TODO 设置只读
                     if(contractMode == 'detail'){
@@ -223,16 +229,36 @@
 
 
         // TODO 确认提交
-        $(".queding").on("click",function(){
-
+        $(".queding").unbind();
+        $(".queding").click(function(){
 
             var contractNo = $('.contractNo').find('input').val();
             var receiveCompanyname = $('.receiveCompanyname').find('input').val();
-
             var signDate = $('#test1').val();
-
+            var endDate = $('#test2').val();
             var url = $(".upload_div_hide2").val();
 
+            if(contractNo==""){
+                $(".errMsg").text("合同编号不能为空")
+                return;
+            }
+            if(receiveCompanyname==""){
+                $(".errMsg").text("贸易公司不能为空")
+                return;
+            }
+            if(signDate==""){
+                $(".errMsg").text("请选择签订日期")
+                return;
+            }
+//            if(endDate==""){
+//                $(".errMsg").text("请选择完成日期")
+//                return;
+//            }
+            if(url==""){
+                $(".errMsg").text("请上传图片")
+                return;
+            }
+            $(".errMsg").text("")
 
             $.ajax({
                 url: modeUrl,
@@ -245,9 +271,9 @@
                     id: id,
                     type: 1,
                     receiveCompanyname: receiveCompanyname,
-
                     contractNo: contractNo,
                     signDate: signDate,
+                    endDate:endDate,
                     url: url
                 },
                 cache: false,
@@ -257,6 +283,15 @@
                     console.log(data);
                     window.parent.$(".all_success_alert").show();
                     window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
+                    //  刷新列表
+                    window.parent.$(".all_success_alert .modelbtn.confirm").unbind();
+                    window.parent.$(".all_success_alert .modelbtn.confirm").click(function () {
+                        window.parent.$('#Iframe').attr('src', './contract/setting-tradeContract.html');
+                    })
+                    window.parent.$(".all_success_alert img.close").unbind();
+                    window.parent.$(".all_success_alert img.close").click(function () {
+                        window.parent.$('#Iframe').attr('src', './contract/setting-tradeContract.html');
+                    })
                     clearWin();
                 },
                 error: function(err) {
