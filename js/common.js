@@ -1,7 +1,7 @@
 
 //var pubIP = 'http://192.168.1.64:7777/service/';
-var pubIP = 'http://192.168.1.207:7777/service/';
-// var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 // 上传图片路径

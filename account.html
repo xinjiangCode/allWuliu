@@ -2520,7 +2520,7 @@
 </div>
 
 <!-- 预付款  有价券详情 -->
-<div class="modelBox22" style="font-size: 14px; display: block" data-id="">
+<div class="modelBox22" style="font-size: 14px;" data-id="">
     <div class="modelCont" style="width: 600px;height: 490px;">
         <div class="modeltitle" style="width: 600px;">
             <span>有价券使用详情</span>
@@ -2528,15 +2528,9 @@
         </div>
         <div class="modelcontent clearFloat" style="width: 598px; height: 440px; border: 1px solid #ebe9ea;padding: 15px 0px 0 0px; ">
             <ul class="quanList clearFloat" style="height: 370px;overflow-y: auto;">
-                <li>
-                    <div>
-                        <span class="quanListtitle">asdasd</span>
-                        <span class="quanListvalue">asdasd</span>
-                    </div>
-                </li>
             </ul>
 
-            <div class="cf_btn addVehicleField close"  style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 20px;">返回</div>
+            <div class="cf_btn cfClose"  style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 20px;">返回</div>
         </div>
     </div>
 </div>
@@ -5129,35 +5123,34 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             }
         });
     }
+//    获取有价券列表
     function getQuanList() {
         $.ajax({
-            url: pubIP + 'address/listAreaByCityID', /*v1.0*/
+            url: pubIP + 'carrierFinance/getyufuDetils', /*v1.0*/
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
             },
             cache: false,
-            data: {cityID: cityID},
+            data: {id: $(".modelBox22").attr("data-id")},
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 var str = '';
                 for (var i = 0; i < data.data.length; i++) {
-                    str += '<li data-index="'+i+'" value="'+i+'" data-areaId="'+data.data[i].areaid+'" data-area="'+data.data[i].area+'">'+data.data[i].area+'</li>';
+                    str+='<li>';
+                    str+='<div>';
+                    str+='<span class="quanListtitle">'+data.data[i].coupon_name+'：'+'</span>';
+                    str+='<span class="quanListvalue">'+data.data[i].money+'</span>';
+                    str+='</div>';
+                    str+='</li>';
                 }
-
+                $(".modelBox22 .quanList").html(str);
             },
             error: function(err){
                 console.log(err);
             }
         });
-//    <li>
-//        <div>
-//        <span class="quanListtitle">asdasd</span>
-//            <span class="quanListvalue">asdasd</span>
-//            </div>
-//            </li>
     }
 </script>
 </body>
