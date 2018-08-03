@@ -17,19 +17,19 @@
 
 <!-- 新增订单 -->
 <div class="modelBox3" style="font-size: 14px;">
-    <div class="modelCont" style="width: 845px;height: 560px;">
+    <div class="modelCont" style="width: 680px;height: 560px;">
         <div class="modeltitle" style="width: 100%;">
             <span class="winTitle">新增订单</span>
-            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 745px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
+        <div class="modelcontent clearFloat" style="width: 580px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix contractNo"><span class="modelBox34LeftTitle fl">合同编号：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
+                    <input type="text" style="height: 36px;width: 474px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">部门：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 74px;text-align: right;">部门：&nbsp;</span>
                     <div class="select dept" data-selectedindex="-1" style="float: left;width: 190px; margin-top: 0px;">
                         <span style="display: inline-block;max-width: 190px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
                         <ul>
@@ -41,7 +41,7 @@
                         </ul>
                     </div>
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">职务：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 74px;text-align: right;margin-left: 20px;">职务：&nbsp;</span>
                     <div class="select org" data-selectedindex="-1" style="float: left;width: 190px; margin-top: 0px;">
                         <span style="display: inline-block;max-width: 190px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
                         <ul>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">员工：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 74px;text-align: right;">员工：&nbsp;</span>
                     <div class="select user" data-selectedindex="-1" style="float: left;width: 190px; margin-top: 0px;">
                         <span style="display: inline-block;max-width: 190px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
                         <ul>
@@ -67,8 +67,8 @@
                         </ul>
                     </div>
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix contractYears"><span class="modelBox34LeftTitle fl">合同年限：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix contractYears"><span class="modelBox34LeftTitle fl" style="margin-left: 20px;">合同年限：&nbsp;</span>
+                    <input type="text" maxlength="2" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;" id="hetong">
                 </div>
             </div>
             <div class="clearfix">
@@ -83,7 +83,8 @@
                 <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_btn1" style="position: absolute;left: 0;opacity: 0;z-index: 99;"><span style="color: #6ea3ff;position: absolute;left: 0;width: 50px;display: block;z-index: 77;">上传</span></div>
                 <input type="hidden" value="" class="upload_div_hide2">
             </div>
-            <div class="clearFloat" style="text-align: center;margin-top: 32px;">
+            <div class="errMsg" style="margin: 5px auto;height: 20px;line-height: 20px;font-size: 14px;color: red;text-align: center;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 15px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
                 <span class=" cf_btn queding" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
             </div>
@@ -97,7 +98,15 @@
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script src="../laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
     <script>
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#suerCarConWin").css("width", sessionStorage.getItem("suerCarConWinWidth"));
+            window.parent.$("#suerCarConWin").css("height", sessionStorage.getItem("suerCarConWinHeihght"));
+        })
 
+        $('#hetong').bind('input propertychange',function () {
+            $(this).val($(this).val().replace(/\D/g,''));
+        });
         // TODO 全局变量
 
         // 合同id
@@ -222,6 +231,10 @@
                     var str = '';
                     // str += '<li  data-index="" value="" data-id="">请选择</li>';
                     for (var i = 0; i < data.data.length; i++) {
+//                        if(i==0){
+//                            $('.dept span').text(data.data[i].ordName);
+//                            $('.dept').attr("data-selectedindex",data.data[i].id);
+//                        }
                         str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].ordName+'</li>';
                     }
                     $('.dept ul').html(str);
@@ -273,6 +286,10 @@
                     var str = '';
                     // str += '<li  data-index="" value="" data-id="">请选择</li>';
                     for (var i = 0; i < data.data.length; i++) {
+//                        if(i==0){
+//                            $('.org span').text(data.data[i].dutyName);
+//                            $('.org').attr("data-selectedindex",data.data[i].id);
+//                        }
                         str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].dutyName+'</li>';
                     }
                     $('.org ul').html(str);
@@ -323,6 +340,10 @@
                     var str = '';
                     // str += '<li  data-index="" value="" data-id="">请选择</li>';
                     for (var i = 0; i < data.data.length; i++) {
+//                        if(i==0){
+//                            $('.user span').text(data.data[i].userName);
+//                            $('.user').attr("data-selectedindex",data.data[i].id);
+//                        }
                         str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].userName+'</li>';
                     }
                     $('.user ul').html(str);
@@ -362,7 +383,6 @@
             if(!val && val != 0 ) return false;
 
             $(target+" ul li").each(function(ind,item){
-
                 if(val == $(item).attr("data-index")){
                     $(item).click();
                     $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
@@ -471,6 +491,36 @@
 
             var url = $(".upload_div_hide2").val();
 
+            if(contractNo==""){
+                $(".errMsg").text("车牌号不能为空")
+                return;
+            }
+            if(dept==-1){
+                $(".errMsg").text("请选择部门")
+                return;
+            }
+            if(org==-1){
+                $(".errMsg").text("请选择职务")
+                return;
+            }
+            if(user==-1){
+                $(".errMsg").text("请选择员工")
+                return;
+            }
+            if(contractYears==""){
+                $(".errMsg").text("合同年限不能为空")
+                return;
+            }
+            if(signDate==""){
+                $(".errMsg").text("签订日期不能为空")
+                return;
+            }
+            if(url==""){
+                $(".errMsg").text("请上传合同")
+                return;
+            }
+
+            $(".errMsg").text("")
 
             $.ajax({
                 url: modeUrl,
@@ -492,7 +542,7 @@
 
                     contractNo: contractNo,
                     years: contractYears,
-                    signDate: signDate,
+                    addTime: signDate,
                     url: url
                 },
                 cache: false,
@@ -502,12 +552,21 @@
                     console.log(data);
                     window.parent.$(".all_success_alert").show();
                     window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
+                    //  刷新列表
+                    window.parent.$(".all_success_alert .modelbtn.confirm").unbind();
+                    window.parent.$(".all_success_alert .modelbtn.confirm").click(function () {
+                        window.parent.$('#Iframe').attr('src', './contract/employeeContract.html');
+                    })
+                    window.parent.$(".all_success_alert img.close").unbind();
+                    window.parent.$(".all_success_alert img.close").click(function () {
+                        window.parent.$('#Iframe').attr('src', './contract/employeeContract.html');
+                    })
                     clearWin();
                 },
                 error: function(err) {
-                    window.parent.$(".all_error_alert").show();
-                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
-                    console.log(err);
+//                    window.parent.$(".all_error_alert").show();
+//                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+//                    console.log(err);
                 }
             })
 

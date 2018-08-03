@@ -17,12 +17,11 @@
         <div class="inputBox">
             <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="合同单号">
             <label for="">合同状态</label>
-            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+            <div class="goodsType input select" data-selectedindex=""><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul>
-                    <li data-index="1">1</li>
-                    <li data-index="2">2</li>
-                    <li data-index="3">3</li>
-                    <li data-index="3">4</li>
+                    <li data-index="">全部</li>
+                    <li data-index="1">正常</li>
+                    <li data-index="0">失效</li>
                 </ul>
             </div>
             <label for="">签订时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
@@ -129,6 +128,8 @@
         $(function () {
             window.parent.$("#Iframe").css("height","977");
         })
+        sessionStorage.setItem("suerCarConWinHeihght",560);
+        sessionStorage.setItem("suerCarConWinWidth",680);
         //        时间初始化
         var startTime = '';
         var endTime = '';
@@ -194,10 +195,11 @@
                 data:{
                     size:pageSize,
                     page:currentPage,
+                    num:$("input.orderNo.input").val(),
                     companyId:companyId,
-                    //demandNo:$("input.orderNo.input").val(),
-                    startDate:$(".startDate").val(),
-                    goodsName:$("#goodsName").val()
+                    //demandNo:
+                    addTime:$("#test1").val(),
+                    type:$(".goodsType").attr("data-selectedindex"),
                 },
                 success: function (res) {
                     if(res.code===1){
@@ -258,7 +260,11 @@
                 }else{
                     str+='<td>无</td>';
                 }
-
+                if(item.status=="0"){
+                    str+='<td>失效</td>';
+                }else{
+                    str+='<td>正常</td>';
+                }
                 str+='<td>' +
                     '<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>' +
                     '<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>' +
@@ -281,6 +287,7 @@
                 window.parent.$("#suerCarConWin").attr("src","contract/yuangongHetongWin.html");
 
             })
+            $(".updataRec").unbind();
             $(".updataRec").click(function () {
                 var id = $(this).attr('data-id');
                 sessionStorage.setItem("contractId",id);
@@ -289,10 +296,9 @@
                 window.parent.showModelBox('.modelBox18_01_ifrm');
                 window.parent.$("#suerCarConWin").attr("src","contract/yuangongHetongWin.html");
             })
-
+            $(".deleteRec").unbind();
             $(".deleteRec").click(function () {
                 var id = $(this).attr('data-id');
-                alert('删除'+id);
 
                 // 详情信息
                 $.ajax({
@@ -309,14 +315,15 @@
                     dataType: 'json',
                     success: function (json) {
                         console.log(json);
-                        window.parent.$(".all_success_alert").show();
-                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
+                        cf_alert(1,"删除成功");
+//                        window.parent.$(".all_success_alert").show();
+//                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
 
                     },
                     error: function(err) {
-                        console.log(err);
-                        window.parent.$(".all_error_alert").show();
-                        window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+//                        console.log(err);
+//                        window.parent.$(".all_error_alert").show();
+//                        window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
                     }
                 });
             })
