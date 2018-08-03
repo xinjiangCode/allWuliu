@@ -383,13 +383,12 @@
 
     // 删除
     window.parent.$('.all_sure').unbind();
-    // $(window.parent.document).on('click', '.all_sure', function() {
     window.parent.$('.all_sure').click(function() {
 
         del($(this).attr('data-this'));
 
     })
-    
+
     function del(data_id) {
         
    		$.ajax({
@@ -406,6 +405,8 @@
             success: function (json) {
                 if (json.code == 1) {
                 	cf_alert(1, '删除成功！');
+                } else if (json.code == -1) {
+                    cf_alert(2, json.msg);
                 }
 
             },
