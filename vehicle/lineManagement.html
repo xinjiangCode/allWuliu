@@ -192,12 +192,12 @@
             str+='<td>'+item.transportDistance+'</td>';
             str+='<td>'+item.expectedDuration+'</td>';
             str+='<td>'+item.num+'</td>';
-            if(item.status===0){
+            if(item.status==0){
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox" name="status" class="switch" checked="checked" /><label for="checked_'+idx+'"></label></td>';
             }else{
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox"  name="status" class="switch" /><label for="checked_'+idx+'"></label></td>';
             }
-            str+='<td data-id="'+item.id+'"><a class="seeDetail">线路详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>';
+            str+='<td data-id="'+item.id+'"><a class="seeDetail">线路详情</a><a class="lookover edit">编辑</a><a class="delect">删除</a></td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
@@ -206,6 +206,29 @@
             sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
             window.location.href="./lineDetails.html";
         })
+        //edit编辑
+        $(".edit").unbind();
+        $(".edit").click(function () {
+            reset();
+            window.parent.$(".modelBox13").show();
+            window.parent.$(".modelBox13").attr("data-id",$(this).parents('tr').attr("data-id"));
+            returnShow($(this).parents('tr').attr("data-id"));
+        })
+        //启用和禁用
+        $(".chooseswitch input[type='checkbox']").change(function() {
+            console.log($(this).prop("checked"));
+            if($(this).prop("checked")){
+                addDelUpdata(2,$(this).parents("tr").attr("data-id"));
+            }else {
+                addDelUpdata(3,$(this).parents("tr").attr("data-id"));
+            }
+        });
+        //删除
+        $(".delect").unbind();
+        $(".delect").click(function () {
+            addDelUpdata(1,$(this).parents("tr").attr("data-id"));
+        })
+
     }
     //选择排序方式
     $(".select ul li").click(function () {
@@ -217,11 +240,200 @@
         getData(currentPage);
     })
 //    modelBox13
-
+	//添加路线
+	window.parent.$("#addRoute").click(function () {
+        addRouter();
+	})
 	//新增线路
+    $("#addLine").unbind()
 	$("#addLine").click(function () {
+        reset();
+	    window.parent.getProvence(0);
+        window.parent.getProvence(1);
+        window.parent.$(".modelBox13").attr("data-id","");
 		window.parent.$(".modelBox13").show();
     })
+
+
+//回显
+	function returnShow(id) {
+        $.ajax({
+            url: pubIP + 'tLogisticsVehicleRoute/selectByRouteId', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                companyId:"9041805231046330013",
+                id:id
+            },
+            success: function (res) {
+                if(res.code==1){
+                    window.parent.$("#routeName").val(res.data.routeName)
+                    window.parent.$("#toCarPrice").val(res.data.toCarPrice)
+                    window.parent.$("#loss").val(res.data.loss)
+                    window.parent.$("#lossPrice").val(res.data.lossPrice)
+                    window.parent.$("#expectedDuration").val(res.data.expectedDuration)
+                    window.parent.$("#transportDistance").val(res.data.transportDistance)
+					window.parent.$("#province").attr("data-isselect",res.data.sendProvinceid);
+                    window.parent.$("#city").attr("data-isselect",res.data.sendCityid);
+                    window.parent.$("#area").attr("data-isselect",res.data.sendAreaid);
+                    window.parent.$("#province1").attr("data-isselect",res.data.receiveProvinceid);
+                    window.parent.$("#city1").attr("data-isselect",res.data.receiveCityid);
+                    window.parent.$("#area1").attr("data-isselect",res.data.receiveAreaid);
+                    window.parent.$("#receiveAddress1").val(res.data.receiveAddress),   //	是	String(200)	收货详细地址
+					  window.parent.$("#sendAddress1").val(res.data.sendAddress),   //	是	String(200)	发货详细地址
+                    window.parent.getProvence(0);
+                    window.parent.getProvence(1);
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+//    添加线路方法
+    function addRouter() {
+        if(window.parent.$("#sendAddress1").val()==""){
+            window.parent.$("#ErrorMsg").text("发货地详细地址不能为空")
+			return;
+        }
+        if(window.parent.$("#receiveAddress1").val()==""){
+            window.parent.$("#ErrorMsg").text("收货地详细地址不能为空")
+            return;
+		}
+        if(window.parent.$("#toCarPrice").val()==""){
+            window.parent.$("#ErrorMsg").text("给车价不能为空")
+            return;
+        }
+        if(window.parent.$("#loss").val()==""){
+            window.parent.$("#ErrorMsg").text("扣损率不能为空")
+            return;
+        }
+        if(window.parent.$("#lossPrice").val()==""){
+            window.parent.$("#ErrorMsg").text("扣损单价不能为空")
+            return;
+        }
+        if(window.parent.$("#transportDistance").val()==""){
+            window.parent.$("#ErrorMsg").text("运距不能为空")
+            return;
+        }
+        if(window.parent.$("#transportDistance").val()==""){
+            window.parent.$("#ErrorMsg").text("运送时长不能为空")
+            return;
+        }
+        if(window.parent.$("#routeName").val()==""){
+            window.parent.$("#ErrorMsg").text("路线名不能为空")
+            return;
+        }
+        window.parent.$("#ErrorMsg").text("")
+        $.ajax({
+            url: pubIP + 'tLogisticsVehicleRoute/updateVehicleRoute', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                companyId:"9041805231046330013",
+                id:window.parent.$(".modelBox13").attr("data-id"),
+                routeName:window.parent.$("#routeName").val(),
+                toCarPrice:window.parent.$("#toCarPrice").val(),
+                loss:window.parent.$("#loss").val(),
+                lossPrice:window.parent.$("#lossPrice").val(),
+                expectedDuration:window.parent.$("#expectedDuration").val(),
+                transportDistance:window.parent.$("#transportDistance").val(),
+                sendProvince:window.parent.$("#province span").text(),  //	是	String(50)	发货省份
+                sendProvinceid:window.parent.$("#province").attr("data-proviceid"),  //	是	String(50)	发货省份Id
+                sendCity:window.parent.$("#city span").text(),  //	是	String(50)	发货城市
+                sendCityid:window.parent.$("#city").attr("data-cityid"),  //	是	String(50)	发货城市Id
+                sendArea:window.parent.$("#area span").text(),  //	是	String(50)	发货区镇
+                sendAreaid:window.parent.$("#area").attr("data-areaid"),  //	是	String(50)	发货区镇Id
+                sendAddress: window.parent.$("#sendAddress1").val(),   //	是	String(200)	发货详细地址
+                receiveProvince:window.parent.$("#province1 span").text(),  //	是	String(50)	收货省份
+                receiveProvinceid:window.parent.$("#province1").attr("data-proviceid"),  //	是	String(50)	收货省份Id
+                receiveCity: window.parent.$("#city1 span").text(), //	是	String(50)	收货城市
+                receiveCityid:window.parent.$("#city1").attr("data-cityid"),   //	是	String(50)	收货城市Id
+                receiveArea:window.parent.$("#area1 span").text(),  //	是	String(50)	收货区镇
+                receiveAreaid:window.parent.$("#area1").attr("data-areaid"),  //	是	String(50)	收货区镇Id
+                receiveAddress:window.parent.$("#receiveAddress1").val(),   //	是	String(200)	收货详细地址
+            },
+            success: function (res) {
+                if(res.code==1){
+                    if(window.parent.$(".modelBox13").attr("data-id")==""){
+                        cf_alert(1,"添加成功")
+					}else{
+                        cf_alert(1,"编辑成功")
+					}
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+//    reset
+	function reset() {
+        window.parent.$("#routeName").val("")
+        window.parent.$("#toCarPrice").val("")
+        window.parent.$("#loss").val("")
+        window.parent.$("#lossPrice").val("")
+        window.parent.$("#expectedDuration").val("")
+        window.parent.$("#transportDistance").val("")
+        window.parent.$("#province").attr("data-isselect","0");
+        window.parent.$("#city").attr("data-isselect","0");
+        window.parent.$("#area").attr("data-isselect","0");
+        window.parent.$("#province1").attr("data-isselect","0");
+        window.parent.$("#city1").attr("data-isselect","0");
+        window.parent.$("#area1").attr("data-isselect","0");
+        window.parent.$("#receiveAddress1").val("")   //	是	String(200)	收货详细地址
+        window.parent.$("#sendAddress1").val("")  //	是	String(200)	发货详细地址
+    }
+    //    修改状态
+    function addDelUpdata(type,id) {
+        $.ajax({
+            url: pubIP + 'wLtLogisticsVehicleAttribute/updateStart', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                id:id,
+                type:type
+			},
+            success: function (res) {
+                if(res.code===1){
+                    if(type==2){
+                        cf_alert(1,"启用成功");
+                    }else if(type==3){
+                        cf_alert(1,"禁用成功");
+                    }else if(type==1){
+                        cf_alert(1,"删除成功");
+					}
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>
