@@ -247,17 +247,6 @@
                     }
                     //修改底部页数
                     $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
-                    // <tr>
-                    //     <td><div class="cf_select"></div></td>
-                    //     <td>3001804091631062137</td>
-                    //     <td>化动力有限公司</td>
-                    //     <td>￥200.00</td>
-                    //     <td>￥200.00</td>
-                    //     <td>￥200.00</td>
-                    //     <td></td>
-                    //     <td><span class="btn ll">审核</span><span class="btn ll seeDetail">查看详情</span></td>
-                    // </tr>
-                        
                     var str = ''
                     $.each(data,function(idx,item){
                         str += '<tr>'
@@ -267,12 +256,12 @@
                         str += '<td>'+item.returnMoney+'</td>'
                         str += '<td>'+item.otherMoney+'</td>'
                         str += '<td>'+item.remarks+'</td>'
-                        str += '<td><span class="btn ll shenhe">审核</span><a class="btn ll"  href="orderJieSuanDetail.html">查看详情</a></td>'
+                        str += '<td><span class="btn ll dakuan">打款</span><a class="btn ll"  href="orderJieSuanDetail.html">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
                      //shenpi_alert
-                     $(".shenhe").on("click",function(){
+                     $(".dakuan").on("click",function(){
                         shenhe_alert_show();
                     })
                 },
@@ -282,7 +271,7 @@
             });
         }
         function shenhe_alert_show(){
-            window.parent.$(".shenpi_alert").show();
+            window.parent.$(".dakuan_alert").show();
         }
     </script>
 </body>

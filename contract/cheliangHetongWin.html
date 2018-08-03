@@ -20,24 +20,24 @@
     <div class="modelCont" style="width: 845px;height: 560px;">
         <div class="modeltitle" style="width: 100%;">
             <span class="winTitle">新增订单</span>
-            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
         </div>
         <div class="modelcontent clearFloat" style="width: 745px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix contractNo"><span class="modelBox34LeftTitle fl">合同编号：&nbsp;</span>
-                    <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
+                    <input type="text" style="height: 36px;width: 203px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">车辆类型：&nbsp;</span>
-                    <div class="select ty" data-selectedindex="-1" style="float: left;width: 80px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
+                    <div class="select ty" data-selectedindex="0" style="float: left;width: 100px; margin-top: 0px;">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">内部</span><img src="../img/prl-select.jpg" alt="">
                         <ul>
                             <li data-index="0">内部</li>
                             <li data-index="1">外部</li>
                         </ul>
                     </div>
-                    <div class="select carType" data-selectedindex="-1" style="float: left;width: 80px; margin-top: 0px;">
+                    <div class="select carType" data-selectedindex="-1" style="float: left;width: 100px; margin-top: 0px;">
                         <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="../img/prl-select.jpg" alt="">
                         <ul>
                             <!--<li data-index="槽车">槽车</li>-->
@@ -48,15 +48,15 @@
                         </ul>
                     </div>
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix carNo"><span class="modelBox34LeftTitle fl">车牌号：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix carNo"><span class="modelBox34LeftTitle fl" style="margin-left: 175px;">车牌号：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl ">签订日期：&nbsp;</span>
-                    <input type="text" id="test1" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 170px;border: 1px solid #dbdbdc; ">
+                    <input type="text" id="test1" class="date-input laydate-icon publishTime input xx_fhsj all_input" placeholder="请选择日期" style="height: 36px;width: 182px;border: 1px solid #dbdbdc; ">
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix contractYears"><span class="modelBox34LeftTitle fl">合同年限：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl ml100 clearfix contractYears"><span class="modelBox34LeftTitle fl" style="margin-left: 165px;">合同年限：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
@@ -67,6 +67,7 @@
                 <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_btn1" style="position: absolute;left: 0;opacity: 0;z-index: 99;"><span style="color: #6ea3ff;position: absolute;left: 0;width: 50px;display: block;z-index: 77;">上传</span></div>
                 <input type="hidden" value="" class="upload_div_hide2">
             </div>
+            <div class="errMsg" style="margin: 5px auto;height: 20px;line-height: 20px;font-size: 14px;color: red;text-align: center;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 32px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
                 <span class=" cf_btn queding" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
@@ -81,7 +82,11 @@
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script src="../laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
     <script>
-
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#suerCarConWin").css("width", sessionStorage.getItem("suerCarConWinWidth"));
+            window.parent.$("#suerCarConWin").css("height", sessionStorage.getItem("suerCarConWinHeihght"));
+        })
         // TODO 全局变量
 
         // 合同id
@@ -192,11 +197,13 @@
                     var str = '';
                     // str += '<li  data-index="" value="" data-id="">请选择</li>';
                     for (var i = 0; i < data.data.length; i++) {
+                        if(i==0){
+                            $(".carType").attr("data-selectedindex",data.data[i].id);
+                            $(".carType span").text(data.data[i].typeName)
+                        }
                         str += '<li  data-index="'+data.data[i].id+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
                     }
                     $('.carType ul').html(str);
-
-
                     // TODO
                     // 动态加载事件
                     $('.carType ul li').click(function(){
@@ -328,6 +335,27 @@
 
             var url = $(".upload_div_hide2").val();
 
+            if(contractNo==""){
+                $(".errMsg").text("合同编号不能为空")
+                return;
+            }
+            if(carNo==""){
+                $(".errMsg").text("车牌号不能为空")
+                return;
+            }
+            if(signDate==""){
+                $(".errMsg").text("签订日期不能为空")
+                return;
+            }
+            if(contractYears==""){
+                $(".errMsg").text("合同年限不能为空")
+                return;
+            }
+            if(url==""){
+                $(".errMsg").text("请上传合同")
+                return;
+            }
+           $(".errMsg").text("")
 
             $.ajax({
                 url: modeUrl,
@@ -349,16 +377,23 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log("++++++++++++------------------+++++++++++++++");
-                    console.log(data);
                     window.parent.$(".all_success_alert").show();
                     window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
+                    //  刷新列表
+                    window.parent.$(".all_success_alert .modelbtn.confirm").unbind();
+                    window.parent.$(".all_success_alert .modelbtn.confirm").click(function () {
+                        window.parent.$('#Iframe').attr('src', './contract/vehicleContract.html');
+                    })
+                    window.parent.$(".all_success_alert img.close").unbind();
+                    window.parent.$(".all_success_alert img.close").click(function () {
+                        window.parent.$('#Iframe').attr('src', './contract/vehicleContract.html');
+                    })
                     clearWin();
                 },
                 error: function(err) {
-                    window.parent.$(".all_error_alert").show();
-                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
-                    console.log(err);
+//                    window.parent.$(".all_error_alert").show();
+//                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+//                    console.log(err);
                 }
             })
 

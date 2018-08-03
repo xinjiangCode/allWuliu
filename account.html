@@ -577,7 +577,7 @@
             height: 130px;
             border: 1px solid #dbdbdb;
             margin-left: 38px;
-            margin-top: 20px;
+            /* margin-top: 20px; */
             margin-bottom: 10px;
         }
 
@@ -593,6 +593,9 @@
             margin-left: 65px;
         }
         .modelBox13 .selectPub{width: 100px;margin-top: 0;}
+        .selectPub span{
+            max-width: 70%;display: inline-block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -2283,7 +2286,7 @@
 
 <!-- 车辆-合同- 新 增 详情 -->
 <div class="modelBox18_01_ifrm">
-    <iframe id="suerCarConWin" src="##" frameborder="0" style="width: 1070px;height: 625px;"></iframe>
+    <iframe id="suerCarConWin" src="##" frameborder="0" style=""></iframe>
 </div>
 
 
@@ -2980,7 +2983,7 @@
 <div class="jiesuan_alert">
     <div class="modelCont" style="width: 550px;height: 370px;background: white;">
         <div class="modeltitle" style="width: 550px;">
-            <span>工资结算</span>
+            <span class="jstitle">工资结算</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
         </div> 
         <div class="jiesuan_main">
@@ -3009,12 +3012,13 @@
 
 <!-- 财务管理-结算列表-审批 -->
 <div class="shenpi_alert">
-    <div class="modelCont" style="width: 550px;height: 550px;background: white;">
+    <div class="modelCont" style="width: 550px;height: 600px;background: white;">
         <div class="modeltitle" style="width: 550px;">
             <span>审批</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
         </div> 
         <div class="shenpi_main">
+            <div class="allfpmoney" style="font-size: 16px;color: #666;width: 470px;margin: 0 auto;line-height: 60px;">本次上传发票总金额：<input style="width: 160px;height: 36px;outline: none;border: 1px solid #dbdbdc;" type="text" placeholder="请输入金额"></div>
             <div class="clearfix">
                 <div class="fl">
                     <div class="upload_div upload_1">
@@ -3023,7 +3027,7 @@
                     <div class="parent_div">
                     上传发票1
                         <input type="file" id="fapiao_input1">  
-                        <input type="hidden" id="fapiao_hidden1">
+                        <input type="hidden" id="fapiao_hidden1" class="fapiao_inp">
                     </div>
                 </div>
                 <div class="fl">
@@ -3033,7 +3037,7 @@
                     <div class="parent_div">
                     上传发票2
                         <input type="file" id="fapiao_input2">  
-                        <input type="hidden" id="fapiao_hidden2">
+                        <input type="hidden" id="fapiao_hidden2" class="fapiao_inp">
                     </div>
                 </div>
                 <div class="fl">
@@ -3043,28 +3047,28 @@
                     <div class="parent_div">
                     上传发票3
                         <input type="file" id="fapiao_input3">  
-                        <input type="hidden" id="fapiao_hidden3">
+                        <input type="hidden" id="fapiao_hidden3" class="fapiao_inp">
                     </div>
                 </div>
             </div>
             <div class="clearfix" style="padding: 0 38px; margin-top: 20px;">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;">纳税识别号：&nbsp;</span>
-                    <input type="text" class="person_baoxian_status" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;font-size: 16px;">纳税识别号：&nbsp;</span>
+                    <input type="text" class="person_baoxian_status lssbh" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix" style="padding: 0 38px">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;">企业银行账户：&nbsp;</span>
-                    <input type="text" class="person_baoxian_status" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;font-size: 16px;">企业银行账户：&nbsp;</span>
+                    <input type="text" class="person_baoxian_status qyyhzh" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearfix" style="padding: 0 38px">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;">企业开户银行：&nbsp;</span>
-                    <input type="text" class="person_baoxian_status" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl" style="width: 120px; text-align: right;font-size: 16px;">企业开户银行：&nbsp;</span>
+                    <input type="text" class="person_baoxian_status qykhyh" style="height: 36px;width: 197px;border: 1px solid #dbdbdc;">
                 </div>
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 50px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn model20_ok_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认上传</span>
+                <span class=" cf_btn model20_ok_btn qrsc_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认上传</span>
             </div>
         </div>
     </div>
@@ -3545,7 +3549,7 @@
         }else if(idx==".cfidx11"){//设置
             sessionStorage.setItem("cfsrc","./setUp/setUp_departmentManage.html");
         }else if(idx==".cfidx12"){//合同
-            sessionStorage.setItem("cfsrc","./contract/vehicleContract.html");
+            sessionStorage.setItem("cfsrc","./contract/employeeContract.html");
         }else if(idx==".cfidx13"){//危化品
             sessionStorage.setItem("cfsrc","weihua");
         }
