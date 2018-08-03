@@ -20,7 +20,7 @@
     <div class="modelCont" style="width: 845px;height: 560px;">
         <div class="modeltitle" style="width: 100%;">
             <span class="winTitle">新增订单</span>
-            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
         </div>
         <div class="modelcontent clearFloat" style="width: 745px;height: 495px;font-size: 14px;padding: 15px 50px 0 50px; ">
             <div class="clearfix">
@@ -349,16 +349,19 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log("++++++++++++------------------+++++++++++++++");
-                    console.log(data);
-                    window.parent.$(".all_success_alert").show();
-                    window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
+//                    cf_alert(1,contractTitle + "成功!")
+
+                    window.parent.showModelBox('.modelBox18_01_ifrm');
+                    window.parent.$("#suerCarConWin").attr("src","contract/cheliangHetongWin.html");
+                  //  window.parent.$('#Iframe').attr('src', './contract/vehicleContract.html');
+//                    window.parent.$(".all_success_alert").show();
+//                    window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
                     clearWin();
                 },
                 error: function(err) {
-                    window.parent.$(".all_error_alert").show();
-                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
-                    console.log(err);
+//                    window.parent.$(".all_error_alert").show();
+//                    window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+//                    console.log(err);
                 }
             })
 

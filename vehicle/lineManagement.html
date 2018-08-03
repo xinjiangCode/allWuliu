@@ -197,7 +197,7 @@
             }else{
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox"  name="status" class="switch" /><label for="checked_'+idx+'"></label></td>';
             }
-            str+='<td data-id="'+item.id+'"><a class="seeDetail">线路详情</a><a class="lookover edit">编辑</a><a class="delect">删除</a></td>';
+            str+='<td data-id="'+item.id+'"><a href="javaScript:;" class="seeDetail">线路详情</a><a href="javaScript:;" class="lookover edit">编辑</a><a href="javaScript:;" class="delect">删除</a></td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
@@ -241,6 +241,7 @@
     })
 //    modelBox13
 	//添加路线
+    window.parent.$("#addRoute").unbind();
 	window.parent.$("#addRoute").click(function () {
         addRouter();
 	})
@@ -403,7 +404,7 @@
     //    修改状态
     function addDelUpdata(type,id) {
         $.ajax({
-            url: pubIP + 'wLtLogisticsVehicleAttribute/updateStart', /*v1.0*/
+            url: pubIP + 'tLogisticsVehicleRoute/updateRoutDoStorp', /*v1.0*/
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
