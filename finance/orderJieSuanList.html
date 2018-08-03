@@ -172,17 +172,6 @@
                     }
                     //修改底部页数
                     $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
-                    // <tr>
-                    //     <td><div class="cf_select"></div></td>
-                    //     <td>3001804091631062137</td>
-                    //     <td>化动力有限公司</td>
-                    //     <td>￥200.00</td>
-                    //     <td>￥200.00</td>
-                    //     <td>￥200.00</td>
-                    //     <td></td>
-                    //     <td><span class="btn ll">审核</span><span class="btn ll seeDetail">查看详情</span></td>
-                    // </tr>
-                        
                     var str = ''
                     $.each(data,function(idx,item){
                         str += '<tr>'
@@ -192,13 +181,13 @@
                         str += '<td>'+item.returnMoney+'</td>'
                         str += '<td>'+item.otherMoney+'</td>'
                         str += '<td>'+item.remarks+'</td>'
-                        str += '<td><span class="btn ll shenhe">审核</span><a href="orderJieSuanDetail.html" class="btn ll">查看详情</a></td>'
+                        str += '<td><span class="btn ll shenhe" id="'+item.carrierCompanyId+'">审核</span><a href="orderJieSuanDetail.html" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
                     //shenpi_alert
                     $(".shenhe").on("click",function(){
-                        shenhe_alert_show();
+                        shenhe_alert_show($(this).attr("id"));
                     })
 
                 },
@@ -207,8 +196,32 @@
                 }
             });
         }
-        function shenhe_alert_show(){
+        function shenhe_alert_show(obj){
             window.parent.$(".shenpi_alert").show();
+            window.parent.$(".lssbh").val('');
+            window.parent.$(".qyyhzh").val('');
+            window.parent.$(".qykhyh").val('');
+            $.ajax({
+                url: pubIP + 'carrierFinance/getSupplierCompanyInfo',
+                type: 'POST',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    supplierCompanyId: obj,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    // console.log("+++++++++++++++++++++++++++++");
+                    // console.log(json);
+                    cf_alert(1,"结算成功");
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
         }
     </script>
 </body>
