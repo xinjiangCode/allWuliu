@@ -187,7 +187,7 @@
                         str += '<td>'+item.taxAmount+'</td>'
                         str += '<td>'+item.noTaxAmount+'</td>'
                         str += '<td>'+item.car_num+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.bc_money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.bc_money+'">发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
@@ -208,8 +208,9 @@
             window.parent.$(".jiesuan_alert").show();
             window.parent.$(".djs_money").html(obj1);
             window.parent.$(".djs_money").prev().html("待结算金额");
+            window.parent.$(".jstitle").html("结算");
             window.parent.$(".by_money").html(obj2);
-            window.parent.$(".by_money").prev().html("本次工资");
+            window.parent.$(".by_money").prev().html("本次结算");
             window.parent.$(".sjff_inp").val('');
             window.parent.$("#xuan_type1").prop("checked",true);
             window.parent.$(".js_btn").on("click",function(){
