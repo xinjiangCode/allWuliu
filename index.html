@@ -690,8 +690,11 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
         console.log(company_type);
         if (company_type == '1') { //供应商
             $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
-        } else if (company_type == '2' || company_type == '-1') {
+        } else if (company_type == '2') {
             $('.goUser').attr('href', 'account.html');
+        } else if (company_type == '-1') {
+            $('.goUser').attr('href', 'account.html');
+            window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
         }
 
     });

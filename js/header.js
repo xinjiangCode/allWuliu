@@ -96,6 +96,7 @@ $(function () {
         $('.goUser').attr('href', 'account.html');
     } else if (company_type == '-1') {
         $('.goUser').attr('href', 'account.html');
+        window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
     }
 })
 
