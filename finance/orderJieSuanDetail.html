@@ -66,15 +66,15 @@
 <body>
 <div class="contbox-prld">
     <div class="toptitle title">
-        <span>结算列表</span>
-        <div class="fr closeBtn" style="margin-right: 7px;"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div>
+        <span>结算详情</span>
+        <!-- <div class="fr closeBtn" style="margin-right: 7px;"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div> -->
         <div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>
     </div>
 
     <div class="requireInfo infoBox">
         <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">订单信息</div>
-        <div class="contBox">
-            <div class="contlist contlistone">
+        <div class="contBox" id="contlistone">
+            <!-- <div class="contlist contlistone">
                 <div class="left ll">
                     <div>订单编号：<span>201707196369321</span></div>
                     <div>发布时间：<span>2015-09-08 23:00</span></div>
@@ -101,7 +101,7 @@
                     <div>车辆类型：<span>罐装车</span></div>
                     <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span>备注信息</span></div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -136,54 +136,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>新B WER123</td>
-                    <td>陈淮三</td>
-                    <td>¥1200.00</td>
-                    <td>¥1200.00</td>
-                    <td>1000</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>新B WER123</td>
-                    <td>陈淮三</td>
-                    <td>¥1200.00</td>
-                    <td>¥1200.00</td>
-                    <td>1000</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                
                 </tbody>
             </table>
         </div>
@@ -192,11 +145,77 @@
 </div>
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/template.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/html" id="contlistoneTpl">
+    <div class="contlist contlistone">
+        <div class="left ll" style="width:50%;white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">
+            <div style="width:100%;white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">订单编号：<span><%=orderNo%></span></div>
+            <div>发布时间：<span><%=tloCreateTime%></span></div>
+        </div>
+        <div class="left rr">
+            <div class="desti">始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span class="destination" title="<%=sendProvince%><%=sendCity%><%=sendArea%><%=sendAddress%>"><%=sendProvince%><%=sendCity%><%=sendArea%><%=sendAddress%></span></div>
+            <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span class="destination" title="<%=receiveProvince%><%=receiveCity%><%=receiveArea%><%=receiveAddress%>"><%=receiveProvince%><%=receiveCity%><%=receiveArea%><%=receiveAddress%></span></div>
+        </div>
+    </div>
+    <div class="contlist contlisttwo">
+        <div class="left ll">
+            <div>装车时间：<span><%=startDate%></span></div>
+            <div>货物类型：<span><%=goodsType%></span></div>
+            <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span><%=goodsNum%><%=goodsUnit%></span></div>
+            <div>支付方式：<%=paymentType%></div>
+        </div>
+        <div class="left mm">
+            <div>包装类型：<span><%=packageType%></span></div>
+            <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span><%=invoiceType%></span></div>
+            <!-- <div>结算方式：<span>现汇</span></div> -->
+        </div>
+        <div class="left rr">
+            <div>货物名称：<span><%=goodsName%></span></div>
+            <div>车辆类型：<span><%=carType%></span></div>
+            <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span title="<%=goodsRemark%>"><%=goodsRemark%></span></div>
+        </div>
+    </div>
+</script>
 <script>
     //Iframe 的高度
     $(function () {
         window.parent.$("#Iframe").css("height","1025");
     })
+    //详情
+    //获取地址栏参数的方法:		//name:参数名称
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var thisId = getQueryString("orderId");
+    ffdetail(thisId);
+    function ffdetail(id){
+        $.ajax({
+            url: pubIP + 'carrierFinance/getorderDetils',
+            type: 'POST',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                tloid: id,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log("+++++++++++++++++++++++++++++");
+                console.log(data);
+               
+               var result = template('contlistoneTpl', data.data);
+               $('#contlistone').html(result);
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>

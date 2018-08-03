@@ -67,7 +67,9 @@ body{
 
 }
 .contBox span{
+    display: inline-block;
     color: #666666;
+    
 }
 .title>img{
     float: left;
@@ -103,15 +105,30 @@ body{
     float: right;
     display: inline-block;
     width: 347px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .contlisttwo .ll{
     width: 327px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .contlisttwo .mm{
     width: 320px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .contlisttwo .rr{
     width: 285px;
+}
+.contlisttwo .ll div,.contlisttwo .mm div,.contlisttwo .rr div{
+    width: 285px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 /* dangerIntroduce */
 .dangerIntroduce .title>div{
