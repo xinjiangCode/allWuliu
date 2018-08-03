@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">员工合同<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">车辆合同<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
         <div class="inputBox">
             <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="合同单号">
             <label for="">合同状态</label>
@@ -292,8 +292,6 @@
 
             $(".deleteRec").click(function () {
                 var id = $(this).attr('data-id');
-                alert('删除'+id);
-
                 // 详情信息
                 $.ajax({
                     url: deleteUrl,
@@ -309,14 +307,15 @@
                     dataType: 'json',
                     success: function (json) {
                         console.log(json);
-                        window.parent.$(".all_success_alert").show();
-                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
+                        cf_alert(1,"删除成功!")
+//                        window.parent.$(".all_success_alert").show();
+//                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
 
                     },
                     error: function(err) {
-                        console.log(err);
-                        window.parent.$(".all_error_alert").show();
-                        window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+//                        console.log(err);
+//                        window.parent.$(".all_error_alert").show();
+//                        window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
                     }
                 });
             })
