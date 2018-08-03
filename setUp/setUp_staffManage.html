@@ -52,7 +52,7 @@
     		<!--<div class="filter2"><input type="checkbox" name="" id="" value="" />收起筛选</div>-->
     	<!--</div>-->
     	<div class="messages">
-    		<div class="mesgfirst clearfix"><span class="fl" style="margin-left: 20px; margin-right: 6px;">输入搜索</span><input type="text" class="search_input" placeholder="订单编号/商品货号"></div>
+    		<div class="mesgfirst clearfix"><span class="fl" style="margin-left: 20px; margin-right: 6px;">输入搜索</span><input type="text" class="search_input" placeholder="用户名/账号"></div>
 			<div>
 				<label for="" style="margin-right: 5px;font-size: 14px;">所属部门</label>
 				<div class="goodsType input select" data-selectedindex="0" style="height: 38px;"><span style="margin: 0;padding: 0;">全部</span><img src="../img/prl-select.jpg" >
@@ -165,6 +165,9 @@
     //Iframe 的高度
     $(function () {
         window.parent.$("#Iframe").css("height","932");
+
+        window.sessionStorage.setItem('person_id', '');
+
     })
     $('.objListBox>div:nth-child(5n)').css('margin-right','0');
     // Page({
@@ -287,7 +290,7 @@
 										+'<label for="checked_'+i+'"></label>'
 									}
 								str += '</td>'
-								+'<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;">删除</a></td>'
+								+'<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
 							+'</tr>';
 
                         }
@@ -299,15 +302,15 @@
 
 
                         //启用和禁用
-						// $(".chooseswitch input[type='checkbox']").change(function() {
-						//     console.log($(this).prop("checked"));
+						$(".chooseswitch input[type='checkbox']").change(function() {
+						    console.log($(this).prop("checked"));
 						    
-						//     if($(this).prop("checked")){
-						//         status_apartment($(this).parent().parent().attr('data-id'), 0);
-						//     }else {
-						//         status_apartment($(this).parent().parent().attr('data-id'), 1);
-						//     }
-						// });
+						    if($(this).prop("checked")){
+						        status_staff($(this).parent().parent().attr('data-id'), 0);
+						    }else {
+						        status_staff($(this).parent().parent().attr('data-id'), 1);
+						    }
+						});
 
                        //  totalPage = json.count%size == 0 ? totalPage : (totalPage + 1);
                        // console.log(totalPage);
@@ -363,6 +366,81 @@
         });
     }
 
+    // 编辑
+    $(document).on('click', '.edits', function() {
+        window.sessionStorage.setItem('person_id', $(this).parent().parent().attr('data-id'));
+        window.location.href = "setUp_addpersonnel.html";
+    });
+
+
+
+    function status_staff(data_id, status) {
+        $.ajax({
+            url: pubIP + 'tReceptionDepartmentPersion/updateWLDepartmentPersion',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: data_id,
+                status: status
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    cf_alert(1, '修改成功！');
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    // 删除 
+    $(document).on('click', '.delete', function() {
+
+        window.parent.warn_alert($(this).parent().parent().attr('data-id'), '是否确认要删除？');
+
+    });
+
+    // 删除
+    window.parent.$('.all_sure').unbind();
+    // $(window.parent.document).on('click', '.all_sure', function() {
+    window.parent.$('.all_sure').click(function() {
+
+        del($(this).attr('data-this'));
+
+    })
+
+    function del(data_id) {
+        $.ajax({
+            url: pubIP + 'tReceptionDepartmentPersion/delDepartmentPersion',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: data_id
+            },
+            dataType: 'json',
+            success: function (json) {
+                if (json.code == 1) {
+                    cf_alert(1, '删除成功！');
+                } else if (json.code == -1) {
+                    cf_alert(2, json.msg);
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>

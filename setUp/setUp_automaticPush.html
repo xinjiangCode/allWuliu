@@ -40,9 +40,9 @@
     	<!--头部-->
     	<div class="boxHead">
     		<div class="headLeft">自动推送设置</div>
-    		<div class="headRight">
+    		<!-- <div class="headRight">
     			短信购买
-    		</div>
+    		</div> -->
     	</div>
     	<div class="record">
     		<div>消息提醒</div>
@@ -53,69 +53,55 @@
 				<tr>
 					<th>消息类型</th>
 					<th>站内消息</th>
-					<th>手机短信</th>
-					<th>推送角色</th>
+					<!-- <th>手机短信</th> -->
+					<!-- <th>推送角色</th> -->
 				</tr>
 				</thead>
-				<tbody>
+				<tbody id="messagePushInfo">
+				<!-- <tr>
+					<td>订单创建时1</td>
+					<td>
+						<input type="checkbox" name="" id="" value="" />
+						<a href="##" class="sendmsg">是否发送</a>
+						<a href="##" class="editmsg inforMation">编辑内容</a>
+					</td>
+					<td>
+						<input type="checkbox" name="" id="" value="" />
+						<a href="##" class="sendmsg">是否发送</a>
+						<a href="##" class="editmsg phoneEdit">编辑内容</a>
+					</td>
+					<td>财务</td>
+				</tr>
+				<tr>
+					<td>订单创建时1</td>
+					<td>
+						<input type="checkbox" name="" id="" value="" />
+						<a href="##" class="sendmsg">是否发送</a>
+						<a href="##" class="editmsg inforMation">编辑内容</a>
+					</td>
+					<td>
+						<input type="checkbox" name="" id="" value="" />
+						<a href="##" class="sendmsg">是否发送</a>
+						<a href="##" class="editmsg phoneEdit">编辑内容</a>
+					</td>
+					<td>财务</td>
+				</tr> -->
 
-				<tr>
-					<td>订单创建时1</td>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						<a href="##" class="sendmsg">是否发送</a>
-						<a href="##" class="editmsg inforMation">编辑内容</a>
-					</td>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						<a href="##" class="sendmsg">是否发送</a>
-						<a href="##" class="editmsg phoneEdit">编辑内容</a>
-					</td>
-					<td>财务</td>
-				</tr>
-				<tr>
-					<td>订单创建时1</td>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						<a href="##" class="sendmsg">是否发送</a>
-						<a href="##" class="editmsg inforMation">编辑内容</a>
-					</td>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						<a href="##" class="sendmsg">是否发送</a>
-						<a href="##" class="editmsg phoneEdit">编辑内容</a>
-					</td>
-					<td>财务</td>
-				</tr>
-				<tr>
-					<td>订单创建时1</td>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						<a href="##" class="sendmsg">是否发送</a>
-						<a href="##" class="editmsg inforMation">编辑内容</a>
-					</td>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						<a href="##" class="sendmsg">是否发送</a>
-						<a href="##" class="editmsg phoneEdit">编辑内容</a>
-					</td>
-					<td>财务</td>
-				</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+		<!-- <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
 			<ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
 			<div class="pageJump">
-				<span class="allPageN">1/200</span>
-				<i style="margin-left: 12px;">共200页</i>，
+				<span class="allPageN">1/1</span>
+				<i style="margin-left: 12px;">共<span class="total">1</span>页</i>，
 				<span>到第</span>
-				<input type="text"/>
+				<input type="text" style="text-indent: 0px; text-align: center;"/>
 				<span>页</span>
 				<button type="button" class="button">GO</button>
 			</div>
-		</div>
+		</div> -->
     </div>
 <!--</div>-->
 
@@ -134,21 +120,191 @@
 
 
     $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-    Page({
-        num: 200,
-        elem: $('#page1'),
-        callback: function(n) {
-            console.log(n);
-        }
-    });
+    // Page({
+    //     num: 200,
+    //     elem: $('#page1'),
+    //     callback: function(n) {
+    //         console.log(n);
+    //     }
+    // });
+
+   	var isFirst = true;
+
+    var isSearch = 0;
+
+    message_push_list(1, 10);
+
+    // 消息推送列表
+    function message_push_list(num, size) {
+        $('#messagePushInfo').html('');
+        $.ajax({
+            url: pubIP + 'tNews/getTNewsTempList',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                page: num,
+                size: size,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                        
+                            str += '<tr data-id="'+json.data[i].id+'">'
+                                +'<td>'
+                                
+                                if (json.data[i].type == '0') {
+                                    str += '系统消息'
+                                } else if (json.data[i].type == '1') {  
+                                    str += '短信'
+                                }
+                                
+                                str += '</td>'
+                                +'<td class="chooseswitch">'
+                                    if (json.data[i].statu == '0') {
+                                        str += '<input id="checked_'+i+'" type="checkbox" class="switch" checked=""/>'
+                                        +'<label for="checked_'+i+'"></label>'
+                                    } else if (json.data[i].statu == '1') {
+                                        str += '<input id="checked_'+i+'" type="checkbox" class="switch" />'
+                                        +'<label for="checked_'+i+'"></label>'
+                                    }
+                                    str += '<a href="##" data-editContentId="'+json.data[i].id+'" triggerId="'+json.data[i].triggerId+'" class="editmsg inforMation">编辑内容</a>'
+                                +'</td>'
+                                // +'<td class="chooseswitch">'
+                                //     if (json.data[i].statu == '0') {
+                                //         str += '<input id="checked_'+i+i+'" type="checkbox" class="switch" checked=""/>'
+                                //         +'<label for="checked_'+i+i+'"></label>'
+                                //     } else if (json.data[i].statu == '1') {
+                                //         str += '<input id="checked_'+i+i+'" type="checkbox" class="switch" />'
+                                //         +'<label for="checked_'+i+i+'"></label>'
+                                //     }
+                                //     str += '<a href="##" class="editmsg inforMation">编辑内容</a>'
+                                // +'</td>'
+                                // +'<td>'+json.data[i].roleName+'</td>'
+                            +'</tr>';
+
+                        }
+                        
+                        $('#messagePushInfo').html(str);
+
+                        // var result = template('apartmentListTpl', {list: json.data});
+                        // $('#apartmentListInfo').html(result);
+
+
+                        //启用和禁用
+                        $(".chooseswitch input[type='checkbox']").change(function() {
+                            console.log($(this).prop("checked"));
+                            
+                            if($(this).prop("checked")){
+                                status_push($(this).parent().parent().attr('data-id'), 0);
+                            }else {
+                                status_push($(this).parent().parent().attr('data-id'), 1);
+                            }
+                        });
+
+                       //  totalPage = json.count%size == 0 ? totalPage : (totalPage + 1);
+                       // console.log(totalPage);
+                        if (isSearch == 1) {
+                            // if (isFirst) {
+
+                                Page({
+                                    num: json.totalPage,
+                                    elem: $('#page1'),
+                                    callback: function(n) {
+                                        apartment_list(n, size);
+                                    }
+                                });
+                                
+                                $('.total').text(json.totalPage);
+                                isFirst = false;
+
+                            // }
+
+                            $('.allPageN').text(num+1+'/'+json.totalPage);
+                        }
+
+                        isSearch = 0;
+
+                        if (isFirst) {
+
+                            Page({
+                                num: json.totalPage,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    apartment_list(n, size);
+                                }
+                            });
+                            
+                            $('.total').text(json.totalPage);
+
+                            isFirst = false;
+                        }
+
+                        $('.allPageN').text(num+'/'+json.totalPage);
+                    } else {
+                        $('.pageJump').css('display', 'none');    
+                    }
+                } else {
+                    $('.pageJump').css('display', 'none');
+                }
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+
+        });
+    }
+
+
+    function status_push(data_id, status) {
+        $.ajax({
+            url: pubIP + 'tNews/upNewsTempStatus',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: data_id,
+                status: status,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+
+                if (json.code == 1) {
+                    cf_alert(1, '修改成功');
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    //站内信编辑
+    $(document).on('click', '.inforMation', function () {
+
+        window.sessionStorage.setItem('data-editContentId', $(this).attr('data-editContentId'));
+        window.sessionStorage.setItem('triggerId', $(this).attr('triggerId'));
+
+        window.location.href="./setting-stationMsgEdit.html";
+    })
+
 
     //shouji短信编辑
     $(".phoneEdit").click(function () {
         window.location.href="./setting-phoneMsgEdit.html";
-    })
-    //站内信编辑
-    $(".inforMation").click(function () {
-        window.location.href="./setting-stationMsgEdit.html";
     })
 </script>
 </body>

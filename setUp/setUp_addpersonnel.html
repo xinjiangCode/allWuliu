@@ -11,7 +11,26 @@
     <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" href="../css/setUp_addpersonnel.css">
+    <style>
+        .ts {
+            display: none;
+            font-size: 12px;
+            color: red;
+            line-height: 38px;
+        }
 
+        .boxContent .ctnsItem {
+            width: 530px;
+        }
+
+        .boxContent .ctnsItem input, .boxContent .ctnsItem textarea {
+            float: left;
+        }
+
+        .headRight {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <!--添加员工-->
@@ -48,15 +67,28 @@
     	<!--内容-->
     	<div class="boxContent">
     		
-    		<div class="ctnsItem">
-                <span><em>*</em>用户名：</span>
+    		<div class="ctnsItem clearfix">
+                <span class="fl"><em>*</em>用户名：</span>
                 <input type="" name="" class="username" id="" value="" />
+                <div class="ts"></div>
             </div>
 
     		<div class="ctnsItem">
     			<span><em>*</em>成员手机号：</span>
-    			<input type="" name="" class="user_phone" id="" value="" />
+    			<input type="" name="" class="user_phone" id="" value="" maxlength="11" />
+                <div class="ts"></div>
     		</div>
+
+            <div class="ctnsItem">
+                <span><em>*</em>姓名：</span>
+                <input type="" name="" class="name" id="" value="" />
+                <div class="ts"></div>
+            </div>
+            <div class="ctnsItem">
+                <span><em>*</em>邮箱：</span>
+                <input type="" name="" id="" class="email" value="" />
+                <div class="ts"></div>
+            </div>
     		
     		<!-- <div class="ctnsItem">
     			<span><em>*</em>登录账号：</span>
@@ -64,7 +96,7 @@
     		</div> -->
             <div class="ctnsItem">
                 <span><em>*</em>所属部门：</span>
-                <div class="select fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 262px; margin-left: 9px; margin-right: 0px; height: 40px; border: 1px solid #dbdbdc; float: left;">
+                <div class="select fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 262px; margin-right: 0px; height: 40px; border: 1px solid #dbdbdc; float: left;">
                     <span style='text-align: left;'>请选择</span>
                     <img src="../img/prl-select.jpg" alt="">
                     <ul class="suoshu_department_ul">
@@ -73,11 +105,12 @@
                         <li data-index="3">30</li> -->
                     </ul>
                 </div>
+                <div class="ts"></div>
             </div>
 
     		<div class="ctnsItem">
     			<span><em>*</em>所属角色：</span>
-    			<div class="select fl suoshu_role" data-selectedindex="0" style="margin-top: 0px; width: 262px; margin-left: 9px; margin-right: 0px; height: 40px; border: 1px solid #dbdbdc; float: left;">
+    			<div class="select fl suoshu_role" data-selectedindex="0" style="margin-top: 0px; width: 262px; margin-right: 0px; height: 40px; border: 1px solid #dbdbdc; float: left;">
                     <span style='text-align: left;'>请选择</span>
                     <img src="../img/prl-select.jpg" alt="">
                     <ul class="suoshu_role_ul">
@@ -86,7 +119,9 @@
                         <li data-index="3">30</li> -->
                     </ul>
                 </div>
+                <div class="ts"></div>
     		</div>
+            
     		<!-- <div class="ctnsItem">
     			<span><em>*</em>登录密码：</span>
     			<input type="" name="" id="" value="" />
@@ -138,7 +173,65 @@
         window.location.href = "setUp_staffManage.html";
     });
 
+    var person_id = window.sessionStorage.getItem('person_id');
+    if (person_id != '') {
 
+        $('.headLeft').text('修改成员');
+        
+        $.ajax({
+            url: pubIP + 'tReceptionDepartmentPersion/getDepartmentPersionById',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: person_id
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    
+                    $('.username').val(json.data.username);
+                    $('.user_phone').val(json.data.tel);
+                    $('.user_phone').attr('disabled', true);
+
+                    $('.name').val(json.data.name);                    
+                    $('.email').val(json.data.email);                    
+
+                    $('.suoshu_department span').text(json.data.departmentName);
+                    $('.suoshu_department').attr('data-selectedindex', json.data.departmentId);
+
+                    $('.suoshu_role span').text(json.data.roleName);
+                    $('.suoshu_role').attr('data-selectedindex', json.data.roleId);
+
+                    $('textarea').val(json.data.remark);
+
+
+
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    } else {
+        $('.username').val('');
+        $('.user_phone').val('');
+
+        $('.name').val('');                    
+        $('.email').val('');  
+
+        $('.suoshu_department span').text('请选择');
+        $('.suoshu_department').attr('data-selectedindex', '-1');
+
+        $('.suoshu_role span').text('请选择');
+        $('.suoshu_role').attr('data-selectedindex', '-1');
+
+        $('textarea').val('');
+    }
 
     // 判断用户是否注册过账号
     $('.username').change(function() {
@@ -161,6 +254,9 @@
                 console.log(json);
                 if (json.code == 1) {
                     $('.user_phone').val(json.data.mobile);
+                    $('.user_phone').attr('disabled', true);
+                } else if (json.code == 0) {
+                    cf_alert(2, json.msg);
                 }
             },
             error: function(err) {
@@ -169,11 +265,52 @@
         });
     });
 
+    $('.username').blur(function() {
+        if ($(this).val() != '') {
+            $(this).parent().find('.ts').css('display', 'none');
+        } else {
+            $(this).parent().find('.ts').css('display', 'inline-block').text('用户名不能为空');
+        }
+        
+    });
+
+    $('.user_phone').blur(function() {
+        if ($(this).val() != '') {
+            $(this).parent().find('.ts').css('display', 'none');
+        } else {
+            $(this).parent().find('.ts').css('display', 'inline-block').text('手机号不能为空');
+        }
+        
+    });
+
+    $('.name').blur(function() {
+        if ($(this).val() != '') {
+            $(this).parent().find('.ts').css('display', 'none');
+        } else {
+            $(this).parent().find('.ts').css('display', 'inline-block').text('姓名不能为空');
+        }
+        
+    });
+
+    $('.email').blur(function () {
+        if (!(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test($(this).val()))) {
+            $(this).parent().find('.ts').css('display', 'inline-block').text('邮件格式不正确');
+            return;
+        } else {
+            $(this).parent().find('.ts').css('display', 'none');
+        }
+    });
+
+
     //提交
     $('.submitbtns').click(function() {
 
         var username = $('.username').val();
         var phone = $('.user_phone').val();
+
+        var name = $('.name').val();
+        var email = $('.email').val();
+
         var suoshu_department = $('.suoshu_department span').text();
         var suoshu_department_id = $('.suoshu_department').attr('data-selectedindex');
 
@@ -182,34 +319,105 @@
 
         var beizhu = $('textarea').val();
 
-        $.ajax({
-            url: pubIP + 'tReceptionDepartmentPersion/addDepartmentPersion',
-            type: 'get',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            data: {
-                username: username,
-                roleId: suoshu_role_id,
-                roleName: suoshu_role,
-                suoshu_department_id: departmentId,
-                departmentName: suoshu_department,
-                remark: beizhu,
-                tel: user_phone
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (json) {
-                console.log(json);
-                if (json.code == 1) {
-                    cf_alert(1, '添加成功！');
+        if (username == '') {
+            $('.username').parent().find('.ts').css('display', 'inline-block').text('用户名不能为空');
+            return;
+        }
+
+        if (phone == '') {
+            $('.user_phone').parent().find('.ts').css('display', 'inline-block').text('手机号不能为空');
+            return;
+        } 
+
+        if (name == '') {
+            $('.name').parent().find('.ts').css('display', 'inline-block').text('姓名不能为空');
+            return;
+        }
+
+        if (!(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test($('.email').val()))) {
+            $('.email').parent().find('.ts').css('display', 'inline-block').text('邮箱格式不正确');
+            return;
+        }
+
+        if (suoshu_department == '请选择') {
+            $('.suoshu_department').parent().find('.ts').css('display', 'inline-block').text('请选择部门');
+            return;
+        } 
+
+        if (suoshu_role == '请选择') {
+            $('.suoshu_role').parent().find('.ts').css('display', 'inline-block').text('请选择角色');
+            return;
+        }  
+
+        if (person_id == '') {
+            $.ajax({
+                url: pubIP + 'tReceptionDepartmentPersion/addDepartmentPersion',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    username: username,
+                    name: name,
+                    email: email,
+                    roleId: suoshu_role_id,
+                    roleName: suoshu_role,
+                    departmentId: suoshu_department_id,
+                    departmentName: suoshu_department,
+                    remark: beizhu,
+                    tel: phone
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+                        cf_alert(1, '添加成功！');
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
                 }
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
+            });
+        } else {
+            $.ajax({
+                url: pubIP + 'tReceptionDepartmentPersion/updateWLDepartmentPersion',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    username: username,
+                    name: name,
+                    email: email,
+                    roleId: suoshu_role_id,
+                    roleName: suoshu_role,
+                    departmentId: suoshu_department_id,
+                    departmentName: suoshu_department,
+                    remark: beizhu,
+                    tel: phone,
+                    id: person_id
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+                        cf_alert(1, '修改成功！');
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+        
+    });
+
+    $(window.parent.document).on('click', '.all_success_alert .modelbtn', function(){
+        window.location.href = "setUp/setUp_staffManage.html";
     });
 
 
@@ -228,7 +436,7 @@
             console.log(json);
             if (json.code == 1) {
                 if (json.data.length != 0) {
-                    var str = '';
+                    var str = '<li data-departmentId="">请选择</li>';
                     for (var i = 0; i < json.data.length; i++) {
                         str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
                     }
@@ -241,6 +449,13 @@
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                         $(this).parent().css('display','none');
+
+                        $(this).parent().parent().parent().find('.ts').css('display', 'none');
+                            
+                        // if ($(this).parent().parent().find('span').text() == '请选择') {
+                        //     $(this).parent().parent().parent().find('.ts').css('display', 'block');
+                        //     return;
+                        // }
 
                         select_role($(this).attr('data-departmentId'));
                     });
@@ -270,7 +485,7 @@
                 console.log(json);
                 if (json.code == 1) {
                     if (json.data.length != 0) {
-                        var str = '';
+                        var str = '<li data-departmentId="">请选择</li>';;
                         for (var i = 0; i < json.data.length; i++) {
                             str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
                         }
@@ -283,6 +498,14 @@
                             $(this).parent().parent().find('span').text($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
+
+                            $(this).parent().parent().parent().find('.ts').css('display', 'none');
+                            
+                            // if ($(this).parent().parent().find('span').text() == '请选择') {
+                            //     $(this).parent().parent().parent().find('.ts').css('display', 'block');
+                            //     return;
+                            // }
+                            
 
                         });
                     }

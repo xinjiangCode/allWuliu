@@ -181,13 +181,19 @@
                         str += '<td>'+item.returnMoney+'</td>'
                         str += '<td>'+item.otherMoney+'</td>'
                         str += '<td>'+item.remarks+'</td>'
-                        str += '<td><span class="btn ll shenhe" id="'+item.carrierCompanyId+'">审核</span><a href="orderJieSuanDetail.html" class="btn ll">查看详情</a></td>'
+                        str += '<td>'
+                        if(item.examineStatus==2){
+                            str += '<span class="btn ll" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'"></span>'
+                        }else{
+                            str += '<span class="btn ll shenhe" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'">审核</span>'
+                        }
+                        str += '<a href="orderJieSuanDetail.html?orderId='+item.orderId+'" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
                     //shenpi_alert
                     $(".shenhe").on("click",function(){
-                        shenhe_alert_show($(this).attr("id"));
+                        shenhe_alert_show($(this).attr("id"),$(this).attr("data-id"));
                     })
 
                 },
@@ -196,11 +202,15 @@
                 }
             });
         }
-        function shenhe_alert_show(obj){
+        function shenhe_alert_show(obj,obj1){
             window.parent.$(".shenpi_alert").show();
             window.parent.$(".lssbh").val('');
             window.parent.$(".qyyhzh").val('');
             window.parent.$(".qykhyh").val('');
+            window.parent.$(".allfpmoney input").val('');
+            window.parent.$("#fapiao_hidden1").val('');
+            window.parent.$("#fapiao_hidden2").val('');
+            window.parent.$("#fapiao_hidden3").val('');
             $.ajax({
                 url: pubIP + 'carrierFinance/getSupplierCompanyInfo',
                 type: 'POST',
@@ -214,15 +224,45 @@
                 cache: false,
                 dataType: 'json',
                 success: function (json) {
-                    // console.log("+++++++++++++++++++++++++++++");
-                    // console.log(json);
-                    cf_alert(1,"结算成功");
+                    console.log("+++++++++++++++++++++++++++++");
+                    console.log(json);
+                    window.parent.$(".lssbh").val(json.data.taxId);
+                    window.parent.$(".qyyhzh").val(json.data.accountId);
+                    window.parent.$(".qykhyh").val(json.data.accountBank);
+                    window.parent.$(".allfpmoney input").attr("id",obj1);
                 },
                 error: function(err) {
                     console.log(err);
                 }
             });
         }
+        window.parent.$(".qrsc_btn").unbind();
+        window.parent.$(".qrsc_btn").on("click",function(){
+            var enclosureInfo = window.parent.$("#fapiao_hidden1").val()+','+window.parent.$("#fapiao_hidden2").val()+','+window.parent.$("#fapiao_hidden3").val();
+            $.ajax({
+                url: pubIP + 'carrierFinance/addSupplierCompanyInfo',
+                type: 'POST',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    examineMoney: window.parent.$(".allfpmoney input").val(),
+                    settlementId:  window.parent.$(".allfpmoney input").attr("id"),
+                    enclosureInfo: enclosureInfo,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    // console.log("+++++++++++++++++++++++++++++");
+                    // console.log(json);
+                    cf_alert(1,"提交成功");
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        })
     </script>
 </body>
 </html>
