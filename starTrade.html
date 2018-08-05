@@ -379,6 +379,8 @@
                 $("#tuijian li").click(function () {
                     $("#tuijian li").removeClass("active");
                     $(this).addClass("active");
+                    sessionStorage.setItem("detailId",$(this).attr("data-companyId"));
+                    window.location.href="./starTradeDetail.html";
                 })
 
             },

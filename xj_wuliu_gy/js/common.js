@@ -1,6 +1,6 @@
-// var pubIP = 'http://192.168.1.207:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 //var pubIP = 'http://192.168.1.199:7777/service/';
-var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://wl.api.xjv56.com/service/';
 
 var ip = 'http://192.168.1.199:7777/service/';
  // var ip = 'http://wl.api.xjv56.com/service/';
@@ -30,6 +30,7 @@ function timestampToTime(timestamp) {
     h = date.getHours() + ':';
     m = date.getMinutes() + ':';
     s = date.getSeconds();
+    D=D<10?'0'+D:D;
     return Y+M+D;
 }
 // 对Date的扩展，将 Date 转化为指定格式的String
