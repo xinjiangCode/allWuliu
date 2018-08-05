@@ -129,7 +129,7 @@
                 </ul>
             </div>
         </div>
-        <div class="operator infoBox">
+        <!-- <div class="operator infoBox">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">操作人员(待确定)</div>
             <div class="contBox">
                 <div class="left ll">
@@ -148,7 +148,7 @@
                     <div>财务审核：<span>化动司</span></div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
@@ -176,6 +176,7 @@
                 },
                 success: function (res) {
                     if(res.code===1){
+                        res.data.createTime = new Date(res.data.createTime).Format("yyyy-MM-dd");
                         cf_dataRender(res.data)
                     }else{
                         alert(res.msg);

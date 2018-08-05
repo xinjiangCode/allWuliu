@@ -1,6 +1,6 @@
 // var pubIP = 'http://192.168.1.207:7777/service/';
-//var pubIP = 'http://192.168.1.199:7777/service/';
-var pubIP = 'http://wl.api.xjv56.com/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
+//var pubIP = 'http://wl.api.xjv56.com/service/';
 
 var ip = 'http://192.168.1.199:7777/service/';
  // var ip = 'http://wl.api.xjv56.com/service/';
@@ -266,6 +266,26 @@ if(token) {
 }
 
 
+var company_type = localStorage.getItem('company_type');
+
+$(function () {
+    var url = window.location.href;
+    if (url.indexOf('account.html') != -1) {
+
+        if (company_type == '-1' || company_type == '2') {
+            
+            if (url.indexOf('xj_wuliu_gy') != -1) { //不存在
+                window.location.href = "../account.html";
+            }    
+        } else if (company_type == '1') {
+            if (url.indexOf('xj_wuliu_gy') == -1) { //不存在
+                window.location.href = "./account.html";
+            } 
+        }
+        
+    }
+    
+})
 
 
 //模拟点击 框
@@ -322,13 +342,127 @@ $('.select ul li').click(function(){
 
 $(function () {
     $("header  .logo").click(function () {
-        window.location.href="./index.html";
+        if (company_type == '1') { //供应商
+
+            $('.goUser').attr('href', '../index.html');
+        } else if (company_type == '2') {
+            $('.goUser').attr('href', '../index.html');
+        } else if (company_type == '-1') {
+
+            $('.goUser').attr('href', '../index.html');
+        }
+
+        // window.location.href="./index.html";
     })
+
+
     $(".goUser").click(function () {
-        sessionStorage.setItem("cfsrc","./personal/mine.html");
-        window.location.href="./account.html";
+
+        if (company_type == '1') { //供应商
+            
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                window.location.href="./account.html";
+                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+            }
+        } else if (company_type == '2') {
+            window.location.href="../account.html";
+        } else if (company_type == '-1') {
+            var url = window.location.href;
+            if (url.indexOf('login.html') != -1) {
+            
+                $('#effect2 .contTitle span').text('您尚未登录');
+                $('#effect2').css('display', 'block');
+                // missedLogin();
+                // $('.goUser').attr('href', 'javascript:;');
+            } else {
+                window.location.href="./account.html";
+
+                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+                var url = window.location.href;
+                if (url.indexOf('account.html') != -1) {
+                    $.ajax({
+                        url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
+                        type: 'post',
+                        headers: {
+                            Accept: "application/json; charset=utf-8",
+                            token: token
+                        },
+                        data: {
+                            token: token
+                        },
+                        cache: false,
+                        dataType: 'json',
+                        success: function (data) {
+                            console.log(data);
+                            console.log(data.data.state);
+
+                            if (data.data.state && data.data.type == 1) {
+                                if (data.data.state != 1) {
+                                    $('.qiye_renzheng').attr('data-src', '../finance/identification'+data.data.state+'.html');
+                                    // $(document).on('click', '.qiye_renzheng', function() {
+                                    window.sessionStorage.setItem('cfsrc', "../finance/identification"+data.data.state+".html");
+                                        if (companyId) {
+                                            tiao_tan();
+                                        }
+                                    // });
+                                }
+                                
+                            }
+
+                                      
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            }
+
+            
+        }
+
     })
 })
+
+var url = window.location.href;
+    if (url.indexOf('account.html') != -1) {
+        $.ajax({
+            url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                console.log(data.data.state);
+
+                if (data.data.state && data.data.type == 1) {
+                    if (data.data.state != 1) {
+                        $('.qiye_renzheng').attr('data-src', '../../finance/identification'+data.data.state+'.html');
+                        // $(document).on('click', '.qiye_renzheng', function() {
+                        window.sessionStorage.setItem('cfsrc', "../../finance/identification"+data.data.state+".html");
+                            if (companyId) {
+                                tiao_tan();
+                            }
+                        // });
+                        $('.qiye_renzheng').click();
+                    }
+                    
+                }
+
+                          
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
 
 
 // 模拟下拉框

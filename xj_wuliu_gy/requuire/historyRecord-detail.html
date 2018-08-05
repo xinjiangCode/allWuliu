@@ -130,6 +130,7 @@
                 },
                 success: function (res) {
                     if(res.code===1){
+                        res.data.createTime = new Date(res.data.createTime).Format("yyyy-MM-dd");
                         cf_dataRender(res.data)
                     }else{
                         alert(res.msg);

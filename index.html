@@ -689,12 +689,21 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
         var company_type = localStorage.getItem('company_type');
         console.log(company_type);
         if (company_type == '1') { //供应商
+            
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+            }
             $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
         } else if (company_type == '2') {
+            
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+            }
             $('.goUser').attr('href', 'account.html');
         } else if (company_type == '-1') {
-            $('.goUser').attr('href', 'account.html');
+            
             window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+            $('.goUser').attr('href', 'account.html');
         }
 
     });

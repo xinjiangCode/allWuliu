@@ -79,6 +79,17 @@
 			.usBox p{margin-bottom: 10px;}
 			.rightUsIner{padding: 0px 21px; box-sizing: border-box;font-size: 14px;}
 			.headerBot{display: none;}
+
+			/*已经失效的弹框*/
+			#effect2{display:none;position: fixed;top: 0;left: 0;right:0;bottom: 0;width: 100%;height: 100%;z-index: 999;background-color: rgba(102,102,102,0.5);}
+			#effect2>.cont{position: fixed;top: 50%;left: 50%;width: 450px;height: 279px;background-color: #ffffff;transform: translate(-50%,-50%);background: url('img/cf_popBackground.png') no-repeat ; background-size: contain;}
+			#effect2>.cont>.cance2{margin: 0;padding: 0 20px;height: 50px;line-height: 50px;background: url('img/cf_popbackgr.png') no-repeat ;background-size: contain;}
+			#effect2>.cont>.cance2>.popTitle{color:#5992f3;font-size: 16px;}
+			#effect2>.cont>.cance2>.close{width: 16px;height: 16px;margin-top: 17px; background: url('img/cf_close1.png') no-repeat ; background-size: contain;}
+			#effect2>.cont>.deanger{width: 42px;height: 42px;background: url('img/cf_denger1.png') no-repeat ; background-size: contain;margin: 0 auto;margin-top: 40px;}
+			#effect2>.cont>.contTitle{margin-top: 20px;font-size: 14px;text-align: center;}
+			#effect2>.cont>.popLogin{width: 140px;height: 45px; line-height: 45px;background-color: #88b0f9;color: white;text-align: center;margin: 0 auto;border-radius: 5px;font-size: 18px;margin-top: 35px; }
+			#effect2>.cont>.popLogin:hover{background-color: #7ea9f9;}
 		</style>
 	</head>
 	<body>
@@ -187,6 +198,19 @@
 			localStorage.setItem("token","");
 			localStorage.setItem('company_type', '-1');
 		})
+
+		 document.writeln("<div class=\"pop\" id=\"effect2\">\n" +
+            "\t<div class=\"cont\" >\n" +
+            "\t\t<div class=\"cance2\" >\n" +
+            "\t\t\t<span class=\"popTitle Lf\" >提示</span>\n" +
+            "\t\t\t<div class=\"close Rt\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
+            "\t\t</div>\n" +
+            "\t\t<div class=\"deanger\"></div>\n" +
+            "\t\t<div class=\"contTitle\">您好，<span>您的登陆已经过期</span>,请先<i onclick=\"popEffectLogin()\" style=\"color: #00a0e9;\">登陆</i>，以便使用更多功能。</div>\n" +
+            "\t\t<div class=\"popLogin\" id=\"popLogin\" onclick=\"popEffectLogin()\">登录</div>\n" +
+            "\t</div>\n" +
+            "</div>"); 
+
 		var isAuto=0;
 
 		  var mySwiper = new Swiper ('.swiper-container', {
