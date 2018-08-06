@@ -206,9 +206,9 @@
 						$(".chooseswitch input[type='checkbox']").change(function() {
 						    console.log($(this).prop("checked"));
 						    if($(this).prop("checked")){
-						        delete_qi_jin(2, $(this));
+						        delete_qi_jin(2, $(this).parent().parent().attr('data-id'));
 						    }else {
-						        delete_qi_jin(3, $(this));
+						        delete_qi_jin(3, $(this).parent().parent().attr('data-id'));
 						    }
 						});
 
@@ -273,6 +273,7 @@
     	$(window.parent.document).find('.apartment_select0').attr('data-selectedindex', '-1');
     	$(window.parent.document).find('.zhiwu_name').val('')
     	$(window.parent.document).find('.zhiwu_zhineng_descript').val('')
+        window.parent.select_department();
     	window.parent.showModelBox('.modelBox19');
 
     });
@@ -407,7 +408,9 @@
 
                 	if (type2 == 1) {
                 		cf_alert(1, '删除成功！');
-                	}
+                	} else {
+                        cf_alert(1, '修改成功！');
+                    }
                 } else if (json.code == -1) {
                     cf_alert(2, json.msg);
                     

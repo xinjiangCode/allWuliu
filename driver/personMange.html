@@ -195,10 +195,10 @@
 						$(".chooseswitch input[type='checkbox']").change(function() {
 						    console.log($(this).prop("checked"));
 						    if($(this).prop("checked")){
-						        delete_qi_jin(2, $(this));
+						        delete_qi_jin(2, $(this).parent().parent().attr('data-id'));
 						        console.log('开启');
 						    }else {
-						        delete_qi_jin(3, $(this));
+						        delete_qi_jin(3, $(this).parent().parent().attr('data-id'));
 						        console.log('禁用');
 						    }
 						});
@@ -294,6 +294,7 @@
             'background': 'url("")'
         });
     	window.parent.showModelBox('.modelBox20');
+        window.parent.select_department();
     	window.parent.car_select();
     });
 
@@ -532,7 +533,9 @@
                 if (json.code == 1) {
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');
-                	}
+                	} else {
+                        cf_alert(1, '编辑成功！');
+                    }
                 } else if (json.code == -1) {
                     cf_alert(2, json.msg);
                 }

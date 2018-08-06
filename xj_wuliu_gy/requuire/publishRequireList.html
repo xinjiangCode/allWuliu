@@ -310,9 +310,9 @@
             }
         });
         //查看详情
-        $(".seeDetail").click(function () {
-            window.location.href="./publishRequireList-detail.html";
-        })
+        // $(".seeDetail").click(function () {
+        //     window.location.href="./publishRequireList-detail.html";
+        // })
 //        从首页点过来时自动到发布需求
         if(sessionStorage.getItem("isAdd")==1){
             sessionStorage.setItem("isAdd",0);
@@ -413,7 +413,7 @@
             //详情
             $(".seeDetail").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./toConfirmRequire-detail.html";
+                window.location.href="./publishRequireList-detail.html";
             })
             //选择公司
             $(".selectCompany").click(function () {
