@@ -995,7 +995,7 @@
                 <input type="text" placeholder="" class="role_name" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
             </div>
             <div style="margin-top: 25px;" class="clearfix">
-                <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
+                <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 36px; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
                 <div class="selectPub fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 483px; margin-left: 4px; height: 40px; border: 1px solid #dbdbdc; float: left;">
                     <span>请选择</span>
                     <img src="./img/prl-select.jpg" alt="">
@@ -2310,7 +2310,7 @@
             <div class="clearFloat clearfix" style="margin-top: 25px;">
                 <span style="display: inline-block; width: 135px;text-align: right; float: left;"><span style='color: #e71212; margin-right: 3px;'>*</span>所属部门：</span>
                 <!-- <input type="text" class="shuyu_apartment" placeholder="33333"  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;"> -->
-                <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px;">
+                <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px; line-height: 36px;">
                     <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                     <ul class="shuyu_apartment">
                         <li data-index="1">1</li>
@@ -3188,7 +3188,7 @@
                         // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
                         // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
 
-                        $('.apartment_select1 ul li').click(function(){
+                        $('.apartment_select0 ul li').click(function(){
                             event.stopPropagation();
                             $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                             $(this).parent().parent().find('span').text($(this).text());
