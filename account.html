@@ -2297,18 +2297,19 @@
 
 <!-- 添加职务 -->
 <div class="modelBox19" style="font-size: 14px;">
-    <div class="modelCont" style="width: 655px;height: 500px;">
+    <div class="modelCont" style="width: 655px;height: 538px;">
         <div class="modeltitle" style="width: 100%;">
             <span>添加职务</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
+        <div class="modelcontent clearFloat" style="width: 100%;height: 445px;font-size: 14px;padding-top: 43px; ">
             <div >
                 <span style="display: inline-block; width: 135px;text-align: right;"><span style='color: #e71212; margin-right: 3px;'>*</span>职务名称：</span>
                 <input type="text" class="zhiwu_name" placeholder=""  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                <span class="ts"></span>
             </div>
             <div class="clearFloat clearfix" style="margin-top: 25px;">
-                <span style="display: inline-block; width: 135px;text-align: right; float: left;"><span style='color: #e71212; margin-right: 3px;'>*</span>所属部门：</span>
+                <span style="display: inline-block; width: 135px;text-align: right; float: left;"><span style='color: #e71212; margin-right: 3px; line-height: 36px;'>*</span>所属部门：</span>
                 <!-- <input type="text" class="shuyu_apartment" placeholder="33333"  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;"> -->
                 <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px; line-height: 36px;">
                     <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
@@ -2318,12 +2319,14 @@
                         <li data-index="3">3</li>
                     </ul>
                 </div>
+                <span class="ts"></span>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><span style='color: #e71212; margin-right: 3px;'>*</span>职能描述：</span>
                 <textarea name="" id="" cols="30" rows="10" class="zhiwu_zhineng_descript" placeholder="请输入内容" style=" text-indent: 10px; height: 185px;width: 483px;border: 1px solid #dbdbdc; margin-left: 5px;"></textarea>
+                <div style="padding-left: 130px;"><span class="ts"></span></div>
             </div>
-            <div class="clearFloat" style="margin-top: 32px;">
+            <div class="clearFloat" style="margin-top: 20px;">
                 <span class=" cf_btn cancel zishe_btn cfClose model19_cancel_btn" style="display: inline-block;margin-left: 141px;" >取消</span>
                 <span class=" cf_btn model19_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
             </div>
@@ -3194,6 +3197,12 @@
                             $(this).parent().parent().find('span').text($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
+
+                            if ($(this).parent().parent().find('span').text() == '请选择') {
+                                $(this).parent().parent().parent().find('.ts').html('所属部门不能为空');
+                            } else {
+                                $(this).parent().parent().parent().find('.ts').html('');
+                            }
 
                             selectZhiwu($(this).attr('data-index'));
 
