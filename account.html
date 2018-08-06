@@ -4009,7 +4009,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             success: function (res) {
                 console.log(res)
                 if(res.code===1){
-                    if (res.data.length != 0) {
+                    if (res.data!="" && res.data!=null && res.data.length != 0) {
                         var str='';
                         $.each(res.data,function (idx,item) {
                             str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
