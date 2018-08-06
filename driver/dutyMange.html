@@ -273,28 +273,73 @@
     	$(window.parent.document).find('.apartment_select0').attr('data-selectedindex', '-1');
     	$(window.parent.document).find('.zhiwu_name').val('')
     	$(window.parent.document).find('.zhiwu_zhineng_descript').val('')
+
+        $(window.parent.document).find('.zhiwu_name').parent().find('.ts').html('');
+        $(window.parent.document).find('.apartment_select0 span').parent().parent().find('.ts').html('');
+        $(window.parent.document).find('.zhiwu_zhineng_descript').parent().find('.ts').html('');
+
         window.parent.select_department();
     	window.parent.showModelBox('.modelBox19');
 
+    });
+
+    $(window.parent.document).find('.zhiwu_name').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().find('.ts').html('职务名称不能为空');
+        } else {
+            $(this).parent().find('.ts').html('');
+        }
+    });
+
+
+    $(window.parent.document).find('.zhiwu_zhineng_descript').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().find('.ts').html('职务名称不能为空');
+        } else {
+            $(this).parent().find('.ts').html('');
+        }
     });
 
     // 添加部门
     window.parent.$('.model19_ok_btn').unbind();
     window.parent.$('.model19_ok_btn').click(function() {
     // $(window.parent.document).on('click', '.model19_ok_btn', function() {
-
-    	var zhiwu_name = $(window.parent.document).find('.zhiwu_name').val();
-    	var reserved2 = $(window.parent.document).find('.apartment_select0 span').text();
-    	var orgId = $(window.parent.document).find('.apartment_select0').attr('data-selectedindex');
-
-    	var zhiwu_zhineng_descript = $(window.parent.document).find('.zhiwu_zhineng_descript').val();
+        var zhiwu_name_input = $(window.parent.document).find('.zhiwu_name');
+        var reserved2_input = $(window.parent.document).find('.apartment_select0 span');
+        var orgId_input = $(window.parent.document).find('.apartment_select0');
+        var zhiwu_zhineng_descript_input = $(window.parent.document).find('.zhiwu_zhineng_descript');
 
 
+        var zhiwu_name = $(zhiwu_name_input).val();
+        var reserved2 = $(reserved2_input).text();
+        var orgId = $(orgId_input).attr('data-selectedindex');
+
+        var zhiwu_zhineng_descript = $(zhiwu_zhineng_descript_input).val();
+
+
+        if (zhiwu_name == '') {
+            $(zhiwu_name_input).parent().find('.ts').html('职务名称不能为空');
+            return;
+        }
+
+        if (reserved2 == '请选择') {
+            $(reserved2_input).parent().parent().find('.ts').html('所属部门不能为空');
+            return;   
+        }
+
+        if (zhiwu_zhineng_descript == '') {
+            $(zhiwu_zhineng_descript_input).parent().find('.ts').html('职务名称不能为空');
+            return;   
+        }
+
+    	
     	if ($(this).attr('data-zhiwuId') != '') {
     		id = $(this).attr('data-zhiwuId');
     	} else {
     		id = '';
     	}
+
+        
     	
     	add_apartment(zhiwu_name, zhiwu_zhineng_descript, id, reserved2, orgId);
 
