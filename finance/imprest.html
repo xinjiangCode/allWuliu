@@ -104,14 +104,6 @@
         });
         laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
 
-        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-        Page({
-            num: 200,
-            elem: $('#page1'),
-            callback: function(n) {
-                console.log(n);
-            }
-        });
         //查看详情
         $(".seeDetail").click(function () {
             window.location.href="./sureTakengoodsOrder-detail.html";
