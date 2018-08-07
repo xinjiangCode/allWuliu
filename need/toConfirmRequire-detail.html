@@ -174,6 +174,211 @@
             $("#receivePhone").text(data.receivePhone);
             $("#receiveCompanyname").text(data.receiveCompanyname);
         }
+
+
+
+
+
+
+        $(".baojiaBtn").click(function () {
+            window.parent.$(".modelBox0").show();
+            getDataCompanyList()
+            getDataSelect()
+        })
+        ////////////////////////////////选择公司弹框
+        window.parent.$(".modelBox0 .sure1").unbind();
+        window.parent.$(".modelBox0 .sure1").click(function () {
+            $.ajax({
+                url: pubIP + 'wlDemandQuoted/demandQuoted', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    demandid:sessionStorage.getItem("detailId") ,
+                    quotedPrice:window.parent.$(".modelBox0 .quotedPrice").val()
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        alert("报价成功")
+                        location.reload();
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        })
+
+        //获取更改报价弹框数据
+        function getDataSelect() {
+            $.ajax({
+                url: pubIP + 'wlLogisticsDemand/query', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    id:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        cf_dataRenderSelect(res.data)
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //选择公司  弹框 关闭
+        window.parent.$(".modelBox0 img.close").click(function () {
+            $(this).parents(".modelCont").parent().hide();
+        })
+        //渲染更改报价弹框数据
+        function cf_dataRenderSelect(data) {
+            window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
+            window.parent.$(".modelBox0 .createTime").text(data.createTime);
+            window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$(".modelBox0 .goodsType").text(data.goodsType);
+            if(data.goodsUnit=="重量/吨"){
+                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'吨');
+            }else{
+                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'m³');
+            }
+            window.parent.$(".modelBox0 .packageType").text(data.packageType);
+            window.parent.$(".modelBox0 .invoiceType").text(data.invoiceType);
+            window.parent.$(".modelBox0 .paymentMode").text(data.paymentMode);
+            window.parent.$(".modelBox0 .goodsName").eq(0).text(data.goodsName);
+            window.parent.$(".modelBox0 .goodsName").eq(1).text(data.goodsName);
+            window.parent.$(".modelBox0 .carType").text(data.carType);
+            window.parent.$(".modelBox0 .goodsRemark").text(data.goodsRemark);
+            window.parent.$(".modelBox0 .sendUser").text(data.sendUser);
+            window.parent.$(".modelBox0 .sendPhone").text(data.sendPhone );
+            window.parent.$(".modelBox0 .sendCompanyname").text(data.sendCompanyname);
+            window.parent.$(".modelBox0 .receiveUser").text(data.receiveUser);
+            window.parent.$(".modelBox0 .receivePhone").text(data.receivePhone);
+            window.parent.$(".modelBox0 .receiveCompanyname").text(data.receiveCompanyname);
+
+            if(data.goodsUnit=="重量/吨"){
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/吨');
+            }else{
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/m³');
+            }
+        }
+
+        //获取报价公司列表  暂时不用
+        function getDataCompanyList() {
+            $("#baoJiaompany").html("");
+            $.ajax({
+                url: pubIP + 'wlDemandQuoted/queryList', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    demandid:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        var  str="";
+                        $.each(res.data.data,function (idx,item) {
+                            str+='<ul class="clearFloat" style="padding: 5px 0;"  data-id='+item.id+'>';
+                            str+='<li class="Lf" style="width: 292px;">公司名称：<span >'+item.companyname+'</span></li>';
+                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/吨</span></li>'
+                            str+='<li class="Lf" data-id="'+item.demandid+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
+                            str+="</ul>"
+                        })
+                        window.parent.$(".modelBox0 .baoJiaompany").html(str);
+                        //选择公司
+                        window.parent.$(".modelBox0 .sel").click(function () {
+                            var demandid= $(this).parent().attr("data-demandid")
+                            var companyid=$(this).parent().attr("data-companyid")
+                            $.ajax({
+                                url: pubIP + 'wlDemandQuoted/queryList', /*v1.0*/
+                                type: 'get',
+                                headers: {
+                                    Accept: "application/json; charset=utf-8",
+                                    token: token
+                                },
+                                cache: false,
+                                ansyc: true,
+                                dataType: 'json',
+                                data:{
+                                    demandid:demandid,
+                                    companyid:companyid,
+                                },
+                                success: function (res) {
+                                    if(res.code==1){
+                                        alert("选择公司成功");
+                                    }else{
+                                        alert(res.msg);
+                                    }
+
+                                },
+                                error: function(err){
+                                    console.log(err);
+                                }
+                            });
+                        })
+                        //删除公司
+                        window.parent.$(".del").click(function () {
+                            var id= $(this).parent().attr("data-id")
+                            $.ajax({
+                                url: pubIP + 'wlDemandQuoted/updateForRejectCompany', /*v1.0*/
+                                type: 'post',
+                                headers: {
+                                    Accept: "application/json; charset=utf-8",
+                                    token: token
+                                },
+                                cache: false,
+                                ansyc: true,
+                                dataType: 'json',
+                                data:{
+                                    id:id,
+                                },
+                                success: function (res) {
+                                    if(res.code==1){
+                                        alert("删除公司成功");
+                                        location.reload();
+                                    }else{
+                                        alert(res.msg);
+                                    }
+
+                                },
+                                error: function(err){
+                                    console.log(err);
+                                }
+                            });
+                        })
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
     </script>
 </body>
 </html>

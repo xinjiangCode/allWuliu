@@ -29,6 +29,26 @@ function timestampToTime(timestamp) {
     D=D<10?"0"+D:D;
     return Y+M+D;
 }
+//时间戳转时间
+function timestampToTime1(timestamp) {
+    if(timestamp/100000000000<0){
+        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    }else{
+        var date = new Date(timestamp );//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    }
+
+    Y = date.getFullYear() + '-';
+    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    D = date.getDate();
+    h = date.getHours();
+    m = date.getMinutes();
+    s = date.getSeconds();
+    D=D<10?'0'+D:D;
+    h=h<10?'0'+h:h;
+    m=m<10?'0'+m:m;
+    s=s<10?'0'+s:s;
+    return Y+M+D+" "+h+":"+m+":"+s;
+}
 // 对Date的扩展，将 Date 转化为指定格式的String
 // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
 // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
@@ -137,9 +157,7 @@ $(document).on('click', '.exit', function() {
 
 function cf_popEffectClose1(that) {
 	$(that).parent().parent().parent().css("display","none");
-
-	//TODO 修复 http://123.56.29.244:62313/zentao/bug-view-399.html
-    var company_type = localStorage.getItem('company_type');
+     var company_type = localStorage.getItem('company_type');
     if ($('#popLogin').text() == '登录') {
         if (company_type == '1') { //供应商
             // location.href = '../login.html';
@@ -150,8 +168,8 @@ function cf_popEffectClose1(that) {
         } else if (company_type == '-1') {
             window.top.location.href='login.html';
         }
-    // } else if ($('#popLogin').text() == '认证') {
-    //     window.top.location.href='account.html';
+    } else if ($('#popLogin').text() == '认证') {
+        window.top.location.href='account.html';
     }
     
 }

@@ -160,10 +160,12 @@
         $.each(data,function (idx,item) {
             str+='<tr data-id="'+item.id+'">';
             str+='<td>'+item.name+'</td>';
-            if(item.type==0){
-                str+='<td>内部车辆</td>';
-			}else {
-                str+='<td>外部车辆</td>';
+            if(item.type==1){
+                str+='<td>下拉框</td>';
+			}else if(item.type==2){
+                str+='<td>时间插件</td>';
+			}else{
+                str+='<td>输入框</td>';
 			}
             if(item.status==0){
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox" name="status" class="switch" checked="checked" /><label for="checked_'+idx+'"></label></td>';
