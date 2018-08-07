@@ -404,7 +404,7 @@
                     if (json.code == 1) {
                         if(json.data.length==0){
                             window.parent.$(".all_success_alert").show();
-                            window.parent.$(".all_success_alert").find(".innerErrmsg").html("该订单已全部结算完成，确认送达");
+                            window.parent.$(".all_success_alert").find(".innerSuccmsg").html("该订单已全部结算完成，确认送达");
                             window.parent.$(".modelBox18_ifrm").hide();
                             window.parent.$("#suerSongda").attr("src","");
                         }
@@ -959,7 +959,7 @@
                     console.log("++++++++++++------------------+++++++++++++++");
                     console.log(data);
                     window.parent.$(".all_success_alert").show();
-                    window.parent.$(".all_success_alert").find(".innerErrmsg").html("结算成功");
+                    window.parent.$(".all_success_alert").find(".innerSuccmsg").html("结算成功");
                     huoqu_msg();
                 },
                 error: function(err) {
