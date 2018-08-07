@@ -354,6 +354,7 @@ var currentPage=1;
             window.parent.$("#addCarError").text("保险年限不能为空");
             return;
         }
+
         if(window.parent.$("#cf_xingshizheng1").val()==""){
             window.parent.$("#addCarError").text("请上传行驶证图片");
             return;
@@ -362,6 +363,7 @@ var currentPage=1;
             window.parent.$("#addCarError").text("请上传车辆运营图片");
             return;
         }
+        window.parent.$("#addCarError").text("");
 		var err=1;
         window.parent.$("#dynamic>li").each(function (idx,item) {
             if($(item).attr("data-type")==0 && $(item).find("input").val()==""){
@@ -378,6 +380,9 @@ var currentPage=1;
                 }
             }
         })
+		if(err==1){
+            window.parent.$("#addCarError").text("");
+		}
 		if(window.parent.$("#addCarError").text()==""){
             addCar();
 		}
@@ -478,6 +483,7 @@ function resetModelBox12() {
 			'background-size':'contain',
 			'background-color':'#f6f6f6'
 		})
+    window.parent.$("#addCarError").text("");
 }
 //车辆详情回显
 function returnShow(id) {
