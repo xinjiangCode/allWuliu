@@ -277,16 +277,51 @@
     	$(window.parent.document).find('.model35_ok_btn').attr('data-apartid', '');
     	$(window.parent.document).find('.apartment_name').val('');
     	$(window.parent.document).find('.zhineng_descript').val('');
+
+        $(window.parent.document).find('.apartment_name').parent().find('.ts').html('');
+        $(window.parent.document).find('.zhineng_descript').parent().find('.ts').html('');
+
     	window.parent.showModelBox('.modelBox35');
 
+    });
+
+    $(window.parent.document).find('.apartment_name').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().find('.ts').html('部门名称不能为空');
+        } else {
+            $(this).parent().find('.ts').html('');
+        }
+    });
+
+
+    $(window.parent.document).find('.zhineng_descript').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().find('.ts').html('职能描述不能为空');
+        } else {
+            $(this).parent().find('.ts').html('');
+        }
     });
 
     // 添加部门
     // $(window.parent.document).on('click', '.model35_ok_btn', function() {
     window.parent.$('.model35_ok_btn').unbind();
     window.parent.$('.model35_ok_btn').click(function() {
-    	var apartment_name = $(window.parent.document).find('.apartment_name').val();
-    	var zhineng_descript = $(window.parent.document).find('.zhineng_descript').val();
+
+        var apartment_name_input = $(window.parent.document).find('.apartment_name');
+        var zhineng_descript_input = $(window.parent.document).find('.zhineng_descript');
+
+    	var apartment_name = $(apartment_name_input).val();
+    	var zhineng_descript = $(zhineng_descript_input).val();
+
+        if (apartment_name == '') {
+            $(apartment_name_input).parent().find('.ts').html('部门名称不能为空');
+            return;
+        }
+
+        if (zhineng_descript == '') {
+            $(zhineng_descript_input).parent().find('.ts').html('职能描述不能为空');
+            return;   
+        }
 
     	if ($(this).attr('data-apartId')) {
     		id = $(this).attr('data-apartId');
