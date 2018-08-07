@@ -481,7 +481,13 @@
 
 
         ////////////////////////////////选择公司弹框
+        window.parent.$(".modelBox0 .sure1").unbind();
         window.parent.$(".modelBox0 .sure1").click(function () {
+            if(window.parent.$(".modelBox0 .quotedPrice").val()==""){
+                alert("报价不能为空")
+                return;
+            }
+
             $.ajax({
                 url: pubIP + 'wlDemandQuoted/demandQuoted', /*v1.0*/
                 type: 'post',
@@ -568,6 +574,12 @@
             window.parent.$(".modelBox0 .receiveUser").text(data.receiveUser);
             window.parent.$(".modelBox0 .receivePhone").text(data.receivePhone);
             window.parent.$(".modelBox0 .receiveCompanyname").text(data.receiveCompanyname);
+
+            if(data.goodsUnit=="重量/吨"){
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/吨');
+            }else{
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/m³');
+            }
         }
 
         //获取报价公司列表  暂时不用

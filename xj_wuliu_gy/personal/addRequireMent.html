@@ -1203,7 +1203,7 @@ console.log(provinceID)
         $.each(data,function (idx,item) {
             str+='<tr data-id="'+item.id+'">';
             str+="<td>"+item.demandNo+"</td>"
-            str+="<td>"+item.createTime+"</td>"
+            str+="<td>"+timestampToTime1(item.createTime)+"</td>"
             str+="<td>"+item.var9+"</td>"
             str+="<td>"+item.goodsType+"</td>"
             str+="<td>"+item.goodsName+"</td>"

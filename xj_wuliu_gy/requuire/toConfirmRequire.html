@@ -368,8 +368,8 @@
             $.each(data,function (idx,item) {
                 str+='<tr data-id="'+item.id+'">';
                 str+="<td>"+item.demandNo+"</td>"
-                str+="<td>"+timestampToTime(item.createTime)+"</td>"
-                str+="<td>"+item.var9+"</td>"
+                str+="<td>"+timestampToTime1(item.createTime)+"</td>"
+                str+="<td>"+ item.var9+"</td>"
                 str+="<td>"+item.goodsType+"</td>"
                 str+="<td>"+item.goodsName+"</td>"
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
@@ -469,6 +469,7 @@
                 },
                 success: function (res) {
                     if(res.code===1){
+                        res.data.createTime=timestampToTime1(res.data.createTime)
                         cf_dataRenderSelect(res.data)
                     }else{
                         alert(res.msg);
