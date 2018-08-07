@@ -212,9 +212,9 @@
 						$(".chooseswitch input[type='checkbox']").change(function() {
 						    console.log($(this).prop("checked"));
 						    if($(this).prop("checked")){
-						        delete_qi_jin(2, $(this));
+						        delete_qi_jin(2, $(this).parent().parent().attr('data-id'));
 						    }else {
-						        delete_qi_jin(3, $(this));
+						        delete_qi_jin(3, $(this).parent().parent().attr('data-id'));
 						    }
 						});
 
@@ -275,8 +275,8 @@
     // 新增部门
     $(document).on('click', '.add_apartment', function() {
     	$(window.parent.document).find('.model35_ok_btn').attr('data-apartid', '');
-    	$(window.parent.document).find('.apartment_name').val('')
-    	$(window.parent.document).find('.zhineng_descript').val('')
+    	$(window.parent.document).find('.apartment_name').val('');
+    	$(window.parent.document).find('.zhineng_descript').val('');
     	window.parent.showModelBox('.modelBox35');
 
     });
@@ -394,7 +394,9 @@
                 if (json.code == 1) {
                 	if (type == 1) {
                 		cf_alert(1, '删除成功！');
-                	}
+                	} else {
+                        cf_alert(1, '修改成功！');
+                    }
                 } else if (json.code == -1) {
                     cf_alert(2, json.msg);
                 }

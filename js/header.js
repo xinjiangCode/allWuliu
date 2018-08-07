@@ -2,7 +2,9 @@
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
 var headerip = 'http://192.168.1.199:7777/service/';
-// var headerip = 'http://wl.api.xjv56.com/service/';
+
+//var headerip = 'http://wl.api.xjv56.com/service/';
+
 
 document.writeln("<header>\n" +
     "    <div class=\"headerTop\">\n" +
@@ -88,15 +90,38 @@ $(function () {
         $('#userNamePub').html('你好，游客');
     }
 
-    var company_type = localStorage.getItem('company_type');
-    console.log(company_type);
-    if (company_type == '1') { //供应商
-        $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
-    } else if (company_type == '2') {
-        $('.goUser').attr('href', 'account.html');
-    } else if (company_type == '-1') {
-        $('.goUser').attr('href', 'account.html');
-    }
+    // $('.goUser').click(function(){
+    //     debugger;
+    //     var company_type = localStorage.getItem('company_type');
+    //     console.log(company_type);
+    //     if (company_type == '1') { //供应商
+    //         $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+    //     } else if (company_type == '2') {
+    //         $('.goUser').attr('href', 'account.html');
+    //     } else if (company_type == '-1') {
+    //         var url = window.location.href;
+    //         if (url.indexOf('login.html') != -1) {
+    //             document.writeln("<div class=\"pop\" id=\"effect\">\n" +
+    //                 "\t<div class=\"cont\" >\n" +
+    //                 "\t\t<div class=\"cance2\" >\n" +
+    //                 "\t\t\t<span class=\"popTitle Lf\" >提示</span>\n" +
+    //                 "\t\t\t<div class=\"close Rt\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
+    //                 "\t\t</div>\n" +
+    //                 "\t\t<div class=\"deanger\"></div>\n" +
+    //                 "\t\t<div class=\"contTitle\">您尚未登录</div>\n" +
+    //                 "\t\t<div class=\"popLogin\" id=\"popLogin\" onclick=\"popEffectLogin()\">登录</div>\n" +
+    //                 "\t</div>\n" +
+    //                 "</div>");
+
+    //             // $('#effect1 .contTitle span').text('您尚未登录');
+    //             // $('#effect1').css('display', 'block');
+    //             $('.goUser').attr('href', 'javascript:;');
+    //         }else {
+    //             $('.goUser').attr('href', 'account.html');
+    //             window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+    //         }
+    //     }
+    // });
 })
 
 

@@ -60,6 +60,7 @@
     </style>
 </head>
 <body>
+<script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/header.js" type="text/javascript" charset="utf-8"></script>
 <div class="topTitle">
     <div class="headerBot">
@@ -81,7 +82,7 @@
 
 <div class="countContainer mianCont">
     <!--首页-->
-    <div class="manageList Lf cfidx1" data-idx=".cfnav1">
+    <div class="manageList Lf cfidx1 wrz" data-idx=".cfnav1">
         <ul>
             <li class="yrz">
                 <a href="##" class="manage"><strong>个人中心</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
@@ -98,7 +99,7 @@
                     <!--<li><a href="##" class="manageItem" data-src="./personal/myOrder.html" data-height="1420">会员商品订单</a></li>-->
                 </ul>
             </li>
-            <li>
+            <li class="wrz">
                 <a href="##" class="manage"><strong>企业资质</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
                 <ul>
                     <li><a href="##" class="manageItem qiye_renzheng" data-src="../finance/identification1.html" data-height="1715">企业认证</a></li>
@@ -604,7 +605,8 @@
             <div class="modelcontent">
                 <div class="info">
                     <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
-                    <p>企业认证的审核未通过，请重新修改提交</p>
+                    <p>企业认证的审核<span>未通过</span>，请重新修改提交</p>
+                    <div class="jujue_liyou">拒绝理由：<span>这是拒绝理由信息~</span></div>
                 </div>
                 <div class="modelBtnBox">
                     <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -2061,7 +2063,7 @@
 </div>
 
 
-<script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
@@ -2070,7 +2072,7 @@
         if(idx==".cfidx1"){
             // if (localStorage.getItem('company_type') == -1) {
 
-                if (localStorage.getItem('isOld') == 1 || localStorage.getItem('isOld') == -2) {
+                if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                     sessionStorage.setItem("cfsrc","./personal/identification1.html");
                 }else {
                     sessionStorage.setItem("cfsrc","./personal/mine.html");
@@ -2217,16 +2219,13 @@
         return temp
     }
 
-    //未认证，不能进入资质认证
-    $(document).on('click', '.zizhi', function() {
-        if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
-            // $('#Iframe').attr('src', './personal/identification1.html');
-            $('.qiye_renzheng').click();
-            showModelBox('.no_zizhi');
-            sessionStorage.setItem('isfirstclickqiye', '1');
-
-        }
-    });
+    // 页面一进入查看是否可以进入资质认证，未企业认证通过，不能进入
+    if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+        $('.zizhi').attr('wei_qiye', '1');
+        
+    } else {
+        $('.zizhi').attr('wei_qiye', '0');            
+    }
 
     //var state=1;//未认证
     $(function () {
@@ -2239,9 +2238,11 @@
                     $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
                 }
             })
-            $('.cfnav1').click();
+            //$('.cfnav1').click();
 
         }else{
+            sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+
             $('.cfnav1').click();
             $('.yrz').css('display', 'block');
             $(".weiRenZheng").addClass('xiaoshi');
@@ -2267,6 +2268,16 @@
                 alert('请先进行企业认证！');
                 return false;
             }*/
+
+            if ($(this).hasClass('zizhi')) {
+                if ($('.zizhi').attr('wei_qiye') == '1') {
+                    showModelBox('.no_zizhi');
+            
+                    sessionStorage.setItem('isfirstclickqiye', '1');
+                    return false;
+                }
+            }
+
             $(".manageItem").removeClass("active1");
             $(this).addClass("active1");
             $("#Iframe").attr("src",$(this).attr("data-src"));
@@ -2274,6 +2285,14 @@
             $("#Iframe").css("height",$(this).attr("data-height"));
         });
     })
+
+    var iden = sessionStorage.getItem('cfsrc');
+
+    if (iden.indexOf('identification') != -1) {
+        $('.wrz').css('display', 'block');
+        $('.wrz .manage').parent().find("ul").css('display', 'block');
+        $('.wrz .manage').find('img').eq(0).attr('src',$(this).find('img').eq(0).attr('src')==="./img/cf_open.png"?"./img/cf_close.png":"./img/cf_open.png");
+    }
 
 //顶部导航 点击切换
     $(".cfnav").click(function () {

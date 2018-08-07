@@ -139,7 +139,7 @@
                         <td>需求编号</td>
                         <td>发布时间</td>
                         <td>报价公司</td>
-                        <td>货物类型</td>
+                        <!--<td>货物类型</td>-->
                         <td>货物名称</td>
                         <td>始发地</td>
                         <td>目的地</td>
@@ -310,9 +310,9 @@
             }
         });
         //查看详情
-        $(".seeDetail").click(function () {
-            window.location.href="./publishRequireList-detail.html";
-        })
+        // $(".seeDetail").click(function () {
+        //     window.location.href="./publishRequireList-detail.html";
+        // })
 //        从首页点过来时自动到发布需求
         if(sessionStorage.getItem("isAdd")==1){
             sessionStorage.setItem("isAdd",0);
@@ -389,16 +389,23 @@
                 str+="<td>"+item.demandNo+"</td>"
                 str+="<td>"+timestampToTime(item.createTime)+"</td>"
                 str+="<td>"+item.var9+"</td>"
-                str+="<td>"+item.goodsType+"</td>"
+//                str+="<td>"+item.goodsType+"</td>"
                 str+="<td>"+item.goodsName+"</td>"
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
-                str+="<td>倒计时</td>"
+                str+='<td class="aountDown'+idx+'"></td>'
                 str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll editThis'>编辑</span><span class='ll deletThis'>删除</span></td>"
 //                    <span class="selectCompany ll">选择公司</span>
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
+            for(var i=0;i<data.length;i++){
+                aountDown(data[i].demandEndTime,'.aountDown'+i);
+            }
+//                $.each(data,function (idx,item) {
+//                    aountDown(item.demandEndTime,idx);
+//                })
+
             //模拟点击 框
             $(".listBox .cf_select").click(function () {
                 $(this).toggleClass("on");
@@ -406,7 +413,7 @@
             //详情
             $(".seeDetail").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./toConfirmRequire-detail.html";
+                window.location.href="./publishRequireList-detail.html";
             })
             //选择公司
             $(".selectCompany").click(function () {
@@ -626,6 +633,25 @@
                     console.log(err);
                 }
             });
+        }
+
+        function aountDown(time,id) {
+            var data=new Date().getTime();
+            var residue=Math.floor((time-data)/1000);
+            if(residue<=0){
+                $(id).text( "00:00:00");
+                return;
+            }else {
+                var s=residue%60>9?residue%60:'0'+residue%60;
+                residue=Math.floor(residue/60);
+                var m=residue%60>9?residue%60:'0'+residue%60;
+                residue=Math.floor(residue/60);
+                var h=residue>9?residue:'0'+residue;
+                $(id).text( h+":"+m+":"+s)
+            }
+            setTimeout(function () {
+                aountDown(time,id);
+            },1000)
         }
     </script>
 </body>

@@ -1260,11 +1260,11 @@ console.log(provinceID)
         $("#carLength").val(data.carLength);
         $("#carWeight").val(data.carWeight);
         $("#carHeight").val(data.carHeight);
-        $(".startDate").val(data.startDate);
-        $(".planEndDate").val(data.planEndDate);
+        $(".startDate").val(timestampToTime(data.startDate));
+        $(".planEndDate").val(timestampToTime(data.planEndDate));
         $("#distance").val(data.distance);
         $("#goodsRemark").val(data.goodsRemark);
-        $(".demandEndTime").val(data.demandEndTime)
+        $(".demandEndTime").val(timestampToTime(data.demandEndTime))
         $("#sendCompanyname").val(data.sendCompanyname);
         $("#sendAddress").val(data.sendAddress);
         $("#sendUser").val(data.sendUser);

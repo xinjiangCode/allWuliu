@@ -126,6 +126,7 @@
                     <span style="height: 38px;line-height: 38px;">&nbsp;-&nbsp; </span>
                     <input type="text" class="date-input laydate-icon" placeholder="请选择日期" id="test2">
                 </div>
+                <span class="ts"></span>
             </li>
             <li class="clearfix" style="overflow: visible;">
                 <div class="left1 Lf"><i class="red">*</i>公司地址:</div>
@@ -186,7 +187,7 @@
             </li>
             <li>
                 <div class="left1" style="width: 418px;">《税务登记证副本》或《一般纳税人资格证书》扫描件:</div>
-                <div class="right1 Lf" style="margin-left: 218px;">
+                <div class="right1 Lf" style="margin-left: 214px;">
                     <div class="uploade" style="">
                         <i style=""></i>
                         <!-- <img src="../img/list_logo.png" alt="" id="chajian_preview" title="点击更换图片"> -->
@@ -216,6 +217,8 @@
                     <input type="file" id="wenjian" onchange="upload_file(this);" accept="application/pdf" readonly>
                 </div>
                 <div class="right1 Lf yiRenZheng"><a href="##" download="" id="file_look" style="line-height: 38px; color: #80acf8;">在线查看</a></div>
+                <br>
+                <span class="ts"></span>
             </li>
         </ul>
     </div>
@@ -644,9 +647,9 @@
         elem: '#test1',
         format: 'YYYY-MM-DD',
         istime: false,
-        choose: function(dates){ //选择好日期的回调
+        choose: function (dates) { //选择好日期的回调
             startTime = dates;
-        }   
+        }
     });
     laydate({
         elem: '#test2',
@@ -738,7 +741,6 @@
                         $('.next_btn_update').css('display', 'none');
 
                         data.data.reasons = JSON.parse(data.data.reasons);
-                        // data.data.reasons.msg = $.parseJSON(data.data.reasons.msg);
                         console.log(data.data.reasons);
 
                         if (data.data.reasons.auditNum == '1') { //添加企业认证
@@ -814,7 +816,7 @@
         }
         
         $(document).on('click', '.weiRenZheng.btn', function () {
-            
+
             if ($('#qiye_name').val() == '') {
                 $('#qiye_name').parent().next().html('企业名称不能为空');
                 return;
@@ -840,9 +842,22 @@
                 $('#yingye_num').parent().next().html('');
             }
 
-            
-            if ($('#company_address').val() == '') {
-                $('#company_address').parent().next().html('公司地址不能为空');
+            if ($('#test1').val() == '' || $('#test2').val() == '' ) {
+                $('#yingye_date').next().html('营业期限不能为空');
+                return;
+            } else {
+                $('#yingye_date').next().html('');
+            }
+
+            if ($('#province span').text() == '请选择省' || $('#city span').text() == '请选择市' || $('#area span').text() == '请选择区' ) {
+                $('#area').parent().next().html('公司地址不能为空');
+                return;
+            } else {
+                $('#area').parent().next().html('');
+            }
+
+            if ( $('#company_address').val() == '') {
+                $('#company_address').parent().next().html('公司详细地址不能为空');
                 return;
             }
 
@@ -850,6 +865,13 @@
                 $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
                 return;
             }
+            if ($('#wenjian').val() == '') {
+                $('#wenjian').parent().parent().find('.ts').html('企业认证协议不能为空');
+                return;
+            }else {
+                $('#wenjian').parent().parent().find('.ts').html('');
+            }
+
 
             // if ($('#address').val() == '') {
             //     $('#address').parent().next().html('公司不能为空');
@@ -977,6 +999,41 @@
                 $(this).parent().next().html('');
             }
         });
+
+        // $('#test1').on('change', function () {
+        //     if ($('#test1').val() == '') {
+        //         $('#yingye_date').next().html('营业期限不能为空');
+        //         return false;
+        //     } else {
+        //         $('#yingye_date').next().html('');
+        //     }
+        // });
+        // $('#test2').on('change', function () {
+        //     if ($('#test2').val() == '') {
+        //         $('#yingye_date').next().html('营业期限不能为空');
+        //         return false;
+        //     } else {
+        //         $('#yingye_date').next().html('');
+        //     }
+        // });
+
+        // $('#province ul li').click(function() {
+        //     if ($(this).text() != '请选择省') {
+        //         $('#area').parent().next().html('');
+        //     }
+        // });
+        //
+        // $('#city ul li').click(function() {
+        //     if ($(this).text() != '请选择市') {
+        //         $('#area').parent().next().html('');
+        //     }
+        // });
+        //
+        // $('#area ul li').click(function() {
+        //     if ($(this).text() != '请选择区') {
+        //         $('#area').parent().next().html('');
+        //     }
+        // });
 
         $('#zhuce_money').on('blur', function () {
             var zhuce_money_reg = $('#zhuce_money').val();

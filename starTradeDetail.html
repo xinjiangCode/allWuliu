@@ -143,16 +143,19 @@
                 console.log(data);
                 var str = '';
                 for (var i = 0; i < data.data.length; i++) {
-                    if(i==0){
+                    if(data.data[i].companyId==sessionStorage.getItem("detailId")){
                         str += '<li class="active" data-companyId="'+data.data[i].companyId+'">'+data.data[i].companyName+'</li>';
                     }else{
                         str += '<li  data-companyId="'+data.data[i].companyId+'">'+data.data[i].companyName+'</li>';
                     }
                 }
                 $("#tuijian").html(str);
+                $("#tuijian li").unbind();
                 $("#tuijian li").click(function () {
                     $("#tuijian li").removeClass("active");
                     $(this).addClass("active");
+                    sessionStorage.setItem("detailId",$(this).attr("data-companyId"));
+                    getData();
                 })
 
             },

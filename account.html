@@ -596,6 +596,11 @@
         .selectPub span{
             max-width: 70%;display: inline-block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;
         }
+        .modelBox22 .quanList li{
+            float: left;width: 280px;
+        }
+        .modelBox22 .quanList span{width: 136px;height: 20px;line-height: 20px;display: inline-block;text-align: right;}
+        .modelBox22 .quanList .quanListvalue{text-align: left}
     </style>
 </head>
 <body>
@@ -628,7 +633,7 @@
 
 <div class="countContainer mianCont">
     <!--首页-->
-    <div class="manageList Lf cfidx1" data-idx=".cfnav1">
+    <div class="manageList Lf cfidx1 wrz" data-idx=".cfnav1">
         <ul class="manageList1">
             <li class="yrz">
                <!--  <a href="##" class="manage"><strong>系统首页</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
@@ -641,7 +646,7 @@
                     
                 <a href="##" class="manage"><strong>个人中心</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
                 <ul class="manageList2">
-                    <li><a href="##" class="manageItem" data-src="./systemIndex/mine.html" data-height="860">企业基本信息</a></li>
+                    <li><a href="##" class="manageItem qiye_jiben_info" data-src="./systemIndex/mine.html" data-height="860">企业基本信息</a></li>
                     <li><a href="##" class="manageItem"  data-src="./systemIndex/information.html"  data-height="1600">企业信息设置</a></li>
                 </ul>
             </li>
@@ -990,7 +995,7 @@
                 <input type="text" placeholder="" class="role_name" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
             </div>
             <div style="margin-top: 25px;" class="clearfix">
-                <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
+                <span style="float: left; display: inline-block; width: 135px;text-align: right; line-height: 36px; line-height: 37px;"><i style="color: red;">* </i>所属部门：</span>
                 <div class="selectPub fl suoshu_department" data-selectedindex="0" style="margin-top: 0px; width: 483px; margin-left: 4px; height: 40px; border: 1px solid #dbdbdc; float: left;">
                     <span>请选择</span>
                     <img src="./img/prl-select.jpg" alt="">
@@ -1013,6 +1018,72 @@
     </div>
 </div>
 
+<!--//报价-->
+<div class="modelBox0" style="">
+    <div class="modelCont" style="width: 800px;height: 390px;">
+        <div class="modeltitle" style="width: 780px;padding-left: 20px;">
+            <span>需求信息</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent"  style="width: 780px;height: 340px;padding-left: 20px;font-size: 16px;padding-top: 20px;">
+            <div class="requireInfo infoBox">
+                <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">需求信息</div>-->
+                <div class="contBox" style="line-height: 30px;">
+                    <div class="contlist contlistone clearFloat">
+                        <div class="Lf " style="width: 250px;">
+                            <div>需求编号：<span class="demandNo">201707196369321</span></div>
+                            <div>发布时间：<span class="createTime">2015-09-08 23:00</span></div>
+                            <!--<div>装车时间：<span>2015-09-08 23:00</span></div>-->
+                        </div>
+                        <div class="Lf " style="width: 520px;">
+                            <div><span style="vertical-align: top;">始&nbsp;&nbsp;发&nbsp;&nbsp;地：</span><span class="sendAddress" style="display: inline-block;width: 400px;">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
+                            <div class="desti"><span style="vertical-align: top;">目&nbsp;&nbsp;的&nbsp;&nbsp;地：</span><span  class="destination receiveAddresss" style="display: inline-block;width: 400px;">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
+                        </div>
+                    </div>
+                    <div class="contlist contlisttwo clearFloat">
+                        <div class="Lf " style="width: 252px;">
+                            <div>货物类型：<span class="goodsType">危化</span></div>
+                            <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="goodsWeight">150吨</span></div>
+                            <!--<div>支付方式：<span>预付</span></div>-->
+                            <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
+                            <div>结算方式：<span id="paymentMode	">现汇</span></div>
+                        </div>
+                        <div class="Lf " style="width: 250px;">
+                            <div>包装类型：<span class="packageType">罐装</span></div>
+                            <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span class="invoiceType">普票</span></div>
+                            <div style="width: 500px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span class="goodsRemark" style="">备注信息</span></div>
+                            <!--<div>缴纳方式：<span>抵扣</span></div>-->
+                        </div>
+                        <div class="Lf " style="width: 250px;" >
+                            <div>货物名称：<span class="goodsName">片碱</span></div>
+                            <div>车辆类型：<span class="carType">罐装车</span></div>
+                            <!--<div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></span></div>-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="baojiaCompany infoBox" style="width: 755px;border: 1px solid #e0e0e0;margin-top: 20px;padding-left: 5px;  ">-->
+            <!--&lt;!&ndash;<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">报价公司</div>&ndash;&gt;-->
+            <!--<div class="contBox" id="baoJiaompany" style="height: 173px;overflow-y: auto;">-->
+            <!--<ul class="clearFloat" style="padding: 5px 0;">-->
+            <!--<li class="Lf " style="width: 292px;">公司名称：<span >化动力有限公司</span></li>-->
+            <!--<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span >120元/吨</span></li>-->
+            <!--<li class="Lf "><span class=" btn blue ll">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>-->
+            <!--</ul>-->
+            <!--<ul class="clearFloat" style="padding: 5px 0;">-->
+            <!--<li class="Lf " style="width: 292px;">公司名称：<span >化动力有限公司</span></li>-->
+            <!--<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span >120元/吨</span></li>-->
+            <!--<li class="Lf "><span class=" btn blue ll">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <div class="baojia" style="text-align: center;margin-top: 60px;"><span>企业报价</span><input type="text" class="quotedPrice"></div>
+            <div class="btn sure1"  style="margin: 0 auto;margin-top: 30px; width: 80px;height: 30px;line-height: 30px;border-radius: 3px;text-align: center;color: #ffffff;background-color: #6ea3f4;">确认报价</div>
+        </div>
+    </div>
+</div>
 <!-- 1.上传合同 -->
 <div class="modelBox1" style="font-size: 14px;">
     <div class="modelCont" style="width: 655px;height: 395px;">
@@ -2292,20 +2363,21 @@
 
 <!-- 添加职务 -->
 <div class="modelBox19" style="font-size: 14px;">
-    <div class="modelCont" style="width: 655px;height: 500px;">
+    <div class="modelCont" style="width: 655px;height: 538px;">
         <div class="modeltitle" style="width: 100%;">
             <span>添加职务</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
+        <div class="modelcontent clearFloat" style="width: 100%;height: 445px;font-size: 14px;padding-top: 43px; ">
             <div >
                 <span style="display: inline-block; width: 135px;text-align: right;"><span style='color: #e71212; margin-right: 3px;'>*</span>职务名称：</span>
-                <input type="text" class="zhiwu_name" placeholder="33333"  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                <input type="text" class="zhiwu_name" placeholder=""  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
+                <span class="ts"></span>
             </div>
             <div class="clearFloat clearfix" style="margin-top: 25px;">
-                <span style="display: inline-block; width: 135px;text-align: right; float: left;"><span style='color: #e71212; margin-right: 3px;'>*</span>所属部门：</span>
+                <span style="display: inline-block; width: 135px;text-align: right; float: left;"><span style='color: #e71212; margin-right: 3px; line-height: 36px;'>*</span>所属部门：</span>
                 <!-- <input type="text" class="shuyu_apartment" placeholder="33333"  style="height: 36px;width: 205px;border: 1px solid #dbdbdc;"> -->
-                <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px;">
+                <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px; line-height: 36px;">
                     <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                     <ul class="shuyu_apartment">
                         <li data-index="1">1</li>
@@ -2313,12 +2385,14 @@
                         <li data-index="3">3</li>
                     </ul>
                 </div>
+                <span class="ts"></span>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><span style='color: #e71212; margin-right: 3px;'>*</span>职能描述：</span>
                 <textarea name="" id="" cols="30" rows="10" class="zhiwu_zhineng_descript" placeholder="请输入内容" style=" text-indent: 10px; height: 185px;width: 483px;border: 1px solid #dbdbdc; margin-left: 5px;"></textarea>
+                <div style="padding-left: 130px;"><span class="ts"></span></div>
             </div>
-            <div class="clearFloat" style="margin-top: 32px;">
+            <div class="clearFloat" style="margin-top: 20px;">
                 <span class=" cf_btn cancel zishe_btn cfClose model19_cancel_btn" style="display: inline-block;margin-left: 141px;" >取消</span>
                 <span class=" cf_btn model19_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
             </div>
@@ -2510,6 +2584,22 @@
             </div>
             <div class="errMsg" style="text-align: center;font-size: 14px;margin: 5px auto;height: 20px;line-height: 20px;color: red;"></div>
             <div class="cf_btn addVehicleField" id="addVehicleField" style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 5px;">增加</div>
+        </div>
+    </div>
+</div>
+
+<!-- 预付款  有价券详情 -->
+<div class="modelBox22" style="font-size: 14px;" data-id="">
+    <div class="modelCont" style="width: 600px;height: 490px;">
+        <div class="modeltitle" style="width: 600px;">
+            <span>有价券使用详情</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="width: 598px; height: 440px; border: 1px solid #ebe9ea;padding: 15px 0px 0 0px; ">
+            <ul class="quanList clearFloat" style="height: 370px;overflow-y: auto;">
+            </ul>
+
+            <div class="cf_btn cfClose"  style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 20px;">返回</div>
         </div>
     </div>
 </div>
@@ -3136,54 +3226,62 @@
         }
     });
     // 所属部门select
-    $.ajax({
-        url: pubIP + 'tLtDriverOrg/selectWLtDriverOrgList',
-        type: 'post',
-        headers: {
-            Accept: "application/json; charset=utf-8",
-            token: token
-        },
-        data: {
-            id: companyId,
-            page: 1,
-            size: 100,
-            sort: ''
-        },
-        cache: false,
-        dataType: 'json',
-        success: function (json) {
-            console.log(json);
+    function select_department() {
+        $.ajax({
+            url: pubIP + 'tLtDriverOrg/selectWLtDriverOrgList',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                id: companyId,
+                page: 1,
+                size: 100,
+                sort: ''
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
 
-            if (json.code == 1) {
-                if (json.data.length != 0) {
-                    var str = '';
-                    for (var i = 0; i < json.data.length; i++) {
-                        str += '<li data-index="'+json.data[i].id+'">'+json.data[i].ordName+'</li>'
+                if (json.code == 1) {
+                    if (json.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < json.data.length; i++) {
+                            str += '<li data-index="'+json.data[i].id+'">'+json.data[i].ordName+'</li>'
+                        }
+
+                        $('.shuyu_apartment').html(str);
+
+                        // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
+                        // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
+
+                        $('.apartment_select0 ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+
+                            if ($(this).parent().parent().find('span').text() == '请选择') {
+                                $(this).parent().parent().parent().find('.ts').html('所属部门不能为空');
+                            } else {
+                                $(this).parent().parent().parent().find('.ts').html('');
+                            }
+
+                            selectZhiwu($(this).attr('data-index'));
+
+                        });
                     }
-
-                    $('.shuyu_apartment').html(str);
-
-                    // $('.shuyu_apartment').parent().attr('data-selectedindex', json.data[0].id);
-                    // $('.shuyu_apartment').parent().find('span').text(json.data[0].ordName);
-
-                    $('.apartment_select1 ul li').click(function(){
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-
-                        selectZhiwu($(this).attr('data-index'));
-
-                    });
                 }
-            }
 
-        },
-        error: function(err) {
-            console.log(err);
-        }
-    });
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 
     function selectZhiwu(apartmentIndex) {
         $.ajax({
@@ -3525,7 +3623,7 @@
         if(idx==".cfidx1"){//首页
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 sessionStorage.setItem("cfsrc","./finance/identification1.html");
-            }else {
+            } else {
                 sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
             }
         }else if(idx==".cfidx2"){//需求
@@ -3605,22 +3703,21 @@
         return temp
     }
 
-    //未认证，不能进入资质认证
-    $(document).on('click', '.zizhi', function() {
-        if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
-            // $('#Iframe').attr('src', './personal/identification1.html');
-            showModelBox('.no_zizhi');
-            $('.qiye_renzheng').click();
-            sessionStorage.setItem('isfirstclickqiye', '1');
-        }
-    });
+
+    // 页面一进入查看是否可以进入资质认证，未企业认证通过，不能进入
+    if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
+        $('.zizhi').attr('wei_qiye', '1');
+        
+    } else {
+        $('.zizhi').attr('wei_qiye', '0');            
+    }
 
     
     // var state=1;//未认证
     $(function () {
         if(localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2){
 
-            sessionStorage.setItem("cfsrc","./finance/identification1.html");
+            //sessionStorage.setItem("cfsrc","./finance/identification1.html");
 
             $(".yiRenZheng").addClass('xiaoshi');
             $('.yrz').css('display', 'none');
@@ -3629,6 +3726,8 @@
                     $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
                 }
             })
+
+
             // $('.cfnav1').click();
         }else{
 
@@ -3642,6 +3741,14 @@
                     $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
                 }
             })
+        }
+
+        var iden = sessionStorage.getItem('cfsrc');
+
+        if (iden.indexOf('identification') != -1) {
+            $('.wrz').css('display', 'block');
+            $('.wrz .manage').parent().find("ul").css('display', 'block');
+            $('.wrz .manage').find('img').eq(0).attr('src',$(this).find('img').eq(0).attr('src')==="./img/cf_open.png"?"./img/cf_close.png":"./img/cf_open.png");
         }
         //
 
@@ -3675,6 +3782,15 @@
                 alert('请先进行企业认证！');
                 return false;
             }*/
+            if ($(this).hasClass('zizhi')) {
+                if ($('.zizhi').attr('wei_qiye') == '1') {
+                    showModelBox('.no_zizhi');
+            
+                    sessionStorage.setItem('isfirstclickqiye', '1');
+                    return false;
+                }
+            }
+            
 
             $(".manageItem").removeClass("active1");
             $(this).addClass("active1");
@@ -3694,6 +3810,7 @@
     function showNav() {
 
         $(".manageItem").each(function (idx,item) {
+
             $(this).removeClass("active1");
             if($(this).attr("data-src")==sessionStorage.getItem("cfsrc")){
                 $(".manageList").css("display","none");
@@ -3958,7 +4075,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             success: function (res) {
                 console.log(res)
                 if(res.code===1){
-                    if (res.data.length != 0) {
+                    if (res.data!="" && res.data!=null && res.data.length != 0) {
                         var str='';
                         $.each(res.data,function (idx,item) {
                             str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
@@ -5085,6 +5202,35 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 //                        }
 //                    });
 //                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+//    获取有价券列表
+    function getQuanList() {
+        $.ajax({
+            url: pubIP + 'carrierFinance/getyufuDetils', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            data: {id: $(".modelBox22").attr("data-id")},
+            dataType: 'json',
+            success: function (data) {
+                var str = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    str+='<li>';
+                    str+='<div>';
+                    str+='<span class="quanListtitle">'+data.data[i].coupon_name+'：'+'</span>';
+                    str+='<span class="quanListvalue">'+data.data[i].money+'</span>';
+                    str+='</div>';
+                    str+='</li>';
+                }
+                $(".modelBox22 .quanList").html(str);
             },
             error: function(err){
                 console.log(err);

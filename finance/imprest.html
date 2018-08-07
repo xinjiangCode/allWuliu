@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/imprest.css">
     <style>
         .no_msg{display: none;width: 100%;line-height: 80px;text-align: center;font-size: 18px;color: #666;}
+        .cf_btnA{color: #6ea3f4;margin: 0 5px;}
     </style>
 
     
@@ -21,13 +22,13 @@
         <div class="topTitle">预付款申请<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
         <div class="inputBox">
             <label for="">搜索类型</label>
-            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+            <div class="goodsType input select" data-selectedindex="1"><span>订单号</span><img src="../img/prl-select.jpg" >
                 <ul>
                     <li data-index="1">订单号</li>
                     <li data-index="2">司机</li>
                 </ul>
             </div>
-            <label for="">搜索内容</label><input class="orderNo input" type="text" placeholder="请输入搜索内容">
+            <label for="">搜索内容</label><input class="input orderNo" type="text" placeholder="请输入搜索内容">
             <!-- <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1"> -->
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
         </div>
@@ -41,8 +42,7 @@
                         <!-- <th style="width: 56px;text-align: center;"></th> -->
                         <th>订单号</th>
                         <th>预支金额</th>
-                        <th>预支油卡</th>
-                        <th>蓝券</th>
+                        <th>有价券金额</th>
                         <th>司机</th>
                         <th>联系方式</th>
                         <th>操作</th>
@@ -115,12 +115,16 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
-
+        $(".searchResultBtn").unbind();
+            $(".searchResultBtn").click(function () {
+                yf_list(1);
+            })
         //列表
         yf_list(1);
         function yf_list(currentPage){
+            var values=$(".orderNo").val();
             $.ajax({
-                url: pubIP + 'carrierFinance/selectWageslist',
+                url: pubIP + 'carrierFinance/getYuFuList',
                 type: 'POST',
                 headers: {
                     Accept: "application/json; charset=utf-8",
@@ -128,17 +132,14 @@
                 },
                 data: {
                     type: 0,
-                    status: 1,
                     page: currentPage,
                     size: 10,
-                    condition: $(".js_select").attr("data-selectedindex"),
-                    values: $(".js_value").val(),
+                    condition: $(".goodsType").attr("data-selectedindex"),
+                    values: values
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (json) {
-                    console.log("+++++++++++++++++++++++++++++");
-                    console.log(json);
                     var data = json.data;
                     if(data==null || data.length==0){
                         $(".no_msg").show();
@@ -165,22 +166,24 @@
 
                     var str = ''
                     $.each(data,function(idx,item){
-                        str += '<tr>'
-                        str += '<td>'+item.name+'</td>'
-                        str += '<td>'+item.org_name+'</td>'
-                        str += '<td>'+item.job_name+'</td>'
-                        str += '<td>'+item.updatetime+'</td>'
+                        str += '<tr data-id="'+item.id+'">'
+                        str += '<td>'+item.order_no+'</td>'
                         str += '<td>'+item.money+'</td>'
-                        str += '<td>'+item.wj_money+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.by_money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&&type=0" class="btn ll">查看详情</a></td>'
+                        str += '<td>'+item.money1+'</td>'
+                        str += '<td>'+item.driver_name+'</td>'
+                        str += '<td>'+item.phone+'</td>'
+                        str += '<td><span class="cf_btnA seeDetail">查看有价券列表</span></td>'
+//                            <span class="cf_btnA agree">通过</span><span class="cf_btnA refuse">拒绝</span>
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
-                    //发放工资
-                    $(".fafang").on("click",function(){
-                        jiesuan_alert_show($(this).attr("id"),$(this).attr("data-djs"),$(this).attr("data-by"));
+
+                    $(".seeDetail").unbind();
+                    $(".seeDetail").click(function () {
+                        window.parent.$(".modelBox22").show();
+                        window.parent.$(".modelBox22").attr("data-id",$(this).parents("tr").attr("data-id"));
+                        window.parent.getQuanList();
                     })
-                    
                 },
                 error: function(err) {
                     console.log(err);

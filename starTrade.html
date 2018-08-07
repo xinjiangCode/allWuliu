@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/starTrade.css">
     <style>
         #type span{
-            width: 256px;
+            width: 200px;
         }
         .carrierList li .middle{
             position: relative;
@@ -65,7 +65,7 @@
             <li style="border-bottom: 1px solid #dedede;">
                 <div class="left">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</div>
                 <div class="right" id="type">
-                    <!--<span class="actived">全部</span>-->
+                    <span class="actived">全部</span>
                     <span data-id="9001805260008040002">危险化学品经营许可证</span>
                     <span data-id="9001805260008040003">危险化学品生产许可证</span>
                     <span data-id="9001806251600150004">危险化学品使用许可证</span>
@@ -361,7 +361,7 @@
             },
             cache: false,
             data:{
-                type:'1',//1:承运商 2:供应商
+                type:'2',//1:承运商 2:供应商
             },
             ansyc: false,
             dataType: 'json',
@@ -379,6 +379,8 @@
                 $("#tuijian li").click(function () {
                     $("#tuijian li").removeClass("active");
                     $(this).addClass("active");
+                    sessionStorage.setItem("detailId",$(this).attr("data-companyId"));
+                    window.location.href="./starTradeDetail.html";
                 })
 
             },
