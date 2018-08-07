@@ -87,7 +87,7 @@
                 <li class="clearfix">
                     <div class="left1 Lf"><i class="red">*</i>道路运输许可证号:</div>
                     <div class="right1 Lf"><input type="text" class="zizhi_num" value="" id="zizhi_num0"/></div>
-                    <span class="ts">资质编号必须为数字</span>
+                    <span class="ts">道路运输许可证号不能为空</span>
                 </li>
 
                 <li  style="overflow: visible;" class="clearfix">
@@ -563,7 +563,7 @@
     $(document).on('click', '.next_btn', function() {
 
         if($(".zizhi_num").val()==''){
-            alert('资质编号不能为空!');
+            alert('道路运输许可证号不能为空!');
             return;
         }
         
@@ -736,7 +736,7 @@
     $(document).on('click', '.update_btn', function() {
 
         if($(".zizhi_num").val()==''){
-            alert('资质编号不能为空!');
+            alert('道路运输许可证号不能为空!');
             return;
         }
         
