@@ -1,8 +1,8 @@
 
 //var pubIP = 'http://192.168.1.64:7777/service/';
-//var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 
-var pubIP = 'http://wl.api.xjv56.com/service/';
+//var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 // 上传图片路径
@@ -137,9 +137,7 @@ $(document).on('click', '.exit', function() {
 
 function cf_popEffectClose1(that) {
 	$(that).parent().parent().parent().css("display","none");
-
-	//TODO 修复 http://123.56.29.244:62313/zentao/bug-view-399.html
-    var company_type = localStorage.getItem('company_type');
+     var company_type = localStorage.getItem('company_type');
     if ($('#popLogin').text() == '登录') {
         if (company_type == '1') { //供应商
             // location.href = '../login.html';
@@ -150,8 +148,8 @@ function cf_popEffectClose1(that) {
         } else if (company_type == '-1') {
             window.top.location.href='login.html';
         }
-    // } else if ($('#popLogin').text() == '认证') {
-    //     window.top.location.href='account.html';
+    } else if ($('#popLogin').text() == '认证') {
+        window.top.location.href='account.html';
     }
     
 }
