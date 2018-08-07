@@ -197,10 +197,10 @@
 						    console.log($(this).prop("checked"));
 						    if($(this).prop("checked")){
 						        delete_qi_jin(2, $(this).parent().parent().attr('data-id'));
-						        console.log('开启');
+						        
 						    }else {
 						        delete_qi_jin(3, $(this).parent().parent().attr('data-id'));
-						        console.log('禁用');
+						        
 						    }
 						});
 
@@ -278,7 +278,11 @@
     	$(window.parent.document).find('.person_yihangka').val('');
     	$(window.parent.document).find('.person_money').val('');
     	$(window.parent.document).find('.person_baoxian_status').val('');
+        $(window.parent.document).find('.suoshu_bank').val('');
+
+
     	$(window.parent.document).find('#upload_hidden0').val('');
+
     	$(window.parent.document).find('#upload_hidden0').parent().css({
             'background': 'url("")'
         });
@@ -318,6 +322,9 @@
     	var person_driver_num = $(window.parent.document).find('.person_driver_num').val();
     	var person_huowu_num = $(window.parent.document).find('.person_huowu_num').val();
     	var person_yihangka = $(window.parent.document).find('.person_yihangka').val();
+        var suoshu_bank = $(window.parent.document).find('.suoshu_bank').val();
+        person_yihangka = person_yihangka + ',' + suoshu_bank;
+
     	// var person_login_num = $(window.parent.document).find('.person_login_num').val();
     	// var person_login_pass = $(window.parent.document).find('.person_login_pass').val();
     	var person_money = $(window.parent.document).find('.person_money').val();
@@ -445,7 +452,9 @@
 		    	$(window.parent.document).find('.person_phone').val(json.data.phone);
 		    	$(window.parent.document).find('.person_driver_num').val(json.data.drivingLicence);
 		    	$(window.parent.document).find('.person_huowu_num').val(json.data.certificate);
-		    	$(window.parent.document).find('.person_yihangka').val(json.data.bankCard);
+                json.data.bankCard = json.data.bankCard.split(',');
+                $(window.parent.document).find('.person_yihangka').val(json.data.bankCard[0]);
+		    	$(window.parent.document).find('.suoshu_bank').val(json.data.bankCard[1]);
 		    	
 		    	$(window.parent.document).find('.person_money').val(json.data.pay);
 		    	$(window.parent.document).find('.person_baoxian_status').val(json.data.insurance);
