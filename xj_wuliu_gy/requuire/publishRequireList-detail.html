@@ -111,7 +111,8 @@
                 success: function (res) {
                     console.log(res);
                     if(res.code===1){
-                        res.data.createTime = new Date(res.data.createTime).Format("yyyy-MM-dd");
+//                        res.data.createTime = new Date(res.data.createTime).Format("yyyy-MM-dd");
+                        res.data.createTime=timestampToTime1(res.data.createTime);
                         cf_dataRender(res.data)
                     }else{
                         alert(res.msg);

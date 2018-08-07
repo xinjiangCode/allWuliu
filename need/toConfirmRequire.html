@@ -372,6 +372,7 @@
                         }
                         //修改底部页数
                         $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+
                         cf_dataRender(res.data.data)
                     }else{
                         alert(res.msg);
@@ -389,11 +390,11 @@
                 str+='<tr data-id="'+item.id+'">';
                 str+='<td><div class="cf_select"></div></td>';
                 str+='<td>'+item.demandNo+'</td>';
-                str+='<td>'+timestampToTime(item.createTime)+'</td>';
-                if(item.var28==null){
+                str+='<td>'+timestampToTime1(item.createTime)+'</td>';
+                if(item.var8==null){
                     str+='<td>无</td>';
                 }else{
-                    str+='<td>'+timestampToTime(item.var28)+'</td>';
+                    str+='<td>'+timestampToTime1(item.var8)+'</td>';
                 }
                 str+='<td>'+item.goodsType+'</td>';
                 str+='<td>'+item.goodsName+'</td>';
@@ -414,9 +415,9 @@
             })
             $(".updataBaojia").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
+                window.parent.$(".modelBox0").show();
                 getDataCompanyList()
                 getDataSelect()
-                $(".modelBox0").show();
             })
 //            //删除
 //            $(".delect").click(function () {
@@ -482,7 +483,13 @@
         }
 
         ////////////////////////////////选择公司弹框
-        $(".sure1").click(function () {
+        window.parent.$(".modelBox0 .sure1").unbind();
+        window.parent.$(".modelBox0 .sure1").click(function () {
+            if(window.parent.$(".modelBox0 .quotedPrice").val()==""){
+                alert("报价不能为空")
+                return;
+            }
+
             $.ajax({
                 url: pubIP + 'wlDemandQuoted/demandQuoted', /*v1.0*/
                 type: 'post',
@@ -495,11 +502,11 @@
                 dataType: 'json',
                 data:{
                     demandid:sessionStorage.getItem("detailId") ,
-                    quotedPrice:$("#quotedPrice").val()
+                    quotedPrice:window.parent.$(".modelBox0 .quotedPrice").val()
                 },
                 success: function (res) {
                     if(res.code===1){
-                       alert("修改报价成功")
+                        alert("报价成功")
                         location.reload();
                     }else{
                         alert(res.msg);
@@ -539,36 +546,41 @@
             });
         }
         //选择公司  弹框 关闭
-        $("img.close").click(function () {
+        window.parent.$(".modelBox0 img.close").click(function () {
             $(this).parents(".modelCont").parent().hide();
         })
         //渲染更改报价弹框数据
         function cf_dataRenderSelect(data) {
-            $("#demandNo").text(data.demandNo);
-            $("#createTime").text(data.createTime);
-            $(".sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
-            $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
-            $(".receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            $(".receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            $("#goodsType").text(data.goodsType);
+            window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
+            window.parent.$(".modelBox0 .createTime").text(data.createTime);
+            window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$(".modelBox0 .goodsType").text(data.goodsType);
             if(data.goodsUnit=="重量/吨"){
-                $("#goodsWeight").text(data.goodsNum+'吨');
+                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'吨');
             }else{
-                $("#goodsWeight").text(data.goodsNum+'m³');
+                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'m³');
             }
-            $("#packageType").text(data.packageType);
-            $("#invoiceType").text(data.invoiceType);
-            $("#paymentMode").text(data.paymentMode);
-            $(".goodsName").eq(0).text(data.goodsName);
-            $(".goodsName").eq(1).text(data.goodsName);
-            $("#carType").text(data.carType);
-            $("#goodsRemark").text(data.goodsRemark);
-            $("#sendUser").text(data.sendUser);
-            $("#sendPhone").text(data.sendPhone );
-            $("#sendCompanyname").text(data.sendCompanyname);
-            $("#receiveUser").text(data.receiveUser);
-            $("#receivePhone").text(data.receivePhone);
-            $("#receiveCompanyname").text(data.receiveCompanyname);
+            window.parent.$(".modelBox0 .packageType").text(data.packageType);
+            window.parent.$(".modelBox0 .invoiceType").text(data.invoiceType);
+            window.parent.$(".modelBox0 .paymentMode").text(data.paymentMode);
+            window.parent.$(".modelBox0 .goodsName").eq(0).text(data.goodsName);
+            window.parent.$(".modelBox0 .goodsName").eq(1).text(data.goodsName);
+            window.parent.$(".modelBox0 .carType").text(data.carType);
+            window.parent.$(".modelBox0 .goodsRemark").text(data.goodsRemark);
+            window.parent.$(".modelBox0 .sendUser").text(data.sendUser);
+            window.parent.$(".modelBox0 .sendPhone").text(data.sendPhone );
+            window.parent.$(".modelBox0 .sendCompanyname").text(data.sendCompanyname);
+            window.parent.$(".modelBox0 .receiveUser").text(data.receiveUser);
+            window.parent.$(".modelBox0 .receivePhone").text(data.receivePhone);
+            window.parent.$(".modelBox0 .receiveCompanyname").text(data.receiveCompanyname);
+            if(data.goodsUnit=="重量/吨"){
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/吨');
+            }else{
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/m³');
+            }
         }
 
         //获取报价公司列表  暂时不用
@@ -597,9 +609,9 @@
                             str+='<li class="Lf" data-id="'+item.demandid+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
                             str+="</ul>"
                         })
-                        $("#baoJiaompany").html(str);
+                        window.parent.$(".modelBox0 .baoJiaompany").html(str);
                         //选择公司
-                        $(".sel").click(function () {
+                        window.parent.$(".modelBox0 .sel").click(function () {
                             var demandid= $(this).parent().attr("data-demandid")
                             var companyid=$(this).parent().attr("data-companyid")
                             $.ajax({
@@ -630,7 +642,7 @@
                             });
                         })
                         //删除公司
-                        $(".del").click(function () {
+                        window.parent.$(".del").click(function () {
                             var id= $(this).parent().attr("data-id")
                             $.ajax({
                                 url: pubIP + 'wlDemandQuoted/updateForRejectCompany', /*v1.0*/

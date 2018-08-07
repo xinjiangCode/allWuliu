@@ -1081,7 +1081,11 @@
             <!--</div>-->
             <!--</div>-->
 
-            <div class="baojia" style="text-align: center;margin-top: 60px;"><span>企业报价</span><input type="text" class="quotedPrice"></div>
+            <div class="baojia" style="text-align: center;margin-top: 60px;">
+                <span>企业报价</span>
+                <input type="text" class="quotedPrice">
+                <span class="danjiadanwei"></span>
+            </div>
             <div class="btn sure1"  style="margin: 0 auto;margin-top: 30px; width: 80px;height: 30px;line-height: 30px;border-radius: 3px;text-align: center;color: #ffffff;background-color: #6ea3f4;">确认报价</div>
         </div>
     </div>
@@ -2198,9 +2202,10 @@
                     </div>
                 </div>
                 <div class="inputBox" style="margin-top: 24px; border: 1px solid #ebe9ea; border-bottom: none;">
-                    <label for="">输入搜索</label><input class="orderNo input" id="carNo" type="text" placeholder="车辆编号">
-                    <label for="">车辆类型</label>
-                    <div class="goodsType input selectPub" id="carType" data-selectedindex="0"><span>全部</span><img src="img/prl-select.jpg" >
+                    <label for="" class="Lf">输入搜索</label>
+                    <input class="orderNo input Lf" id="carNo" style="margin-top: 10px;" type="text" placeholder="车辆编号">
+                    <label for="" class="Lf">车辆类型</label>
+                    <div class="goodsType input selectPub" id="carType"  style="float: left;" data-selectedindex="0"><span>全部</span><img src="img/prl-select.jpg" >
                         <ul>
                             <li data-index="1">全部</li>
                             <li data-index="2">普化品</li>
@@ -2258,18 +2263,15 @@
                         </div>
                         <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">预计发货时间：</span>
                             <!--<input type="text" placeholder="111" id="selectInput" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
-                            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" class="time_inp" style="height: 34px;width: 170px;border: 1px solid #dbdbdc; ">
+                            <input type="text" class="date-input laydate-icon publishTime input time_inp" placeholder="请选择日期" id="test1"  style="height: 34px;width: 170px;border: 1px solid #dbdbdc; ">
                         </div>
                     </div>
                     <div class="clearfix">
                         <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fl">
                             <span style="color: #282828;" class="modelBox34LeftTitle Lf">司机选择：</span>
                             <div class="selectPub" id="peoples1" data-selectedindex="-1" style="float: left;width: 204px; margin-left: 4px; margin-right: 0px; margin-top: 0px; background: #fff;">
-                                <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                                <span style="display: inline-block;max-width: 70%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">暂无可分配司机</span><img src="img/prl-select.jpg" alt="">
                                 <ul>
-                                    <li data-index="1">1</li>
-                                    <li data-index="2">2</li>
-                                    <li data-index="3">3</li>
                                 </ul>
                             </div>
                             <!--<input type="text" placeholder="111" id="selectInput2" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
@@ -2283,11 +2285,8 @@
                     <div class="clearfix">
                         <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fl"><span style="color: #282828;" class="modelBox34LeftTitle Lf">押运选择：</span>
                             <div class="selectPub" id="peoples3" data-selectedindex="-1" style="float: left;width: 204px; margin-left: 4px; margin-right: 0px; margin-top: 0px; background: #fff;">
-                                <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                                <span style="display: inline-block;max-width: 70%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">暂无可分配押运</span><img src="img/prl-select.jpg" alt="">
                                 <ul>
-                                    <li data-index="1">1</li>
-                                    <li data-index="2">2</li>
-                                    <li data-index="3">3</li>
                                 </ul>
                             </div>
                             <!--<input type="text" placeholder="111" id="selectInput4" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
@@ -2299,11 +2298,9 @@
                     <div class="clearfix">
                         <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fl "><span style="color: #282828;display: inline-block; width: 70px; text-align: right;" class="modelBox34LeftTitle Lf">安全员：</span>
                             <div class="selectPub" id="peoples2" data-selectedindex="-1" style="float: left;width: 204px; margin-left: 4px; margin-right: 0px; margin-top: 0px; background: #fff;">
-                                <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                                <span style="display: inline-block;max-width: 70%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">暂无可分配安全员</span><img src="img/prl-select.jpg" alt="">
                                 <ul>
-                                    <li data-index="1">1</li>
-                                    <li data-index="2">2</li>
-                                    <li data-index="3">3</li>
+
                                 </ul>
                             </div>
                             <!--<input type="text" placeholder="111" id="selectInput6" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
@@ -2315,7 +2312,7 @@
                     <div class="clearfix">
                         <div style="margin-top: 32px;color: #666666;line-height: 36px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">卡券选择：&nbsp;</span>
                             <div class="selectPub" id="kaQuan" data-selectedindex="-1" style="float: left;width: 204px; margin-right: 0px; margin-top: 0px; background: #fff;">
-                                <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                                <span style="display: inline-block;max-width: 70%;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                                 <ul>
                                 </ul>
                             </div>
@@ -4275,17 +4272,17 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             $("#sureCarError").text("请选择预计到货时间");
             return;
         }
-        if($("#peoples3").attr("data-selectedindex")==-1){
-            $("#sureCarError").text("请选择押运员");
-            return;
-        }
+//        if($("#peoples3").attr("data-selectedindex")==-1){
+//            $("#sureCarError").text("请选择押运员");
+//            return;
+//        }
         if( $("#money").val()==""){
             $("#sureCarError").text("请填写现金");
             return;
         }
-        if($("#peoples2").attr("data-selectedindex")==-1){
-            $("#sureCarError").text("请选择安全员");
-            return;
+//        if($("#peoples2").attr("data-selectedindex")==-1){
+//            $("#sureCarError").text("请选择安全员");
+//            return;
         }
 
         if($("#kmNum").val()==""){
