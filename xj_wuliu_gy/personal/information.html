@@ -13,22 +13,232 @@
     <link rel="stylesheet" type="text/css" href="../css/information.css"/>
     <style type="text/css">
         .ok_btn {
-            display: inline-block;
-            width: 187px;
-            height: 51px;
-            line-height: 51px;
-            font-size: 16px;
-            color: #fff;
-            text-align: center;
-            background: #538DF7;
-            border-radius: 3px;
-            margin-top: 22px;
-            margin-left: 193px;
-            cursor: pointer;
+            width: 200px;height: 40px;line-height: 40px;text-align: center;display: block;margin: 0 auto;color: white;font-size: 16px;background: #6ba1ff;border-radius: 2px;
         }
     </style>
 </head>
 <body>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta http-equiv="Cache-Control" CONTENT="no-cache">
+            <meta http-equiv="Pragma" content="no-cache">
+            <meta name="format-detection" content="telephone=no" />
+            <title adct1="1">新疆化学品经营服务平台</title>
+            <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+            <link rel="stylesheet" type="text/css" href="../css/information.css"/>
+            <style type="text/css">
+                .sub_btn{width: 200px;height: 40px;line-height: 40px;text-align: center;display: block;margin: 0 auto;color: white;font-size: 16px;background: #6ba1ff;border-radius: 2px;}
+            </style>
+        </head>
+        <body>
+        <div class="container">
+            <div class="containerTitle">
+                <div class="Lf">企业信息</div>
+                <div class="Rt cfRefresh" style="width: 90px;height: 35px;border: 1px solid #f1f1f1;line-height: 35px;margin-top: 8px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>
+            </div>
+        
+            <div class="center1">
+                <ul>
+                    <li>
+                        <div class="left1 Lf"><i class="red">*</i>标&nbsp;&nbsp;&nbsp;题：</div>
+                        <div class="right1 Lf"><input type="text" id="qiye_name" placeholder="请输入企业名称"></div>
+                        <span class="ts"></span>
+                    </li>
+                    <li>
+                        <div class="left1 Lf">
+                            <i class="red">*</i>企业logo：
+                        </div>
+                        <div class="right1 Lf">
+                            <div class="uploade Lf" style="">
+                                <i></i>
+                                <img src="../img/uploades.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片">
+                                <input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+                                <input type="hidden" name="" value="" id="yingye_zhizhao_hidden">
+                            </div>
+                            <div class="Lf" style="margin-left: 12px;font-size: 12px;">
+                                <i class="" style="display: block;font-size: 14px;color: #999999;">企业logo 展示图片</i>
+                                <div  style="display: block;font-size: 14px;color: #999999;margin-top: 113px;">1000 X 500</div>
+        
+                            </div>
+                        </div>
+                        <span class="ts"></span>
+                    </li>
+                
+                    <li>
+                        <div class="left1 Lf"><i class="red">*</i>企业介绍：</div>
+                        <div class="right1 Lf">
+                            <textarea name="" id="myTextarea" cols="30" rows="10" style="width: 528px;height: 244px;"></textarea>
+                        </div>
+                        <span class="ts"></span>
+                    </li>
+                    <li>
+                        <span class="sub_btn" onclick="uploadMsg();">提交</span>
+                    </li>
+                </ul>
+            </div>
+        
+            
+        </div>
+        
+        <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+        <script type="text/javascript">
+        
+            //设置Iframe高度
+            $(function () {
+                window.parent.$("#Iframe").css("height","720");
+            })
+        
+            var startTime1 = '';
+            var endTime1 = '';
+            var isSelect=false;
+        
+            laydate({
+                elem: '#test1',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                istime: true,
+                choose: function(dates){ //选择好日期的回调
+                    startTime1 = dates;
+                }
+            })
+            laydate({
+                elem: '#test2',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                istime: true,
+                choose: function(dates){ //选择好日期的回调
+                    endTime1 = dates;
+                }
+            })
+        
+            function lay(id) {
+                laydate({
+                    elem: '#'+id,
+                    format: 'YYYY-MM-DD hh:mm:ss',
+                    istime: true,
+                    choose: function(dates){ //选择好日期的回调
+                        /*endTime1 = dates;*/
+                    }
+                })
+            }
+        
+            //不同浏览器下的路径不同
+            function getObjectURL(file) {
+                var url = null;
+                if (window.createObjectURL != undefined) { // basic
+        
+                    url = window.createObjectURL(file);
+        
+                } else if (window.URL != undefined) { // mozilla(firefox)
+        
+                    url = window.URL.createObjectURL(file);
+        
+                } else if (window.webkitURL != undefined) { // webkit or chrome
+        
+                    url = window.webkitURL.createObjectURL(file);
+                }
+        
+                return url;
+            }
+        
+            //企业信息回显
+            $.ajax({
+                type:"post",
+                url:pubIP+"wltCompanyUp/selectComPanyById",//v1.0
+                cache:false,
+                dataType: "json",
+                async:false,
+                headers: {
+                    token: token
+                },
+                data:{
+                    id: companyId,
+                },
+                success: function(data){
+                    console.log("+++");
+                    console.log(data);
+                    var data = data.data;
+                    $("#qiye_name").val(data.companyName);
+                    $("#yingye_zhizhao_preview").attr("src",data.storeImage);
+                    $("#myTextarea").val(data.briefIntroduction);
+                },
+                error:function(xhr,statues,error){
+        
+                }
+            });
+            // 上传图片
+            $(document).on('change','#yingye_zhizhao_pic',function(){
+                    xmTanUploadImg11(this);
+                })
+                
+            function xmTanUploadImg11(obj) {
+                var file = obj.files[0];
+                if (file.size >= 2097152) {
+                    window.parent.$(".all_error_alert").show();
+                    window.parent.$(".all_error_alert").find(".innerErrmsg").html("上传的图片超过了2MB");
+                    return;
+                }
+                var formdata=new FormData();
+                formdata.append('file', file);
+                $.ajax({
+                    url: uplodImgPath,
+                    type: 'post',
+                    processData: false,  // 告诉jQuery不要去处理发送的数据
+                    contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+                    data: formdata,
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        //console.log(data);
+                        $("#yingye_zhizhao_preview").attr("src",data.url)
+                        $(obj).next('input[type="hidden"]').val(data.url);
+                        // $(obj).parent().parent().next().css('display', 'none');
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+            //更新企业信息
+            function uploadMsg(){
+                $.ajax({
+                    type:"post",
+                    url:pubIP+"chemicalType/updateCompanyInfo",//v1.0
+                    cache:false,
+                    dataType: "json",
+                    async:false,
+                    headers: {
+                        token: token
+                    },
+                    data:{
+                        companyId: companyId,
+                        companyName: $("#qiye_name").val(),
+                        companyLogo: $("#yingye_zhizhao_preview").attr("src"),
+                        briefIntroduction: $("#myTextarea").val(),
+                    },
+                    success: function(data){
+                        console.log("++-----+");
+                        console.log(data);
+                        if(data.code==1){
+                            cf_alert(1,"企业信息更改成功");
+                        }
+                    },
+                    error:function(xhr,statues,error){
+                        console.log(error);
+                    }
+                });
+            }
+            
+        
+        </script>
+        </body>
+        </html>
+        
 <div class="container">
     <div class="containerTitle">
         <div class="Lf">企业信息</div>

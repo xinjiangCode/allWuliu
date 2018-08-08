@@ -47,7 +47,7 @@ html,body{min-width: 972px;width: 972px;background-color: white;overflow: hidden
 .input_width {
     width: 145px;
     height: 30px;
-    padding-left: 30px;
+    padding-left: 25px;
     box-sizing: border-box;
 }
 
@@ -66,13 +66,13 @@ html,body{min-width: 972px;width: 972px;background-color: white;overflow: hidden
 .none {
     display: none;
     position: relative;
-    float: right;
+    /*float: right;*/
     margin-right: 15px;
 }
 
 .sousuo_img {
     position: absolute;
-    right: 180px;
+    left: 160px;
     top: 6px;
 }
 
@@ -82,8 +82,13 @@ html,body{min-width: 972px;width: 972px;background-color: white;overflow: hidden
     margin-top: -1px;
     border-top: none;
     z-index: 10;
+    left: 155px;
     position: absolute;
     background-color: #fff;
+}
+
+.sousuo_ul {
+    padding-top: 15px;
 }
 
 ul.sousuo_ul li {
@@ -145,14 +150,17 @@ span.quxiao_add {
     display: none;
     position: absolute;
     margin-top: 40px;
+    left: 318px;
 }
 
 .ts2 {
     color: #ff7854;
     font-size: 14px;
-    margin-left: -80px;
+    margin-left: 16px;
+    margin-top: 15px;
     margin-bottom: 10px;
-    display: none;
+    visibility: hidden;
+    display: inline-block;
 }
 
 .center1:last-child {
