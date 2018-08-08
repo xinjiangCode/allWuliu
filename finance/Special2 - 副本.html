@@ -10,57 +10,36 @@
     <meta name="format-detection" content="telephone=no" />
     <title>新疆化学品经营服务平台</title>
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/Special3.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/Special2.css"/>
     <style type="text/css">
         .container {
-            height: 725px;
+            height: 700px;
         }
 
-        .bottom1>.shenhe {
-            width: 107px;
-            height: 40px;
-            line-height: 40px;
-            background-color: white;
-            color: #666666;
-            border: 1px solid #666666;
-            margin-left: 10px;
-            margin-top: 0;
-            background: #ccc;
-        }
-
-        .laydate-icon {
-            border: 1px solid #C6C6C6;
-            /* padding-right: 16px; */
-            /* margin-right: 0px; */
-            background-image: url(../../../img/yh_rili.png);
-            background-position: 137px;
-            background-size: 11%;
+        .header {
+            padding: 18px 61px;
+            border-bottom: 1px solid #f1f1f1;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="containerTitle">
-        <div class="Lf">企业资质审核</div>
+        <div class="Lf">资质认证</div>
         <div class="Rt cfRefresh" style="width: 90px;height: 35px;border: 1px solid #f1f1f1;line-height: 35px;margin-top: 8px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>
     </div>
-    <div class="header">
+    <div class="header" style="font-size: 16px;">
         <ul>
             <li>
-                <a href="./Special1.html" style="color: #999;">
-                    危险化学品认证
+                <a href="Special1.html">
+                    <div class="Lf lan ">1</div>
+                    道路运输资质
                 </a>
             </li>
-            <li class="headerLIne"></li>
-            <li>
-                <a href="./Special2.html" style="color: #999;">
-                    特殊资质认证
-                </a>
-            </li>
-            <li class="headerLIne"></li>
-            <li>
-                <a href="./Special3.html" style="color: #007aff;">
-                    其他资质信息
+            <li style="margin-left: 79px;">
+                <a href="javascript:;">
+                    <div class="Lf orange">2</div>
+                    其他资质认证
                 </a>
             </li>
         </ul>
@@ -160,7 +139,7 @@
 <script type="text/javascript">
     //Iframe 的高度
     $(function () {
-        window.parent.$("#Iframe").css("height","725");
+        window.parent.$("#Iframe").css("height","713");
     })
     var startTime1 = '';
     var endTime1 = '';
@@ -197,40 +176,6 @@
         })
     }
 
-    $('.header ul li:nth-child(3) a').on('click', function () {
-        
-        
-        $.ajax({
-            url: pubIP + 'companyCertification/getQualificationsStateByCompanyId',
-            type: 'post',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            data: {
-                companyId: companyId
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (data) {
-                if (data.data == 'false') {
-                    // if (window.localStorage.getItem('data-subFlag') == '0') {
-                        window.parent.tan1();   
-                    // } else {
-                    //     window.parent.tan2();
-                    // }
-                    
-                } else {
-                    location.href="Special2.html";
-                }
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
-
-        
-    });
 
     //不同浏览器下的路径不同
     function getObjectURL(file) {
@@ -251,11 +196,9 @@
         return url;
     }
 
-
     $(document).on('change','.input_blur',function(){
             xmTanUploadImg(this);
         })
-
 
     //选择图片，马上预览
     function xmTanUploadImg(obj) {
@@ -292,8 +235,6 @@
                 /*img_url1 = data.url;*/
                 // $(obj).prev().attr('src', data.url);
                 // $(obj).next().val(data.url);
-                // $(obj).parent().parent().find('.ts1').css('display', 'none');
-
                 // $(obj).prev().attr('data-flag', '0');
 
                 $(obj).parent().css({
@@ -388,6 +329,8 @@
     
         var isfirst = true;
         function searchAjax() {
+
+
             $.ajax({
                 url: pubIP + 'companyCertification/getQualificationsBaseInfoAndStrByCompanyId',
                 type: 'post',
@@ -402,10 +345,11 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
 
                     if(isfirst){
                         for (var i = 0; i < data.data.length; i++) {
+
                             if(i > 0){
                                 $('.add').click();
                                 $('.laydate-icon').css({
@@ -445,7 +389,6 @@
                         // for (var j = 0; j < data.data[i].picInfos.length; j++) {
                         //     $('.c'+i+' .pic'+(j+1)).attr('data-picids', data.data[i].picInfos[j].ids);
                         //     $('.c'+i+' .pic'+(j+1)).attr('src', data.data[i].picInfos[j].picUrl);
-                        //     $('.c'+i+' .hd'+(j)).val(data.data[i].picInfos[j].picUrl);
                         //     $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
                         // }
 
@@ -462,8 +405,6 @@
                             $('.c'+i+' .hd'+j).val(data.data[i].picInfos[j].picUrl);
 
                             $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
-
-                            $('.c'+i+' .pic'+(j+1)).attr('disabled', 'disabled');
                             
                         }
 
@@ -491,6 +432,8 @@
 
                         $('.c'+i).append('<div class="btn edit_btn" style="width: 82px;height: 30px;line-height: 30px;margin: 45px 0 0 298px;">编辑</div>');
 
+                        $('.input_blur').attr('disabled', true);
+
                     }
                     $('.textarea').each(function(){
                         var that = this;
@@ -514,39 +457,41 @@
 
 
                     // 模拟下拉框
-                    $('.zizhi_type0').click(function(event){
+                    // $('.zizhi_type0').click(function(event){
 
-                        if($(this).attr("disabled")=="disabled"){ //判断是否可以点击
-                          return;
-                        }
+                    //     if($(this).attr("disabled")=="disabled"){ //判断是否可以点击
+                    //       return;
+                    //     }
 
-                        if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
-                            $(this).children('img').attr('src', '../img/prl-select.jpg')
-                        } else {
-                            $(this).children('img').attr('src', '../img/prl-selected.jpg')
-                        }
+                    //     // debugger;
 
-                        event.stopPropagation();
+                    //     if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
+                    //         $(this).children('img').attr('src', '../img/prl-select.jpg')
+                    //     } else {
+                    //         $(this).children('img').attr('src', '../img/prl-selected.jpg')
+                    //     }
 
-                        $(this).children('ul').toggle();
-                        var that = $(this);
-                        that.find('li').each(function(){
-                            $(this).mouseover(function(){
-                                $(this).addClass('hovered')
-                            });
-                            $(this).mouseleave(function(){
-                                $(this).removeClass('hovered')
-                            });
-                            if($(this).attr('data-index') == that.attr('data-selectedindex')){
-                                $(this).css({'background': '#6ea3ff','color': '#fff'});
-                                $(this).siblings('li').css({'background': '#fff','color': '#999'});
-                            }
-                        });
+                    //     event.stopPropagation();
 
-                    }).mouseleave(function (event) {
-                        $(this).children('img').attr('src', '../img/prl-select.jpg');
-                        $(this).children('ul').hide();
-                    });
+                    //     $(this).children('ul').toggle();
+                    //     var that = $(this);
+                    //     that.find('li').each(function(){
+                    //         $(this).mouseover(function(){
+                    //             $(this).addClass('hovered')
+                    //         });
+                    //         $(this).mouseleave(function(){
+                    //             $(this).removeClass('hovered')
+                    //         });
+                    //         if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                    //             $(this).css({'background': '#6ea3ff','color': '#fff'});
+                    //             $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                    //         }
+                    //     });
+
+                    // }).mouseleave(function (event) {
+                    //     $(this).children('img').attr('src', '../img/prl-select.jpg');
+                    //     $(this).children('ul').hide();
+                    // });
 
 
                     stateAjax();
@@ -594,8 +539,6 @@
             
             $(this).parent().find('.zizhi_type').attr("disabled",false).css("background-color","#fff");
             isSelect=true;
-
-            $(this).parent().find('.preview').attr('disabled', false);
             
             $(this).parent().find('.zizhi_num').attr('readonly', false).css("background-color","#fff");
            // $(this).parent().find('.textarea').attr('contenteditable', true);
@@ -603,6 +546,8 @@
            $(this).parent().find(".btn1").show();
            $(this).parent().find(".start").attr('disabled', false).css("background-color","#fff");
            $(this).parent().find(".end").attr('disabled', false).css("background-color","#fff");
+
+           $('.input_blur').attr('disabled', false);
 
         });
 
@@ -623,7 +568,7 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
 
                     
                     $('.btn.edit_btn').css('display', 'block');
@@ -711,7 +656,6 @@
                         +'</div>'
                         +'<span class="ts2">许可经营不能为空</span>'
                         +'<div class="btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>'
-                          
                     +'</li>'
                     +'<li class="add_fanwei none">'
                         +'<div class="left1 Lf"><i class="red">*</i>添加许可经营范围:</div>'
@@ -756,11 +700,7 @@
         $('#center').append(str);
         i++;
         /*typeAjax();*/
-        $('.laydate-icon').css({
-            'backgroundImage': 'url(../img/yh_rili.png)',
-            'backgroundPosition': '137px',
-            'backgroundSize': '11%'
-        });
+
 
         $.ajax({
             url: pubIP + 'companyCertification/getQualificationTypeList',
@@ -794,6 +734,7 @@
                     }
 
                 }
+
 
                 $('.zizhi_type'+(p)).find("ul").html(str);
 
@@ -840,7 +781,7 @@
                     $(this).parent().css('display','none');
                 });
 
-                console.log($('.zizhi_type'+(p)));
+                // console.log($('.zizhi_type'+(p)));
                 p++;
 
             },
@@ -921,6 +862,7 @@
 
     $(document).on('click', '.sousuo_ul li', function () {
         if ($(this).text() != '暂无数据') {
+            // console.log($(this).text());
             $(this).parents('li').prev().find('.textarea').append('<div data-ind="'+$(this).attr('data-index')+'">'+$(this).text()+'</div>');
             $(this).parents('li').prev().find('.ts2').css('visibility', 'hidden');
         }
@@ -976,6 +918,8 @@
    
     $(document).on('click', '.sub', function () {
 
+        
+
         // if($(".zizhi_num").val()==''){
         //     alert('资质编号不能为空!');
         //     return;
@@ -986,11 +930,6 @@
         // }
         // if($("#test1").val()=='' || $("#test2").val()==''){
         //     alert('有效期不能为空!');
-        //     return;
-        // }
-
-        // if ($('.input_blur').next().val() == '') {
-        //     $('.input_blur').parent().parent().find('.ts1').css('display', 'block')
         //     return;
         // }
 

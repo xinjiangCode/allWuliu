@@ -48,7 +48,9 @@
             margin-left: 155px;
         }
 
-
+        .ts {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -101,7 +103,7 @@
                         </div>
                     </div>
                     <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
-                    <span class="ts" style="margin-top: 32px;">许可经营不能为空</span>
+                    <span class="ts" style="margin-top: 32px;">证件不能为空</span>
                 </li>
                 <li class="clearfix">
                     <div class="left1 Lf"><i class="red">*</i>有效期:</div>
@@ -144,7 +146,7 @@
                     <div class="right1 Lf clearFloat">
                         <div class="textarea_div" name="" id="" cols="30" rows="10" style="width: 359px;height: 100px; border: 1px solid #EAEAEA; background: #FAFAFA;padding-top: 5px; padding-left: 5px; box-sizing: border-box; overflow-y: auto;"></div>
                     </div>
-                    <!--<span class="ts">有效期不能为空</span>-->
+                    <span class="ts">营业范围不能为空</span>
                 </li>
             </ul>
 
@@ -174,6 +176,12 @@
     //Iframe 的高度
     $(function () {
         window.parent.$("#Iframe").css("height","771");
+
+        $('.laydate-icon').css({
+            'backgroundImage': 'url(../img/yh_rili.png)',
+            'backgroundPosition': '137px',
+            'backgroundSize': '11%'
+        });
     })
 
     var startTime1 = '';
@@ -185,7 +193,8 @@
         format: 'YYYY-MM-DD',
         istime: true,
         choose: function(dates){ //选择好日期的回调
-            startTime1 = dates;
+            // startTime1 = dates;
+            $("#test1").parent().next().css('display', 'none');
         }
     })
     laydate({
@@ -193,7 +202,8 @@
         format: 'YYYY-MM-DD',
         istime: true,
         choose: function(dates){ //选择好日期的回调
-            endTime1 = dates;
+            // endTime1 = dates;
+            $("#test2").parent().next().css('display', 'none');
         }
     })
 
@@ -451,6 +461,8 @@
         });
     }
 
+
+
     stateAjax();
 
     function stateAjax() {
@@ -469,16 +481,21 @@
             dataType: 'json',
             success: function (data) {
                 console.log(data);
+
+
+
                 if(data.data==null){
                     return;
                 }
 
-                if (data.data.dType == null && data.data.eType != null) {
+                // 普化dType  3    危化eType  4
+                if (data.data.eType != null && data.data.dType == null) {
                     $('input[value="wei"]').click();
                     $('input[name="ZZtype"]').attr('disabled', true);
 
                     //未审核
                     if (data.data.eType == 4 && data.data.eState == 0) {
+                        
                         // window.parent.shenhe();  
                         $(".next_btn").hide();
                         $('.update_btn').hide();
@@ -521,7 +538,7 @@
                         $(".next_btn").hide();
 
                         getInfo(3);
-                    }else {
+                    } else {
                         $('.update_btn').css('display', 'block');
                         $(".shenhe").hide();
                         $(".next_btn").hide();
@@ -529,6 +546,10 @@
                         getInfo(3);
                     }
 
+                } else if (data.data.eType == null && data.data.dType == null) {
+                    $('.update_btn').css('display', 'none');
+                    $(".shenhe").hide();
+                    $(".next_btn").show();
                 }
                 
 
@@ -552,6 +573,13 @@
         var lei_id = $('.lei span').attr('data-spanvalue');
         var xiang_id = $('.xiang span').attr('data-spanvalue');
 
+        if (lei_text != '请选择' && xiang_text != '请选择') {
+            $(this).parent().parent().next().find('.ts').css('display', 'none');
+        } else {
+            $(this).parent().parent().next().find('.ts').css('display', 'inline-block');
+            return false;
+        }
+
         // $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+lei_text+'--'+xiang_text +'</div>');
 
         $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+xiang_text +'</div>');
@@ -560,19 +588,7 @@
 
 
     // 添加资质
-    $(document).on('click', '.next_btn', function() {
-
-        if($(".zizhi_num").val()==''){
-            alert('道路运输许可证号不能为空!');
-            return;
-        }
-        
-        if($("#test1").val()=='' || $("#test2").val()==''){
-            alert('有效期不能为空!');
-            return;
-        }
-
-        console.log(companyId);
+    $(document).on('click', '.next_btn', function() {  
 
         var zizhi_num = $('.zizhi_num').val();
 
@@ -580,6 +596,28 @@
         var endtime = $('#test2').val();
 
         var img = $('#yingye_zhizhao_hidden').val();
+
+        if(zizhi_num == ''){
+            $('.zizhi_num').parent().next().css('display', 'inline-block');
+            return false;
+        }
+
+        if (img == '') {
+            $('#yingye_zhizhao_hidden').parent().parent().next().css('display', 'inline-block');
+            return false;
+        }
+        
+        if(starttime =='' || endtime ==''){
+            $('#test1').parent().next().text('有效期不能为空!');
+            $('#test1').parent().next().css('display', 'inline-block');
+            return false;
+        } else if (starttime > endtime) {
+            $('#test1').parent().next().text('开始时间不能大于结束时间');
+            $('#test1').parent().next().css('display', 'inline-block');
+            return false;
+        }
+
+
 
         if ($('input[name="ZZtype"]:checked').val() == 'pu') {
 
@@ -616,6 +654,13 @@
 
         } else {
 
+
+            if ($('.textarea_div').text() == '') {
+                $('.textarea_div').parent().next().css('display', 'inline-block');
+                return false;
+            }
+
+            
             var str2 = ';';
             var str3 = ';';
             $('.textarea_div div').each(function(index, ele) {
@@ -667,7 +712,7 @@
     // 回显数据
     function getInfo(type) {
         $.ajax({
-            url: pubIP+'companyCertification/getQualificationsBaseInfoAndStrByCompanyId',
+            url: pubIP + 'companyCertification/getQualificationsBaseInfoAndStrByCompanyId',
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -735,16 +780,6 @@
     // 编辑资质
     $(document).on('click', '.update_btn', function() {
 
-        if($(".zizhi_num").val()==''){
-            alert('道路运输许可证号不能为空!');
-            return;
-        }
-        
-        if($("#test1").val()=='' || $("#test2").val()==''){
-            alert('有效期不能为空!');
-            return;
-        }
-
         var zizhi_num = $('.zizhi_num').val();
 
         var starttime = $('#test1').val();
@@ -753,6 +788,26 @@
         var img = $('#yingye_zhizhao_hidden').attr('data-picids') + ',' + $('#yingye_zhizhao_hidden').val();
 
         var ids = $('.center1 ul').attr('data-ids');
+
+        if(zizhi_num == ''){
+            $('.zizhi_num').parent().next().css('display', 'inline-block');
+            return false;
+        }
+
+        if (img == '') {
+            $('#yingye_zhizhao_hidden').parent().parent().next().css('display', 'inline-block');
+            return false;
+        }
+        
+        if(starttime =='' || endtime ==''){
+            $('#test1').parent().next().text('有效期不能为空!');
+            $('#test1').parent().next().css('display', 'inline-block');
+            return false;
+        } else if (starttime > endtime) {
+            $('#test1').parent().next().text('开始时间不能大于结束时间');
+            $('#test1').parent().next().css('display', 'inline-block');
+            return false;
+        }
 
         if ($('input[name="ZZtype"]:checked').val() == 'pu') {
 
@@ -789,6 +844,11 @@
             });
 
         } else {
+
+            if ($('.textarea_div').text() == '') {
+                $('.textarea_div').parent().next().css('display', 'inline-block');
+                return false;
+            }
 
             var str2 = ';'; //一级
             var str3 = ';';
@@ -837,6 +897,42 @@
 
     });
 
+
+    $('.zizhi_num').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().next().css('display', 'inline-block');
+        } else {
+            $(this).parent().next().css('display', 'none');
+        }
+        
+    });
+
+    $('.zizhi_num').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().next().css('display', 'inline-block');
+        } else {
+            $(this).parent().next().css('display', 'none');
+        }
+        
+    });
+
+    $('#test1').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().next().css('display', 'inline-block');
+        } else {
+            $(this).parent().next().css('display', 'none');
+        }
+        
+    });
+
+    $('#test2').blur(function() {
+        if ($(this).val() == '') {
+            $(this).parent().next().css('display', 'inline-block');
+        } else {
+            $(this).parent().next().css('display', 'none');
+        }
+        
+    });
 
 </script>
 </body>
