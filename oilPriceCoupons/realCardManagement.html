@@ -87,6 +87,28 @@
             console.log(n);
         }
     });
+	//列表
+	function kaquanList(){
+		$.ajax({
+            url: pubIP+'order/queryTCouponInfor',
+            type: 'get',
+            processData: false,  // 告诉jQuery不要去处理发送的数据
+            contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+            data: {
+				iDisplayStart: currt
+			},
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+               
+			},
+			error: function (err) {
+                console.log(err);
+            }
+        });
+	}
+	
 </script>
 </body>
 </html>

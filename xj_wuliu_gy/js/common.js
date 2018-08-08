@@ -1,10 +1,10 @@
 //var pubIP = 'http://192.168.1.207:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
-// var pubIP = 'http://wl.api.xjv56.com/service/';
+//  var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 var ip = 'http://192.168.1.199:7777/service/';
- // var ip = 'http://wl.api.xjv56.com/service/';
+// var ip = 'http://wl.api.xjv56.com/service/';
 //var token = 'ceshi123456';
 var token=localStorage.getItem("token");
 
