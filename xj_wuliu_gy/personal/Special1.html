@@ -455,6 +455,8 @@
                             $('.c'+i+' .hd'+j).val(data.data[i].picInfos[j].picUrl);
 
                             $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
+
+                            $('.c'+i+' .pic'+(j+1)).attr('disabled', 'disabled');
                             
                         }
 
@@ -545,6 +547,8 @@
             
            $(this).parent().find('.zizhi_type').attr('disabled', false).css("background-color","#fff");
             isSelect=true;
+
+            $(this).parent().find('.preview').attr('disabled', false);
 
             $(this).parent().find('.zizhi_num').attr('readonly', false).css("background-color","#fff");;
            // $(this).parent().find('.textarea').attr('contenteditable', true);

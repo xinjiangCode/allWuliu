@@ -1,5 +1,5 @@
 
-// var pubIP = 'http://192.168.1.64:7777/service/';
+//var pubIP = 'http://192.168.1.213:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
 
 // var pubIP = 'http://wl.api.xjv56.com/service/';
@@ -544,6 +544,41 @@ function cf_alert(aa,msg) {
             $(this).parents(".modelCont").parent().hide();
             window.top.$(".modelCont").parent().hide();
             window.location.reload();
+        })
+    }
+
+}
+//不刷新弹窗
+function cf_alert01(aa,msg) {
+    if(aa==1){
+        window.parent.$(".all_success_alert").show();
+        window.parent.$(".all_success_alert .innerSuccmsg").text(msg);
+        window.parent.$(".all_success_alert .confirm").unbind();
+        window.parent.$(".all_success_alert .confirm").click(function () {
+            $(this).parents(".modelCont").parent().hide();
+            //window.top.$(".modelCont").parent().hide();
+            //window.location.reload();
+        })
+        window.parent.$(".all_success_alert img.close").unbind();
+        window.parent.$(".all_success_alert img.close").click(function () {
+            $(this).parents(".modelCont").parent().hide();
+            //window.top.$(".modelCont").parent().hide();
+            // window.location.reload();
+        })
+    }else {
+        window.parent.$(".all_error_alert").show();
+        window.parent.$(".all_error_alert .innerErrmsg").text(msg);
+        window.parent.$(".all_error_alert .confirm").unbind();
+        window.parent.$(".all_error_alert .confirm").click(function () {
+            $(this).parents(".modelCont").parent().hide();
+            //window.top.$(".modelCont").parent().hide();
+            //window.location.reload();
+        })
+        window.parent.$(".all_error_alert img.close").unbind();
+        window.parent.$(".all_error_alert img.close").click(function () {
+            $(this).parents(".modelCont").parent().hide();
+            //window.top.$(".modelCont").parent().hide();
+            //window.location.reload();
         })
     }
 

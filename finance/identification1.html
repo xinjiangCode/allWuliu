@@ -842,8 +842,14 @@
                 $('#yingye_num').parent().next().html('');
             }
 
-            if ($('#test1').val() == '' || $('#test2').val() == '' ) {
+            startTime = $('#test1').val();
+            endTime = $('#test2').val();
+
+            if (startTime == '' || endTime == '' ) {
                 $('#yingye_date').next().html('营业期限不能为空');
+                return;
+            } if (startTime > endTime) {
+                $('#yingye_date').next().html('开始时间不能大于结束时间');
                 return;
             } else {
                 $('#yingye_date').next().html('');
@@ -924,9 +930,6 @@
             img_url3 = $('#chajian_hidden').val();
             img_url4 = $('#zhengjian_hidden1').val();
             img_url5 = $('#zhengjian_hidden2').val();
-
-            startTime = $('#test1').val();
-            endTime = $('#test2').val();
 
             file_name = $('#wenjian_name').val();
             
@@ -1302,6 +1305,19 @@
                 $('#yingye_num').parent().next().html('');
             }
 
+            startTime = $('#test1').val();
+            endTime = $('#test2').val();
+
+            if (startTime == '' || endTime == '' ) {
+                $('#yingye_date').next().html('营业期限不能为空');
+                return;
+            } if (startTime > endTime) {
+                $('#yingye_date').next().html('开始时间不能大于结束时间');
+                return;
+            } else {
+                $('#yingye_date').next().html('');
+            }
+
             
             if ($('#company_address').val() == '') {
                 $('#company_address').parent().next().html('公司地址不能为空');
@@ -1381,8 +1397,7 @@
 
             console.log(file_url);
 
-            startTime = $('#test1').val();
-            endTime = $('#test2').val();
+            
             if ($('.next_btn_update').css('display') == 'block') {
                 if ($('#yingye_zhizhao_hidden').val() != '' && $('#zhengjian_hidden2').val() != '' && $('#zhengjian_hidden1').val() != '' && file_url != null) {
                     $.ajax({

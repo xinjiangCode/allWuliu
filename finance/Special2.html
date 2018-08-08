@@ -74,26 +74,10 @@
                 <li   style="overflow: visible;" class="clearfix">
                     <div class="left1 Lf"><i class="red">*</i>许可经营范围:</div>
                     <div class="right1 Lf">
-                        <div name="" id="textarea0"  class="textarea"  style="width: 359px;height: 88px; border: 1px solid #ebe9ea;" contenteditable="false" ></div>
+                        <textarea name="" id="textarea0"  class="textarea"  style="width: 359px;height: 88px; border: 1px solid #ebe9ea;" ></textarea>
                     </div>
                     <span class="ts2">许可经营不能为空</span>
-                    <div class="btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>
                     
-                </li>
-                <li class="add_fanwei none">
-                    <div class="left1 Lf"><i class="red">*</i>添加许可经营范围:</div>
-                    <div>
-                        <div class="sousuo_div">
-                            <input type="text" id="" class="input_width">
-                            <img src="../img/sousuo.png" class="sousuo_img" alt="">
-                            <span class="sousuo">搜索</span>
-                        </div>
-                        <div class="cousuo_cont">
-                            <ul class="sousuo_ul">
-                                
-                            </ul>
-                        </div>
-                    </div>
                 </li>
                 <li class="clearfix">
                     <div class="left1 Lf"><i class="red">*</i>有效期起:</div>
@@ -126,7 +110,7 @@
     <div class="bottom1">
         <div class="btn Lf add add1">继续添加其他资质</div>
         <div class="btn Lf sub">提交</div>
-        <div class="btn Lf shenhe" style="display: none;">审核中</div>
+        <!-- <div class="btn Lf shenhe" style="display: none;">审核中</div> -->
     </div>
 
     
@@ -416,9 +400,9 @@
                         data.data[i].qualificationDataExpire = new Date(data.data[i].qualificationDataExpire).Format("yyyy-MM-dd");
 
                         //许可经营范围
-                        $('#textarea'+ i).attr('data-textarea', data.data[i].operationLimit);
+                        $('#textarea'+ i).attr('data-textarea', data.data[i].remark);
                          //不让添加
-                         $(".btn1").hide();
+                         // $(".btn1").hide();
                         
 
                         /*var arr = data.data[i].operationLimit.split(';')*/
@@ -435,25 +419,25 @@
                         $('.input_blur').attr('disabled', true);
 
                     }
-                    $('.textarea').each(function(){
-                        var that = this;
-                        var idArr =  $(this).attr('data-textarea');
-                        if (idArr) {
-                            idArr = idArr.split(';');
-                            $(this).attr('contenteditable', 'false');
-                            $.each(idArr,function(i,t){
-                                if(t!=''){
-                                    sousuoAjax(t, function(a) {
-                                       /* console.log($(that))*/
-                                        $(that).append('<div data-ind="'+idArr[i]+'">'+a + '</div>');
+                    // $('.textarea').each(function(){
+                    //     var that = this;
+                    //     var idArr =  $(this).attr('data-textarea');
+                    //     if (idArr) {
+                    //         idArr = idArr.split(';');
+                    //         $(this).attr('contenteditable', 'false');
+                    //         $.each(idArr,function(i,t){
+                    //             if(t!=''){
+                    //                 sousuoAjax(t, function(a) {
+                    //                    /* console.log($(that))*/
+                    //                     $(that).append('<div data-ind="'+idArr[i]+'">'+a + '</div>');
                                         
-                                    });
-                                }
+                    //                 });
+                    //             }
                             
-                            });
-                        }
+                    //         });
+                    //     }
                         
-                    });
+                    // });
 
 
                     // 模拟下拉框
@@ -652,25 +636,10 @@
                     +'<li style="overflow: visible;" class="clearfix">'
                         +'<div class="left1 Lf"><i class="red">*</i>许可经营范围:</div>'
                         +'<div class="right1 Lf">'
-                            +'<div name="" id="textarea'+i+'" class="textarea"  style="width: 359px;height: 88px; border: 1px solid #999;"  contenteditable="false"></div>'
+                            +'<textarea name="" id="textarea'+i+'" class="textarea"  style="width: 359px;height: 88px; border: 1px solid #999;"></textarea>'
                         +'</div>'
                         +'<span class="ts2">许可经营不能为空</span>'
-                        +'<div class="btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>'
-                    +'</li>'
-                    +'<li class="add_fanwei none">'
-                        +'<div class="left1 Lf"><i class="red">*</i>添加许可经营范围:</div>'
-                        +'<div>'
-                            +'<div class="sousuo_div">'
-                                +'<input type="text" id="" class="input_width">'
-                                +'<img src="../img/sousuo.png" class="sousuo_img" alt="">'
-                                +'<span class="sousuo">搜索</span>'
-                            +'</div>'
-                            +'<div class="cousuo_cont">'
-                                +'<ul class="sousuo_ul">'
-                                    
-                                +'</ul>'
-                            +'</div>'
-                        +'</div>'
+                        
                     +'</li>'
                     +'<li>'
                         +'<div class="left1 Lf"><i class="red">*</i>有效期起:</div>'
@@ -699,6 +668,11 @@
 
         $('#center').append(str);
         i++;
+        $('.laydate-icon').css({
+            'backgroundImage': 'url(../img/yh_rili.png)',
+            'backgroundPosition': '137px',
+            'backgroundSize': '11%'
+        });
         /*typeAjax();*/
 
 
@@ -854,20 +828,6 @@
         }
     })   
 
-    $(document).on('click',function(){
-        $('.cousuo_cont').hide();
-    }) 
-
-    
-
-    $(document).on('click', '.sousuo_ul li', function () {
-        if ($(this).text() != '暂无数据') {
-            // console.log($(this).text());
-            $(this).parents('li').prev().find('.textarea').append('<div data-ind="'+$(this).attr('data-index')+'">'+$(this).text()+'</div>');
-            $(this).parents('li').prev().find('.ts2').css('visibility', 'hidden');
-        }
-    });
-
 
     $(document).on('click', '.quxiao_div', function() {
         
@@ -964,24 +924,28 @@
             return false;
         }
 
+        
         $('.textarea').each(function (i, ele) {
-            var run_fanwei = ';';
-            if ($(this).text() == '') {
+            // var run_fanwei = ';';
+            if ($(this).val() == '') {
                 $(this).parent().next().css('display', 'inline-block');
                 $(this).parent().next().css('visibility', 'visible');
                 isOk = false;
                 return false;
             } else {
-                var div = $(this).find('div');
-                $(div).each(function (index, element) {
-                    run_fanwei += $(this).attr('data-ind')+ ';';
-                });
-                json['operationLimit'+(i+1)] = run_fanwei;
+                // var div = $(this).find('div');
+                // $(div).each(function (index, element) {
+                //     run_fanwei += $(this).attr('data-ind')+ ';';
+                // });
+                $(this).parent().next().css('visibility', 'hidden');
+                json['remark'+(i+1)] = $(this).val();
                 // $(this).attr('data-f', 'true');
             }
 
             
         });
+
+        console.log(json); 
 
         if (!isOk) {
             return false;
@@ -1062,11 +1026,13 @@
             }
         
         }
-           console.log(json);
+        
+        console.log(json);
         if (!isOk) {
             return false;
         }
 
+        return false;
     
         $.ajax({
             url: pubIP + 'companyCertification/addQualificationsBaseInfo',
