@@ -114,6 +114,13 @@
             background-repeat: no-repeat;
             font-size: 18px;
         }
+        .listBox td .orderNoID{
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
+        }
+        td{vertical-align: middle}
     </style>
 </head>
 <body>
@@ -151,15 +158,12 @@
                 <thead>
                     <tr>
                         <th style="width: 56px;text-align: center;"></th>
-                        <th>需求编号</th>
-                        <!--<th>需求编号</th>-->
+                        <th style="width: 80px;">需求编号</th>
                         <th>发布时间</th>
-                        <!--<th>报价时间</th>-->
                         <th>货物类型</th>
                         <th>货物名称</th>
                         <th>始发地</th>
                         <th>目的地</th>
-                        <!--<th>保证金</th>-->
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -387,7 +391,7 @@
             $.each(data,function (idx,item) {
                 str+='<tr data-id="'+item.id+'">';
                 str+='<td><div class="cf_select"></div></td>';
-                str+='<td>'+item.demandNo+'</td>';
+                str+='<td><span class="orderNoID" style="width: 80px;overflow: hidden">'+item.demandNo+'</span></td>';
                 str+='<td>'+timestampToTime(item.createTime)+'</td>';
 //                str+='<td>'+item.quotedTime+'</td>';//需要改成报价时间字段
                 str+='<td>'+item.goodsType+'</td>';
@@ -504,10 +508,9 @@
                 },
                 success: function (res) {
                     if(res.code===1){
-                        alert("报价成功")
-                        location.reload();
+                        cf_alert(1,"报价成功")
                     }else{
-                        alert(res.msg);
+
                     }
                 },
                 error: function(err){
@@ -550,12 +553,12 @@
         //渲染更改报价弹框数据
         function cf_dataRenderSelect(data) {
             window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
-            window.parent.$(".modelBox0 .createTime").text(data.createTime);
+            window.parent.$(".modelBox0 .createTime").text(timestampToTime1(data.createTime));
             window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            window.parent.$(".modelBox0 .goodsType").text(data.goodsType);
+            window.parent.$(".modelBox0 .goodsType").text(data.chemicalName);
             if(data.goodsUnit=="重量/吨"){
                 window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'吨');
             }else{
