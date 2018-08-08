@@ -29,7 +29,7 @@
         </div>
         <div class="ykcz">
 			<div style="float: left;margin-left: 22px;">卡券名称：<input class="kq_name" type="text" placeholder="请输入卡券名称"></div>
-            <div class="yk_btn">查询结果</div>
+            <div class="yk_btn search">查询结果</div>
         </div>
     	<div class="record">
     		<div class="cq_add" style="float: right;width: 102px;height: 32px;text-align: center;line-height: 32px;border: 1px solid #ebe8ea;margin-right: 13px;font-size: 14px;margin-top: 8px;">添加卡券</div>
@@ -96,7 +96,6 @@
             cache: false,
             dataType: 'json',
             success: function (json) {
-				console.log(data);
 				var data = json.aData;
 				if(data==null || data.length==0){
                         $(".no_msg").show();
@@ -123,8 +122,8 @@
 					
 					var str = '';
 					$.each(data,function(idx,item){
-						str+='<tr>'
-						str+='<td>'+ietm.coupon_name+'</td>'
+						str+='<tr data-name="'+item.coupon_name+'" data-money="'+item.money+'">'
+						str+='<td>'+item.coupon_name+'</td>'
 						str+='<td>'+item.attr_1+'</td>'
 						str+='<td>'+item.money+'</td>'
 						str+='<td id="'+item.id+'">'
@@ -134,6 +133,22 @@
 						str+='<a class="salesvolume cq_eidt">编辑</a></td>'
 						str+='</tr>'
 					})
+				$(".listBox .myTbody").html(str);
+                //编辑
+                $(".cq_eidt").unbind();
+                $(".cq_eidt").click(function(){
+                    window.parent.$(".kquan_caozuo").show();
+                    window.parent.$(".kaquan_name").val($(this).parents("tr").attr("data-name"))
+                    window.parent.$(".kaquan_money").val($(this).parents("tr").attr("data-money"))
+                    window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("id"));
+                    caozuo('')
+                })
+                //删除
+                $(".cq_dele").unbind();
+                $(".cq_dele").click(function(){
+                    caozuo(1);
+//                    kaquanList(1);
+                })
 
 			},
 			error: function (err) {
@@ -142,22 +157,21 @@
         });
 	}
 	//删除  编辑  新增kquan_caozuo
-	//编辑
-	$(".cq_eidt").on(click,function(){
-		window.parent().$(".kquan_caozuo").show();
-		caozuo($(this).parent().attr("id"),'')
-	})
-	//删除
-	$(".cq_dele").on(click,function(){
-		caozuo($(this).parent().attr("id"),1);
-		kaquanList(1);
-	})
+
 	//新增
-	$(".cq_add").on(click,function(){
-		window.parent().$(".kquan_caozuo").show();
-		caozuo('','');
+    $(".cq_add").unbind();
+	$(".cq_add").click(function(){
+        window.parent.$(".kquan_caozuo").attr("data-id","");
+        window.parent.$(".kaquan_name").val("")
+        window.parent.$(".kaquan_money").val("")
+		window.parent.$(".kquan_caozuo").show();
+
 	})
-	function caozuo(obj1,obj2){
+    window.parent.$(".kquan_caozuo .sureKaQuan").unbind();
+	window.parent.$(".kquan_caozuo .sureKaQuan").click(function () {
+        caozuo('');
+    })
+	function caozuo(obj2){
 		$.ajax({
             url: pubIP+'order/editCouponInfor',
             type: 'POST',
@@ -166,23 +180,35 @@
                     token: token
                 },
             data: {
-				id: obj1,
-				coupon_name: window.parent().$(".kaquan_name").val(),
-				money: window.parent().$(".kaquan_money").val(),
+				id: window.parent.$(".kquan_caozuo").attr("data-id"),
+				coupon_name: window.parent.$(".kaquan_name").val(),
+				money: window.parent.$(".kaquan_money").val(),
 				status: obj2,
 			},
             cache: false,
             dataType: 'json',
             success: function (json) {
 				console.log(data);
-
+				if(res.code==0){
+				    if(obj2==1){
+                        cf_alert(1,"删除卡券成功")
+					}else if(window.parent.$(".kquan_caozuo").attr("data-id")==""){
+                        cf_alert(1,"添加卡券成功")
+					}else{
+                        cf_alert(1,"编辑卡券成功")
+					}
+				}
 			},
 			error: function (err) {
                 console.log(err);
 			}
 		})
 	}
-	
+
+//	搜索
+	$(".search").click(function () {
+        kaquanList(1);
+    })
 </script>
 </body>
 </html>

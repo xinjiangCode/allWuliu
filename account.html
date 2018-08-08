@@ -3182,7 +3182,7 @@
                     <input class="kaquan_money" type="text" style="width: 200px;height: 30px;outline: none;">
                 </div>
                 <div>
-                    <span style="display: block;width: 150px;height: 40px;margin: 0 auto;margin-top: 30px;border-radius: 2px;text-align: center;line-height: 40px;font-size: 16px;color: white;background: #5690f6">确定</span>
+                    <span class="sureKaQuan" style="display: block;width: 150px;height: 40px;margin: 0 auto;margin-top: 30px;border-radius: 2px;text-align: center;line-height: 40px;font-size: 16px;color: white;background: #5690f6">确定</span>
                 </div>
             </div>
         </div>
@@ -4140,7 +4140,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             ansyc: true,
             dataType: 'json',
             data:{
-                companyId:companyId
+                iDisplayStart: 1,
+                iDisplayLength: 10000,
             },
             success: function (res) {
                 console.log(res)
