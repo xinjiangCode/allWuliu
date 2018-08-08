@@ -192,7 +192,13 @@
 									}
 										
 									str += '</td>'
-									+'<td><a href="javaScript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javaScript:;" class="delect delete" style="color: #6ba1ff;">删除</a></td>'
+									+'<td>'
+                                    +'<a href="javaScript:;" class="lookover" style="color:#6ba1ff;">编辑</a>'
+                                    if (json.data[i].dutyName.indexOf('司机') == -1 && json.data[i].dutyName.indexOf('安全员') == -1 && json.data[i].dutyName.indexOf('押运员') == -1) {
+                                        str += '<a href="javaScript:;" class="delect delete" style="color: #6ba1ff;">删除</a>'
+                                    }
+                                    
+                                    str += '</td>'
 								+'</tr>'
                         }
 						
@@ -396,6 +402,9 @@
     $(document).on('click', '.lookover', function() {
     	// console.log($(this).parent().parent().find('.ord_name').text());
     	$(window.parent.document).find('.zhiwu_name').val($(this).parent().parent().find('.ord_name').text());
+        if (!$(this).next().hasClass('delete')) {
+            $(window.parent.document).find('.zhiwu_name').attr('disabled', true);
+        }
     	var describe = $(this).parent().parent().find('.describe').text();
     	if (describe == '暂无数据') {
     		describe = '';

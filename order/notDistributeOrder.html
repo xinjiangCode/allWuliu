@@ -345,6 +345,9 @@
         $(document).on('click', '.update', function() {
             $(".update").removeClass("thisUpdate");
             $(this).addClass("thisUpdate");
+            $(window.parent.document).find('#qianding_time').val('')
+            $(window.parent.document).find('.modelBox1 input[type="hidden"]').val('')
+            $(window.parent.document).find('.modelBox1 input[type="hidden"]').next().css('background', 'url("")')
             window.parent.showModelBox('.modelBox1');
 
         });
