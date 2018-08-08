@@ -126,7 +126,7 @@
 						str+='<td>'+item.coupon_name+'</td>'
 						str+='<td>'+item.attr_1+'</td>'
 						str+='<td>'+item.money+'</td>'
-						str+='<td id="'+item.id+'">'
+						str+='<td data-ids="'+item.id+'">'
 						if(item.money==0){
 							str+='<a class="salesvolume cq_dele">删除</a>'
 						}
@@ -140,7 +140,7 @@
                     window.parent.$(".kquan_caozuo").show();
                     window.parent.$(".kaquan_name").val($(this).parents("tr").attr("data-name"))
                     window.parent.$(".kaquan_money").val($(this).parents("tr").attr("data-money"))
-                    window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("id"));
+                    window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("data-ids"));
                     caozuo('')
                 })
                 //删除
