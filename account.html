@@ -4146,29 +4146,23 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             },
             success: function (res) {
                 console.log(res)
-                if(res.code===1){
-                    if (res.data.length != 0) {
-                        var str='';
-                        $.each(res.data,function (idx,item) {
-                            str+='<li  data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
-                        })
-                        $("#kaQuan ul").html(str);
+                if (res.aData.length != 0) {
+                    var str='';
+                    $.each(res.aData,function (idx,item) {
+                        str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                    })
+                    $("#kaQuan ul").html(str);
 
-                        $("#kaQuan li").click(function () {
-                            event.stopPropagation();
-                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                            $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
-                            $(this).parent().parent().find('span').text($(this).text());
-                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                            $(this).parent().css('display','none');
-                        })
-                    }
-
-                }else if(res.code==401){
-
-                }else{
-                    //alert(res.msg);
+                    $("#kaQuan li").click(function () {
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                    })
                 }
+
             },
             error: function(err){
                 console.log(err);
@@ -4229,11 +4223,16 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
     //添加卡券
     function addQuan(that){
         if($(that).prev().attr("data-selectedindex")==-1){
-            alert("请选择卡券");
+            cf_alert01(0,"请选择卡券");
+            return;
+        }
+        //判断是否是重复添加
+        if($("#quanList li").attr("data-dot-id")==$(that).prev().attr("data-dot-id")){
+            cf_alert01(0,"请勿重复添加卡券");
             return;
         }
         var str='';
-        str+='<li data-dot-id="'+$(that).prev().attr("data-dot-id")+'" data-name="'+$(that).prev().find("span").text()+'" data-id="'+$(that).prev().attr("data-selectedindex")+'">';
+        str+='<li data-thisMoney="'+$(that).prev().attr("data-kq-money")+'" data-dot-id="'+$(that).prev().attr("data-dot-id")+'" data-name="'+$(that).prev().find("span").text()+'" data-id="'+$(that).prev().attr("data-selectedindex")+'">';
         str+='<span style="width: 70px;display: inline-block;text-align: right;">'+$(that).prev().find("span").text()+'：</span>';
         str+='<input type="text" style="width: 194px;">';
         str+='<span onclick="delQuan(this)">-</span>';
@@ -4320,11 +4319,17 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 if(isOK==1){
                     cardName1=$(item).attr("data-name");
                     isOK=0;
+                    $("#sureCarError").text("请填写"+cardName1+"金额");
+                }
+            }
+            if($(item).find("input").val()>$(item).attr("data-thisMoney")){
+                if(isOK==1){
+                    $("#sureCarError").text("卡券金额不能大于本卡券可用余额");
+                    isOK=0;
                 }
             }
         })
         if(isOK==0){
-            $("#sureCarError").text("请填写"+cardName1+"金额");
             return;
         }
         $("#sureCarError").text("");

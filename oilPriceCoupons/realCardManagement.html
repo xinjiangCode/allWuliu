@@ -96,6 +96,7 @@
             cache: false,
             dataType: 'json',
             success: function (json) {
+                console.log(json);
 				var data = json.aData;
 				if(data==null || data.length==0){
                         $(".no_msg").show();
@@ -130,7 +131,7 @@
 						if(item.money==0){
 							str+='<a class="salesvolume cq_dele" style="margin-right: 10px;">删除</a>'
 						}
-						str+='<a class="salesvolume cq_eidt">编辑</a></td>'
+						str+='<a class="salesvolume cq_eidt">充值</a></td>'
 						str+='</tr>'
 					})
 				$(".listBox .myTbody").html(str);
@@ -139,12 +140,13 @@
                 $(".cq_eidt").click(function(){
                     window.parent.$(".kquan_caozuo").show();
                     window.parent.$(".kaquan_name").val($(this).parents("tr").attr("data-name"))
-                    window.parent.$(".kaquan_money").val($(this).parents("tr").attr("data-money"))
+                    window.parent.$(".kaquan_money").val($(this).parents("tr").attr(""))
                     window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("id"));
                 })
                 //删除
                 $(".cq_dele").unbind();
                 $(".cq_dele").click(function(){
+                    window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("id"));
                     caozuo(1);
                 })
 
@@ -167,19 +169,18 @@
 	})
     window.parent.$(".kquan_caozuo .sureKaQuan").unbind();
 	window.parent.$(".kquan_caozuo .sureKaQuan").click(function () {
-        caozuo('');
-    })
-	function caozuo(obj2){
-	    if(window.parent.$(".kquan_caozuo .kaquan_name").val()==""){
+        if(window.parent.$(".kquan_caozuo .kaquan_name").val()==""){
             window.parent.$(".kquan_caozuo .ErrMsg").text("卡券名称不能为空")
-			return;
-		}
+            return;
+        }
         if(window.parent.$(".kquan_caozuo .kaquan_money").val()==""){
             window.parent.$(".kquan_caozuo .ErrMsg").text("卡券金额不能为空")
             return;
         }
         window.parent.$(".kquan_caozuo .ErrMsg").text("")
-
+        caozuo('');
+    });
+	function caozuo(obj2){
 		$.ajax({
             url: pubIP+'order/editCouponInfor',
             type: 'POST',
