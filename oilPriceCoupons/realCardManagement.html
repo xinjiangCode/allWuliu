@@ -126,9 +126,9 @@
 						str+='<td>'+item.coupon_name+'</td>'
 						str+='<td>'+item.attr_1+'</td>'
 						str+='<td>'+item.money+'</td>'
-						str+='<td data-ids="'+item.id+'">'
+						str+='<td id="'+item.id+'">'
 						if(item.money==0){
-							str+='<a class="salesvolume cq_dele">删除</a>'
+							str+='<a class="salesvolume cq_dele" style="margin-right: 10px;">删除</a>'
 						}
 						str+='<a class="salesvolume cq_eidt">编辑</a></td>'
 						str+='</tr>'
@@ -140,14 +140,12 @@
                     window.parent.$(".kquan_caozuo").show();
                     window.parent.$(".kaquan_name").val($(this).parents("tr").attr("data-name"))
                     window.parent.$(".kaquan_money").val($(this).parents("tr").attr("data-money"))
-                    window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("data-ids"));
-                    caozuo('')
+                    window.parent.$(".kquan_caozuo").attr("data-id",$(this).parent().attr("id"));
                 })
                 //删除
                 $(".cq_dele").unbind();
                 $(".cq_dele").click(function(){
                     caozuo(1);
-//                    kaquanList(1);
                 })
 
 			},
@@ -172,6 +170,16 @@
         caozuo('');
     })
 	function caozuo(obj2){
+	    if(window.parent.$(".kquan_caozuo .kaquan_name").val()==""){
+            window.parent.$(".kquan_caozuo .ErrMsg").text("卡券名称不能为空")
+			return;
+		}
+        if(window.parent.$(".kquan_caozuo .kaquan_money").val()==""){
+            window.parent.$(".kquan_caozuo .ErrMsg").text("卡券金额不能为空")
+            return;
+        }
+        window.parent.$(".kquan_caozuo .ErrMsg").text("")
+
 		$.ajax({
             url: pubIP+'order/editCouponInfor',
             type: 'POST',
@@ -188,8 +196,8 @@
             cache: false,
             dataType: 'json',
             success: function (json) {
-				console.log(data);
-				if(res.code==0){
+				console.log(json);
+				if(json.code==0){
 				    if(obj2==1){
                         cf_alert(1,"删除卡券成功")
 					}else if(window.parent.$(".kquan_caozuo").attr("data-id")==""){

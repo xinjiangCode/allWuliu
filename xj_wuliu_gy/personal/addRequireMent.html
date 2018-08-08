@@ -57,6 +57,8 @@
             font-size: 18px;
         }
         tr>td{text-align: center;line-height: 30px;}
+        .HuaxueTypeList li{line-height: 34px;padding-left: 10px;}
+        .HuaxueTypeList li:hover{background-color: #fafafa;}
      </style>
 
 
@@ -69,11 +71,22 @@
             <div class="Lf"><img src="../img/addRequireTitle.png" alt=""><span>货物信息</span></div>
             <div class="Rt addLiShi">发布历史需求</div>
         </div>
+        <div style="margin-bottom: 20px;">
+            <span class="cf_leftTitle" style="margin-left: 39px;">货物名称</span>
+            <input type="text" id="goodsName" style="width: 830px;"></div>
         <div class="clearFloat">
             <div class="container1Left Lf">
-                <div class="goodsName">
-                    <span class="cf_leftTitle">货物名称</span>
-                    <input type="text" id="goodsName">
+                <div class="goodsName" style="position: relative;">
+                    <span class="cf_leftTitle">化学品名</span>
+                    <input type="text" id="HuaxueType" >
+                    <ul class="HuaxueTypeList" style="position: absolute;left: 61px;z-index: 1;width: 215px;max-height: 200px;background-color: white;overflow-y: auto;display: none;">
+                        <li data-id="12152">asdasd</li>
+                        <li>dasda</li>
+                        <li>asdasd</li>
+                        <li>dasda</li>
+                        <li>asdasd</li>
+                        <li>dasda</li>
+                    </ul>
                 </div>
                 <div class="goodsWeight"><span class="cf_leftTitle">货物单位</span>
                     <input type="text" id="goodsNum" style="width: 109px;">
@@ -421,8 +434,54 @@
             console.log(n);
         }
     });
-    //从编辑进来的
 
+//    化学品名模糊搜索
+    $('#HuaxueType').bind('input propertychange',function () {
+        $.ajax({
+            url: pubIP + 'chemicalType/findChemicalCompany', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data:{
+                searchName:$("#HuaxueType").val()
+            },
+            cache: false,
+            ansyc: false,
+            dataType: 'json',
+            success: function (res) {
+                var str="";
+                //                先将选择置空
+                $("#HuaxueType").attr("data-id","");
+
+                var data=res.data;
+                if(data==null || data=="" || data.length==0){
+                    $(".HuaxueTypeList").html("");
+                    $(".HuaxueTypeList").hide();
+                    return;
+                }
+                $.each(data,function (idx,item) {
+                    str+='<li data-id="'+item.chemicalId+'">'+item.chemicalName+'</li>';
+                })
+                $(".HuaxueTypeList").html(str);
+                $(".HuaxueTypeList").show();
+                //    化学品名  选择
+                $(".HuaxueTypeList li").unbind();
+                $(".HuaxueTypeList li").click(function () {
+                    $("#HuaxueType").val($(this).text())
+                    $("#HuaxueType").attr("data-id",$(this).attr("data-id"));
+                    $(".HuaxueTypeList").hide();
+                })
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    });
+
+    
+    //从编辑进来的
     if(sessionStorage.getItem("isAddRequireMent")==0){
         getDataDetail();
         sessionStorage.setItem("isRequireMent",0);
@@ -480,6 +539,14 @@ $(".cf_sel").eq(0).click(function () {
             return;
         }else{
             $(".error").text("");
+        }
+        if($("#HuaxueType").val()==""){
+            $(".error").text("化学品名不能为空");
+            return;
+        }
+        if($("#HuaxueType").attr("data-id")==""){
+            $(".error").text("化学品名不符合");
+            return;
         }
         if($("#goodsNum").val()==""){
             $(".error").text("货物数量不能为空");
@@ -671,6 +738,8 @@ $(".cf_sel").eq(0).click(function () {
             ansyc: true,
             dataType: 'json',
             data:{
+                chemicalId:$("#HuaxueType").attr("data-id"),
+                chemicalName:$("#HuaxueType").val(),
 //                           demandNo:  //	是	String(50)	需求编号   不存在
                 demandType:$("#demandType").find("span").text(),  //是	String(8)	发单类型：（1 普通发单）（2 转包订单）
                 demandEndTime: $(".demandEndTime").val(), //	是	datetime	需求有效期
@@ -751,6 +820,8 @@ $(".cf_sel").eq(0).click(function () {
             ansyc: true,
             dataType: 'json',
             data:{
+                chemicalId:$("#HuaxueType").attr("data-id"),
+                chemicalName:$("#HuaxueType").val(),
                 id:sessionStorage.getItem("detailId"),  //	主键Id
                 demandNo:sessionStorage.getItem("demandNo"),
                 demandType:$("#demandType").find("span").text(),  //是	String(8)	发单类型：（1 普通发单）（2 转包订单）
@@ -1255,6 +1326,8 @@ console.log(provinceID)
 
     //渲染数据详情部分
     function cf_dataRenderDetail(data) {
+        $("#HuaxueType").attr("data-id",data.chemicalId),
+         $("#HuaxueType").val(data.chemicalName),
         $("#goodsName").val(data.goodsName);
         $("#wishUnitPrice").val(data.wishUnitPrice);
         $("#carLength").val(data.carLength);
