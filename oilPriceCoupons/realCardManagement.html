@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" href="../css/realCardManagement.css">
-
+	<style>
+		.no_msg{display: none;width: 100%;line-height: 80px;text-align: center;font-size: 18px;color: #666;}
+	</style>
 </head>
 <body>
 <!--卡券管理-->
@@ -30,7 +32,7 @@
             <div class="yk_btn">查询结果</div>
         </div>
     	<div class="record">
-    		<div style="float: right;width: 102px;height: 32px;text-align: center;line-height: 32px;border: 1px solid #ebe8ea;margin-right: 13px;font-size: 14px;margin-top: 8px;">油卡列表</div>
+    		<div class="cq_add" style="float: right;width: 102px;height: 32px;text-align: center;line-height: 32px;border: 1px solid #ebe8ea;margin-right: 13px;font-size: 14px;margin-top: 8px;">添加卡券</div>
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -44,17 +46,13 @@
 				</tr>
 				</thead>
 				<tbody class="myTbody">
-					<tr>
-						<td>EERR12344</td>
-						<td>¥1000000.00</td>
-						<td>母鸡</td>
-						<td><a class="lookover ll">删除</a><a class="delect ll">充值</a></td>
-					</tr>
+					
 				</tbody>
 			</table>
+			<p class="no_msg">暂无数据</p>
 		</div>
 
-		<div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+		<div class="myPage" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
 			<ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
 			<div class="pageJump">
 				<span class="allPageN">1/200</span>
@@ -79,34 +77,110 @@
     $(function () {
         window.parent.$("#Iframe").css("height","904");
     })
-    $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-    Page({
-        num: 200,
-        elem: $('#page1'),
-        callback: function(n) {
-            console.log(n);
-        }
-    });
+
 	//列表
-	function kaquanList(){
+	kaquanList(1);
+	function kaquanList(currentPage){
 		$.ajax({
             url: pubIP+'order/queryTCouponInfor',
             type: 'get',
-            processData: false,  // 告诉jQuery不要去处理发送的数据
-            contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+			headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
             data: {
-				iDisplayStart: currt
+				iDisplayStart: currentPage,
+				iDisplayLength: 10,
+				coupon_name: $(".kq_name").val(),
 			},
             cache: false,
             dataType: 'json',
-            success: function (data) {
-                console.log(data);
-               
+            success: function (json) {
+				console.log(data);
+				var data = json.aData;
+				if(data==null || data.length==0){
+                        $(".no_msg").show();
+                        $(".myPage").hide();
+                        return false;
+                    }
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(json.iTotalRecords/10);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                js_list(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+					$(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+					
+					var str = '';
+					$.each(data,function(idx,item){
+						str+='<tr>'
+						str+='<td>'+ietm.coupon_name+'</td>'
+						str+='<td>'+item.attr_1+'</td>'
+						str+='<td>'+item.money+'</td>'
+						str+='<td id="'+item.id+'">'
+						if(item.money==0){
+							str+='<a class="salesvolume cq_dele">删除</a>'
+						}
+						str+='<a class="salesvolume cq_eidt">编辑</a></td>'
+						str+='</tr>'
+					})
+
 			},
 			error: function (err) {
                 console.log(err);
             }
         });
+	}
+	//删除  编辑  新增kquan_caozuo
+	//编辑
+	$(".cq_eidt").on(click,function(){
+		window.parent().$(".kquan_caozuo").show();
+		caozuo($(this).parent().attr("id"),'')
+	})
+	//删除
+	$(".cq_dele").on(click,function(){
+		caozuo($(this).parent().attr("id"),1);
+		kaquanList(1);
+	})
+	//新增
+	$(".cq_add").on(click,function(){
+		window.parent().$(".kquan_caozuo").show();
+		caozuo('','');
+	})
+	function caozuo(obj1,obj2){
+		$.ajax({
+            url: pubIP+'order/editCouponInfor',
+            type: 'POST',
+			headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+            data: {
+				id: obj1,
+				coupon_name: window.parent().$(".kaquan_name").val(),
+				money: window.parent().$(".kaquan_money").val(),
+				status: obj2,
+			},
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+				console.log(data);
+
+			},
+			error: function (err) {
+                console.log(err);
+			}
+		})
 	}
 	
 </script>
