@@ -265,7 +265,8 @@
                         'background-color':'#f6f6f6'
                 });
                 $(obj).next().val(data.url);
-                $(obj).parent().next().css('display', 'none');
+                $(obj).parent().parent().find('.ts1').css('display', 'none');
+                $(obj).attr('data-flag', '0');
             },
             error: function (err) {
                 console.log(err);
@@ -453,6 +454,8 @@
                             });
 
                             $('.c'+i+' .hd'+j).val(data.data[i].picInfos[j].picUrl);
+
+                            $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
                             
                         }
 
@@ -1116,7 +1119,7 @@
                     }
 
                     if ($('.c'+y+' .preview').attr('data-flag')) {
-                        img += $('.c'+y+' .preview.pic'+(i+1)+'').attr('src')+';';
+                        img += $('.c'+y+' .preview.pic'+(i+1)+'').next().val()+';';
                     } 
                     
                 }
@@ -1148,6 +1151,7 @@
                     console.log(data);
                     if (data.code == 1) {
                         window.parent.teshu_tan();
+                        window.location.reload();
                         window.localStorage.setItem('data-subFlag', '0');
                         $('.bottom1 >div').hide();
                     }
