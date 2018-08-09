@@ -348,13 +348,16 @@
             success: function (data) {
                 console.log(data);
 
-                var str1 = '';
+                var str1 = '<li>请选择</li>';
 
                 for (var i = 0; i < data.data.length; i++) {
                     str1 += '<li data-type_id = "'+data.data[i].type_id+'">'+data.data[i].type_name+'</li>';
                 }
 
                 $('.xiang_ul').html(str1);
+
+                $('.xiang').find('span').text('请选择');
+                $('.xiang').attr('data-selectedindex', '-1');
 
                 $('.select ul li').click(function(){
                     event.stopPropagation();
@@ -500,6 +503,15 @@
                         $(".next_btn").hide();
                         $('.update_btn').hide();
                         $(".shenhe").show();
+                        
+                        $('.zizhi_num').attr('disabled', true);
+                        $('#yingye_zhizhao_pic').attr('disabled', true);
+                        $('#test1').attr('disabled', true);
+                        $('#test2').attr('disabled', true);
+                        $('.lei').attr('disabled', true);
+                        $('.xiang').attr('disabled', true);
+
+                        $('.add').attr('disabled', true);
 
                         getInfo(4);
 
@@ -528,6 +540,15 @@
                         $(".next_btn").hide();
                         $('.update_btn').hide();
                         $(".shenhe").show();
+
+                        $('.zizhi_num').attr('disabled', true);
+                        $('#yingye_zhizhao_pic').attr('disabled', true);
+                        $('#test1').attr('disabled', true);
+                        $('#test2').attr('disabled', true);
+                        $('.lei').attr('disabled', true);
+                        $('.xiang').attr('disabled', true);
+
+                        $('.add').attr('disabled', true);
 
                         getInfo(3);
 
@@ -566,6 +587,10 @@
 
     // 增加
     $(document).on('click', '.add', function() {
+
+        if ($(this).attr('disabled') == 'disabled') {
+            return false;
+        }
 
         var lei_text = $('.lei span').text();
         var xiang_text = $('.xiang span').text();
