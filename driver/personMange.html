@@ -415,6 +415,7 @@
     // 编辑
     $(document).on('click', '.lookover', function() {
     	var id = $(this).parent().parent().attr('data-id');
+    	var _that = $(this);
     	$.ajax({
             url: pubIP + 'tLtDriver/selectById',
             type: 'post',
@@ -488,7 +489,7 @@
                     'background-size':'contain'
 		    	});
 
-		    	$(window.parent.document).find('.model20_ok_btn').attr('data-zhiwuId', $(this).parent().parent().attr('data-id'));
+		    	$(window.parent.document).find('.model20_ok_btn').attr('data-zhiwuId', _that.parent().parent().attr('data-id'));
     			
     			window.parent.showModelBox('.modelBox20');
 

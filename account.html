@@ -2317,7 +2317,7 @@
                                 <ul>
                                 </ul>
                             </div>
-                            <span class="Lf" onclick="addQuan(this)">+</span>
+                            <span class="Lf" onclick="addQuan(this)" style="color: #6ea3f4;margin-left: 10px;">添加</span>
                         </div>
                         <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">公里数：</span>
                             <input type="text"  id="kmNum" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">
@@ -4131,6 +4131,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
     //获取卡券列表
     getKaQuanList();
     function getKaQuanList() {
+//        先置空总金额
+        $("#money").attr("data-allMoney","0")
         $.ajax({
             url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
             type: 'get',
@@ -4150,7 +4152,11 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 if (res.aData.length != 0) {
                     var str='';
                     $.each(res.aData,function (idx,item) {
-                        str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                        if(item.attr_2==1){
+                            $("#money").attr("data-allMoney",item.money)
+                        }else{
+                            str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                        }
                     })
                     $("#kaQuan ul").html(str);
 
@@ -4171,7 +4177,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             }
         });
     }
-    
+
     getCarType();
     //获取车辆类型
     function getCarType() {
@@ -4246,7 +4252,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         str+='<li data-thisMoney="'+$(that).prev().attr("data-kq-money")+'" data-dot-id="'+$(that).prev().attr("data-dot-id")+'" data-name="'+$(that).prev().find("span").text()+'" data-id="'+$(that).prev().attr("data-selectedindex")+'">';
         str+='<span style="width: 70px;display: inline-block;text-align: right;">'+$(that).prev().find("span").text()+'：</span>';
         str+='<input type="text" style="width: 194px;">';
-        str+='<span onclick="delQuan(this)">-</span>';
+        str+='<span onclick="delQuan(this)" style="color: #6ea3f4;margin-left: 10px;">删除</span>';
         str+='</li>';
         $("#quanList").append(str);
         $("#quanList li:nth-child(2n)").css("float","right");
@@ -4312,6 +4318,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 //        }
         if( $("#money").val()==""){
             $("#sureCarError").text("请填写现金");
+            return;
+        }
+        if( $("#money").val()>$("#money").attr("data-allMoney")){
+            $("#sureCarError").text("现金不能大于可用余额");
             return;
         }
 //        if($("#peoples2").attr("data-selectedindex")==-1){
