@@ -146,7 +146,11 @@
         <div class="contlist contlisttwo">
             <div class="left ll">
                 <div>货物类型：<span><%=goodsType%></span></div>
-                <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span><%=goodsNum%><%=goodsUnit%></span></div>
+                <%if(goodsUnit=="重量/吨"){%>
+                    <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span><%=goodsNum%>吨</span></div>
+                <%}else{%>
+                    <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span><%=goodsNum%>m³</span></div>
+                <%}%>
                 <div>支付方式：<%=paymentType%></div>
                 <!-- <div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div> -->
             </div>
@@ -157,8 +161,8 @@
                 <!-- <div>缴纳方式：<span>抵扣</span></div> -->
             </div>
             <div class="left rr">
-                <div>货物名称：<span><%=goodsName%></span></span></div>
-                <div>车辆类型：<span><%=carType%></span></span></div>
+                <div>货物名称：<span><%=goodsName%></span></div>
+                <div>车辆类型：<span><%=carType%></span></div>
                 <!-- <div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：
                 <%if (receipt == 0) {%>
                 <span>不需要</span>

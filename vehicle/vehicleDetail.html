@@ -53,146 +53,74 @@
         <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">资质信息</div>
         <div class="Lf clearFloat" style="padding: 20px 0 20px 40px;margin-right: 170px;">
             <div class="requireInfoImg">
-                <img src="" alt="">
+                <img id="xingshi"  src="" alt="" style="width: 100%;height: 100%;">
             </div>
-            <div class="requireInfoTitle">保险资质上传</div>
-            <div class="clearFloat">
-                <div class="updata cf_btn Lf">上传</div>
-                <div class="del cf_btn Lf">删除</div>
-            </div>
+            <div class="requireInfoTitle">行驶证</div>
+            <!--<div class="clearFloat">-->
+                <!--<div class="updata cf_btn Lf">上传</div>-->
+                <!--<div class="del cf_btn Lf">删除</div>-->
+            <!--</div>-->
         </div>
         <div class="Lf clearFloat" style="padding: 20px 0 20px 40px;margin-right: 170px;">
             <div class="requireInfoImg">
-                <img src="" alt="">
+                <img id="chelaingyunying" src="" alt="" style="width: 100%;height: 100%;">
             </div>
-            <div class="requireInfoTitle">保险资质上传</div>
-            <div class="clearFloat">
-                <div class="updata cf_btn Lf">上传</div>
-                <div class="del cf_btn Lf">删除</div>
-            </div>
+            <div class="requireInfoTitle">车辆运营证</div>
+            <!--<div class="clearFloat">-->
+                <!--<div class="updata cf_btn Lf">上传</div>-->
+                <!--<div class="del cf_btn Lf">删除</div>-->
+            <!--</div>-->
         </div>
     </div>
 
 
     <div class="operator infoBox">
         <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">订单流水</div>
-        <div class="listBox" style="overflow-x: auto;">
-            <table style="width: 1728px;">
+        <div class="listBox" style="">
+            <table style="width: 100%;">
                 <thead>
                 <tr>
-                    <th>司机</th>
-                    <th>金额</th>
-                    <th>油卡</th>
-                    <th>订单号</th>
-                    <th>矿发日期 </th>
-                    <th>到期日期</th>
-                    <th>磅单号</th>
-                    <th>矿发磅单号</th>
-                    <th>车号</th>
-                    <th>过路费</th>
-                    <th>到货单位</th>
-                    <th>矿发吨位</th>
-                    <th>矿发单价</th>
-                    <th>接收数</th>
-                    <th>实际结算</th>
-                    <th>运费单价</th>
-                    <th>运费金额</th>
-                    <th>磅差</th>
-                    <th>合理损耗2‰</th>
-                    <th>司机承担数量</th>
-                    <th>司机承担金额</th>
-                    <th>实际应付金额</th>
-                    <th>自由车辆扣款</th>
-                    <th>多打款项</th>
-                    <th>少打款项</th>
-                    <th>油卡</th>
-                    <th>疆外油卡</th>
-                    <th>轮胎券</th>
-                    <th>气卡</th>
+                    <th>订单编号</th>
+                    <th>完成时间</th>
+                    <th>化学品名</th>
+                    <th>货物名称</th>
+                    <th>重量/体积</th>
+                    <th>始发地</th>
+                    <th>目的地</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>王小二</td>
-                    <td>¥1200.00</td>
-                    <td>¥1200.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>王小二</td>
-                    <td>¥1200.00</td>
-                    <td>¥1200.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
                 </tbody>
             </table>
         </div>
-
+        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+            <div class="pageJump">
+                <span class="allPageN">1/200</span>
+                <i style="margin-left: 12px;">共200页</i>，
+                <span>到第</span>
+                <input type="text"/>
+                <span>页</span>
+                <button type="button" class="button">GO</button>
+            </div>
+        </div>
     </div>
 
 
 </div>
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
 <script>
     //Iframe 的高度
     $(function () {
-        window.parent.$("#Iframe").css("height","1326");
+        window.parent.$("#Iframe").css("height","1389");
     })
 
     //进入页面加载数据
     getData1();
-//    getData(1);
+    getData(1);
     //获取数据
     function getData1() {
         $.ajax({
@@ -237,6 +165,8 @@
         $("#frameNo").text(data.frameNo);
         $("#vehicleLoad").text(data.vehicleLoad);
 
+        $("#chelaingyunying").attr("src",data.carOperation)
+        $("#xingshi").attr("src",data.drivingLicense)
         var str="";
         $.each(data1,function (idx,item) {
             str='<div>'+item.name+'：<span>'+item.value+'</span></div>';
@@ -258,7 +188,7 @@
     //获取数据
     function getData(currentPage) {
         $.ajax({
-            url: pubIP + 'tLogisticsVehicleRoute/selectByCarList', /*v1.0*/
+            url: pubIP + 'tLogisticsVehicle/selectDoingCarList', /*v1.0*/
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -269,22 +199,20 @@
             dataType: 'json',
             data:{
                 companyId:companyId,
-//                sort:$(".sort").attr("data-selectedindex"),
-                routeId:sessionStorage.getItem("detailId"),
+                type:2,
+                id:sessionStorage.getItem("detailId"),
                 size:pageSize,
                 page:currentPage
             },
             success: function (res) {
-                if(res.code===1){
                     //首次请求时 改变分页数据
                     if(res.data.length==0){
-                        $(".listBox tbody").html("");$(".pagination").parent().css("display","none");
-                        window.parent.$("#Iframe").css("height",979);
+                        $(".listBox tbody").html("");
+                        $(".pagination").parent().css("display","none");
                         return;
                     }
-                    if(currentPage===1 ){
+                    if(currentPage==1 ){
                         //修改底部分页
-                        debugger
                         var pageNum=Math.ceil(res.count/pageSize);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");
@@ -301,9 +229,6 @@
                     //修改底部页数
                     $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
                     cf_dataRender(res.data)
-                }else{
-                    alert(res.msg);
-                }
             },
             error: function(err){
                 console.log(err);
@@ -314,20 +239,31 @@
     function cf_dataRender(data) {
         var str='';
         $.each(data,function (idx,item) {
-            str+='<tr>';
-            str+='<td>'+item.carNo+'</td>';
-            if(item.type==0){
-                str+='<td>内部车辆</td>';
+            str+='<tr data-id="'+item.transaction_orderId+'">';
+            str+='<td>'+item.transaction_orderNumber+'</td>';
+            if(item.return_date=="" || item.return_date==null){
+                str+='<td></td>';
             }else {
-                str+='<td>外部车辆</td>';
+                str+='<td>'+timestampToTime(item.return_date)+'</td>';
             }
-            str+='<td>'+item.carBrand+'</td>';
-            str+='<td>'+item.carType+'</td>';
-            str+='<td>'+item.archivesNo+'</td>';
-            str+='<td>'+timestampToTime(item.annualVerificationDate)+'</td>';
+            str+='<td>'+item.chemical_name+'</td>';
+            str+='<td>'+item.goods_name+'</td>';
+            if(item.goods_unit=="重量/吨"){
+                str+='<td>'+item.goods_num+'吨'+'</td>';
+            }else{
+                str+='<td>'+item.goods_num+'m³'+'</td>';
+            }
+            str+='<td>'+item.send_province+item.send_city+'</td>';
+            str+='<td>'+item.receive_province+item.receive_city+'</td>';
+            str+='<td style="color: #6ea3f4;" class="seeDetail">订单详情</td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
+        $(".seeDetail").unbind();
+        $(".seeDetail").click(function () {
+            sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"))
+            window.location.href="../order/seeDetail.html"
+        })
     }
     // 点击go刷新数据
     $('.pageCont').on('click', '.button',function(){
