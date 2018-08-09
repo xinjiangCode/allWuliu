@@ -4176,7 +4176,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             }
         });
     }
-    
+
     getCarType();
     //获取车辆类型
     function getCarType() {
@@ -4308,6 +4308,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 //        }
         if( $("#money").val()==""){
             $("#sureCarError").text("请填写现金");
+            return;
+        }
+        if( $("#money").val()>$("#money").attr("")){
+            $("#sureCarError").text("现金不能大于可用余额");
             return;
         }
 //        if($("#peoples2").attr("data-selectedindex")==-1){
