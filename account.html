@@ -4132,7 +4132,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
     getKaQuanList();
     function getKaQuanList() {
 //        先置空总金额
-        $("#money").attr("allMoney","0")
+        $("#money").attr("data-allMoney","0")
         $.ajax({
             url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
             type: 'get',
@@ -4153,7 +4153,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     var str='';
                     $.each(res.aData,function (idx,item) {
                         if(item.attr_2==1){
-                            $("#money").attr("allMoney",item.money)
+                            $("#money").attr("data-allMoney",item.money)
                         }else{
                             str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
                         }
@@ -4310,7 +4310,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             $("#sureCarError").text("请填写现金");
             return;
         }
-        if( $("#money").val()>$("#money").attr("")){
+        if( $("#money").val()>$("#money").attr("data-allMoney")){
             $("#sureCarError").text("现金不能大于可用余额");
             return;
         }
