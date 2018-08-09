@@ -4157,6 +4157,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                        $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
                         $(this).parent().css('display','none');
@@ -4227,10 +4228,19 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             return;
         }
         //判断是否是重复添加
-        if($("#quanList li").attr("data-dot-id")==$(that).prev().attr("data-dot-id")){
-            cf_alert01(0,"请勿重复添加卡券");
+        debugger
+        var isok2 = 0;
+        $.each($("#quanList li"),function(idx,item){
+            if($(this).attr("data-id")==$(that).prev().attr("data-selectedindex")){
+                cf_alert01(0,"请勿重复添加卡券");
+                isok2=1;
+                return;
+            }
+        })
+        if(isok2==1){
             return;
         }
+
         var str='';
         str+='<li data-thisMoney="'+$(that).prev().attr("data-kq-money")+'" data-dot-id="'+$(that).prev().attr("data-dot-id")+'" data-name="'+$(that).prev().find("span").text()+'" data-id="'+$(that).prev().attr("data-selectedindex")+'">';
         str+='<span style="width: 70px;display: inline-block;text-align: right;">'+$(that).prev().find("span").text()+'：</span>';
