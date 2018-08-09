@@ -345,6 +345,9 @@
         $(document).on('click', '.update', function() {
             $(".update").removeClass("thisUpdate");
             $(this).addClass("thisUpdate");
+            $(window.parent.document).find('#qianding_time').val('')
+            $(window.parent.document).find('.modelBox1 input[type="hidden"]').val('')
+            $(window.parent.document).find('.modelBox1 input[type="hidden"]').next().css('background', 'url("")')
             window.parent.showModelBox('.modelBox1');
 
         });
@@ -657,6 +660,7 @@
             window.parent.$("#carType1").text(data.carType1);
             window.parent.$("#paymentMode").text(data.paymentMode);
             window.parent.$("#paymentType").text(data.paymentType);
+            window.parent.$("#invoiceType").text(data.invoiceType);
         }
 
     </script>

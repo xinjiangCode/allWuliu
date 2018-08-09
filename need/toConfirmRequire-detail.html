@@ -149,12 +149,12 @@
         //渲染数据
         function cf_dataRender(data) {
             $("#demandNo").text(data.demandNo);
-            $("#createTime").text(data.createTime);
+            $("#createTime").text(timestampToTime1(data.createTime));
             $(".sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             $(".receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             $(".receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            $("#goodsType").text(data.goodsType);
+            $("#goodsType").text(data.chemicalName);
             if(data.goodsUnit=="重量/吨"){
                 $("#goodsWeight").text(data.goodsNum+'吨');
             }else{
