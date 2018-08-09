@@ -132,7 +132,7 @@
                     <div class="ts">开户银行信息不能为空</div>
                 </li>
                 <li class="wj">
-                    <div class="left1 Lf ml"><i class="red">*</i>企业认证协议(盖章pdf文件):</div>
+                    <div class="left1 Lf ml"><i class="red">*</i>出金账户协议(盖章pdf文件):</div>
                     <div class="right1 Lf" style="position: relative;">
                         <input type="text" placeholder="将盖好公章的文件上传" id="wenjian_name"><a href="##"  onclick="down_moban()" style="margin-left: 27px; margin-right: 27px;">模板下载</a>
                         <input type="file" id="wenjian" accept="application/pdf" onchange="upload_file(this);">
@@ -408,9 +408,28 @@ function upload_file(obj) {
             var chujin_account_account2 = $('#chujin_account_account2').val();
 
             if (chujin_account_account1_reg.test(chujin_account_account2) != true) {
+                $('#chujin_account_account2').parent().next().text('出金账户账号格式不正确');
                 $('#chujin_account_account2').parent().next().css('display', 'block');
                 return;
             }
+
+            if (chujin_account_account2 == chujin_account_account1) {
+                $('#chujin_account_account2').parent().next().text('提现账号和票据收票账号不能一致');
+                $('#chujin_account_account2').parent().next().css('display', 'block');
+                return;
+            }
+
+            // if ($('#chujin_account_account1').attr('data-cunzai') == '1') {
+            //     $('#chujin_account_account1').parent().next().text('账号已存在');
+            //     $('#chujin_account_account1').parent().next().css('display', 'block');
+            //     return false;
+            // }
+
+            // if ($('#chujin_account_account2').attr('data-cunzai') == '1') {
+            //     $('#chujin_account_account2').parent().next().text('账号已存在');
+            //     $('#chujin_account_account2').parent().next().css('display', 'block');
+            //     return false;
+            // }
 
        
             if ($('#kaihu_bank_info2').val() == '') {
@@ -477,6 +496,38 @@ function upload_file(obj) {
                 return;
             } else {
                 $(this).parent().next().css('display', 'none');
+                // var _that = $(this);
+                // $.ajax({
+                //     url: pubIP + 'companyCertification/findAccountUserState',
+                //     type: 'post',
+                //     headers: {
+                //         Accept: "application/json; charset=utf-8",
+                //         token: token
+                //     },
+                //     data: {
+                //         accountId: _that.val(),
+                //         companyId: companyId
+                //     },
+                //     cache: false,
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //         if (data.code == -1) {
+                //             window.parent.$('.modelBox4 P').text('该账号已存在！');
+                //             window.parent.$('.modelBox4').css('display', 'block');
+                //             _that.attr('data-cunzai', '1');
+                //         } else {
+                //             _that.attr('data-cunzai', '2');
+
+                //         }
+
+                //     },  
+                //     error: function(err) {
+                //         console.log(err);
+                //     }
+                // });
+
+                
             }
 
         });
@@ -505,10 +556,44 @@ function upload_file(obj) {
             var chujin_account_account1_reg = /^\d{16}|\d{19}$/;
 
             if (chujin_account_account1_reg.test(chujin_account_account2) != true) {
+                $(this).parent().next().text('出金账户账号格式不正确');
+                $(this).parent().next().css('display', 'block');
+                return;
+            } else if (chujin_account_account2 == $('#chujin_account_account1').val()) {
+                $(this).parent().next().text('提现账号和票据收票账号不能一致');
                 $(this).parent().next().css('display', 'block');
                 return;
             } else {
                 $(this).parent().next().css('display', 'none');
+                // var _that = $(this);
+                // $.ajax({
+                //     url: pubIP + 'companyCertification/findAccountUserState',
+                //     type: 'post',
+                //     headers: {
+                //         Accept: "application/json; charset=utf-8",
+                //         token: token
+                //     },
+                //     data: {
+                //         accountId: _that.val(),
+                //         companyId: companyId
+                //     },
+                //     cache: false,
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //         if (data.code == -1) {
+                //             window.parent.$('.modelBox4 P').text('该账号已存在！');
+                //             window.parent.$('.modelBox4').css('display', 'block');
+                //             _that.attr('data-cunzai', '1');
+                //         } else {
+                //             _that.attr('data-cunzai', '2');
+                //         }
+
+                //     },  
+                //     error: function(err) {
+                //         console.log(err);
+                //     }
+                // });
             }
         });
 
@@ -607,13 +692,13 @@ function upload_file(obj) {
                         if (data.code == 1) {
                             console.log(data);
 
-                            $('#chujin_account_name1').val(data.data.accounts[0].bankName);
+                            $('#chujin_account_name1').val(data.data.accounts[0].accountName);
                             $('#chujin_account_account1').val(data.data.accounts[0].accountId);
-                            $('#kaihu_bank_info1').val(data.data.accounts[0].accountName);
+                            $('#kaihu_bank_info1').val(data.data.accounts[0].bankName);
 
-                            $('#chujin_account_name2').val(data.data.accounts[1].bankName);
+                            $('#chujin_account_name2').val(data.data.accounts[1].accountName);
                             $('#chujin_account_account2').val(data.data.accounts[1].accountId);
-                            $('#kaihu_bank_info2').val(data.data.accounts[1].accountName);
+                            $('#kaihu_bank_info2').val(data.data.accounts[1].bankName);
                             
                             
                         } else {
@@ -666,11 +751,29 @@ function upload_file(obj) {
             var chujin_account_account2 = $('#chujin_account_account2').val();
 
             if (chujin_account_account1_reg.test(chujin_account_account2) != true) {
+                $('#chujin_account_account2').parent().next().text('出金账户账号格式不正确');
                 $('#chujin_account_account2').parent().next().css('display', 'block');
                 return;
             }
 
+            if (chujin_account_account2 == chujin_account_account1) {
+                $('#chujin_account_account2').parent().next().text('提现账号和票据收票账号不能一致');
+                $('#chujin_account_account2').parent().next().css('display', 'block');
+                return false;
+            }
 
+            // if ($('#chujin_account_account1').attr('data-cunzai') == '1') {
+            //     $('#chujin_account_account1').parent().next().text('账号已存在');
+            //     $('#chujin_account_account1').parent().next().css('display', 'block');
+            //     return false;
+            // }
+
+            // if ($('#chujin_account_account2').attr('data-cunzai') == '1') {
+            //     $('#chujin_account_account2').parent().next().text('账号已存在');
+            //     $('#chujin_account_account2').parent().next().css('display', 'block');
+            //     return false;
+            // }
+       
        
             if ($('#kaihu_bank_info2').val() == '') {
                 $('#kaihu_bank_info2').parent().next().css('display', 'block');
