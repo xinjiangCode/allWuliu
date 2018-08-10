@@ -18,40 +18,46 @@
         <div class="inputBox">
             <div class="inputBoxItem inputBoxItemOne">
                 <div class="Lf">
-                    <label>可用金额：<span>¥5600.00</span></label>
+                    <label>可用金额：<span id="keyongYUe"></span></label>
                     <div class="inputBoxItemOneRight">
-                        <input type="button" value="提现" class="btn tixianBtn">
-                        <input type="button" value="充值" class="btn chongzhiBtn">
+                        <input type="button" value="提现" class="btn tixianBtn" onclick="goTixian()">
+                        <input type="button" value="充值" class="btn chongzhiBtn" onclick="goChongzhi()">
                     </div>
                 </div>
                 <div class="line"></div>
                 <div class="Lf">
-                    <label>待结算：<span>¥5600.00</span></label>
+                    <label>待结算：<span id="daijiesuan"></span></label>
                     <div class="inputBoxItemOneRight">
-                        <span class="notPayRecordBtn">待结算记录</span>
+                        <span class="notPayRecordBtn" onclick="jiesuanshenhe()">待结算记录</span>
                     </div>
                 </div>
             </div>
             
             <div class="inputBoxItem inputBoxItemTwo">
                 <label class="zhangwuDetail">账务明细<span class="dayPayDownload">日账单下载</span><span>月账单下载</span></label>
-                <label class="keyongMoney">可用金额：<span><i>¥</i>56.00</span>元</label>
+                <label class="keyongMoney">可用金额：<span id="keyongyue1"></span>元</label>
             </div>
             <div class="inputBoxItem inputBoxItemThree">
                 <div class="Lf" style="width: 53%;">
                     <div class="moneyFlowBox ibit">
                         <span style="margin-right: 15px;">资金流向：</span>
-                        <input type="radio" name="moneyFlow" id="mf-all" value="0" checked="checked"><label for="mf-all" name="mf-all" class="checked">所有</label>
-                        <input type="radio" name="moneyFlow" id="mf-income" value="1"><label for="mf-income" name="mf-income">收入</label>
-                        <input type="radio" name="moneyFlow" id="mf-expenditure" value="2"><label for="mf-expenditure" name="mf-expenditure">支付</label>
+                        <input type="radio" name="moneyFlow" id="mf-all" value="" checked="checked"><label for="mf-all" name="mf-all" class="checked">所有</label>
+                        <input type="radio" name="moneyFlow" id="mf-income" value="D"><label for="mf-income" name="mf-income">收入</label>
+                        <input type="radio" name="moneyFlow" id="mf-expenditure" value="C"><label for="mf-expenditure" name="mf-expenditure">支出</label>
                     </div>
-                    <div class="businessOrderNum"><span style="margin-right:4px;">商户订单号：</span><input type="text"></div>
+                    <div class="businessOrderNum"><span style="margin-right:4px;">商户订单号：</span>
+                        <input type="text" id="orderId"></div>
                 </div>
                 <div class="Lf" style="width: 47%;">
-                    <div class="typeBox ibit"><span style="margin-right: 25px;">类型：</span><input type="radio" name="type" id="t-all" value="0" checked="checked"><label for="t-all" name="t-all" class="checked">所有</label>
-                        <input type="radio" name="type" id="t-pay" value="1"><label for="t-pay" name="t-pay">支付</label>
-                        <input type="radio" name="type" id="t-chongzhi" value="2"><label for="t-chongzhi" name="t-chongzhi">充值</label>
-                        <input type="radio" name="type" id="t-tixian" value="3"><label for="t-tixian" name="t-tixian" style="margin:0;">提现</label>
+                    <div class="typeBox ibit"><span style="margin-right: 25px;">类型：</span>
+                        <input type="radio" name="type" id="t-all" value="0" checked="checked">
+                        <label for="t-all" name="t-all" class="checked">所有</label>
+                        <input type="radio" name="type" id="t-pay" value="15">
+                        <label for="t-pay" name="t-pay">支付</label>
+                        <input type="radio" name="type" id="t-chongzhi" value="23">
+                        <label for="t-chongzhi" name="t-chongzhi">充值</label>
+                        <input type="radio" name="type" id="t-tixian" value="11">
+                        <label for="t-tixian" name="t-tixian" style="margin:0;">提现</label>
                     </div>
                     <div class="timeBox"><span style="margin-right: 20px;">起止时间：</span>
                         <input type="text" class="date-input laydate-icon" placeholder="请选择日期" id="test1">
@@ -63,9 +69,7 @@
             </div>
         </div>
         <div class="incomeAndExpendBox">
-            <label style="margin-left: 20px;">收入（2）：<span class="green">8000.00</span>元</label>
-            <label style="margin-left: 45px;">支出（1）：<span class="red">-3000.00</span>元</label>
-            <span class="downloadPayBtn">下载账单</span>
+
         </div>
         <div class="listBox">
             <table>
@@ -77,82 +81,28 @@
                         <td>交易对方</td>
                         <td>收入/支出(元)</td>
                         <td>余额(元)</td>
-                        <td>详情</td>
+                        <!--<td>详情</td>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="pl20">
-                            <div>2018-04-10</div>
-                            <div>10:41:22</div>
-                        </td>
-                        <td class="pl20">
-                            <div>流水号：3001804091631062138</div>
-                            <div>订单号：3001804091631062137</div>
-                        </td>
-                        <td>现汇交易</td>
-                        <td>
-                            <div>账户名：新疆中顺鑫和供应链管理股份有限公司</div>
-                            <div>账户号：3113710033455221943</div>
-                        </td>
-                        <td>6000</td>
-                        <td>100</td>
-                        <td><span class="btn ll">查看</span><span class="btn">下载</span></td>
-                    </tr>
-                    <tr>
-                        <td class="pl20">
-                            <div>2018-04-10</div>
-                            <div>10:41:22</div>
-                        </td>
-                        <td class="pl20">
-                            <div>流水号：3001804091631062138</div>
-                            <div>订单号：3001804091631062137</div>
-                        </td>
-                        <td>提现</td>
-                        <td>
-                            <div>账户名：新疆中顺鑫和供应链管理股份有限公司</div>
-                            <div>账户号：3113710033455221943</div>
-                        </td>
-                        <td>6000</td>
-                        <td>100</td>
-                        <td><span class="btn ll">查看</span><span class="btn">下载</span></td>
-                    </tr>
-                    <tr>
-                        <td class="pl20">
-                            <div>2018-04-10</div>
-                            <div>10:41:22</div>
-                        </td>
-                        <td class="pl20">
-                            <div>流水号：3001804091631062138</div>
-                            <div>订单号：3001804091631062137</div>
-                        </td>
-                        <td>充值</td>
-                        <td>
-                            <div>账户名：新疆中顺鑫和供应链管理股份有限公司</div>
-                            <div>账户号：3113710033455221943</div>
-                        </td>
-                        <td>6000</td>
-                        <td>100</td>
-                        <td><span class="btn ll">查看</span><span class="btn">下载</span></td>
-                    </tr>
-                    <tr>
-                        <td class="pl20">
-                            <div>2018-04-10</div>
-                            <div>10:41:22</div>
-                        </td>
-                        <td class="pl20">
-                            <div>流水号：3001804091631062138</div>
-                            <div>订单号：3001804091631062137</div>
-                        </td>
-                        <td>充值</td>
-                        <td>
-                            <div>账户名：新疆中顺鑫和供应链管理股份有限公司</div>
-                            <div>账户号：3113710033455221943</div>
-                        </td>
-                        <td>6000</td>
-                        <td>100</td>
-                        <td><span class="btn ll">查看</span><span class="btn">下载</span></td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td class="pl20">-->
+                            <!--<div>2018-04-10</div>-->
+                            <!--<div>10:41:22</div>-->
+                        <!--</td>-->
+                        <!--<td class="pl20">-->
+                            <!--<div>流水号：3001804091631062138</div>-->
+                            <!--<div>订单号：3001804091631062137</div>-->
+                        <!--</td>-->
+                        <!--<td>现汇交易</td>-->
+                        <!--<td>-->
+                            <!--<div>账户名：新疆中顺鑫和供应链管理股份有限公司</div>-->
+                            <!--<div>账户号：3113710033455221943</div>-->
+                        <!--</td>-->
+                        <!--<td>6000</td>-->
+                        <!--<td>100</td>-->
+                        <!--<td><span class="btn ll">查看</span><span class="btn">下载</span></td>-->
+                    <!--</tr>-->
                 </tbody>
             </table>
         </div>
@@ -185,7 +135,9 @@
             format: 'YYYY-MM-DD',
             istime: true,
             choose: function(dates){ //选择好日期的回调
-                startTime = dates;
+                if(dates>$("#test2").val()){
+                    $("#test2").val("");
+                }
             }
         });
         laydate({
@@ -193,7 +145,9 @@
             format: 'YYYY-MM-DD',
             istime: true,
             choose: function(dates){ //选择好日期的回调
-                endTime = dates;
+                if(dates<$("#test1").val()){
+                    $("#test2").val("");
+                }
             }
         });
         laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
@@ -230,6 +184,188 @@
         $('tbody tr td').eq(0).css('width','110px');
         $('tbody tr td').eq(1).css('width','225px');
         $('tbody tr td').eq(3).css('width','270px');
+
+        //搜索按钮
+        $(".searchBtn").unbind();
+        $(".searchBtn").click(function () {
+            getData(1);
+        })
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");
+            $.ajax({
+                url: pubIP + 'finance/getFinancialList', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    moneyFlow: $('.moneyFlowBox input[name="moneyFlow"]:checked ').val(),
+                    tranType: $('.typeBox input[name="type"]:checked ').val(),
+                    orderId:$("#orderId").val(),
+                    startTime:$("#test1").val(),
+                    endTime:$("#test2").val(),
+                    timeSlot:4,//时间范围（0默认1当天2最近一周3最近一个月4自选时间【Y昨天数据-获取昨日数据】）
+                    size:pageSize,
+                    page:currentPage
+                },
+                success: function (res) {
+                    if(res.code==0){
+                        var str1="";
+                        str1+='<label style="margin-left: 20px;">收入（'+res.countData.incomeNum+'）：<span class="green">'+res.countData.income+'</span>元</label>'
+                        str1+='<label style="margin-left: 45px;">支出（'+res.countData.expendNum+'）：<span class="red">-'+res.countData.expend+'</span>元</label>'
+                        str1+='<span class="downloadPayBtn">下载账单</span>'
+                        $(".incomeAndExpendBox").html(str1);
+
+                        //首次请求时 改变分页数据
+                        if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                        $(".pagination").parent().css("display","block");
+                        if(currentPage==1){
+                            //修改底部分页
+                            var pageNum=Math.ceil(res.data.length/pageSize);
+                            $(".allPageN").attr("pageTotal",pageNum);
+                            $(".pageJump i").text("共"+pageNum+"页");
+                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                            Page({
+                                num: pageNum,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    // console.log(n);
+                                    currentPage=n;
+                                    getData(n);//加载n页数据
+                                }
+                            });
+                        }
+                        //修改底部页数
+                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                        cf_dataRender(res.data,currentPage)
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data,currentPage) {
+            var str='';
+            $.each(data,function (idx,item) {
+                if(idx<(currentPage-1)*pageSize){
+                    return;
+                }
+                if(idx>=(currentPage)*pageSize){
+                    return;
+                }
+                str+='<tr data-id="'+item.id+'">';
+                str+='<td class="pl20">';
+                str+='<div>'+data.TRANDATE+'</div>';
+                str+='<div>'+data.TRANTIME+'</div>';
+                str+=' </td>';
+                str+='<td class="pl20">';
+                str+='<div>流水号：'+data.HOSTSEQ+'</div>';
+//                str+='  <div>订单号：3001804091631062137</div>';  //暂时没返回值
+                str+=' </td>';
+                if(data.TRANTYPE=="11"){
+                    str+=' <td>转账</td>';
+                }else if(data.TRANTYPE=="15"){
+                    str+=' <td>现汇交易</td>';
+                }else if(data.TRANTYPE=="23"){
+                    str+=' <td>充值</td>';
+                }
+                str+='<td>';
+                str+='<div>账户名：'+data.OPPACCNAME+'</div>';
+                str+='<div>账户号：'+data.OPPACCNO+'</div>';
+                str+=' </td>';
+                str+='<td>'+data.TRANAMT+'</td>';
+                str+='<td>'+data.ACCBAL+'</td>';
+//                str+='<td><span class="btn ll seeDetail">查看</span><span class="btn">下载</span></td>';
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+        }
+        //选择排序方式
+        $(".select ul li").click(function () {
+            getData(1);
+        })
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage1 = $('.pageCont li.active>a').text();
+            getData(currentPage1);
+        })
+        getyue()
+        daijeisuan()
+        //余额
+        function getyue() {
+            $.ajax({
+                url: pubIP + 'finance/getAccountBalance', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                },
+                success: function (res) {
+                    if(res.code==0){
+                        $("#keyongYUe").text("¥"+res.data)
+                        $("#keyongyue1").html("<i>¥</i>"+res.data)
+                    }else{
+
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+//待结算
+        function daijeisuan() {
+            $.ajax({
+                url: pubIP + 'finance/getNotSettlement', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                },
+                success: function (res) {
+                    if(res.code==0){
+                        $("#daijiesuan").text("¥"+res.data)
+                    }else{
+
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+
+        function goTixian() { //跳转提现页面
+            window.location.href="./platTixian.html";
+        }
+        function goChongzhi() {//跳转充值页面
+            window.location.href="./platChongzhi.html";
+        }
+        function jiesuanshenhe() {//跳转充值页面
+            window.location.href="./settlementAudit.html";
+        }
+
     </script>
 </body>
 </html>
