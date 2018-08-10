@@ -297,7 +297,7 @@
                 str+='<tr data-id="'+item.transactionOrderId+'">';
                 str+='<td><div class="cf_select"></div></td>';
                 str+='<td>'+item.transactionOrderId+'</td>';
-                str+='<td>'+item.createtime+'</td>';
+                str+='<td>'+timestampToTime1(item.createtime)+'</td>';
                 str+='<td>'+item.quotedTime+'</td>';//需要改成报价时间字段
                 str+='<td>'+item.goodsType+'</td>';
                 str+='<td>'+item.goodsName+'</td>';

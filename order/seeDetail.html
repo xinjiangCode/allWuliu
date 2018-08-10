@@ -91,7 +91,7 @@
                     <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
                     <!--<div>支付方式：<span>预付</span></div>-->
                     <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                    <div>结算方式：<span id="paymentMode	">现汇</span></div>
+                    <div>支付方式：<span id="paymentMode	">现汇</span></div>
                 </div>
                 <div class="left mm">
                     <div>包装类型：<span id="packageType">罐装</span></div>
@@ -367,17 +367,13 @@
     //渲染数据
     function cf_dataRender(data) {
         $("#demandNo").text(data.demandNo);
-        $("#createTime").text(data.createTime);
+        $("#createTime").text(timestampToTime1(data.createTime));
         $(".sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
         $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
         $(".receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
         $(".receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
         $("#goodsType").text(data.goodsType);
-        if(data.goodsUnit=="重量/吨"){
-            $("#goodsWeight").text(data.goodsNum+'吨');
-        }else{
-            $("#goodsWeight").text(data.goodsNum+'m³');
-        }
+            $("#goodsWeight").text(data.goodsNum+data.goodsUnit);
         $("#packageType").text(data.packageType);
         $("#invoiceType").text(data.invoiceType);
         $("#paymentMode").text(data.paymentMode);

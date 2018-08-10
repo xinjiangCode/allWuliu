@@ -1061,7 +1061,7 @@
                             <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="goodsWeight">150吨</span></div>
                             <!--<div>支付方式：<span>预付</span></div>-->
                             <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                            <div>结算方式：<span id="paymentMode	">现汇</span></div>
+                            <div>支付方式：<span id="paymentMode	">现汇</span></div>
                         </div>
                         <div class="Lf " style="width: 250px;">
                             <div>包装类型：<span class="packageType">罐装</span></div>
@@ -1400,7 +1400,7 @@
                    <ul>
                        <li>包装类型：<span>灌装</span></li>
                        <li>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span>普票</span></li>
-                       <li>结算方式：<span>现汇</span></li>
+                       <li>支付方式：<span>现汇</span></li>
                        <li>缴纳方式：<span>抵扣</span></li>
                    </ul>
                    <ul>
@@ -1682,11 +1682,8 @@
                             </ul>
                         </div>
                         <div class="selectPub" id="carTypeList" data-selectedindex="-1" style="float: left;width: 96px; margin-top: 0px;">
-                            <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">
+                            <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">暂无数据</span><img src="img/prl-select.jpg" alt="">
                             <ul>
-                                <li data-index="1">1</li>
-                                <li data-index="2">2</li>
-                                <li data-index="3">3</li>
                             </ul>
                         </div>
                     </div>
@@ -2619,6 +2616,34 @@
             </ul>
 
             <div class="cf_btn cfClose"  style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 20px;">返回</div>
+        </div>
+    </div>
+</div>
+
+<!-- 新增税率-->
+<div class="modelBox23" style="font-size: 14px;" data-id="">
+    <div class="modelCont" style="width: 650px;height: 435px;">
+        <div class="modeltitle" style="width: 100%;">
+            <span>税率设置</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="width: 598px; height: 328px; border: 1px solid #ebe9ea;padding: 15px 50px 0 0px; ">
+            <div style="margin-top: 30px;color: #666666; font-size: 14px; line-height: 40px;">
+                <span style="color: #282828;width: 200px;text-align: right;" class="span_width modelBox34LeftTitle fl">工资下限：&nbsp;</span>
+                <input type="text" id="gongzidown" placeholder="" style="height: 36px;width: 300px;border: 1px solid #dbdbdc; margin-left: 5px;">
+            </div>
+            <div style="margin-top: 30px;color: #666666; font-size: 14px; line-height: 40px;">
+                <span style="color: #282828;width: 200px;" class="span_width modelBox34LeftTitle fl">工资上限：&nbsp;</span>
+                <input type="text" id="gongziup" placeholder="" style="height: 36px;width: 300px;border: 1px solid #dbdbdc; margin-left: 5px;">
+            </div>
+            <div style="margin-top: 30px;color: #666666; font-size: 14px; line-height: 40px;">
+                <span style="color: #282828;width: 200px;" class="span_width modelBox34LeftTitle fl">税&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率：&nbsp;</span>
+                <input type="text" id="shuilv" placeholder="" style="height: 36px;width: 300px;border: 1px solid #dbdbdc; margin-left: 5px;">
+            </div>
+            <div class="ErrMsg" style="margin: 5px 0;text-align: center;color: red;font-size: 14px;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 29px;">
+                <span class=" cf_btn" id="sureShuiLv" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+            </div>
         </div>
     </div>
 </div>
@@ -4039,7 +4064,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             },
             success: function (res) {
                 console.log(res)
-                if(res.code===1){
+                if(res.code==1){
                     //首次请求时 改变分页数据
                     if(res.data.length==0){ $(".listBox1 tbody").html("");$(".pagination").parent().css("display","none"); return;}
                     $(".pagination").parent().css("display","block");
@@ -4124,6 +4149,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     if (res.data!="" && res.data!=null && res.data.length != 0) {
                         var str='';
                         $.each(res.data,function (idx,item) {
+                           if(idx==0){
+                                $("#peoples"+type+" span").text(item.userName)
+                                $("#peoples"+type+"").attr("data-selectedindex",item.id)
+                            }
                             str+='<li data-index="'+item.id+'">'+item.userName+'</li>';
                         })
                             $("#peoples"+type+" ul").html(str);
@@ -4363,7 +4392,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     $("#sureCarError").text("请填写"+cardName1+"金额");
                 }
             }
-            if($(item).find("input").val()>$(item).attr("data-thisMoney")){
+            if(Number($(item).find("input").val())>Number($(item).attr("data-thisMoney"))){
                 if(isOK==1){
                     $("#sureCarError").text("卡券金额不能大于本卡券可用余额");
                     isOK=0;
@@ -4653,10 +4682,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             dataType: 'json',
             success: function (res) {
                 if (res.code==1){
-                    alert("分配车辆成功");
                     carCardReset()
                     $("#car_info").html("")
-                    $(".modelBox17").hide();
+                    cf_alert(1,"分配车辆成功");
+//                    $(".modelBox17").hide();
                 }else if(res.code==401){
 
                 }else if(res.code==401){

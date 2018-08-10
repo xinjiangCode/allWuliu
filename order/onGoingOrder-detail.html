@@ -193,8 +193,8 @@
                 <!-- <div>缴纳方式：<span>抵扣</span></div> -->
             </div>
             <div class="left rr">
-                <div>货物名称：<span><%=goodsName%></span></span></div>
-                <div>车辆类型：<span><%=carType%></span></span></div>
+                <div>货物名称：<span><%=goodsName%></span></div>
+                <div>车辆类型：<span><%=carType%></span></div>
                 <!-- <div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：
                 <%if (receipt == 0) {%>
                 <span>不需要</span>
@@ -259,8 +259,8 @@
 
                 if (json.code == 1) {
 
-                    json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm");
-                    json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm");
+                    json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm:ss");
+                    json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm:ss");
                     
                     var orderResult = template('orderTpl', json.data);
                     $('#orderInfo').html(orderResult);

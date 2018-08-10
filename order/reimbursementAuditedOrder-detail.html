@@ -432,9 +432,9 @@
 
                 if (json.code == 1) {
 
-                    json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm");
-                    json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm");
-                    json.data.updateTime = new Date(json.data.updateTime).Format("yyyy-MM-dd hh:mm");
+                    json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm:ss");
+                    json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm:ss");
+                    json.data.updateTime = new Date(json.data.updateTime).Format("yyyy-MM-dd hh:mm:ss");
                     
                     var orderResult = template('orderTpl', json.data);
                     $('#orderInfo').html(orderResult);

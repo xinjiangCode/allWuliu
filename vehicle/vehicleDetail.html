@@ -43,7 +43,7 @@
                 <div>保险日期：<span id="insuranceDate">2015-09-08 12：20</span></div>
             </div>
             <div class="left rr">
-                <div>车辆类型：<span id="carType">危化-罐装车</span></div>
+                <div>车辆类型：<span id="carType"></span></div>
                 <div>发动机号：<span id="engineNo">126112</span></div>
                 <div>车辆载重：<span id="vehicleLoad">150吨</span></div>
             </div>
@@ -117,7 +117,39 @@
     $(function () {
         window.parent.$("#Iframe").css("height","1389");
     })
+    //获取车辆类型
+    function getCarType(carid) {
+        $.ajax({
+            url: pubIP + 'tLogisticsVehicle/selectCarTypeList', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.code == 1) {
+                    if (data.data.length != 0) {
+                        var str = '';
+                        for (var i = 0; i < data.data.length; i++) {debugger
+                            if(carid==data.data[i].id){
+                                $("#carType").text(data.data[i].typeName);
+                                return;
+                            }
 
+                        }
+                    }
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+    }
     //进入页面加载数据
     getData1();
     getData(1);
@@ -154,7 +186,9 @@
         var data=dataAll.data;
         var data1=dataAll.data1;
         $("#carBrand").text(data.carBrand);
-        $("#carType").text(data.carType);
+
+        getCarType(data.carType);
+        debugger
         $("#annualVerificationDate").text(timestampToTime(data.annualVerificationDate));
         $("#archivesNo").text(data.archivesNo);
         $("#firstDate").text(timestampToTime(data.firstDate));

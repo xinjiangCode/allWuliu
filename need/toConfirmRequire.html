@@ -245,7 +245,7 @@
                                 <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
                                 <!--<div>支付方式：<span>预付</span></div>-->
                                 <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                                <div>结算方式：<span id="paymentMode	">现汇</span></div>
+                                <div>支付方式：<span id="paymentMode	">现汇</span></div>
                             </div>
                             <div class="Lf " style="width: 250px;">
                                 <div>包装类型：<span id="packageType">罐装</span></div>
@@ -558,17 +558,13 @@
         //渲染更改报价弹框数据
         function cf_dataRenderSelect(data) {
             window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
-            window.parent.$(".modelBox0 .createTime").text(timestampToTime1(data.createTime));
+            window.parent.$(".modelBox0 .createTime").text(timestampToTime1(timestampToTime1(data.createTime)));
             window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .goodsType").text(data.chemicalName);
-            if(data.goodsUnit=="重量/吨"){
-                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'吨');
-            }else{
-                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'m³');
-            }
+            window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+data.goodsUnit);
             window.parent.$(".modelBox0 .packageType").text(data.packageType);
             window.parent.$(".modelBox0 .invoiceType").text(data.invoiceType);
             window.parent.$(".modelBox0 .paymentMode").text(data.paymentMode);
