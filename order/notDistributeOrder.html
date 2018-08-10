@@ -495,7 +495,7 @@
                         if (json.data.length != 0) {
                             for (var i = 0; i < json.data.length; i++) {
                             
-                                json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm");
+                                json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm:ss");
                             }
                             
 
@@ -645,16 +645,12 @@
         function cf_dataRender(data) {     //下需要重新写
             window.parent.$("#demandNo").text(data.demandNo);
             window.parent.$("#startDate").text(data.startDate);
-            window.parent.$("#createTime").text(data.createTime);
+            window.parent.$("#createTime").text(timestampToTime1(data.createTime));
             window.parent.$("#goodsType").text(data.goodsType);
             window.parent.$("#selectInput7").text(data.goodsType);
             window.parent.$("#packageType").text(data.packageType);
             window.parent.$("#goodsName").text(data.goodsName);
-            if(data.goodsUnit=='重量/吨'){
-                window.parent.$("#goodsweight").eq(0).text(data.goodsNum+'吨');
-            }else{
-                window.parent.$("#goodsweight").eq(0).text(data.goodsNum+'m³');
-            }
+                window.parent.$("#goodsweight").eq(0).text(data.goodsNum+data.goodsUnit);
             window.parent.$("#sendAddress").text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$("#receiveAddress").text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$("#carType1").text(data.carType);

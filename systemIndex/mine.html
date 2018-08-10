@@ -21,6 +21,7 @@
         .time{border-radius: 5px;overflow: hidden;width: 269px;height: 38px;line-height: 38px;border: 1px solid #f1f0f1;}
         .time .cf_btn{border-radius: 0;width: 89px;height: 38px;border-right: 1px solid #f1f0f1;background-color: #ffffff;color: #282828;font-size: 14px;}
         .time .cf_btn:hover{background-color: #6ba1ff;color: white;}
+        .time .cf_btn.on{background-color: #6ba1ff;color: white;}
         .dataTime{margin-left: 20px;float: right;}
 
         .orderItem{width: 90px; height: 90px;background-color: #6ba1ff;color: white;float: left;padding: 20px;margin-right: 14px;margin-top: 15px;}
@@ -85,9 +86,9 @@
 
         <div class="condition clearFloat">
             <div class="time clearFloat Lf">
-                <div class="cf_btn Lf">最近七日</div>
-                <div class="cf_btn Lf">最近一月</div>
-                <div class="cf_btn Lf" style="border-right: none;">最近三月</div>
+                <div class="cf_btn Lf on" data-id="1">最近七日</div>
+                <div class="cf_btn Lf" data-id="2">最近一月</div>
+                <div class="cf_btn Lf" data-id="3" style="border-right: none;">最近三月</div>
             </div>
             <div class="dataTime Lf">
                 <span style="color: #666666;font-size: 14px;margin-right: 5px;">检索条件</span>
@@ -98,56 +99,56 @@
             <div class="Rt cfRefresh" style="width: 92px;height: 36px;border: 1px solid #f1f1f1;line-height: 36px;margin-top: 4px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>
         </div>
         <div class="orderList clearFloat">
-            <div class="orderItem">
+            <div class="orderItem daiqueren">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>待确认</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem">
+            <div class="orderItem weihezuoxuqiu">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>未合作订单</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem">
+            <div class="orderItem yihezuoxuqiu">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>已合作</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem">
+            <div class="orderItem daifenpei">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>待分配</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem" style="margin-right: 0">
+            <div class="orderItem jinxingzhong" style="margin-right: 0">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>进行中订单</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem">
+            <div class="orderItem wcDaishenhe">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>完成待审核</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem">
+            <div class="orderItem wanchen">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>已完成</span>
                 </div>
                 <div style="text-align: center;margin-top: 12px;"><span class="orderNumber">2</span><span style="font-size: 16px;">笔</span></div>
                 <div style="font-size: 14px;text-align: center"><span class="orderWeight">20.00</span><span>吨</span></div>
             </div>
-            <div class="orderItem" style="margin-right: 0;">
+            <div class="orderItem quxiao" style="margin-right: 0;">
                 <div class="orderStatus">
                     <img src="../img/cf_wenhao.png" alt=""><span>结束订单</span>
                 </div>
@@ -157,7 +158,7 @@
         </div>
 
         <div class="totalList clearFloat">
-            <div class="totalItem Lf">
+            <div class="totalItem Lf dindanshu" data-id="1">
                 <div class="Lf totalLeft clearFloat">
                     <div class="totalImgs">
                         <img src="../img/cf_total1.png" alt="">
@@ -172,7 +173,7 @@
                     </div>
                 </div>
             </div>
-            <div class="totalItem Rt">
+            <div class="totalItem Rt  zaitu" data-id="2">
                 <div class="Lf totalLeft clearFloat">
                     <div class="totalImgs">
                         <img src="../img/cf_total2.png" alt="">
@@ -187,7 +188,7 @@
                     </div>
                 </div>
             </div>
-            <div class="totalItem Lf">
+            <div class="totalItem Lf zongjine" data-id="3">
                 <div class="Lf totalLeft clearFloat">
                     <div class="totalImgs">
                         <img src="../img/cf_total3.png" alt="">
@@ -202,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <div class="totalItem Rt">
+            <div class="totalItem Rt yijiesuan" data-id="4">
                 <div class="Lf totalLeft clearFloat">
                     <div class="totalImgs">
                         <img src="../img/cf_total4.png" alt="">
@@ -217,7 +218,7 @@
                     </div>
                 </div>
             </div>
-            <div class="totalItem Lf clearFloat">
+            <div class="totalItem Lf clearFloat daijiesuan" data-id="5">
                 <div class="Lf totalLeft clearFloat">
                     <div class="totalImgs">
                         <img src="../img/cf_total5.png" alt="">
@@ -234,7 +235,10 @@
             </div>
         </div>
 
-        <div class="myEacheerts clearFloat" id="myEacheerts">
+        <div class="myEacheerts clearFloat" id="myEacheerts1">
+
+        </div>
+        <div class="myEacheerts clearFloat" id="myEacheerts2">
 
         </div>
     </div>
@@ -312,34 +316,6 @@
         window.parent.$("#Iframe").css("height","1315");
     })
 
-    laydate({
-        elem: '#test1',
-        format: 'YYYY-MM-DD',
-        istime: true,
-        choose: function(dates){ //选择好日期的回调
-            startTime1 = dates;
-        }
-    })
-    laydate({
-        elem: '#test2',
-        format: 'YYYY-MM-DD',
-        istime: true,
-        choose: function(dates){ //选择好日期的回调
-            endTime1 = dates;
-        }
-    })
-
-    function lay(id) {
-        laydate({
-            elem: '#'+id,
-            format: 'YYYY-MM-DD',
-            istime: true,
-            choose: function(dates){ //选择好日期的回调
-                /*endTime1 = dates;*/
-            }
-        })
-    }
-
     $(".cfnav").click(function () {
         $(".cfnav").removeClass("on");
         $(this).addClass("on");
@@ -355,7 +331,6 @@
     })
 
     $(".ser").each(function (idx,item) {
-
         $(this).mouseover(function(){
             $(this).addClass("on");
             $(this).find(".imgs").find("img").attr("src","../img/cf_ser"+(idx+1)+"on.png");
@@ -368,87 +343,228 @@
         });
     })
 
+
+
+
+</script>
+<script type="text/javascript">
+
+    laydate({
+        elem: '#test1',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+            if(dates>$("#test2").val()){
+                $("#test2").val("")
+            }
+            getdata($(".time .on").attr("data-id"),1);
+        }
+    })
+    laydate({
+        elem: '#test2',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+            if(dates<$("#test1").val()){
+                $("#test2").val("")
+            }
+            getdata($(".time .on").attr("data-id"),1);
+        }
+    })
+
+    //    选择月份
+    $(".time .cf_btn").click(function () {
+        $(".time .cf_btn").removeClass("on");
+        $(this).addClass("on");
+        getdata($(this).attr("data-id"),1);
+    })
+
+    //    选择五大订单
+    $(".totalList .totalItem").click(function () {
+        $(".totalList .totalItem").removeClass("on");
+        $(this).addClass("on");
+        getData3($(".time .on").attr("data-id"),$(this).attr("data-id"));
+    })
+
+    getdata($(".time .on").attr("data-id"),1);
+    //    获取 数据
+    function getdata(type,ty) {
+        getData1(type)
+        getData2(type)
+        getData3(type,ty)
+    }
+    function getData1(type){
+        $.ajax({
+            url: pubIP + "wltCompanyUp/getStatisticsCys",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                type:type,
+                date1:$("#test1").val(),
+                date2:$("#test2").val()
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if(res.code==1){
+                    renderOrderItem("weihezuoxuqiu",res.weihezuoxuqiu)
+                    renderOrderItem("wcDaishenhe",res.weihezuoxuqiu)
+                    renderOrderItem("jinxingzhong",res.weihezuoxuqiu)
+                    renderOrderItem("yihezuoxuqiu",res.weihezuoxuqiu)
+                    renderOrderItem("daiqueren",res.weihezuoxuqiu)
+                    renderOrderItem("wanchen",res.weihezuoxuqiu)
+                    renderOrderItem("daifenpei",res.weihezuoxuqiu)
+                    renderOrderItem("quxiao",res.weihezuoxuqiu)
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    function getData2(type){
+        $.ajax({
+            url: pubIP + "wltCompanyUp/getStatisticsCys2",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                type:type,
+                date1:$("#test1").val(),
+                date2:$("#test2").val()
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                renderOrderItem2("zongjine",res.zongjine)
+                renderOrderItem2("zaitu",res.zaitu)
+                renderOrderItem2("daijiesuan",res.daijiesuan)
+                renderOrderItem2("dindanshu",res.dindanshu)
+                renderOrderItem2("yijiesuan",res.yijiesuan)
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    function getData3(type,ty){
+        $.ajax({
+            url: pubIP + "wltCompanyUp/getStatisticsCys3",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                type:type,
+                date1:$("#test1").val(),
+                date2:$("#test2").val(),
+                ty:ty
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if(res.code==1){
+                    getEach(res.data3,res.data1,"myEacheerts1")
+                    getEach(res.data3,res.data2,"myEacheerts2")
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //    八个订单状态对应的数量渲染
+    function renderOrderItem(cls,values) {
+        $("."+cls+" .orderNumber").text(values.num1)
+        if(values.num2==null || values.num2==""){
+            $("."+cls+" .orderWeight").text("0");
+        }else{
+            $("."+cls+" .orderWeight").text(values.num2)
+        }
+    }
+    //    五个订单状态对应的数量渲染
+    function renderOrderItem2(cls,values) {
+        $("."+cls+" .totalNumber").text(values.num1)
+        if(values.num2==null || values.num2==""){
+            $("."+cls+" .totalWeight").text("0");
+        }else{
+            $("."+cls+" .totalWeight").text(values.num2)
+        }
+    }
+
 </script>
 
 <!-- 柱形图 -->
 <script type="text/javascript">
-    var dom = document.getElementById("myEacheerts");
-    var myChart = echarts.init(dom);
-    var app = {};
-    option = null;
-    app.title = '堆叠柱状图';
-
-    option = {
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
-        legend: {
-            data:[
-                {name:'新成交客户', icon:'circle'},
-                {name:'老成交客户', icon:'circle'}
-            ]
-
-        },
-        grid: {
-            left: '0%',
-            right: '0%',
-            bottom: '0%',
-            top:"5%",
-            containLabel: true
-        },
-        xAxis : [
-            {
-                type : 'category',
-                data : ['9-12','9-13','9-14','9-15','9-16','9-17','9-18','9-19','9-20','9-21']
-            }
-        ],
-        yAxis : [
-            {
-                type : 'value'
-            }
-        ],
-        series : [
-            {
-                name:'',
-                type:'bar',
-                barWidth : 25,
-                stack: '新成交客户',
-                // color: '#FD7725',
-                data:[1, 2, 3, 30, 8, 9, 10, 13, 15, 7],
-                itemStyle: {
-                    normal: {
-                        color: new echarts.graphic.LinearGradient(0,0,0,1,[
-                            {offset: 1, color: '#ff635f'},
-                            {offset: 0, color: '#ff8880'}
-                        ])
-                    }
+    //        data1 横坐标  data2纵坐标   id渲染ID
+    function getEach(data1,data2,id) {
+        var dom = document.getElementById(id);
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = '堆叠柱状图';
+        option = {
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                 }
             },
-//                {
-//                    name:'新成交客户',
-//                    type:'bar',
-//                    stack: '新成交客户',
-//                    // color: '#61FFFE',
-//                    data:[0, 0, 0, 0, 0, 0, 3, 4, 10, 6],
-//                    itemStyle: {
-//                        normal: {
-//                            color: new echarts.graphic.LinearGradient(0,0,0,1,[
-////                                {offset: 0, color: '#61FFFE'},
-////                                {offset: 1, color: '#3CA8E5'}
-//                            ])
-//                        }
-//                    }
-//                }
+            legend: {
+                data:[
+                    {name:'新成交客户', icon:'circle'},
+                    {name:'老成交客户', icon:'circle'}
+                ]
 
-        ]
-    };
-    ;
-    if (option && typeof option === "object") {
-        myChart.setOption(option, true);
+            },
+            grid: {
+                left: '0%',
+                right: '0%',
+                bottom: '0%',
+                top:"5%",
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data1
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'',
+                    type:'bar',
+                    barWidth : 25,
+                    stack: '新成交客户',
+                    // color: '#FD7725',
+                    data:data2,
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0,0,0,1,[
+                                {offset: 1, color: '#ff635f'},
+                                {offset: 0, color: '#ff8880'}
+                            ])
+                        }
+                    }
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
     }
+
 </script>
 </body>
 </html>

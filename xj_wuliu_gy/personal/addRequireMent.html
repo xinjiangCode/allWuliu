@@ -78,14 +78,8 @@
             <div class="container1Left Lf">
                 <div class="goodsName" style="position: relative;">
                     <span class="cf_leftTitle">化学品名</span>
-                    <input type="text" id="HuaxueType" >
+                    <input type="text" id="HuaxueType" data-id="">
                     <ul class="HuaxueTypeList" style="position: absolute;left: 61px;z-index: 1;width: 215px;max-height: 200px;background-color: white;overflow-y: auto;display: none;">
-                        <li data-id="12152">asdasd</li>
-                        <li>dasda</li>
-                        <li>asdasd</li>
-                        <li>dasda</li>
-                        <li>asdasd</li>
-                        <li>dasda</li>
                     </ul>
                 </div>
                 <div class="goodsWeight"><span class="cf_leftTitle">货物单位</span>
@@ -545,7 +539,7 @@ $(".cf_sel").eq(0).click(function () {
             return;
         }
         if($("#HuaxueType").attr("data-id")==""){
-            $(".error").text("化学品名不符合");
+            $(".error").text("请输入正确的化学品名或该危化品未包含在您的许可经营范围内");
             return;
         }
         if($("#goodsNum").val()==""){
@@ -727,6 +721,12 @@ $(".cf_sel").eq(0).click(function () {
     }
     //发布需求
     function insertLogisticsVehicleEmpty() {
+        var goodsUnit="";
+        if($("#goodsUnit").find("span").text()=="重量/吨"){
+            goodsUnit="吨";
+        }else{
+            goodsUnit="m³";
+        }
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/insert', /*v1.0*/
             type: 'get',
@@ -748,7 +748,7 @@ $(".cf_sel").eq(0).click(function () {
                 goodsName: $("#goodsName").val(), //	是	String(50)	货物名称
 //                goodsType:  //	是	String(50)	货物类型
                 packageType:$("#packageType").find("span").text(),  //	是	String(8)	包装类型
-                goodsUnit:$("#goodsUnit").find("span").text(),  //	是	String(50)	货物单位：(重量/吨）（体积/m³）
+                goodsUnit:goodsUnit,  //	是	String(50)	货物单位：(重量/吨）（体积/m³）
                 goodsNum:$("#goodsNum").val(),  //	是	String(50)	货物单位数值
                 wishUnitPrice:$("#wishUnitPrice").val(),  //	是	String(50)	【数字】 - 期望单价（元/吨/km）
 //                unitPrice:  //	是	String(50)	元/吨/k【数字】 - 单价（m）
@@ -809,6 +809,12 @@ $(".cf_sel").eq(0).click(function () {
     }
     //更改需求
     function upadaLogisticsVehicleEmpty() {
+        var goodsUnit="";
+        if($("#goodsUnit").find("span").text()=="重量/吨"){
+            goodsUnit="吨";
+        }else{
+            goodsUnit="m³";
+        }
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/update', /*v1.0*/
             type: 'get',
@@ -831,7 +837,7 @@ $(".cf_sel").eq(0).click(function () {
                 goodsName: $("#goodsName").val(), //	是	String(50)	货物名称
 //                goodsType:  //	是	String(50)	货物类型
                 packageType:$("#packageType").find("span").text(),  //	是	String(8)	包装类型
-                goodsUnit:$("#goodsUnit").find("span").text(),  //	是	String(50)	货物单位：(重量/吨）（体积/m³）
+                goodsUnit:goodsUnit,  //	是	String(50)	货物单位：(重量/吨）（体积/m³）
                 goodsNum:$("#goodsNum").val(),  //	是	String(50)	货物单位数值
                 wishUnitPrice:$("#wishUnitPrice").val(),  //	是	String(50)	【数字】 - 期望单价（元/吨/km）
 //                unitPrice:  //	是	String(50)	元/吨/k【数字】 - 单价（m）
@@ -1326,8 +1332,12 @@ console.log(provinceID)
 
     //渲染数据详情部分
     function cf_dataRenderDetail(data) {
-        $("#HuaxueType").attr("data-id",data.chemicalId),
-         $("#HuaxueType").val(data.chemicalName),
+        if(data.chemicalId==null){
+            $("#HuaxueType").attr("data-id","");
+        }else{
+            $("#HuaxueType").attr("data-id",data.chemicalId);
+        }
+         $("#HuaxueType").val(data.chemicalName);
         $("#goodsName").val(data.goodsName);
         $("#wishUnitPrice").val(data.wishUnitPrice);
         $("#carLength").val(data.carLength);
@@ -1350,7 +1360,13 @@ console.log(provinceID)
 
         cf_selectRender("#packageType",data.packageType);
         cf_selectRender("#carType",data.carType);
+        if(data.goodsUnit=="吨"){
+            data.goodsUnit="重量/吨"
+        }else{
+            data.goodsUnit="体积/m³"
+        }
         cf_selectRender("#goodsUnit",data.goodsUnit);
+
         cf_selectRender("#paymentType",data.paymentType);
         cf_selectRender("#orderType",data.orderType);
         cf_selectRender("#invoiceType",data.invoiceType);

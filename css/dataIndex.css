@@ -13,6 +13,7 @@ body{background-color: white;}
 .condition{margin-top: 15px;}
 .time{border-radius: 5px;overflow: hidden;width: 269px;height: 38px;line-height: 38px;border: 1px solid #f1f0f1;}
 .time .cf_btn{border-radius: 0;width: 89px;height: 38px;border-right: 1px solid #f1f0f1;background-color: #ffffff;color: #282828;font-size: 14px;}
+.time .cf_btn.on{background-color: #6ba1ff;color: white;}
 .time .cf_btn:hover{background-color: #6ba1ff;color: white;}
 .dataTime{margin-left: 20px;}
 

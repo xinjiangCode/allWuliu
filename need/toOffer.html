@@ -392,7 +392,7 @@
                 str+='<tr data-id="'+item.id+'">';
                 str+='<td><div class="cf_select"></div></td>';
                 str+='<td><span class="orderNoID" style="width: 80px;overflow: hidden">'+item.demandNo+'</span></td>';
-                str+='<td>'+timestampToTime(item.createTime)+'</td>';
+                str+='<td>'+timestampToTime1(item.createTime)+'</td>';
 //                str+='<td>'+item.quotedTime+'</td>';//需要改成报价时间字段
                 str+='<td>'+item.goodsType+'</td>';
                 str+='<td>'+item.goodsName+'</td>';
@@ -553,17 +553,13 @@
         //渲染更改报价弹框数据
         function cf_dataRenderSelect(data) {
             window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
-            window.parent.$(".modelBox0 .createTime").text(timestampToTime1(data.createTime));
+            window.parent.$(".modelBox0 .createTime").text(timestampToTime1(timestampToTime1(data.createTime)));
             window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .goodsType").text(data.chemicalName);
-            if(data.goodsUnit=="重量/吨"){
-                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'吨');
-            }else{
-                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'m³');
-            }
+            window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+data.goodsUnit);
             window.parent.$(".modelBox0 .packageType").text(data.packageType);
             window.parent.$(".modelBox0 .invoiceType").text(data.invoiceType);
             window.parent.$(".modelBox0 .paymentMode").text(data.paymentMode);

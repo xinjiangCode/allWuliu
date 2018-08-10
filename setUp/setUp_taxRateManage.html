@@ -25,7 +25,7 @@
     	</div>
     	<div class="record">
     		<div></div>
-			<div class="select displayNum" data-selectedindex="0"><span>排序方式</span><img src="../img/prl-select.jpg" alt="">
+			<div class="select displayNum" style="display: none;" data-selectedindex="0"><span>排序方式</span><img src="../img/prl-select.jpg" alt="">
 				<ul>
 					<li data-index="1">10</li>
 					<li data-index="2">20</li>
@@ -41,7 +41,7 @@
 			</div>
     		<!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
     		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
-    		<div>新增税率</div>
+    		<div id="addShuiLv">新增税率</div>
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -53,16 +53,6 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>1-10</td>
-					<td>10%</td>
-					<td><a href="" class="lookover">编辑</a><a href="" class="delect">删除</a></td>
-				</tr>
-				<tr>
-					<td>1-10</td>
-					<td>10%</td>
-					<td><a href="" class="lookover">编辑</a><a href="" class="delect">删除</a></td>
-				</tr>
 				</tbody>
 			</table>
 		</div>
@@ -108,6 +98,185 @@
                 console.log(n);
             }
         });
+
+
+
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");
+            $.ajax({
+                url: pubIP + 'carrierFinance/getListTax', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    size:pageSize,
+                    page:currentPage
+                },
+                success: function (res) {
+                    if(res.code==0){
+                        //首次请求时 改变分页数据
+                        if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                        $(".pagination").parent().css("display","block");
+                        if(currentPage==1){
+                            //修改底部分页
+                            var pageNum=Math.ceil(res.count/pageSize);
+                            $(".allPageN").attr("pageTotal",pageNum);
+                            $(".pageJump i").text("共"+pageNum+"页");
+                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                            Page({
+                                num: pageNum,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    // console.log(n);
+                                    currentPage=n;
+                                    getData(n);//加载n页数据
+                                }
+                            });
+                        }
+                        //修改底部页数
+                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                        cf_dataRender(res.data)
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-id="'+item.id+'" data-wageInterval="'+item.wageInterval+'" data-taxRate="'+item.taxRate+'">';
+                str+='<td>'+item.wageInterval+'</td>';
+                str+='<td>'+item.taxRate+'</td>';
+                str+='<td><a href="javascript:;" class="lookover edit">编辑</a><a href="javascript:;" class="delect">删除</a></td>';
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+			//		编辑
+            $(".edit").unbind();
+            $(".edit").click(function () {
+                window.parent.$("#gongzidown").val($(this).parents("tr").attr("data-wageInterval").split("-")[0])
+                window.parent.$("#gongziup").val($(this).parents("tr").attr("data-wageInterval").split("-")[1])
+                window.parent.$("#shuilv").val($(this).parents("tr").attr("data-taxRate"));
+                window.parent.$(".modelBox23").show();
+                window.parent.$(".modelBox23").attr("data-id",$(this).parents("tr").attr("data-id"));
+
+            })
+            //删除
+            $(".delect").unbind();
+            $(".delect").click(function () {
+                var that=this;
+                $.ajax({
+                    url: pubIP + "carrierFinance/deleteTaxById",
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        id:$(that).parents("tr").attr("data-id")
+					},
+                    cache: false,
+                    dataType: 'json',
+                    success: function (res) {
+                        if(res.code==0){
+                            cf_alert(1,"删除成功");
+                        }
+                    },
+                    error: function(err){
+                        console.log(err);
+                    }
+                });
+            })
+        }
+        //选择排序方式
+        $(".select ul li").click(function () {
+            currentPage=1;
+            getData(1);
+        })
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage1 = $('.pageCont li.active>a').text();
+            currentPage=currentPage1;
+            getData(currentPage1);
+        })
+
+
+
+//        新增税率
+        $("#addShuiLv").unbind();
+        $("#addShuiLv").click(function () {
+            window.parent.$("#gongzidown").val("")
+            window.parent.$("#gongziup").val("")
+            window.parent.$("#shuilv").val("")
+            window.parent.$(".modelBox23").attr("data-id","");
+
+			window.parent.$(".modelBox23").show();
+        })
+        window.parent.$("#sureShuiLv").unbind();
+		window.parent.$("#sureShuiLv").click(function () {
+            addUpdataShuiLv();
+        })
+//		新增修改税率
+		function addUpdataShuiLv() {
+            if(window.parent.$("#gongzidown").val()==""){
+                window.parent.$("#ErrMsg").text("请填写工资下限")
+				return;
+			}
+            if(window.parent.$("#gongziup").val()==""){
+                window.parent.$("#ErrMsg").text("请填写工资上限")
+                return;
+            }
+            if(window.parent.$("#shuilv").val()==""){
+                window.parent.$("#ErrMsg").text("请填写税率")
+                return;
+            }
+            var urls="";
+            var data={};
+            var msg="";
+            if(window.parent.$(".modelBox23").attr("data-id")==""){
+                urls="carrierFinance/inserttax"
+				msg="新增税率成功";
+			}else{
+                urls="carrierFinance/updateTax"
+				data.id=window.parent.$(".modelBox23").attr("data-id");
+                msg="修改税率成功";
+			}
+            data.wageInterval=window.parent.$("#gongzidown").val()+"-"+window.parent.$("#gongziup").val()
+            data.taxRate=window.parent.$("#shuilv").val();
+
+            $.ajax({
+                url: pubIP + urls,
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: data,
+                cache: false,
+                dataType: 'json',
+                success: function (res) {
+					if(res.code==0){
+					    cf_alert(1,msg)
+					}
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
 	</script>
 </body>
 </html>

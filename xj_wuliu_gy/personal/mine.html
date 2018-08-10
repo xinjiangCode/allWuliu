@@ -90,36 +90,36 @@
         </div>
 
         <div class="need">
-            <div>
+            <div class="fabuxqNum">
                 <div>发布需求</div>
                 <div class="num">50</div>
             </div>
-            <div>
+            <div class="daiquerenxqNum">
                 <div>待确认需求</div>
                 <div class="num">21</div>
             </div>
             <div class="line1"></div>
-            <div>
+            <div class="yihezuoxqNum">
                 <div>已合作</div>
                 <div class="num">14</div>
             </div>
-            <div>
+            <div class="daifenpeixqNum">
                 <div>待分配</div>
                 <div class="num">31</div>
             </div>
-            <div>
+            <div class="jinxingzhxqNum">
                 <div>进行中</div>
                 <div class="num">13</div>
             </div>
-            <div>
+            <div class="querenShxqNum">
                 <div>确认收货</div>
                 <div class="num">34</div>
             </div>
-            <div>
+            <div class="huikuanShxqNum">
                 <div>回款审核</div>
                 <div class="num">91</div>
             </div>
-            <div>
+            <div class="caiwuDaijiesuanxqNum">
                 <div>财务待结算</div>
                 <div class="num">03</div>
             </div>
@@ -291,6 +291,42 @@
             $(this).removeClass("on");
         });
     })
+
+
+
+
+
+    getData2();
+    function getData2(){
+        $.ajax({
+            url: pubIP + "wltCompanyUp/getStatisticsGys4",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if(res.code==1){
+                    $(".caiwuDaijiesuanxqNum .num").text(res.caiwuDaijiesuanxqNum)
+                    $(".daifenpeixqNum .num").text(res.daifenpeixqNum)
+                    $(".huikuanShxqNum .num").text(res.huikuanShxqNum)
+                    $(".yihezuoxqNum .num").text(res.yihezuoxqNum)
+                    $(".jinxingzhxqNum .num").text(res.jinxingzhxqNum)
+                    $(".querenShxqNum .num").text(res.querenShxqNum)
+                    $(".daiquerenxqNum .num").text(res.daiquerenxqNum)
+                    $(".fabuxqNum .num").text(res.fabuxqNum)
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 </script>
 </body>

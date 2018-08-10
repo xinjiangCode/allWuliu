@@ -319,8 +319,8 @@
                 console.log("[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
                 console.log(json);
 
-                json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm");
-                json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm");
+                json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm:ss");
+                json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm:ss");
                 //订单号
                 $('.order_no').text(json.data.orderNo);
                 $('.publish_time').text(json.data.createTime);
