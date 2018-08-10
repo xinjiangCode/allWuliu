@@ -345,9 +345,42 @@
         if ($(this).val() == '') {
             $(this).parent().next().html('企业的开户银行不能为空');
             return;
-        } else {
-            $(this).parent().next().html('');
-        }
+        } 
+        // else {
+
+        //     $(this).parent().next().html('');
+
+        //     var _that = $(this);
+        //     $.ajax({
+        //         url: pubIP + 'companyCertification/findAccountUserState',
+        //         type: 'post',
+        //         headers: {
+        //             Accept: "application/json; charset=utf-8",
+        //             token: token
+        //         },
+        //         data: {
+        //             accountId: _that.val(),
+        //             companyId: companyId
+        //         },
+        //         cache: false,
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log(data);
+        //             if (data.code == -1) {
+        //                 window.parent.$('.modelBox4 P').text('该账号已存在！');
+        //                 window.parent.$('.modelBox4').css('display', 'block');
+        //                 _that.attr('data-cunzai', '1');
+        //             } else {
+        //                 _that.attr('data-cunzai', '2');
+
+        //             }
+
+        //         },  
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // }
     });
 
     $('#qiye_bank_account').on('blur', function () {
@@ -480,6 +513,12 @@
             $('#qiye_kaihu_bank').parent().next().html('企业的开户银行不能为空');
             return;
         }
+
+        // if ($('#qiye_kaihu_bank').attr('data-cunzai') == '1') {
+        //     $('#qiye_kaihu_bank').parent().next().text('账号已存在');
+        //     $('#qiye_kaihu_bank').parent().next().css('display', 'block');
+        //     return false;
+        // }
 
         var qiye_bank_account1 = $('#qiye_bank_account').val();
         var qiye_bank_account_reg = /^\d{16}|\d{19}$/;
