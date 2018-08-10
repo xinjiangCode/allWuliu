@@ -65,7 +65,7 @@
             <li style="border-bottom: 1px solid #dedede;">
                 <div class="left">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</div>
                 <div class="right" id="type">
-                    <span class="actived">全部</span>
+                    <span class="actived" data-id="">全部</span>
                     <span data-id="9001805260008040002">危险化学品经营许可证</span>
                     <span data-id="9001805260008040003">危险化学品生产许可证</span>
                     <span data-id="9001806251600150004">危险化学品使用许可证</span>
@@ -163,11 +163,17 @@
         var ziZhitype="";
         var first=1;
         $("#type .actived").each(function (idx,item) {
-            if(first!=1){
-                ziZhitype+=',';
+            if($(item).attr("data-id")==""){
+                ziZhitype="";
+                return false;
+            }else {
+                if(first!=1){
+                    ziZhitype+=',';
+                }
+                first=0;
+                ziZhitype+=$(item).attr("data-id");
             }
-            ziZhitype+=$(item).attr("data-id");
-        })
+        });
         $(".carrierList").html("");//////////////////////所有的查询前必须先把列表置空
         $.ajax({
             url: pubIP + 'wltCompanyUp/selectCompanyList', /*v1.0*/
