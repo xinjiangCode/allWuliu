@@ -289,6 +289,8 @@
 	          success: function(json){
 	            	console.log(json);
 	                if(json.code == '1'){
+	                	localStorage.setItem('mobileOrLoginName', user);
+	                	localStorage.setItem('password', pwd);
                         localStorage.setItem("isAuto",isAuto);
                         localStorage.setItem("token",json.data.token);
                         //sessionStorage.setItem("token",json.data.token);//hzf  20180716

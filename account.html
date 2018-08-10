@@ -601,6 +601,19 @@
         }
         .modelBox22 .quanList span{width: 136px;height: 20px;line-height: 20px;display: inline-block;text-align: right;}
         .modelBox22 .quanList .quanListvalue{text-align: left}
+            
+        .prompt {
+            margin-top: 20px;
+        }
+
+        .prompt .ts_ts {
+            line-height: 32px;
+            color: #ff7854;
+            margin-left: 323px;
+            font-size: 14px;
+            visibility: hidden;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -2411,8 +2424,8 @@
             
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle span_width74 fl">司机类型：&nbsp;</span>
-                    <div class="selectPub driver_type_select" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                    <div class="selectPub driver_type_select" data-selectedindex="0" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
+                        <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">内部</span><img src="img/prl-select.jpg" alt="">
                         <ul class="driver_type_ul">
                             <li data-index="0">内部</li>
                             <li data-index="1">外部</li>
@@ -2543,7 +2556,10 @@
                     </div>
                 </div>
             </div>
-            <div class="clearFloat" style="text-align: center;margin-top: 50px;">
+            <div class="clearfix prompt">
+                <span class="ts_ts"></span>
+            </div>
+            <div class="clearFloat" style="text-align: center;margin-top: 30px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
                 <span class=" cf_btn model20_ok_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认</span>
             </div>
@@ -3290,7 +3306,11 @@
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
 
+                            $('.zhiwu_select span').text('请选择');
+                            $('.zhiwu_select').attr('data-selectedindex', '-1');
+
                             if ($(this).parent().parent().find('span').text() == '请选择') {
+
                                 $(this).parent().parent().parent().find('.ts').html('所属部门不能为空');
                             } else {
                                 $(this).parent().parent().parent().find('.ts').html('');

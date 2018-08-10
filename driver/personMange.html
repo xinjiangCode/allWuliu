@@ -280,6 +280,8 @@
     	$(window.parent.document).find('.person_baoxian_status').val('');
         $(window.parent.document).find('.suoshu_bank').val('');
 
+        $(window.parent.document).find('.prompt .ts_ts').css('visibility', 'hidden');
+        $(window.parent.document).find('.person_cardID').attr('disabled', false);
 
     	$(window.parent.document).find('#upload_hidden0').val('');
 
@@ -394,6 +396,9 @@
                 	}
                 	
                 	window.parent.showModelBox('.all_success_alert');
+                } else if (json.code == -1) { //身份证号有重复
+                    $(window.parent.document).find('.prompt .ts_ts').text('身份证号已存在');
+                    $(window.parent.document).find('.prompt .ts_ts').css('visibility', 'visible');
                 }
             },
             error: function(err){
@@ -414,6 +419,8 @@
 
     // 编辑
     $(document).on('click', '.lookover', function() {
+        $(window.parent.document).find('.prompt .ts_ts').css('visibility', 'hidden');
+        $(window.parent.document).find('.person_cardID').attr('disabled', true);
     	var id = $(this).parent().parent().attr('data-id');
     	var _that = $(this);
     	$.ajax({
