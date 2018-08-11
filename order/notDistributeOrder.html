@@ -627,7 +627,7 @@
                     tloid:id
                 },
                 success: function (res) {
-                    if(res.code===1){
+                    if(res.code==1){
                         cf_dataRender(res.data)
                     }else if(res.code==401){
 
@@ -650,7 +650,8 @@
             window.parent.$("#selectInput7").text(data.goodsType);
             window.parent.$("#packageType").text(data.packageType);
             window.parent.$("#goodsName").text(data.goodsName);
-                window.parent.$("#goodsweight").eq(0).text(data.goodsNum+data.goodsUnit);
+              window.parent.$("#goodsweight").eq(0).text(data.goodsNum+data.goodsUnit);
+//              window.parent.$(".danjiadanwei").text("元/"+data.goodsUnit);
             window.parent.$("#sendAddress").text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$("#receiveAddress").text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$("#carType1").text(data.carType);
