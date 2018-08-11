@@ -195,12 +195,12 @@
                                                 <li class="xj_mylist xj_mylist1 thisShow">
                                                     <div class="js_allmoney"><span>结算金额：</span><input type="text" class="all_jsje all_input"></div>
                                                     <div class="add_djq">
-                                                        <div class="gz_ticheng" style="display: none;margin-bottom: 20px;"><span>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成：</span><input type="text" class="ticheng jiajia"></div>
+                                                        <div class="gz_ticheng" style="display: none;margin-bottom: 20px;"><span>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成：</span><input type="text" class="ticheng jiajia2"></div>
                                                         <div>
                                                             <span class="gz_xianjin">现&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金：</span>
-                                                            <input type="text" class="xianjin">
+                                                            <input type="text" class="xianjin" style="margin-left: 5px;">
                                                             <span class="gz_xianjin2" style="margin-left: 62px;display: none;">税后工资：</span>
-                                                            <input type="text" class="xianjin2 jiajia" style="display: none;">
+                                                            <input type="text" class="xianjin2" style="display: none;" readonly>
                                                         </div>
                                                         <ul class="daijinquan_type">
                                                             <!-- 券的种类 -->
@@ -376,6 +376,7 @@
             $(".shuihou_money").html('0.00');//上面三个总价重置
             $(".gz_ticheng").hide().find(".ticheng").val('');
             $(".gz_xianjin").html('现&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金：').next(".xianjin").val('');
+            $(".xinajin2").val('');
             $(".sjjs_allmoney").find("span").html('实际现结：');
             $(".sjjs_allmoney").find("input").val('');
             $(".qr_clxx span").css("background","#6ba1ff");
@@ -751,6 +752,7 @@
             $(".sjjs_allmoney").find("span").html('实际工资：');
             $(".sjjs_allmoney").find("input").val('');
             $(".gz_xianjin2").show();
+            $(".xianjin2").val('');
             $(".xianjin2").show();
             $(".daijinquan_type").html('');
             $(".qr_clxx span").css("background","#6ba1ff");
@@ -759,38 +761,7 @@
             $(this).addClass("thisActive");
             add_djqclk();
         })
-        //如果结算工资 计算税后金额
-        $(".xianjin").on("input",function () {
-            //通过现金 税率计算税后金额
-            //var sh_money = Number($(this).val())*(1-ggsl);
-            if($(this).val()==''){
-                $(".xianjin2").val('');
-                return;
-            }
-            $.ajax({
-                url: pubIP + 'carrierFinance/getAfterTaxWages',
-                type: 'get',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    beforWages: $(this).val(),
-                    companyId: companyId,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log("+++");
-                    console.log(data);
-                    $(".xianjin2").val(data.data.afterWages);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
 
-        })
         //结算新增代金券
         var isFrist4 = true;
         $(".tab4_js").on("click",function(){
@@ -825,13 +796,13 @@
                     var str5 = '';
                     $.each(data,function(idx,item){
                         if(item.attr_2 != 1){
-                            str4 += '<li data-index="'+idx+'" id="'+item.id+'" dotId="'+item.dot_id+'" >'+item.coupon_name+'</li>';
+                            str4 += '<li data-index="'+idx+'" id="'+item.id+'" dotId="'+item.dot_id+'"  data-this-yue="'+item.money+'">'+item.coupon_name+'</li>';
                         }
                     })
                     str5+='<li class="dj_thislist">'
                     str5+='<div class="lf lfdj_select">'
                     str5+='<span>代&nbsp;&nbsp;金&nbsp; 券：</span>'
-                    str5+='<div class="goodsType input select myselect2" style="float: none;margin-top: 0px; margin-right: 0px; margin-left: 8px;" data-selectedindex="-1"><span class="all_djq">请选择</span><img src="../img/prl-select.jpg" >'
+                    str5+='<div class="goodsType input select myselect2" style="float: none;margin-top: 0px; margin-right: 0px; margin-left: 9px;" data-selectedindex="-1"><span class="all_djq">请选择</span><img src="../img/prl-select.jpg" >'
                     str5+='<ul style="top: 35px;">'+str4+'</ul>'
                     str5+='</div>'
                     str5+='</div>'
@@ -842,32 +813,9 @@
                     str5+='</div>'
                     str5+='</li>'
                     $(".daijinquan_type").append(str5);
-                     
-                    //现金 //提成//工资
-                    $(".jiajia").unbind();
-                    $(".jiajia").on("input",function(){
-                        var jiesuanAll = Number($(".all_jsje").val()).toFixed(0);//税后金额
-                        if($("#myradio1").hasClass("thisActive")){
-                            var jiajia = Number($(".xianjin").val())+Number($(".ticheng").val());//工资+提成或者现金
-                        }else if($("#myradio2").hasClass("thisActive")){
-                            var jiajia = Number($(".xianjin2").val())+Number($(".ticheng").val());//工资+提成或者现金
-                        }
 
-                        var kkallback_money=0;//所有代金券的金额
-                        $(".dj_money").each(function(){
-                            kkallback_money += Number($(this).val());
-                        });
-                        if(jiajia+kkallback_money>jiesuanAll){
-                            window.parent.$(".all_error_alert").show();
-                            window.parent.$(".all_error_alert").find(".innerErrmsg").html("实际金额不能大于结算金额");
-                            // $(".qr_clxx span").css("background","#666");
-                            // $(".btn_queren").css("background","#666");
-                            $(this).val('');
-                            $(".sjjs_allmoney input").val("");
-                        }else{
-                            $(".sjjs_allmoney input").val(jiajia+kkallback_money);
-                        }
-                    })
+
+
                     // 模拟下拉框
                     $(".select").unbind();//解除所有绑定事件 再重新注册
                     $('.select').click(function(event){
@@ -901,15 +849,87 @@
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().find('span').attr('data-couponId', $(this).attr('id'));//券id  couponId
                         $(this).parent().parent().find('span').attr('data-dotId', $(this).attr('dotId'));//结算网点id
+                        $(this).parent().parent().find('span').attr('data-this-yue', $(this).attr('data-this-yue'));//卡券余额
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
                         $(this).parent().css('display','none');
                     });
+                    //现金 //提成//工资
+                    $(".jiajia").unbind();
+                    $(".jiajia").on("input",function(){
+                        var quan_yue = Number($(this).parent().prev().find(".myselect2").find('span').attr('data-this-yue'));
+                        if(Number($(this).val())>quan_yue){
+                            window.parent.$(".all_error_alert").show();
+                            window.parent.$(".all_error_alert").find(".innerErrmsg").html("代金券金额不能大于该券的余额");
+                            return false;
+                        }
+                        fina_jiesuan();
+                    })
                 },
                 error: function(err) {
                     console.log(err);
                 }
             })
+        }
+        //如果结算工资 计算税后金额
+        $(".xianjin").on("input",function () {
+            //通过现金 税率计算税后金额
+            //var sh_money = Number($(this).val())*(1-ggsl);
+            if($(this).val()==''){
+                $(".xianjin2").val('');
+                return;
+            }
+            $.ajax({
+                url: pubIP + 'carrierFinance/getAfterTaxWages',
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    beforWages: $(this).val(),
+                    companyId: companyId,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log("+++");
+                    console.log(data);
+                    $(".xianjin2").val(data.data.afterWages);
+                    fina_jiesuan();
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+        })
+        //提成改变
+        $(".ticheng").on("input",function () {
+            fina_jiesuan();
+        });
+        //计算最后结算金额
+        function fina_jiesuan(){
+            var jiesuanAll = Number($(".all_jsje").val()).toFixed(0);//税后金额
+            if($("#myradio1").hasClass("thisActive")){
+                var jiajia = Number($(".xianjin").val());//工资+提成或者现金
+            }else if($("#myradio2").hasClass("thisActive")){
+                var jiajia = Number($(".xianjin2").val())+Number($(".ticheng").val());//工资+提成或者现金
+            }
+            var kkallback_money=0;//所有代金券的金额
+            $(".dj_money").each(function(){
+                kkallback_money += Number($(this).val());
+            });
+            if(jiajia+kkallback_money>jiesuanAll){
+                window.parent.$(".all_error_alert").show();
+                window.parent.$(".all_error_alert").find(".innerErrmsg").html("实际金额不能大于结算金额");
+                // $(".qr_clxx span").css("background","#666");
+                // $(".btn_queren").css("background","#666");
+                //$(this).val('');
+                $(".sjjs_allmoney input").val("");
+            }else{
+                $(".sjjs_allmoney input").val(jiajia+kkallback_money);
+            }
         }
         //删除代金券
         function dele_djqclk(obj){
