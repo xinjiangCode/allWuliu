@@ -155,9 +155,10 @@ $(document).on('click', '.exit', function() {
     });
 })
 
+var company_type = localStorage.getItem('company_type');
 function cf_popEffectClose1(that) {
 	$(that).parent().parent().parent().css("display","none");
-     var company_type = localStorage.getItem('company_type');
+     
     if ($('#popLogin').text() == '登录') {
         if (company_type == '1') { //供应商
             // location.href = '../login.html';
@@ -358,16 +359,94 @@ $(function () {
 
     $("header  .logo").click(function () {
         
-        if (company_type == '1') { //供应商
-            $('.goUser').attr('href', '../index.html');
-        } else if (company_type == '2') {
-            $('.goUser').attr('href', 'index.html');
-        } else if (company_type == '-1') {
-            $('.goUser').attr('href', 'index.html');
-        }
+        // if (company_type == '1') { //供应商
+        //     $('.goUser').attr('href', '../index.html');
+        // } else if (company_type == '2') {
+        //     $('.goUser').attr('href', 'index.html');
+        // } else if (company_type == '-1') {
+        //     $('.goUser').attr('href', 'index.html');
+        // }
         //window.location.href="./index.html";
     })
     $(".goUser").click(function () {
+
+        // $.ajax({
+        //     type: "post",
+        //     url: pubIP + "chemicalType/findUserCompanyInfo",//v1.0
+        //     cache: false,
+        //     dataType: "json",
+        //     headers: {
+        //         token: token
+        //     },
+        //     success: function(json){
+        //         console.log(json);
+        //         // debugger;
+        //         if (json.code == 1) {
+        //             if (json.companyType == 1) { //供应商
+        //                 localStorage.setItem('company_type', '1');
+        //                 window.location.href="xj_wuliu_gy/account.html";
+        //             } else if (json.companyType == 2) {
+        //                 localStorage.setItem('company_type', '2');
+        //                 window.location.href="./account.html";
+        //             } else if (json.companyType == -1) {
+        //                 var url = window.location.href;
+        //                 if (url.indexOf('login.html') != -1) {
+                        
+        //                     $('#effect2 .contTitle span').text('您尚未登录');
+        //                     $('#effect2').css('display', 'block');
+        //                     // missedLogin();
+        //                     // $('.goUser').attr('href', 'javascript:;');
+        //                 } else {
+        //                     window.location.href="./account.html";
+        //                     //window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+        //                     var url = window.location.href;
+        //                     if (url.indexOf('account.html') != -1) {
+        //                         $.ajax({
+        //                             url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
+        //                             type: 'post',
+        //                             headers: {
+        //                                 Accept: "application/json; charset=utf-8",
+        //                                 token: token
+        //                             },
+        //                             data: {
+        //                                 token: token
+        //                             },
+        //                             cache: false,
+        //                             dataType: 'json',
+        //                             success: function (data) {
+        //                                 console.log(data);
+        //                                 console.log(data.data.state);
+
+        //                                 if (data.data.state && data.data.type == 1) {
+        //                                     if (data.data.state != 1) {
+        //                                         $('.qiye_renzheng').attr('data-src', '../finance/identification'+data.data.state+'.html');
+        //                                         // $(document).on('click', '.qiye_renzheng', function() {
+        //                                         window.sessionStorage.setItem('cfsrc', "./finance/identification"+data.data.state+".html");
+        //                                             if (companyId) {
+        //                                                 tiao_tan();
+        //                                             }
+        //                                         // });
+        //                                     }
+                                            
+        //                                 }
+
+                                                  
+        //                             },
+        //                             error: function (err) {
+        //                                 console.log(err);
+        //                             }
+        //                         });
+        //                     }
+        //                 }
+        //             }
+        //         }
+
+        //     },
+        //     error: function(err) {
+        //         console.log(err);
+        //     }
+
+        // });
         
         if (company_type == '1') { //供应商
             window.location.href="xj_wuliu_gy/account.html";
@@ -384,8 +463,10 @@ $(function () {
             } else {
                 window.location.href="./account.html";
                 //window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-                var url = window.location.href;
-                if (url.indexOf('account.html') != -1) {
+                // var url = window.location.href;
+                
+                // if (url.indexOf('account.html') == -1) {
+                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
                     $.ajax({
                         url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
                         type: 'post',
@@ -411,6 +492,8 @@ $(function () {
                                             tiao_tan();
                                         }
                                     // });
+
+
                                 }
                                 
                             }
@@ -421,7 +504,7 @@ $(function () {
                             console.log(err);
                         }
                     });
-                }
+                // }
             }
 
             
@@ -432,7 +515,9 @@ $(function () {
     })
 
     var url = window.location.href;
+    console.log(url);
     if (url.indexOf('account.html') != -1) {
+        
         $.ajax({
             url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
             type: 'post',

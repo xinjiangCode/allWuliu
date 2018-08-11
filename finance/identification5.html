@@ -395,7 +395,7 @@ function xmTanUploadImg2(obj) {
                         $(".yiRenZheng.update_btn").css('display', 'none');
 
 
-                        $(window.parent.document).find('.modelBox6 .info p span').html('财务信息审核中');
+                        $(window.parent.document).find('.modelBox6 .info p span').html('企业认证正在审核中');
                         window.parent.tan6();
                         
                     } else if (data.data.type == 3) {  //已认证
@@ -467,12 +467,15 @@ function xmTanUploadImg2(obj) {
 
 
         $(document).on('click', '.weiRenZheng.btn', function () {
+
+            debugger;
+
             //财务名称
             if ($('#caiwu_name').val() == '') {
                 $('#caiwu_name').parent().next().css('display', 'block');
                 return;
             }
-//debugger
+
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
@@ -512,7 +515,7 @@ function xmTanUploadImg2(obj) {
             
             // var thisPhone = $('#yanzheng_phone').val();
             // sendAjax(thisPhone, $(this));
-            if(clickFlgCode){
+            if(!phoneIshas){
                     return false;
                 }
             
@@ -592,9 +595,13 @@ function xmTanUploadImg2(obj) {
 
         //获取验证码
         $('#huoqu_code').on('click', function () {
-            if(!clickFlgCode){
+            if(!phoneIshas){
                     return false;
                 }
+
+            if (!clickFlgCode) {
+                return false;
+            }
             
             if (!(/^1(3|4|5|7|8)\d{9}$/.test($('#yanzheng_phone').val().trim()))) {
                 $('#yanzheng_phone').parent().next().css('display', 'block');
@@ -1067,7 +1074,7 @@ function xmTanUploadImg2(obj) {
                 //判断手机号是否加入过企业
                 // var thisPhone = $('#new_phone').val();
                 // sendAjax(thisPhone, $(this));
-                if(!clickFlgCode){
+                if(!phoneIshas){
                         return false;
                     }
 

@@ -578,11 +578,9 @@
             window.parent.$(".modelBox0 .receiveUser").text(data.receiveUser);
             window.parent.$(".modelBox0 .receivePhone").text(data.receivePhone);
             window.parent.$(".modelBox0 .receiveCompanyname").text(data.receiveCompanyname);
-            if(data.goodsUnit=="重量/吨"){
-                window.parent.$(".modelBox0 .danjiadanwei").text('元/吨');
-            }else{
-                window.parent.$(".modelBox0 .danjiadanwei").text('元/m³');
-            }
+                window.parent.$(".modelBox0 .danjiadanwei").text('元/'+data.goodsUnit);
+
+
         }
 
         //获取报价公司列表  暂时不用

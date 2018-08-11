@@ -90,6 +90,7 @@ $(function () {
         $('#userNamePub').html('你好，游客');
     }
 
+
     // $('.goUser').click(function(){
     //     debugger;
     //     var company_type = localStorage.getItem('company_type');
@@ -124,5 +125,8 @@ $(function () {
     // });
 })
 
-
+// $('.goUser').click(function(){
+//     // $('.goUser').attr('href', 'account.html');
+//     window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+// })
 
