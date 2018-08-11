@@ -65,21 +65,21 @@
                     <div class="num">99999</div>
                 </div>
             </div>
-            <div class="msg2">
+            <div class="msg2 income">
                 <img src="../img/cf_msg2.png" alt="">
                 <div class="Lf">
                     <div>昨日收账</div>
                     <div class="num">99999</div>
                 </div>
             </div>
-            <div class="msg3">
+            <div class="msg3 expendNum">
                 <img src="../img/cf_msg3.png" alt="">
                 <div class="Lf">
                     <div>昨日出账</div>
                     <div class="num">99999</div>
                 </div>
             </div>
-            <div class="msg4">
+            <div class="msg4 AccountBalance">
                 <img src="../img/cf_msg4.png" alt="">
                 <div class="Lf">
                     <div>可提现金额</div>
@@ -293,10 +293,40 @@
     })
 
 
+//    companyCertification/getQualificationStateByCompanyId
 
-
-
+    getData1();
     getData2();
+    getData3();
+    getData4();
+    function getData1(){
+        $.ajax({
+            url: pubIP + "finance/getFinancialList",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                moneyFlow:"",
+                timeSlot:"Y"
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if(res.code==0){
+                    $(".expendNum .num").text(res.countData.expendNum)
+                    $(".income .num").text(res.countData.income)
+                }else{
+                    $(".expendNum .num").text("0")
+                    $(".income .num").text("0")
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
     function getData2(){
         $.ajax({
             url: pubIP + "wltCompanyUp/getStatisticsGys4",
@@ -327,7 +357,50 @@
             }
         });
     }
+    function getData3(){
+        $.ajax({
+            url: pubIP + "finance/getAccountBalance",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if(res.code==0){
+                    $(".AccountBalance .num").text(res.data)
+                }else{
+                    $(".AccountBalance .num").text("0")
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    function getData4(){
+        $.ajax({
+            url: pubIP + "companyCertification/getQualificationStateByCompanyId",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
 
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>

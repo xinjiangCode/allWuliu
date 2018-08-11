@@ -729,7 +729,7 @@ $(".cf_sel").eq(0).click(function () {
         }
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/insert', /*v1.0*/
-            type: 'get',
+            type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
@@ -817,7 +817,7 @@ $(".cf_sel").eq(0).click(function () {
         }
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/update', /*v1.0*/
-            type: 'get',
+            type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
