@@ -466,7 +466,7 @@ $(function () {
                 // var url = window.location.href;
                 
                 // if (url.indexOf('account.html') == -1) {
-                    window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
                     $.ajax({
                         url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
                         type: 'post',
