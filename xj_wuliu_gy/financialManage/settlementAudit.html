@@ -213,6 +213,7 @@
                     token: token
                 },
                 data: {
+                    compamyId: companyId,
                     iDisplayStart: currentPage,
                     iDisplayLength: 10,
                     name: $(".seach_inp").val(),
@@ -241,7 +242,7 @@
                             elem: $('#page1'),
                             callback: function(n) {
                                 // console.log(n);
-                                js_list(n);//加载n页数据
+                                jssh_list(n);//加载n页数据
                             }
                         });
                     }
