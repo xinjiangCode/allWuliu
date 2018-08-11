@@ -215,6 +215,8 @@ var currentPage=1;
             window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
             returnShow($(this).parents("tr").attr("data-id"));
 
+            window.parent.$("#addCarNo").attr("readonly","readonly");
+
         })
 		//删除
         $(".delect").click(function () {
@@ -247,6 +249,7 @@ var currentPage=1;
         window.parent.$(".modelBox12").attr("data-id","");
         window.parent.$(".modelBox12").attr("data-carType","");
         window.parent.$(".modelBox12").attr("data-routeid","");
+        window.parent.$("#addCarNo").removeAttr("readonly");
         resetModelBox12()//先清空框
         window.parent.getDynamic("");
         window.parent.getCarTypeList();
@@ -281,8 +284,6 @@ var currentPage=1;
                         alert("禁用车辆成功")
                     }
                     getData(currentPage);
-                }else{
-                    alert(res.msg);
                 }
             },
             error: function(err){
@@ -442,8 +443,8 @@ var currentPage=1;
             success: function (res) {
                 if(res.code==1){
                    cf_alert(1,"添加车辆成功");
-                }else{
-                    cf_alert(0,res.msg);
+                }else if(res.code==-1){
+                    cf_alert01("2","添加失败，车牌号已存在")
                 }
             },
             error: function(err){

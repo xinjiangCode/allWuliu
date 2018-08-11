@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../css/addRequireMent.css"/>
     <style>
         .containerBot{padding-top: 0;}
-        .modelBox0{
+        .modelBox55{
             z-index: 9999;
             display: none;
             position: fixed;
@@ -24,7 +24,7 @@
             bottom: 0;
             background-color: rgba(0, 0, 0, 0.5);
         }
-        .modelCont{
+        .modelBox55 .modelCont{
             position: absolute;
             width: 450px;
             min-height: 276px;
@@ -39,7 +39,7 @@
             /* background-color: red; */
 
         }
-        .modeltitle{
+        .modelBox55 .modeltitle{
             width: 450px;
             height: 50px;
             background-image: url(../img/gsxq.gif);
@@ -49,16 +49,16 @@
             color: #5690f6;
             line-height: 50px;
         }
-        .modelcontent{
+        .modelBox55 .modelcontent{
             width: 450px;
             background-image: url('../img/gsxq_cont.gif');
             background-size: 100% 100%;
             background-repeat: no-repeat;
             font-size: 18px;
         }
-        tr>td{text-align: center;line-height: 30px;}
-        .HuaxueTypeList li{line-height: 34px;padding-left: 10px;}
-        .HuaxueTypeList li:hover{background-color: #fafafa;}
+        .modelBox55 tr>td{text-align: center;line-height: 30px;}
+        .modelBox55 .HuaxueTypeList li{line-height: 34px;padding-left: 10px;}
+        .modelBox55 .HuaxueTypeList li:hover{background-color: #fafafa;}
      </style>
 
 
@@ -341,7 +341,7 @@
 
 </div>
 <!-- 历史需求类表  -->
-<div class="modelBox0">
+<div class="modelBox0" style="display: none">
     <div class="modelCont" style="width: 800px;height: 600px;">
         <div class="modeltitle" style="width: 780px;padding-left: 20px;">
             <span>历史需求</span>
@@ -485,7 +485,8 @@
     }
     //发布历史
     $(".addLiShi").click(function () {
-        $(".modelBox0").show();
+        getDataLishi()
+        window.parent.$(".modelBox55").show();
     })
 
     //        时间初始化
@@ -729,7 +730,7 @@ $(".cf_sel").eq(0).click(function () {
         }
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/insert', /*v1.0*/
-            type: 'get',
+            type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
@@ -817,7 +818,7 @@ $(".cf_sel").eq(0).click(function () {
         }
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/update', /*v1.0*/
-            type: 'get',
+            type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
@@ -1218,10 +1219,10 @@ console.log(provinceID)
 
 
     //-------------------------------编辑相关的
-    getDataLishi()
+
     //获取历史数据类表
     function getDataLishi() {
-        $(".listBox tbody").html("");//所有条件查询列表 必须先置空
+        window.parent.$(".modelBox55 .listBox tbody").html("");//所有条件查询列表 必须先置空
         $.ajax({
             url: pubIP + 'wlLogisticsDemand/queryPageForHistory', /*v1.0*/
             type: 'get',
@@ -1243,7 +1244,7 @@ console.log(provinceID)
             success: function (res) {
                 if(res.code===1){
                     //首次请求时 改变分页数据
-                    if(res.data.data.length==0){ $(".listBox1 tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    if(res.data.data.length==0){ window.parent.$(".modelBox55 .listBox1 tbody").html("");window.parent.$(".modelBox55 .pagination").parent().css("display","none"); return;}
 //                    $(".pagination").parent().css("display","block");
 //                    if(currentPage===1){
 //                        //修改底部分页
@@ -1287,12 +1288,12 @@ console.log(provinceID)
             str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
             str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
             str+="<td>"+item.status+"</td>"
-            str+="<td><span class=\"selectThis ll\" style='color: #6ea3f4;'>选择</span></td>"
+            str+='<td><span class="selectThis ll" style="color: #6ea3f4;">选择</span></td>'
             str+='</tr>';
         })
-        $(".listBox1 tbody").html(str);
+        window.parent.$(".modelBox55 .listBox1 tbody").html(str);
         //选择
-        $(".selectThis").click(function () {
+        window.parent.$(".modelBox55 .selectThis").click(function () {
             sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
             $(this).parents(".modelCont").parent().hide();
             getDataDetail();

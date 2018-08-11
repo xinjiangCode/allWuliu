@@ -80,13 +80,13 @@
                                         <div>总支付：</div>
                                         <div class="ml">￥<span class="zongzhifu_money">0.00</span></div>
                                     </li>
-                                    <li class="span">
-                                        <span></span>
-                                    </li>
-                                    <li class="w">
-                                        <div>税&nbsp;&nbsp;&nbsp;&nbsp;后：</div>
-                                        <div class="ml">￥<span class="shuihou_money">0.00</span></div>
-                                    </li>
+                                    <!--<li class="span">-->
+                                        <!--<span></span>-->
+                                    <!--</li>-->
+                                    <!--<li class="w">-->
+                                        <!--<div>税&nbsp;&nbsp;&nbsp;&nbsp;后：</div>-->
+                                        <!--<div class="ml">￥<span class="shuihou_money">0.00</span></div>-->
+                                    <!--</li>-->
                                 </ul>
                             </div>
                             <div class="order_detail">
@@ -185,7 +185,7 @@
                                         </div>
                                          <div class="box">
                                             <div class="my_tab">
-                                                <input type="radio" name="myradio1" id="myradio1" checked>
+                                                <input type="radio" name="myradio1" class="thisActive" id="myradio1" checked>
                                                 <label for="myradio1">现结</label>
                                                 <input type="radio" name="myradio1" id="myradio2" style="margin-left: 20px;">
                                                 <label for="myradio2">工资</label>
@@ -196,7 +196,12 @@
                                                     <div class="js_allmoney"><span>结算金额：</span><input type="text" class="all_jsje all_input"></div>
                                                     <div class="add_djq">
                                                         <div class="gz_ticheng" style="display: none;margin-bottom: 20px;"><span>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成：</span><input type="text" class="ticheng jiajia"></div>
-                                                        <div><span class="gz_xianjin">现&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金：</span><input type="text" class="xianjin jiajia"></div>
+                                                        <div>
+                                                            <span class="gz_xianjin">现&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金：</span>
+                                                            <input type="text" class="xianjin">
+                                                            <span class="gz_xianjin2" style="margin-left: 62px;display: none;">税后工资：</span>
+                                                            <input type="text" class="xianjin2 jiajia" style="display: none;">
+                                                        </div>
                                                         <ul class="daijinquan_type">
                                                             <!-- 券的种类 -->
                                                         </ul>
@@ -297,8 +302,8 @@
     
         }
 
-        //税率
-        var ggsl = 0.2;
+
+
         //获取订单id
         var tloId = sessionStorage.getItem("qrsd_tloId");
         //var tloId = "1";
@@ -356,8 +361,8 @@
                 //初始算下总支付
                 var all_zzf = Number($(".zongji_money").html())-Number($(".tab1_yfk").attr("data-money"))-Number($(".tab2_ddxx").attr("data-money"))-Number($(".tab3_kk").attr("data-money"));
                 $(".zongzhifu_money").html(all_zzf.toFixed(2));
-                $(".shuihou_money").html((all_zzf*(1-ggsl)).toFixed(2));
-                $(".all_jsje").val((all_zzf*(1-ggsl)).toFixed(2));
+                $(".shuihou_money").html(all_zzf.toFixed(2));
+                $(".all_jsje").val(all_zzf.toFixed(2));
             },
             error: function(err) {
                 console.log(err);
@@ -530,8 +535,8 @@
                         $(".tab1_yfk").attr("data-money",saleyfmoney);
                         var all_zzf = Number($(".zongji_money").html())-Number($(".tab1_yfk").attr("data-money"))-Number($(".tab2_ddxx").attr("data-money"))-Number($(".tab3_kk").attr("data-money"));
                         $(".zongzhifu_money").html(all_zzf.toFixed(2));
-                        $(".shuihou_money").html((all_zzf*(1-ggsl)).toFixed(2));
-                        $(".all_jsje").val((all_zzf*(1-ggsl)).toFixed(2));
+                        $(".shuihou_money").html(all_zzf.toFixed(2));
+                        $(".all_jsje").val(all_zzf.toFixed(2));
                     })
                     //预付金返还单算
                     $(".yufujin_back").on("input",function(){
@@ -544,8 +549,8 @@
                         $(".tab1_yfk").attr("data-money",saleyfmoney);
                         var all_zzf = Number($(".zongji_money").html())-Number($(".tab1_yfk").attr("data-money"))-Number($(".tab2_ddxx").attr("data-money"))-Number($(".tab3_kk").attr("data-money"));
                         $(".zongzhifu_money").html(all_zzf.toFixed(2));
-                        $(".shuihou_money").html((all_zzf*(1-ggsl)).toFixed(2));
-                        $(".all_jsje").val((all_zzf*(1-ggsl)).toFixed(2));
+                        $(".shuihou_money").html(all_zzf.toFixed(2));
+                        $(".all_jsje").val(all_zzf.toFixed(2));
                     })
                     
                 },
@@ -579,8 +584,8 @@
             }
             var all_zzf = Number($(".zongji_money").html())-Number($(".tab1_yfk").attr("data-money"))-Number($(".tab2_ddxx").attr("data-money"))-Number($(".tab3_kk").attr("data-money"));
             $(".zongzhifu_money").html(all_zzf.toFixed(2));
-            $(".shuihou_money").html((all_zzf*(1-ggsl)).toFixed(2));
-            $(".all_jsje").val((all_zzf*(1-ggsl)).toFixed(2));
+            $(".shuihou_money").html(all_zzf.toFixed(2));
+            $(".all_jsje").val(all_zzf.toFixed(2));
         }
         //重量改变总计
         $(".xx_zzjs").on("input",function(){
@@ -659,8 +664,8 @@
                         $(".tab3_kk").attr("data-money",kkallback_money);
                         var all_zzf = Number($(".zongji_money").html())-Number($(".tab1_yfk").attr("data-money"))-Number($(".tab2_ddxx").attr("data-money"))-Number($(".tab3_kk").attr("data-money"));
                         $(".zongzhifu_money").html(all_zzf.toFixed(2));
-                        $(".shuihou_money").html((all_zzf*(1-ggsl)).toFixed(2));
-                        $(".all_jsje").val((all_zzf*(1-ggsl)).toFixed(2));
+                        $(".shuihou_money").html(all_zzf.toFixed(2));
+                        $(".all_jsje").val(all_zzf.toFixed(2));
                     })
 
                     // 模拟下拉框
@@ -716,8 +721,8 @@
             $(".tab3_kk").attr("data-money",kkallback_money);
             var all_zzf = Number($(".zongji_money").html())-Number($(".tab1_yfk").attr("data-money"))-Number($(".tab2_ddxx").attr("data-money"))-Number($(".tab3_kk").attr("data-money"));
             $(".zongzhifu_money").html(all_zzf.toFixed(2));
-            $(".shuihou_money").html((all_zzf*(1-ggsl)).toFixed(2));
-            $(".all_jsje").val((all_zzf*(1-ggsl)).toFixed(2));
+            $(".shuihou_money").html(all_zzf.toFixed(2));
+            $(".all_jsje").val(all_zzf.toFixed(2));
         }
 
         
@@ -731,10 +736,13 @@
             $(".gz_xianjin").html('现&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金：').next(".xianjin").val('');
             $(".sjjs_allmoney").find("span").html('实际现结：');
             $(".sjjs_allmoney").find("input").val('');
-
+            $(".gz_xianjin2").hide();
+            $(".xianjin2").hide();
             $(".daijinquan_type").html('');
             $(".qr_clxx span").css("background","#6ba1ff");
             $(".btn_queren").css("background","#6ba1ff");
+            $("#myradio2").removeClass("thisActive");
+            $(this).addClass("thisActive");
             add_djqclk();
         })
         $("#myradio2").on("click",function(){
@@ -742,11 +750,46 @@
             $(".gz_xianjin").html('工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资：').next(".xianjin").val('');
             $(".sjjs_allmoney").find("span").html('实际工资：');
             $(".sjjs_allmoney").find("input").val('');
-
+            $(".gz_xianjin2").show();
+            $(".xianjin2").show();
             $(".daijinquan_type").html('');
             $(".qr_clxx span").css("background","#6ba1ff");
             $(".btn_queren").css("background","#6ba1ff");
+            $("#myradio1").removeClass("thisActive");
+            $(this).addClass("thisActive");
             add_djqclk();
+        })
+        //如果结算工资 计算税后金额
+        $(".xianjin").on("input",function () {
+            //通过现金 税率计算税后金额
+            //var sh_money = Number($(this).val())*(1-ggsl);
+            if($(this).val()==''){
+                $(".xianjin2").val('');
+                return;
+            }
+            $.ajax({
+                url: pubIP + 'carrierFinance/getAfterTaxWages',
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    beforWages: $(this).val(),
+                    companyId: companyId,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log("+++");
+                    console.log(data);
+                    $(".xianjin2").val(data.data.afterWages);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
         })
         //结算新增代金券
         var isFrist4 = true;
@@ -769,18 +812,21 @@
                     token: token
                 },
                 data: {
-                    companyId: '1',
+                    iDisplayStart: 1,
+                    iDisplayLength: 10000,
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
                     console.log("++++++++++++------------------+++++++++++++++");
                     console.log(data);
-                    var data = data.data;
+                    var data = data.aData;
                     var str4 = '';
                     var str5 = '';
                     $.each(data,function(idx,item){
-                        str4 += '<li data-index="'+idx+'" id="'+item.id+'" dotId="'+item.dot_id+'" >'+item.coupon_name+'</li>';
+                        if(item.attr_2 != 1){
+                            str4 += '<li data-index="'+idx+'" id="'+item.id+'" dotId="'+item.dot_id+'" >'+item.coupon_name+'</li>';
+                        }
                     })
                     str5+='<li class="dj_thislist">'
                     str5+='<div class="lf lfdj_select">'
@@ -801,7 +847,12 @@
                     $(".jiajia").unbind();
                     $(".jiajia").on("input",function(){
                         var jiesuanAll = Number($(".all_jsje").val()).toFixed(0);//税后金额
-                        var jiajia = Number($(".xianjin").val())+Number($(".ticheng").val());//工资+提成或者现金
+                        if($("#myradio1").hasClass("thisActive")){
+                            var jiajia = Number($(".xianjin").val())+Number($(".ticheng").val());//工资+提成或者现金
+                        }else if($("#myradio2").hasClass("thisActive")){
+                            var jiajia = Number($(".xianjin2").val())+Number($(".ticheng").val());//工资+提成或者现金
+                        }
+
                         var kkallback_money=0;//所有代金券的金额
                         $(".dj_money").each(function(){
                             kkallback_money += Number($(this).val());
