@@ -700,25 +700,44 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
 
 
 $('.goUser').click(function() {
-        var company_type = localStorage.getItem('company_type');
-        console.log(company_type);
-        if (company_type == '1') { //供应商
-            
-            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+        // var company_type = localStorage.getItem('company_type');
+        // console.log(company_type);
+        // debugger;
+        $.ajax({
+            type: "get",
+            url: pubIP + "chemicalType/findUserCompanyInfo",//v1.0
+            cache: false,
+            dataType: "json",
+            headers: {
+                token: token
+            },
+            success: function(json){
+                console.log(json);
+
+            },
+            error: function(err) {
+                console.log(err);
             }
-            $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
-        } else if (company_type == '2') {
+        });
+
+
+        // if (company_type == '1') { //供应商
             
-            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-            }
-            $('.goUser').attr('href', 'account.html');
-        } else if (company_type == '-1') {
+        //     if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+        //         window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+        //     }
+        //     $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+        // } else if (company_type == '2') {
             
-            window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-            $('.goUser').attr('href', 'account.html');
-        }
+        //     if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+        //         window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+        //     }
+        //     $('.goUser').attr('href', 'account.html');
+        // } else if (company_type == '-1') {
+            
+        //     window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+        //     $('.goUser').attr('href', 'account.html');
+        // }
 
     });
 
