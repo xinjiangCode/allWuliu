@@ -468,8 +468,6 @@ function xmTanUploadImg2(obj) {
 
         $(document).on('click', '.weiRenZheng.btn', function () {
 
-            debugger;
-
             //财务名称
             if ($('#caiwu_name').val() == '') {
                 $('#caiwu_name').parent().next().css('display', 'block');
@@ -479,7 +477,8 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            // var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
                 return; 
@@ -563,20 +562,22 @@ function xmTanUploadImg2(obj) {
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);
-                        if(data.code == -406){
-                            $('#code').parent().next().css('验证码错误');
+                        if(data.code == -1002){
+                            $('#code').parent().next().text('验证码错误');
                             $('#code').parent().next().css('display', 'block');
                             return false;
-                        }
-                       /* code_num.val(data.data);*/
-                        window.parent.add_tan();
-                        $('.weiRenZheng').css('display', 'none');
-                        // window.localStorage.removeItem('add-flag');
-                        window.localStorage.setItem('add-flag', 'true');
+                        } else {
+                            /* code_num.val(data.data);*/
+                            window.parent.add_tan();
+                            $('.weiRenZheng').css('display', 'none');
+                            // window.localStorage.removeItem('add-flag');
+                            window.localStorage.setItem('add-flag', 'true');
 
-                        $('input[type=file]').attr('disabled',true);
-                        $('input[type=text]').attr('disabled',true);
-                        $('input[type=radio]').attr('disabled',true);
+                            $('input[type=file]').attr('disabled',true);
+                            $('input[type=text]').attr('disabled',true);
+                            $('input[type=radio]').attr('disabled',true);
+                        }
+                       
                        
                     },
                     error: function (err) {
@@ -724,7 +725,8 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            // var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
                 return; 
@@ -1050,7 +1052,8 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            // var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
                 return; 
@@ -1134,8 +1137,8 @@ function xmTanUploadImg2(obj) {
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
-                   if(data.code == -406){
-                        $('#new_code').parent().next().css('验证码错误');
+                   if(data.code == -1002){
+                        $('#new_code').parent().next().text('验证码错误');
                         $('#new_code').parent().next().css('display', 'block');
                         return false;
                    }

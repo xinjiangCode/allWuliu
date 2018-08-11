@@ -36,6 +36,39 @@
             background-position: 137px;
             background-size: 11%;
         }
+
+        .input_width {
+            width: 359px;
+            height: 37px;
+            border: 1px solid #ebe9ea;
+        }
+
+        .sousuo_img {
+            position: absolute;
+            left: 162px;
+            top: 9px;
+        }
+
+        .cousuo_cont {
+            border: 1px solid #ebe9ea;
+            width: 357px;
+            overflow-y: auto;
+        }
+
+        .delete_info {
+            width: 13px; 
+            height: 13px;
+            text-align: center;
+            line-height: 11px;
+            border: 1px solid #4e4e4e;
+            border-radius: 50%;
+            display: inline-block;
+            color: #4e4e4e;
+            margin-left: 5px;
+            font-size: 12px;
+            vertical-align: bottom;
+        }
+
     </style>
 </head>
 <body>
@@ -95,7 +128,7 @@
                 <li   style="overflow: visible;" class="clearfix">
                     <div class="left1 Lf"><i class="red">*</i>许可经营范围:</div>
                     <div class="right1 Lf">
-                        <div name="" id="textarea0" class="textarea"  style="width: 359px;height: 88px;" contenteditable="true" ></div>
+                        <div name="" id="textarea0" class="textarea"  style="width: 359px;height: 88px;" contenteditable="false" ></div>
                     </div>
                     <span class="ts" style="margin-top: 32px;">许可经营不能为空</span>
                     <div class="btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>
@@ -495,7 +528,7 @@
                                 if(t!=''){
                                     sousuoAjax(t, function(a) {
                                        /* console.log($(that))*/
-                                        $(that).append('<div data-ind="'+idArr[i]+'">'+a + '</div>');
+                                        $(that).append('<div data-ind="'+idArr[i]+'">'+a + '<span class="delete_info">x</span></div></div>');
                                         
                                     });
                                 }
@@ -589,11 +622,18 @@
             });
         }
 
+        // 删除经营范围
+        $(document).on('click', '.delete_div', function() {
+            $(this).parent().remove();
+        });
 
         $(document).on('click', '.edit_btn', function() {
             
             $(this).parent().find('.zizhi_type').attr('disabled', false).css("background-color","#fff");
             isSelect=true;
+
+            $('.delete_info').addClass('delete_div');
+            $('.delete_info').css('cursor', 'pointer');
 
             $(this).parent().find('.preview').attr('disabled', false);
 
@@ -948,7 +988,7 @@
     $(document).on('click', '.sousuo_ul li', function () {
         if ($(this).text() != '暂无数据') {
             // console.log($(this).text());
-            $(this).parents('li').prev().find('.textarea').append('<div data-ind="'+$(this).attr('data-index')+'">'+$(this).text()+'</div>');
+            $(this).parents('li').prev().find('.textarea').append('<div data-ind="'+$(this).attr('data-index')+'">'+$(this).text()+'<span class="delete_info delete_div" style="cursor: pointer;">x</span></div>');
             $(this).parents('li').prev().find('.ts2').css('visibility', 'hidden');
         }
     });

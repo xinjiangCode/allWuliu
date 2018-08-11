@@ -36,6 +36,39 @@
             background-position: 137px;
             background-size: 11%;
         }
+
+        .input_width {
+            width: 359px;
+            height: 37px;
+            border: 1px solid #ebe9ea;
+        }
+
+        .sousuo_img {
+            position: absolute;
+            left: 162px;
+            top: 9px;
+        }
+
+        .cousuo_cont {
+            border: 1px solid #ebe9ea;
+            width: 357px;
+            overflow-y: auto;
+        }
+
+        .delete_info {
+            width: 13px; 
+            height: 13px;
+            text-align: center;
+            line-height: 11px;
+            border: 1px solid #4e4e4e;
+            border-radius: 50%;
+            display: inline-block;
+            color: #4e4e4e;
+            margin-left: 5px;
+            font-size: 12px;
+            vertical-align: bottom;
+        }
+
     </style>
 </head>
 <body>
@@ -213,7 +246,9 @@
             cache: false,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 if (data.data == 'false') {
+
                     // if (window.localStorage.getItem('data-subFlag') == '0') {
                         window.parent.tan1();   
                     // } else {
@@ -221,6 +256,7 @@
                     // }
                     
                 } else {
+                    
                     location.href="Special2.html";
                 }
             },
@@ -502,7 +538,7 @@
                                 if(t!=''){
                                     sousuoAjax(t, function(a) {
                                        /* console.log($(that))*/
-                                        $(that).append('<div data-ind="'+idArr[i]+'">'+a + '</div>');
+                                        $(that).append('<div data-ind="'+idArr[i]+'">'+a + '<span class="delete_info">x</span></div>');
                                         
                                     });
                                 }
@@ -589,11 +625,20 @@
         }
 
 
+        // 删除经营范围
+        $(document).on('click', '.delete_div', function() {
+            $(this).parent().remove();
+        });
+
+
         $(document).on('click', '.edit_btn', function() {
            
             
             $(this).parent().find('.zizhi_type').attr("disabled",false).css("background-color","#fff");
             isSelect=true;
+
+            $('.delete_info').addClass('delete_div');
+            $('.delete_info').css('cursor', 'pointer');
 
             $(this).parent().find('.preview').attr('disabled', false);
             
@@ -921,7 +966,7 @@
 
     $(document).on('click', '.sousuo_ul li', function () {
         if ($(this).text() != '暂无数据') {
-            $(this).parents('li').prev().find('.textarea').append('<div data-ind="'+$(this).attr('data-index')+'">'+$(this).text()+'</div>');
+            $(this).parents('li').prev().find('.textarea').append('<div data-ind="'+$(this).attr('data-index')+'">'+$(this).text()+'<span class="delete_info delete_div" style="cursor: pointer;">x</span></div>');
             $(this).parents('li').prev().find('.ts2').css('visibility', 'hidden');
         }
     });
