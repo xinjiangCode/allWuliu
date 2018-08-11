@@ -20,6 +20,7 @@
             padding: 18px 61px;
             border-bottom: 1px solid #f1f1f1;
         }
+
     </style>
 </head>
 <body>
@@ -401,6 +402,7 @@
 
                         //许可经营范围
                         $('#textarea'+ i).attr('data-textarea', data.data[i].remark);
+                        $('.textarea').attr('disabled', 'disabled');
                          //不让添加
                          // $(".btn1").hide();
                         
@@ -523,6 +525,8 @@
             
             $(this).parent().find('.zizhi_type').attr("disabled",false).css("background-color","#fff");
             isSelect=true;
+
+            $(this).parent().find('.textarea').attr('disabled', false);
             
             $(this).parent().find('.zizhi_num').attr('readonly', false).css("background-color","#fff");
            // $(this).parent().find('.textarea').attr('contenteditable', true);

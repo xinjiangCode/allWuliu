@@ -215,8 +215,8 @@
     <script src="../js/template.js" type="text/javascript"></script>
     <script type="text/html" id="orderListTpl">
         <%for(i in list) {%>
-        <tr>
-            <td><%=list[i].orderNo%></td>
+        <tr >
+            <td ><%=list[i].orderNo%></td>
             <td><%=list[i].tloUpdateTime%></td>
             <td><%=list[i].goodsType%></td>
             <td><%=list[i].goodsName%></td>
@@ -224,7 +224,7 @@
             <td><%=list[i].sendAddress%></td>
             <td><%=list[i].receiveAddress%></td>
             <td><%=list[i].carType%></td>
-            <td><span class="btn ll seeDetail" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ok_shouhuo" data-tloContractAmount="<%=list[i].tloContractAmount%>" data-tloId="<%=list[i].tloId%>">确认收货</span></td>
+            <td><span class="btn ll seeDetail" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ok_shouhuo" data-tloContractAmount="<%=list[i].tloContractAmount%>" data-tloId="<%=list[i].tloId%>" data-danjia="<%=list[i].unitPrice%>" data-num="<%=list[i].goodsNum%>">确认收货</span></td>
         </tr>
         <%}%>
     </script>
@@ -279,7 +279,7 @@
         // 确认收货
         $(document).on('click', '.ok_shouhuo', function() {
             
-           $(window.parent.document).find('.modelBox36 .hetong_jiesuan_money').text($(this).attr('data-tloContractAmount'));
+           $(window.parent.document).find('.modelBox36 .hetong_jiesuan_money').text($(this).attr('data-danjia')*$(this).attr('data-num'));
 
            $(window.parent.document).find('.modelBox36 .ok_shouhuo').attr('orderId', $(this).attr('data-tloId'));
 
@@ -293,11 +293,21 @@
 
         // 点击弹框内的确认收货
         $(window.parent.document).on('click', '.ok_shouhuo', function() {
-
-            var orderid = $(this).attr('orderid');
-
             var money = $(this).parent().parent().find('.shiji_jiesuan_money').val();
             var remark = $(this).parent().parent().find('textarea').val();
+            if(money==""){
+                $(this).parent().parent().find('.shiji_jiesuan_money').css("border-color","red");
+                return;
+            }else{
+                $(this).parent().parent().find('.shiji_jiesuan_money').css("border-color","#dbdbdc");
+            }
+            if(remark==""){
+                $(this).parent().parent().find('textarea').css("border-color","red");
+                return;
+            }else{
+                $(this).parent().parent().find('textarea').css("border-color","#dbdbdc");
+            }
+            var orderid = $(this).attr('orderid');
 
             $.ajax({
                 url: ip + 'order/confirmTakeGoodsOrder',

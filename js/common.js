@@ -368,10 +368,47 @@ $(function () {
         // }
         //window.location.href="./index.html";
     })
+
+    if (companyId) {
+        $.ajax({
+            type: "get",
+            url: pubIP + "chemicalType/findUserCompanyInfo",//v1.0
+            cache: false,
+            dataType: "json",
+            headers: {
+                token: token
+            },
+            success: function(json){
+                console.log(json);
+
+                if (json.code == 1) {
+                    if (json.companyType == 1) { //供应商
+                        localStorage.setItem('company_type', '1');
+                        // window.location.href="xj_wuliu_gy/account.html";
+                    } else if (json.companyType == 2) {
+                        localStorage.setItem('company_type', '2');
+                        // window.location.href="./account.html";
+                    } else if (json.companyType == -1) {
+                        localStorage.setItem('company_type', '-1');
+                    }
+                } else if (json.code == -1) {
+                    cf_alert01(2, json.msg);
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+
+
+
     $(".goUser").click(function () {
 
         // $.ajax({
-        //     type: "post",
+        //     type: "get",
         //     url: pubIP + "chemicalType/findUserCompanyInfo",//v1.0
         //     cache: false,
         //     dataType: "json",

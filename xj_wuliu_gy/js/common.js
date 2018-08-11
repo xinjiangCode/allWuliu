@@ -139,6 +139,8 @@ function cf_popEffectClose1(that) {
     window.location.href='../login.html';
 }
 
+
+
 //退出 按钮
 $(document).on('click', '.exit', function() {
     $.ajax({
@@ -364,19 +366,20 @@ $('.select ul li').click(function(){
 });
 
 $(function () {
-    $("header  .logo").click(function () {
-        if (company_type == '1') { //供应商
+    // $("header  .logo").click(function () {
+    //     alert(',,');
+    //     if (company_type == '1') { //供应商
 
-            $('.goUser').attr('href', '../index.html');
-        } else if (company_type == '2') {
-            $('.goUser').attr('href', '../index.html');
-        } else if (company_type == '-1') {
+    //         $('.goUser').attr('href', '../index.html');
+    //     } else if (company_type == '2') {
+    //         $('.goUser').attr('href', '../index.html');
+    //     } else if (company_type == '-1') {
 
-            $('.goUser').attr('href', '../index.html');
-        }
+    //         $('.goUser').attr('href', '../index.html');
+    //     }
 
-        // window.location.href="./index.html";
-    })
+    //     // window.location.href="./index.html";
+    // })
 
 
     $(".goUser").click(function () {
