@@ -285,14 +285,14 @@
 //            debugger
             var str='';
             $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.id+'"  data-orderId="'+item.orderid+'">';
+                str+='<tr data-id="'+item.id+'"  data-orderid="'+item.orderid+'" data-companyid="'+item.companyid+'" data-orderno="'+item.orderNo+'">';
                 str+='<td>'+item.orderid+'</td>';
                 str+='<td>'+item.companyname+'</td>';
                 str+='<td>'+timestampToTime1(item.createTime)+'</td>';
                 str+='<td>'+item.oldPrice+'</td>';
                 str+='<td>'+item.quotedPrice+'</td>';
                 str+='<td>'+item.quotesSatus+'</td>';
-                if(item.status==0&&item.type==1){
+                if(item.status==0 && item.type==1){
                     str+='<td ><span class="btn agree" style="color: #6ba1ff;">同意</span> <span  class="btn bohui" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
                 }else{
                     str+='<td> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
@@ -302,7 +302,16 @@
             $(".myTbody").html(str);
             //详情
             $(".seeDetail").click(function () {
-                sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
+                // 订单id
+                 window.localStorage.setItem('data-tloId',$(this).parents("tr").attr("data-orderid"));
+
+//                //订单编号
+                 window.localStorage.setItem('data-orderNo',$(this).parents("tr").attr("data-orderno"));
+
+                //危化品id
+                window.localStorage.setItem('data-companyId',$(this).parents("tr").attr("data-companyid"));
+
+//                sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
                 window.location.href="./priceAjustApplicationDetail.html";
             })
             //同意

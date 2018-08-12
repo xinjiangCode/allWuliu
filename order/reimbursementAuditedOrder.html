@@ -285,8 +285,8 @@
 
             $(window.parent.document).find('.money_ok').attr('data-tloId', $(this).attr('data-tloId'));
 
-
-
+             window.parent.$(".modelBox9 .hetong").text("¥"+$(this).attr('data-tloContractAmount'))
+            window.parent.$(".modelBox9 .shiji").text("¥"+$(this).attr('data-tlosettlementAmount'))
             window.parent.showModelBox('.modelBox9');
 
         });

@@ -432,6 +432,28 @@
                         $('.order_info_ul2').html(str);
                         //点击车辆显示右侧信息
                         $(".order_info_ul2 li:first-child").addClass("active");
+
+                        var datasFrist = $(".order_info_ul2 li.active").attr("data-type");
+                        if (datasFrist == 0) {
+                            $("#myradio1").hide().attr("checked",false);
+                            $("#myradio1").next().hide();
+                            $("#myradio2").prop("checked",true);
+                            $(".gz_ticheng").show().find(".ticheng").val('');
+                            $(".gz_xianjin").html('工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资：').next(".xianjin").val('');
+                            $(".gz_xianjin2").show();
+                            $(".xianjin2").show().val('');
+                            $(".sjjs_allmoney").find("span").html('实际工资：');
+                            $(".sjjs_allmoney").find("input").val('');
+                            $("#myradio1").removeClass("thisActive");
+                            $("#myradio2").addClass("thisActive");
+                        } else if (datasFrist == 1) {
+                            $("#myradio1").show().prop("checked",true);
+                            $("#myradio1").next().show();
+                            $("#myradio2").attr("checked",false);
+                            $("#myradio2").removeClass("thisActive");
+                            $("#myradio1").addClass("thisActive");
+                        }
+
                         //$(".order_info_ul2 li:first-child").click();
                         $(".order_info_ul2 li").on("click",function(){
                             $(".order_info_ul2 li").removeClass("active");
@@ -445,6 +467,8 @@
                                 $("#myradio2").prop("checked",true);
                                 $(".gz_ticheng").show().find(".ticheng").val('');
                                 $(".gz_xianjin").html('工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资：').next(".xianjin").val('');
+                                $(".gz_xianjin2").show();
+                                $(".xianjin2").show().val('');
                                 $(".sjjs_allmoney").find("span").html('实际工资：');
                                 $(".sjjs_allmoney").find("input").val('');
                             } else if (datas == 1) {
@@ -913,6 +937,7 @@
             var jiesuanAll = Number($(".all_jsje").val()).toFixed(0);//税后金额
             if($("#myradio1").hasClass("thisActive")){
                 var jiajia = Number($(".xianjin").val());//工资+提成或者现金
+                $(".xianjin2").val('');
             }else if($("#myradio2").hasClass("thisActive")){
                 var jiajia = Number($(".xianjin2").val())+Number($(".ticheng").val());//工资+提成或者现金
             }
@@ -1017,7 +1042,8 @@
                 data: {
                     companyId: '1',
                     extractMoney: $(".ticheng").val(),
-                    grantMoney: $(".xianjin").val(),//该字段
+                    grantMoney: $(".xianjin").val(),//税前工资   或者外部现金
+                    grantAfterMoney: $(".xianjin2").val(),
                     orderNo: tloId,
                     tLogisticsOrderId: tloId,
                     tlvType: $(".order_info_ul2 li.active").attr("data-type"),
@@ -1032,8 +1058,9 @@
                 success: function (data) {
                     console.log("++++++++++++------------------+++++++++++++++");
                     console.log(data);
-                    window.parent.$(".all_success_alert").show();
-                    window.parent.$(".all_success_alert").find(".innerSuccmsg").html("结算成功");
+                    cf_alert(1,"结算成功");
+                    // window.parent.$(".all_success_alert").show();
+                    // window.parent.$(".all_success_alert").find(".innerSuccmsg").html("");
                     huoqu_msg();
                 },
                 error: function(err) {
