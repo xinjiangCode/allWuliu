@@ -32,7 +32,7 @@
             border: 1px solid #C6C6C6;
             /* padding-right: 16px; */
             /* margin-right: 0px; */
-            background-image: url(../../../img/yh_rili.png);
+            background-image: url(../../img/yh_rili.png);
             background-position: 137px;
             background-size: 11%;
         }
@@ -231,42 +231,39 @@
     }
 
     $('.header ul li:nth-child(3) a').on('click', function () {
-        
-        
-        $.ajax({
-            url: pubIP + 'companyCertification/getQualificationsStateByCompanyId',
-            type: 'post',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            data: {
-                companyId: companyId
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data.data == 'false') {
-
-                    // if (window.localStorage.getItem('data-subFlag') == '0') {
-                        window.parent.tan1();   
-                    // } else {
-                    //     window.parent.tan2();
-                    // }
-                    
-                } else {
-                    
-                    location.href="Special2.html";
+            
+            $.ajax({
+                url: pubIP + 'companyCertification/getQualificationsStateByCompanyId',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    companyId: companyId
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    if (data.data == 'false') { 
+                        
+                            window.parent.tan1();   
+                        // } else {
+                        //     window.parent.tan2();
+                        // }
+                        
+                    } else {
+                        location.href="Special2.html";
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
                 }
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
+            });
 
-        
-    });
+            
+        });
 
     //不同浏览器下的路径不同
     function getObjectURL(file) {
