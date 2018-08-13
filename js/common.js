@@ -1,12 +1,23 @@
 
+<<<<<<< HEAD
+var pubIP = 'http://192.168.1.202:7777/service/';
+//var pubIP = 'http://192.168.1.199:7777/service/';
+=======
 //var pubIP = 'http://192.168.1.213:7777/service/';
+<<<<<<< HEAD
 var pubIP = 'http://192.168.1.199:7777/service/';
+=======
+var pubIP = 'http://192.168.1.100:7777/service/';
+>>>>>>> b0e8dbb9c3a2af988e141185baeafc9b8611df4f
+>>>>>>> 1f49c874e1fce2fcea41096e92044493c6e96ab2
 
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 // 上传图片路径
 var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+//下载
+var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
 
 var token=localStorage.getItem("token");
 var pageSize=10;//分页的每页个数

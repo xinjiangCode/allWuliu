@@ -557,33 +557,36 @@
 
     //下载协议模板
     function down_moban(){
-        $.ajax({
-            url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                var thisUrl = data.data.fileUrl;
-                $.ajax({
-                    url: downIP + 'bfile/fileDown.htm',
-                    type: 'post',
-                    data:{
-                        fileUrl: thisUrl
-                    },
-                    dataType: 'json',
-                    success: function (data1) {
-                        console.log("+++++++++++++++++++++========");
-                        console.log(data1);
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                })
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
+        window.location.href = "http://192.168.1.159:8080/generic/web/viewer.html";
+        // $.ajax({
+        //     url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
+        //     type: 'get',
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         console.log(data);
+        //         var thisUrl = data.data.fileUrl;
+        //         $.ajax({
+        //             url: downIP,
+        //             type: 'post',
+        //             data:{
+        //                 fileUrl: thisUrl
+        //             },
+        //             dataType: 'json',
+        //             success: function (data1) {
+        //                 console.log("+++++++++++++++++++++========");
+        //                 console.log(data1);
+        //                 localStorage.setItem("moban_url",data1);
+        //                 window.location.href = "http://http://192.168.1.159:8080/generic/web/viewer.html";
+        //             },
+        //             error: function (err) {
+        //                 console.log(err);
+        //             }
+        //         })
+        //     },
+        //     error: function (err) {
+        //         console.log(err);
+        //     }
+        // })
     }
 
     var img_url1 = null;
