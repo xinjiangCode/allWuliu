@@ -229,7 +229,7 @@
                         </div>
                         <div class="contlist contlisttwo clearFloat">
                             <div class="Lf " style="width: 252px;">
-                                <div>货物类型：<span id="goodsType">危化</span></div>
+                                <div>化学品名：<span id="goodsType"></span></div>
                                 <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
                                 <!--<div>支付方式：<span>预付</span></div>-->
                                 <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
@@ -370,7 +370,7 @@
                 str+="<td>"+item.demandNo+"</td>"
                 str+="<td>"+timestampToTime1(item.createTime)+"</td>"
                 str+="<td>"+ item.var9+"</td>"
-                str+="<td>"+item.goodsType+"</td>"
+                str+="<td>"+item.chemicalName+"</td>"
                 str+="<td>"+item.goodsName+"</td>"
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
@@ -489,7 +489,7 @@
             $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             $(".receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             $(".receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            $("#goodsType").text(data.goodsType);
+            $("#goodsType").text(data.chemicalName);
             $("#goodsWeight").text(data.goodsNum+data.goodsUnit);
             $("#packageType").text(data.packageType);
             $("#invoiceType").text(data.invoiceType);
@@ -528,7 +528,7 @@
                         $.each(res.data.data,function (idx,item) {
                             str+='<ul class="clearFloat" style="padding: 5px 0;"  data-id='+item.id+'>';
                             str+='<li class="Lf" style="width: 292px;">公司名称：<span >'+item.companyname+'</span></li>';
-                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/吨</span></li>'
+                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/'+item.goodsUnit+'</span></li>'
                             str+='<li class="Lf" data-id="'+item.demandid+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
                             str+="</ul>"
                         })

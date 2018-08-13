@@ -162,12 +162,13 @@
             <div>装车时间：<span><%=startDate%></span></div>
             <div>货物类型：<span><%=goodsType%></span></div>
             <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span><%=goodsNum%><%=goodsUnit%></span></div>
-            <div>支付方式：<%=paymentType%></div>
+
         </div>
         <div class="left mm">
             <div>包装类型：<span><%=packageType%></span></div>
             <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span><%=invoiceType%></span></div>
             <!-- <div>结算方式：<span>现汇</span></div> -->
+            <div>支付方式：<%=paymentType%></div>
         </div>
         <div class="left rr">
             <div>货物名称：<span><%=goodsName%></span></div>
@@ -206,7 +207,8 @@
             success: function (data) {
                 console.log("+++++++++++++++++++++++++++++");
                 console.log(data);
-               
+                data.data.startDate=timestampToTime1(data.data.startDate)
+                data.data.tloCreateTime=timestampToTime1(data.data.tloCreateTime)
                var result = template('contlistoneTpl', data.data);
                $('#contlistone').html(result);
 

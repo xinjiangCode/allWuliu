@@ -193,6 +193,13 @@
                     $(".myTbody").html(str);
                     //shenpi_alert
                     $(".shenhe").on("click",function(){
+//                        window.parent.$(".shenpi_alert .upload_div").css("backgroundUrl","");
+                        window.parent.$(".shenpi_alert .upload_div").css({
+                            'background':'url("") no-repeat',
+                            'background-position':'center',
+                            'background-size':'contain',
+                            'background-color':'#f6f6f6'
+                        });
                         shenhe_alert_show($(this).attr("id"),$(this).attr("data-id"));
                     })
 

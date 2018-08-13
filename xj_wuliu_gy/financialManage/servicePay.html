@@ -94,14 +94,13 @@
     <div class="contbox">
         <div class="topTitle">服务费支付<div class="fr cfRefresh" ><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
         <div class="inputBox">
-            <label for="" style="margin-left: 15px;">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="" style="margin-left: 15px;">输入搜索</label><input id="orderNo" class="orderNo input" type="text" placeholder="订单编号">
             <label for="" style="margin-left: 25px;">状&nbsp;&nbsp;态</label>
-            <div class="goodsType input select" data-selectedindex="0" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >
+            <div class="goodsType input select sort" data-selectedindex="" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul style="">
-                    <li data-index="1">待分配订单</li>
-                    <li data-index="2">进行中订单</li>
-                    <li data-index="3">完成待审核订单</li>
-                    <li data-index="3">已完成订单</li>
+                    <li data-index="">全部</li>
+                    <li data-index="0">未支付</li>
+                    <li data-index="1">已支付</li>
                 </ul>
             </div>
             <label for="" style="margin-left: 8px;">申请时间</label><input type="text" class="input publishTime date-input laydate-icon" placeholder="请选择日期" id="test1">
@@ -224,6 +223,103 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
+
+
+
+            //进入页面加载数据
+            getData(1);
+            //获取数据
+            function getData(currentPage) {
+                $(".listBox tbody").html("");
+                $.ajax({
+                    url: pubIP + 'finance/getServiceMoney', /*v1.0*/
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    cache: false,
+                    ansyc: true,
+                    dataType: 'json',
+                    data:{
+                        status:$(".sort").attr("data-selectedindex"),
+                        orderNo:$("#orderNo").val(),
+                        iDisplayLength:pageSize,
+                        iDisplayStart:currentPage
+                    },
+                    success: function (res) {
+                            //首次请求时 改变分页数据
+                            if(res.aData.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                            $(".pagination").parent().css("display","block");
+                            if(currentPage==1){
+                                //修改底部分页
+                                var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                                $(".allPageN").attr("pageTotal",pageNum);
+                                $(".pageJump i").text("共"+pageNum+"页");
+                                $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                                Page({
+                                    num: pageNum,
+                                    elem: $('#page1'),
+                                    callback: function(n) {
+                                        // console.log(n);
+                                        currentPage=n;
+                                        getData(n);//加载n页数据
+                                    }
+                                });
+                            }
+                            //修改底部页数
+                            $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                            cf_dataRender(res.aData)
+                    },
+                    error: function(err){
+                        console.log(err);
+                    }
+                });
+            }
+            //渲染数据
+            function cf_dataRender(data) {
+                var str='';
+                $.each(data,function (idx,item) {
+                    str+='<tr data-id="'+item.id+'" data-companyId="'+item.companyId+'"  data-orderId="'+item.orderId+'" data-orderNo="'+item.orderNo+'">';
+                    str+='<td>'+item.orderNo+'</td>';
+
+                    str+='<td>'+item.serviceMoney+'</td>';
+                    str+='<td>'+item.applyUserName+'</td>';
+                    str+='<td>'+timestampToTime1(item.applyTime)+'</td>';
+
+                    if(item.payStatus==0){
+                        str+='<td>未支付</td>';
+                    }else{
+                        str+='<td>已支付</td>';
+                    }
+                    str+='<td style="color: #6ea3f4;" data-id="'+item.id+'"><a class="notAgree" style="margin: 0 5px;">支付</a><a class="seeDetail">查看详情</a></td>';
+                    str+='</tr>';
+                })
+                $(".listBox tbody").html(str);
+                //详情
+                $(".seeDetail").click(function () {
+                    // 订单id
+                     window.localStorage.setItem('data-tloId',$(this).parents("tr").attr("data-orderId"));
+                    //订单编号
+                     window.localStorage.setItem('data-orderNo',$(this).parents("tr").attr("data-orderNo"));
+                     window.localStorage.setItem('data-companyId',$(this).parents("tr").attr("data-companyId"));
+                    window.location.href="../order/finishedOrder-detail.html"
+                })
+
+            }
+//            //选择排序方式
+//            $(".select ul li").click(function () {
+//                getData(1);
+//            })
+            // 点击go刷新数据
+            $('.pageCont').on('click', '.button',function(){
+                var currentPage1 = $('.pageCont li.active>a').text();
+                getData(currentPage1);
+            })
+
+        $(".searchResultBtn").click(function () {
+            getData(1);
+        })
     </script>
 </body>
 </html>

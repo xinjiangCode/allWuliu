@@ -957,12 +957,12 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>合同原价：</span>
-                <span style="color: #666666;">¥<span class="hetongyuanjia">100</span> 元／公里／吨</span>
+                <span style="color: #666666;">¥<span class="hetongyuanjia">100</span> 元</span>
             </div>
             <div style="margin-top: 25px;">
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>更改单价：</span>
                 <input type="text" placeholder="" class="update_unit" style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
-                <span style="color: #666666;margin-left: 15px;">元／公里／吨</span>
+                <span style="color: #666666;margin-left: 15px;">元</span>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>调价原因：</span>
@@ -1113,7 +1113,7 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 395px;font-size: 14px;padding-top: 31px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;">签订日期：</span>
-                <input type="text" id="qianding_time" placeholder="2016.02.26" class="date-input laydate-icon qianding_time" style="height: 36px;width: 150px;border: 1px solid #dbdbdc;">
+                <input type="text" id="qianding_time" class="date-input laydate-icon qianding_time" style="height: 36px;width: 150px;border: 1px solid #dbdbdc;">
             </div>
             <div style="margin-top: 25px;" class="clearfix">
                 <span style="float: left; width: 135px;text-align: right;">上传合同：</span>
@@ -1122,7 +1122,8 @@
                 </div>
                 <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_hetong"><span style="color: #6ea3ff;">上传</span></div>
             </div>
-            <div class="clearFloat" style="text-align: center;margin-top: 70px;">
+            <div class="errMsg" style="height: 20px;margin: 40px 0;color: red;font-size: 14px;text-align: center;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 60px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
                 <span class=" cf_btn ok_upload" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
             </div>
@@ -1871,7 +1872,7 @@
 
             </div>
             <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">发&nbsp;&nbsp;货&nbsp;地：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">收&nbsp;&nbsp;货&nbsp;地：&nbsp;</span>
                     <div id="province1" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
                         <span>请选择</span>
                         <img src="img/prl-select.jpg" alt="">
@@ -1898,6 +1899,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">给&nbsp;&nbsp;车&nbsp;价：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;" id="toCarPrice">
+                    <span>元</span>
                     <!--<div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">-->
                         <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
                         <!--<ul>-->
@@ -1909,11 +1911,14 @@
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">扣损率：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;" id="loss">
+                    <!--占位-->
+                    <span style="color: transparent;">千米</span>
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">扣损单价：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;" id="lossPrice">
+                    <span>元</span>
                     <!--<div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">-->
                         <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
                         <!--<ul>-->
@@ -1923,8 +1928,10 @@
                         <!--</ul>-->
                     <!--</div>-->
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">运距：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix">
+                    <span class="modelBox34LeftTitle fl">运距：&nbsp;</span>
                     <input type="text" id="transportDistance" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;">
+                    <span>千米</span>
                 </div>
             </div>  
             <div class="clearfix">
@@ -1933,6 +1940,8 @@
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">路线名：&nbsp;</span>
                     <input type="text" id="routeName" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;">
+                    <!--占位-->
+                    <span style="color: transparent;">千米</span>
                 </div>
             </div>
             <div id="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
@@ -2192,7 +2201,7 @@
                     </div>
                     <div class="order_info_ul" id="fenpei_info2">
                        <ul>
-                           <li>货物类型：<span id="goodsType">危化</span></li>
+                           <li>化学品名：<span id="goodsType">危化</span></li>
                            <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsweight">150吨</span></li>
                            <li>支付方式：<span id="paymentType">预付</span></li>
                            <!--<li>保证金：<span>￥1000.00</span></li>-->
@@ -2316,9 +2325,10 @@
                             </div>
                             <!--<input type="text" placeholder="111" id="selectInput6" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
                         </div>
-                        <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">货物类型：</span>
-                            <input type="text" id="selectInput7" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; "  readonly="readonly">
+                        <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">公里数：</span>
+                            <input type="text"  id="kmNum" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">
                         </div>
+
                     </div>
                     <div class="clearfix">
                         <div style="margin-top: 32px;color: #666666;line-height: 36px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">卡券选择：&nbsp;</span>
@@ -2329,8 +2339,8 @@
                             </div>
                             <span class="Lf" onclick="addQuan(this)" style="color: #6ea3f4;margin-left: 10px;">添加</span>
                         </div>
-                        <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">公里数：</span>
-                            <input type="text"  id="kmNum" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">
+                        <div  style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px; display: none" class="fr"><span style="color: #282828;color: transparent;" class="modelBox34LeftTitle">货物类型：</span>
+                            <input  type="text" id="selectInput7" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; "  readonly="readonly">
                         </div>
                         <!--<div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fl"><span style="color: #282828;" class="modelBox34LeftTitle">油卡：</span>-->
                             <!--<input type="text" placeholder="111" id="selectInput8" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
@@ -4768,8 +4778,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             data:{
             },
             success: function (data) {
-                console.log(data);
-                var str = '';
+
+                var str = '<li  data-index="" value="" data-id="">请选择</li>';
                 for (var i = 0; i < data.data.length; i++) {
                     str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].routeName+'</li>';
                 }
@@ -4785,9 +4795,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 });
                 //默认选中
                 if($(".modelBox12").attr("data-cartype")==""){
-                    $("#chooseAbleLine").attr('data-selectedindex', 0);
-                    $("#chooseAbleLine").attr('data-id', data.data[0].id);
-                    $("#chooseAbleLine").find('span').text(data.data[0].routeName);
+                    $("#chooseAbleLine").attr('data-selectedindex', "");
+                    $("#chooseAbleLine").attr('data-id', "");
+                    $("#chooseAbleLine").find('span').text("请选择");
                 }else{
                     $("#chooseAbleLine li").each(function (idx,item) {
                         if($(".modelBox12").attr("data-routeid")==$(item).attr("data-id")){

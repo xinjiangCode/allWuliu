@@ -346,6 +346,7 @@
             $(".update").removeClass("thisUpdate");
             $(this).addClass("thisUpdate");
             $(window.parent.document).find('#qianding_time').val('')
+            window.parent.$(".modelBox1 .errMsg").text("")
             $(window.parent.document).find('.modelBox1 input[type="hidden"]').val('')
             $(window.parent.document).find('.modelBox1 input[type="hidden"]').next().css('background', 'url("")')
             window.parent.showModelBox('.modelBox1');
@@ -353,6 +354,17 @@
         });
 
         $(window.parent.document).on('click', '.ok_upload', function() {
+            if(window.parent.$("#qianding_time").val()==""){
+                window.parent.$(".modelBox1 .errMsg").text("请选择签订日期")
+                return;
+            }
+            if(window.parent.$("#upload_hetong_hidden").val()==""){
+                window.parent.$(".modelBox1 .errMsg").text("请上传合同")
+                return;
+            }
+            window.parent.$(".modelBox1 .errMsg").text("")
+
+
             // console.log('..');
             //debugger
             $.ajax({
@@ -609,6 +621,11 @@
             getData(id);
             window.parent.$("#ok_fenpei").hide();
             window.parent.$("#car_info").hide();
+            window.parent.getPeoples(1);
+            window.parent.getPeoples(2);
+            window.parent.getPeoples(3);
+            //获取已选车  he  卡
+            window.parent.getCarCard()
         }
 
         //获取数据

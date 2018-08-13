@@ -282,11 +282,8 @@
             }
             str+='<td>'+item.chemical_name+'</td>';
             str+='<td>'+item.goods_name+'</td>';
-            if(item.goods_unit=="重量/吨"){
-                str+='<td>'+item.goods_num+'吨'+'</td>';
-            }else{
-                str+='<td>'+item.goods_num+'m³'+'</td>';
-            }
+
+                str+='<td>'+item.goods_num+item.goods_unit+'</td>';
             str+='<td>'+item.send_province+item.send_city+'</td>';
             str+='<td>'+item.receive_province+item.receive_city+'</td>';
             str+='<td style="color: #6ea3f4;" class="seeDetail">订单详情</td>';
