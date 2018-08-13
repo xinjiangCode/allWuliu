@@ -40,7 +40,7 @@
                 <div class="Lf">企业信息</div>
                 <div class="Rt cfRefresh" style="width: 90px;height: 35px;border: 1px solid #f1f1f1;line-height: 35px;margin-top: 8px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>
             </div>
-        
+
             <div class="center1">
                 <ul>
                     <li>
@@ -62,12 +62,12 @@
                             <div class="Lf" style="margin-left: 12px;font-size: 12px;">
                                 <i class="" style="display: block;font-size: 14px;color: #999999;">企业logo 展示图片</i>
                                 <div  style="display: block;font-size: 14px;color: #999999;margin-top: 113px;">1000 X 500</div>
-        
+
                             </div>
                         </div>
                         <span class="ts"></span>
                     </li>
-                
+
                     <li>
                         <div class="left1 Lf"><i class="red">*</i>企业介绍：</div>
                         <div class="right1 Lf">
@@ -80,25 +80,25 @@
                     </li>
                 </ul>
             </div>
-        
-            
+
+
         </div>
-        
+
         <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
-        
+
         <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
         <script type="text/javascript">
-        
+
             //设置Iframe高度
             $(function () {
                 window.parent.$("#Iframe").css("height","720");
             })
-        
+
             var startTime1 = '';
             var endTime1 = '';
             var isSelect=false;
-        
+
             laydate({
                 elem: '#test1',
                 format: 'YYYY-MM-DD hh:mm:ss',
@@ -115,7 +115,7 @@
                     endTime1 = dates;
                 }
             })
-        
+
             function lay(id) {
                 laydate({
                     elem: '#'+id,
@@ -126,26 +126,26 @@
                     }
                 })
             }
-        
+
             //不同浏览器下的路径不同
             function getObjectURL(file) {
                 var url = null;
                 if (window.createObjectURL != undefined) { // basic
-        
+
                     url = window.createObjectURL(file);
-        
+
                 } else if (window.URL != undefined) { // mozilla(firefox)
-        
+
                     url = window.URL.createObjectURL(file);
-        
+
                 } else if (window.webkitURL != undefined) { // webkit or chrome
-        
+
                     url = window.webkitURL.createObjectURL(file);
                 }
-        
+
                 return url;
             }
-        
+
             //企业信息回显
             $.ajax({
                 type:"post",
@@ -168,14 +168,14 @@
                     $("#myTextarea").val(data.briefIntroduction);
                 },
                 error:function(xhr,statues,error){
-        
+
                 }
             });
             // 上传图片
             $(document).on('change','#yingye_zhizhao_pic',function(){
                     xmTanUploadImg11(this);
                 })
-                
+
             function xmTanUploadImg11(obj) {
                 var file = obj.files[0];
                 if (file.size >= 2097152) {
@@ -233,61 +233,61 @@
                     }
                 });
             }
-            
-        
+
+
         </script>
         </body>
         </html>
-        
-<div class="container">
-    <div class="containerTitle">
-        <div class="Lf">企业信息</div>
-        <div class="Rt cfRefresh" style="width: 90px;height: 35px;border: 1px solid #f1f1f1;line-height: 35px;margin-top: 8px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>
-    </div>
 
-    <div class="center1">
-        <ul>
-            <li>
-                <div class="left1 Lf"><i class="red">*</i>标&nbsp;&nbsp;&nbsp;题：</div>
-                <div class="right1 Lf"><input type="text" id="qiye_name" placeholder=""></div>
-                <span class="ts"></span>
-            </li>
-            <li>
-                <div class="left1 Lf">
-                    <!--<i class="red">*</i>营业执照：-->
-                </div>
-                <div class="right1 Lf">
-                    <div class="uploade Lf" style="">
-                        <i style=""></i>
-                        <img src="../img/cf_headImg1.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片">
-                        <input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="xmTanUploadImg1(this);">
-                        <input type="hidden" name="" value="" id="yingye_zhizhao_hidden">
-                    </div>
-                    <div class="Lf" style="margin-left: 12px;">
-                        <i class="" style="display: block;font-size: 14px;color: #999999;">企业logo 展示图片</i>
-                        <div  style="display: block;font-size: 14px;color: #999999;margin-top: 8px;">1000 X 500</div>
-                        <div class="edit" ><img src="../img/cf_edit.png" style="margin-right: 4px;" alt="">编辑</div>
-                    </div>
+<!--<div class="container">-->
+    <!--<div class="containerTitle">-->
+        <!--<div class="Lf">企业信息</div>-->
+        <!--<div class="Rt cfRefresh" style="width: 90px;height: 35px;border: 1px solid #f1f1f1;line-height: 35px;margin-top: 8px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>-->
+    <!--</div>-->
 
-                </div>
-                <span class="ts"></span>
-            </li>
-            <li>
-                <div class="left1 Lf"><i class="red">*</i>企业介绍：</div>
-                <div class="right1 Lf">
-                    <textarea name="" id="" cols="30" rows="10" style="width: 528px;height: 244px;"></textarea>
-                </div>
-                <span class="ts"></span>
-            </li>
+    <!--<div class="center1">-->
+        <!--<ul>-->
+            <!--<li>-->
+                <!--<div class="left1 Lf"><i class="red">*</i>标&nbsp;&nbsp;&nbsp;题：</div>-->
+                <!--<div class="right1 Lf"><input type="text" id="qiye_name" placeholder=""></div>-->
+                <!--<span class="ts"></span>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="left1 Lf">-->
+                    <!--&lt;!&ndash;<i class="red">*</i>营业执照：&ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="right1 Lf">-->
+                    <!--<div class="uploade Lf" style="">-->
+                        <!--<i style=""></i>-->
+                        <!--<img src="../img/cf_headImg1.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片">-->
+                        <!--<input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="xmTanUploadImg1(this);">-->
+                        <!--<input type="hidden" name="" value="" id="yingye_zhizhao_hidden">-->
+                    <!--</div>-->
+                    <!--<div class="Lf" style="margin-left: 12px;">-->
+                        <!--<i class="" style="display: block;font-size: 14px;color: #999999;">企业logo 展示图片</i>-->
+                        <!--<div  style="display: block;font-size: 14px;color: #999999;margin-top: 8px;">1000 X 500</div>-->
+                        <!--<div class="edit" ><img src="../img/cf_edit.png" style="margin-right: 4px;" alt="">编辑</div>-->
+                    <!--</div>-->
 
-        </ul>
-        <div>
-            <span class="ok_btn">确认</span>
-        </div>
-    </div>
+                <!--</div>-->
+                <!--<span class="ts"></span>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="left1 Lf"><i class="red">*</i>企业介绍：</div>-->
+                <!--<div class="right1 Lf">-->
+                    <!--<textarea name="" id="" cols="30" rows="10" style="width: 528px;height: 244px;"></textarea>-->
+                <!--</div>-->
+                <!--<span class="ts"></span>-->
+            <!--</li>-->
 
-    
-</div>
+        <!--</ul>-->
+        <!--<div>-->
+            <!--<span class="ok_btn">确认</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+<!--</div>-->
 
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>

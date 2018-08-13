@@ -1,15 +1,9 @@
 
-<<<<<<< HEAD
-var pubIP = 'http://192.168.1.202:7777/service/';
-//var pubIP = 'http://192.168.1.199:7777/service/';
-=======
 //var pubIP = 'http://192.168.1.213:7777/service/';
-<<<<<<< HEAD
+
 var pubIP = 'http://192.168.1.199:7777/service/';
-=======
-var pubIP = 'http://192.168.1.100:7777/service/';
->>>>>>> b0e8dbb9c3a2af988e141185baeafc9b8611df4f
->>>>>>> 1f49c874e1fce2fcea41096e92044493c6e96ab2
+
+
 
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 

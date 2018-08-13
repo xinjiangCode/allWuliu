@@ -2400,9 +2400,7 @@
                 <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px; line-height: 36px;">
                     <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                     <ul class="shuyu_apartment">
-                        <li data-index="1">1</li>
-                        <li data-index="2">2</li>
-                        <li data-index="3">3</li>
+
                     </ul>
                 </div>
                 <span class="ts"></span>
@@ -2443,9 +2441,7 @@
                     <div class="selectPub apartment_select apartment_select1" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
                         <span style="display: inline-block;max-width: 120px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                         <ul class="shuyu_apartment">
-                            <li data-index="1">1</li>
-                            <li data-index="2">2</li>
-                            <li data-index="3">3</li>
+
                         </ul>
                     </div>
                 </div>
@@ -3354,6 +3350,9 @@
                             selectZhiwu($(this).attr('data-index'));
 
                         });
+                        if($('.apartment_select1').attr('data-selectedindex')!=""){
+                            selectZhiwu($('.apartment_select1').attr('data-selectedindex'));
+                        }
                     }
                 }
 
@@ -3386,7 +3385,6 @@
                         for (var i = 0; i < json.data.length; i++) {
                             str += '<li data-index="'+json.data[i].id+'">'+json.data[i].dutyName+'</li>'
                         }
-
                         $('.zhiwu_ul').html(str);
 
                         $('.zhiwu_select ul li').click(function(){
@@ -3395,7 +3393,6 @@
                             $(this).parent().parent().find('span').text($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
-
                         });
                     }
                 }
@@ -4694,7 +4691,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 if (res.code==1){
                     carCardReset()
                     $("#car_info").html("")
-                    cf_alert(1,"分配车辆成功");
+                    window.parent.$(".all_success_alert").show();
+                    window.parent.$(".all_success_alert .innerSuccmsg").text("分配车辆成功");
+//                    cf_alert(1,"分配车辆成功");
 //                    $(".modelBox17").hide();
                 }else if(res.code==401){
 

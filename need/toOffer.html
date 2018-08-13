@@ -143,16 +143,16 @@
             <!--<input class=" btn input" type="button" value="关闭订单" style="margin-left: 23px;">-->
             <input class="searchResultBtn btn input" type="button" value="查询结果">
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <input class="exportDemandBtn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">20</li>-->
+                    <!--<li data-index="3">30</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportDemandBtn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox" >
             <table>
                 <thead>
@@ -466,15 +466,15 @@
                 success: function (res) {
                     if(res.code==1){
                         if(type==1){
-                            alert("删除车辆成功")
+                            cf_alert(1,"删除车辆成功")
                         }else if(type==2){
-                            alert("启用车辆成功")
+                            cf_alert(1,"启用车辆成功")
                         }else if(type==3){
-                            alert("禁用车辆成功")
+                            cf_alert(1,"禁用车辆成功")
                         }
-                        getData(currentPage);
+                        getData(1);
                     }else{
-                        alert(res.msg);
+
                     }
                 },
                 error: function(err){
@@ -488,7 +488,7 @@
         window.parent.$(".modelBox0 .sure1").unbind();
         window.parent.$(".modelBox0 .sure1").click(function () {
             if(window.parent.$(".modelBox0 .quotedPrice").val()==""){
-                alert("报价不能为空")
+                cf_alert01(0,"报价不能为空")
                 return;
             }
 
@@ -507,7 +507,7 @@
                     quotedPrice:window.parent.$(".modelBox0 .quotedPrice").val()
                 },
                 success: function (res) {
-                    if(res.code===1){
+                    if(res.code==1){
                         cf_alert(1,"报价成功")
                     }else{
 
@@ -629,9 +629,9 @@
                                 },
                                 success: function (res) {
                                     if(res.code==1){
-                                        alert("选择公司成功");
+                                        cf_alert(1,"选择公司成功");
                                     }else{
-                                        alert(res.msg);
+
                                     }
 
                                 },

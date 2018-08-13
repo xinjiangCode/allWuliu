@@ -135,16 +135,16 @@
             <label for="">发车时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">30</li>
-                    <li data-index="3">50</li>
-                </ul>
-            </div>
-            <input class="exportOrderBtn btn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">30</li>-->
+                    <!--<li data-index="3">50</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox" style="overflow-x: auto">
             <table style="width: 1024px;">
                 <thead>
@@ -638,6 +638,14 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
+
+        window.parent.$(".all_success_alert .confirm").unbind();
+        window.parent.$(".all_success_alert .confirm").click(function () {
+            $(this).parents(".modelCont").parent().hide();
+            window.top.$(".modelCont").parent().hide();
+            window.location.reload();
+        })
+
     </script>
 </body>
 </html>

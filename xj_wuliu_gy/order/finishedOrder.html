@@ -222,8 +222,8 @@
             <td><%=list[i].chemicalName%></td>
             <td><%=list[i].goodsName%></td>
             <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
-            <td><%=list[i].sendProvince%>-<%=list[i].item.sendCity%></td>
-            <td><%=list[i].receiveProvince%>-<%=list[i].item.receiveCity%></td>
+            <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
+            <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
             <td><%=list[i].carType%></td>
             <td><span class="btn ll seeDetail" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看详情</a></span></td>
         </tr>

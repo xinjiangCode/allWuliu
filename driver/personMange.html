@@ -495,10 +495,13 @@
                     'background-position':'center',
                     'background-size':'contain'
 		    	});
+                window.parent.select_department();
+                window.parent.car_select();
 
 		    	$(window.parent.document).find('.model20_ok_btn').attr('data-zhiwuId', _that.parent().parent().attr('data-id'));
     			
     			window.parent.showModelBox('.modelBox20');
+
 
             },
             error: function(err) {

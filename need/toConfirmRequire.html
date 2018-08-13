@@ -141,16 +141,16 @@
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 134px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <input class="exportDemandBtn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">20</li>-->
+                    <!--<li data-index="3">30</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportDemandBtn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox">
             <table>
                 <thead>
@@ -448,15 +448,15 @@
                 success: function (res) {
                     if(res.code==1){
                         if(type==1){
-                            alert("删除车辆成功")
+                            cf_alert(1,"删除车辆成功")
                         }else if(type==2){
-                            alert("启用车辆成功")
+                            cf_alert(1,"启用车辆成功")
                         }else if(type==3){
-                            alert("禁用车辆成功")
+                            cf_alert(1,"禁用车辆成功")
                         }
-                        getData(currentPage);
+                        getData(1);
                     }else{
-                        alert(res.msg);
+//                        alert(res.msg);
                     }
                 },
                 error: function(err){
@@ -489,7 +489,7 @@
                 },
                 success: function (res) {
                     if(res.code===1){
-                        alert("报价成功")
+                        cf_alert(1,"报价成功")
                         location.reload();
                     }else{
                         alert(res.msg);
@@ -607,9 +607,9 @@
                                 },
                                 success: function (res) {
                                     if(res.code==1){
-                                        alert("选择公司成功");
+                                        cf_alert(1,"选择公司成功");
                                     }else{
-                                        alert(res.msg);
+//                                        alert(res.msg);
                                     }
 
                                 },

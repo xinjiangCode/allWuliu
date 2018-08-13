@@ -394,7 +394,11 @@
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
                 str+='<td class="aountDown'+idx+'"></td>'
-                str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll editThis'>编辑</span><span class='ll deletThis'>删除</span></td>"
+                if(item.var9==1){
+                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll deletThis'>删除</span></td>"
+                }else{
+                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll editThis'>编辑</span><span class='ll deletThis'>删除</span></td>"
+                }
 //                    <span class="selectCompany ll">选择公司</span>
                 str+='</tr>';
             })
