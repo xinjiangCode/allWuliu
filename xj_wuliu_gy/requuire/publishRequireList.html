@@ -554,7 +554,7 @@
                         $.each(res.data.data,function (idx,item) {
                             str+='<ul class="clearFloat" style="padding: 5px 0;"  data-id='+item.id+'>';
                             str+='<li class="Lf" style="width: 292px;">公司名称：<span >'+item.companyname+'</span></li>';
-                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/吨</span></li>'
+                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+item.goodsUnit+'</span></li>'
                             str+='<li class="Lf" data-id="'+item.demandid+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
                             str+="</ul>"
                         })
