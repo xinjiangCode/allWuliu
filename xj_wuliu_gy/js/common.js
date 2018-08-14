@@ -597,9 +597,25 @@ var url = window.location.href;
 //     $(this).parent().css('display','none');
 // });
 
+$(function () {
+    //分页的  下面框的宽度
+    $(".pagination li").each(function (idx,item) {
 
-
-
+        if($(item).find("a").text()=="上一页"||$(item).find("a").text()=="下一页"){
+            $(item).find('a').css("width","70px");
+        }else if($(item).find("a").text()=="首页"||$(item).find("a").text()=="尾页"){
+            $(item).find('a').css("width","70px");
+        }
+    })
+    // 所有的显示条数 先隐藏
+    $(".select span").each(function (idx,item) {
+        if($(item).text()=="显示条数"){
+            $(item).parent().css("display","none");
+        }
+    })
+})
+//查询按钮 统一设置样式
+$(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"8px"});
 
 
 

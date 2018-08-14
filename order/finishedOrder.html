@@ -121,16 +121,16 @@
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <input class="exportOrderBtn btn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">20</li>-->
+                    <!--<li data-index="3">30</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox">
             <table>
                 <thead>
@@ -138,7 +138,7 @@
                         <!-- <th style="width: 56px;text-align: center;"></th> -->
                         <td>订单编号</td>
                         <td>完成时间</td>
-                        <td>货物类型</td>
+                        <td>化学品名</td>
                         <td>货物名称</td>
                         <td>重量／体积 </td>
                         <td>始发地</td>
@@ -296,7 +296,7 @@
                 str+='<tr data-id="'+item.tloId+'">';
                 str+='<td>'+item.orderNo+'</td>';
                 str+='<td>'+item.tloUpdateTime+'</td>';
-                str+='<td>'+item.goodsType+'</td>';
+                str+='<td>'+item.chemicalName+'</td>';
                 str+='<td>'+item.goodsName+'</td>';
                 str+='<td>'+item.goodsNum +item.goodsUnit+'</td>';
                 str+='<td>'+item.sendProvince+item.sendCity+'</td>';

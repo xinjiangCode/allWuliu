@@ -138,19 +138,19 @@
                 <!--</ul>-->
             <!--</div>-->
             
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 345px;">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 134px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <input class="exportDemandBtn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">20</li>-->
+                    <!--<li data-index="3">30</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportDemandBtn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox">
             <table>
                 <thead>
@@ -159,7 +159,7 @@
                         <th style="width: 80px;overflow: hidden">需求编号</th>
                         <th>发布时间</th>
                         <th>报价时间</th>
-                        <th>货物类型</th>
+                        <th>化学品名</th>
                         <th>货物名称</th>
                         <th>始发地</th>
                         <th>目的地</th>
@@ -168,30 +168,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><div class="cf_select"></div></td>
-                        <td>3001804091631062137</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>危化-罐装</td>
-                        <td>氢氧化钠</td>
-                        <td>新疆-乌鲁木齐</td>
-                        <td>北京-朝阳区</td>
-                        <td>1000.00</td>
-                        <td><span class="seeDetail ll">查看详情</span><span class="ll updata">更改报价</span></td>
-                    </tr>
-                    <tr>
-                        <td><div class="cf_select on"></div></td>
-                        <td>3001804091631062137</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>危化-罐装</td>
-                        <td>氢氧化钠</td>
-                        <td>新疆-乌鲁木齐</td>
-                        <td>北京-朝阳区</td>
-                        <td>1000.00</td>
-                        <td><span class="seeDetail ll">查看详情</span><span class="ll">更改报价</span></td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -241,11 +218,11 @@
                         </div>
                         <div class="contlist contlisttwo clearFloat">
                             <div class="Lf " style="width: 252px;">
-                                <div>货物类型：<span id="goodsType">危化</span></div>
+                                <div>化学品名：<span id="goodsType"></span></div>
                                 <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
                                 <!--<div>支付方式：<span>预付</span></div>-->
                                 <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                                <div>支付方式：<span id="paymentMode	">现汇</span></div>
+                                <div>支付方式：<span id="paymentType">现汇</span></div>
                             </div>
                             <div class="Lf " style="width: 250px;">
                                 <div>包装类型：<span id="packageType">罐装</span></div>
@@ -402,7 +379,7 @@
                 }else{
                     str+='<td>'+timestampToTime1(item.var8)+'</td>';
                 }
-                str+='<td>'+item.goodsType+'</td>';
+                str+='<td>'+item.chemicalName+'</td>';
                 str+='<td>'+item.goodsName+'</td>';
                 str+='<td>'+item.sendProvince+'-'+item.sendCity+'</td>';
                 str+='<td>'+item.receiveProvince+'-'+item.receiveCity+'</td>';
@@ -471,15 +448,15 @@
                 success: function (res) {
                     if(res.code==1){
                         if(type==1){
-                            alert("删除车辆成功")
+                            cf_alert(1,"删除车辆成功")
                         }else if(type==2){
-                            alert("启用车辆成功")
+                            cf_alert(1,"启用车辆成功")
                         }else if(type==3){
-                            alert("禁用车辆成功")
+                            cf_alert(1,"禁用车辆成功")
                         }
-                        getData(currentPage);
+                        getData(1);
                     }else{
-                        alert(res.msg);
+//                        alert(res.msg);
                     }
                 },
                 error: function(err){
@@ -512,7 +489,7 @@
                 },
                 success: function (res) {
                     if(res.code===1){
-                        alert("报价成功")
+                        cf_alert(1,"报价成功")
                         location.reload();
                     }else{
                         alert(res.msg);
@@ -567,7 +544,7 @@
             window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+data.goodsUnit);
             window.parent.$(".modelBox0 .packageType").text(data.packageType);
             window.parent.$(".modelBox0 .invoiceType").text(data.invoiceType);
-            window.parent.$(".modelBox0 .paymentMode").text(data.paymentMode);
+            window.parent.$(".modelBox0 .paymentType").text(data.paymentType);
             window.parent.$(".modelBox0 .goodsName").eq(0).text(data.goodsName);
             window.parent.$(".modelBox0 .goodsName").eq(1).text(data.goodsName);
             window.parent.$(".modelBox0 .carType").text(data.carType);
@@ -630,9 +607,9 @@
                                 },
                                 success: function (res) {
                                     if(res.code==1){
-                                        alert("选择公司成功");
+                                        cf_alert(1,"选择公司成功");
                                     }else{
-                                        alert(res.msg);
+//                                        alert(res.msg);
                                     }
 
                                 },

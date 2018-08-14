@@ -22,21 +22,22 @@
 <div class="container">
     <div class="mineLeft">
         <div class="mineLeftHeader">
-            <div class="headerImgLe Lf" >
-                <img src="../img/headImg.png" alt="">
+            <div class="headerImgLe Lf" style="background-color: #e2e2e2;border: 1px solid #e2e2e2;">
+                <!--<img src="../img/headImg.png" alt="">-->
+                <img src="" alt="">
             </div>
             <div class="headerDetail Lf">
                 <div class="headerTitle">企业名称及LOGO</div>
                 <div class="headerNavList">
-                    <div class="headerNav1 Lf">
-                        <img style="margin-top: 2px;" src="../img/cf_headerNav1.png" alt="">
-                        <i>信用</i>
-                    </div>
+                    <!--<div class="headerNav1 Lf">-->
+                        <!--<img style="margin-top: 2px;" src="../img/cf_headerNav1.png" alt="">-->
+                        <!--<i>信用</i>-->
+                    <!--</div>-->
                     <div class="headerNav2 Lf">
                         <img src="../img/cf_headerNav2.png" alt="">
                         <i>企业信息</i>
                     </div>
-                    <div class="headerNav3 Lf">
+                    <div class="headerNav3 Lf" style="display: none;">
                         <img src="../img/cf_headerNav3.png" alt="">
                         <i>特殊</i>
                     </div>
@@ -44,7 +45,7 @@
                         <img src="../img/cf_headerNav4.png" alt="">
                         <i>普化</i>
                     </div>
-                    <div class="headerNav5 Lf">
+                    <div class="headerNav5 Lf" style="display: none;">
                         <img src="../img/cf_headerNav5.png" alt="">
                         <i>危化</i>
                     </div>
@@ -299,6 +300,7 @@
     getData2();
     getData3();
     getData4();
+    getData5();
     function getData1(){
         $.ajax({
             url: pubIP + "finance/getFinancialList",
@@ -395,6 +397,46 @@
             dataType: 'json',
             success: function (res) {
 
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //企业基本信息
+    function getData5(){
+        $.ajax({
+            url: pubIP + "companyCertification/getQualificationStateByCompanyId",
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                companyId:companyId
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (res) {
+                if(res.code==1){
+                    if(res.data.aType==0 && res.data.aState==1){ //危险化学品资质
+                        $(".headerNavList .headerNav5").show();
+                    }else{
+                        $(".headerNavList .headerNav5").hide();
+                    }
+                    if(res.data.bType==0 && res.data.bState==1){ //特殊化学品资质
+                        $(".headerNavList .headerNav3").show();
+                    }else{
+                        $(".headerNavList .headerNav3").hide();
+                    }
+                    if(res.data.companyLogo!=null && res.data.companyLogo!=""){
+                        $(".mineLeftHeader .headerImgLe img").attr("src",res.data.companyLogo);
+                    }
+                    $(".headerTitle").text(res.data.companyName)
+
+                }else{
+
+                }
             },
             error: function(err){
                 console.log(err);

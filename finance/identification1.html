@@ -237,7 +237,7 @@
                     <input type="text" placeholder="盖章资料上传" id="wenjian_name"><span onclick="down_moban()" style="margin-left: 55px;color: #80acf8;">《下载企业认证协议模板》</span>
                     <input type="file" id="wenjian" onchange="upload_file(this);" accept="application/pdf" readonly>
                 </div>
-                <div class="right1 Lf yiRenZheng"><a href="##" download="" id="file_look" style="line-height: 38px; color: #80acf8;">在线查看</a></div>
+                <div class="right1 Lf yiRenZheng"><span  id="file_look" onclick="down_moban()" style="line-height: 38px; color: #80acf8;">在线查看</span></div>
                 <br>
                 <span class="ts"></span>
             </li>
@@ -583,33 +583,42 @@
 
     //下载协议模板
     function down_moban(){
-        $.ajax({
-            url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                var thisUrl = data.data.fileUrl;
-                $.ajax({
-                    url: downIP + 'bfile/fileDown.htm',
-                    type: 'post',
-                    data:{
-                        fileUrl: thisUrl
-                    },
-                    dataType: 'json',
-                    success: function (data1) {
-                        console.log("+++++++++++++++++++++========");
-                        console.log(data1);
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                })
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
+//        window.location.href = "/generic/web/viewer.html";
+        window.open("http://wl.cys.xjv56.com/web/viewer.html");
+
+//        http://192.168.1.159:8080
+//        window.location.href="/generic/web/xjv56.pdf"
+//        http://192.168.1.159:8080
+//         $.ajax({
+//             url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
+//             type: 'get',
+//             dataType: 'json',
+//             success: function (data) {
+//                 console.log(data);
+//                 var thisUrl = data.data.fileUrl;
+//                 $.ajax({
+//                     url: downIP,
+//                     type: 'post',
+//                     data:{
+//                         fileUrl: thisUrl
+//                     },
+//                     dataType: 'json',
+//                     success: function (data1) {
+////                         console.log("+++++++++++++++++++++========");
+////                         console.log(data1);
+////                         localStorage.setItem("moban_url",data1);
+////                         window.location.href = "http://http://192.168.1.159:8080/generic/web/viewer.html";
+//                         window.download(data1)
+//                     },
+//                     error: function (err) {
+//                         console.log(err);
+//                     }
+//                 })
+//             },
+//             error: function (err) {
+//                 console.log(err);
+//             }
+//         })
     }
 
     var img_url1 = null;
@@ -1615,6 +1624,48 @@
     //         }
     //     });
     // }
+
+    window.downloadFile = function (sUrl) {
+
+        //iOS devices do not support downloading. We have to inform user about this.
+        if (/(iP)/g.test(navigator.userAgent)) {
+            alert('Your device does not support files downloading. Please try again in desktop browser.')
+            return false
+        }
+
+        //If in Chrome or Safari - download via virtual link click
+        if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
+            //Creating new link node.
+            var link = document.createElement('a')
+            link.href = sUrl
+
+            if (link.download !== undefined) {
+                //Set HTML5 download attribute. This will prevent file from opening if supported.
+                var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length)
+                link.download = fileName
+            }
+
+            //Dispatching click event.
+            if (document.createEvent) {
+                var e = document.createEvent('MouseEvents')
+                e.initEvent('click', true, true)
+                link.dispatchEvent(e)
+                return true
+            }
+        }
+
+        // Force file download (whether supported by server).
+        if (sUrl.indexOf('?') === -1) {
+            sUrl += '?download'
+        }
+
+        window.open(sUrl, '_self')
+        return true
+    }
+
+    window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
+    window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1
+
 
     $(window.parent.document).on('click', '.ook', function () {
         window.location.reload();

@@ -46,7 +46,7 @@
     		<!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
     		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
             <div style="width: 102px;text-align: center;" id="addVehicle">添加车辆</div>
-            <div style="width: 102px;text-align: center;">批量导入</div>
+            <!--<div style="width: 102px;text-align: center;">批量导入</div>-->
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -294,25 +294,11 @@ var currentPage=1;
 //    点击确认按钮
     window.parent.$(".modelBox12 .conFirm").unbind();
 	window.parent.$(".modelBox12 .conFirm").click(function () {
-        window.parent.$(".modelBox12").attr("data-id",'')
+//        window.parent.$(".modelBox12").attr("data-id",'')
         //	是	string	车辆类型
-        window.parent.$("#carTypeOut").attr("data-selectedindex","0")	//是	int	0:内部 1:外部
-        window.parent.$("#carTypeOut span").text("内部")
-        //	是	String	车牌号
-        window.parent.$("#").val("")//	是	String
-        window.parent.$("#").val("")//	是	String
-        window.parent.$("#").val("")//	是	String	车架号
-        window.parent.$("#").val("")//	是	String
-        window.parent.$("#").val("")//		是	date
-        window.parent.$("#").val("")//		是	Sring
-        window.parent.$("#").val("")//		是	String	车辆
-        window.parent.$("#").val("")//		是	String
-        window.parent.$("#chooseAbleLine").attr("data-id")//		是	String	线路id
-        window.parent.$("#").val("")//		是	String
-        window.parent.$("#").val("")//		是	String	保险金额
-        window.parent.$("#").val("")//		是	String	保险年限
-        window.parent.$("#").val("")//		是	String	行驶证url
-        window.parent.$("#").val("")//		是	String	车辆运营url
+//        window.parent.$("#carTypeOut").attr("data-selectedindex","0")	//是	int	0:内部 1:外部
+//        window.parent.$("#carTypeOut span").text("内部")
+
 	    if(window.parent.$("#addCarNo").val()==""){
             window.parent.$("#addCarError").text("车牌号不能为空");
             return;

@@ -957,12 +957,12 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 407px;font-size: 14px;padding-top: 43px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>合同原价：</span>
-                <span style="color: #666666;">¥<span class="hetongyuanjia">100</span> 元／公里／吨</span>
+                <span style="color: #666666;">¥<span class="hetongyuanjia">100</span> 元</span>
             </div>
             <div style="margin-top: 25px;">
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>更改单价：</span>
                 <input type="text" placeholder="" class="update_unit" style="height: 36px;width: 205px;border: 1px solid #dbdbdc;">
-                <span style="color: #666666;margin-left: 15px;">元／公里／吨</span>
+                <span style="color: #666666;margin-left: 15px;">元</span>
             </div>
             <div class="clearFloat" style="margin-top: 25px;">
                 <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>调价原因：</span>
@@ -1061,7 +1061,7 @@
                             <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="goodsWeight">150吨</span></div>
                             <!--<div>支付方式：<span>预付</span></div>-->
                             <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                            <div>支付方式：<span id="paymentMode	">现汇</span></div>
+                            <div>支付方式：<span id="paymentType">现汇</span></div>
                         </div>
                         <div class="Lf " style="width: 250px;">
                             <div>包装类型：<span class="packageType">罐装</span></div>
@@ -1113,7 +1113,7 @@
         <div class="modelcontent clearFloat" style="width: 100%;height: 395px;font-size: 14px;padding-top: 31px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;">签订日期：</span>
-                <input type="text" id="qianding_time" placeholder="2016.02.26" class="date-input laydate-icon qianding_time" style="height: 36px;width: 150px;border: 1px solid #dbdbdc;">
+                <input type="text" id="qianding_time" class="date-input laydate-icon qianding_time" style="height: 36px;width: 150px;border: 1px solid #dbdbdc;">
             </div>
             <div style="margin-top: 25px;" class="clearfix">
                 <span style="float: left; width: 135px;text-align: right;">上传合同：</span>
@@ -1122,7 +1122,8 @@
                 </div>
                 <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_hetong"><span style="color: #6ea3ff;">上传</span></div>
             </div>
-            <div class="clearFloat" style="text-align: center;margin-top: 70px;">
+            <div class="errMsg" style="height: 20px;margin: 40px 0;color: red;font-size: 14px;text-align: center;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 60px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
                 <span class=" cf_btn ok_upload" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
             </div>
@@ -1392,7 +1393,7 @@
                </div>
                <div class="order_info_ul">
                    <ul>
-                       <li>货物类型：<span>危化</span></li>
+                       <li>化学品名：<span></span></li>
                        <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span>150吨</span></li>
                        <li>支付方式：<span>预付</span></li>
                        <li>保证金：<span>￥1000.00</span></li>
@@ -1871,7 +1872,7 @@
 
             </div>
             <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">发&nbsp;&nbsp;货&nbsp;地：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">收&nbsp;&nbsp;货&nbsp;地：&nbsp;</span>
                     <div id="province1" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
                         <span>请选择</span>
                         <img src="img/prl-select.jpg" alt="">
@@ -1898,6 +1899,7 @@
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">给&nbsp;&nbsp;车&nbsp;价：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;" id="toCarPrice">
+                    <span>元</span>
                     <!--<div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">-->
                         <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
                         <!--<ul>-->
@@ -1909,11 +1911,14 @@
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">扣损率：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;" id="loss">
+                    <!--占位-->
+                    <span style="color: transparent;">千米</span>
                 </div>
             </div>
             <div class="clearfix">
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">扣损单价：&nbsp;</span>
                     <input type="text" style="height: 36px;width: 248px;border: 1px solid #dbdbdc;" id="lossPrice">
+                    <span>元</span>
                     <!--<div class="selectPub" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 6px; margin-top: 0px;">-->
                         <!--<span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;"></span><img src="img/prl-select.jpg" alt="">-->
                         <!--<ul>-->
@@ -1923,8 +1928,10 @@
                         <!--</ul>-->
                     <!--</div>-->
                 </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">运距：&nbsp;</span>
+                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix">
+                    <span class="modelBox34LeftTitle fl">运距：&nbsp;</span>
                     <input type="text" id="transportDistance" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;">
+                    <span>千米</span>
                 </div>
             </div>  
             <div class="clearfix">
@@ -1933,6 +1940,8 @@
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">路线名：&nbsp;</span>
                     <input type="text" id="routeName" style="height: 36px;width: 253px;border: 1px solid #dbdbdc;">
+                    <!--占位-->
+                    <span style="color: transparent;">千米</span>
                 </div>
             </div>
             <div id="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
@@ -2192,7 +2201,7 @@
                     </div>
                     <div class="order_info_ul" id="fenpei_info2">
                        <ul>
-                           <li>货物类型：<span id="goodsType">危化</span></li>
+                           <li>化学品名：<span id="goodsType">危化</span></li>
                            <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsweight">150吨</span></li>
                            <li>支付方式：<span id="paymentType">预付</span></li>
                            <!--<li>保证金：<span>￥1000.00</span></li>-->
@@ -2201,7 +2210,7 @@
                            <li>包装类型：<span id="packageType">灌装</span></li>
                            <li>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span id="invoiceType">普票</span></li>
                            <li style="color: transparent;">sss</li>
-                           <!--<li>结算方式：<span id="paymentMode">现汇</span></li>-->
+                           <!--<li>结算方式：<span id="paymentType">现汇</span></li>-->
                            <!--<li>缴纳方式：<span>抵扣</span></li>-->
                        </ul>
                        <ul>
@@ -2316,9 +2325,10 @@
                             </div>
                             <!--<input type="text" placeholder="111" id="selectInput6" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
                         </div>
-                        <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">货物类型：</span>
-                            <input type="text" id="selectInput7" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; "  readonly="readonly">
+                        <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">公里数：</span>
+                            <input type="text"  id="kmNum" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">
                         </div>
+
                     </div>
                     <div class="clearfix">
                         <div style="margin-top: 32px;color: #666666;line-height: 36px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">卡券选择：&nbsp;</span>
@@ -2329,8 +2339,8 @@
                             </div>
                             <span class="Lf" onclick="addQuan(this)" style="color: #6ea3f4;margin-left: 10px;">添加</span>
                         </div>
-                        <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">公里数：</span>
-                            <input type="text"  id="kmNum" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">
+                        <div  style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px; display: none" class="fr"><span style="color: #282828;color: transparent;" class="modelBox34LeftTitle">货物类型：</span>
+                            <input  type="text" id="selectInput7" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; "  readonly="readonly">
                         </div>
                         <!--<div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fl"><span style="color: #282828;" class="modelBox34LeftTitle">油卡：</span>-->
                             <!--<input type="text" placeholder="111" id="selectInput8" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
@@ -2390,9 +2400,7 @@
                 <div class="selectPub apartment_select apartment_select0" data-selectedindex="-1" style="float: left; width: 207px; margin-left: 4px; margin-top: 0px; line-height: 36px;">
                     <span style="display: inline-block;max-width: 70px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                     <ul class="shuyu_apartment">
-                        <li data-index="1">1</li>
-                        <li data-index="2">2</li>
-                        <li data-index="3">3</li>
+
                     </ul>
                 </div>
                 <span class="ts"></span>
@@ -2433,9 +2441,7 @@
                     <div class="selectPub apartment_select apartment_select1" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
                         <span style="display: inline-block;max-width: 120px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
                         <ul class="shuyu_apartment">
-                            <li data-index="1">1</li>
-                            <li data-index="2">2</li>
-                            <li data-index="3">3</li>
+
                         </ul>
                     </div>
                 </div>
@@ -3344,6 +3350,9 @@
                             selectZhiwu($(this).attr('data-index'));
 
                         });
+                        if($('.apartment_select1').attr('data-selectedindex')!=""){
+                            selectZhiwu($('.apartment_select1').attr('data-selectedindex'));
+                        }
                     }
                 }
 
@@ -3376,7 +3385,6 @@
                         for (var i = 0; i < json.data.length; i++) {
                             str += '<li data-index="'+json.data[i].id+'">'+json.data[i].dutyName+'</li>'
                         }
-
                         $('.zhiwu_ul').html(str);
 
                         $('.zhiwu_select ul li').click(function(){
@@ -3385,7 +3393,6 @@
                             $(this).parent().parent().find('span').text($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
-
                         });
                     }
                 }
@@ -4033,7 +4040,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 //------------------------------------------------------------------------分配车辆部分   操作开始
     //搜索按钮
     $(".searchResultBtn.btn.input").click(function () {
-            getData(1)
+        getDataLine(1)
     })
     //关闭按钮
     $("#fenpeiClose").click(function () {
@@ -4041,7 +4048,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         $("#car_info").html("")
     })
     //获取车辆列表数据
-    function getData(currentPage) {
+    function getDataLine(currentPage) {
 
         $(".listBox1 tbody").html("");//必须先置空
         $.ajax({
@@ -4112,7 +4119,11 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             }else{
                 str+='<td>禁用</td>';
             }
-            str+='<td>'+item.routeName+'</td>';
+            if(item.routeName==null || item.routeName==""){
+                str+='<td>无</td>';
+            }else{
+                str+='<td>'+item.routeName+'</td>';
+            }
             str+='<td class="btn selectCar"   style="color: #6ba1ff;">选择</td>';
             str+='</tr>';
         })
@@ -4684,7 +4695,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 if (res.code==1){
                     carCardReset()
                     $("#car_info").html("")
-                    cf_alert(1,"分配车辆成功");
+                    window.parent.$(".all_success_alert").show();
+                    window.parent.$(".all_success_alert .innerSuccmsg").text("分配车辆成功");
+//                    cf_alert(1,"分配车辆成功");
 //                    $(".modelBox17").hide();
                 }else if(res.code==401){
 
@@ -4768,8 +4781,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             data:{
             },
             success: function (data) {
-                console.log(data);
-                var str = '';
+
+                var str = '<li  data-index="" value="" data-id="">请选择</li>';
                 for (var i = 0; i < data.data.length; i++) {
                     str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].routeName+'</li>';
                 }
@@ -4785,9 +4798,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 });
                 //默认选中
                 if($(".modelBox12").attr("data-cartype")==""){
-                    $("#chooseAbleLine").attr('data-selectedindex', 0);
-                    $("#chooseAbleLine").attr('data-id', data.data[0].id);
-                    $("#chooseAbleLine").find('span').text(data.data[0].routeName);
+                    $("#chooseAbleLine").attr('data-selectedindex', "");
+                    $("#chooseAbleLine").attr('data-id', "");
+                    $("#chooseAbleLine").find('span').text("请选择");
                 }else{
                     $("#chooseAbleLine li").each(function (idx,item) {
                         if($(".modelBox12").attr("data-routeid")==$(item).attr("data-id")){

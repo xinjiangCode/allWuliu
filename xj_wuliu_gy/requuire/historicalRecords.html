@@ -107,7 +107,7 @@
                         <td>需求编号</td>
                         <td>发布时间</td>
                         <td>报价公司</td>
-                        <td>货物类型</td>
+                        <td>化学品名</td>
                         <td>货物名称</td>
                         <td>始发地</td>
                         <td>目的地</td>
@@ -117,42 +117,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>危化-罐装</td>
-                        <td>氢氧化钠</td>
-                        <td>氢氧化钠</td>
-                        <td>新疆-乌鲁木齐</td>
-                        <td>北京-朝阳区</td>
-                        <td>1000.00</td>
-                        <td>已确认</td>
-                        <td><span class="see seeDetail" style="color:#6ba1ff;">查看详情</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>危化-罐装</td>
-                        <td>氢氧化钠</td>
-                        <td>氢氧化钠</td>
-                        <td>新疆-乌鲁木齐</td>
-                        <td>北京-朝阳区</td>
-                        <td>1000.00</td>
-                        <td >已过期</td>
-                        <td><span class="see seeDetail" style="color:#6ba1ff;">查看详情</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>危化-罐装</td>
-                        <td>氢氧化钠</td>
-                        <td>氢氧化钠</td>
-                        <td>新疆-乌鲁木齐</td>
-                        <td>北京-朝阳区</td>
-                        <td>1000.00</td>
-                        <td>已驳回</td>
-                        <td><span class="see seeDetail" style="color:#6ba1ff;">查看详情</span></td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -289,7 +254,7 @@
                 str+="<td>"+item.demandNo+"</td>"
                 str+="<td>"+timestampToTime1(item.createTime)+"</td>"
                 str+="<td>"+item.var9+"</td>"
-                str+="<td>"+item.goodsType+"</td>"
+                str+="<td>"+item.chemicalName+"</td>"
                 str+="<td>"+item.goodsName+"</td>"
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"

@@ -173,7 +173,7 @@
                 </div>
                 <!--<div class="JStype">-->
                     <!--<span class="cf_leftTitle">结算方式 </span>-->
-                    <!--<div class="select" id="paymentMode" data-selectedindex="1">-->
+                    <!--<div class="select" id="paymentType" data-selectedindex="1">-->
                         <!--<span>到付</span>-->
                         <!--<img src="../img/prl-select.jpg" alt="">-->
                         <!--<ul>-->
@@ -355,7 +355,7 @@
                         <th>需求编号</th>
                         <th>发布时间</th>
                         <th>报价公司</th>
-                        <th>货物类型</th>
+                        <th>化学品名</th>
                         <th>货物名称</th>
                         <th>始发地</th>
                         <th>目的地</th>
@@ -1283,7 +1283,7 @@ console.log(provinceID)
             str+="<td>"+item.demandNo+"</td>"
             str+="<td>"+timestampToTime1(item.createTime)+"</td>"
             str+="<td>"+item.var9+"</td>"
-            str+="<td>"+item.goodsType+"</td>"
+            str+="<td>"+item.chemicalName+"</td>"
             str+="<td>"+item.goodsName+"</td>"
             str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
             str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"

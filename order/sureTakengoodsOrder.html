@@ -131,16 +131,16 @@
             <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">30</li>
-                    <li data-index="3">50</li>
-                </ul>
-            </div>
-            <input class="exportOrderBtn btn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">30</li>-->
+                    <!--<li data-index="3">50</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox">
             <table>
                 <thead>
@@ -148,7 +148,7 @@
                         <!-- <th style="width: 56px;text-align: center;"></th> -->
                         <th>订单编号</th>
                         <th>发车时间</th>
-                        <th>货物类型</th>
+                        <th>化学品名</th>
                         <th>货物名称</th>
                         <th>重量／体积 </th>
                         <th>始发地</th>
@@ -216,7 +216,7 @@
             <!-- <td><div class="cf_select"><img src="../img/cf_noselect.png" alt=""></div></td> -->
             <td><%=list[i].orderNo%></td>
             <td><%=list[i].tloCreateTime%></td>
-            <td><%=list[i].goodsType%></td>
+            <td><%=list[i].chemicalName%></td>
             <td><%=list[i].goodsName%></td>
             <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
