@@ -385,6 +385,7 @@
             window.parent.getPeoples(1);
             window.parent.getPeoples(2);
             window.parent.getPeoples(3);
+            window.parent.getDataLine(1);
         }
         //获取数据
         function getData(id) {
@@ -418,7 +419,7 @@
             window.parent.$("#demandNo").text(data.demandNo);
             window.parent.$("#startDate").text(data.startDate);
             window.parent.$("#createTime").text(timestampToTime1(data.createTime));
-            window.parent.$("#goodsType").text(data.chemicalName);
+            window.parent.$("#chemicalName").text(data.chemicalName);
             window.parent.$("#selectInput7").text(data.goodsType);
             window.parent.$("#packageType").text(data.packageType);
             window.parent.$("#goodsName").text(data.goodsName);
@@ -532,7 +533,8 @@
                     if (json.code == 1) {
                         if (json.data.length != 0) {
                             for (var i = 0; i < json.data.length; i++) {
-                            
+
+                                json.data[i].tloUpdateTime = new Date(json.data[i].tloUpdateTime).Format("yyyy-MM-dd hh:mm:ss");
                                 json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm:ss");
                             }
                             

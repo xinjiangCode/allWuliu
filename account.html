@@ -1393,7 +1393,7 @@
                </div>
                <div class="order_info_ul">
                    <ul>
-                       <li>货物类型：<span>危化</span></li>
+                       <li>化学品名：<span></span></li>
                        <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span>150吨</span></li>
                        <li>支付方式：<span>预付</span></li>
                        <li>保证金：<span>￥1000.00</span></li>
@@ -4040,7 +4040,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 //------------------------------------------------------------------------分配车辆部分   操作开始
     //搜索按钮
     $(".searchResultBtn.btn.input").click(function () {
-            getData(1)
+        getDataLine(1)
     })
     //关闭按钮
     $("#fenpeiClose").click(function () {
@@ -4048,7 +4048,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         $("#car_info").html("")
     })
     //获取车辆列表数据
-    function getData(currentPage) {
+    function getDataLine(currentPage) {
 
         $(".listBox1 tbody").html("");//必须先置空
         $.ajax({
@@ -4119,7 +4119,11 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             }else{
                 str+='<td>禁用</td>';
             }
-            str+='<td>'+item.routeName+'</td>';
+            if(item.routeName==null || item.routeName==""){
+                str+='<td>无</td>';
+            }else{
+                str+='<td>'+item.routeName+'</td>';
+            }
             str+='<td class="btn selectCar"   style="color: #6ba1ff;">选择</td>';
             str+='</tr>';
         })

@@ -38,7 +38,7 @@
                    </div>
                    <div class="order_info_ul">
                        <ul>
-                           <li>货物类型：<span class="good_type">危化</span></li>
+                           <li>化学品名：<span class="chemicalName"></span></li>
                            <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="zhongliang">150吨</span></li>
                            <li>支付方式：<span class="pay_method2">预付</span></li>
                            <!-- <li>保证金：<span class="baozhengjin">￥1000.00</span></li> -->
@@ -335,7 +335,7 @@
                 $('.start_address').attr("title",json.data.sendAddress);
                 $('.end_address').text(json.data.receiveAddress);
                 $('.end_address').attr("title",json.data.receiveAddress);
-                $('.good_type').text(json.data.goodsType);
+                $('.chemicalName').text(json.data.chemicalName);
                 $('.zhongliang').text(json.data.goodsNum+json.data.goodsUnit);
                 $('.zhongliang').attr("data-zl",json.data.goodsNum);
 

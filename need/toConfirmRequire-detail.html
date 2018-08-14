@@ -68,7 +68,7 @@
                 </div>
                 <div class="contlist contlisttwo">
                     <div class="left ll">
-                        <div>货物类型：<span id="goodsType">危化</span></div>
+                        <div>化学品名：<span id="chemicalName">危化</span></div>
                         <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
                         <!--<div>支付方式：<span>预付</span></div>-->
                         <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
@@ -154,7 +154,7 @@
             $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             $(".receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             $(".receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            $("#goodsType").text(data.chemicalName);
+            $("#chemicalName").text(data.chemicalName);
                 $("#goodsWeight").text(data.goodsNum+data.goodsUnit);
             $("#packageType").text(data.packageType);
             $("#invoiceType").text(data.invoiceType);

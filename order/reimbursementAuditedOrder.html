@@ -398,7 +398,8 @@
                     if (json.code == 1) {
                         if (json.data.length != 0) {
                             for (var i = 0; i < json.data.length; i++) {
-                            
+
+                                json.data[i].tloUpdateTime = new Date(json.data[i].tloUpdateTime).Format("yyyy-MM-dd hh:mm:ss");
                                 json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm:ss");
                             }
                             
