@@ -1034,13 +1034,13 @@
 </div>
 
 <!--//报价-->
-<div class="modelBox0" style="">
+<div class="modelBox0">
     <div class="modelCont" style="width: 800px;height: 390px;">
         <div class="modeltitle" style="width: 780px;padding-left: 20px;">
             <span>需求信息</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent"  style="width: 780px;height: 340px;padding-left: 20px;font-size: 16px;padding-top: 20px;">
+        <div class="modelcontent"  style="width: 780px;height: 340px;padding-left: 20px;color: #666;font-size: 14px;padding-top: 20px;">
             <div class="requireInfo infoBox">
                 <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">需求信息</div>-->
                 <div class="contBox" style="line-height: 30px;">
@@ -1061,7 +1061,7 @@
                             <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="goodsWeight">150吨</span></div>
                             <!--<div>支付方式：<span>预付</span></div>-->
                             <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                            <div>支付方式：<span id="paymentType">现汇</span></div>
+                            <div>支付方式：<span id="paymentType" class="paymentType">现汇</span></div>
                         </div>
                         <div class="Lf " style="width: 250px;">
                             <div>包装类型：<span class="packageType">罐装</span></div>
@@ -2203,7 +2203,7 @@
                        <ul>
                            <li>化学品名：<span id="goodsType">危化</span></li>
                            <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsweight">150吨</span></li>
-                           <li>支付方式：<span id="paymentType">预付</span></li>
+                           <li>支付方式：<span id="paymentType" class="paymentType">预付</span></li>
                            <!--<li>保证金：<span>￥1000.00</span></li>-->
                        </ul>
                        <ul>
@@ -4213,7 +4213,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     var str='';
                     $.each(res.aData,function (idx,item) {
                         if(item.attr_2==1){
-                            $("#money").attr("data-allMoney",item.money)
+                            $("#money").attr("data-allMoney",item.money);
+                            $("#money").attr("data-dot-id",item.dot_id);
+                            $("#money").attr("data-zijin-id",item.id);
                         }else{
                             str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
                         }
@@ -4295,7 +4297,6 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             return;
         }
         //判断是否是重复添加
-        debugger
         var isok2 = 0;
         $.each($("#quanList li"),function(idx,item){
             if($(this).attr("data-id")==$(that).prev().attr("data-selectedindex")){
@@ -4446,21 +4447,26 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         carStr.planStartDate=$("#test1").val();
         carStr.planEndDate=$("#test2").val();
         carStr.kmNum=$("#kmNum").val();
-        carStr.driverid=$("#peoples1").attr("data-selectedindex")
+        carStr.driverid=$("#peoples1").attr("data-selectedindex");
         carStr.driver=$("#peoples1 span").text();
-        carStr.supercargoid=$("#peoples3").attr("data-selectedindex")
-        carStr.supercargo=$("#peoples3 span").text()
-        carStr.safetyid=$("#peoples2").attr("data-selectedindex")
-        carStr.safety=$("#peoples2 span").text()
-        carStr.money=$("#money").val()
-        carStr.orderId=$(".modelBox17").attr("orderId")
-        carStr.goodsType=$("#selectInput7").val()
+        carStr.supercargoid=$("#peoples3").attr("data-selectedindex");
+        carStr.supercargo=$("#peoples3 span").text();
+        carStr.safetyid=$("#peoples2").attr("data-selectedindex");
+        carStr.safety=$("#peoples2 span").text();
+        carStr.money=$("#money").val();
+        carStr.orderId=$(".modelBox17").attr("orderId");
+        carStr.goodsType=$("#selectInput7").val();
        // console.log(carStr)
+        //把资金塞到listCard里面
+        // var zijinList = {};
+        // zijinList.couponId = $("#money").attr("data-zijin-id");
+        // zijinList.money = $("#money").val();
+        // listCard.push(zijinList);
         var sss={};
         sss.car=carStr;
-        sss.listTCouponrec=listCard
+        sss.listTCouponrec=listCard;
         if($("#ok_car_info1").attr("data-updata")==""){//新增
-            listCar.push(sss)
+            listCar.push(sss);
             $("#car_info").append('<div  class=\"car_num\"><span>'+$("#che").text()+'</span><img src=\"img/close_btn.png\" alt=\"\"></div>');
         }else{//编辑
             listCar[$("#ok_car_info1").attr("data-updata")]=sss;
@@ -4687,7 +4693,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             cache: false,
             data:{
                 tLogisticsOrderId:$(".modelBox17").attr("orderId"),
-                carAndTCouponrec:JSON.stringify(listCar)
+                carAndTCouponrec:JSON.stringify(listCar),
+                zijinId:$("#money").attr("data-zijin-id"),
             },
             ansyc: false,
             dataType: 'json',

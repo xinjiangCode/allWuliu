@@ -416,6 +416,7 @@
                             window.parent.$(".all_success_alert").find(".innerSuccmsg").html("该订单已全部结算完成，确认送达");
                             window.parent.$(".modelBox18_ifrm").hide();
                             window.parent.$("#suerSongda").attr("src","");
+                            window.parent.$("#Iframe").attr("src","./order/onGoingOrder.html");
                         }
                         var str = '';
                         for (var i = 0; i < json.data.length; i++) {
@@ -511,6 +512,7 @@
                 success: function (data) {
                     console.log("--------------------------------------");
                     console.log(data.data[0]);
+                    //debugger;
                     var thisdata = data.data[0]
                     //折损率
                     $(".xx_ksl").val(thisdata.car.departureLoss);
@@ -587,6 +589,7 @@
         
         //运单信息计算总价
         function xxjszj(){
+
             //货物单价
             var hwdj = $(".inp_hidden").val()-0;
             //折损率

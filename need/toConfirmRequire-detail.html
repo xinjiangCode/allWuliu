@@ -77,7 +77,7 @@
                     <div class="left mm">
                         <div>包装类型：<span id="packageType">罐装</span></div>
                         <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span id="invoiceType">普票</span></div>
-                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 21px;">备注信息</span></div>
+                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 22px;">备注信息</span></div>
                         <!--<div>缴纳方式：<span>抵扣</span></div>-->
                     </div>
                     <div class="left rr">
@@ -246,18 +246,15 @@
         })
         //渲染更改报价弹框数据
         function cf_dataRenderSelect(data) {
+            debugger
             window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
             window.parent.$(".modelBox0 .createTime").text(timestampToTime1(data.createTime));
             window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-            window.parent.$(".modelBox0 .goodsType").text(data.goodsType);
-            if(data.goodsUnit=="重量/吨"){
-                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'吨');
-            }else{
-                window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+'m³');
-            }
+            window.parent.$(".modelBox0 .goodsType").text(data.chemicalName);
+            window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+data.goodsUnit);
             window.parent.$(".modelBox0 .packageType").text(data.packageType);
             window.parent.$(".modelBox0 .invoiceType").text(data.invoiceType);
             window.parent.$(".modelBox0 .paymentType").text(data.paymentType);
@@ -271,12 +268,7 @@
             window.parent.$(".modelBox0 .receiveUser").text(data.receiveUser);
             window.parent.$(".modelBox0 .receivePhone").text(data.receivePhone);
             window.parent.$(".modelBox0 .receiveCompanyname").text(data.receiveCompanyname);
-
-            if(data.goodsUnit=="重量/吨"){
-                window.parent.$(".modelBox0 .danjiadanwei").text('元/吨');
-            }else{
-                window.parent.$(".modelBox0 .danjiadanwei").text('元/m³');
-            }
+            window.parent.$(".danjiadanwei").text("元/"+data.goodsUnit);
         }
 
         //获取报价公司列表  暂时不用
