@@ -207,15 +207,15 @@
     </div>
     <!--//选择公司-->
     <div class="modelBox0 " style="">
-        <div class="modelCont" style="width: 800px;height: 390px;">
+        <div class="modelCont" style="width: 800px;height: 410px;">
             <div class="modeltitle" style="width: 780px;padding-left: 20px;">
                 <span>需求信息</span>
                 <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
             </div>
-            <div class="modelcontent"  style="width: 780px;height: 340px;padding-left: 20px;font-size: 16px;padding-top: 20px;">
+            <div class="modelcontent"  style="width: 780px;height: 360px;padding-left: 20px;font-size: 16px;padding-top: 20px;">
                 <div class="requireInfo infoBox">
                     <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">需求信息</div>-->
-                    <div class="contBox" >
+                    <div class="contBox"  style="color: #666666;line-height: 24px;">
                         <div class="contlist contlistone clearFloat">
                             <div class="Lf " style="width: 250px;">
                                 <div>需求编号：<span id="demandNo">201707196369321</span></div>
@@ -252,17 +252,17 @@
                 </div>
                 <div class="baojiaCompany infoBox" style="width: 755px;border: 1px solid #e0e0e0;margin-top: 20px;padding-left: 5px;  ">
                     <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">报价公司</div>-->
-                    <div class="contBox" id="baoJiaompany" style="height: 173px;overflow-y: auto;">
-                        <ul class="clearFloat" style="padding: 5px 0;">
-                            <li class="Lf " style="width: 292px;">公司名称：<span >化动力有限公司</span></li>
-                            <li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span >120元/吨</span></li>
-                            <li class="Lf "><span class=" btn blue ll">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>
-                        </ul>
-                        <ul class="clearFloat" style="padding: 5px 0;">
-                            <li class="Lf " style="width: 292px;">公司名称：<span >化动力有限公司</span></li>
-                            <li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span >120元/吨</span></li>
-                            <li class="Lf "><span class=" btn blue ll">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>
-                        </ul>
+                    <div class="contBox" id="baoJiaompany" style="height: 173px;overflow-y: auto;color: #666666;">
+                        <!--<ul class="clearFloat" style="padding: 5px 0;">-->
+                            <!--<li class="Lf " style="width: 292px;">公司名称：<span >化动力有限公司</span></li>-->
+                            <!--<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span >120元/吨</span></li>-->
+                            <!--<li class="Lf "><span class=" btn blue ll">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>-->
+                        <!--</ul>-->
+                        <!--<ul class="clearFloat" style="padding: 5px 0;">-->
+                            <!--<li class="Lf " style="width: 292px;">公司名称：<span >化动力有限公司</span></li>-->
+                            <!--<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span >120元/吨</span></li>-->
+                            <!--<li class="Lf "><span class=" btn blue ll">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>-->
+                        <!--</ul>-->
                     </div>
                 </div>
             </div>
@@ -528,8 +528,8 @@
                         $.each(res.data.data,function (idx,item) {
                             str+='<ul class="clearFloat" style="padding: 5px 0;"  data-id='+item.id+'>';
                             str+='<li class="Lf" style="width: 292px;">公司名称：<span >'+item.companyname+'</span></li>';
-                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/'+item.goodsUnit+'</span></li>'
-                            str+='<li class="Lf" data-id="'+item.demandid+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
+                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'</span></li>'
+                            str+='<li class="Lf" data-id="'+item.id+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
                             str+="</ul>"
                         })
                         $("#baoJiaompany").html(str);
