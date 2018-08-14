@@ -52,6 +52,22 @@
             margin-left: 10px;
         }
 
+        .delete_info {
+            width: 13px; 
+            height: 13px;
+            text-align: center;
+            line-height: 11px;
+            /*border: 1px solid #4e4e4e;*/
+            border: 1px solid red;
+            border-radius: 50%;
+            display: inline-block;
+            /*color: #4e4e4e;*/
+            color: red;
+            margin-left: 5px;
+            font-size: 12px;
+            vertical-align: bottom;
+        }
+
     </style>
 </head>
 <body>
@@ -406,8 +422,14 @@
                                 
 
                                 if (idArr == $(e)[0].type_id) {
-                                    $('.textarea_div').append('<div data-leiid="'+select_id+'" data-xiangid="'+$(e)[0].type_id+'">'+$(e)[0].type_name + '</div>');
+                                    $('.textarea_div').append('<div data-leiid="'+select_id+'" data-xiangid="'+$(e)[0].type_id+'">'+$(e)[0].type_name + '<span class="delete_info">x</span></div>');
                                 }
+
+                                if ($('.update_btn').attr('flag') == '1') {
+                                    $('.delete_info').addClass('delete_div');
+                                    $('.delete_div').css('cursor', 'pointer');
+                                }
+
 
                                 
                             });
@@ -523,11 +545,15 @@
                         $('.update_btn').css('display', 'block');
                         $(".next_btn").hide();
 
+                        $('.update_btn').attr('flag', '1');
+
                         getInfo(4);
                     }else {
                         $('.update_btn').css('display', 'block');
                         $(".shenhe").hide();
                         $(".next_btn").hide();
+
+                        $('.update_btn').attr('flag', '1');
 
                         getInfo(4);
                     }
@@ -585,7 +611,10 @@
 
     }
 
-
+    // 删除经营范围
+    $(document).on('click', '.delete_div', function() {
+        $(this).parent().remove();
+    });
 
     // 增加
     $(document).on('click', '.add', function() {
@@ -609,7 +638,9 @@
 
         // $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+lei_text+'--'+xiang_text +'</div>');
 
-        $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+xiang_text +'</div>');
+        $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+xiang_text +'<span class="delete_info delete_div">x</span></div>');
+
+        $('.delete_div').css('cursor','pointer');
 
     });
 
@@ -738,6 +769,7 @@
 
     // 回显数据
     function getInfo(type) {
+
         $.ajax({
             url: pubIP + 'companyCertification/getQualificationsBaseInfoAndStrByCompanyId',
             type: 'post',
@@ -778,6 +810,8 @@
                 $('.center1 ul').attr('data-ids', data.data[0].ids);
 
                 $('.textarea_div').attr('display',true)
+
+
                 var that = this;
                 var idArr =  $('.textarea_div').attr('data-xiangid');
                 var leiId = $('.textarea_div').attr('data-leiid');
