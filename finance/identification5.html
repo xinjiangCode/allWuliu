@@ -162,7 +162,7 @@
                     <div class="left1 Lf"><span class="fr yincang">手机号:</span><span class="fr bb xianshi">验证手机号:</span><i class="red fr">*</i></div>
                     <div class="right1 Lf rz">
                         <input type="text" id="yanzheng_phone" class="Lf">
-                        <a href="##" class="weiRenZheng" id="huoqu_code" style="margin-left: 15px; line-height: 38px; color: #5590F6;">获取验证码</a>
+                        <a href="##" class="weiRenZheng" id="huoqu_code" style="margin-left: 15px; line-height: 38px; color: #5590F6; width: 70px;">获取验证码</a>
                         <span class="bb Lf yincang update_phone_btn">修改手机号</span>
                     </div>
                     <div class="ts bukeyong">手机号格式不正确</div>
@@ -1141,8 +1141,13 @@ function xmTanUploadImg2(obj) {
                         $('#new_code').parent().next().text('验证码错误');
                         $('#new_code').parent().next().css('display', 'block');
                         return false;
-                   }
-                    window.parent.update_runcaiwu();
+                   } 
+                    if(data.code == 1) {
+                        window.parent.update_runcaiwu();
+                    } else {
+                        alert(data.msg);
+                    }
+                    
                 },
                 error: function (err) {
                     console.log(err);

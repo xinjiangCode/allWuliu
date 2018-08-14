@@ -38,6 +38,22 @@
             display: none;
         }
 
+        .delete_btn {
+            color: #80acf8;
+            position: absolute;
+            left: 380px;
+            top: 85px;
+            cursor: pointer;
+        }
+
+        .delete_btn1 {
+            color: #80acf8;
+            position: absolute;
+            left: 380px;
+            top: 124px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -175,7 +191,7 @@
                 </div>
                 <span class="ts yingye"></span>
             </li>
-            <li>
+            <li style="position: relative;">
                 <div class="left1 Lf">开户许可证扫描件:</div>
                 <div class="right1 Lf">
                     <div class="uploade" style="" id="tu">
@@ -185,8 +201,10 @@
                         <input type="hidden" name="" value="" id="saomiaojian_hidden">
                     </div>
                 </div>
+                <span></span>
+                <span class="delete_btn" style="position: absolute;">删除</span>
             </li>
-            <li>
+            <li style="position: relative;">
                 <div class="left1" style="width: 418px;">《税务登记证副本》或《一般纳税人资格证书》扫描件:</div>
                 <div class="right1 Lf" style="margin-left: 214px;">
                     <div class="uploade" style="">
@@ -196,6 +214,8 @@
                         <input type="hidden" name="" value="" id="chajian_hidden">
                     </div>
                 </div>
+                <span></span>
+                <span class="delete_btn1" style="position: absolute;">删除</span>
             </li>
             <!-- <li>
                 <div class="left1 Lf"><i class="red">*</i>地址:</div>
@@ -294,6 +314,12 @@
             $('.company_type').css('display', 'none');
 
         }
+    });
+
+
+    $('.delete_btn1, .delete_btn').click(function() {
+        $(this).parent().find('.uploade').css('background', 'url("") rgb(246, 246, 246)');
+        $(this).parent().find('.uploade').find('input[type="hidden"]').val('');
     });
 
 
@@ -634,6 +660,7 @@
             success: function (data) {
                 // console.log(data);
                 file_url = data.url;
+                $(obj).parent().parent().find('ts').html('');
             },
             error: function (err) {
                 console.log(err);
@@ -665,6 +692,37 @@
     $(function () {
 
         /*修改*/
+
+        //不能删除
+                        $('.delete_btn1').hide();
+                        $('.delete_btn').hide();
+        
+        $.ajax({
+            url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.data.type == 1) {
+                    $('.delete_btn1').show();
+                    $('.delete_btn').show();
+                } else {
+                    $('.delete_btn1').hide();
+                    $('.delete_btn').hide();
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
 
         if (companyId) {
 
@@ -1264,7 +1322,6 @@
                             
                             $("input[name=type1][value="+data.data.company.companyType+"]").attr("checked",true);
                         }
-                        
 
                         $('#faren_name').val(data.data.company.legalPerson);
                         $('#id_number').val(data.data.company.legalIdNumber);
@@ -1571,6 +1628,8 @@
         $('#province').attr('disabled', false);
         $('#city').attr('disabled', false);
         $('#area').attr('disabled', false);
+        $('.delete_btn').show();
+        $('.delete_btn1').show();
         $('input[name=code_type]').attr('disabled', true);
         $(this).addClass('yiRenZheng1');
         $(this).text('修改完成');
