@@ -919,7 +919,14 @@
                 success: function (data) {
                     console.log("+++");
                     console.log(data);
-                    $(".xianjin2").val(data.data.afterWages);
+                    var testRes = data.hasOwnProperty("data");//判断json中是否存在某属性
+                    console.log(testRes);
+                    if(testRes === false){
+                        $(".xianjin2").val($(".xianjin").val());
+                    }else {
+                        $(".xianjin2").val(data.data.afterWages);
+                    }
+
                     fina_jiesuan();
                 },
                 error: function(err) {

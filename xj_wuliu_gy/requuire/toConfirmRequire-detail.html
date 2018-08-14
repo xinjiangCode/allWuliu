@@ -75,7 +75,7 @@
                         <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
                         <!--<div>支付方式：<span>预付</span></div>-->
                         <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
-                        <div>结算方式：<span id="paymentMode	">现汇</span></div>
+                        <div>结算方式：<span id="paymentType">现汇</span></div>
                     </div>
                     <div class="left mm">
                         <div>包装类型：<span id="packageType">罐装</span></div>
@@ -200,7 +200,7 @@
             $("#goodsWeight").text(data.goodsNum+data.goodsUnit);
             $("#packageType").text(data.packageType);
             $("#invoiceType").text(data.invoiceType);
-            $("#paymentMode").text(data.paymentMode);
+            $("#paymentType").text(data.paymentType);
             $(".goodsName").eq(0).text(data.goodsName);
             $(".goodsName").eq(1).text(data.goodsName);
             $("#carType").text(data.carType);
