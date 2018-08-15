@@ -169,17 +169,6 @@
                         <td>北京-朝阳区</td>
                         <td>1000.00</td>
                         <td><span class="seeDetail ll">查看详情</span><span class="del">选择公司</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>2017-07-19 14:48</td>
-                        <td>危化-罐装</td>
-                        <td>氢氧化钠</td>
-                        <td>氢氧化钠</td>
-                        <td>新疆-乌鲁木齐</td>
-                        <td>北京-朝阳区</td>
-                        <td>1000.00</td>
-                        <td><span class="seeDetail ll">查看详情</span><span class="del">选择公司</span></td>
                     </tr> -->
                 </tbody>
             </table>
@@ -384,13 +373,14 @@
             })
             //详情
             $(".seeDetail").click(function () {
+                sessionStorage.setItem("detailTitle","当前需求状态：待确认需求详情");
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./toConfirmRequire-detail.html";
+                window.location.href="./requireDetail.html";
             })
             //选择公司
             $(".selectCompany").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                getDataCompanyList()
+
                 getDataSelect()
                 $(".modelBox0").show();
 
@@ -407,43 +397,7 @@
             currentPage=currentPage1;
             getData(currentPage1);
         })
-        //启用禁用 删除  事件
-        function upadtaState(type,that) {
-            $.ajax({
-                url: pubIP + 'tLogisticsVehicle/updateCarDoIng', /*v1.0*/
-                type: 'post',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                cache: false,
-                ansyc: true,
-                dataType: 'json',
-                data:{
-                    companyId:companyId,
-                    sort:$(".sort").attr("data-selectedindex"),
-                    carId:$(that).parents("tr").attr("data-id"),
-                    type:type
-                },
-                success: function (res) {
-                    if(res.code==1){
-                        if(type==1){
-                            alert("删除车辆成功")
-                        }else if(type==2){
-                            alert("启用车辆成功")
-                        }else if(type==3){
-                            alert("禁用车辆成功")
-                        }
-                        getData(currentPage);
-                    }else{
-                        alert(res.msg);
-                    }
-                },
-                error: function(err){
-                    console.log(err);
-                }
-            })
-        }
+
 
         //选择公司  弹框 关闭
         $("img.close").click(function () {
@@ -504,10 +458,12 @@
             $("#receiveUser").text(data.receiveUser);
             $("#receivePhone").text(data.receivePhone);
             $("#receiveCompanyname").text(data.receiveCompanyname);
+            //获取报价公司列表  传入计量单位
+            getDataCompanyList(data.goodsUnit)
         }
 
         //获取报价公司列表
-        function getDataCompanyList() {
+        function getDataCompanyList(danwei) {
             $("#baoJiaompany").html("");
             $.ajax({
                 url: pubIP + 'wlDemandQuoted/queryList', /*v1.0*/
@@ -528,7 +484,7 @@
                         $.each(res.data.data,function (idx,item) {
                             str+='<ul class="clearFloat" style="padding: 5px 0;"  data-id='+item.id+'>';
                             str+='<li class="Lf" style="width: 292px;">公司名称：<span >'+item.companyname+'</span></li>';
-                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'</span></li>'
+                            str+='<li class="Lf" style="width: 292px;">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/'+item.danwei+'</span></li>'
                             str+='<li class="Lf" data-id="'+item.id+'" data-demandid="'+item.demandid+'" data-companyid="'+item.companyid+'"><span class=" btn blue sel" style="color: #6ea3f4;">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
                             str+="</ul>"
                         })
@@ -553,10 +509,10 @@
                                 },
                                 success: function (res) {
                                     if(res.code==1){
-                                        alert("选择公司成功");
+                                        cf_alert(1,"选择公司成功");
                                         window.location.reload()
                                     }else{
-                                        alert(res.msg);
+
                                     }
 
                                 },
@@ -583,10 +539,10 @@
                                 },
                                 success: function (res) {
                                     if(res.code==1){
-                                        alert("删除公司成功");
+                                        cf_alert(2,"删除公司成功");
                                         location.reload();
                                     }else{
-                                        alert(res.msg);
+
                                     }
 
                                 },

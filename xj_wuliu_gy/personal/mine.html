@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" type="text/css" href="../css/mine.css"/>
     <style>
-
+        .headerNavList div{display: none;}
     </style>
 
 
@@ -29,21 +29,41 @@
             <div class="headerDetail Lf">
                 <div class="headerTitle">企业名称及LOGO</div>
                 <div class="headerNavList">
-                    <!--<div class="headerNav1 Lf">-->
-                        <!--<img style="margin-top: 2px;" src="../img/cf_headerNav1.png" alt="">-->
-                        <!--<i>信用</i>-->
-                    <!--</div>-->
+                    <div class="headerNav1no Lf">
+                        <img style="margin-top: 2px;" src="../img/cf_headerNav1no.png" alt="">
+                        <i>信用</i>
+                    </div>
+                    <div class="headerNav1 Lf">
+                        <img style="margin-top: 2px;" src="../img/cf_headerNav1.png" alt="">
+                        <i>信用</i>
+                    </div>
+                    <div class="headerNav2no Lf">
+                        <img src="../img/cf_headerNav2no.png" alt="">
+                        <i>企业信息</i>
+                    </div>
                     <div class="headerNav2 Lf">
                         <img src="../img/cf_headerNav2.png" alt="">
                         <i>企业信息</i>
+                    </div>
+                    <div class="headerNav3no Lf" style="display: none;">
+                        <img src="../img/cf_headerNav3no.png" alt="">
+                        <i>特殊</i>
                     </div>
                     <div class="headerNav3 Lf" style="display: none;">
                         <img src="../img/cf_headerNav3.png" alt="">
                         <i>特殊</i>
                     </div>
+                    <div class="headerNav4no Lf">
+                        <img src="../img/cf_headerNav4no.png" alt="">
+                        <i>普化</i>
+                    </div>
                     <div class="headerNav4 Lf">
                         <img src="../img/cf_headerNav4.png" alt="">
                         <i>普化</i>
+                    </div>
+                    <div class="headerNav5no Lf" style="display: none;">
+                        <img src="../img/cf_headerNav5no.png" alt="">
+                        <i>危化</i>
                     </div>
                     <div class="headerNav5 Lf" style="display: none;">
                         <img src="../img/cf_headerNav5.png" alt="">
@@ -63,28 +83,28 @@
                 <img src="../img/cf_msg1.png" alt="">
                 <div class="Lf">
                     <div>未读消息</div>
-                    <div class="num">99999</div>
+                    <div class="num">0</div>
                 </div>
             </div>
             <div class="msg2 income">
                 <img src="../img/cf_msg2.png" alt="">
                 <div class="Lf">
                     <div>昨日收账</div>
-                    <div class="num">99999</div>
+                    <div class="num"></div>
                 </div>
             </div>
             <div class="msg3 expendNum">
                 <img src="../img/cf_msg3.png" alt="">
                 <div class="Lf">
                     <div>昨日出账</div>
-                    <div class="num">99999</div>
+                    <div class="num"></div>
                 </div>
             </div>
             <div class="msg4 AccountBalance">
                 <img src="../img/cf_msg4.png" alt="">
                 <div class="Lf">
                     <div>可提现金额</div>
-                    <div class="num">99999</div>
+                    <div class="num"></div>
                 </div>
             </div>
 
@@ -128,19 +148,19 @@
 
         <div style="margin-top: 10px;color: #666666;font-size: 14px;">常用功能</div>
         <div class="GNList">
-            <div class="GN1 GN">
-                <i>广告位购买</i>
-                <img src="" alt="">
-            </div>
-            <div class="GN2 GN">
+            <div class="GN1 GN" onclick=" sessionStorage.setItem('isAddRequireMent',1);window.location.href='./addRequireMent.html'">
                 <i>发布订单</i>
                 <img src="" alt="">
             </div>
-            <div class="GN3 GN">
+            <div class="GN2 GN" onclick="window.location.href='../order/priceAjustApplication.html'">
+                <i>调价申请</i>
+                <img src="" alt="">
+            </div>
+            <div class="GN3 GN" onclick="window.location.href='../financialManage/platChongzhi.html'">
                 <i>平台充值</i>
                 <img src="" alt="">
             </div>
-            <div class="GN4 GN">
+            <div class="GN4 GN" onclick="window.location.href='../financialManage/platTixian.html'">
                 <i>平台提现</i>
                 <img src="" alt="">
             </div>
@@ -166,15 +186,15 @@
         <div style="margin-top: 10px;color: #666666;font-size: 14px;margin-bottom: 5px;">更多服务</div>
 
         <div class="serverList">
-            <div class="ser ser1">
+            <div class="ser ser1" onclick="window.parent.$('.shouyeTankuang1').show()">
                 <div class="imgs">
                     <img src="../img/cf_ser1.png" alt="">
                 </div>
-                <div class="chTitle">OA管理</div>
-                <div class="EngTitle">OA management </div>
+                <div class="chTitle">定制化服务</div>
+                <div class="EngTitle">Customized service</div>
                 <div class="moreSer">更多平台管理 <img src="../img/cf_more.png" alt=""></div>
             </div>
-            <div class="ser ser2">
+            <div class="ser ser2" onclick="window.parent.$('.shouyeTankuang2').show()">
                 <div class="imgs">
                     <img src="../img/cf_ser2.png" alt="">
                 </div>
@@ -186,8 +206,8 @@
                 <div class="imgs">
                     <img src="../img/cf_ser3.png" alt="">
                 </div>
-                <div class="chTitle">交易商城</div>
-                <div class="EngTitle">Trading mall</div>
+                <div class="chTitle">会员商城</div>
+                <div class="EngTitle">LOCATION</div>
                 <div class="moreSer">更快捷 更方便 <img src="../img/cf_more.png" alt=""></div>
             </div>
         </div>
@@ -421,17 +441,25 @@
                 if(res.code==1){
                     if(res.data.aType==0 && res.data.aState==1){ //危险化学品资质
                         $(".headerNavList .headerNav5").show();
+                        $(".headerNavList .headerNav5no").hide();
                     }else{
                         $(".headerNavList .headerNav5").hide();
+                        $(".headerNavList .headerNav5no").show();
                     }
                     if(res.data.bType==0 && res.data.bState==1){ //特殊化学品资质
                         $(".headerNavList .headerNav3").show();
+                        $(".headerNavList .headerNav3no").hide();
                     }else{
+                        $(".headerNavList .headerNav3no").show();
                         $(".headerNavList .headerNav3").hide();
                     }
                     if(res.data.companyLogo!=null && res.data.companyLogo!=""){
                         $(".mineLeftHeader .headerImgLe img").attr("src",res.data.companyLogo);
                     }
+                    $(".headerNavList .headerNav1").show();
+                    $(".headerNavList .headerNav2").show();
+                    $(".headerNavList .headerNav4").show();
+
                     $(".headerTitle").text(res.data.companyName)
 
                 }else{

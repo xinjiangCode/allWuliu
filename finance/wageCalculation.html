@@ -186,8 +186,13 @@
                         str += '<td>'+item.name+'</td>'
                         str += '<td>'+item.org_name+'</td>'
                         str += '<td>'+item.job_name+'</td>'
-                        str += '<td>'+item.updatetime+'</td>'
-                        str += '<td>'+item.money+'</td>'
+                        if(item.updatetime==null || item.updatetime==""){
+                            str += '<td>无</td>'
+                        }else{
+                            str += '<td>'+timestampToTime1(item.updatetime)+'</td>'
+                        }
+
+                        str += '<td>'+item.by_money+'</td>'
                         str += '<td>'+item.wj_money+'</td>'
                         str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.by_money+'">工资发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&&type=0" class="btn ll">查看详情</a></td>'
                         str += '</tr>'

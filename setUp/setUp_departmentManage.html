@@ -288,6 +288,15 @@
     	var apartment_name = $(window.parent.document).find('.apartment_name').val();
     	var zhineng_descript = $(window.parent.document).find('.zhineng_descript').val();
 
+        if(apartment_name==""){
+            window.parent.$(".modelBox35 .errMsg").text("请填写部门名称")
+            return;
+        }
+        if(zhineng_descript==""){
+            window.parent.$(".modelBox35 .errMsg").text("请填写职能描述")
+            return;
+        }
+
     	if ($(this).attr('data-apartId')) {
     		id = $(this).attr('data-apartId');
     		update_apartment(apartment_name, zhineng_descript, id);

@@ -200,13 +200,13 @@
                     addTime:$("#test1").val(),
                 },
                 success: function (res) {
-                    if(res.code===1){
+                    if(res.code==1){
                         //首次请求时 改变分页数据
                         if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                         $(".pagination").parent().css("display","block");
-                        if(currentPage===1){
+                        if(currentPage==1){
                             //修改底部分页
-                            var pageNum=Math.ceil(res.data.count/pageSize);
+                            var pageNum=Math.ceil(res.count/pageSize);
                             $(".allPageN").attr("pageTotal",pageNum);
                             $(".pageJump i").text("共"+pageNum+"页");
                             $('.objListBox>div:nth-child(5n)').css('margin-right','0');
@@ -238,8 +238,16 @@
             $.each(data,function (idx,item) {
                 str+='<tr data-id="'+item.id+'">';
                 str+='<td><div class="cf_select"></div></td>';
-                str+='<td>'+item.contractNo+'</td>';
-                str+='<td>'+item.receiveCompanyname+'</td>';
+                if(item.contractNo==null){
+                    str+='<td>无</td>';
+                }else{
+                    str+='<td>'+item.contractNo+'</td>';
+                }
+                if(item.receiveCompanyname==null){
+                    str+='<td>无</td>';
+                }else {
+                    str += '<td>' + item.receiveCompanyname + '</td>';
+                }
                 // if(item.var28==null){
                 //     str+='<td>无</td>';
                 // }else{

@@ -218,10 +218,10 @@
             <td><%=list[i].tloCreateTime%></td>
             <td><%=list[i].chemicalName%></td>
             <td><%=list[i].goodsName%></td>
+            <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
             <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
-            <td><%=list[i].companyName%></td>
-            <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
+            <!--<td><%=list[i].companyName%></td>-->
             <td><%=list[i].unitPrice%></td>
             <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看详情</span></td>
         </tr>
@@ -391,7 +391,6 @@
                                 json.data[i].tloUpdateTime = new Date(json.data[i].tloUpdateTime).Format("yyyy-MM-dd hh:mm:ss");
                                 json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm:ss");
                             }
-                            
 
                             var result = template('orderListTpl', {list: json.data});
                             $('#orderListInfo').html(result);

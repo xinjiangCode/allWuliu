@@ -474,7 +474,7 @@
 
         // TODO 确认提交
         $(".queding").on("click",function(){
-            debugger
+            var id=sessionStorage.getItem("contractId");
             var dept = $('.dept').attr('data-selectedindex');
             var deptName = $('.dept').find('span').text();
 
@@ -492,7 +492,7 @@
             var url = $(".upload_div_hide2").val();
 
             if(contractNo==""){
-                $(".errMsg").text("车牌号不能为空")
+                $(".errMsg").text("请填写合同编号")
                 return;
             }
             if(dept==-1){
@@ -548,8 +548,6 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log("++++++++++++------------------+++++++++++++++");
-                    console.log(data);
                     window.parent.$(".all_success_alert").show();
                     window.parent.$(".all_success_alert").find(".innerSuccmsg").html(contractTitle + "成功!");
                     //  刷新列表
