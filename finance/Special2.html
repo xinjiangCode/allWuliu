@@ -21,6 +21,24 @@
             border-bottom: 1px solid #f1f1f1;
         }
 
+        .select, .textarea, .zizhi_num {
+            color: #666;
+        }
+
+        .ts_color {
+            color: rgb(0, 122, 255);
+        }
+
+        .bottom1>.add, .bottom1>.sub {
+            width: 172px;
+        }
+
+        .delete_pic {
+            visibility: hidden;
+            position: absolute;
+
+        }
+
         .look_bigpic {
             position: absolute;
             left: 125px;
@@ -389,11 +407,11 @@
                         //$('#zizhi_type'+i+' option[value="'+data.data[i].qualificationTypeIds+'"]').attr("selected",true);
                         $('#zizhi_type'+i).find("span").text(data.data[i].qualificationName)
                         $('#zizhi_type'+i).find('span').attr("data-spanvalue",data.data[i].qualificationTypeIds)
-                        $('#zizhi_type'+i).attr('disabled', "disabled").css("background-color","#ddd");
+                        $('#zizhi_type'+i).attr('disabled', "disabled").css("background-color","#fafafa");
                         
                         //资质编号
                         $('#zizhi_num'+i).val(data.data[i].qualificationNum);
-                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#ddd");
+                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#fafafa");
                         //$('#zizhi_num'+i).attr('data-f', 'true');
 
                         //资质图片
@@ -436,8 +454,8 @@
                         /*var arr = data.data[i].operationLimit.split(';')*/
                         
                         //时间
-                        $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#ddd");
-                        $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#ddd");
+                        $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#fafafa");
+                        $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#fafafa");
 
                         $('.c'+i+ ' .start').attr('data-f', 'true');
                         $('.c'+i+ ' .end').attr('data-f', 'true');
