@@ -42,8 +42,8 @@
                         <!-- <th style="width: 56px;text-align: center;"></th> -->
                         <th>订单号</th>
                         <th>姓名</th>
-                        <th>结算金额（含税）</th>
-                        <th>结算金额（不含税）</th>
+                        <th>结算金额</th>
+                        <th>待结算金额</th>
                         <th>车牌号</th>
                         <th>操作</th>
                     </tr>
@@ -185,9 +185,9 @@
                         str += '<td>'+item.order_no+'</td>'
                         str += '<td>'+item.name+'</td>'
                         str += '<td>'+item.taxAmount+'</td>'
-                        str += '<td>'+item.noTaxAmount+'</td>'
+                        str += '<td>'+item.wj_money+'</td>'
                         str += '<td>'+item.car_num+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.bc_money+'">发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.taxAmount+'">发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);

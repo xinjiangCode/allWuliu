@@ -269,8 +269,9 @@
             })
             //详情
             $(".seeDetail").click(function () {
+                sessionStorage.setItem("detailTitle","当前需求状态：历史记录详情");
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./historyRecord-detail.html";
+                window.location.href="./requireDetail.html";
             })
 
         }

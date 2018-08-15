@@ -301,6 +301,19 @@
     	var zhineng_descript = $(window.parent.document).find('.job_describe').val();
     	var departmentId = $(window.parent.document).find('.suoshu_department').attr('data-selectedindex');
     	var departmentName = $(window.parent.document).find('.suoshu_department span').text();
+
+    	if(apartment_name==""){
+            window.parent.$(".modelBox38 .errMsg").text("请填写角色名称")
+			return;
+		}
+        if(departmentId==0 || departmentId==-1){
+            window.parent.$(".modelBox38 .errMsg").text("请选择所属部门")
+            return;
+        }
+        if(zhineng_descript==""){
+            window.parent.$(".modelBox38 .errMsg").text("请填写职能描述")
+            return;
+        }
     	if ($(this).attr('data-apartId')) {
     		id = $(this).attr('data-apartId');
     		update_apartment(apartment_name, zhineng_descript, departmentId, departmentName, id);

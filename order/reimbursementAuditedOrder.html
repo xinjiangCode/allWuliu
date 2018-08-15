@@ -315,10 +315,10 @@
                 dataType: 'json',
                 success: function (json) {
                     console.log(json);
-
                     if (json.code == 1) {
-                        window.parent.showModelBox('.ok_success');
-                        window.location.reload();
+//                        window.parent.showModelBox('.ok_success');
+//                        window.location.reload();
+                        cf_alert(1,"审核成功")
                     }
 
                 },

@@ -172,6 +172,8 @@
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
     <script type="text/javascript">
+        // 合同分页查询
+        var pageUrl = pubIP + 'tContractTrade/selectContractTradeList';
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","977");
@@ -213,6 +215,123 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
+
+        var currentPage=1;
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");//所有条件查询列表 必须先置空
+            $.ajax({
+                url: pageUrl,
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    size:pageSize,
+                    page:currentPage,
+                    companyId:companyId,
+                    num:$("input.orderNo.input").val(),
+                    addTime:$("#test1").val(),
+                },
+                success: function (res) {
+                    if(res.code==1){
+                        //首次请求时 改变分页数据
+                        if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                        $(".pagination").parent().css("display","block");
+                        if(currentPage==1){
+                            //修改底部分页
+                            var pageNum=Math.ceil(res.count/pageSize);
+                            $(".allPageN").attr("pageTotal",pageNum);
+                            $(".pageJump i").text("共"+pageNum+"页");
+                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                            Page({
+                                num: pageNum,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    // console.log(n);
+                                    currentPage=n;
+                                    getData(n);//加载n页数据
+                                }
+                            });
+                        }
+                        //修改底部页数
+                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                        cf_dataRender(res.data)
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-id="'+item.id+'"  data-companyid="'+item.companyid+'" data-orderNo="'+item.orderNo+'" data-orderid="'+item.orderid+'">';
+//                str+='<td><div class="cf_select"></div></td>';
+                if(item.receiveCompanyname==null){
+                    str+='<td>无</td>';
+                }else {
+                    str += '<td>' + item.receiveCompanyname + '</td>';
+                }
+                if(item.signDate==null){
+                    str+='<td>无</td>';
+                }else {
+                    str += '<td>' + timestampToTime1(item.signDate) + '</td>';
+                }
+                if(item.endDate==null){
+                    str+='<td>无</td>';
+                }else {
+                    str += '<td>' + timestampToTime1(item.endDate) + '</td>';
+                }
+
+
+                if(item.createBy==null || item.createBy==""){
+                    str+='<td>无</td>';
+                }else{
+                    str+='<td>'+item.createBy+'</td>';
+                }
+
+                if(item.status==1){
+                    str+='<td>进行中</td>';
+                }else{
+                    str+='<td>已完成</td>';
+                }
+                str+='<td>' +
+                    '<span class="seeDetail" data-id="'+item.id+'" style="color: #6ea3f4;">查看订单</span>' +
+//                    '<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>' +
+//                    '<span class="ll deleteRec" data-id="'+item.id+'">删除</span>' +
+                    '</td>';
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+            //模拟点击 框
+            $(".listBox .cf_select").click(function () {
+                $(this).toggleClass("on");
+            })
+            //详情
+            $(".seeDetail").unbind();
+            $(".seeDetail").click(function () {
+                window.localStorage.setItem('data-title', "订单详情");
+
+                window.localStorage.setItem('data-companyId', $(this).parents("tr").attr('data-companyId'));
+                window.localStorage.setItem('data-tloId', $(this).parents("tr").attr('data-orderid'));
+                window.localStorage.setItem('data-orderNo',$(this).parents("tr").attr('data-orderNo'));
+                window.location.href = "../order/orderAllDetail.html";
+
+            })
+
+        }
+
     </script>
 </body>
 </html>

@@ -263,7 +263,7 @@
     	$(window.parent.document).find('.model20_ok_btn').attr('data-zhiwuId', '');
     	$(window.parent.document).find('.apartment_select1 span').text('请选择');
     	$(window.parent.document).find('.apartment_select1').attr('data-selectedindex', '-1');
-    	$(window.parent.document).find('.driver_type_select').attr('data-selectedindex', '-1');
+    	$(window.parent.document).find('.driver_type_select').attr('data-selectedindex', '0');
     	$(window.parent.document).find('.zhiwu_select').attr('data-selectedindex', '-1');
     	$(window.parent.document).find('.zhiwu_select span').text('请选择');
         $(window.parent.document).find('.zhiwu_select ul').html('');
@@ -337,6 +337,66 @@
     	var upload_hidden2 = $(window.parent.document).find('#upload_hidden2').val();
     	var upload_hidden3 = $(window.parent.document).find('#upload_hidden3').val();
     	var up = '';
+
+    	if(driver_type_select=="-1"){
+            window.parent.$(".ts_ts").text("请选择司机类型")
+			return;
+		}
+        if(apartment_select=="-1"){
+            window.parent.$(".ts_ts").text("请选择部门")
+            return;
+        }
+        if(zhiwu_select=="-1"){
+            window.parent.$(".ts_ts").text("请选择职务类型")
+            return;
+        }
+        if(suozai_car_select=="-1"){
+            window.parent.$(".ts_ts").text("请选择所在车辆")
+            return;
+        }
+        if(person_name ==""){
+            window.parent.$(".ts_ts").text("请填写姓名")
+            return;
+        }
+        if(person_cardID==""){
+            window.parent.$(".ts_ts").text("请填写身份证号")
+            return;
+        }
+        if(person_address==""){
+            window.parent.$(".ts_ts").text("请填写住址")
+            return;
+        }
+        if(person_phone==""){
+            window.parent.$(".ts_ts").text("请填写电话")
+            return;
+        }
+        if(person_driver_num==""){
+            window.parent.$(".ts_ts").text("驾驶证号")
+            return;
+        }
+        if(person_huowu_num==""){
+            window.parent.$(".ts_ts").text("请填写货物资格证号")
+            return;
+        }
+
+        if(person_yihangka==""){
+            window.parent.$(".ts_ts").text("请填写银行卡号")
+            return;
+        }
+        if(suoshu_bank==""){
+            window.parent.$(".ts_ts").text("请填写所属银行")
+            return;
+        }
+        if(person_money==""){
+            window.parent.$(".ts_ts").text("请填写薪资")
+            return;
+        }
+        if(person_baoxian_status==""){
+            window.parent.$(".ts_ts").text("请填写保险状态")
+            return;
+        }
+
+
 
     	if ($(this).attr('data-zhiwuId') != '') {
     		id = $(this).attr('data-zhiwuId');
