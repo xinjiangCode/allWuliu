@@ -611,42 +611,19 @@
 
     //下载协议模板
     function down_moban(){
-//        window.location.href = "/generic/web/viewer.html";
-        window.open("http://wl.cys.xjv56.com/web/viewer.html");
-
-//        http://192.168.1.159:8080
-//        window.location.href="/generic/web/xjv56.pdf"
-//        http://192.168.1.159:8080
-//         $.ajax({
-//             url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
-//             type: 'get',
-//             dataType: 'json',
-//             success: function (data) {
-//                 console.log(data);
-//                 var thisUrl = data.data.fileUrl;
-//                 $.ajax({
-//                     url: downIP,
-//                     type: 'post',
-//                     data:{
-//                         fileUrl: thisUrl
-//                     },
-//                     dataType: 'json',
-//                     success: function (data1) {
-////                         console.log("+++++++++++++++++++++========");
-////                         console.log(data1);
-////                         localStorage.setItem("moban_url",data1);
-////                         window.location.href = "http://http://192.168.1.159:8080/generic/web/viewer.html";
-//                         window.download(data1)
-//                     },
-//                     error: function (err) {
-//                         console.log(err);
-//                     }
-//                 })
-//             },
-//             error: function (err) {
-//                 console.log(err);
-//             }
-//         })
+        $.ajax({
+            url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data);
+                var thisUrl = data.data.fileUrl;
+                window.open("../generic/web/viewer.html?thisUrl="+thisUrl);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
     }
 
     var img_url1 = null;
