@@ -105,6 +105,19 @@
 
         .modelBox31_2 .item,.modelBox35 .item{margin-bottom: 20px;}
         .modelBox31_2 .itemLeftTitle{width: 190px;height: 37px;line-height: 37px;text-align: right;font-size: 16px;color: #333333;}
+
+        .look_pic {
+            display: none;
+            z-index: 200;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
     </style>
 </head>
 <body>
@@ -2186,11 +2199,40 @@
     </div>
 </div>
 
+<!-- 点击查看大图 -->
+<div class="look_pic">
+    <div class="pic_div">
+        <img src="" alt="" class="bigpic">
+    </div>
+</div>
 
 
 <script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
+
+    function look_pic(w, h, pic_url) {
+
+        $('.bigpic').css({
+            height: h,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            margin: 'auto',
+            position: 'absolute'
+        });
+
+        $('.look_pic img').attr('src', pic_url);
+
+        $('.look_pic').show();
+    }
+
+    $('.look_pic').click(function() {
+        $(this).hide();
+        $(this).attr('src', '');
+    });
+
     $(".manageList").css("display","none");
     function showMangeList(idx) {
         if(idx==".cfidx1"){
