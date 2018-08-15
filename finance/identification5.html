@@ -47,6 +47,18 @@
             background: #FAFAFA;
         }
 
+        .card_pic_ts {
+            color: #999;
+            font-size: 14px;
+            margin-left: 120px;
+        }
+
+        .card_pic_ts span {
+            display: inline-block;
+            width: 152px;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -116,7 +128,7 @@
                     <div class="right1 Lf"><input type="text" id="id_number"></div>
                     <div class="ts">身份证号格式不正确</div>
                 </li>
-                <li>
+                <li style="padding-bottom: 0px;">
                     <div class="left1 Lf"><i class="red">*</i>身份证上传:</div>
                     <div class="right1 Lf">
                         <div class="uploade Lf">
@@ -134,6 +146,14 @@
                     </div>
                     <div class="ts">身份证上传不能为空</div>
                 </li>
+                <li style="margin-top: 10px;">
+                    <div class="right">
+                       <div class="card_pic_ts">
+                            <span>请上传身份证正面照片</span>
+                            <span style="margin-left: 16px;">请上传身份证反面照片</span>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
         <!-- <div class="right3 Lf weiRenZheng shenhezhong" style="margin-top: 10px;">
@@ -150,12 +170,18 @@
             <ul class="ul">
                 <li class="pay_pass weiRenZheng">
                     <div class="left1 Lf"><i class="red">*</i>支付密码:</div>
-                    <div class="right1 Lf"><input type="password" id="pay_pass"></div>
+                    <div class="right1 Lf">
+                        <input type="password" style="display: none;">
+                        <input type="password" id="pay_pass" auto-complete="new-password">
+                    </div>
                     <div class="ts">请输入6位的支付密码</div>
                 </li>
                 <li class="pay_pass weiRenZheng">
                     <div class="left1 Lf"><i class="red">*</i>确认密码:</div>
-                    <div class="right1 Lf"><input type="password" id="ok_pass"></div>
+                    <div class="right1 Lf">
+                        <input type="password" style="display: none;">
+                        <input type="password" id="ok_pass" auto-complete="new-password">
+                    </div>
                     <div class="ts">确认密码和密码不一致</div>
                 </li>
                 <li class="pay_pass" style="width: 578px;">
@@ -184,7 +210,10 @@
                 </li>
                 <li class="update_yincang pay_pass">
                     <div class="left1 Lf"><i class="red">*</i>输入支付密码:</div>
-                    <div class="right1 Lf"><input type="text" id="pay_pass2"></div>
+                    <div class="right1 Lf">
+                        <input type="password" style="display: none;">
+                        <input type="text" id="pay_pass2" auto-complete="new-password">
+                    </div>
                     <div class="ts yanzheng">支付密码输入有误</div>
                 </li>
             </ul>
@@ -477,8 +506,8 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            // var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
-            var reg = /^\d+$/;
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            // var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
                 return; 
@@ -725,8 +754,8 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            // var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
-            var reg = /^\d+$/;
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            // var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
                 return; 
@@ -1052,8 +1081,8 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            // var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
-            var reg = /^\d+$/;
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            // var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
                 return; 

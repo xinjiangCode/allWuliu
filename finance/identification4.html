@@ -25,6 +25,9 @@
             width: 20%;
             text-align: center;
         }
+
+        .bottom1>.right2>ul>li>.left1{width: 97px;}
+
     </style>
 </head>
 <body>
@@ -88,12 +91,12 @@
         <div class="right2 Lf">
             <ul>
                 <li>
-                    <div class="left1 Lf"><i class="red">*</i>出金账户名称:</div>
+                    <div class="left1 Lf"><i class="red">*</i>承兑账户名称:</div>
                     <div class="right1 Lf"><input type="text" id="chujin_account_name1"></div>
                     <div class="ts">出金账户名称不能为空</div>
                 </li>
                 <li>
-                    <div class="left1 Lf"><i class="red">*</i>出金账户账号:</div>
+                    <div class="left1 Lf"><i class="red">*</i>承兑账号:</div>
                     <div class="right1 Lf"><input type="text" id="chujin_account_account1"></div>
                     <div class="ts">出金账户账号格式不正确</div>
                 </li>
@@ -131,14 +134,14 @@
                     <div class="right1 Lf"><input type="text" id="kaihu_bank_info2"></div>
                     <div class="ts">开户银行信息不能为空</div>
                 </li>
-                <li class="wj">
+                <!-- <li class="wj">
                     <div class="left1 Lf ml"><i class="red">*</i>出金账户协议(盖章pdf文件):</div>
                     <div class="right1 Lf" style="position: relative;">
                         <input type="text" placeholder="将盖好公章的文件上传" id="wenjian_name"><a href="##"  onclick="down_moban()" style="margin-left: 27px; margin-right: 27px;">模板下载</a>
                         <input type="file" id="wenjian" accept="application/pdf" onchange="upload_file(this);">
                     </div>
                     <div class="ts mml">协议不能为空</div>
-                </li>
+                </li> -->
             </ul>
 
             <div class="btn weiRenZheng next_btn">下一步</div>
@@ -327,7 +330,13 @@ function upload_file(obj) {
                             $(window.parent.document).find('.jujue p').html('出金账户资料的审核<span>未通过</span>，请重新修改提交');
                         }
 
-                        $(window.parent.document).find('.jujue_liyou span').html(data.data.reasons.reasons);
+                        if (data.data.reasons.reasons != '') {
+                            $(window.parent.document).find('.jujue_liyou span').html(data.data.reasons.reasons);
+                        } else {
+                            
+                            $(window.parent.document).find('.jujue_liyou span').html('无');
+                        }
+                        
                         window.parent.tan5();
                         
 
@@ -389,7 +398,7 @@ function upload_file(obj) {
             }
 
             var chujin_account_account1 = $('#chujin_account_account1').val();
-            var chujin_account_account1_reg = /^\d{16}|\d{19}$/;
+            var chujin_account_account1_reg = /^\d+$/;
 
             if (chujin_account_account1_reg.test(chujin_account_account1) != true) {
                 $('#chujin_account_account1').parent().next().css('display', 'block');
@@ -470,7 +479,9 @@ function upload_file(obj) {
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
-                    window.location.href = 'identification5.html';
+                    if (data.code == 1) {
+                        window.location.href = 'identification5.html';
+                    }
                 },
                 error: function (err) {
                     console.log(err);
@@ -491,7 +502,7 @@ function upload_file(obj) {
 
         $('#chujin_account_account1').on('blur', function () {
             var chujin_account_account1 = $(this).val();
-            var chujin_account_account1_reg = /^\d{16}|\d{19}$/;
+            var chujin_account_account1_reg = /^\d+$/;
 
             if (chujin_account_account1_reg.test(chujin_account_account1) != true) {
                 $(this).parent().next().css('display', 'block');
@@ -555,7 +566,7 @@ function upload_file(obj) {
         $('#chujin_account_account2').on('blur', function () {
 
             var chujin_account_account2 = $(this).val();
-            var chujin_account_account1_reg = /^\d{16}|\d{19}$/;
+            var chujin_account_account1_reg = /^\d+$/;
 
             if (chujin_account_account1_reg.test(chujin_account_account2) != true) {
                 $(this).parent().next().text('出金账户账号格式不正确');
@@ -718,7 +729,7 @@ function upload_file(obj) {
         // }
 
          $(document).on('click', '.btn.update_btn', function () {
-            $('.wj').css('display', 'block');
+            // $('.wj').css('display', 'block');
             $(this).css('display', 'none');
             $('.update_btn2').css('display', 'block');
             
@@ -726,13 +737,14 @@ function upload_file(obj) {
 
 
         $(document).on('click', '.submit_btn, .next_btn_update', function () {
+
             if ($('#chujin_account_name1').val() == '') {
                 $('#chujin_account_name1').parent().next().css('display', 'block');
                 return;
             }
 
             var chujin_account_account1 = $('#chujin_account_account1').val();
-            var chujin_account_account1_reg = /^\d{16}|\d{19}$/;
+            var chujin_account_account1_reg = /^\d+$/;
 
             if (chujin_account_account1_reg.test(chujin_account_account1) != true) {
                 $('#chujin_account_account1').parent().next().css('display', 'block');
@@ -797,87 +809,43 @@ function upload_file(obj) {
             var kaihu_bank_info2 = $('#kaihu_bank_info2').val();
 
 
-            if (file_url != null) {
-                $('#wenjian_name').parent().next().css('display', 'none');
-                //v1.0
-                $.ajax({
-                    url: pubIP + 'companyCertification/addCompanyBaseInfo',
-                    type: 'post',
-                    headers: {
-                        Accept: "application/json; charset=utf-8",
-                        token: token
-                    },
-                    data: {
-                        submit_type: 'D',
-                        companyId: companyId,
-                        bankName1: kaihu_bank_info1,
-                        accountId1: chujin_account_account1,
-                        accountName1: chujin_account_name1,
-                        bankName2: kaihu_bank_info2,
-                        accountId2: chujin_account_account2,
-                        accountName2: chujin_account_name2,
-                        accountType1: 1,
-                        accountType2: 3
-                    },
-                    cache: false,
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
+            
+            //v1.0
+            $.ajax({
+                url: pubIP + 'companyCertification/addCompanyBaseInfo',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    submit_type: 'D',
+                    companyId: companyId,
+                    bankName1: kaihu_bank_info1,
+                    accountId1: chujin_account_account1,
+                    accountName1: chujin_account_name1,
+                    bankName2: kaihu_bank_info2,
+                    accountId2: chujin_account_account2,
+                    accountName2: chujin_account_name2,
+                    accountType1: 1,
+                    accountType2: 3
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
 
-                        if ($('.next_btn_update').css('display') == 'block') {
-                            window.location.href = "identification4.html";
-                        } else {
-                            window.parent.update_chujin();
-                        }
-                        
-                    },
-                    error: function (err) {
-                        console.log(err);
+                    if ($('.next_btn_update').css('display') == 'block') {
+                        window.location.href = "identification4.html";
+                    } else {
+                        window.parent.update_chujin();
                     }
-                });
-            } else {
-                if ($('.next_btn_update').css('display') == 'block') {
-                    $.ajax({
-                        url: pubIP + 'companyCertification/addCompanyBaseInfo',
-                        type: 'post',
-                        headers: {
-                            Accept: "application/json; charset=utf-8",
-                            token: token
-                        },
-                        data: {
-                            submit_type: 'D',
-                            companyId: companyId,
-                            bankName1: kaihu_bank_info1,
-                            accountId1: chujin_account_account1,
-                            accountName1: chujin_account_name1,
-                            bankName2: kaihu_bank_info2,
-                            accountId2: chujin_account_account2,
-                            accountName2: chujin_account_name2,
-                            accountType1: 1,
-                            accountType2: 3
-                        },
-                        cache: false,
-                        dataType: 'json',
-                        success: function (data) {
-                            console.log(data);
-
-                            if ($('.next_btn_update').css('display') == 'block') {
-                                window.location.href = "identification5.html";
-                            } else {
-                                window.parent.update_chujin();
-                            }
-                            
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    });
-                } else {
-                    $('#wenjian_name').parent().next().html('文件正在上传').css('display', 'block');
+                    
+                },
+                error: function (err) {
+                    console.log(err);
                 }
-                
-            } 
-
+            });
         });
 
     });

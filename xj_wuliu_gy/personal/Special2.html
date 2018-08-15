@@ -60,13 +60,23 @@
             height: 13px;
             text-align: center;
             line-height: 11px;
-            border: 1px solid #4e4e4e;
+            /*border: 1px solid #4e4e4e;*/
             border-radius: 50%;
             display: inline-block;
-            color: #4e4e4e;
+            /*color: #4e4e4e;*/
             margin-left: 5px;
             font-size: 12px;
             vertical-align: bottom;
+            border: 1px solid red;
+            color: red;
+        }
+
+        .selectPub, .textarea, .zizhi_num {
+            color: #666;
+        }
+
+        .ts_color {
+            color: rgb(0, 122, 255);
         }
 
     </style>
@@ -172,7 +182,7 @@
 
                 </li>
             </ul>
-            <i class="red" style="display: block;margin-top: 22px;font-size: 14px;margin-left: 155px;">请上传资质证书照片或者扫描件！ 照片大小 < 2MB</i>
+            <i class="ts_color" style="display: block;margin-top: 22px;font-size: 14px;margin-left: 155px;">请上传资质证书照片或者扫描件！ 照片大小 < 2MB</i>
         </div>
     </div>
     
@@ -813,7 +823,7 @@
                         +'</div>'
                     +'</li>'
                 +'</ul>'
-                +'<i class="red" style="display: block;margin-top: 22px;font-size: 14px;margin-left: 155px;">请上传资质证书照片或者扫描件！ 照片大小 < 2MB</i>'
+                +'<i class="ts_color" style="display: block;margin-top: 22px;font-size: 14px;margin-left: 155px;">请上传资质证书照片或者扫描件！ 照片大小 < 2MB</i>'
             +'</div>';
 
         $('#center').append(str);
