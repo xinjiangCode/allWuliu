@@ -49,6 +49,10 @@
             top: 9px;
         }
 
+        .sousuo_ul {
+            padding-top: 0px;
+        }
+
         .cousuo_cont {
             border: 1px solid #ebe9ea;
             width: 357px;
@@ -71,12 +75,35 @@
             border: 1px solid red;
         }
 
-        .selectPub, .textarea, .zizhi_num {
+        .select, .textarea, .zizhi_num {
             color: #666;
         }
 
         .ts_color {
             color: rgb(0, 122, 255);
+        }
+
+        .bottom1>.add, .bottom1>.sub {
+            width: 172px;
+        }
+
+        .delete_pic {
+            visibility: hidden;
+            position: absolute;
+
+        }
+
+        .look_bigpic {
+            position: absolute;
+            left: 125px;
+            bottom: 2px;
+            color: rgb(0, 122, 255);
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        .look_bigpic img {
+            width: 25px;
         }
 
     </style>
@@ -175,8 +202,10 @@
                             <i style=""></i>
                             <input type="file" class="input_blur preview pic1" id="uploade_preview0">
                             <input type="hidden" class="hd0" id="hidden">
+                            <div class="look_bigpic" ><img src="../../img/big_pic.png" alt=""></div>
                         </div>
                         <div class="ts1">至少添加一张图片</div>
+                        <a href="##" class="delete_pic">删除</a>
                         <a href="##" class="add_pic add_pic1" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>
                     </div>
 
@@ -205,6 +234,15 @@
     $(function () {
         window.parent.$("#Iframe").css("height","725");
     })
+
+
+    $(document).on('click', '.look_bigpic', function(e) {
+        e.stopPropagation();
+        // console.log($(this).parent().find('.uploade').height());
+        window.parent.look_pic($(this).parent().width(), $(this).parent().height(), $(this).prev().val());
+    });
+
+
     var startTime1 = '';
     var endTime1 = '';
     var isSelect=false;
@@ -348,6 +386,8 @@
                 $(obj).next().val(data.url);
                 $(obj).parent().parent().find('.ts1').css('display', 'none');
                 $(obj).attr('data-flag', '0');
+
+                $(obj).parent().parent().find('.delete_pic').css('visibility', 'visible');
             },
             error: function (err) {
                 console.log(err);
@@ -479,11 +519,11 @@
                         //$('#zizhi_type'+i+' option[value="'+data.data[i].qualificationTypeIds+'"]').attr("selected",true);
                         $('#zizhi_type'+i).find("span").text(data.data[i].qualificationName)
                         $('#zizhi_type'+i).find('span').attr("data-spanvalue",data.data[i].qualificationTypeIds)
-                        $('#zizhi_type'+i).attr('disabled', "disabled").css("background-color","#ddd");
+                        $('#zizhi_type'+i).attr('disabled', "disabled").css("background-color","#fafafa");
                         
                         //资质编号
                         $('#zizhi_num'+i).val(data.data[i].qualificationNum);
-                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#ddd");
+                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#fafafa");
                         //$('#zizhi_num'+i).attr('data-f', 'true');
 
                         //资质图片
@@ -515,6 +555,9 @@
                         //不让点击添加图片
                         $(".add_pic").hide();
 
+                        // 不让删除
+                        $('.delete_pic').css('visibility', 'hidden');
+
                         data.data[i].qualificationDataBegin = new Date(data.data[i].qualificationDataBegin).Format("yyyy-MM-dd");
 
                         data.data[i].qualificationDataExpire = new Date(data.data[i].qualificationDataExpire).Format("yyyy-MM-dd");
@@ -528,8 +571,8 @@
                         /*var arr = data.data[i].operationLimit.split(';')*/
                         
                         //时间
-                        $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#ddd");
-                        $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#ddd");
+                        $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#fafafa");
+                        $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#fafafa");
 
                         $('.c'+i+ ' .start').attr('data-f', 'true');
                         $('.c'+i+ ' .end').attr('data-f', 'true');
@@ -640,6 +683,18 @@
         });
 
 
+        $(document).on('click', '.delete_pic', function() {
+            
+            if ($(this).parent().find('.uploade').length != 1) {
+                $(this).parent().find('.uploade').eq($(this).parent().find('.uploade').length-1).remove();
+            }  else {
+                $(this).parent().find('.uploade').eq(0).css('background', 'url("")');
+                $(this).parent().find('.uploade').eq(0).find('input[type="hidden"]').val('');
+                $(this).css('visibility', 'hidden');
+            }  
+            
+        });
+
         $(document).on('click', '.edit_btn', function() {
            
             
@@ -654,6 +709,9 @@
             $(this).parent().find('.zizhi_num').attr('readonly', false).css("background-color","#fff");
            // $(this).parent().find('.textarea').attr('contenteditable', true);
            $(this).parent().find(".add_pic").show().css('display', 'inline-block');
+
+           $(this).parent().find(".delete_pic").css('visibility', 'visible').css('display', 'inline-block');
+
            $(this).parent().find(".btn1").show();
            $(this).parent().find(".start").attr('disabled', false).css("background-color","#fff");
            $(this).parent().find(".end").attr('disabled', false).css("background-color","#fff");
@@ -704,7 +762,7 @@
         $(document).on('click', '.add_pic', function() {
             var pic = $(this).attr('data-pic');
 
-            var cla = $(this).prev().prev().find('input[type="file"]').attr('class');
+            var cla = $(this).prev().prev().prev().find('input[type="file"]').attr('class');
 
             //console.log(cla);
 
@@ -717,6 +775,7 @@
                                 +'<i style=""></i>'
                                 +'<input type="file" class="input_blur preview '+(pic+ind)+'" id="uploade_preview'+(ind-1)+'">'
                                 +'<input type="hidden" class="hd'+(ind-1)+'" id="hidden">'
+                                +'<div class="look_bigpic"><img src="../../img/big_pic.png" alt></div>'
                             +'</div>';
 
                 $(this).parent().find('.ts1').before(str); 
@@ -798,8 +857,10 @@
                                 +'<i style=""></i>'
                                 +'<input type="file" class="input_blur preview pic1" id="uploade_preview0">'
                                 +'<input type="hidden" class="hd0">'
+                                +'<div class="look_bigpic"><img src="../../img/big_pic.png" alt></div>'
                             +'</div>'
                             +'<div class="ts1">至少添加一张图片</div>'
+                            +'<a href="##" class="delete_pic">删除</a>'
                             +'<a href="##" class="add_pic" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>'
                         +'</div>'
                     +'</li>'
@@ -914,10 +975,13 @@
 
     });
 
-    $(document).on('click', '.sousuo', function () {
+    // $(document).on('click', '.sousuo', function () {
+    $(document).on('input propertychange', '.input_width', function(){
 
-        var cont = $(this).prev().prev().val();
+        // var cont = $(this).prev().prev().val();
         var _this = $(this);
+
+        var cont = $(this).val();
         
         // if ($('.cousuo_cont').css('display') == 'block') {
         //     $('.cousuo_cont').css('display', 'none');
@@ -939,20 +1003,22 @@
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                if (data.data.length == 0 ) {
-                    var str1 = '';
-                    str1 += '<li style="color: #999;">暂无数据</li>';
-                    _this.parent().next('.cousuo_cont').css('display','block');
-                    _this.parent().next('.cousuo_cont').find('.sousuo_ul').empty().html(str1);
-                    // $('.sousuo_ul').html(str1);
-                } else {
-                    var str2 = ''
-                    for (var i = 0; i < data.data.length; i++) {
-                        str2 += '<li data-index= "'+data.data[i].chemicalId+'" >'+data.data[i].chemicalName+'</li>';
+                if (data.code == 1) {
+                    if (data.data.length == 0 ) {
+                        var str1 = '';
+                        str1 += '<li style="color: #999;">暂无数据</li>';
+                        _this.parent().next('.cousuo_cont').css('display','block');
+                        _this.parent().next('.cousuo_cont').find('.sousuo_ul').empty().html(str1);
+                        // $('.sousuo_ul').html(str1);
+                    } else {
+                        var str2 = ''
+                        for (var i = 0; i < data.data.length; i++) {
+                            str2 += '<li data-index= "'+data.data[i].chemicalId+'" >'+data.data[i].chemicalName+'</li>';
+                        }
+                        // $('.sousuo_ul').html(str2);
+                        _this.parent().next('.cousuo_cont').css('display','block');
+                        _this.parent().next('.cousuo_cont').find('.sousuo_ul').empty().html(str2);
                     }
-                    // $('.sousuo_ul').html(str2);
-                    _this.parent().next('.cousuo_cont').css('display','block');
-                    _this.parent().next('.cousuo_cont').find('.sousuo_ul').empty().html(str2);
                 }
             },
             error: function (err) {
@@ -972,7 +1038,10 @@
         $('.cousuo_cont').hide();
     }) 
 
-    
+    $(document).on('mouseenter', '.sousuo_ul li', function () {
+        $('.sousuo_ul li').css('background', '');
+        $(this).css('background', '#F6F6F6').css('cursor', 'pointer');
+    });
 
     $(document).on('click', '.sousuo_ul li', function () {
         if ($(this).text() != '暂无数据') {

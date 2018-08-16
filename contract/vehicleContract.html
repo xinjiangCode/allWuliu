@@ -202,13 +202,13 @@
 //                    type:$(".hetongtype").attr("data-selectedindex")
                 },
                 success: function (res) {
-                    if(res.code===1){
+                    if(res.code==1){
                         //首次请求时 改变分页数据
                         if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                         $(".pagination").parent().css("display","block");
-                        if(currentPage===1){
+                        if(currentPage==1){
                             //修改底部分页
-                            var pageNum=Math.ceil(res.data.count/pageSize);
+                            var pageNum=Math.ceil(res.count/pageSize);
                             $(".allPageN").attr("pageTotal",pageNum);
                             $(".pageJump i").text("共"+pageNum+"页");
                             $('.objListBox>div:nth-child(5n)').css('margin-right','0');
@@ -258,7 +258,12 @@
                 }else{
                     str+='<td>无</td>';
                 }
-                str+='<td>'+item.status+'</td>';
+                if(item.status==1){
+                    str+='<td>失效</td>';
+                }else{
+                    str+='<td>正常</td>';
+                }
+
 
                 str+='<td>' +
                     '<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>' +

@@ -68,6 +68,19 @@
             vertical-align: bottom;
         }
 
+        .look_bigpic {
+            position: absolute;
+            left: 125px;
+            bottom: 2px;
+            color: rgb(0, 122, 255);
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        .look_bigpic img {
+            width: 25px;
+        }
+
     </style>
 </head>
 <body>
@@ -117,6 +130,7 @@
                             <!-- <img src="../img/list_logo.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片"> -->
                             <input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
                             <input type="hidden" name="" value="" id="yingye_zhizhao_hidden">
+                            <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
                         </div>
                     </div>
                     <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
@@ -201,6 +215,13 @@
             'border': '1px solid #ebe9ea'
         });
     })
+
+    $(document).on('click', '.look_bigpic', function(e) {
+        e.stopPropagation();
+        // console.log($(this).parent().find('.uploade').height());
+        window.parent.look_pic($(this).parent().width(), $(this).parent().height(), $(this).prev().val());
+    });
+
 
     var startTime1 = '';
     var endTime1 = '';

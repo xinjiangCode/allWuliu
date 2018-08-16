@@ -21,6 +21,37 @@
             border-bottom: 1px solid #f1f1f1;
         }
 
+        .select, .textarea, .zizhi_num {
+            color: #666;
+        }
+
+        .ts_color {
+            color: rgb(0, 122, 255);
+        }
+
+        .bottom1>.add, .bottom1>.sub {
+            width: 172px;
+        }
+
+        .delete_pic {
+            visibility: hidden;
+            position: absolute;
+
+        }
+
+        .look_bigpic {
+            position: absolute;
+            left: 125px;
+            bottom: 2px;
+            color: rgb(0, 122, 255);
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        .look_bigpic img {
+            width: 25px;
+        }
+
     </style>
 </head>
 <body>
@@ -83,9 +114,9 @@
                 <li class="clearfix">
                     <div class="left1 Lf"><i class="red">*</i>有效期起:</div>
                     <div class="right1 Lf">
-                        <input type="text" class="date-input laydate-icon kuang start" style="text-indent: 0px;" placeholder="请选择日期" id="test1">
+                        <input type="text" class="date-input laydate-icon kuang start" style="text-indent: 10px;" placeholder="请选择日期" id="test1">
                         <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
-                        <input type="text" class="date-input laydate-icon kuang end" style="text-indent: 0px;" placeholder="请选择日期" id="test2">
+                        <input type="text" class="date-input laydate-icon kuang end" style="text-indent: 10px;" placeholder="请选择日期" id="test2">
                     </div>
                     <span class="ts">有效期不能为空</span>
                 </li>
@@ -96,6 +127,7 @@
                             <i style=""></i>
                             <input type="file" class="input_blur preview pic1" id="uploade_preview0">
                             <input type="hidden" class="hd0" id="hidden">
+                            <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
                         </div>
                         <div class="ts1">至少添加一张图片</div>
                         <a href="##" class="add_pic add_pic1" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>
@@ -126,6 +158,16 @@
     $(function () {
         window.parent.$("#Iframe").css("height","713");
     })
+
+
+    $(document).on('click', '.look_bigpic', function(e) {
+        e.stopPropagation();
+        // console.log($(this).parent().find('.uploade').height());
+        window.parent.look_pic($(this).parent().width(), $(this).parent().height(), $(this).prev().val());
+    });
+
+
+
     var startTime1 = '';
     var endTime1 = '';
     var isSelect=false;
@@ -365,11 +407,11 @@
                         //$('#zizhi_type'+i+' option[value="'+data.data[i].qualificationTypeIds+'"]').attr("selected",true);
                         $('#zizhi_type'+i).find("span").text(data.data[i].qualificationName)
                         $('#zizhi_type'+i).find('span').attr("data-spanvalue",data.data[i].qualificationTypeIds)
-                        $('#zizhi_type'+i).attr('disabled', "disabled").css("background-color","#ddd");
+                        $('#zizhi_type'+i).attr('disabled', "disabled").css("background-color","#fafafa");
                         
                         //资质编号
                         $('#zizhi_num'+i).val(data.data[i].qualificationNum);
-                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#ddd");
+                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#fafafa");
                         //$('#zizhi_num'+i).attr('data-f', 'true');
 
                         //资质图片
@@ -412,8 +454,8 @@
                         /*var arr = data.data[i].operationLimit.split(';')*/
                         
                         //时间
-                        $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#ddd");
-                        $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#ddd");
+                        $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#fafafa");
+                        $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#fafafa");
 
                         $('.c'+i+ ' .start').attr('data-f', 'true');
                         $('.c'+i+ ' .end').attr('data-f', 'true');
@@ -598,6 +640,7 @@
                                 +'<i style=""></i>'
                                 +'<input type="file" class="input_blur preview '+(pic+ind)+'" id="uploade_preview'+(ind-1)+'">'
                                 +'<input type="hidden" class="hd'+(ind-1)+'" id="hidden">'
+                                +'<div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>'
                             +'</div>';
 
                 $(this).parent().find('.ts1').before(str); 
@@ -663,6 +706,7 @@
                                 +'<i style=""></i>'
                                 +'<input type="file" class="input_blur preview pic1" id="uploade_preview0">'
                                 +'<input type="hidden" class="hd0">'
+                                +'<div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>'
                             +'</div>'
                             +'<div class="ts1">至少添加一张图片</div>'
                             +'<a href="##" class="add_pic" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>'

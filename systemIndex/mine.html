@@ -59,6 +59,8 @@
             display: block;
             content: "";
         }
+        .headerNavList div{display: none;}
+        .headerNavList .fabu{display: block;}
     </style>
 
 
@@ -74,26 +76,43 @@
             <div class="headerDetail Lf">
                 <div class="headerTitle">企业名称及LOGO</div>
                 <div class="headerNavList">
-                    <!--<div class="headerNav1 Lf">-->
-                        <!--<img style="margin-top: 2px;" src="../img/cf_headerNav1.png" alt="">-->
-                        <!--<i>信用</i>-->
-                    <!--</div>-->
-                    <div class="headerNav2 Lf" style="position: relative;">
+                    <div class="headerNav1no Lf">
+                        <img style="margin-top: 2px;" src="../img/cf_headerNav1no.png" alt="">
+                        <i>信用</i>
+                    </div>
+                    <div class="headerNav1 Lf">
+                        <img style="margin-top: 2px;" src="../img/cf_headerNav1.png" alt="">
+                        <i>信用</i>
+                    </div>
+                    <div class="headerNav2no Lf">
+                        <img src="../img/cf_headerNav2no.png" alt="">
+                        <i>企业信息</i>
+                    </div>
+                    <div class="headerNav2 Lf">
                         <img src="../img/cf_headerNav2.png" alt="">
                         <i>企业信息</i>
-                        <!--<div style="position: absolute;" class="floatView">-->
-
-                        <!--</div>-->
                     </div>
-                    <div class="headerNav3 Lf">
+                    <div class="headerNav3no Lf" style="display: none;">
+                        <img src="../img/cf_headerNav3no.png" alt="">
+                        <i>特殊</i>
+                    </div>
+                    <div class="headerNav3 Lf" style="display: none;">
                         <img src="../img/cf_headerNav3.png" alt="">
                         <i>特殊</i>
+                    </div>
+                    <div class="headerNav4no Lf">
+                        <img src="../img/cf_headerNav4no.png" alt="">
+                        <i>普化</i>
                     </div>
                     <div class="headerNav4 Lf">
                         <img src="../img/cf_headerNav4.png" alt="">
                         <i>普化</i>
                     </div>
-                    <div class="headerNav5 Lf">
+                    <div class="headerNav5no Lf" style="display: none;">
+                        <img src="../img/cf_headerNav5no.png" alt="">
+                        <i>危化</i>
+                    </div>
+                    <div class="headerNav5 Lf" style="display: none;">
                         <img src="../img/cf_headerNav5.png" alt="">
                         <i>危化</i>
                     </div>
@@ -106,163 +125,165 @@
             <i style="color: red;">加强体系建设，提升监督效能——学习贯彻习近平总书记在中央审计委员会第一次会议重要讲话</i>
         </div>
 
-        <div class="condition clearFloat">
-            <div class="time clearFloat Lf">
-                <div class="cf_btn Lf on" data-id="1">最近七日</div>
-                <div class="cf_btn Lf" data-id="2">最近一月</div>
-                <div class="cf_btn Lf" data-id="3" style="border-right: none;">最近三月</div>
-            </div>
-            <div class="dataTime Lf">
-                <span style="color: #666666;font-size: 14px;margin-right: 5px;">检索条件</span>
-                <input type="text" class="date-input laydate-icon kuang start" style="width: 129px;height: 38px;" placeholder="请选择日期" id="test1">
-                <span style="height: 38px;line-height: 38px;">&nbsp;-&nbsp; </span>
-                <input type="text" class="date-input laydate-icon kuang end" style="width: 129px;height: 38px;" placeholder="请选择日期" id="test2">
-            </div>
-            <div class="Rt cfRefresh" style="width: 92px;height: 36px;border: 1px solid #f1f1f1;line-height: 36px;margin-top: 4px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>
-        </div>
-        <div class="orderList clearFloat">
-            <div class="orderItem daiqueren">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>待确认</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem weihezuoxuqiu">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>未合作订单</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem yihezuoxuqiu">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>已合作</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem daifenpei">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>待分配</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem jinxingzhong" style="margin-right: 0">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>进行中订单</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem wcDaishenhe">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>完成待审核</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem wanchen">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>已完成</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-            <div class="orderItem quxiao" style="margin-right: 0;">
-                <div class="orderStatus">
-                    <img src="../img/cf_wenhao.png" alt=""><span>结束订单</span>
-                </div>
-                <div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>
-                <div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>
-            </div>
-        </div>
 
-        <div class="totalList clearFloat">
-            <div class="totalItem Lf dindanshu" data-id="1">
-                <div class="Lf totalLeft clearFloat">
-                    <div class="totalImgs">
-                        <img src="../img/cf_total1.png" alt="">
-                    </div>
-                    <div class="totalTitle cf_btn" style="background-color: #FF9F59;">订单数</div>
-                </div>
-                <div class="Lf totalRight">
-                    <div class="Lf totalNumber" style="color: #FF9F59;"></div>
-                    <div class="Lf" style="margin-top: 44px;">
-                        <div>笔</div>
-                        <div><span class="totalWeight"></span><span>吨</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="totalItem Rt  zaitu" data-id="2">
-                <div class="Lf totalLeft clearFloat">
-                    <div class="totalImgs">
-                        <img src="../img/cf_total2.png" alt="">
-                    </div>
-                    <div class="totalTitle cf_btn" style="background-color: #FF6767;">在途车辆</div>
-                </div>
-                <div class="Lf totalRight">
-                    <div class="Lf totalNumber" style="color: #FF4242;"></div>
-                    <div class="Lf" style="margin-top: 44px;">
-                        <div>笔</div>
-                        <div><span class="totalWeight"></span><span>吨</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="totalItem Lf zongjine" data-id="3">
-                <div class="Lf totalLeft clearFloat">
-                    <div class="totalImgs">
-                        <img src="../img/cf_total3.png" alt="">
-                    </div>
-                    <div class="totalTitle cf_btn" style="background-color: #ACD180;">总金额</div>
-                </div>
-                <div class="Lf totalRight">
-                    <div class="Lf totalNumber" style="color: #84C339;"></div>
-                    <div class="Lf" style="margin-top: 44px;">
-                        <div>笔</div>
-                        <div><span class="totalWeight"></span><span>吨</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="totalItem Rt yijiesuan" data-id="4">
-                <div class="Lf totalLeft clearFloat">
-                    <div class="totalImgs">
-                        <img src="../img/cf_total4.png" alt="">
-                    </div>
-                    <div class="totalTitle cf_btn" style="background-color: #DC715B;">已结算</div>
-                </div>
-                <div class="Lf totalRight">
-                    <div class="Lf totalNumber" style="color: #DC715B"></div>
-                    <div class="Lf" style="margin-top: 44px;">
-                        <div>笔</div>
-                        <div><span class="totalWeight"></span><span>吨</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="totalItem Lf clearFloat daijiesuan" data-id="5">
-                <div class="Lf totalLeft clearFloat">
-                    <div class="totalImgs">
-                        <img src="../img/cf_total5.png" alt="">
-                    </div>
-                    <div class="totalTitle cf_btn" style="background-color: #86B2FF;">待结算</div>
-                </div>
-                <div class="Lf totalRight">
-                    <div class="Lf totalNumber" style="color: #4F8BF3;"></div>
-                    <div class="Lf" style="margin-top: 44px;">
-                        <div>笔</div>
-                        <div><span class="totalWeight"></span><span>吨</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="myEacheerts clearFloat" id="myEacheerts1">
+        <!--<div class="condition clearFloat">-->
+            <!--<div class="time clearFloat Lf">-->
+                <!--<div class="cf_btn Lf on" data-id="1">最近七日</div>-->
+                <!--<div class="cf_btn Lf" data-id="2">最近一月</div>-->
+                <!--<div class="cf_btn Lf" data-id="3" style="border-right: none;">最近三月</div>-->
+            <!--</div>-->
+            <!--<div class="dataTime Lf">-->
+                <!--<span style="color: #666666;font-size: 14px;margin-right: 5px;">检索条件</span>-->
+                <!--<input type="text" class="date-input laydate-icon kuang start" style="width: 129px;height: 38px;" placeholder="请选择日期" id="test1">-->
+                <!--<span style="height: 38px;line-height: 38px;">&nbsp;-&nbsp; </span>-->
+                <!--<input type="text" class="date-input laydate-icon kuang end" style="width: 129px;height: 38px;" placeholder="请选择日期" id="test2">-->
+            <!--</div>-->
+            <!--<div class="Rt cfRefresh" style="width: 92px;height: 36px;border: 1px solid #f1f1f1;line-height: 36px;margin-top: 4px;"><img style="margin: 12px 5px 0 15px;" src="../img/cf_shuaxin.png" alt="">刷新</div>-->
+        <!--</div>-->
+        <!--<div class="orderList clearFloat">-->
+            <!--<div class="orderItem daiqueren">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>待确认</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem weihezuoxuqiu">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>未合作订单</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem yihezuoxuqiu">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>已合作</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem daifenpei">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>待分配</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem jinxingzhong" style="margin-right: 0">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>进行中订单</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem wcDaishenhe">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>完成待审核</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem wanchen">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>已完成</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+            <!--<div class="orderItem quxiao" style="margin-right: 0;">-->
+                <!--<div class="orderStatus">-->
+                    <!--<img src="../img/cf_wenhao.png" alt=""><span>结束订单</span>-->
+                <!--</div>-->
+                <!--<div style="text-align: center;margin-top: 12px;"><span class="orderNumber"></span><span style="font-size: 16px;">笔</span></div>-->
+                <!--<div style="font-size: 14px;text-align: center"><span class="orderWeight"></span><span>吨</span></div>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        </div>
-        <div class="myEacheerts clearFloat" id="myEacheerts2">
+        <!--<div class="totalList clearFloat">-->
+            <!--<div class="totalItem Lf dindanshu" data-id="1">-->
+                <!--<div class="Lf totalLeft clearFloat">-->
+                    <!--<div class="totalImgs">-->
+                        <!--<img src="../img/cf_total1.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="totalTitle cf_btn" style="background-color: #FF9F59;">订单数</div>-->
+                <!--</div>-->
+                <!--<div class="Lf totalRight">-->
+                    <!--<div class="Lf totalNumber" style="color: #FF9F59;"></div>-->
+                    <!--<div class="Lf" style="margin-top: 44px;">-->
+                        <!--<div>笔</div>-->
+                        <!--<div><span class="totalWeight"></span><span>吨</span></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="totalItem Rt  zaitu" data-id="2">-->
+                <!--<div class="Lf totalLeft clearFloat">-->
+                    <!--<div class="totalImgs">-->
+                        <!--<img src="../img/cf_total2.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="totalTitle cf_btn" style="background-color: #FF6767;">在途车辆</div>-->
+                <!--</div>-->
+                <!--<div class="Lf totalRight">-->
+                    <!--<div class="Lf totalNumber" style="color: #FF4242;"></div>-->
+                    <!--<div class="Lf" style="margin-top: 44px;">-->
+                        <!--<div>笔</div>-->
+                        <!--<div><span class="totalWeight"></span><span>吨</span></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="totalItem Lf zongjine" data-id="3">-->
+                <!--<div class="Lf totalLeft clearFloat">-->
+                    <!--<div class="totalImgs">-->
+                        <!--<img src="../img/cf_total3.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="totalTitle cf_btn" style="background-color: #ACD180;">总金额</div>-->
+                <!--</div>-->
+                <!--<div class="Lf totalRight">-->
+                    <!--<div class="Lf totalNumber" style="color: #84C339;"></div>-->
+                    <!--<div class="Lf" style="margin-top: 44px;">-->
+                        <!--<div>笔</div>-->
+                        <!--<div><span class="totalWeight"></span><span>吨</span></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="totalItem Rt yijiesuan" data-id="4">-->
+                <!--<div class="Lf totalLeft clearFloat">-->
+                    <!--<div class="totalImgs">-->
+                        <!--<img src="../img/cf_total4.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="totalTitle cf_btn" style="background-color: #DC715B;">已结算</div>-->
+                <!--</div>-->
+                <!--<div class="Lf totalRight">-->
+                    <!--<div class="Lf totalNumber" style="color: #DC715B"></div>-->
+                    <!--<div class="Lf" style="margin-top: 44px;">-->
+                        <!--<div>笔</div>-->
+                        <!--<div><span class="totalWeight"></span><span>吨</span></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="totalItem Lf clearFloat daijiesuan" data-id="5">-->
+                <!--<div class="Lf totalLeft clearFloat">-->
+                    <!--<div class="totalImgs">-->
+                        <!--<img src="../img/cf_total5.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="totalTitle cf_btn" style="background-color: #86B2FF;">待结算</div>-->
+                <!--</div>-->
+                <!--<div class="Lf totalRight">-->
+                    <!--<div class="Lf totalNumber" style="color: #4F8BF3;"></div>-->
+                    <!--<div class="Lf" style="margin-top: 44px;">-->
+                        <!--<div>笔</div>-->
+                        <!--<div><span class="totalWeight"></span><span>吨</span></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        </div>
+        <!--<div class="myEacheerts clearFloat" id="myEacheerts1">-->
+
+        <!--</div>-->
+        <!--<div class="myEacheerts clearFloat" id="myEacheerts2">-->
+
+        <!--</div>-->
     </div>
     <div class="mainRight">
          <div class="wuliufabu">
@@ -540,19 +561,26 @@
                 if(res.code==1){
                     if(res.data.aType==0 && res.data.aState==1){ //危险化学品资质
                         $(".headerNavList .headerNav5").show();
+                        $(".headerNavList .headerNav5no").hide();
                     }else{
                         $(".headerNavList .headerNav5").hide();
+                        $(".headerNavList .headerNav5no").show();
                     }
                     if(res.data.bType==0 && res.data.bState==1){ //特殊化学品资质
                         $(".headerNavList .headerNav3").show();
+                        $(".headerNavList .headerNav3no").hide();
                     }else{
+                        $(".headerNavList .headerNav3no").show();
                         $(".headerNavList .headerNav3").hide();
                     }
                     if(res.data.companyLogo!=null && res.data.companyLogo!=""){
                         $(".mineLeftHeader .headerImgLe img").attr("src",res.data.companyLogo);
                     }
-                    $(".headerTitle").text(res.data.companyName)
+                    $(".headerNavList .headerNav1").show();
+                    $(".headerNavList .headerNav2").show();
+                    $(".headerNavList .headerNav4").show();
 
+                    $(".headerTitle").text(res.data.companyName)
                 }else{
 
                 }

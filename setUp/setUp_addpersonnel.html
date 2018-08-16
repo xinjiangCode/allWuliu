@@ -436,14 +436,15 @@
             console.log(json);
             if (json.code == 1) {
                 if (json.data.length != 0) {
-                    var str = '<li data-departmentId="">请选择</li>';
+                    var str = '';
+//                <li data-departmentId="">请选择</li>
                     for (var i = 0; i < json.data.length; i++) {
                         str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
                     }
 
                     $('.suoshu_department_ul').html(str);
 
-                    $('.select ul li').click(function(){
+                    $('.suoshu_department ul li').click(function(){
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
                         $(this).parent().parent().find('span').text($(this).text());
@@ -451,11 +452,10 @@
                         $(this).parent().css('display','none');
 
                         $(this).parent().parent().parent().find('.ts').css('display', 'none');
-                            
-                        // if ($(this).parent().parent().find('span').text() == '请选择') {
-                        //     $(this).parent().parent().parent().find('.ts').css('display', 'block');
-                        //     return;
-                        // }
+
+
+                        $(".suoshu_role").find('span').text("请选择")
+                        $(".suoshu_role_ul").attr("data-selectedindex","");
 
                         select_role($(this).attr('data-departmentId'));
                     });
@@ -485,14 +485,15 @@
                 console.log(json);
                 if (json.code == 1) {
                     if (json.data.length != 0) {
-                        var str = '<li data-departmentId="">请选择</li>';;
+                        var str = '';
+//                    <li data-departmentId="">请选择</li>
                         for (var i = 0; i < json.data.length; i++) {
                             str += '<li data-departmentId="'+json.data[i].key+'">'+json.data[i].value+'</li>'
                         }
 
                         $('.suoshu_role_ul').html(str);
 
-                        $('.select ul li').click(function(){
+                        $('.suoshu_role_ul li').click(function(){
                             event.stopPropagation();
                             $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-departmentId'));
                             $(this).parent().parent().find('span').text($(this).text());

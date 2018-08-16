@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/require_style/publishRequireList-detail.css">
+</head>
+<body>
+    <div class="contbox-prld">
+        <div class="toptitle title">
+            <span id="detailTitle">当前需求状态：历史记录详情</span>
+            <!--<div class="fr baojiaBtn">更改报价</div>-->
+            <div class="fr closeBtn" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div>
+            <div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>
+        </div>
+
+        <div class="requireInfo infoBox">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">需求信息</div>
+            <div class="contBox">
+                <div class="contlist contlistone">
+                    <div class="left ll">
+                        <div>需求编号：<span id="demandNo">201707196369321</span></div>
+                        <div>发布时间：<span id="createTime">2015-09-08 23:00</span></div>
+                        <!--<div>装车时间：<span>2015-09-08 23:00</span></div>-->
+                    </div>
+                    <div class="left rr">
+                        <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span class="sendAddress">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
+                        <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span  class="destination receiveAddresss">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
+                    </div>
+                </div>
+                <div class="contlist contlisttwo">
+                    <div class="left ll">
+                        <div>化学品名：<span id="chemicalName"></span></div>
+                        <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsWeight">150吨</span></div>
+                        <!--<div>支付方式：<span>预付</span></div>-->
+                        <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
+                        <div>支付方式：<span id="paymentType">现汇</span></div>
+                    </div>
+                    <div class="left mm">
+                        <div>包装类型：<span id="packageType">罐装</span></div>
+                        <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span id="invoiceType">普票</span></div>
+                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 21px;">备注信息</span></div>
+                        <!--<div>缴纳方式：<span>抵扣</span></div>-->
+                    </div>
+                    <div class="left rr">
+                        <div>货物名称：<span class="goodsName">片碱</span></div>
+                        <div>车辆类型：<span id="carType">罐装车</span></div>
+                        <!--<div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></span></div>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dangerIntroduce infoBox">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">危险品介绍（二期）<div>查看更多信息</div></div>
+            <div class="contBox">
+                <div class="left ll">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<span class="goodsName">片碱</span></div>
+                <div class="left mm">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<span>氢氧化钠</span></div>
+                <div class="left rr">危险等级：<span>重度危险</span></div>
+            </div>
+        </div>
+        <div class="companyInfo infoBox">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">企业信息</div>
+            <div class="contBox">
+                <ul>
+                    <li class="left ll">发货公司：<span class="blue" id="sendCompanyname">化动力有限公司</span></li>
+                    <li class="left mm">联&nbsp;&nbsp;系&nbsp;&nbsp;人：<span id="sendUser">王小二</span></li>
+                    <li class="left rr">联系电话：<span id="sendPhone">18500000000</span></li>
+                    <li>详细地址：<span class="sendAddress">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></li>
+                </ul>
+                <ul>
+                    <li class="left ll">收货公司：<span class="blue" id="receiveCompanyname"></span></li>
+                    <li class="left mm">联&nbsp;&nbsp;系&nbsp;&nbsp;人：<span id="receiveUser"></span></li>
+                    <li class="left rr">联系电话：<span id="receivePhone"></span></li>
+                    <li>详细地址：<span class="receiveAddresss"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="dangerIntroduce infoBox" style="display: none">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">报价公司</div>
+            <div class="contBox" id="baoJiaompany" style="height: 173px;overflow-y: auto;">
+                <div>
+                    <div class="left ll">公司名称：<span>片碱</span></div>
+                    <div class="left mm">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>1000.00</span></div>
+                </div>
+                <div>
+                    <div class="left ll">公司名称：<span>片碱</span></div>
+                    <div class="left mm">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>1000.00</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="dangerIntroduce infoBox">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">时间记录</div>
+            <div class="contBox">
+                <div class="left ll">发单时间：<span id="createTime1">2015-09-09  12:30</span></div>
+                <div class="left mm">过期时间：<span id="demandEndTime">2018-09-09  12:30</span></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#Iframe").css("height","1015");
+        })
+
+        $("#detailTitle").text(sessionStorage.getItem("detailTitle"))
+
+        getData();
+        getData1();
+        //获取数据
+        function getData() {
+            $.ajax({
+                url: pubIP + 'wlLogisticsDemand/query', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    id:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        res.data.createTime = new Date(res.data.createTime).Format("yyyy-MM-dd hh:mm:ss");
+                        cf_dataRender(res.data)
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+
+        //渲染数据
+        function cf_dataRender(data) {
+            $("#demandNo").text(data.demandNo);
+            $("#createTime").text(data.createTime);
+            $("#createTime1").text(data.createTime);
+            $(".sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            $(".receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            $(".receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            $("#chemicalName").text(data.chemicalName);
+            $("#goodsWeight").text(data.goodsNum+data.goodsUnit);
+
+            $("#packageType").text(data.packageType);
+            $("#invoiceType").text(data.invoiceType);
+            $("#paymentType").text(data.paymentType);
+            $(".goodsName").eq(0).text(data.goodsName);
+            $(".goodsName").eq(1).text(data.goodsName);
+            $("#carType").text(data.carType);
+            $("#goodsRemark").text(data.goodsRemark);
+            $("#sendUser").text(data.sendUser);
+            $("#sendPhone").text(data.sendPhone );
+            $("#sendCompanyname").text(data.sendCompanyname);
+            $("#receiveUser").text(data.receiveUser);
+            $("#receivePhone").text(data.receivePhone);
+            $("#receiveCompanyname").text(data.receiveCompanyname);
+            if(data.demandEndTime==null){
+                $("#demandEndTime").text("");
+            }else{
+                $("#demandEndTime").text(data.demandEndTime);
+            }
+
+        }
+
+
+        //获取报价公司列表
+        function getData1() {
+            $("#baoJiaompany").html("");
+            $.ajax({
+                url: pubIP + 'wlDemandQuoted/queryList', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    demandid:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        var  str="";
+                        $.each(res.data.data,function (idx,item) {
+                            str+='<ul  data-id='+item.id+'>';
+                            str+='<li class="left ll">公司名称：<span >'+item.companyname+'</span></li>';
+                            str+='<li class="left mm">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span id="unitPrice">'+item.quotedPrice+'元/吨</span></li>'
+//                            str+='<li class="left rr" data-id='+item.id+'><span class=" btn blue sel">选&nbsp;&nbsp;择</span><span class="del btn" style="margin-left: 20px;">删&nbsp;&nbsp;除</span></li>'
+                            str+="</ul>"
+                        })
+                        $("#baoJiaompany").html(str);
+                    }else{
+                        alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+
+
+    </script>
+</body>
+</html>

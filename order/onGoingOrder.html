@@ -386,6 +386,7 @@
             window.parent.getPeoples(2);
             window.parent.getPeoples(3);
             window.parent.getDataLine(1);
+            window.parent.getKaQuanList();
         }
         //获取数据
         function getData(id) {
@@ -427,8 +428,8 @@
             window.parent.$("#sendAddress").text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$("#receiveAddress").text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$("#carType1").text(data.carType1);
-            window.parent.$("#paymentType").text(data.paymentType);
-            window.parent.$("#paymentType").text(data.paymentType);
+            window.parent.$("#paymentType1").text(data.paymentType);
+            window.parent.$("#paymentType1").text(data.paymentType);
         }
 
         // 点击多选框

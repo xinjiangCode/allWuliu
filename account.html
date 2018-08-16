@@ -60,13 +60,12 @@
         }
 
         .quxiao {
-            width: 190px;
-            width: 190px; 
+            width: 130px; 
             border: 1px solid #d3d3d3; 
             color: #666666; 
             background: #fff;
-            height: 38px;
-            line-height: 38px;
+            height: 35px;
+            line-height: 35px;
         }
 
         .quxiao:hover {
@@ -208,12 +207,12 @@
         }
 
         .btn_moban {
-            width: 90px;
-            height: 38px;
+            width: 130px;
+            height: 35px;
             background: #6ea3ff;
             color: #fff;
-            font-size: 14px;
-            line-height: 38px;
+            font-size: 16px;
+            line-height: 35px;
             text-align: center;
             display: inline-block;
             border-radius: 2px;
@@ -614,7 +613,41 @@
             visibility: hidden;
             text-align: center;
         }
-    </style>
+        .look_pic {
+            display: none;
+            z-index: 200;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .shouyeTankuang1,.shouyeTankuang2{
+            z-index: 99;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .shouyeTankuang1 .cancel,.shouyeTankuang2 .cancel{
+            display: inline-block; width: 130px;height: 35px;line-height: 35px; background-color: #cccccc;color: white; font-size: 16px;
+        }
+        .shouyeTankuang1 .cancel:hover,.shouyeTankuang2 .cancel:hover{
+            background-color: #b8b8b8;
+        }
+        .shouyeTankuang1 .sureBtn,.shouyeTankuang2 .sureBtn{
+            display: inline-block; width: 130px;height: 35px;line-height: 35px; margin-left: 20px; background-color: #6a9ef7;color: white; font-size: 16px;
+        }
+        .shouyeTankuang1 .sureBtn:hover,.shouyeTankuang2 .sureBtn:hover{
+            background-color: #558ff8;
+        }
+ 
+</style>
 </head>
 <body>
 <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -659,7 +692,7 @@
                     
                 <a href="##" class="manage"><strong>个人中心</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
                 <ul class="manageList2">
-                    <li><a href="##" class="manageItem qiye_jiben_info" data-src="./systemIndex/mine.html" data-height="860">企业基本信息</a></li>
+                    <li><a href="##" class="manageItem qiye_jiben_info" data-src="./systemIndex/mine1.html" data-height="860">企业基本信息</a></li>
                     <li><a href="##" class="manageItem"  data-src="./systemIndex/information.html"  data-height="1600">企业信息设置</a></li>
                 </ul>
             </li>
@@ -939,9 +972,10 @@
                 <textarea name="" cols="30" rows="10" class="zhineng_descript" placeholder="请输入内容" style=" text-indent: 10px; height: 185px;width: 483px;border: 1px solid #dbdbdc; margin-left: 5px;"></textarea>
                 <div style="padding-left: 130px;"><span class="ts"></span></div>
             </div>
-            <div class="clearFloat" style="margin-top: 45px;">
+            <div class="errMsg" style="color: red;height: 20px;margin: 5px 0;font-size: 14px;text-align: center;"></div>
+            <div class="clearFloat" style="margin-top: 25px;">
                 <span class=" cf_btn cancel cfClose model35_cancel_btn" style="display: inline-block;margin-left: 135px;" >取消</span>
-                <span class=" cf_btn model35_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                <span class=" cf_btn model35_ok_btn" style="display: inline-block; width: 130px;height: 35px;line-height: 35px;font-size:16px;">确定</span>
             </div>
         </div>
     </div>
@@ -970,7 +1004,7 @@
             </div>
             <div class="clearFloat" style="margin-top: 32px;">
                 <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                <span class=" cf_btn ok_shenqing" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定申请</span>
+                <span class=" cf_btn ok_shenqing" style="display: inline-block; width: 130px;height: 35px;line-height: 35px;font-size:16px;">确定申请</span>
             </div>
         </div>
     </div>
@@ -991,7 +1025,7 @@
             <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="clearfix"><span class="modelBox34LeftTitle fl">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：&nbsp;</span><textarea name="" cols="50" rows="10" placeholder="请输入内容" style="width: 455px; text-indent: 10px; border: 1px solid #dbdbdc; overflow: hidden; float: left;"></textarea></div>
             <div class="clearFloat" style="text-align: center;margin-top: 32px;">
                 <span class=" cf_btn cancel cfClose" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                <span class=" cf_btn" style="display: inline-block; ">确定</span>
             </div>
         </div>
     </div>
@@ -1004,7 +1038,7 @@
             <span>添加角色</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 100%;height: 417px;font-size: 14px;padding-top: 31px; ">
+        <div class="modelcontent clearFloat" style="width: 100%;height: 427px;font-size: 14px;padding-top: 21px; ">
             <div>
                 <span style="display: inline-block; width: 135px;text-align: right;"><i style="color: red;">* </i>角色名称：</span>
                 <input type="text" placeholder="" class="role_name" style="height: 36px;width: 480px;border: 1px solid #dbdbdc;">
@@ -1025,9 +1059,10 @@
                 <span style="display: block; width: 135px;text-align: right;float: left;"><i style="color: red;">* </i>职能描述：</span>
                 <textarea name="" cols="30" rows="10" class="job_describe" style="height: 185px;width: 476px;border: 1px solid #dbdbdc; margin-left: 4px;"></textarea>
             </div>
-            <div class="clearFloat" style="margin-top: 25px;">
+            <div class="errMsg" style="color: red;height: 20px;margin: 5px 0;font-size: 14px;text-align: center;"></div>
+            <div class="clearFloat" style="margin-top: 15px;">
                 <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 138px;" >取消</span>
-                <span class=" cf_btn model38_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                <span class=" cf_btn model38_ok_btn" style="display: inline-block;">确定</span>
             </div>
         </div>
     </div>
@@ -1099,7 +1134,7 @@
                 <input type="text" class="quotedPrice" style="border: 1px solid #e2e2e2;height: 30px;">
                 <span class="danjiadanwei"></span>
             </div>
-            <div class="btn sure1"  style="margin: 0 auto;margin-top: 30px; width: 80px;height: 30px;line-height: 30px;border-radius: 3px;text-align: center;color: #ffffff;background-color: #6ea3f4;">确认报价</div>
+            <div class="btn sure1"  style="margin: 0 auto;margin-top: 30px; width: 130px;height: 35px;line-height: 35px;font-size:16px;border-radius: 3px;text-align: center;color: #ffffff;background-color: #6ea3f4;">确认报价</div>
         </div>
     </div>
 </div>
@@ -1125,7 +1160,7 @@
             <div class="errMsg" style="height: 20px;margin: 40px 0;color: red;font-size: 14px;text-align: center;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 60px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn ok_upload" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+                <span class=" cf_btn ok_upload" style="display: inline-block; margin-left: 20px; ">确定</span>
             </div>
         </div>
     </div>
@@ -1144,7 +1179,7 @@
             <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="clearfix"><span class="modelBox34LeftTitle fl">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：&nbsp;</span><textarea name="" cols="50" rows="10" placeholder="请输入内容" style="width: 455px; text-indent: 10px; border: 1px solid #dbdbdc; overflow: hidden; float: left;"></textarea></div>
             <div class="clearFloat" style="text-align: center;margin-top: 32px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">确定</span>
             </div>
         </div>
     </div>
@@ -1220,7 +1255,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 32px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+                <span class=" cf_btn" style="display: inline-block; margin-left: 20px; ">确定</span>
             </div>
         </div>
     </div>
@@ -1320,7 +1355,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 32px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">提交订单</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">提交订单</span>
             </div>
         </div>
     </div>
@@ -1361,7 +1396,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 50px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">确定</span>
             </div>
         </div>
     </div>
@@ -1427,7 +1462,7 @@
                 </ul>
             </div>
             <div style="margin-top: 36px; margin-bottom: 37px; text-align: center;">企业报价：<input type="text" placeholder="" style="height: 36px;width: 190px;border: 1px solid #dbdbdc;"></div>
-            <div><span class="cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 403px;">确认报价</span></div>
+            <div><span class="cf_btn" style="display: inline-block;margin-left: 403px;">确认报价</span></div>
         </div>
     </div>
 </div>
@@ -1490,7 +1525,7 @@
                 <span style="margin-left: 20px;">可用余额：￥1111212</span>
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 50px;">
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; font-size: 16px;">确认支付</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px;">确认支付</span>
             </div>
         </div>
     </div>
@@ -1511,7 +1546,7 @@
                 <textarea name="" id="deductMoneyRemark" cols="50" rows="10" placeholder="请输入内容" style="width: 470px; text-indent: 10px; border: 1px solid #dbdbdc; overflow: hidden; float: left; margin-left: 5px;"></textarea>
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 29px;">
-                <span class=" cf_btn" id="sureAddDeductMoney" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定新增</span>
+                <span class=" cf_btn" id="sureAddDeductMoney" style="display: inline-block;margin-left: 20px; ">确定新增</span>
             </div>
         </div>
     </div>
@@ -1536,7 +1571,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 50px;font-size: 16px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block; margin-left: 55px;" >取消</span>
-                <span class=" cf_btn money_ok" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">金额确认</span>
+                <span class=" cf_btn money_ok" style="display: inline-block;margin-left: 20px; ">金额确认</span>
             </div>
         </div>
     </div>
@@ -1618,7 +1653,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 80px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >重置</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">开始检索</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">开始检索</span>
             </div>
         </div>
     </div>
@@ -1658,7 +1693,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 50px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认报价</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">确认报价</span>
             </div>
         </div>
     </div>
@@ -1811,7 +1846,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 30px;">
                 <div id="addCarError" style="text-align: center;color: red;"></div>
-                <span class=" cf_btn conFirm" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认提交</span>
+                <span class=" cf_btn conFirm" style="display: inline-block; margin-left: 20px; ">确认提交</span>
             </div>
         </div>
 
@@ -1946,7 +1981,7 @@
             </div>
             <div id="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 30px;">
-                <span class=" cf_btn" id="addRoute" style="display: inline-block; width: 253px;height: 40px;line-height: 40px; ">确认</span>
+                <span class=" cf_btn" id="addRoute" style="display: inline-block;">确认</span>
             </div> 
         </div>
     </div>
@@ -2076,7 +2111,7 @@
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 50px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认新增</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">确认新增</span>
             </div>
         </div>
     </div>
@@ -2143,7 +2178,7 @@
                 </table>
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 38px;">
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认充值</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">确认充值</span>
             </div>
         </div>
     </div>
@@ -2168,7 +2203,7 @@
                 <textarea name="" cols="50" rows="10" placeholder="备注信息" style="width: 470px; text-indent: 10px; border: 1px solid #dbdbdc; overflow: hidden; float: left; margin-left: 5px;"></textarea>
             </div>
             <div class="clearFloat" style="text-align: center;margin-top: 29px;">
-                <span class=" cf_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">申请充值</span>
+                <span class=" cf_btn" style="display: inline-block;margin-left: 20px; ">申请充值</span>
             </div>
         </div>
     </div>
@@ -2203,7 +2238,7 @@
                        <ul>
                            <li>化学品名：<span id="goodsType">危化</span></li>
                            <li>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span id="goodsweight">150吨</span></li>
-                           <li>支付方式：<span id="paymentType" class="paymentType">预付</span></li>
+                           <li>支付方式：<span id="paymentType1" class="paymentType">预付</span></li>
                            <!--<li>保证金：<span>￥1000.00</span></li>-->
                        </ul>
                        <ul>
@@ -2235,7 +2270,7 @@
                     </div>
                     <!--<label for="">确认时间</label>-->
                     <!--<input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">-->
-                    <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 10px;">
+                    <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 10px;width: 130px;height:35px;line-height: 35px;font-size:16px;">
                     <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
                 </div>
                 <div class="listBox1">
@@ -2354,7 +2389,7 @@
                     </ul>
                     <div id="sureCarError" style="text-align: center;color: red;line-height: 20px;font-size: 14px;"></div>
                     <div class="clearFloat" style="text-align: center;margin-top: 30px;">
-                        <span class="cf_btn" data-updata=""  data-cardzhujian="" data-carzhujian=""  id="ok_car_info1" style="display: inline-block; width: 192px;height: 41px;line-height: 40px; margin-left: 20px; ">确认车辆信息</span>
+                        <span class="cf_btn" data-updata=""  data-cardzhujian="" data-carzhujian=""  id="ok_car_info1" style="display: inline-block;margin-left: 20px; ">确认车辆信息</span>
                     </div>
                 </div>
             </div>
@@ -2364,7 +2399,7 @@
             </div>
             <div id="sureCarError1" style="text-align: center;color: red;line-height: 20px;font-size: 14px;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 39px; margin-bottom: 21px;">
-                <span data-updata="" data-cardzhujian="" data-carzhujian="" class="cf_btn" id="ok_fenpei" style="display: inline-block; width: 192px;height: 41px;line-height: 40px;">确认分配</span>
+                <span data-updata="" data-cardzhujian="" data-carzhujian="" class="cf_btn" id="ok_fenpei" style="display: inline-block;">确认分配</span>
             </div>
         </div>
     </div>
@@ -2382,7 +2417,7 @@
 
 
 <!-- 添加职务 -->
-<div class="modelBox19" style="font-size: 14px;">
+<div class="modelBox19" style="font-size: 14px;display: block;">
     <div class="modelCont" style="width: 655px;height: 538px;">
         <div class="modeltitle" style="width: 100%;">
             <span>添加职务</span>
@@ -2411,8 +2446,8 @@
                 <div style="padding-left: 130px;"><span class="ts"></span></div>
             </div>
             <div class="clearFloat" style="margin-top: 20px;">
-                <span class=" cf_btn cancel zishe_btn cfClose model19_cancel_btn" style="display: inline-block;margin-left: 141px;" >取消</span>
-                <span class=" cf_btn model19_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                <span class=" cf_btn cancel zishe_btn cfClose model19_cancel_btn" style="display: inline-block;margin-left: 141px;width:130px;height:35px;line-height:35px;font-size:16px;" >取消</span>
+                <span class=" cf_btn model19_ok_btn" style="display: inline-block;">确定</span>
             </div>
         </div>
     </div>
@@ -2559,12 +2594,13 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix prompt">
-                <span class="ts_ts"></span>
-            </div>
+            <!--<div class="clearfix prompt">-->
+                <!--<span class="ts_ts"></span>-->
+            <!--</div>-->
+            <div class="ts_ts" style="text-align: center;color: red;height: 20px;margin: 5px 0;font-size: 14px;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 30px;">
                 <span class=" cf_btn cancel cfClose quxiao" style="display: inline-block;" >取消</span>
-                <span class=" cf_btn model20_ok_btn" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确认</span>
+                <span class=" cf_btn model20_ok_btn" style="display: inline-block;margin-left: 20px; ">确认</span>
             </div>
         </div>
     </div>
@@ -2605,7 +2641,7 @@
                 </ul>
             </div>
             <div class="errMsg" style="text-align: center;font-size: 14px;margin: 5px auto;height: 20px;line-height: 20px;color: red;"></div>
-            <div class="cf_btn addVehicleField" id="addVehicleField" style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 5px;">增加</div>
+            <div class="cf_btn addVehicleField" id="addVehicleField" style="margin: 0 auto;height: 35px;line-height: 35px;font-size: 16px;margin-top: 5px;">增加</div>
         </div>
     </div>
 </div>
@@ -2621,7 +2657,7 @@
             <ul class="quanList clearFloat" style="height: 370px;overflow-y: auto;">
             </ul>
 
-            <div class="cf_btn cfClose"  style="margin: 0 auto;height: 30px;line-height: 30px;font-size: 16px;margin-top: 20px;">返回</div>
+            <div class="cf_btn cfClose"  style="margin: 0 auto;height: 35px;line-height: 35px;font-size: 16px;margin-top: 20px;">返回</div>
         </div>
     </div>
 </div>
@@ -2648,7 +2684,41 @@
             </div>
             <div class="ErrMsg" style="margin: 5px 0;text-align: center;color: red;font-size: 14px;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 29px;">
-                <span class=" cf_btn" id="sureShuiLv" style="display: inline-block; width: 190px;height: 40px;line-height: 40px; margin-left: 20px; ">确定</span>
+                <span class=" cf_btn" id="sureShuiLv" style="display: inline-block;margin-left: 20px; ">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 我的首页弹框-->
+<div class="shouyeTankuang1" style="font-size: 14px;" data-id="">
+    <div class="modelCont" style="width: 502px;height: 293px;">
+        <div class="modeltitle" style="width: 100%;">
+            <span>提示</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="min-height:0;width: 500px; height: 200px; border: 1px solid #ebe9ea;padding: 40px 0px 0 0px; ">
+           <div class="info" style="text-align: center;width: 327px;margin: 0 auto;">您如需定制化物流服务，请联系平台VIP专属物流专员为您进行咨询及服务。</div>
+            <div class="clearFloat" style="text-align: center;margin-top: 67px;">
+                <span class=" cf_btn cancel" onclick="$(this).parents('.modelCont').parent().hide()">取消</span>
+                <span class=" cf_btn sureBtn"  style="">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 我的首页弹框2-->
+<div class="shouyeTankuang2" style="font-size: 14px;" data-id="">
+    <div class="modelCont" style="width: 502px;height: 293px;">
+        <div class="modeltitle" style="width: 100%;">
+            <span>提示</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="min-height:0;width: 500px; height: 200px; border: 1px solid #ebe9ea;padding: 40px 0px 0 0px; ">
+            <div class="info" style="text-align: center;width: 327px;margin: 0 auto;">您如需广告位购买，请联系平台专属客服。</div>
+            <div class="clearFloat" style="text-align: center;margin-top: 67px;">
+                <span class="cf_btn cancel" onclick="$(this).parents('.modelCont').parent().hide()" >取消</span>
+                <span class="cf_btn sureBtn" >确定</span>
             </div>
         </div>
     </div>
@@ -3237,6 +3307,12 @@
         </div>
 </div>
 
+<div class="look_pic">
+    <div class="pic_div">
+        <img src="" alt="" class="bigpic">
+    </div>
+</div>
+
 <script src="./js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
@@ -3244,6 +3320,30 @@
 <script src="./js/pager.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" >
+
+    function look_pic(w, h, pic_url) {
+
+        $('.bigpic').css({
+            height: h,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            margin: 'auto',
+            position: 'absolute'
+        });
+
+        $('.look_pic img').attr('src', pic_url);
+
+        $('.look_pic').show();
+    }
+
+    $('.look_pic').click(function() {
+        $(this).hide();
+        $(this).attr('src', '');
+    });
+
+
     var listCar=[];
     var listCard=[];
     //        时间初始化
@@ -3702,7 +3802,7 @@
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 sessionStorage.setItem("cfsrc","./finance/identification1.html");
             } else {
-                sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+                sessionStorage.setItem("cfsrc","./systemIndex/mine1.html");
             }
         }else if(idx==".cfidx2"){//需求
             sessionStorage.setItem("cfsrc","./need/toOffer.html");
@@ -4086,7 +4186,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                             elem: $('#page1'),
                             callback: function(n) {
                                 // console.log(n);
-                                getData(n);//加载n页数据
+                                getDataLine(n);//加载n页数据
                             }
                         });
                     }
@@ -4280,7 +4380,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                         $("#carType").attr('data-id', "");
                         $("#carType").find('span').text("全部");
                         //获取车辆列表
-                        getData(1);
+                        getDataLine(1);
                     }
                 }
             },
@@ -4516,8 +4616,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 
             $("#che").attr("data-id",listCar[$(this).index()].car.carid)
             $("#che").text(listCar[$(this).index()].car.carNo)
-            $("#test1").val(listCar[$(this).index()].car.planStartDate)
-            $("#test2").val(listCar[$(this).index()].car.planEndDate)
+                debugger
+            $("#test1").val(timestampToTime(listCar[$(this).index()].car.planStartDate))
+            $("#test2").val(timestampToTime(listCar[$(this).index()].car.planEndDate))
             $("#kmNum").val(listCar[$(this).index()].car.kmNum)
             $("#peoples1").attr("data-selectedindex",listCar[$(this).index()].car.driverid)
             $("#peoples2").attr("data-selectedindex",listCar[$(this).index()].car.safetyid)
@@ -4636,8 +4737,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 
                             $("#che").attr("data-id",listCar[$(this).index()].car.carid)
                             $("#che").text(listCar[$(this).index()].car.carNo)
-                            $("#test1").val(listCar[$(this).index()].car.planStartDate)
-                            $("#test2").val(listCar[$(this).index()].car.planEndDate)
+                            $("#test1").val(timestampToTime(listCar[$(this).index()].car.planStartDate))
+                            $("#test2").val(timestampToTime(listCar[$(this).index()].car.planEndDate))
                             $("#kmNum").val(listCar[$(this).index()].car.kmNum)
                             $("#peoples1").attr("data-selectedindex",listCar[$(this).index()].car.driverid)
                             $("#peoples2").attr("data-selectedindex",listCar[$(this).index()].car.safetyid)

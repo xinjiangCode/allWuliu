@@ -1029,3 +1029,4 @@ input::-webkit-inner-spin-button {
 input{
     -moz-appearance:textfield;
 }
+.addLiShi,.sub,.cf_sel,.sub_btn,.exportDemandBtn,.add_apartment,.btn,.contentslist input{cursor: pointer;}
