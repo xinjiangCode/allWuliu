@@ -1,5 +1,5 @@
 .xiaoshi{display: none;}
-.btn{width: 359px;height: 51px;line-height:51px;background-color: #007aff;border-radius: 5px;text-align: center;color: white;margin-left: 87px;margin-top: 54px;}
+.btn{width: 359px;height: 51px;line-height:51px;background-color: #007aff;border-radius: 5px;text-align: center;color: white;margin-left: 87px;margin-top: 54px;cursor: pointer;}
 .red{color: red;}
 .ts{line-height: 38px;}
 img{float: left;}
@@ -31,7 +31,7 @@ html,body{min-width: 988px;width: 988px;background-color: white;overflow: hidden
 .center1>ul>li>.right1>.uploade>img{position: absolute;top: 0;left: 0;right: 0;bottom: 0;width: 100%;height: 100%;}
 .center1>ul>li>.right1>.uploade>input{position: absolute;top: 0;left: 0;right: 0;bottom: 0;opacity: 0;width: 100%;}
 .center1>ul>li>.right2{line-height: 38px;margin-left: -30px;}
-.center1>ul>li>.right2>input{margin-left: 30px;}
+.center1>ul>li>.right2>input{margin-left: 30px;cursor: pointer;}
 
 .bottom1{border-bottom: 1px solid #f1f1f1;overflow: hidden; height: 493px;}
 .bottom1>.left1{font-size: 16px;color: #282828;margin-left: 20px;margin-top: 10px;}
@@ -45,7 +45,7 @@ html,body{min-width: 988px;width: 988px;background-color: white;overflow: hidden
 .bottom1>.right2>ul>li>.right1>.uploade{position: relative;width: 150px;height: 100px;line-height: 100px;text-align: center;margin-right: 20px; border: 1px solid #ebe9ea;}
 .bottom1>.right2>ul>li>.right1>.uploade>i{position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
 .bottom1>.right2>ul>li>.right1>.uploade>img{position: absolute;top: 0;left: 0;right: 0;bottom: 0;width: 100%;height: 100%;}
-.bottom1>.right2>ul>li>.right1>.uploade>input{position: absolute;top: 0;left: 0;right: 0;bottom: 0;opacity: 0;width: 100%;}
+.bottom1>.right2>ul>li>.right1>.uploade>input{position: absolute;top: 0;left: 0;right: 0;bottom: 0;opacity: 0;width: 100%;cursor: pointer;}
 .bottom1>.right2>ul>li>.right2{line-height: 38px;margin-left: -30px;}
 .bottom1>.right2>ul>li>.right2>input{margin-left: 30px;}
 
