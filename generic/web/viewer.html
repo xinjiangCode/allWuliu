@@ -50,6 +50,7 @@ http://sourceforge.net/adobe/cmap/wiki/License/
        return null;
   }
   var thisUrl = getUrlParms("thisUrl");
+
   $.ajax({  
       type:"post",  
       async:false,  //
@@ -68,7 +69,7 @@ http://sourceforge.net/adobe/cmap/wiki/License/
   for(i = 0; i < rawLength; i++) {  
     array[i] = PDFData.charCodeAt(i) & 0xff;  
   }  
-  DEFAULT_URL = array;  
+  DEFAULT_URL = array;
 </script>
 
 <script src="viewer.js"></script>

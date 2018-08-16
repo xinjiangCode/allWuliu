@@ -98,7 +98,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">财务待结算订单<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">财务待审核订单<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
         <div class="inputBox">
             <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
             <!--<label for="">订单状态</label>-->
@@ -356,7 +356,7 @@
             $(".listBox tbody").html(str);
             //详情
             $(".seeDetail").click(function () {
-                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
+                sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
                 window.location.href="./financeNotAuditOrder-detail.html";
             })
         }
