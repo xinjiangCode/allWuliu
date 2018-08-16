@@ -127,7 +127,7 @@ header>.headerBot{display: none;}
 .pop>.cont>.forget2{text-align: right;margin-right: 100px;margin-top: 10px;}
 .pop>.cont>.forget2>a{color: #007aff;}
 .pop>.cont>.popBottom{margin-left: 90px;margin-top: 35px;}
-.pop>.cont>.popBottom>.btn{margin-left: 58px;width: 137px;height: 39px;line-height: 39px;background-color: #007aff;color: white;text-align: center;border-radius: 5px;}
+.pop>.cont>.popBottom>.btn{margin-left: 58px;width: 130px;height: 35px;line-height: 35px;font-size:16px;background-color: #007aff;color: white;text-align: center;border-radius: 5px;}
 
 .pop>.cont>.popBottom>.popReset{color:#ff7524;border: 1px solid #ff7524;background-color: white;}
 .pop>.cont>.popBottom>.popReset:hover{color:#ffffff;border: 1px solid #ff7524;background-color: #ff7524;}
@@ -230,14 +230,14 @@ header>.headerBot{display: none;}
 }
 .modelbtn{
     float: left;
-    width: 145px;
-    height: 45px;
+    width: 130px;
+    height: 35px;
     border: 1px solid #5690f6;
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
     box-sizing: border-box;
     text-align: center;
-    line-height: 45px;
+    line-height: 35px;
     border-radius: 3px;
     cursor: pointer;
     margin: 18px auto 0 80px;
@@ -296,7 +296,7 @@ header>.headerBot{display: none;}
     float: right;
 }
 
-.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 190px;height: 39px;line-height: 39px;margin-right: 20px;border: 1px solid #dbdbdc; }
+.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #dbdbdc; }
 .modelBox34 .cfClose:hover,.modelBox35 .cfClose:hover,.modelBox36 .cfClose:hover,.modelBox37 .cfClose:hover,.modelBox38 .cfClose:hover,.modelBox39 .cfClose:hover,.modelBox40 .cfClose:hover,.modelBox41 .cfClose:hover,.modelBox42 .cfClose:hover,.modelBox43 .cfClose:hover,.modelBox44 .cfClose:hover,.modelBox45 .cfClose:hover,.modelBox46 .cfClose:hover,.modelBox47 .cfClose:hover{color: white;background-color: #5388ff;border-color: #5388ff;}
 /*蓝色字体返回*/
 .modelBox42 .cfClose,.modelBox43 .cfClose {
@@ -314,9 +314,10 @@ header>.headerBot{display: none;}
 .modelBox48 .modelbtn,.modelBox49 .modelbtn {background-color: #5690f6;}
 
 
-.cf_btn{width: 120px;height: 40px;line-height: 40px; cursor: pointer; text-align: center;border-radius: 3px;background-color: #6ba1ff;color: white;}
+.cf_btn{width: 120px;height: 40px;line-height: 40px;cursor: pointer; text-align: center;border-radius: 3px;background-color: #6ba1ff;color: white;}
 .cf_btn:hover{background-color: #5388ff;color: white;}
 .cf_btnA{color: #6ba1ff;}
+.cf_btn,.model35_ok_btn{width: 130px;height: 35px;line-height: 35px;font-size:16px;}
 
 .jiesuan_main{
     width: 80%;

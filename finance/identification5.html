@@ -147,7 +147,7 @@
                 </li>
                 <li>
                     <div class="left1 Lf"><i class="red">*</i>身份证号:</div>
-                    <div class="right1 Lf"><input type="text" id="id_number"></div>
+                    <div class="right1 Lf"><input type="text" id="id_number" maxlength="18"></div>
                     <div class="ts">身份证号格式不正确</div>
                 </li>
                 <li style="padding-bottom: 0px;">
@@ -1118,7 +1118,7 @@ function xmTanUploadImg2(obj) {
             var id_number_reg = $('#id_number').val();
             
             // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X 
-            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
             // var reg = /^\d+$/;
             if(reg.test(id_number_reg) === false) { 
                 $('#id_number').parent().next().css('display', 'block');
@@ -1149,20 +1149,27 @@ function xmTanUploadImg2(obj) {
 
                 if ($('#new_code').val().trim() == '') {
                     $('#new_code').parent().next().css('display', 'block');
-                    
+                    return false;
                 }
 
                 if ($('#pay_pass2').val().trim() == '') {
                     $('#pay_pass2').parent().next().css('display', 'block');
+                    return false;
                 }
 
                 if ($('#pay_pass2').parent().next().css('display') == 'block') {
-                    return;
+                    return false;
                 }
 
             }
 
-            
+            // if($('.update_yincang').css('visibility') != 'hidden'){
+            //     new_phone = $('#new_phone').val();
+            //     var new_phone_ma = $('#new_code').val();
+            // }else {
+            //     new_phone = $('#yanzheng_phone').val();
+            //     var new_phone_ma = '';
+            // }
 
             var caiwu_name = $('#caiwu_name').val();
             var id_number = $('#id_number').val();
@@ -1197,7 +1204,8 @@ function xmTanUploadImg2(obj) {
                     picId9: picId9,
                     upload_file8: img_url1,
                     upload_file9: img_url2,
-                    pay_pass2: pay_pass2
+                    pay_pass2: pay_pass2,
+                    oldPhoneNumber: $('#yanzheng_phone').val()
                 },
                 cache: false,
                 dataType: 'json',

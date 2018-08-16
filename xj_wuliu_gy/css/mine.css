@@ -20,7 +20,7 @@ body{background-color: #ffffff;}
 .headerNav3{color: #EA4A3A;}
 .headerNav4{color: #1C93DB;}
 .headerNav5{color: #FF8235;}
-.fabu{background-color: #5CB1E5;width: 190px;height: 28px;border-radius:2px;padding-top: 7px;color: #ffffff;font-size: 14px;text-align: center;margin-top: 50px;}
+.fabu{background-color: #5CB1E5;width: 190px;height: 28px;border-radius:2px;padding-top: 7px;color: #ffffff;font-size: 14px;text-align: center;margin-top: 50px;cursor: pointer;}
 .fabu img{width: 17px;height: 17px;vertical-align: middle;}
 
 .notice{width: 706px;height: 30px;padding-top: 11px;line-height: 21px;border:1px solid #ebe9ea;}
@@ -50,6 +50,7 @@ body{background-color: #ffffff;}
     color:#999999;
     margin-top: 10px;
     /*//  background: url("../img/GN2.png") no-repeat;*/
+    cursor: pointer;
 }
 .GNList .GN.on{  color: #228ECF;  }
 .GNList .GN1,.GNList .GN5{  margin-left: 0;  }
@@ -64,7 +65,7 @@ body{background-color: #ffffff;}
 
 .serverList{width: 706px;}
 .serverList::after{content: "";display: block; clear: both;}
-.serverList .ser{color: #5CB1E5;width: 226px;height: 221px;float: left;margin-left: 10px;text-align: center;position: relative;border: 1px solid #8DCFF7;background-color: #f0f9fe;}
+.serverList .ser{color: #5CB1E5;width: 226px;height: 221px;float: left;margin-left: 10px;text-align: center;position: relative;border: 1px solid #8DCFF7;background-color: #f0f9fe;cursor: pointer;}
 .serverList .ser.on{color: #ffffff;background-color: #58b0e7;}
 .serverList .ser1{margin-left: 0;}
 .serverList .ser .moreSer{position: absolute;bottom: 13px;right: 12px;}

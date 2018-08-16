@@ -103,7 +103,7 @@
                 </li>
                 <li>
                     <div class="left1 Lf"><i class="red">*</i>企业银行账号:</div>
-                    <div class="right1 Lf"><input type="text" id="qiye_bank_account"></div>
+                    <div class="right1 Lf"><input type="text" id="qiye_bank_account" maxlength="30"></div>
                     <span class="ts"></span>
                 </li>
                 <li>
@@ -420,7 +420,7 @@
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                console.log(data.data.company.qualificationStatus);
+                //console.log(data.data.company.qualificationStatus);
 
                
                 // if (data.data.company.state == 0) { //未提交

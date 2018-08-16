@@ -557,8 +557,12 @@
             window.parent.$(".modelBox0 .createTime").text(timestampToTime1(timestampToTime1(data.createTime)));
             window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$(".modelBox0 .sendAddress").eq(0).attr("title",data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
+            window.parent.$(".modelBox0 .sendAddress").eq(1).attr("title",data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(0).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .receiveAddresss").eq(1).text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$(".modelBox0 .receiveAddresss").attr("title",data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
+            window.parent.$(".modelBox0 .receiveAddresss").attr("title",data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
             window.parent.$(".modelBox0 .goodsType").text(data.chemicalName);
             window.parent.$(".modelBox0 .goodsWeight").text(data.goodsNum+data.goodsUnit);
             window.parent.$(".modelBox0 .packageType").text(data.packageType);
@@ -568,6 +572,7 @@
             window.parent.$(".modelBox0 .goodsName").eq(1).text(data.goodsName);
             window.parent.$(".modelBox0 .carType").text(data.carType);
             window.parent.$(".modelBox0 .goodsRemark").text(data.goodsRemark);
+            window.parent.$(".modelBox0 .goodsRemark").attr("title",data.goodsRemark);
             window.parent.$(".modelBox0 .sendUser").text(data.sendUser);
             window.parent.$(".modelBox0 .sendPhone").text(data.sendPhone );
             window.parent.$(".modelBox0 .sendCompanyname").text(data.sendCompanyname);
