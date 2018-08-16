@@ -35,4 +35,4 @@ body{
 .jifenNav>div{width: 64px;text-align: center;margin-right: 67px;height: 51px; line-height: 51px;}
 .jifenNav>div.on{border-bottom: 4px solid #f97646;}
 
-.search{width: 68px;height: 32px;line-height: 32px;background-color: #6ba1ff;color: #ffffff;font-size: 12px;text-align: center;margin-top: 10px;margin-right: 15px;}
+.search{width: 68px;height: 32px;line-height: 32px;background-color: #6ba1ff;color: #ffffff;font-size: 12px;text-align: center;margin-top: 10px;margin-right: 15px;cursor: pointer;}
