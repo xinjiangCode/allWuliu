@@ -1163,18 +1163,18 @@ function xmTanUploadImg2(obj) {
 
             }
 
-            if($('.update_yincang').css('visibility') != 'hidden'){
-                new_phone = $('#new_phone').val();
-                var new_phone_ma = $('#new_code').val();
-            }else {
-                new_phone = $('#yanzheng_phone').val();
-                var new_phone_ma = '';
-            }
+            // if($('.update_yincang').css('visibility') != 'hidden'){
+            //     new_phone = $('#new_phone').val();
+            //     var new_phone_ma = $('#new_code').val();
+            // }else {
+            //     new_phone = $('#yanzheng_phone').val();
+            //     var new_phone_ma = '';
+            // }
 
             var caiwu_name = $('#caiwu_name').val();
             var id_number = $('#id_number').val();
-            // new_phone = $('#new_phone').val();
-            // var new_phone_ma = $('#new_code').val();
+            new_phone = $('#new_phone').val();
+            var new_phone_ma = $('#new_code').val();
 
             var pay_pass2 = $('#pay_pass2').val();
 
@@ -1204,7 +1204,8 @@ function xmTanUploadImg2(obj) {
                     picId9: picId9,
                     upload_file8: img_url1,
                     upload_file9: img_url2,
-                    pay_pass2: pay_pass2
+                    pay_pass2: pay_pass2,
+                    oldPhoneNumber: $('#yanzheng_phone').val()
                 },
                 cache: false,
                 dataType: 'json',
