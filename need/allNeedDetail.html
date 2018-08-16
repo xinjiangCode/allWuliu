@@ -40,13 +40,20 @@
         .operator .rr,.myOffer .rr{
             width: 285px;
         }
+        #demandNo{
+            width: 225px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
 
     </style>
 </head>
 <body>
     <div class="contbox-prld">
         <div class="toptitle title">
-            <span>待确认详情</span>
+            <span id="detailTitle">待确认详情</span>
             <div class="fr baojiaBtn">报价</div>
             <div class="fr closeBtn" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div>
             <div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>
@@ -57,12 +64,12 @@
             <div class="contBox">
                 <div class="contlist contlistone">
                     <div class="left ll">
-                        <div>需求编号：<span id="demandNo">201707196369321</span></div>
+                        <div><span>需求编号：</span><span id="demandNo">201707196369321</span></div>
                         <div>发布时间：<span id="createTime">2015-09-08 23:00</span></div>
                         <!--<div>装车时间：<span>2015-09-08 23:00</span></div>-->
                     </div>
                     <div class="left rr">
-                        <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span class="sendAddress">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
+                        <div><span>始&nbsp;&nbsp;发&nbsp;&nbsp;地：</span><span class="sendAddress">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情</span></div>
                         <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span  class="destination receiveAddresss">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
                     </div>
                 </div>
@@ -99,6 +106,9 @@
         </div>
         <div class="myOffer infoBox">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">我的报价</div>
+            <div class="offerList">
+
+            </div>
             <!--<div class="contBox">-->
                 <!--<div class="left ll">报价时间：<span>2017-07-19 23:00</span></div>-->
                 <!--<div class="left mm">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>120元/吨</span></div>-->
@@ -117,6 +127,17 @@
         $(function () {
             window.parent.$("#Iframe").css("height","654");
         })
+        $("#detailTitle").text(sessionStorage.getItem("detailTitle"))
+        if(sessionStorage.getItem("detailTitle")=="待报价需求"){
+            $(".myOffer").hide()
+            $(".baojiaBtn").text("报价")
+        }else if(sessionStorage.getItem("detailTitle")=="待确认需求"){
+            $(".myOffer").show()
+            $(".baojiaBtn").text("更改报价")
+        }else{
+            $(".baojiaBtn").hide();
+        }
+
         getData();
         //获取数据
         function getData() {
@@ -145,10 +166,10 @@
                 }
             });
         }
-
         //渲染数据
         function cf_dataRender(data) {
             $("#demandNo").text(data.demandNo);
+            $("#demandNo").attr("title",data.demandNo);
             $("#createTime").text(timestampToTime1(data.createTime));
             $(".sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
             $(".sendAddress").eq(1).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
@@ -170,8 +191,65 @@
             $("#receiveUser").text(data.receiveUser);
             $("#receivePhone").text(data.receivePhone);
             $("#receiveCompanyname").text(data.receiveCompanyname);
+            getBaoJia(data.goodsUnit);
         }
+        //获取报价
+        function getBaoJia(danwei) {
+            $.ajax({
+                url: pubIP + 'wlDemandQuoted/queryMyList', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    demandid:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+                    if(res.code==1){
+                        var str="";
+                        if(res.data!=null && res.data.length!=0){
+                           $.each(res.data,function (idx,item) {
+                               str+='<div class="contBox">'
+                               if(item.quotedTime==null || item.quotedTime==""){
+                                   str+='<div class="left ll">报价时间：<span></span></div>'
+                               }else{
+                                   str+='<div class="left ll">报价时间：<span>'+timestampToTime1(item.quotedTime)+'</span></div>'
+                               }
 
+                               str+='<div class="left mm">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>'+item.quotedPrice+'元/'+danwei+'</span></div>'
+                               if(item.status==0){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>待报价</span></div>'
+                               }else if(item.status==1){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>未推送</span></div>'
+                               }else if(item.status==2){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>待选择</span></div>'
+                               }else if(item.status==3){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>已采取</span></div>'
+                               }else if(item.status==4){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>平台未采取</span></div>'
+                               }else if(item.status==5){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>供应商未采取</span></div>'
+                               }else if(item.status==6){
+                                   str+='<div class="left rr">结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;果：<span>未采取</span></div>'
+                               }
+                               str+='</div>'
+                           })
+                        }
+                        $(".offerList").html(str);
+
+                    }else{
+
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
 
 
         $(".baojiaBtn").click(function () {
@@ -197,11 +275,11 @@
                     quotedPrice:window.parent.$(".modelBox0 .quotedPrice").val()
                 },
                 success: function (res) {
-                    if(res.code===1){
-                        alert("报价成功")
+                    if(res.code==1){
+                        cf_alert(1,"报价成功")
                         location.reload();
                     }else{
-                        alert(res.msg);
+
                     }
                 },
                 error: function(err){

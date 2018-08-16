@@ -1,10 +1,23 @@
-// var pubIP = 'http://192.168.1.219:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://192.168.1.125:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://192.168.1.218:7777/service/';
 //  var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 var ip = pubIP;
+
+
+//获取地址栏参数，name:参数名称
+function getUrlParms(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)
+        return unescape(r[2]);
+    return null;
+}
+
+
+
 var token=localStorage.getItem("token");
 
 // 上传图片路径
@@ -114,23 +127,23 @@ function popEffectLogin() {
 
 
 
-	// if(isOld == '0' || isOld == '1'){
-	// 	//if(adct=="首页"){
-	//         window.location.href='login.html';
-	// 	// }else{
-	// 	// 	if(location.href.indexOf('account') != -1){
-	// 	// 		parent.location.href = '../login/login.html';
-	// 	// 	}else{
-	// 	// 		window.location.href='../login/login.html';
-	// 	// 	}
-	// 	// }
-	// }else if(isOld == '-1'){
-	// 	if(adct=="首页"){
-	//         window.location.href='account/account.html';
-	// 	}else{
-	// 		window.location.href='../account/account.html';
-	// 	}
-	// }
+	if(isOld == '0' || isOld == '1'){
+		//if(adct=="首页"){
+	        window.location.href='login.html';
+		// }else{
+		// 	if(location.href.indexOf('account') != -1){
+		// 		parent.location.href = '../login/login.html';
+		// 	}else{
+		// 		window.location.href='../login/login.html';
+		// 	}
+		// }
+	}else if(isOld == '-1'){
+		if(adct=="首页"){
+	        window.location.href='account/account.html';
+		}else{
+			window.location.href='../account/account.html';
+		}
+	}
 }
 
 function cf_popEffectClose1(that) {
@@ -290,23 +303,35 @@ if(token) {
 }
 
 
-var company_type = localStorage.getItem('company_type');
+
 
 $(function () {
+    if(getUrlParms("type")!=null){
+        localStorage.setItem("company_type",1);
+        localStorage.setItem("token",getUrlParms("token"));
+        sessionStorage.setItem("isfromjiaoyi",1);
+        sessionStorage.setItem("fromjiaoyi_productName",getUrlParms("productName"));
+        sessionStorage.setItem("fromjiaoyi_sum",getUrlParms("sum"));
+        sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
+        sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
+        sessionStorage.setItem("fromjiaoyi_chemicalName",getUrlParms("chemicalName"));
+        window.location.href="account.html"
+    }
+    var company_type = localStorage.getItem('company_type');
     var url = window.location.href;
     if (url.indexOf('account.html') != -1) {
 
         if (company_type == '-1' || company_type == '2') {
-            
+
             if (url.indexOf('xj_wuliu_gy') != -1) { //不存在
                 window.location.href = "../account.html";
-            }    
+            }
         } else if (company_type == '1') {
             if (url.indexOf('xj_wuliu_gy') == -1) { //不存在
                 window.location.href = "./account.html";
-            } 
+            }
         }
-        
+
     }
     
 })

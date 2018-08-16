@@ -335,7 +335,7 @@
         function cf_dataRender(data) {
             var str='';
             $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.tloId+'">';
+                str+='<tr data-id="'+item.tloId+'" data-orderNo="'+item.orderNo+'" data-companyId="'+item.companyId+'">';
                 str+=' <td><div class="cf_select"></div></td>'
                 str+='<td>'+item.orderNo+'</td>';
                 str+='<td>'+item.startDate+'</td>';
@@ -356,8 +356,11 @@
             $(".listBox tbody").html(str);
             //详情
             $(".seeDetail").click(function () {
-                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
-                window.location.href="./financeNotAuditOrder-detail.html";
+                window.localStorage.setItem('data-companyId', $(this).parents("tr").attr('data-companyId'));
+                window.localStorage.setItem('data-tloId', $(this).parents("tr").attr('data-id'));
+                window.localStorage.setItem('data-orderNo', $(this).parents("tr").attr('data-orderNo'));
+                sessionStorage.setItem("detailTitle","当前订单状态：财务待结算订单");
+                window.location.href = "orderAllDetail.html";
             })
         }
         //选择排序方式

@@ -1,16 +1,28 @@
 
 
-// var pubIP = 'http://192.168.1.219:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
-
-
-//var pubIP = 'http://wl.api.xjv56.com/service/';
+var pubIP = 'http://192.168.1.125:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 // 上传图片路径
 var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
 //下载
 var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
+
+
+//获取地址栏参数，name:参数名称
+function getUrlParms(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)
+        return unescape(r[2]);
+    return null;
+}
+if(getUrlParms("type")!=null){
+    localStorage.setItem("company_type",1);
+    localStorage.setItem("token",getUrlParms("token"));
+}
 
 var token=localStorage.getItem("token");
 var pageSize=10;//分页的每页个数
@@ -363,14 +375,14 @@ $(function () {
 
     $("header  .logo").click(function () {
         
-        // if (company_type == '1') { //供应商
-        //     $('.goUser').attr('href', '../index.html');
-        // } else if (company_type == '2') {
-        //     $('.goUser').attr('href', 'index.html');
-        // } else if (company_type == '-1') {
-        //     $('.goUser').attr('href', 'index.html');
-        // }
-        //window.location.href="./index.html";
+        if (company_type == '1') { //供应商
+            $('.goUser').attr('href', '../index.html');
+        } else if (company_type == '2') {
+            $('.goUser').attr('href', 'index.html');
+        } else if (company_type == '-1') {
+            $('.goUser').attr('href', 'index.html');
+        }
+        window.location.href="./index.html";
     })
 
     if (companyId) {

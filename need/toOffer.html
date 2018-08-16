@@ -409,7 +409,8 @@
             //详情
             $(".seeDetail").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./toConfirmRequire-detail.html";
+                sessionStorage.setItem("detailTitle","待报价需求");
+                window.location.href="allNeedDetail.html";
             })
             //更改报价
             $(".updataBaojia1").click(function () {

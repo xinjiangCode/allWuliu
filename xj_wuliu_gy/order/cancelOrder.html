@@ -140,7 +140,7 @@
                         <td>公司名称</td>
                         <td>重量</td>
                         <td>单价</td>
-                        <td>取消状态</td>
+                        <!--<td>取消状态</td>-->
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -240,15 +240,15 @@
             <td><%=list[i].carrierCompanyName%></td>
             <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
             <td><%=list[i].unitPrice%></td>
-            <td>
-                <%if(list[i].tloStatus == 1) {%>
-                待分配
-                <%}else if (list[i].tloStatus == 2){%>
-                已分配
-                <%} else if(list[i].tloStatus == 3) {%>
-                已合作
-                <%}%>
-            </td>
+            <!--<td>-->
+                <!--<%if(list[i].tloStatus == 1) {%>-->
+                <!--待分配-->
+                <!--<%}else if (list[i].tloStatus == 2){%>-->
+                <!--已分配-->
+                <!--<%} else if(list[i].tloStatus == 3) {%>-->
+                <!--已合作-->
+                <!--<%}%>-->
+            <!--</td>-->
             <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span></td>
         </tr>
         <%}%>
@@ -292,10 +292,11 @@
 
         // 点击进入订单详情
         $(document).on('click', '.seeDetail', function() {
+            sessionStorage.setItem("detailTitle","当前订单状态：取消订单");
             window.localStorage.setItem('data-companyId', $(this).attr('data-companyId'));
             window.localStorage.setItem('data-tloId', $(this).attr('data-tloId'));
             window.localStorage.setItem('data-orderNo', $(this).attr('data-orderNo'));
-            window.location.href = "cancelOrder-detail.html";
+            window.location.href = "orderAllDetail.html";
 
         });
 

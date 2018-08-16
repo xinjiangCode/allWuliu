@@ -141,6 +141,8 @@
         .shouyeTankuang1 .sureBtn:hover,.shouyeTankuang2 .sureBtn:hover{
             background-color: #558ff8;
         }
+        .modelBox31_3 .item{margin-bottom: 20px;}
+        .modelBox31_3 .itemLeftTitle{width: 190px;height: 37px;line-height: 37px;text-align: right;font-size: 16px;color: #333333;}
 
     </style>
 </head>
@@ -1304,6 +1306,50 @@
 
         </div>
     </div>
+    <!--提现-->
+    <div class="modelBox31_3" style="font-size: 14px;">
+        <div class="modelCont" style="width: 633px;height: 470px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>提现</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="width: 100%;height: 380px;font-size: 16px;padding-top: 40px;">
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf">余额：</div>
+                    <div class="itemRight Lf moneyYuE" style="line-height: 37px;height: 37px;">551551</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf"><i style="color: red;">* </i>提现金额：</div>
+                    <div class="itemRight Lf"><input type="text" class="tiXianMoney" placeholder="请输入金额" style="width: 336px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1"></div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf "><i style="color: red;">* </i>支付密码：</div>
+                    <div class="itemRight Lf">
+                        <input type="password" class="payPassWord" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1">
+                        <a href="../login/findPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
+                    </div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf"><i style="color: red;">* </i>手机号：</div>
+                    <div class="itemRight Lf">
+                        <input type="text" class="phone" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1" disabled>
+                        <span class="cf_btn getSMSCode"  style="width: 102px;display: inline-block;height: 35px;line-height: 35px;">获取验证码</span>
+                    </div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf"><i style="color: red;">* </i>输入验证码：</div>
+                    <div class="itemRight Lf"><input type="text" class="SMScode" style="width: 336px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1"></div>
+                </div>
+
+                <div class="clearfix" style="margin: 0 auto;text-align: center;margin-top: 40px;">
+                    <div class="cf_btn Lf cancel" style="width: 136px;height: 38px;line-height: 38px;font-size: 14px;margin-left: 150px;">取消</div>
+                    <div class="cf_btn Lf" id="sureTiXian" style="width: 136px;height: 40px;line-height: 40px;font-size: 14px;margin-left: 56px;background-color: #c2ccd1; " data-isok="0" data-isok1="0" data-isok2="0">确认提现</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
     <!--32.订单信息-->
     <div class="modelBox32" style="font-size: 14px;">
         <div class="modelCont" style="width: 1060px;height: 675px;">
@@ -2266,6 +2312,7 @@
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
 
+
     function look_pic(w, h, pic_url) {
 
         $('.bigpic').css({
@@ -2745,6 +2792,116 @@ function showModelBox(cls) {
         }
 
     })
+    //校验短信码
+    $('.modelBox31_3 .SMScode').bind('input propertychange',function () {
+        var that = this;
+        var text = $(this).val();
+        // $("#SMScode").attr("disabled", "disabled");
+        $.ajax({
+            url: pubIP + 'userSupplier/validSmsCode', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                //token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data: {
+                mobile: $(".modelBox31_3 .phone").val(),
+                smsRandomCode: text
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    $(that).css('border-color', '#c2ccd1');
+                    $("#sureTiXian").attr("data-isok2","1");
+                } else {
+                    $(that).css('border-color', 'red');
+                    $("#sureTiXian").attr("data-isok2","0");
+                }
+
+
+                if($("#sureTiXian").attr("data-isok1")+$("#sureTiXian").attr("data-isok2")=="11"){
+                    $("#sureTiXian").css("backgroundColor","#6ba1ff");
+                    $("#sureTiXian").attr("data-isok","1");
+                }else{
+                    $("#sureTiXian").css("backgroundColor","#c2ccd1");
+                    $("#sureTiXian").attr("data-isok","0");
+                }
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    })
+    $('.modelBox31_3 .payPassWord').bind('input propertychange',function () {
+        if($(".tiXianMoney").val()==''){
+            $("#sureTiXian").attr("data-isok1","0");
+//            $('.modelBox35 .tiXianMoney').css('border-color', 'red');
+        }else if(Number($(".tiXianMoney").val())>Number($(".moneyYuE").text())){
+            $("#sureTiXian").attr("data-isok1","0");
+//            $('.modelBox35 .tiXianMoney').css('border-color', 'red');
+        }else if($('.modelBox31_3 .payPassWord').val()==""){
+            $("#sureTiXian").attr("data-isok1","0");
+            $('.modelBox31_3 .payPassWord').css('border-color', 'red');
+//            $('.modelBox35 .tiXianMoney').css('border-color', '#c2ccd1');
+        }else{
+            $('.modelBox31_3 .payPassWord').css('border-color', '#c2ccd1');
+//            $('.modelBox35 .tiXianMoney').css('border-color', '#c2ccd1');
+            $('#sureTiXian').attr("data-isok1","1");
+        }
+
+        if($("#sureTiXian").attr("data-isok1")+$("#sureTiXian").attr("data-isok2")=="11"){
+            $("#sureTiXian").css("backgroundColor","#6ba1ff");
+            $("#sureTiXian").attr("data-isok","1");
+        }else{
+            $("#sureTiXian").css("backgroundColor","#c2ccd1");
+            $("#sureTiXian").attr("data-isok","0");
+        }
+
+    })
+
+    $('.modelBox31_3 .tiXianMoney').bind('input propertychange',function () {
+        if($(".tiXianMoney").val()==''){
+            $("#sureTiXian").attr("data-isok1","0");
+            $('.modelBox31_3 .tiXianMoney').css('border-color', 'red');
+        }else if(Number($(".tiXianMoney").val())>Number($(".moneyYuE").text())){
+            $("#sureTiXian").attr("data-isok1","0");
+            $('.modelBox31_3 .tiXianMoney').css('border-color', 'red');
+        }else if($('.modelBox35 .payPassWord').val()==""){
+            $("#sureTiXian").attr("data-isok1","0");
+//            $('.modelBox35 .payPassWord').css('border-color', 'red');
+            $('.modelBox31_3 .tiXianMoney').css('border-color', '#c2ccd1');
+        }else{
+//            $('.modelBox35 .payPassWord').css('border-color', '#c2ccd1');
+            $('.modelBox31_3 .tiXianMoney').css('border-color', '#c2ccd1');
+            $('#sureTiXian').attr("data-isok1","1");
+        }
+
+        if($("#sureTiXian").attr("data-isok1")+$("#sureTiXian").attr("data-isok2")=="11"){
+            $("#sureTiXian").css("backgroundColor","#6ba1ff");
+            $("#sureTiXian").attr("data-isok","1");
+        }else{
+            $("#sureTiXian").css("backgroundColor","#c2ccd1");
+            $("#sureTiXian").attr("data-isok","0");
+        }
+
+    })
+    $(".modelBox31_3 .cancel").click(function () {
+        $(this).parents(".modelCont").parent().hide();
+    })
+
+
+
+//从交易过来的进行处理
+    $(function () {
+        if(sessionStorage.getItem("isfromjiaoyi")==1 && getUrlParms("type")==null){
+            $("#Iframe").attr("src","./personal/addRequireMent.html?isFirstFromJiaoYi=1")
+            sessionStorage.setItem("isfromjiaoyi",0);
+        }
+    })
+
 </script>
 </body>
 </html>

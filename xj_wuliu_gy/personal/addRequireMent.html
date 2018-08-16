@@ -110,10 +110,11 @@
             <div class="container1Cen Lf">
                 <div class="BZtype">
                     <span class="cf_leftTitle">包装类型 </span>
-                    <div id="packageType" class="select" data-selectedindex="1">
-                        <span>袋装</span>
+                    <div id="packageType" class="select" data-selectedindex="">
+                        <span>请选择</span>
                         <img src="../img/prl-select.jpg" alt="">
                         <ul>
+                            <li data-index="">请选择</li>
                             <li data-index="1">袋装</li>
                             <li data-index="2">桶装</li>
                             <li data-index="3">罐装</li>
@@ -415,6 +416,23 @@
 <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
 
 <script type="text/javascript" >
+    //获取地址栏参数，name:参数名称
+    function getUrlParms(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return null;
+    }
+    if(getUrlParms("isFirstFromJiaoYi")!=null){
+        $("#goodsName").val( sessionStorage.getItem("fromjiaoyi_productName"))
+        $("#HuaxueType").val(sessionStorage.getItem("fromjiaoyi_chemicalName"))
+        $("#HuaxueType").attr("data-id",sessionStorage.getItem("fromjiaoyi_chemicalId"))
+        $("#goodsNum").val(sessionStorage.getItem("fromjiaoyi_sum"))
+        $(".sub").attr("fromjiaoyi_orderId",sessionStorage.getItem("fromjiaoyi_orderId"));
+    }else{
+        $(".sub").attr("fromjiaoyi_orderId",sessionStorage.getItem(""));
+    }
 
     //Iframe 的高度
     $(function () {
@@ -557,25 +575,25 @@ $(".cf_sel").eq(0).click(function () {
             $(".error").text("");
         }
 
-        if($("#carLength").val()==""){
-            $(".error").text("车辆长度不能为空");
-            return;
-        }else{
-            $(".error").text("");
-        }
-        if($("#carWeight").val()==""){
-            $(".error").text("车辆宽度不能为空");
-            return;
-        }else{
-            $(".error").text("");
-        }
-
-        if($("#carHeight").val()==""){
-            $(".error").text("车辆高度不能为空");
-            return;
-        }else{
-            $(".error").text("");
-        }
+//        if($("#carLength").val()==""){
+//            $(".error").text("车辆长度不能为空");
+//            return;
+//        }else{
+//            $(".error").text("");
+//        }
+//        if($("#carWeight").val()==""){
+//            $(".error").text("车辆宽度不能为空");
+//            return;
+//        }else{
+//            $(".error").text("");
+//        }
+//
+//        if($("#carHeight").val()==""){
+//            $(".error").text("车辆高度不能为空");
+//            return;
+//        }else{
+//            $(".error").text("");
+//        }
 
         if($("#startDate").val()==""){
             $(".error").text("发货时间不能为空");
@@ -596,12 +614,12 @@ $(".cf_sel").eq(0).click(function () {
         }else{
             $(".error").text("");
         }
-        if($("#goodsRemark").val()==""){
-            $(".error").text("备注不能为空");
-            return;
-        }else{
-            $(".error").text("");
-        }
+//        if($("#goodsRemark").val()==""){
+//            $(".error").text("备注不能为空");
+//            return;
+//        }else{
+//            $(".error").text("");
+//        }
         if($("#demandEndTime").val()==""){
             $(".error").text("需求有效期不能为空");
             return;
@@ -695,8 +713,9 @@ $(".cf_sel").eq(0).click(function () {
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var str = '';
+                var str = '<li  data-index="" value="" data-id="">请选择</li>';
                 for (var i = 0; i < data.data.length; i++) {
+
                     str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
                 }
                 $('#carType ul').html(str);
@@ -710,6 +729,9 @@ $(".cf_sel").eq(0).click(function () {
                     $(this).parent().css('display','none');
                 });
                 //默认选中
+//                $("#carType").attr('data-selectedindex', 0);
+//                $("#carType").attr('data-id', data.data[0].id);
+//                $("#carType").find('span').text(data.data[0].typeName);
                 $("#carType").attr('data-selectedindex', 0);
                 $("#carType").attr('data-id', data.data[0].id);
                 $("#carType").find('span').text(data.data[0].typeName);
@@ -739,6 +761,7 @@ $(".cf_sel").eq(0).click(function () {
             ansyc: true,
             dataType: 'json',
             data:{
+                transactionOrderId:$(".sub").attr("fromjiaoyi_orderId"),//来自交易的订单主键
                 chemicalId:$("#HuaxueType").attr("data-id"),
                 chemicalName:$("#HuaxueType").val(),
 //                           demandNo:  //	是	String(50)	需求编号   不存在
@@ -797,7 +820,7 @@ $(".cf_sel").eq(0).click(function () {
             },
             success: function (res) {
                 if(res.code===1){
-                    alert("发布需求成功");
+                    cf_alert01(1,"发布需求成功");
                     window.location.href="../requuire/publishRequireList.html";
                 }else{
                     alert(res.msg);
@@ -827,6 +850,7 @@ $(".cf_sel").eq(0).click(function () {
             ansyc: true,
             dataType: 'json',
             data:{
+                transactionOrderId:$(".sub").attr("fromjiaoyi_orderId"),//来自交易的订单主键
                 chemicalId:$("#HuaxueType").attr("data-id"),
                 chemicalName:$("#HuaxueType").val(),
                 id:sessionStorage.getItem("detailId"),  //	主键Id
@@ -886,7 +910,7 @@ $(".cf_sel").eq(0).click(function () {
             },
             success: function (res) {
                 if(res.code===1){
-                    alert("发布需求成功");
+                    cf_alert01(1,"发布需求成功");
                     window.location.href="../requuire/publishRequireList.html";
                 }else{
                     alert(res.msg);
@@ -1358,6 +1382,13 @@ console.log(provinceID)
         $("#receiveUser").val(data.receiveUser);
         $("#receivePhone").val(data.receivePhone);
         $("#goodsNum").val(data.goodsNum);
+
+//        来自交易的订单  编辑需求
+        if(data.transactionOrderId==null || data.transactionOrderId==""){
+            $(".sub").attr("fromjiaoyi_orderId","");
+        }else{
+            $(".sub").attr("fromjiaoyi_orderId",data.transactionOrderId);
+        }
 
         cf_selectRender("#packageType",data.packageType);
         cf_selectRender("#carType",data.carType);

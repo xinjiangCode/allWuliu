@@ -394,7 +394,8 @@
             //详情
             $(".seeDetail").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./toConfirmRequire-detail.html";
+                sessionStorage.setItem("detailTitle","待确认需求");
+                window.location.href="allNeedDetail.html";
             })
             $(".updataBaojia").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));

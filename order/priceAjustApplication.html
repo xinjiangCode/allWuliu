@@ -294,7 +294,9 @@
                 window.localStorage.setItem('data-companyId',$(this).parents("tr").attr("data-companyid"));
 
 //                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
-                window.location.href="./notDistributeOrder-detail.html";
+//                window.location.href="./notDistributeOrder-detail.html";
+                sessionStorage.setItem("detailTitle","当前订单状态：调价订单");
+                window.location.href = "orderAllDetail.html";
             })
             //同意
             $(".agree").click(function () {

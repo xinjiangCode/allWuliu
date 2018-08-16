@@ -25,7 +25,7 @@
             <div class="contBox">
                 <div class="contlist contlistone">
                     <div class="left ll">
-                        <div>需求编号：<span id="demandNo">201707196369321</span></div>
+                        <div><span>需求编号：</span><span id="demandNo" style="width: 225px;text-overflow: ellipsis;white-space: nowrap; overflow: hidden;vertical-align: bottom;">201707196369321</span></div>
                         <div>发布时间：<span id="createTime">2015-09-08 23:00</span></div>
                         <!--<div>装车时间：<span>2015-09-08 23:00</span></div>-->
                     </div>
@@ -147,6 +147,7 @@
         //渲染数据
         function cf_dataRender(data) {
             $("#demandNo").text(data.demandNo);
+            $("#demandNo").attr("title",data.demandNo);
             $("#createTime").text(data.createTime);
             $("#createTime1").text(data.createTime);
             $(".sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
