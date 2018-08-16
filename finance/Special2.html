@@ -52,6 +52,27 @@
             width: 25px;
         }
 
+        .btn.edit_edit {
+            margin-left: 150px;
+            margin-top: 2px;
+        }
+
+        .add_submit, .shenhe_btn {
+            display: none;
+        }
+
+        .shenhe_btn {
+            margin-left: 295px;
+        }
+
+        .shenhe_btn img {
+            width: 360px;
+        }
+
+        .bottom1 {
+            margin-top: 40px;
+        }
+
     </style>
 </head>
 <body>
@@ -140,10 +161,13 @@
     </div>
     
 
-    <div class="bottom1">
+    <div class="bottom1 edit_btn">
+        <div class="btn edit_edit">编辑</div>
+    </div>
+
+    <div class="bottom1 add_submit">
         <div class="btn Lf add add1">继续添加其他资质</div>
         <div class="btn Lf sub">提交</div>
-        <!-- <div class="btn Lf shenhe" style="display: none;">审核中</div> -->
     </div>
 
     
@@ -373,7 +397,7 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    // console.log(data);
+                    console.log(data);
 
                     if(isfirst){
                         for (var i = 0; i < data.data.length; i++) {
@@ -445,7 +469,7 @@
                         data.data[i].qualificationDataExpire = new Date(data.data[i].qualificationDataExpire).Format("yyyy-MM-dd");
 
                         //许可经营范围
-                        $('#textarea'+ i).attr('data-textarea', data.data[i].remark);
+                        $('#textarea'+ i).val(data.data[i].remark);
                         $('.textarea').attr('disabled', 'disabled');
                          //不让添加
                          // $(".btn1").hide();
@@ -460,7 +484,7 @@
                         $('.c'+i+ ' .start').attr('data-f', 'true');
                         $('.c'+i+ ' .end').attr('data-f', 'true');
 
-                        $('.c'+i).append('<div class="btn edit_btn" style="width: 82px;height: 30px;line-height: 30px;margin: 45px 0 0 298px;">编辑</div>');
+                        // $('.c'+i).append('<div class="btn edit_btn" style="width: 82px;height: 30px;line-height: 30px;margin: 45px 0 0 298px;">编辑</div>');
 
                         $('.input_blur').attr('disabled', true);
 
@@ -565,6 +589,9 @@
 
 
         $(document).on('click', '.edit_btn', function() {
+
+            $(this).hide();
+            $('.add_submit').show();
            
             
             $(this).parent().find('.zizhi_type').attr("disabled",false).css("background-color","#fff");
@@ -929,8 +956,6 @@
    
     $(document).on('click', '.sub', function () {
 
-        
-
         // if($(".zizhi_num").val()==''){
         //     alert('资质编号不能为空!');
         //     return;
@@ -1083,8 +1108,6 @@
             return false;
         }
 
-        return false;
-    
         $.ajax({
             url: pubIP + 'companyCertification/addQualificationsBaseInfo',
             type: 'post',
