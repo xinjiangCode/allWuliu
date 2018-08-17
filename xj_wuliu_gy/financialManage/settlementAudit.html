@@ -258,9 +258,13 @@
                         str += '<td>'+item.orderMoney+'</td>'
                         str += '<td>'+item.returnMoney+'</td>'
                         str += '<td>'+item.otherMoney+'</td>'
-                        str += '<td>'+item.remarks+'</td>'
+                        if(item.remarks==null){
+                            str += '<td></td>'
+                        }else{
+                            str += '<td>'+item.remarks+'</td>'
+                        }
                         str += '<td>'
-                        if(item.examineStatus==2){
+                        if(item.otherMoney=="0"){
                             str += '<span class="btn ll" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'"></span>'
                         }else{
                             str += '<span class="btn ll shenhe" data-otherMoney="'+item.otherMoney+'" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'">打款</span>'

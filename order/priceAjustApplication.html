@@ -127,7 +127,7 @@
                         <td>提交时间</td>
                         <td>原价</td>
                         <td>现价</td>
-                        <td>类型</td>
+                        <!--<td>类型</td>-->
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -273,7 +273,7 @@
                 str+='<td>'+timestampToTime1(item.createTime)+'</td>';
                 str+='<td>'+item.oldPrice+'</td>';
                 str+='<td>'+item.quotedPrice+'</td>';
-                str+='<td>'+item.quotesSatus+'</td>';
+//                str+='<td>'+item.quotesSatus+'</td>';
                 if(item.status==0 && item.type==0){
                     str+='<td ><span class="btn agree" style="color: #6ba1ff;">同意</span> <span  class="btn bohui" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
                 }else{

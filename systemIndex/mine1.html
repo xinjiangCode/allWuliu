@@ -56,19 +56,19 @@
                     </div>
                     <div class="headerNav4no Lf">
                         <img src="../img/cf_headerNav4no.png" alt="">
-                        <i>普化</i>
+                        <i>普货</i>
                     </div>
                     <div class="headerNav4 Lf">
                         <img src="../img/cf_headerNav4.png" alt="">
-                        <i>普化</i>
+                        <i>普货</i>
                     </div>
                     <div class="headerNav5no Lf" style="display: none;">
                         <img src="../img/cf_headerNav5no.png" alt="">
-                        <i>危化</i>
+                        <i>危货</i>
                     </div>
                     <div class="headerNav5 Lf" style="display: none;">
                         <img src="../img/cf_headerNav5.png" alt="">
-                        <i>危化</i>
+                        <i>危货</i>
                     </div>
                 </div>
                 <div class="fabu" onclick="window.location.href='../statistics/depart.html'"><img src="../img/cf_feiji.png" alt="">&nbsp;&nbsp;发布空车</div>
@@ -423,26 +423,26 @@
             dataType: 'json',
             success: function (res) {
                 if(res.code==1){
-                    if(res.data.aType==0 && res.data.aState==1){ //危险化学品资质
+                    if(res.data.eState==1){ //危货
                         $(".headerNavList .headerNav5").show();
                         $(".headerNavList .headerNav5no").hide();
                     }else{
                         $(".headerNavList .headerNav5").hide();
                         $(".headerNavList .headerNav5no").show();
                     }
-                    if(res.data.bType==0 && res.data.bState==1){ //特殊化学品资质
-                        $(".headerNavList .headerNav3").show();
-                        $(".headerNavList .headerNav3no").hide();
+                    if(res.data.dState==1){ //普货
+                        $(".headerNavList .headerNav4").show();
+                        $(".headerNavList .headerNav4no").hide();
                     }else{
-                        $(".headerNavList .headerNav3no").show();
-                        $(".headerNavList .headerNav3").hide();
+                        $(".headerNavList .headerNav4no").show();
+                        $(".headerNavList .headerNav4").hide();
                     }
                     if(res.data.companyLogo!=null && res.data.companyLogo!=""){
                         $(".mineLeftHeader .headerImgLe img").attr("src",res.data.companyLogo);
                     }
                     $(".headerNavList .headerNav1").show();
                     $(".headerNavList .headerNav2").show();
-                    $(".headerNavList .headerNav4").show();
+//                    $(".headerNavList .headerNav4").show();
 
                     $(".headerTitle").text(res.data.companyName)
 

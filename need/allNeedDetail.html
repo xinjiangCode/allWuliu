@@ -86,7 +86,7 @@
                     <div class="left mm">
                         <div>包装类型：<span id="packageType">罐装</span></div>
                         <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span id="invoiceType">普票</span></div>
-                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="vertical-align: sub;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 22px;">备注信息</span></div>
+                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="vertical-align: sub;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 24px;">备注信息</span></div>
                         <!--<div>缴纳方式：<span>抵扣</span></div>-->
                         <div>车辆要求：<span id="carLWH"></span></div>
                         <div>需求有效期：<span id="demandEndTime1"></span></div>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="dangerIntroduce infoBox">
+        <div class="dangerIntroduce infoBox" style="display: none;">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">危险品介绍<div>查看更多信息</div></div>
             <div class="contBox">
                 <div class="left ll">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<span class="goodsName">片碱</span></div>
@@ -191,7 +191,12 @@
             $(".goodsName").eq(1).text(data.goodsName);
             $("#carType").text(data.carType);
 
-            $("#goodsRemark").text(data.goodsRemark);
+            if(data.goodsRemark==null){
+                $("#goodsRemark").text("");
+            }else {
+                $("#goodsRemark").text(data.goodsRemark);
+            }
+
             $("#sendUser").text(data.sendUser);
             $("#sendPhone").text(data.sendPhone );
             $("#sendCompanyname").text(data.sendCompanyname);

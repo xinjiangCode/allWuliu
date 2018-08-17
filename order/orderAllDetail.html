@@ -242,12 +242,17 @@
             <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span><%=goodsNum%><%=goodsUnit%></span></div>
             <div>支付方式：<%=paymentType%></div>
             <!-- <div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div> -->
+            <div>订单类型：<span id="orderType"><%=orderType%></span ></div>
+            <div>发单类型：<span id="demandType"><%=demandType%></span></div>
         </div>
         <div class="left mm">
             <div>包装类型：<span>罐装</span></div>
             <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span><%=invoiceType%></span></div>
+            <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span><%=goodsRemark%></span></div>
             <!-- <div>结算方式：<span><%=paymentMode%></span></div> -->
             <!-- <div>缴纳方式：<span>抵扣</span></div> -->
+            <div>车辆要求：<span id="carLWH"><%=carLWH%></span></div>
+            <div>需求有效期：<span id="demandEndTime1"><%=demandEndTime%></span></div>
         </div>
         <div class="left rr">
             <div>货物名称：<span><%=goodsName%></span></div>
@@ -259,7 +264,9 @@
             <span>需要</span>
             <%}%>
             </div> -->
-            <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span><%=goodsRemark%></span></div>
+            <div>期望运价：<span id="wishUnitPrice"><%=wishUnitPrice%></span></div>
+            <div>发货时间：<span id="startDate"><%=startDate%></span></div>
+            <div>预计到货时间：<span id="planEndDate"><%=planEndDate%></span></div>
         </div>
     </div>
 </script>
@@ -362,6 +369,39 @@
                         json.data.startDate="无";
                     }else{
                         json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm:ss");
+                    }
+
+                    if(json.data.orderType==null){
+                        $("#orderType").text("");
+                    }
+                    if(json.data.wishUnitPrice==null){
+//                        $("#wishUnitPrice").text("");
+                        json.data.wishUnitPrice="";
+                    }else{
+                        json.data.wishUnitPrice=json.data.wishUnitPrice+"元/"+json.data.goodsUnit;
+                    }
+                    if(json.data.carHeight!=null && json.data.carLength!=null && json.data.carWeight!=null){
+                        json.data.carLWH=data.carLength+" * "+data.carWeight+" * "+data.carHeight;
+                    }else{
+                        json.data.carLWH="";
+                    }
+                    if(json.data.startDate==null){
+                        json.data.startDate=="";
+                    }else{
+                        json.data.startDate=timestampToTime1(json.data.startDate)
+                    }
+                    if(json.data.demandType==null){
+                        json.data.demandType="";
+                    }
+                    if(json.data.demandEndTime==null){
+                        json.data.demandEndTime="";
+                    }else{
+                        json.data.demandEndTime=timestampToTime1(json.data.demandEndTime);
+                    }
+                    if(json.data.planEndDate==null){
+                        json.data.planEndDate="";
+                    }else{
+                        json.data.planEndDate=timestampToTime1(json.data.planEndDate);
                     }
 
                     var orderResult = template('orderTpl', json.data);
@@ -535,8 +575,8 @@
 
                 if (json.code == 1) {
 
-                    $('.nashui').text(json.data.taxNumber);
-                    $('.qiye_phone').text(json.data.taxId);
+                    $('.nashui').text(json.data.taxId);
+                    $('.qiye_phone').text(json.data.taxNumber);
                     $('.qiye_kaihu_bank').text(json.data.accountBank);
                     $('.qiye_bank').text(json.data.accountId);
                     $('.address').text(json.data.companyAddress);

@@ -196,18 +196,18 @@
     </div>
     <!--//选择公司-->
     <div class="modelBox0 " style="">
-        <div class="modelCont" style="width: 800px;height: 410px;">
+        <div class="modelCont" style="width: 800px;height: 430px;">
             <div class="modeltitle" style="width: 780px;padding-left: 20px;">
                 <span>需求信息</span>
                 <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
             </div>
-            <div class="modelcontent"  style="width: 780px;height: 360px;padding-left: 20px;font-size: 14px;color: #666;padding-top: 20px;">
+            <div class="modelcontent"  style="width: 780px;height: 380px;padding-left: 20px;font-size: 14px;color: #666;padding-top: 20px;">
                 <div class="requireInfo infoBox">
                     <!--<div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">需求信息</div>-->
                     <div class="contBox"  style="color: #666666;line-height: 24px;">
                         <div class="contlist contlistone clearFloat">
                             <div class="Lf " style="width: 250px;">
-                                <div>需求编号：<span id="demandNo">201707196369321</span></div>
+                                <div><span>需求编号：</span><span id="demandNo" style="display: inline-block; width: 170px;text-overflow: ellipsis;white-space: nowrap; overflow: hidden;vertical-align: bottom;">201707196369321</span></div>
                                 <div>发布时间：<span id="createTime">2015-09-08 23:00</span></div>
                                 <!--<div>装车时间：<span>2015-09-08 23:00</span></div>-->
                             </div>
@@ -223,18 +223,23 @@
                                 <!--<div>支付方式：<span>预付</span></div>-->
                                 <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
                                 <div>支付方式：<span id="paymentType">现汇</span></div>
+                                <div>订单类型：<span id="orderType"></span ></div>
+                                <div>发单类型：<span id="demandType"></span></div>
                             </div>
                             <div class="Lf " style="width: 250px;">
                                 <div>包装类型：<span id="packageType">罐装</span></div>
                                 <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span id="invoiceType">普票</span></div>
-                                <div style="width: 500px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="">备注信息</span></div>
-                                <!--<div>缴纳方式：<span>抵扣</span></div>-->
+                                <div style="width: 500px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="vertical-align: sub;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 24px;">备注信息</span></div>
+                                <div>车辆要求：<span id="carLWH"></span></div>
+                                <div>需求有效期：<span id="demandEndTime1"></span></div>
                             </div>
                             <div class="Lf " style="width: 250px;" >
                                 <div>货物名称：<span class="goodsName">片碱</span></div>
                                 <div>车辆类型：<span id="carType">罐装车</span></div>
                                 <!--<div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></span></div>-->
-
+                                <div>期望运价：<span id="wishUnitPrice"></span></div>
+                                <div>发货时间：<span id="startDate"></span></div>
+                                <div>预计到货时间：<span id="planEndDate"></span></div>
                             </div>
                         </div>
                     </div>
@@ -458,6 +463,43 @@
             $("#receiveUser").text(data.receiveUser);
             $("#receivePhone").text(data.receivePhone);
             $("#receiveCompanyname").text(data.receiveCompanyname);
+
+            if(data.orderType==null){
+                $("#orderType").text("");
+            }else{
+                $("#orderType").text(data.orderType);
+            }
+            if(data.wishUnitPrice==null){
+                $("#wishUnitPrice").text("");
+            }else{
+                $("#wishUnitPrice").text(data.wishUnitPrice+"元/"+data.goodsUnit);
+            }
+            if(data.carHeight!=null && data.carLength!=null && data.carWeight!=null){
+                $("#carLWH").text(data.carLength+" * "+data.carWeight+" * "+data.carHeight);
+            }else{
+                $("#carLWH").text("");
+            }
+            if(data.startDate==null){
+                $("#startDate").text("");
+            }else{
+                $("#startDate").text(timestampToTime1(data.startDate));
+            }
+
+            if(data.demandType==null){
+                $("#demandType").text("");
+            }else{
+                $("#demandType").text(data.demandType);
+            }
+            if(data.demandEndTime==null){
+                $("#demandEndTime1").text("");
+            }else{
+                $("#demandEndTime1").text(timestampToTime1(data.demandEndTime));
+            }
+            if(data.planEndDate==null){
+                $("#planEndDate").text("");
+            }else{
+                $("#planEndDate").text(timestampToTime1(data.planEndDate));
+            }
             //获取报价公司列表  传入计量单位
             getDataCompanyList(data.goodsUnit)
         }

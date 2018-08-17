@@ -1,4 +1,4 @@
-// var pubIP = 'http://192.168.1.125:7777/service/';
+// var pubIP = 'http://192.168.1.218:7777/service/';
 // var pubIP = 'http://192.168.1.199:7777/service/';
  var pubIP = 'http://wl.api.xjv56.com/service/';
 
@@ -305,8 +305,10 @@ if(token) {
 
 
 $(function () {
-    if(getUrlParms("type")!=null){
+    if(getUrlParms("type")!=null && getUrlParms("token")!=null ){
         localStorage.setItem("company_type",1);
+        debugger
+        sessionStorage.setItem("jiaoYiType",getUrlParms("type"));
         localStorage.setItem("token",getUrlParms("token"));
         sessionStorage.setItem("isfromjiaoyi",1);
         sessionStorage.setItem("fromjiaoyi_productName",getUrlParms("productName"));

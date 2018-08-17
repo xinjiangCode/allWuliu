@@ -174,7 +174,7 @@
     <div class="containerBot clearFloat" style="padding-top: 0;margin-top: 20px;">
         <div style="">
             <span class="cf_sel"></span>
-            <span style="font-size: 14px;color: #282828;">同意平台协议</span>
+            <span style="font-size: 14px;color: #282828;" onclick='openWin("http://zhongshunxinhe.oss-cn-beijing.aliyuncs.com/jy/adv/imgs/201808229/0537a53d213c557ca6d1d13bbfd79891.pdf")'>同意平台协议</span>
         </div>
         <div class="sub" onclick="sub()">确认发布</div>
     </div>
@@ -616,6 +616,11 @@
                 console.log(err);
             }
         });
+    }
+    function openWin(url) {
+        $('body').append($('<a href="' + url + '" target="_blank" id="openWin"></a>'))
+        document.getElementById("openWin").click();//点击事件
+        $('#openWin').remove();
     }
 </script>
 </body>
