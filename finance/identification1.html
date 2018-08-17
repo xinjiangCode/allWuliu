@@ -683,8 +683,8 @@
             success: function (data) {
                 //console.log(data);
                 var thisUrl = data.data.fileUrl;
-                //openWin("../generic/web/viewer.html?thisUrl="+thisUrl);
-                window.downloadFile(thisUrl);
+                openWin("../generic/web/viewer.html?thisUrl="+thisUrl);
+                //window.downloadFile(thisUrl);
             },
             error: function (err) {
                 console.log(err);
