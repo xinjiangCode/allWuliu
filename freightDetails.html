@@ -101,7 +101,12 @@
                 var item=res.data;
                 str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
                 str+=' <div class="middle Lf">'
-                str+='    <div class="companyName">'+item.companyName+'</div>'
+                if(item.companyName==null){
+                    str+='    <div class="companyName"></div>'
+                }else{
+                    str+='    <div class="companyName">'+item.companyName+'</div>'
+                }
+
                 str+='<div class="dangerClass">'
                 if(item.qualifications!=null){
                     if(item.qualifications.length!=0){
@@ -111,7 +116,12 @@
                     }
                 }
                 str+='</div>'
-                str+='<div class="address">'+item.province+'-'+item.city+'</div>'
+                if(item.province==null || item.city==null){
+                    str+='<div class="address"></div>'
+                }else{
+                    str+='<div class="address">'+item.province+'-'+item.city+'</div>'
+                }
+
 //                str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
                 str+='</div>'
                 $("#compInfor").html(str);

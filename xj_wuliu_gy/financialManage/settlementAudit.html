@@ -267,7 +267,7 @@
                         if(item.otherMoney=="0"){
                             str += '<span class="btn ll" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'"></span>'
                         }else{
-                            str += '<span class="btn ll shenhe" data-otherMoney="'+item.otherMoney+'" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'">打款</span>'
+                            str += '<span class="btn ll shenhe" data-otherMoney="'+item.otherMoney+'" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'" data-orderid="'+item.orderId+'">打款</span>'
                         }
                         str += '<a class="btn ll seeDetail">查看详情</a></td>'
                         str += '</tr>'
@@ -287,10 +287,14 @@
                     //立即支付
                     $(".shenhe").unbind();
                     $(".shenhe").click(function () {
+                        getStatus($(this).attr("data-orderid"))
                         window.parent.$(".modelBox31").show()
                         window.parent.$(".modelBox31 .syMoney").text($(this).attr("data-otherMoney"));
                         window.parent.$(".modelBox31 .payMoney").attr("data-slMoney",$(this).attr("data-otherMoney"));
+                        window.parent.$(".modelBox31 .payMoney").removeAttr("readonly")
+                        window.parent.$(".modelBox31 .payMoney").val("")
                         window.parent.$(".modelBox31").attr("data-id",$(this).attr("data-id"));
+                        window.parent.$(".modelBox31 .ErrorMsg1").hide()
                         getAccountYuE();
                     })
 //                    弹框立即支付
@@ -337,8 +341,8 @@
                             },
                             success: function(res){
                                 if(res.code == 0){
-                                    window.parent.$(".modelBox31_2").hide();//支付成功
-                                    cf_alert01(1,"打款成功");
+//                                    window.parent.$(".modelBox31_2").hide();//支付成功
+                                    cf_alert(1,"打款成功");
                                 }else{
 
                                 }
@@ -449,8 +453,51 @@
                 data: {},
                 success: function (data) {
                     if (data.code == 0) {
-                        window.parent.$(".modelBox31_2 .accountBalance").text(data.data);
+                        window.parent.$(".modelBox31 .accountBalance").text(data.data);
                     } else {
+                        window.parent.$(".modelBox31 .accountBalance").text("");
+                        return;
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+
+//        获取支付方式
+        function getStatus(orderid) {
+            $.ajax({
+                url: pubIP + 'wlLogisticsDemand/queryByIdOrNo', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data: {
+                    logisticsOrderId:orderid
+                },
+                success: function (data) {
+                    console.log("+++++++++++++++++++++++++++++++************************")
+                    console.log(data)
+                    if (data.code == 1) {
+                        if(data.data.paymentType=="现汇" || data.data.paymentType=="1"){
+                            window.parent.$(".modelBox31 .chengDui").hide()
+                            window.parent.$(".modelBox31 .XianHui").show()
+                        }else if(data.data.paymentType=="承兑" || data.data.paymentType=="2"){
+                            window.parent.$(".modelBox31 .chengDui").show()
+                            window.parent.$(".modelBox31 .XianHui").hide()
+                        }else if(data.data.paymentType=="现汇+承兑" || data.data.paymentType=="3"){
+                            window.parent.$(".modelBox31 .chengDui").show()
+                            window.parent.$(".modelBox31 .XianHui").show()
+                        }
+                        window.parent.$(".modelBox31 .cf_title").text("支付方式："+data.data.paymentType);
+
+                    } else {
+                        window.parent.$(".modelBox31 .accountBalance").text("0.00");
                         return;
                     }
                 },

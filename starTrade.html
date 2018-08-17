@@ -237,23 +237,33 @@
         var str='';
         $.each(data,function (idx,item) {
         str+='<li data-id="'+item.companyId+'">';
-            str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
-            str+=' <div class="middle Lf">'
-            str+='    <div class="companyName">'+item.companyName+'</div>'
-            str+='<div class="dangerClass">'
-            if(item.qualifications!=null){
-                if(item.qualifications.length!=0){
-                    $.each(item.qualifications,function (idx1,item1) {
-                        str+=item1.qualifiStr+' ';
-                    })
+            if(item.isShow==false){
+                str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
+                str+=' <div class="middle Lf">'
+                str+='<div class="companyName">'+item.companyName+'</div>'
+                str+='<div class="dangerClass">'
+                str+='</div>'
+                str+='</div>'
+                str+='</li>'
+            }else{
+                str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
+                str+=' <div class="middle Lf">'
+                str+='<div class="companyName">'+item.companyName+'</div>'
+                str+='<div class="dangerClass">'
+                if(item.chemicalVoList!=null){
+                    if(item.chemicalVoList.length!=0){
+                        $.each(item.chemicalVoList,function (idx1,item1) {
+                            str+=item1.typeName1+item1.typeName2+'&nbsp;&nbsp;&nbsp;';
+                        })
+                    }
                 }
-            }
 
-            str+='</div>'
-            str+='<div class="address">'+item.province+'-'+item.city+'</div>'
-            str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
-            str+='</div>'
-            str+='</li>'
+                str+='</div>'
+                str+='<div class="address">'+item.province+'-'+item.city+'</div>'
+                str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
+                str+='</div>'
+                str+='</li>'
+            }
         })
         $(".carrierList").html(str);
         //详情

@@ -1,9 +1,9 @@
 // 公共头
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
-var headerip = 'http://192.168.1.199:7777/service/';
+// var headerip = 'http://192.168.1.199:7777/service/';
 // var headerip = 'http://192.168.1.218:7777/service/';
-// var headerip = 'http://wl.api.xjv56.com/service/';
+var headerip = 'http://wl.api.xjv56.com/service/';
 
 //获取地址栏参数，name:参数名称
 function getUrlParms(name){
@@ -67,7 +67,7 @@ document.writeln("<header>\n" +
     "</header>");
 
 window.onload=function () {
-    if(getUrlParms("type")!=null && getUrlParms("token")!=null){
+    if(getUrlParms("type")!=null && getUrlParms("token")!=null && getUrlParms("orderId")!=null){
         localStorage.setItem("company_type",1);
         sessionStorage.setItem("jiaoYiType",getUrlParms("type"));
         localStorage.setItem("token",getUrlParms("token"));
