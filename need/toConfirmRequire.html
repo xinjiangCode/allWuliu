@@ -256,7 +256,7 @@
                 <!--</div>-->
 
                 <div class="baojia" style="text-align: center;margin-top: 60px;"><span>企业报价</span><input type="text" id="quotedPrice"></div>
-                <div class="btn sure1"  style="margin: 0 auto;margin-top: 30px; width: 80px;height: 30px;line-height: 30px;border-radius: 3px;text-align: center;color: #ffffff;background-color: #6ea3f4;">确认报价</div>
+                <div class="btn sure1"  style="margin: 0 auto;margin-top: 30px; width: 130px;height: 35px;line-height: 35px;font-size:16px;border-radius: 3px;text-align: center;color: #ffffff;background-color: #6ea3f4;">确认报价</div>
             </div>
         </div>
     </div>
@@ -394,7 +394,8 @@
             //详情
             $(".seeDetail").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
-                window.location.href="./toConfirmRequire-detail.html";
+                sessionStorage.setItem("detailTitle","待确认需求");
+                window.location.href="allNeedDetail.html";
             })
             $(".updataBaojia").click(function () {
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));

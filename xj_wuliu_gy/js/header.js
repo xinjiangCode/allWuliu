@@ -2,9 +2,18 @@
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
 var headerip = 'http://192.168.1.199:7777/service/';
-// var headerip = 'http://192.168.1.219:7777/service/';
-
+// var headerip = 'http://192.168.1.125:7777/service/';
 // var headerip = 'http://wl.api.xjv56.com/service/';
+
+//获取地址栏参数，name:参数名称
+function getUrlParms(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)
+        return unescape(r[2]);
+    return null;
+}
+
 
 
 document.writeln("<header>\n" +
@@ -58,6 +67,17 @@ document.writeln("<header>\n" +
     "</header>");
 
 window.onload=function () {
+    if(getUrlParms("type")!=null){
+        localStorage.setItem("company_type",1);
+        localStorage.setItem("token",getUrlParms("token"));
+        sessionStorage.setItem("isfromjiaoyi",1);
+        sessionStorage.setItem("fromjiaoyi_productName",getUrlParms("productName"));
+        sessionStorage.setItem("fromjiaoyi_sum",getUrlParms("sum"));
+        sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
+        sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
+        sessionStorage.setItem("fromjiaoyi_chemicalName",getUrlParms("chemicalName"));
+        window.location.href="account.html"
+    }
     if(localStorage.getItem("token")){
         //判断登录状态
         $.ajax({

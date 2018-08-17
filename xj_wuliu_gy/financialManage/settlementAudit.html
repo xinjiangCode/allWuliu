@@ -252,7 +252,7 @@
                     $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
                     var str = ''
                     $.each(data,function(idx,item){
-                        str += '<tr>'
+                        str += '<tr data-orderId="'+item.orderId+'" data-orderNo="'+item.orderNo+'"> '
                         str += '<td>'+item.orderId+'</td>'
                         str += '<td>'+item.supplierCompanyName+'</td>'
                         str += '<td>'+item.orderMoney+'</td>'
@@ -265,11 +265,21 @@
                         }else{
                             str += '<span class="btn ll shenhe" data-otherMoney="'+item.otherMoney+'" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'">打款</span>'
                         }
-                        str += '<a href="orderJieSuanDetail.html?orderId='+item.orderId+'" class="btn ll">查看详情</a></td>'
+                        str += '<a class="btn ll seeDetail">查看详情</a></td>'
                         str += '</tr>'
                     })
-//                    str="<tr><td><span class=\"btn ll shenhe\" data-otherMoney='10' id=\"'+item.carrierCompanyId+'\" data-id = \"'+item.id+'\">打款</span></td></tr>"
                     $(".myTbody").html(str);
+                    //详情
+                    $(".seeDetail").unbind();
+                    $(".seeDetail").click(function () {
+                        // 订单id
+                        window.localStorage.setItem('data-tloId',$(this).parents("tr").attr("data-orderId"));
+                        //订单编号
+                        window.localStorage.setItem('data-orderNo',$(this).parents("tr").attr("data-orderNo"));
+                        window.localStorage.setItem('data-companyId',"");
+                        sessionStorage.setItem("detailTitle","当前订单状态：结算审核");
+                        window.location.href = "../order/orderAllDetail.html";
+                    })
                     //立即支付
                     $(".shenhe").unbind();
                     $(".shenhe").click(function () {

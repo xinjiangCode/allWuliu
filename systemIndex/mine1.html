@@ -157,11 +157,11 @@
                 <i>调价申请</i>
                 <img src="" alt="">
             </div>
-            <div class="GN3 GN" onclick="window.location.href='../financialManage/platChongzhi.html'">
+            <div class="GN3 GN" onclick="window.location.href='../finance/moneyChongZhi.html'">
                 <i>平台充值</i>
                 <img src="" alt="">
             </div>
-            <div class="GN4 GN" onclick="window.location.href='../financialManage/platTixian.html'">
+            <div class="GN4 GN" onclick="goTixian()">
                 <i>平台提现</i>
                 <img src="" alt="">
             </div>
@@ -455,6 +455,145 @@
             }
         });
     }
+
+    //    提现
+    function goTixian() {
+        //    点击提现
+        window.parent.$(".modelBox31_3 .tiXianMoney").val("");
+        window.parent.$(".modelBox31_3 .payPassWord").val("");
+        window.parent.$(".modelBox31_3 .SMScode").val("");
+        window.parent.$("#sureTiXian").attr("data-isok","0");
+        window.parent.$("#sureTiXian").attr("data-isok1","0");
+        window.parent.$("#sureTiXian").attr("data-isok2","0");
+        window.parent. $("#sureTiXian").css("backgroundColor","#c2ccd1");
+
+        window.parent.$(".modelBox31_3").show();
+        getPhone();
+        //    获取余额
+        $.ajax({
+            type: "post",
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            url: pubIP + "finance/getAccountBalance",//v1.0
+            cache: false,
+            data: {},
+            dataType: "json",
+            success: function (response) {
+                window.parent.$(".modelBox31_3 .moneyYuE").text(response.data)
+
+            }
+        });
+    }
+    //获取手机号
+    function getPhone(){
+        $.ajax({
+            url: pubIP + 'finance/getFinancePhone', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data: {},
+            success: function (data) {
+                if (data.code == 0) {
+                    window.parent.$(".modelBox31_3 .phone").val(data.data);
+                    window.parent.$(".modelBox31_3 .getSMSCode").unbind();
+                    window.parent.$(".modelBox31_3 .getSMSCode").click(function () {
+                        if($(this).attr("disabled")=="disabled"){
+                            return;
+                        }
+                        getSCode(data.data);
+                    })
+                } else {
+                    return;
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+    //获短信取验证码
+    function getSCode(phone) {
+        $.ajax({
+            url: pubIP + 'userSupplier/getMessageCode', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data: {mobile: phone},
+            success: function (data) {
+                if (data.code == 1) {
+                    //alert("发送验证码成功");
+//                    $(".modelBox34 .SMScode").removeAttr("disabled");
+                    var time=60;
+                    window.parent.$(".modelBox31_3 .getSMSCode").attr("disabled","disabled");
+                    window.parent.$(".modelBox31_3 .getSMSCode").css("background-color","#ddd");
+                    var timer=setInterval(function () {
+                        time--;
+                        window.parent.$(".modelBox31_3 .getSMSCode").text(""+time+"秒")
+                        if(time==0){
+                            clearInterval(timer);
+                            window.parent.$(".modelBox31_3 .getSMSCode").removeAttr("disabled");
+                            window.parent.$(".modelBox31_3 .getSMSCode").css("background-color","#3582F8");
+                            window.parent.$(".modelBox31_3 .getSMSCode").text("获取验证码")
+                        }
+                    },1000);
+
+                } else {
+                    alert(data.msg);
+                    return;
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+    //确认提现
+    window.parent.$("#sureTiXian").unbind();
+    window.parent.$("#sureTiXian").click(function () {
+//            未提供提现接口
+        return;
+        if($(this).attr("data-isok")==0){
+            return;
+        }
+        $.ajax({
+            type:"post",
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            url: pubIP+"payment/cashOut",//v1.0
+            cache:false,
+            data:{
+                payPassword:window.parent.$(".modelBox31_3 .payPassWord").val(),
+                amount:window.parent.$(".modelBox31_3 .tiXianMoney").val()
+            },
+            success: function(res){
+                if(res.code == 1){
+                    window.parent.$(".modelBox31_3").hide();//支付成功
+                    alert(res.msg);
+                }else{
+                    alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    })
+
 </script>
 </body>
 </html>

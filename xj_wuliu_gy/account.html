@@ -69,7 +69,7 @@
         .modelBox55 .modelCont{
             position: absolute;
             width: 450px;
-            min-height: 276px;
+            min-height: 275px;
             left: 50%;
             top: 50%;
             /*margin-left: -225px;
@@ -141,6 +141,8 @@
         .shouyeTankuang1 .sureBtn:hover,.shouyeTankuang2 .sureBtn:hover{
             background-color: #558ff8;
         }
+        .modelBox31_3 .item{margin-bottom: 20px;}
+        .modelBox31_3 .itemLeftTitle{width: 190px;height: 37px;line-height: 37px;text-align: right;font-size: 16px;color: #333333;}
 
     </style>
 </head>
@@ -439,14 +441,14 @@
 
             <!--<div class="forget2"><a href="##">忘记密码?</a></div>-->
             <div class="popBottom">
-                <div class="btn Lf popCancel theNext" onclick="show1('#updataNewPhone')">下一步</div>
+                <div class="btn Lf popCancel theNext" style="margin-left: 102px;" onclick="show1('#updataNewPhone')">下一步</div>
                 <!--<div class="btn Lf popReset" onclick="reset(this)">重置</div>
                 <div class="btn Lf popSure" id="updataPhoneSub">确定</div>-->
             </div>
         </div>
     </div>
     <!--修改新手机号弹框-->
-    <div class="pop" id="updataNewPhone">
+    <div class="pop" id="updataNewPhone" >
         <div class="cont" style="width: 650px;">
             <div class="cance2">
                 <span class="popTitle Lf">新手机号更换</span>
@@ -483,7 +485,7 @@
             <!--<div class="forget2"><a href="##">忘记密码?</a></div>-->
             <div class="popBottom">
                 <div class="btn Lf popSure" id="updataPhoneSub">提交</div>
-                <div class="btn Lf popCancel close">取消</div>
+                <div class="btn Lf popCancel close" style="margin-left: 20px;">取消</div>
                 <!--<div class="btn Lf popReset" onclick="reset(this)">重置</div>-->
 
             </div>
@@ -535,7 +537,7 @@
     <!--修改交易密码弹框-->
     <div class="pop " id="updataPayPwd">
         <div class="cont">
-            <div class="cancel">
+            <div class="cancel" style="margin-top:0;">
                 <span class="popTitle Lf">修改密码</span>
                 <span class="close" style="float: right;cursor: pointer;" onclick="close1(this)"><img src="./img/gsxq_del.png" alt=""></span>
             </div>
@@ -567,7 +569,7 @@
             <div class="forget2"><a href="##">忘记密码?</a></div>
             <div class="popBottom">
                 <div class="btn Lf popCancel close" onclick="close1(this)">取消</div>
-                <div class="btn Lf popSure" id="updataPayPwdSub">确定</div>
+                <div class="btn Lf popSure" style="margin-left: 20px;" id="updataPayPwdSub">确定</div>
             </div>
         </div>
     </div>
@@ -666,12 +668,12 @@
     </div>
     <!-- 我的首页弹框-->
     <div class="shouyeTankuang1" style="font-size: 14px;" data-id="">
-        <div class="modelCont" style="width: 502px;height: 293px;">
+        <div class="modelCont">
             <div class="modeltitle" style="width: 100%;">
                 <span>提示</span>
                 <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
             </div>
-            <div class="modelcontent clearFloat" style="min-height:0;width: 500px; height: 200px; border: 1px solid #ebe9ea;padding: 40px 0px 0 0px; ">
+            <div class="modelcontent clearFloat" style="min-height:0;width: 448px; height: 200px; border: 1px solid #ebe9ea;padding: 40px 0px 0 0px; ">
                 <div class="info" style="text-align: center;width: 327px;margin: 0 auto;">您如需定制化物流服务，请联系平台VIP专属物流专员为您进行咨询及服务。</div>
                 <div class="clearFloat" style="text-align: center;margin-top: 67px;">
                     <span class=" cf_btn cancel" onclick="$(this).parents('.modelCont').parent().hide()">取消</span>
@@ -682,12 +684,12 @@
     </div>
     <!-- 我的首页弹框2-->
     <div class="shouyeTankuang2" style="font-size: 14px;" data-id="">
-        <div class="modelCont" style="width: 502px;height: 293px;">
+        <div class="modelCont">
             <div class="modeltitle" style="width: 100%;">
                 <span>提示</span>
                 <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
             </div>
-            <div class="modelcontent clearFloat" style="min-height:0;width: 500px; height: 200px; border: 1px solid #ebe9ea;padding: 40px 0px 0 0px; ">
+            <div class="modelcontent clearFloat" style="min-height:0;width: 448px; height: 200px; border: 1px solid #ebe9ea;padding: 40px 0px 0 0px; ">
                 <div class="info" style="text-align: center;width: 327px;margin: 0 auto;">您如需广告位购买，请联系平台专属客服。</div>
                 <div class="clearFloat" style="text-align: center;margin-top: 67px;">
                     <span class="cf_btn cancel" onclick="$(this).parents('.modelCont').parent().hide()" >取消</span>
@@ -705,8 +707,8 @@
             <div class="modelcontent">
                 <div class="modelTxt"></div>
                 <div class="modelBtnBox">
-                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
-                    <div style="color:#5690f6;margin-left: 12px;" class="modelbtn cancel cfClose">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+                    <div style="background:#5690f6;margin-right: -210px;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                    <div style="color:#5690f6;margin-left: -75px;" class="modelbtn cancel cfClose">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
                 </div>
             </div>
         </div>
@@ -1041,7 +1043,7 @@
                 </div>
                 <div class="modelBtnBox width100 clearfix">
                     <div style="background:#5690f6;" class="modelbtn1 upload_info">上传</div>
-                    <div style="background:#5690f6;" class="modelbtn1 cancel_info cfClose">取消</div>
+                    <div style="background:#5690f6;float:left;margin-left: 20px;" class="modelbtn1  cfClose">取消</div>
                 </div>
             </div>
         </div>
@@ -1299,7 +1301,51 @@
                     <div class="itemRight Lf"><input type="text" class="SMScode"  style="width: 336px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1"></div>
                 </div>
 
-                <div class="cf_btn " id="surePay" style="margin: 0 auto;width: 310px;height: 40px;line-height: 40px;font-size: 14px;background-color: #c2ccd1;" data-isok="0" data-isok1="0" data-isok2="0">确认支付</div>
+                <div class="cf_btn " id="surePay" style="margin: 0 auto;background-color: #c2ccd1;" data-isok="0" data-isok1="0" data-isok2="0">确认支付</div>
+            </div>
+
+        </div>
+    </div>
+    <!--提现-->
+    <div class="modelBox31_3" style="font-size: 14px;">
+        <div class="modelCont" style="width: 633px;height: 470px;">
+            <div class="modeltitle" style="width: 100%;">
+                <span>提现</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="../img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent" style="width: 100%;height: 380px;font-size: 16px;padding-top: 40px;">
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf">余额：</div>
+                    <div class="itemRight Lf moneyYuE" style="line-height: 37px;height: 37px;">551551</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf"><i style="color: red;">* </i>提现金额：</div>
+                    <div class="itemRight Lf"><input type="text" class="tiXianMoney" placeholder="请输入金额" style="width: 336px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1"></div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf "><i style="color: red;">* </i>支付密码：</div>
+                    <div class="itemRight Lf">
+                        <input type="password" class="payPassWord" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1">
+                        <a href="../login/findPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
+                    </div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf"><i style="color: red;">* </i>手机号：</div>
+                    <div class="itemRight Lf">
+                        <input type="text" class="phone" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1" disabled>
+                        <span class="cf_btn getSMSCode"  style="width: 102px;display: inline-block;height: 35px;line-height: 35px;">获取验证码</span>
+                    </div>
+                </div>
+                <div class="item clearfix">
+                    <div class="itemLeftTitle Lf"><i style="color: red;">* </i>输入验证码：</div>
+                    <div class="itemRight Lf"><input type="text" class="SMScode" style="width: 336px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1"></div>
+                </div>
+
+                <div class="clearfix" style="margin: 0 auto;text-align: center;margin-top: 40px;">
+                    <div class="cf_btn Lf cancel" style="margin-left: 188px;">取消</div>
+                    <div class="cf_btn Lf" id="sureTiXian" style="margin-left: 56px;background-color: #c2ccd1; " data-isok="0" data-isok1="0" data-isok2="0">确认提现</div>
+                </div>
+
             </div>
 
         </div>
@@ -1366,7 +1412,7 @@
                 </div>
 
                 <div style="text-align: center;margin-top: 35px;line-height: 38px;"><span>企业报价：</span><input type="text" style="width: 194px;height: 38px;line-height: 38px;border: 1px solid #d3d3d3;"></div>
-                <div class="cf_btn" style="margin: auto;margin-top: 50px;width: 190px; height: 41px;line-height: 41px;">确认报价</div>
+                <div class="cf_btn" style="margin: auto;margin-top: 50px;">确认报价</div>
             </div>
 
         </div>
@@ -1488,7 +1534,7 @@
 
                 <div class="clearFloat" style="text-align: center;margin-top: 32px;">
                     <span class=" cf_btn cancel cfClose" style="display: inline-block;" >取消</span>
-                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                    <span class=" cf_btn" style="display: inline-block;">确定</span>
                 </div>
             </div>
         </div>
@@ -1512,7 +1558,7 @@
                 </div>
                 <div class="clearFloat" style="margin-top: 32px;">
                     <span class=" cf_btn cancel cfClose model35_cancel_btn" style="display: inline-block;margin-left: 138px;" >取消</span>
-                    <span class=" cf_btn model35_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定</span>
+                    <span class=" cf_btn model35_ok_btn" style="display: inline-block;">确定</span>
                 </div>
             </div>
         </div>
@@ -1540,7 +1586,7 @@
                 </div>
                 <div class="clearFloat" style="margin-top: 32px;">
                     <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                    <span class=" cf_btn ok_shouhuo" style="display: inline-block; width: 190px;height: 41px;line-height: 41px; ">确定收货</span>
+                    <span class=" cf_btn ok_shouhuo" style="display: inline-block;">确定收货</span>
                 </div>
             </div>
         </div>
@@ -1569,7 +1615,7 @@
                 </div>
                 <div class="clearFloat" style="margin-top: 32px;">
                     <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                    <span class=" cf_btn ok_shenqing" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定申请</span>
+                    <span class=" cf_btn ok_shenqing" style="display: inline-block;">确定申请</span>
                 </div>
             </div>
         </div>
@@ -1604,7 +1650,7 @@
                 </div>
                 <div class="clearFloat" style="margin-top: 25px;">
                     <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 138px;" >取消</span>
-                    <span class=" cf_btn model38_ok_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                    <span class=" cf_btn model38_ok_btn" style="display: inline-block;">确定</span>
                 </div>
             </div>
         </div>
@@ -1631,7 +1677,7 @@
                 </div>
                 <div class="clearFloat" style="margin-top: 25px;">
                     <span class=" cf_btn cancel cfClose" style="display: inline-block;margin-left: 135px;" >取消</span>
-                    <span class=" cf_btn" style="display: inline-block; width: 190px;height: 41px;line-height: 41px;">确定</span>
+                    <span class=" cf_btn" style="display: inline-block;">确定</span>
                 </div>
             </div>
         </div>
@@ -1647,14 +1693,14 @@
                 <div style="text-align: center;font-size: 20px;color: #595757;">秒杀专区暂时下线公告</div>
                 <div style="text-align: center;font-size: 18px;color: #999999;margin-top: 10px;">2017-12-26  21:10:30</div>
                 <div style="text-indent: 2rem;color: #949495;font-size: 16px;line-height: 26px;margin-top: 35px;">尊敬的用户，为了给您带来更好的体验，秒杀专区业务将于2017年4月26日22：00-2017年4月27日09:00期间进行系统升级，升级期间秒杀专区入口将暂时下线。升级后可正常充值和查看充值记录，请有需要的用户提前充值或者在系统升级后再充值。给您带来的不便，敬请谅解。感谢您一如既往的支持。</div>
-                <div class="cf_btn" style="margin: auto;margin-top: 75px;width: 140px;font-size: 18px;">确定</div>
+                <div class="cf_btn" style="margin: auto;margin-top: 75px;font-size: 16px;">确定</div>
             </div>
 
         </div>
     </div>
 
     <!-- 41.新增采购需求 --成功 -->
-    <div class="modelBox41" >
+    <div class="modelBox41">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1673,7 +1719,7 @@
         </div>
     </div>
     <!-- 42.定制化物流服务-->
-    <div class="modelBox42" >
+    <div class="modelBox42">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1685,15 +1731,15 @@
                 </div>
                 <div style="text-align: center;margin-top: 50px;">
                     <span class="cf_btn" style="display: inline-block;margin-right: 18px;">
-                        <a href="##" style="display: inline-block;width: 100%;height: 100%;">联系客服</a>
+                        <a href="##" style="display: inline-block;width:130px;height: 35px;line-height:35px;font-size:16px;">联系客服</a>
                     </span>
-                    <span  class="cf_btn cfClose" style=" display: inline-block;">返回</span>
+                    <span  class="cf_btn cfClose" style=" display: inline-block;width:130px;height: 35px;line-height:35px;font-size:16px;">返回</span>
                 </div>
             </div>
         </div>
     </div>
     <!--43.广告位-->
-    <div class="modelBox43" >
+    <div class="modelBox43">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1705,16 +1751,16 @@
                 </div>
                 <div style="text-align: center;margin-top: 50px;">
                     <span class="cf_btn" style="display: inline-block;margin-right: 18px;">
-                        <a href="##" style="display: inline-block;width: 100%;height: 100%;">联系客服</a>
+                        <a href="##" style="display: inline-block;width:130px;height: 35px;line-height:35px;font-size:16px;">联系客服</a>
                     </span>
-                    <span  class="cf_btn cfClose" style=" display: inline-block;">返回</span>
+                    <span  class="cf_btn cfClose" style=" display: inline-block;width:130px;height: 35px;line-height:35px;font-size:16px;">返回</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 44.资质审核未通过 -->
-    <div class="modelBox44" >
+    <div class="modelBox44">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1733,7 +1779,7 @@
     </div>
 
     <!-- 45.确认交易 -->
-    <div class="modelBox45" >
+    <div class="modelBox45">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1771,7 +1817,7 @@
         </div>
     </div>
     <!-- 47.实名认证成功 -->
-    <div class="modelBox47" >
+    <div class="modelBox47">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1793,7 +1839,7 @@
         </div>
     </div>
     <!--48.报价被确认-->
-    <div class="modelBox48" >
+    <div class="modelBox48"  >
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1829,7 +1875,7 @@
         </div>
     </div>
     <!-- 50.发布需求时  未企业认证 -->
-    <div class="modelBox50" >
+    <div class="modelBox50">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1847,7 +1893,7 @@
         </div>
     </div>
     <!--51.发布需求时 首次资质认证-->
-    <div class="modelBox51" >
+    <div class="modelBox51">
         <div class="modelCont" style="width: 650px;height: 460px;">
             <div class="modeltitle" style="width: 650px;">
                 <span>资质认证</span>
@@ -1865,7 +1911,7 @@
         </div>
     </div>
     <!-- 52.发布需求时  没有该类资质 -->
-    <div class="modelBox52" >
+    <div class="modelBox52">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1883,7 +1929,7 @@
         </div>
     </div>
     <!-- 53.未登录 -->
-    <div class="modelBox53" >
+    <div class="modelBox53">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -1901,7 +1947,7 @@
         </div>
     </div>
     <!-- 54.发布需求 --成功 -->
-    <div class="modelBox54" >
+    <div class="modelBox54">
         <div class="modelCont">
             <div class="modeltitle">
                 <span>消息提示</span>
@@ -2202,8 +2248,8 @@
 
 
     <!-- 活动列表-查看活动详情 -->
-    <div id="activityDetail">
-        <div class="modelCont">
+    <div id="activityDetail" style="display:none;"></div>
+        <div class="modelCont" style="display:none;">
             <div class="modeltitle">
                 <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
             </div>
@@ -2265,6 +2311,7 @@
 <script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
+
 
     function look_pic(w, h, pic_url) {
 
@@ -2747,6 +2794,116 @@ function showModelBox(cls) {
         }
 
     })
+    //校验短信码
+    $('.modelBox31_3 .SMScode').bind('input propertychange',function () {
+        var that = this;
+        var text = $(this).val();
+        // $("#SMScode").attr("disabled", "disabled");
+        $.ajax({
+            url: pubIP + 'userSupplier/validSmsCode', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                //token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data: {
+                mobile: $(".modelBox31_3 .phone").val(),
+                smsRandomCode: text
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    $(that).css('border-color', '#c2ccd1');
+                    $("#sureTiXian").attr("data-isok2","1");
+                } else {
+                    $(that).css('border-color', 'red');
+                    $("#sureTiXian").attr("data-isok2","0");
+                }
+
+
+                if($("#sureTiXian").attr("data-isok1")+$("#sureTiXian").attr("data-isok2")=="11"){
+                    $("#sureTiXian").css("backgroundColor","#6ba1ff");
+                    $("#sureTiXian").attr("data-isok","1");
+                }else{
+                    $("#sureTiXian").css("backgroundColor","#c2ccd1");
+                    $("#sureTiXian").attr("data-isok","0");
+                }
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    })
+    $('.modelBox31_3 .payPassWord').bind('input propertychange',function () {
+        if($(".tiXianMoney").val()==''){
+            $("#sureTiXian").attr("data-isok1","0");
+//            $('.modelBox35 .tiXianMoney').css('border-color', 'red');
+        }else if(Number($(".tiXianMoney").val())>Number($(".moneyYuE").text())){
+            $("#sureTiXian").attr("data-isok1","0");
+//            $('.modelBox35 .tiXianMoney').css('border-color', 'red');
+        }else if($('.modelBox31_3 .payPassWord').val()==""){
+            $("#sureTiXian").attr("data-isok1","0");
+            $('.modelBox31_3 .payPassWord').css('border-color', 'red');
+//            $('.modelBox35 .tiXianMoney').css('border-color', '#c2ccd1');
+        }else{
+            $('.modelBox31_3 .payPassWord').css('border-color', '#c2ccd1');
+//            $('.modelBox35 .tiXianMoney').css('border-color', '#c2ccd1');
+            $('#sureTiXian').attr("data-isok1","1");
+        }
+
+        if($("#sureTiXian").attr("data-isok1")+$("#sureTiXian").attr("data-isok2")=="11"){
+            $("#sureTiXian").css("backgroundColor","#6ba1ff");
+            $("#sureTiXian").attr("data-isok","1");
+        }else{
+            $("#sureTiXian").css("backgroundColor","#c2ccd1");
+            $("#sureTiXian").attr("data-isok","0");
+        }
+
+    })
+
+    $('.modelBox31_3 .tiXianMoney').bind('input propertychange',function () {
+        if($(".tiXianMoney").val()==''){
+            $("#sureTiXian").attr("data-isok1","0");
+            $('.modelBox31_3 .tiXianMoney').css('border-color', 'red');
+        }else if(Number($(".tiXianMoney").val())>Number($(".moneyYuE").text())){
+            $("#sureTiXian").attr("data-isok1","0");
+            $('.modelBox31_3 .tiXianMoney').css('border-color', 'red');
+        }else if($('.modelBox35 .payPassWord').val()==""){
+            $("#sureTiXian").attr("data-isok1","0");
+//            $('.modelBox35 .payPassWord').css('border-color', 'red');
+            $('.modelBox31_3 .tiXianMoney').css('border-color', '#c2ccd1');
+        }else{
+//            $('.modelBox35 .payPassWord').css('border-color', '#c2ccd1');
+            $('.modelBox31_3 .tiXianMoney').css('border-color', '#c2ccd1');
+            $('#sureTiXian').attr("data-isok1","1");
+        }
+
+        if($("#sureTiXian").attr("data-isok1")+$("#sureTiXian").attr("data-isok2")=="11"){
+            $("#sureTiXian").css("backgroundColor","#6ba1ff");
+            $("#sureTiXian").attr("data-isok","1");
+        }else{
+            $("#sureTiXian").css("backgroundColor","#c2ccd1");
+            $("#sureTiXian").attr("data-isok","0");
+        }
+
+    })
+    $(".modelBox31_3 .cancel").click(function () {
+        $(this).parents(".modelCont").parent().hide();
+    })
+
+
+
+//从交易过来的进行处理
+    $(function () {
+        if(sessionStorage.getItem("isfromjiaoyi")==1 && getUrlParms("type")==null){
+            $("#Iframe").attr("src","./personal/addRequireMent.html?isFirstFromJiaoYi=1")
+            sessionStorage.setItem("isfromjiaoyi",0);
+        }
+    })
+
 </script>
 </body>
 </html>
