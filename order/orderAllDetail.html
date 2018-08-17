@@ -493,10 +493,13 @@
                         }else{
                             json.data.signDate = new Date(json.data.signDate).Format("yyyy-MM-dd hh:mm:ss");
                         }
+
                         $('.hetong_company').text(json.data.receiveCompanyname);
                         $('.qianding_time').text(json.data.signDate);
                         $('.upload_time').text(json.data.createTime);
+                        $(".heTong").show()
                     }else{
+                        $(".heTong").hide()
                         $('.hetong_company').text("");
                         $('.qianding_time').text("");
                         $('.upload_time').text("");

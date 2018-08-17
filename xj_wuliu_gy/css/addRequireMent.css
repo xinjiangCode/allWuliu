@@ -14,8 +14,8 @@ body{
 .container1Cen{width: 244px;margin-right: 85px;}
 .container1Right{width: 249px;}
 .container1Left>div,.container1Cen>div,.container1Right>div{margin-bottom: 21px;}
-.container1Cen .select{width: 178px;}
-.container1Right .select{width: 180px;}
+.container1Cen .select{width: 170px;}
+.container1Right .select{width: 173px;}
 
 .select{height: 38px;background-color: #fafafa;border: 1px solid #eaeaea; float: right;margin-top: 0;}
 .select span{font-size: 14px;}
@@ -23,7 +23,7 @@ input{height: 34px;background-color: #fafafa;border: 1px solid #eaeaea;text-inde
 .BH{margin-left: 38px;}
 .BH input{width: 829px;}
 .cf_leftTitle{font-size:14px;color: #282828;height: 38px;line-height: 38px;display: inline-block;}
-.goodsName input,.FHtime input,.daohuo input{width: 213px;}
+.goodsName input,.FHtime input,.daohuo input{width: 204px;}
 
 .fadantype .select{width: 215px;}
 .address .select{float: left;width: 96px;}

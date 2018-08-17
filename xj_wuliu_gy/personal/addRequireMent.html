@@ -59,6 +59,7 @@
         .modelBox55 tr>td{text-align: center;line-height: 30px;}
         .modelBox55 .HuaxueTypeList li{line-height: 34px;padding-left: 10px;}
         .modelBox55 .HuaxueTypeList li:hover{background-color: #fafafa;}
+        .red{color: red;margin-right: 5px;text-align: center;vertical-align: sub}
      </style>
 
 
@@ -72,18 +73,18 @@
             <div class="Rt addLiShi">发布历史需求</div>
         </div>
         <div style="margin-bottom: 20px;">
-            <span class="cf_leftTitle" style="margin-left: 39px;">货物名称</span>
+            <span class="cf_leftTitle" style="margin-left: 39px;"> <span class="red">*</span>货物名称</span>
             <input type="text" id="goodsName" style="width: 830px;"></div>
         <div class="clearFloat">
             <div class="container1Left Lf">
                 <div class="goodsName" style="position: relative;">
-                    <span class="cf_leftTitle">化学品名</span>
+                    <span class="cf_leftTitle"><span class="red">*</span>化学品名</span>
                     <input type="text" id="HuaxueType" data-id="">
                     <ul class="HuaxueTypeList" style="position: absolute;left: 61px;z-index: 1;width: 215px;max-height: 200px;background-color: white;overflow-y: auto;display: none;">
                     </ul>
                 </div>
-                <div class="goodsWeight"><span class="cf_leftTitle">货物单位</span>
-                    <input type="text" id="goodsNum" style="width: 109px;">
+                <div class="goodsWeight"><span class="cf_leftTitle"><span class="red">*</span>货物单位</span>
+                    <input type="text" id="goodsNum" style="width: 98px;">
                     <div id="goodsUnit" class="select" data-selectedindex="1" style="margin-top: 0;width: 98px;float: right;">
                         <span>重量/吨</span>
                         <img src="../img/prl-select.jpg" alt="">
@@ -95,21 +96,21 @@
 
                 </div>
                 <div class="che">
-                    <span class="cf_leftTitle">车辆要求 </span>
-                    <input id="carLength" type="text" placeholder="长" style="width: 66px;">
-                    <input id="carWeight" type="text" placeholder="宽" style="width: 65px;">
-                    <input id="carHeight" type="text" placeholder="高" style="width: 66px;">
+                    <span class="cf_leftTitle"><span style="color: transparent;">*</span>车辆要求 </span>
+                    <input id="carLength" type="text" placeholder="长" style="width: 63px;">
+                    <input id="carWeight" type="text" placeholder="宽" style="width: 64px;">
+                    <input id="carHeight" type="text" placeholder="高" style="width: 64px;">
                 </div>
                 <div class="FHtime">
-                    <span class="cf_leftTitle">发货时间 </span>
+                    <span class="cf_leftTitle"><span class="red">*</span>发货时间 </span>
                     <!--<input type="text" id="startDate">-->
-                    <input type="text" class="date-input laydate-icon publishTime input startDate" placeholder="请选择日期" id="test1" style="width: 190px;height: 34px;">
+                    <input type="text" class="date-input laydate-icon publishTime input startDate" placeholder="请选择日期" id="test1" style="width: 182px;height: 34px;">
                 </div>
 
             </div>
             <div class="container1Cen Lf">
                 <div class="BZtype">
-                    <span class="cf_leftTitle">包装类型 </span>
+                    <span class="cf_leftTitle"><span style="color: transparent;">*</span>包装类型 </span>
                     <div id="packageType" class="select" data-selectedindex="">
                         <span>请选择</span>
                         <img src="../img/prl-select.jpg" alt="">
@@ -124,11 +125,11 @@
                     </div>
                 </div>
                 <div class="danPrice">
-                    <span class="cf_leftTitle">期望单价 </span>
+                    <span class="cf_leftTitle"><span class="red">*</span>期望单价 </span>
                     <input style="width: 130px;" id="wishUnitPrice" type="text"><span style="font-size: 14px;margin-left: 5px;">元/吨</span>
                 </div>
                 <div class="KPtype">
-                    <span class="cf_leftTitle">开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票 </span>
+                    <span class="cf_leftTitle"><span class="red">*</span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票 </span>
                     <div class="select" id="invoiceType" data-selectedindex="1">
                         <span>增值税专用发票</span>
                         <img src="../img/prl-select.jpg" alt="">
@@ -140,14 +141,14 @@
                 </div>
 
                 <div class="daohuo">
-                    <span class="cf_leftTitle">预计到货 </span>
+                    <span class="cf_leftTitle"><span class="red">*</span>预计到货 </span>
                     <!--<input type="text" style="width: 177px;" id="planEndDate">-->
-                    <input type="text" class="date-input laydate-icon publishTime input planEndDate" placeholder="请选择日期" id="test2" style="width: 158px;height: 34px;">
+                    <input type="text" class="date-input laydate-icon publishTime input planEndDate" placeholder="请选择日期" id="test2" style="width: 147px;height: 34px;">
                 </div>
             </div>
             <div class="container1Right Lf">
                 <div class="Chetype">
-                    <span  class="cf_leftTitle">车辆类型 </span>
+                    <span  class="cf_leftTitle"><span style="color: transparent;">*</span>车辆类型 </span>
                     <div id="carType" class="select" data-selectedindex="1">
                         <span>槽车</span>
                         <img src="../img/prl-select.jpg" alt="">
@@ -161,7 +162,7 @@
                     </div>
                 </div>
                 <div class="ZFtype">
-                    <span class="cf_leftTitle">支付方式 </span>
+                    <span class="cf_leftTitle"><span class="red">*</span>支付方式 </span>
                     <div id="paymentType" class="select" data-selectedindex="1">
                         <span>现汇</span>
                         <img src="../img/prl-select.jpg" alt="">
@@ -184,7 +185,7 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="ordertype">
-                    <span class="cf_leftTitle">订单类型 </span>
+                    <span class="cf_leftTitle"><span class="red">*</span>订单类型 </span>
                     <div class="select" id="orderType" data-selectedindex="1">
                         <span>单次运输订单</span>
                         <img src="../img/prl-select.jpg" alt="">
@@ -195,13 +196,13 @@
                     </div>
                 </div>
                 <div class="FHtime">
-                    <span class="cf_leftTitle" >距&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;离 </span>
-                    <input type="text" id="distance" style="width: 145px;"><span style="font-size: 14px;color: #282828;margin-left: 5px;">千米</span>
+                    <span class="cf_leftTitle" ><span class="red">*</span>距&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;离 </span>
+                    <input type="text" id="distance" style="width: 137px;"><span style="font-size: 14px;color: #282828;margin-left: 5px;">千米</span>
                 </div>
             </div>
         </div>
         <div class="BH">
-            <span class="cf_leftTitle">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+            <span class="cf_leftTitle"><span style="color: transparent;">*</span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
             <input type="text" id="goodsRemark">
         </div>
     </div>
@@ -210,7 +211,7 @@
             <div class="Lf"><img src="../img/addRequireTitle.png" alt=""><span>需求信息</span></div>
         </div>
         <div class="fadantype Lf" style="margin-left: 38px;">
-            <span class="cf_leftTitle">发单类型 </span>
+            <span class="cf_leftTitle"><span class="red">*</span>发单类型 </span>
             <div id="demandType" class="select" data-selectedindex="1" style="margin-left: 5px;">
                 <span>普通需求</span>
                 <img src="../img/prl-select.jpg" alt="">
@@ -221,7 +222,7 @@
             </div>
         </div>
         <div class="youxiaoqi Lf" style="margin-left: 30px;">
-            <span class="cf_leftTitle">需求有效期 </span>
+            <span class="cf_leftTitle"><span class="red">*</span>需求有效期 </span>
             <!--<input id="demandEndTime" type="text" style="width: 177px;">-->
             <input type="text" class="date-input laydate-icon publishTime input demandEndTime" placeholder="请选择日期" id="test3" style="width: 158px;height: 34px;">
         </div>
@@ -232,11 +233,11 @@
         </div>
         <div class="Lf" style="margin-left: 38px;">
             <div class="fahuo">
-                <span class="cf_leftTitle">发货企业 </span>
+                <span class="cf_leftTitle"><span class="red">*</span>发货企业 </span>
                 <input type="text" id="sendCompanyname" style="margin-left: 2px;width: 213px;">
             </div>
             <div class="linkMan" style="margin-top: 22px;">
-                <span class="cf_leftTitle">联&nbsp;&nbsp;系&nbsp; 人 </span>
+                <span class="cf_leftTitle"><span class="red">*</span>联&nbsp;&nbsp;系&nbsp; 人 </span>
                 <input type="text" style="width: 213px;" id="sendUser">
             </div>
         </div>
@@ -244,7 +245,7 @@
             <div class="address">
 
                 <div class="Lf" style="margin-right: 5px;">
-                    <span class="cf_leftTitle " >出发地址 </span>
+                    <span class="cf_leftTitle " ><span class="red">*</span>出发地址 </span>
                 </div>
                 <div id="province" data-isselect="0" class="select" data-selectedindex="-1">
                     <span>请选择</span>
@@ -269,7 +270,7 @@
                 <input type="text" placeholder="详细地址" id="sendAddress">
             </div>
             <div class="phone" style="margin-top: 22px;">
-                <span class="cf_leftTitle">联系电话 </span>
+                <span class="cf_leftTitle"><span class="red">*</span>联系电话 </span>
                 <input type="text" style="width: 179px;" id="sendPhone" maxlength="11">
             </div>
         </div>
@@ -281,11 +282,11 @@
         </div>
         <div class="Lf" style="margin-left: 38px;">
             <div class="fahuo">
-                <span class="cf_leftTitle">收货企业 </span>
+                <span class="cf_leftTitle"><span class="red">*</span>收货企业 </span>
                 <input type="text" style="margin-left: 2px;width: 213px;" id="receiveCompanyname">
             </div>
             <div class="linkMan" style="margin-top: 22px;">
-                <span class="cf_leftTitle">联&nbsp;&nbsp;系&nbsp; 人 </span>
+                <span class="cf_leftTitle"><span class="red">*</span>联&nbsp;&nbsp;系&nbsp; 人 </span>
                 <input type="text" style="width: 213px;" id="receiveUser">
             </div>
         </div>
@@ -293,7 +294,7 @@
             <div class="address">
 
                 <div class="Lf" style="margin-right: 5px;">
-                    <span class="cf_leftTitle " >收货地址 </span>
+                    <span class="cf_leftTitle " ><span class="red">*</span>收货地址 </span>
                 </div>
                 <div id="province1" data-isselect="0"  class="select" data-selectedindex="-1">
                     <span>请选择</span>
@@ -325,7 +326,7 @@
                 <input type="text" placeholder="详细地址" id="receiveAddress">
             </div>
             <div class="phone" style="margin-top: 22px;">
-                <span class="cf_leftTitle">联系电话 </span>
+                <span class="cf_leftTitle"><span class="red">*</span>联系电话 </span>
                 <input type="text" style="width: 179px;" id="receivePhone" maxlength="11">
             </div>
         </div>
@@ -732,9 +733,9 @@ $(".cf_sel").eq(0).click(function () {
 //                $("#carType").attr('data-selectedindex', 0);
 //                $("#carType").attr('data-id', data.data[0].id);
 //                $("#carType").find('span').text(data.data[0].typeName);
-                $("#carType").attr('data-selectedindex', 0);
-                $("#carType").attr('data-id', data.data[0].id);
-                $("#carType").find('span').text(data.data[0].typeName);
+                $("#carType").attr('data-selectedindex', "");
+                $("#carType").attr('data-id', "");
+                $("#carType").find('span').text("请选择");
             },
             error: function(err){
                 console.log(err);

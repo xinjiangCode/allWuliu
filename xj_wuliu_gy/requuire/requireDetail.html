@@ -25,7 +25,7 @@
             <div class="contBox">
                 <div class="contlist contlistone">
                     <div class="left ll">
-                        <div><span>需求编号：</span><span id="demandNo" style="width: 225px;text-overflow: ellipsis;white-space: nowrap; overflow: hidden;vertical-align: bottom;">201707196369321</span></div>
+                        <div><span>需求编号：</span><span id="demandNo" style="display: inline-block; width: 225px;text-overflow: ellipsis;white-space: nowrap; overflow: hidden;vertical-align: bottom;">201707196369321</span></div>
                         <div>发布时间：<span id="createTime">2015-09-08 23:00</span></div>
                         <!--<div>装车时间：<span>2015-09-08 23:00</span></div>-->
                     </div>
@@ -41,18 +41,23 @@
                         <!--<div>支付方式：<span>预付</span></div>-->
                         <!--<div>保&nbsp;&nbsp;证&nbsp;&nbsp;金：<span>¥1000.00</span></div>-->
                         <div>支付方式：<span id="paymentType">现汇</span></div>
+                        <div>订单类型：<span id="orderType"></span ></div>
+                        <div>发单类型：<span id="demandType"></span></div>
                     </div>
                     <div class="left mm">
                         <div>包装类型：<span id="packageType">罐装</span></div>
                         <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span id="invoiceType">普票</span></div>
-                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 21px;">备注信息</span></div>
-                        <!--<div>缴纳方式：<span>抵扣</span></div>-->
+                        <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span id="goodsRemark" style="vertical-align: sub;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 231px;display: inline-block;    height: 21px;">备注信息</span></div>
+                        <div>车辆要求：<span id="carLWH"></span></div>
+                        <div>需求有效期：<span id="demandEndTime1"></span></div>
                     </div>
                     <div class="left rr">
                         <div>货物名称：<span class="goodsName">片碱</span></div>
                         <div>车辆类型：<span id="carType">罐装车</span></div>
+                        <div>期望运价：<span id="wishUnitPrice"></span></div>
+                        <div>发货时间：<span id="startDate"></span></div>
+                        <div>预计到货时间：<span id="planEndDate"></span></div>
                         <!--<div>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单：<span>需要</span></span></div>-->
-
                     </div>
                 </div>
             </div>
@@ -176,6 +181,43 @@
                 $("#demandEndTime").text(data.demandEndTime);
             }
 
+
+            if(data.orderType==null){
+                $("#orderType").text("");
+            }else{
+                $("#orderType").text(data.orderType);
+            }
+            if(data.wishUnitPrice==null){
+                $("#wishUnitPrice").text("");
+            }else{
+                $("#wishUnitPrice").text(data.wishUnitPrice+"元/"+data.goodsUnit);
+            }
+            if(data.carHeight!=null && data.carLength!=null && data.carWeight!=null){
+                $("#carLWH").text(data.carLength+" * "+data.carWeight+" * "+data.carHeight);
+            }else{
+                $("#carLWH").text("");
+            }
+            if(data.startDate==null){
+                $("#startDate").text("");
+            }else{
+                $("#startDate").text(timestampToTime1(data.startDate));
+            }
+
+            if(data.demandType==null){
+                $("#demandType").text("");
+            }else{
+                $("#demandType").text(data.demandType);
+            }
+            if(data.demandEndTime==null){
+                $("#demandEndTime1").text("");
+            }else{
+                $("#demandEndTime1").text(timestampToTime1(data.demandEndTime));
+            }
+            if(data.planEndDate==null){
+                $("#planEndDate").text("");
+            }else{
+                $("#planEndDate").text(timestampToTime1(data.planEndDate));
+            }
         }
 
 
