@@ -1220,13 +1220,13 @@
                 <span>订单支付</span>
                 <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
             </div>
-            <div class="modelcontent XianHui"  style="width: 100%;height: 413px;">
+            <div class="modelcontent" style="width: 100%;height: 413px;">
                 <div class="cf_title" style="padding-top: 58px;margin-left: 47px;">支付方式：现汇+承兑</div>
                 <div style="margin-top: 10px;border-bottom: 1px solid #ebe9ea;margin-left: 47px;padding-bottom: 8px;">总额：<span style="color: #ff732e;" class="syMoney">20.00</span>元</div>
                 <div class="clearFloat" style="padding-right: 124px;margin-top: 10px;">
                     <div style="margin-left: 47px;line-height: 31px;">
                         <span>现汇方式：</span>
-                        <input type="radio" name="xuNi" checked value="虚拟账户" style="margin-left: 20px;">虚拟账户
+                        <input type="radio" name="xuNi" value="虚拟账户" style="margin-left: 20px;">虚拟账户
                         <span style="margin-left: 35px;">可用余额：</span><span class="accountBalance">0.00</span>
                         <span class="cf_btnA" style="margin-left: 18px;">充值</span>
                         <sapn style="margin-left: 35px;">支付金额: </sapn>
@@ -1239,10 +1239,10 @@
                     </div>
                     <div class="Rt ErrorMsg1" style="color: #ff6d6d;margin-top: 6px;"></div>
                 </div>
-                <div class="clearFloat chengDui" style="padding-right: 124px;margin-top: 10px;">
+                <div class="clearFloat" style="padding-right: 124px;margin-top: 10px;">
                     <div style="margin-left: 47px;">
                         <span>承兑方式：</span>
-                        <input type="radio" name="chengDui" value="中信银行" checked style="margin-left: 25px;">中信银行
+                        <input type="radio" name="chengDui" value="中信银行" style="margin-left: 25px;">中信银行
                         <input type="radio" name="chengDui" value="库尔勒银行" style="margin-left: 30px;">库尔勒银行
                         <input type="radio" name="chengDui" value="招商银行" style="margin-left: 30px;">招商银行
 
@@ -1326,7 +1326,7 @@
                     <div class="itemLeftTitle Lf "><i style="color: red;">* </i>支付密码：</div>
                     <div class="itemRight Lf">
                         <input type="password" class="payPassWord" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #c2ccd1">
-                        <a href="../findPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
+                        <a href="../login/findPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
                     </div>
                 </div>
                 <div class="item clearfix">
@@ -2900,46 +2900,45 @@ function showModelBox(cls) {
     $(function () {
         if(sessionStorage.getItem("isfromjiaoyi")==1 && getUrlParms("type")==null){
 
-            $.ajax({
-                url: pubIP + 'wlLogisticsDemand/queryByIdOrNo', /*v1.0*/
-                type: 'get',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: localStorage.getItem("token")
-                },
-                cache: false,
-                ansyc: true,
-                dataType: 'json',
-                data: {
+            if(sessionStorage.getItem("jiaoYiType")==1){
+                $("#Iframe").attr("src","./personal/addRequireMent.html?isFirstFromJiaoYi=1")
+                sessionStorage.setItem("isAddRequireMent",1)
+                sessionStorage.setItem("isfromjiaoyi",0);
+            }else if(sessionStorage.getItem("jiaoYiType")==2){//去订单
+
+                $.ajax({
+                    url: pubIP + 'wlLogisticsDemand/queryByIdOrNo', /*v1.0*/
+                    type: 'get',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: localStorage.getItem("token")
+                    },
+                    cache: false,
+                    ansyc: true,
+                    dataType: 'json',
+                    data: {
                     transactionOrderId: sessionStorage.getItem("fromjiaoyi_orderId")
-                },
-                success: function (data) {
-                    debugger
-                    if(data.data==null){
-                        alert("未查询到该订单，无法查看详情")
-                    }else{
-                        if(sessionStorage.getItem("jiaoYiType")==1){
-                            sessionStorage.setItem("fromjiaoyi_productName",data.data.goodsName);
-                            sessionStorage.setItem("fromjiaoyi_sum",data.data.goodsNum);
-                            sessionStorage.setItem("fromjiaoyi_chemicalId",data.data.chemicalId);
-                            sessionStorage.setItem("fromjiaoyi_chemicalName",data.data.chemicalName);
-                            $("#Iframe").attr("src","./personal/addRequireMent.html?isFirstFromJiaoYi=1")
-                            sessionStorage.setItem("isAddRequireMent",1)
-                            sessionStorage.setItem("isfromjiaoyi",0);
-                        }else if(sessionStorage.getItem("jiaoYiType")==2){//去订单
+                    },
+                    success: function (data) {
+                        if(data.data==null){
+                            alert("未查询到该订单，无法查看详情")
+                        }else{
                             sessionStorage.setItem("detailId",data.data.id);
                             sessionStorage.setItem("detailTitle","需求详情");
                             $("#Iframe").attr("src","./requuire/requireDetail.html?isFirstFromJiaoYi=1")
-                            sessionStorage.setItem("isfromjiaoyi",0);
+                             sessionStorage.setItem("isfromjiaoyi",0);
                         }
+
+                    },
+                    error: function (err) {
+                        console.log(err);
                     }
+                });
 
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
 
+
+
+            }
 
         }
     })

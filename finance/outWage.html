@@ -181,17 +181,25 @@
                     
                     var str = ''
                     $.each(data,function(idx,item){
-                        str += '<tr>'
+                        str += '<tr data-id="'+item.id+'">'
                         str += '<td>'+item.order_no+'</td>'
                         str += '<td>'+item.name+'</td>'
                         str += '<td>'+item.taxAmount+'</td>'
                         str += '<td>'+item.wj_money+'</td>'
-                        str += '<td>'+item.car_num+'</td>'
-                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.taxAmount+'">发放</span><a href="wegeCalculationDetail.html?thisId='+item.id+'&type=1" class="btn ll">查看详情</a></td>'
+                        if(item.car_num==null){
+                            str += '<td></td>'
+                        }else{
+                            str += '<td>'+item.car_num+'</td>'
+                        }
+                        str += '<td><span class="btn ll fafang" id="'+item.id+'" data-djs="'+item.wj_money+'" data-by="'+item.taxAmount+'">发放</span><a href="javascript:;" class="btn ll seeDetail">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
-                    
+                    //详情
+                    $(".seeDetail").unbind();
+                    $(".seeDetail").on("click",function(){
+                        window.location.href='wegeCalculationDetail.html?thisId='+$(this).parents("tr").attr("data-id")+'&type1=1'
+                    })
                     //发放工资
                     $(".fafang").on("click",function(){
                         jiesuan_alert_show($(this).attr("id"),$(this).attr("data-djs"),$(this).attr("data-by"));
