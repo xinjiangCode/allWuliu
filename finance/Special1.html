@@ -24,7 +24,7 @@
         .btn1{height: 30px;line-height: 30px;width: 60px;margin-top: 5px;font-size: 12px;color: white;background-color: #78A9FF;text-align: center;border-radius: 3px;margin-left: 17px;}
         .weihua{display: none;}
         .container {
-            height: 652px;
+            height: 680px;
         }
 
         .uploade {
@@ -36,7 +36,7 @@
         }
 
         .shenhe {
-            width: 359px;
+            /*width: 359px;
             height: 40px;
             line-height: 40px;
             background-color: white;
@@ -44,8 +44,14 @@
             border: 1px solid #666666;
             margin-left: 10px;
             margin-top: 20px;
-            background: #ccc;
-            margin-left: 155px;
+            background: #ccc;*/
+            /*margin-left: 155px;*/
+            margin-left: 378px;
+            margin-top: 20px;
+        }
+
+        .shenhe img {
+            width: 209px;
         }
 
         .ts {
@@ -105,7 +111,7 @@
             </li>
         </ul>
     </div>
-    
+    <div class="clearfix shenhe" style="display: none;"><img src="../img/shenhe.png" alt=""></div>
     <div id="center" style="font-size: 14px;">
         <div class="center1 c0">
             <ul>
@@ -182,8 +188,9 @@
             </ul>
 
             <div class="btn weiRenZheng next_btn" style="font-size: 16px;margin-left: 155px;">下一步</div>
-            <div class="btn yiRenZheng update_btn" style="font-size: 16px;margin-left: 155px;">修改信息</div>
-            <div class="btn clearfix shenhe" style="display: none;">审核中</div>
+            <div class="btn yiRenZheng update_info_btn" style="font-size: 16px;margin-left: 155px;">修改信息</div>
+            <div class="btn yiRenZheng update_btn" style="font-size: 16px;margin-left: 155px;">修改完成</div>
+            
             <div class="puhua" style="margin-left: 210px;margin-top: 32px; ">
                 <img src="../img/qq.png" alt="" style="float: none; vertical-align: bottom;">
                 <a href="##" style="color: #5590f6;">客服QQ</a>
@@ -511,6 +518,7 @@
 
 
 
+
     stateAjax();
 
     function stateAjax() {
@@ -548,6 +556,7 @@
                         $(".next_btn").hide();
                         $('.update_btn').hide();
                         $(".shenhe").show();
+                        $('.update_info_btn').hide();
                         
                         $('.zizhi_num').attr('disabled', true);
                         $('#yingye_zhizhao_pic').attr('disabled', true);
@@ -563,16 +572,18 @@
                     } else if (data.data.eType == 4 && data.data.eState == 2) {  //已拒绝
                         //window.parent.jujue_daolu(data.data.refuseReason); 
                         $(".shenhe").hide();
-                        $('.update_btn').css('display', 'block');
+                        $('.update_btn').hide();
                         $(".next_btn").hide();
+                        $('.update_info_btn').show();
 
                         $('.update_btn').attr('flag', '1');
 
                         getInfo(4);
                     }else {
-                        $('.update_btn').css('display', 'block');
+                        $('.update_btn').hide();
                         $(".shenhe").hide();
                         $(".next_btn").hide();
+                        $('.update_info_btn').show();
 
                         $('.update_btn').attr('flag', '1');
 
@@ -590,6 +601,8 @@
                         $('.update_btn').hide();
                         $(".shenhe").show();
 
+                        $('.update_info_btn').hide();
+
                         $('.zizhi_num').attr('disabled', true);
                         $('#yingye_zhizhao_pic').attr('disabled', true);
                         $('#test1').attr('disabled', true);
@@ -604,22 +617,28 @@
                     } else if (data.data.dType == 3 && data.data.dState == 2) {  //已拒绝
                         //window.parent.jujue_daolu(data.data.refuseReason); 
                         $(".shenhe").hide();
-                        $('.update_btn').css('display', 'block');
+                        $('.update_btn').hide();
                         $(".next_btn").hide();
+                        $('.update_info_btn').show();
 
                         getInfo(3);
                     } else {
-                        $('.update_btn').css('display', 'block');
+                        $('.update_btn').hide();
                         $(".shenhe").hide();
                         $(".next_btn").hide();
+
+                        $('.update_info_btn').show();
 
                         getInfo(3);
                     }
 
                 } else if (data.data.eType == null && data.data.dType == null) {
-                    $('.update_btn').css('display', 'none');
+                    $('.update_btn').hide();
+
                     $(".shenhe").hide();
                     $(".next_btn").show();
+
+                    $('.update_info_btn').show();
                 }
                 
 
@@ -786,7 +805,19 @@
 
     });
 
+    //点击可修改
+    $('.update_info_btn').click(function() {
+        $('#yingye_zhizhao_pic').attr('disabled', false);
+        $('.zizhi_num').attr('disabled', false);
+        $('#test1').attr('disabled', false);
+        $('#test2').attr('disabled', false);
+        $('.lei').attr('disabled', false);
+        $('.xiang').attr('disabled', false);
 
+        $('.add').attr('disabled', false);
+        $(this).hide();
+        $('.update_btn').show();
+    });
 
     // 回显数据
     function getInfo(type) {
@@ -817,20 +848,32 @@
                     'background-color':'#f6f6f6'
                 });
 
+                $('#yingye_zhizhao_pic').attr('disabled', true);
+
                 $('#yingye_zhizhao_hidden').val(data.data[0].picInfos[0].picUrl);
                 $('#yingye_zhizhao_hidden').attr('data-picids', data.data[0].picInfos[0].ids);
 
                 $('.zizhi_num').val(data.data[0].qualificationNum);
 
+                $('.zizhi_num').attr('disabled', true);
+
                 $('#test1').val(data.data[0].qualificationDataBegin);
                 $('#test2').val(data.data[0].qualificationDataExpire);
+
+                $('#test1').attr('disabled', true);
+                $('#test2').attr('disabled', true);
 
                 $('.textarea_div').attr('data-leiid', data.data[0].classType);
                 $('.textarea_div').attr('data-xiangid', data.data[0].operationLimit);
 
                 $('.center1 ul').attr('data-ids', data.data[0].ids);
 
-                $('.textarea_div').attr('display',true)
+                $('.textarea_div').attr('display',true);
+
+                $('.lei').attr('disabled', true);
+                $('.xiang').attr('disabled', true);
+
+                $('.add').attr('disabled', true);
 
 
                 var that = this;
