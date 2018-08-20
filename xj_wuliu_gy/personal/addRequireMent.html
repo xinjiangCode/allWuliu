@@ -197,7 +197,7 @@
                 </div>
                 <div class="FHtime">
                     <span class="cf_leftTitle" ><span class="red">*</span>距&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;离 </span>
-                    <input type="text" id="distance" style="width: 137px;" readonly><span style="font-size: 14px;color: #282828;margin-left: 5px;">千米</span>
+                    <input type="text" id="distance" style="width: 137px;"><span style="font-size: 14px;color: #282828;margin-left: 5px;">千米</span>
                 </div>
             </div>
         </div>
@@ -449,35 +449,35 @@
     });
 
     //地址计算
-    $(".addressChange").on("blur",function () {
-        if($("#sendAddress").val() == ''){
-            return;
-        }
-        if($("#receiveAddress").val() == ''){
-            return;
-        }
-        $.ajax({
-            url: pubIP + 'wlLogisticsDemand/getDistance', /*v1.0*/
-            type: 'POST',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            data: {
-                start: $("#sendAddress").val(),
-                end: $("#receiveAddress").val()
-            },
-            cache: false,
-            ansyc: false,
-            dataType: 'json',
-            success: function (res) {
-                $("#distance").val();
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
-    })
+    // $(".addressChange").on("blur",function () {
+    //     if($("#sendAddress").val() == ''){
+    //         return;
+    //     }
+    //     if($("#receiveAddress").val() == ''){
+    //         return;
+    //     }
+    //     $.ajax({
+    //         url: pubIP + 'wlLogisticsDemand/getDistance', /*v1.0*/
+    //         type: 'POST',
+    //         headers: {
+    //             Accept: "application/json; charset=utf-8",
+    //             token: token
+    //         },
+    //         data: {
+    //             start: $("#sendAddress").val(),
+    //             end: $("#receiveAddress").val()
+    //         },
+    //         cache: false,
+    //         ansyc: false,
+    //         dataType: 'json',
+    //         success: function (res) {
+    //             $("#distance").val();
+    //         },
+    //         error: function (err) {
+    //             console.log(err);
+    //         }
+    //     })
+    // })
 
 //    化学品名模糊搜索
     $('#HuaxueType').bind('input propertychange',function () {
