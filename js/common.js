@@ -632,9 +632,9 @@ $(function () {
     $(".pagination li").each(function (idx,item) {
 
         if($(item).find("a").text()=="上一页"||$(item).find("a").text()=="下一页"){
-            $(item).find('a').css("width","70px");
+            $(item).find('a').css("width","60px");
         }else if($(item).find("a").text()=="首页"||$(item).find("a").text()=="尾页"){
-            $(item).find('a').css("width","70px");
+            $(item).find('a').css("width","60px");
         }
     })
     // 所有的显示条数 先隐藏
