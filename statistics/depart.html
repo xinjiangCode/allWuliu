@@ -174,13 +174,13 @@
     <div class="containerBot clearFloat" style="padding-top: 0;margin-top: 20px;">
         <div style="">
             <span class="cf_sel"></span>
-            <span style="font-size: 14px;color: #282828;">同意平台协议</span>
+            <span style="font-size: 14px;color: #282828;" onclick='down_moban()'>同意平台协议</span>
         </div>
         <div class="sub" onclick="sub()">确认发布</div>
     </div>
 
 </div>
-
+<a href="" id="openWin" style="display: none" target="_blank"></a>
 
 
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -616,6 +616,30 @@
                 console.log(err);
             }
         });
+    }
+
+    //下载协议模板
+    function down_moban(){
+        $.ajax({
+            url: pubIP + 'agreement/findAgreementInfo?agreementId=4',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data);
+                var thisUrl = data.data.fileUrl;
+//                openWin(thisUrl)
+                openWin("../generic/web/viewer.html?thisUrl="+thisUrl);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+    function openWin(url) {
+//        $('body').append('< a href="' + url + '" target="_blank" id="openWin"></ a>')
+        $("#openWin").attr("href",url)
+        document.getElementById("openWin").click();//点击事件
+//        $('#openWin').remove();
     }
 </script>
 </body>

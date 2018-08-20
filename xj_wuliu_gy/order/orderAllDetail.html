@@ -227,13 +227,13 @@
     <script type="text/html" id="orderTpl">
         <div class="contlist contlistone">
             <div class="left ll">
-                <div>订单编号：<span title="<%=orderNo%>" style=" width: 225px;text-overflow: ellipsis;white-space: nowrap; overflow: hidden;vertical-align: bottom;"><%=orderNo%></span></div>
+                <div>订单编号：<span title="<%=orderNo%>" style=" display: inline-block; width: 225px;text-overflow: ellipsis;white-space: nowrap; overflow: hidden;vertical-align: bottom;"><%=orderNo%></span></div>
                 <div>发布时间：<span><%=createTime%></span></div>
                 <div>装车时间：<span><%=startDate%></span></div>
             </div>
             <div class="left rr">
-                <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span><%=sendAddress%></span></div>
-                <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span class="destination"><%=receiveAddress%></span></div>
+                <div>始&nbsp;&nbsp;发&nbsp;&nbsp;地：<span><%=sendProvince%><%=sendCity%><%=sendArea%><%=sendAddress%></span></div>
+                <div class="desti">目&nbsp;&nbsp;的&nbsp;&nbsp;地：<span class="destination"><%=receiveProvince%><%=receiveCity%><%=receiveArea%><%=receiveAddress%></span></div>
             </div>
         </div>
         <div class="contlist contlisttwo">
@@ -246,6 +246,7 @@
             <div class="left mm">
                 <div>包装类型：<span>罐装</span></div>
                 <div>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：<span><%=invoiceType%></span></div>
+                <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span><%=goodsRemark%></span></div>
                 <!-- <div>结算方式：<span><%=paymentMode%></span></div> -->
                 <!-- <div>缴纳方式：<span>抵扣</span></div> -->
             </div>
@@ -259,7 +260,7 @@
                 <span>需要</span>
                 <%}%>    
                 </div> -->
-                <div>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：<span><%=goodsRemark%></span></div>
+
             </div>
         </div>
     </script>
@@ -529,8 +530,8 @@
 
                     if (json.code == 1) {
 
-                        $('.nashui').text(json.data.taxNumber);
-                        $('.qiye_phone').text(json.data.taxId);
+                        $('.nashui').text(json.data.taxId);
+                        $('.qiye_phone').text(json.data.taxNumber);
                         $('.qiye_kaihu_bank').text(json.data.accountBank);
                         $('.qiye_bank').text(json.data.accountId);
                         $('.address').text(json.data.companyAddress);

@@ -100,21 +100,47 @@
                 console.log(res);
                 var str = '';
                 var item=res.data;
-                str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
-                str+=' <div class="middle Lf">'
-                str+='    <div class="companyName">'+item.companyName+'</div>'
-                str+='<div class="dangerClass">'
-                if(item.qualifications!=null){
-                    if(item.qualifications.length!=0){
-                        $.each(item.qualifications,function (idx1,item1) {
-                            str+=item1.type+' ';
-                        })
+                if(item.isShow==false){
+                    str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
+                    str+=' <div class="middle Lf">'
+                    str+='<div class="companyName">'+item.companyName+'</div>'
+                    str+='<div class="dangerClass">'
+                    str+='</div>'
+                    str+='</div>'
+                    str+='</li>'
+                }else{
+                    str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
+                    str+=' <div class="middle Lf">'
+                    str+='<div class="companyName">'+item.companyName+'</div>'
+                    str+='<div class="dangerClass">'
+                    if(item.qualifications!=null){
+                        if(item.qualifications.length!=0){
+                            $.each(item.qualifications,function (idx1,item1) {
+                                str+=item1.type+' ';
+                            })
+                        }
                     }
+
+                    str+='</div>'
+                    str+='<div class="address">'+item.province+'-'+item.city+'</div>'
+//                    str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
+                    str+='</div>'
                 }
-                str+='</div>'
-                str+='<div class="address">'+item.province+'-'+item.city+'</div>'
-//                str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
-                str+='</div>'
+//                str+='<img class="Lf" src="'+item.storeImage+'" alt="" width="222" height="222">'
+//                str+=' <div class="middle Lf">'
+//                str+='    <div class="companyName">'+item.companyName+'</div>'
+//                str+='<div class="dangerClass">'
+//                if(item.qualifications!=null){
+//                    if(item.qualifications.length!=0){
+//                        $.each(item.qualifications,function (idx1,item1) {
+//                            str+=item1.type+' ';
+//                        })
+//                    }
+//                }
+//                str+='</div>'
+//                str+='<div class="address">'+item.province+'-'+item.city+'</div>'
+////                str+='<div class="briefIntroduction">企业简介：'+item.briefIntroduction+'</div>'
+//                str+='</div>'
                 $("#compInfor").html(str);
                 $(".companyDetail").html(item.briefIntroduction);
             },
