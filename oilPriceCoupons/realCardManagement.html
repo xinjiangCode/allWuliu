@@ -128,7 +128,7 @@
 						str+='<td>'+item.attr_1+'</td>'
 						str+='<td>'+item.money+'</td>'
 						str+='<td id="'+item.id+'">'
-						if(item.money==0){
+						if(item.money==0 && item.attr_2!=1){
 							str+='<a class="salesvolume cq_dele" style="margin-right: 10px;">删除</a>'
 						}
 						str+='<a class="salesvolume cq_eidt">充值</a></td>'
