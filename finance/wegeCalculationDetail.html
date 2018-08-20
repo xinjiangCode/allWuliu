@@ -61,6 +61,8 @@
         tr{border-bottom: 1px solid #ebe9ea;}
         th{height: 35px;font-size: 12px;line-height: 35px;text-align: center;}
         td{height: 60px;font-size: 12px;line-height: 60px;text-align: center;}
+
+        .left i{width: 69px;}
     </style>
 </head>
 <body>
@@ -163,7 +165,7 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var thisId = getQueryString("thisId");
-    var thisType = getQueryString("type");
+    var thisType = getQueryString("type1");
     
     //console.log(thisId)
     ffdetail(thisId,thisType);

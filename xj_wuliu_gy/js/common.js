@@ -1,6 +1,6 @@
-// var pubIP = 'http://192.168.1.125:7777/service/';
+// var pubIP = 'http://192.168.1.218:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
-//  var pubIP = 'http://wl.api.xjv56.com/service/';
+ // var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 var ip = pubIP;
@@ -305,17 +305,18 @@ if(token) {
 
 
 $(function () {
-    if(getUrlParms("type")!=null){
-        localStorage.setItem("company_type",1);
-        localStorage.setItem("token",getUrlParms("token"));
-        sessionStorage.setItem("isfromjiaoyi",1);
-        sessionStorage.setItem("fromjiaoyi_productName",getUrlParms("productName"));
-        sessionStorage.setItem("fromjiaoyi_sum",getUrlParms("sum"));
-        sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
-        sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
-        sessionStorage.setItem("fromjiaoyi_chemicalName",getUrlParms("chemicalName"));
-        window.location.href="account.html"
-    }
+    // if(getUrlParms("type")!=null && getUrlParms("token")!=null && getUrlParms("orderId")!=null){
+    //     localStorage.setItem("company_type",1);
+    //     sessionStorage.setItem("jiaoYiType",getUrlParms("type"));
+    //     localStorage.setItem("token",getUrlParms("token"));
+    //     sessionStorage.setItem("isfromjiaoyi",1);
+    //     sessionStorage.setItem("fromjiaoyi_productName",decodeURI(getUrlParms("productName")));
+    //     sessionStorage.setItem("fromjiaoyi_sum",getUrlParms("sum"));
+    //     sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
+    //     sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
+    //     sessionStorage.setItem("fromjiaoyi_chemicalName",decodeURI(getUrlParms("chemicalName")));
+    //     window.location.href="account.html"
+    // }
     var company_type = localStorage.getItem('company_type');
     var url = window.location.href;
     if (url.indexOf('account.html') != -1) {

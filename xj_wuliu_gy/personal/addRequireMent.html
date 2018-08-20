@@ -112,10 +112,10 @@
                 <div class="BZtype">
                     <span class="cf_leftTitle"><span style="color: transparent;">*</span>包装类型 </span>
                     <div id="packageType" class="select" data-selectedindex="">
-                        <span>请选择</span>
+                        <span>不限</span>
                         <img src="../img/prl-select.jpg" alt="">
                         <ul>
-                            <li data-index="">请选择</li>
+                            <li data-index="">不限</li>
                             <li data-index="1">袋装</li>
                             <li data-index="2">桶装</li>
                             <li data-index="3">罐装</li>
@@ -336,7 +336,7 @@
         <div class="error" style="text-align: center;color: red;height: 20px;margin: 10px 0;"></div>
         <div style="">
             <span class="cf_sel"></span>
-            <span style="font-size: 14px;color: #282828;">同意平台协议</span>
+            <span style="font-size: 14px;color: #282828;" onclick='down_moban()'>同意平台协议</span>
         </div>
         <div class="sub" onclick="sub()">提交需求</div>
     </div>
@@ -408,7 +408,7 @@
         </div>
     </div>
 </div>
-
+<a href="" id="openWin" style="display: none" target="_blank"></a>
 
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
@@ -714,7 +714,7 @@ $(".cf_sel").eq(0).click(function () {
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var str = '<li  data-index="" value="" data-id="">请选择</li>';
+                var str = '<li  data-index="" value="" data-id="">不限</li>';
                 for (var i = 0; i < data.data.length; i++) {
 
                     str += '<li  data-index="'+i+'" value="'+i+'" data-id="'+data.data[i].id+'">'+data.data[i].typeName+'</li>';
@@ -735,7 +735,7 @@ $(".cf_sel").eq(0).click(function () {
 //                $("#carType").find('span').text(data.data[0].typeName);
                 $("#carType").attr('data-selectedindex', "");
                 $("#carType").attr('data-id', "");
-                $("#carType").find('span').text("请选择");
+                $("#carType").find('span').text("不限");
             },
             error: function(err){
                 console.log(err);
@@ -914,7 +914,7 @@ $(".cf_sel").eq(0).click(function () {
                     cf_alert01(1,"发布需求成功");
                     window.location.href="../requuire/publishRequireList.html";
                 }else{
-                    alert(res.msg);
+                    cf_alert(2,res.msg);
                 }
             },
             error: function(err){
@@ -1430,6 +1430,30 @@ console.log(provinceID)
         })
     }
 
+//    openWin("http://zhongshunxinhe.oss-cn-beijing.aliyuncs.com/jy/adv/imgs/201808229/0537a53d213c557ca6d1d13bbfd79891.pdf")
+    //下载协议模板
+    function down_moban(){
+        $.ajax({
+            url: pubIP + 'agreement/findAgreementInfo?agreementId=4',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data);
+                var thisUrl = data.data.fileUrl;
+//                openWin(thisUrl)
+                openWin("../../generic/web/viewer.html?thisUrl="+thisUrl);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+    function openWin(url) {
+//        $('body').append('< a href="' + url + '" target="_blank" id="openWin"></ a>')
+        $("#openWin").attr("href",url)
+        document.getElementById("openWin").click();//点击事件
+//        $('#openWin').remove();
+    }
 
 </script>
 </body>
