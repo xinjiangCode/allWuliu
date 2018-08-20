@@ -1,6 +1,6 @@
 // var pubIP = 'http://192.168.1.218:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
-// var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://wl.api.xjv56.com/service/';
 
 // 上传图片路径
 var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
@@ -644,8 +644,7 @@ $(function () {
         }
     })
 })
-//查询按钮 统一设置样式
-$(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"8px"});
+
 //     $(this).parent().css('display','none');
 // });
 // 伪alert弹框    //type  1成功   2失败    msg消息   （注：点击该alert框的关闭或者确认，所有弹框将会被关闭，并且刷新当前页面）
@@ -718,3 +717,6 @@ function cf_alert01(aa,msg) {
     }
 
 }
+
+//查询按钮 统一设置样式
+$(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"11px"});

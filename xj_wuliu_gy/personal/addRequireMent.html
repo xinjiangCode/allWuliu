@@ -60,6 +60,7 @@
         .modelBox55 .HuaxueTypeList li{line-height: 34px;padding-left: 10px;}
         .modelBox55 .HuaxueTypeList li:hover{background-color: #fafafa;}
         .red{color: red;margin-right: 5px;text-align: center;vertical-align: sub}
+        .HuaxueTypeList li{padding-left: 20px;}
      </style>
 
 
@@ -197,7 +198,7 @@
                 </div>
                 <div class="FHtime">
                     <span class="cf_leftTitle" ><span class="red">*</span>距&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;离 </span>
-                    <input type="text" id="distance" style="width: 137px;"><span style="font-size: 14px;color: #282828;margin-left: 5px;">千米</span>
+                    <input type="text" id="distance" style="width: 137px;" readonly><span style="font-size: 14px;color: #282828;margin-left: 5px;">千米</span>
                 </div>
             </div>
         </div>
@@ -449,35 +450,36 @@
     });
 
     //地址计算
-    // $(".addressChange").on("blur",function () {
-    //     if($("#sendAddress").val() == ''){
-    //         return;
-    //     }
-    //     if($("#receiveAddress").val() == ''){
-    //         return;
-    //     }
-    //     $.ajax({
-    //         url: pubIP + 'wlLogisticsDemand/getDistance', /*v1.0*/
-    //         type: 'POST',
-    //         headers: {
-    //             Accept: "application/json; charset=utf-8",
-    //             token: token
-    //         },
-    //         data: {
-    //             start: $("#sendAddress").val(),
-    //             end: $("#receiveAddress").val()
-    //         },
-    //         cache: false,
-    //         ansyc: false,
-    //         dataType: 'json',
-    //         success: function (res) {
-    //             $("#distance").val();
-    //         },
-    //         error: function (err) {
-    //             console.log(err);
-    //         }
-    //     })
-    // })
+     $(".addressChange").on("blur",function () {
+         $("#distance").val("");//只要输入就置空
+         if($("#sendAddress").val() == ''){
+             return;
+         }
+         if($("#receiveAddress").val() == ''){
+             return;
+         }
+         $.ajax({
+             url: pubIP + 'wlLogisticsDemand/getDistance', /*v1.0*/
+             type: 'POST',
+             headers: {
+                 Accept: "application/json; charset=utf-8",
+                 token: token
+             },
+             data: {
+                 start: $("#sendAddress").val(),
+                 end: $("#receiveAddress").val()
+             },
+             cache: false,
+             ansyc: false,
+             dataType: 'json',
+             success: function (res) {
+                 $("#distance").val(res.data);
+             },
+             error: function (err) {
+//                 console.log(err);
+             }
+         })
+     })
 
 //    化学品名模糊搜索
     $('#HuaxueType').bind('input propertychange',function () {
@@ -640,12 +642,7 @@ $(".cf_sel").eq(0).click(function () {
         }else{
             $(".error").text("");
         }
-        if($("#distance").val()==""){
-            $(".error").text("距离不能为空");
-            return;
-        }else{
-            $(".error").text("");
-        }
+
 //        if($("#goodsRemark").val()==""){
 //            $(".error").text("备注不能为空");
 //            return;
@@ -710,6 +707,13 @@ $(".cf_sel").eq(0).click(function () {
             return;
         }else if(!$("#receivePhone").val().match(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/)){
             $(".error").text("收货联系人电话格式不正确");
+            return;
+        }else{
+            $(".error").text("");
+        }
+
+        if($("#distance").val()==""){
+            $(".error").text("请输入正确的收货地址和发货地址");
             return;
         }else{
             $(".error").text("");

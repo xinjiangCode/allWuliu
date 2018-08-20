@@ -80,7 +80,7 @@
         <div class="toptitle title">
             <span id="detailTitle">当前订单状态：进行中订单</span>
             <div class="fr closeBtn" style="margin-right:7px;" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11">关&nbsp;&nbsp;闭</div>
-            <div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>
+            <!--<div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>-->
         </div>
 
         <div class="requireInfo infoBox">
@@ -191,7 +191,7 @@
             </div>
         </div>
         <div class="operator infoBox heTong">
-            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">合同信息<div class="seehetong"><a href="##" download="">查&nbsp;&nbsp;看</a></div></div>
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">合同信息<div class="seehetong"><a onclick="down_moban(this)" href="javaScript:;" >查&nbsp;&nbsp;看</a></div></div>
             <div class="contBox">
                 <div class="left ll">
                     <div>合同公司：<span class="hetong_company">化动力有限公司</span></div>
@@ -500,7 +500,7 @@
                             $('.upload_time').text("");
                         }
 
-                        $('.seehetong a').attr('download', json.data2.url);
+                        $('.seehetong a').attr('data-download', json.data2.url);
                     }
 
                 },
@@ -544,7 +544,28 @@
 
             });
         }
-
+        //下载协议模板
+        function down_moban(that){
+//        $.ajax({
+//            url: pubIP + 'agreement/findAgreementInfo?agreementId=2',
+//            type: 'get',
+//            dataType: 'json',
+//            success: function (data) {
+//                //console.log(data);
+            var thisUrl = $(that).attr("data-download")
+            openWin("../../generic/web/viewer.html?thisUrl="+thisUrl);
+            //window.downloadFile(thisUrl);
+//            },
+//            error: function (err) {
+//                console.log(err);
+//            }
+//        })
+        }
+        function openWin(url) {
+            $('body').append($('<a href="' + url + '" target="_blank" id="openWin"></a>'))
+            document.getElementById("openWin").click();//点击事件
+            $('#openWin').remove();
+        }
 
 
     </script>

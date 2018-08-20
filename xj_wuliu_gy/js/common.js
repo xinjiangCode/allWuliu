@@ -349,8 +349,7 @@ $('.cf_selsectAll').click(function(){
         $(this).parent().prev().find(".cf_select").removeClass("on");
     }
 });
-//查询按钮 统一设置样式
-$(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"8px"});
+
 // 模拟下拉框
 $('.select').click(function(event){
     if($(this).attr("disabled")=="disabled"){return;}//不可选
@@ -721,3 +720,5 @@ function cf_alert01(aa,msg) {
     }
 
 }
+//查询按钮 统一设置样式
+$(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"11px"});
