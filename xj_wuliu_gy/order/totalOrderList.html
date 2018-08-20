@@ -80,15 +80,16 @@
             box-sizing: border-box;
         }
         /*.listBox{height: 1116px;}*/
+        .date-input{width: 140px;}
     </style>
     
     
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">总订单列表<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">总订单列表<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <label for="">订单状态</label>
             <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul>
@@ -99,19 +100,21 @@
                 </ul>
             </div>
             <label for="">提交时间</label>
-            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 115px;">
+            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 13px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
         <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <input class="exportOrderBtn btn" type="button" value="导出订单">
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">20</li>-->
+                    <!--<li data-index="3">30</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
             <input class="addOrder btn" type="button" value="新增订单">
         </div>
         <div class="listBox">

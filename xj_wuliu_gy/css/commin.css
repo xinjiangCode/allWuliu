@@ -967,10 +967,10 @@ thead td,thead th{
 	min-height: 645px;height: 645px;
 }
 .cfRefresh{
-	display: none;
+	text-align: center;
 }
 /*.select{text-indent: 10px;}*/
-.contbox .inputBox .orderNo,.contbox .inputBox .select,.contbox .inputBox .select ul,.contbox .opciationBox .select,.contbox .opciationBox .select ul{width: 160px;}
+.contbox .inputBox .orderNo,.contbox .inputBox .select,.contbox .inputBox .select ul,.contbox .opciationBox .select,.contbox .opciationBox .select ul{width: 145px;}
 input[type="button"]{outline: none;}
 .rightContBox .messages input[type="text"],.rightContBox .messages .select,.rightContBox .messages .select ul{width: 160px;}
 

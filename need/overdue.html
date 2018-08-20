@@ -83,14 +83,15 @@
             color: #333;
             background: #fff;
         }
+        .date-input{width: 140px;}
     </style>
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">过期询盘<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">过期询盘<div class="fr cfRefresh">导出订单</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="需求编号">
-            <label for="">输入搜索</label><input id="goodsName" class=" input" type="text" placeholder="商品名称">
+            <label for="">需求编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
+            <label for="">商品名称</label><input id="goodsName" class=" input" type="text" placeholder="输入搜索">
             <!--<label for="">车辆类型</label>-->
             <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
             <!--<ul>-->
@@ -99,7 +100,10 @@
             <!--<li data-index="3">类型3</li>-->
             <!--</ul>-->
             <!--</div>-->
-            <label for="">发布时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+            <label for="">发布时间</label>
+            <input type="text" class="date-input laydate-icon publishTime input" style="margin-right: 0"  placeholder="请选择日期" id="test1">
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test2">
 
             
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
@@ -113,7 +117,7 @@
                     <li data-index="3">30</li>
                 </ul>
             </div>
-            <input class="exportDemandBtn" type="button" value="导出订单">
+            <!--<input class="exportDemandBtn" type="button" value="导出订单">-->
             <div class="add">新增询单</div>
         </div>
         <div class="listBox">

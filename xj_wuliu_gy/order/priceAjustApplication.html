@@ -81,15 +81,16 @@
             text-align: center;
             text-indent: 0px;
         }
+        .date-input{width: 140px;}
     </style>
     
     
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">调价列表<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">调价列表<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="" style="margin-left: 25px;">调令类型</label>-->
             <!--<div class="goodsType input select" data-selectedindex="0" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >-->
                 <!--<ul >-->
@@ -97,18 +98,20 @@
                 <!--</ul>-->
             <!--</div>-->
             <label for="" style="margin-left: 10px;">提交时间</label>
-            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 80px;">
+            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 231px;">
         </div>
-        <div class="opciationBox" style="padding-right: 8px;">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">1</li>
-                    <li data-index="2">30</li>
-                    <li data-index="3">50</li>
-                </ul>
-            </div>
-        </div>
+        <!--<div class="opciationBox" style="padding-right: 8px;">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">1</li>-->
+                    <!--<li data-index="2">30</li>-->
+                    <!--<li data-index="3">50</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="listBox">
             <table>
                 <thead>
@@ -243,12 +246,13 @@
                     companyId:companyId,
                     orderId: $(".orderNo").val(),
                     time: $(".time_inp").val(),
+                    endTime:$("#test2").val(),
                     size:pageSize,
                     page:currentPage
                 },
                 success: function (res) {
                     console.log(res)
-                    if(res.code===1){
+                    if(res.code==1){
                         //首次请求时 改变分页数据
                         if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                         $(".pagination").parent().css("display","block");

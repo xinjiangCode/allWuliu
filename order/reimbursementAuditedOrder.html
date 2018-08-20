@@ -120,9 +120,9 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">回款审核订单<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">回款审核订单<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <label for="">订单状态</label>
             <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul>
@@ -132,8 +132,10 @@
                     <li data-index="4">特殊品</li>
                 </ul>
             </div>
-            <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
+            <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 5px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
         <!--<div class="opciationBox">-->
@@ -390,6 +392,7 @@
                     status: 1,
                     orderNo: orderNo,
                     time: publishTime,
+                    endTime:$("#test2").val(),
                     goodType: goodsType
                 },
                 cache: false,

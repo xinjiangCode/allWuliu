@@ -83,13 +83,14 @@
             cursor: pointer;
         }
         .ll{margin-right: 20px;}
+        .date-input{width: 140px;}
     </style>
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">贸易合同<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">贸易合同<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="合同单号">
+            <label for="">合同单号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <label for="">订单状态</label>
             <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul>
@@ -99,24 +100,27 @@
                     <li data-index="3">已完成订单</li>
                 </ul>
             </div>
-            <label for="">签订时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+            <label for="">签订时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <input class="exportOrderBtn btn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">20</li>-->
+                    <!--<li data-index="3">30</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox" >
             <table>
                 <thead>
                     <tr>
+                        <td>合同单号</td>
                         <td>客户公司</td>
                         <td>签订日期</td>
                         <td>完成日期</td>
@@ -216,6 +220,9 @@
             $('.bottomOperiat .squre').toggleClass('active');
         });
 
+        $(".searchResultBtn").click(function () {
+            getData(1)
+        })
         var currentPage=1;
         //进入页面加载数据
         getData(1);
@@ -238,6 +245,7 @@
                     companyId:companyId,
                     num:$("input.orderNo.input").val(),
                     addTime:$("#test1").val(),
+                    endTime:$("#test2").val(),
                 },
                 success: function (res) {
                     if(res.code==1){
@@ -278,6 +286,11 @@
             $.each(data,function (idx,item) {
                 str+='<tr data-id="'+item.id+'"  data-companyid="'+item.companyid+'" data-orderNo="'+item.orderNo+'" data-orderid="'+item.orderid+'">';
 //                str+='<td><div class="cf_select"></div></td>';
+                if(item.contractNo==null){
+                    str+='<td>无</td>';
+                }else{
+                    str+='<td>'+item.contractNo+'</td>';
+                }
                 if(item.receiveCompanyname==null){
                     str+='<td>无</td>';
                 }else {

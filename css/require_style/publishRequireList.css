@@ -56,7 +56,7 @@ body{
 .inputBox>.goodsType{
     line-height: 38px;
     display: inline-block;
-    width: 160px;
+    /*width: 160px;*/
     position: relative;
     color: #999;
     background: #fff;
@@ -91,7 +91,7 @@ body{
     color: #fff;
 } */
 .publishTime{
-    width: 160px;
+    /*width: 160px;*/
 }
 .inputBox>.btn{
     outline: none;

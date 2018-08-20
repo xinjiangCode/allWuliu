@@ -96,16 +96,18 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">调价申请<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">调价申请<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="" style="margin-left: 25px;">调令类型</label>-->
             <!--<div class="goodsType input select" data-selectedindex="0" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >-->
                 <!--<ul style="">-->
                     <!--<li data-index="1">-请选择-</li>-->
                 <!--</ul>-->
             <!--</div>-->
-            <label for="" style="margin-left: 10px;">提交时间</label><input type="text" class="date-input laydate-icon publishTime input time_inp" placeholder="请选择日期" id="test1">
+            <label for="" style="margin-left: 10px;">提交时间</label><input type="text" class="date-input laydate-icon publishTime input time_inp" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
             <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-top: 10px;float: right;">
         </div>
         <!-- <div class="opciationBox" style="padding-right: 8px;">
@@ -226,6 +228,7 @@
                     companyId:companyId,
                     orderId: $(".orderNo").val(),
                     time: $(".time_inp").val(),
+                    endTime:$("#test2").val(),
                     size:pageSize,
                     page:currentPage
                 },
@@ -283,6 +286,7 @@
             })
             $(".myTbody").html(str);
             //详情
+            $(".seeDetail").unbind();
             $(".seeDetail").click(function () {
                 // 订单id
                 window.localStorage.setItem('data-tloId',$(this).parents("tr").attr("data-orderid"));

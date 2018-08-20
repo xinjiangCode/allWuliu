@@ -307,11 +307,11 @@
         })
         $("#detailTitle").text(sessionStorage.getItem("detailTitle"))
 
-        $(document).on('click', '.closeBtn', function() {
-
-            window.location.href = 'onGoingOrder.html';
-
-        });
+//        $(document).on('click', '.closeBtn', function() {
+//
+//            window.location.href = 'onGoingOrder.html';
+//
+//        });
 
         $(document).on('click', '.look_more_info', function() {
             window.parent.location.href = '../../dangerousGoods_detail.html';
@@ -482,12 +482,12 @@
                             if(json.data.createTime==null){
                                 json.data.createTime="无";
                             }else{
-                                json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm:ss");
+                                json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd");
                             }
                             if(json.data.signDate==null){
                                 json.data.signDate="无";
                             }else{
-                                json.data.signDate = new Date(json.data.signDate).Format("yyyy-MM-dd hh:mm:ss");
+                                json.data.signDate = new Date(json.data.signDate).Format("yyyy-MM-dd");
                             }
                             $('.hetong_company').text(json.data.receiveCompanyname);
                             $('.qianding_time').text(json.data.signDate);

@@ -414,7 +414,7 @@ button{
 	float: right;
 	margin-top: 9px;
 	margin-right: 4px;
-	width: 132px;
+	width: 145px;
 	height: 37px;
 	line-height: 37px;
 	border: 1px solid #ebe9ea;
@@ -990,7 +990,7 @@ thead td,thead th{
 .listBox{
 	min-height: 645px;height: 645px;
 }
-.cfRefresh{display: none;}
+.cfRefresh{text-align: center;}
 .messages .select{width: 160px;}
 button{outline: none;}
 
@@ -1017,3 +1017,4 @@ button{outline: none;}
 	float: right;
 }
 .uploade input,.btn,.showjieshi{cursor: pointer;}
+.date-input{width: 140px;}
