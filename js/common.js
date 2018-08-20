@@ -1,6 +1,6 @@
 // var pubIP = 'http://192.168.1.218:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
-// var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://wl.api.xjv56.com/service/';
 
 // 上传图片路径
 var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
@@ -609,11 +609,11 @@ $(function () {
     
     
 })
-//刷新按钮
-$(".cfRefresh").click(function () {
-    location.reload();
-})
-$(".cfRefresh").hide();
+// //刷新按钮
+// $(".cfRefresh").click(function () {
+//     location.reload();
+// })
+// $(".cfRefresh").hide();
 //模拟点击 框
 $(".cf_select").click(function () {
     $(this).toggleClass("on");

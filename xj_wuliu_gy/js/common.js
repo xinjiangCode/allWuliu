@@ -1,6 +1,6 @@
 // var pubIP = 'http://192.168.1.218:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
- // var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
+ var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 var ip = pubIP;
@@ -642,10 +642,10 @@ $(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin
 
 
 
-//刷新按钮
-$(".cfRefresh").click(function () {
-    location.reload();
-})
+// //刷新按钮
+// $(".cfRefresh").click(function () {
+//     location.reload();
+// })
 //模拟点击 框
 $(".cf_select").click(function () {
     $(this).toggleClass("on");

@@ -102,14 +102,15 @@
             background-repeat: no-repeat;
             font-size: 18px;
         }
+        .date-input{width: 140px;}
     </style>
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">发布需求列表<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">发布需求列表<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="需求编号">
-            <label for="">输入搜索</label><input id="goodsName" class=" input" type="text" placeholder="商品名称">
+            <label for="">需求编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
+            <label for="">商品名称</label><input id="goodsName" class=" input" type="text" placeholder="输入搜索">
             <!--<label for="">货物类型</label>-->
             <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
                 <!--<ul>-->
@@ -118,9 +119,11 @@
                     <!--<li data-index="3">类型3</li>-->
                 <!--</ul>-->
             <!--</div>-->
-            <label for="">发布时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+            <label for="">发布时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
             <input class="searchResultBtn btn input" type="button" value="查询结果">
-            <input class="advancedRetrievalBtn btn input" onclick="sessionStorage.setItem('isAddRequireMent',1);window.location.href='../personal/addRequireMent.html'" type="button" value="发布需求">
+            <input class="advancedRetrievalBtn btn input" onclick="sessionStorage.setItem('isAddRequireMent',1);window.location.href='../personal/addRequireMent.html'" type="button" value="发布需求" style="float: right;margin-top: 7px;margin-right: 24px;">
         </div>
         <div class="opciationBox">
             <!--<div class="selectPub displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
@@ -130,7 +133,7 @@
                     <!--<li data-index="3">30</li>-->
                 <!--</ul>-->
             <!--</div>-->
-            <input class="exportDemandBtn" type="button" value="导出需求">
+            <!--<input class="exportDemandBtn" type="button" value="导出需求">-->
         </div>
         <div class="listBox" style="">
             <table>
@@ -344,6 +347,7 @@
                     pageSize:pageSize,
                     demandNo:$("input.orderNo.input").val(),
                     startDate:$(".startDate").val(),
+                    endTime:$("#test2").val(),
                     pageIdx:currentPage,
                     goodsName:$("#goodsName").val()
                 },

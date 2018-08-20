@@ -119,16 +119,20 @@
             text-overflow: ellipsis;
         }
         td{vertical-align: middle}
+        .date-input{width: 140px;}
+
     </style>
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">待确认需求<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">待确认需求<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="需求编号">
-            <label for="">输入搜索</label><input id="goodsName" class=" input" type="text" placeholder="商品名称">
+            <label for="">需求编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
+            <label for="">商品名称</label><input id="goodsName" class=" input" type="text" placeholder="输入搜索">
             <label for="">发布时间</label>
-            <input type="text" class="date-input laydate-icon publishTime input startDate" placeholder="请选择日期" id="test1">
+            <input type="text" class="date-input laydate-icon publishTime input startDate" placeholder="请选择日期" style="margin-right: 0;"  id="test1">
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test2">
             <!--<label for="">需求状态</label>-->
             <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
                 <!--<ul>-->
@@ -138,7 +142,7 @@
                 <!--</ul>-->
             <!--</div>-->
             
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 134px;">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" >
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
         <!--<div class="opciationBox">-->
@@ -327,7 +331,8 @@
                     companyId:companyId,
                     pageSize:pageSize,
                     demandNo:$("input.orderNo.input").val(),
-                    startDate:$(".startDate").val(),
+                    startDate:$("#test1").val(),
+                    endTime:$("#test2").val(),
                     pageIdx:currentPage,
                     goodsName:$("#goodsName").val()
                 },

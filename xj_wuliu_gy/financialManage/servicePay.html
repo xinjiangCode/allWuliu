@@ -86,16 +86,20 @@
         .btn.bohuibtn{
             color: #ff5e5b;
         }
+        .date-input{width: 140px;}
     </style>
     
     
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">服务费支付<div class="fr cfRefresh" ><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">服务费支付
+            <!--<div class="fr cfRefresh" >-->
+            <!--<img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div>-->
+        </div>
         <div class="inputBox">
-            <label for="" style="margin-left: 15px;">输入搜索</label><input id="orderNo" class="orderNo input" type="text" placeholder="订单编号">
-            <label for="" style="margin-left: 25px;">状&nbsp;&nbsp;态</label>
+            <label for="" style="margin-left: 15px;">订单编号</label><input id="orderNo" class="orderNo input" type="text" placeholder="输入搜索">
+            <label for="" style="margin-left: 12px;">状&nbsp;&nbsp;态</label>
             <div class="goodsType input select sort" data-selectedindex="" style="box-sizing:border-box;"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul style="">
                     <li data-index="">全部</li>
@@ -103,9 +107,11 @@
                     <li data-index="1">已支付</li>
                 </ul>
             </div>
-            <label for="" style="margin-left: 8px;">申请时间</label><input type="text" class="input publishTime date-input laydate-icon" placeholder="请选择日期" id="test1">
+            <label for="" style="margin-left: 8px;">申请时间</label><input type="text" class="input publishTime date-input laydate-icon" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
             <!--<input class="publishTime input" type="text" placeholder="请选择时间">-->
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 63px;">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 0px;">
         </div>
         <div class="listBox">
             <table>

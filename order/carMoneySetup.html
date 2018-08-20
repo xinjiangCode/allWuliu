@@ -34,10 +34,10 @@
     	<!--头部-->
     	<div class="boxHead">
     		<div class="headLeft">扣车款设置</div>
-    		<div class="headRight cfRefresh">
-    			<img src="../img/yh_refresh2.png"/>
-    			<span class="">刷新</span>
-    		</div>
+    		<!--<div class="headRight cfRefresh">-->
+    			<!--<img src="../img/yh_refresh2.png"/>-->
+    			<!--<span class="">刷新</span>-->
+    		<!--</div>-->
 			<div class="add" id="addDeductMoney">新增扣车款</div>
     	</div>
     	<!--<div class="record">-->
@@ -53,31 +53,31 @@
 					<th>扣款项</th>
 					<th style="width: 512px;">扣款项描述</th>
 					<th>是否启用</th>
-					<th>排序</th>
+					<!--<th>排序</th>-->
 					<th>操作</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>油费</td>
-					<td></td>
-					<td class="chooseswitch">
-						<input id="checked_1" type="checkbox" class="switch" />
-						<label for="checked_1"></label>
-					</td>
-					<td>1</td>
-					<td><a href="##" class="lookover">编辑</a></td>
-				</tr>
-				<tr>
-					<td>油费</td>
-					<td></td>
-					<td class="chooseswitch">
-						<input id="checked_1" type="checkbox" class="switch" />
-						<label for="checked_1"></label>
-					</td>
-					<td>2</td>
-					<td><a href="##" class="lookover">编辑</a></td>
-				</tr>
+					<!--<tr>-->
+						<!--<td>油费</td>-->
+						<!--<td></td>-->
+						<!--<td class="chooseswitch">-->
+							<!--<input id="checked_1" type="checkbox" class="switch" />-->
+							<!--<label for="checked_1"></label>-->
+						<!--</td>-->
+						<!--<td>1</td>-->
+						<!--<td><a href="##" class="lookover">编辑</a></td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td>油费</td>-->
+						<!--<td></td>-->
+						<!--<td class="chooseswitch">-->
+							<!--<input id="checked_1" type="checkbox" class="switch" />-->
+							<!--<label for="checked_1"></label>-->
+						<!--</td>-->
+						<!--<td>2</td>-->
+						<!--<td><a href="##" class="lookover">编辑</a></td>-->
+					<!--</tr>-->
 				</tbody>
 			</table>
 		</div>
@@ -183,7 +183,7 @@
             }else{
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox"  name="status" class="switch" /><label for="checked_'+idx+'"></label></td>';
             }
-            str+='<td>'+idx+'</td>';
+//            str+='<td>'+idx+'</td>';
             str+='<td data-id="'+item.id+'"><a class="lookover editDeductMoney" style="color: #6ea3f4;">编辑</a></td>';
 //        <a class="delect" style="color: #6ea3f4;">删除</a>
             str+='</tr>';

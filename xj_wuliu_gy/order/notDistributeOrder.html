@@ -89,15 +89,16 @@
             text-align: center;
             text-indent: 0px;
         }
+        .date-input{width: 140px;}
     </style>
     
     
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">待分配订单<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>
+        <div class="topTitle">待分配订单<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
-            <label for="">输入搜索</label><input class="orderNo input" type="text" placeholder="订单编号">
+            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <label for="">货物类型</label>
             <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul>
@@ -108,22 +109,24 @@
                 </ul>
             </div>
             <label for="">确认时间</label>
-            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 115px;">
+            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
+            <span>-</span>
+            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
+            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 13px;">
             <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
         </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0">
-                <span>显示条数</span>
-                <img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">30</li>
-                    <li data-index="3">50</li>
-                </ul>
-            </div>
-            <input class="exportOrderBtn btn" type="button" value="导出订单">
-        </div>
+        <!--<div class="opciationBox">-->
+            <!--<div class="select displayNum" data-selectedindex="0">-->
+                <!--<span>显示条数</span>-->
+                <!--<img src="../img/prl-select.jpg" alt="">-->
+                <!--<ul>-->
+                    <!--<li data-index="1">10</li>-->
+                    <!--<li data-index="2">30</li>-->
+                    <!--<li data-index="3">50</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
+        <!--</div>-->
         <div class="listBox">
             <table>
                 <thead>
@@ -285,19 +288,6 @@
 
         });
 
-        // 发起调令
-        $(document).on('click', '.diaoling', function() {
-            console.log($(this).attr('data-tloContractAmount'));
-            $(window.parent.document).find('.ok_shenqing').attr('data-orderid', $(this).attr('data-orderId'));
-            $(window.parent.document).find('.hetongyuanjia').text($(this).attr('data-tloContractAmount'));
-            $(window.parent.document).find('.ok_shenqing').attr('data-companyname', $(this).attr('data-companyname'));
-            $(window.parent.document).find('.ok_shenqing').attr('data-quotesSatus', $(this).attr('data-quotesSatus'));
-
-
-            window.parent.showModelBox('.modelBox37');
-            
-
-        });
 
         $(window.parent.document).on('click', '.modelBox37 .ok_shenqing', function() {
 
@@ -390,6 +380,7 @@
                     status: 0,
                     orderNo: orderNo,
                     time: publishTime,
+                    endTime:$("#test2").val(),
                     goodType: goodsType
                 },
                 cache: false,
@@ -407,6 +398,18 @@
 
                             var result = template('orderListTpl', {list: json.data});
                             $('#orderListInfo').html(result);
+
+                            // 发起调令
+                            $(".diaoling").unbind();
+                            $(".diaoling").click(function () {
+                                $(window.parent.document).find('.ok_shenqing').attr('data-orderid', $(this).attr('data-orderId'));
+                                $(window.parent.document).find('.hetongyuanjia').text($(this).attr('data-tloContractAmount'));
+                                $(window.parent.document).find('.ok_shenqing').attr('data-companyname', $(this).attr('data-companyname'));
+                                $(window.parent.document).find('.ok_shenqing').attr('data-quotesSatus', $(this).attr('data-quotesSatus'));
+
+
+                                window.parent.showModelBox('.modelBox37');
+                            })
 
                            
                             if (isSearch == 1) {
