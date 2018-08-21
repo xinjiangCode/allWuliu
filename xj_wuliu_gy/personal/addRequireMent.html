@@ -458,6 +458,8 @@
          if($("#receiveAddress").val() == ''){
              return;
          }
+         var startAddress = $("#province span").text()+$("#city span").text()+$("#area span").text()+$("#sendAddress").val();
+         var endAddress = $("#province1 span").text()+$("#city1 span").text()+$("#area1 span").text()+$("#receiveAddress").val();
          $.ajax({
              url: pubIP + 'wlLogisticsDemand/getDistance', /*v1.0*/
              type: 'POST',
@@ -466,14 +468,15 @@
                  token: token
              },
              data: {
-                 start: $("#sendAddress").val(),
-                 end: $("#receiveAddress").val()
+                 start: startAddress,
+                 end: endAddress
              },
              cache: false,
              ansyc: false,
              dataType: 'json',
              success: function (res) {
-                 $("#distance").val(res.data);
+                 var distance = (res.data/1000).toFixed(0);
+                 $("#distance").val(distance);
              },
              error: function (err) {
 //                 console.log(err);
