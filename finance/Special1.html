@@ -797,14 +797,14 @@
         $('.update_info_btn').removeClass('btn2');
         $('.update_info_btn').css({
             'margin-left': '365px',
-            'margin-bottom': '5px'
+            // 'margin-bottom': '5px'
         });
 
         
         $('.update_btn').removeClass('btn2');
         $('.update_btn').css({
             'margin-left': '365px',
-            'margin-bottom': '5px'
+            // 'margin-bottom': '5px'
         });
 
         $('.next_btn').removeClass('btn2');
@@ -873,6 +873,12 @@
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
 
+                        if (data.data.refuseReason) {
+                            window.parent.zizhi_weitong(data.data.refuseReason); 
+                        } else {
+                            window.parent.zizhi_weitong('无');
+                        }
+
                         getInfo(4);
                     }else {
                         $('.update_btn').hide();
@@ -913,6 +919,12 @@
                         $('.update_btn').hide();
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
+
+                        if (data.data.refuseReason) {
+                            window.parent.zizhi_weitong(data.data.refuseReason); 
+                        } else {
+                            window.parent.zizhi_weitong('无');
+                        }
 
                         getInfo(3);
                     } else {
@@ -955,7 +967,12 @@
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
 
-                       
+                        if (data.data.refuseReason) {
+                            window.parent.zizhi_weitong(data.data.refuseReason); 
+                        } else {
+                            window.parent.zizhi_weitong('无');
+                        }
+                        
                     } else {
                         $('.update_btn').hide();
                         $(".shenhe").hide();
@@ -1212,11 +1229,11 @@
             success: function (data) {
                 console.log(data);
 
-                // if (data.code == 1) {
-                //     //window.location.href="Special2.html";
+                if (data.code == 1) {
+                    //window.location.href="Special2.html";
 
-                //     window.location.reload();
-                // }
+                    window.location.reload();
+                }
 
             },
             error: function(err) {
@@ -1524,25 +1541,33 @@
 
         var img = $('#yingye_zhizhao_hidden').val();
         var img2 = $('#yingye_zhizhao_hidden1').val();
-        // debugger;
         if (img == '') {
             $('#yingye_zhizhao_hidden').parent().parent().next().css('display', 'inline-block');
+            isOk = false;
             return false;
         } else {
             if ($('#yingye_zhizhao_pic').attr('data-picids')) {
                 json['imgs1'] = $('#yingye_zhizhao_pic').attr('data-picids')+','+ $('#yingye_zhizhao_hidden').val();
+            }else {
+                json['imgs1'] = $('#yingye_zhizhao_hidden').val();
             }
-            json['imgs1'] = $('#yingye_zhizhao_hidden').val();
         }
 
         if (img2 == '') {
             $('#yingye_zhizhao_hidden1').parent().parent().next().css('display', 'inline-block');
+            isOk = false;
             return false;
         } else {
             if ($('#yingye_zhizhao_pic1').attr('data-picids')) {
                 json['imgs2'] = $('#yingye_zhizhao_pic1').attr('data-picids')+','+ $('#yingye_zhizhao_hidden1').val();
+            } else {
+                json['imgs2'] = $('#yingye_zhizhao_hidden1').val();
             }
-            json['imgs2'] = $('#yingye_zhizhao_hidden1').val();
+            
+        }
+
+        if (!isOk) {
+            return false;
         }
 
 
@@ -1640,7 +1665,7 @@
 
 
         console.log(json);
-        return false;
+        
 
         $.ajax({
             url: pubIP + 'companyCertification/addQualificationsBaseInfo',
@@ -1655,11 +1680,11 @@
             success: function (data) {
                 console.log(data);
 
-                // if (data.code == 1) {
-                //     //window.location.href="Special2.html";
+                if (data.code == 1) {
+                    //window.location.href="Special2.html";
 
-                //     window.location.reload();
-                // }
+                    window.location.reload();
+                }
 
             },
             error: function(err) {

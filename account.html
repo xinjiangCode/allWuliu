@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/account.css"/>
     <style>
 
-        .kquan_caozuo,.modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert {
+        .kquan_caozuo,.modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert, .zizhi_weitong {
             z-index: 9999;
             display: none;
             position: fixed;
@@ -24,7 +24,7 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
 
-        .modelBoxdiaoling p, .modelBoxshenhezhong p, .modelBoxyijujue p, .modelBoxqiyesecond p, .modelBoxchujinsecond p, .modelBoxaddsuccess p, .modelBoxaddteshu p, .modelBoxaddqita p, .modelBoxtiao_tan p, .modelBoxupdate_chujin p, .modelBoxupdate_qiye p, .modelBoxupdate_runPerson p, .modelBoxupdate_runFapiao p, .modelBoxupdate_runcaiwu p, .modelBoxdelzizhi p, .modelBoxzihzishenhe p, .modelBoxweipass p, .modelBoxjujue_teshu p, .modelBox0 p, .modelBoxweixian p, .modelBoxweirenzheng p, .modelBoxdengdai p, .no_zizhi p {
+        .modelBoxdiaoling p, .modelBoxshenhezhong p, .modelBoxyijujue p, .modelBoxqiyesecond p, .modelBoxchujinsecond p, .modelBoxaddsuccess p, .modelBoxaddteshu p, .modelBoxaddqita p, .modelBoxtiao_tan p, .modelBoxupdate_chujin p, .modelBoxupdate_qiye p, .modelBoxupdate_runPerson p, .modelBoxupdate_runFapiao p, .modelBoxupdate_runcaiwu p, .modelBoxdelzizhi p, .modelBoxzihzishenhe p, .modelBoxweipass p, .modelBoxjujue_teshu p, .modelBox0 p, .modelBoxweixian p, .modelBoxweirenzheng p, .modelBoxdengdai p, .no_zizhi p, .zizhi_weitong p {
             text-align: center;
 
         }
@@ -3090,8 +3090,28 @@
         <div class="modelcontent">
             <div class="info">
                 <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
-                <p><span>危险化学品资质认证审核未通过</span>，请您重新填写进行认证！</p>
-                <p class="jj_yuanying" style="color: red;font-size: 14px;text-align: left;">拒绝理由：<span></span></p>
+                <p class="p"><span>危险化学品资质认证审核未通过</span>，请您重新填写进行认证！</p>
+                <p class="jj_yuanying" style="color: red;font-size: 14px;text-align: left; text-align: center;">拒绝理由：<span></span></p>
+            </div>
+            <div class="modelBtnBox">
+                <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 资质审核未通过 -->
+<div class="zizhi_weitong">
+    <div class="modelCont">
+        <div class="modeltitle">
+            <span>消息提示</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent">
+            <div class="info">
+                <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                <p><span>资质审核未通过</span>，请您重新填写进行认证！</p>
+                <p class="jj_yuanying" style="color: red;font-size: 14px;text-align: left; text-align: center;">拒绝理由：<span></span></p>
             </div>
             <div class="modelBtnBox">
                 <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -3111,7 +3131,7 @@
             <div class="info">
                 <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
                 <p><span>特殊资质认证审核未通过</span>，请您重新填写进行认证！</p>
-                <p class="jj_yuanying2" style="color: red;font-size: 14px;text-align: left;">拒绝理由：<span></span></p>
+                <p class="jj_yuanying2" style="color: red;font-size: 14px;text-align: left; text-align: center;">拒绝理由：<span></span></p>
             </div>
             <div class="modelBtnBox">
                 <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -4180,7 +4200,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         $('.modelBoxjujue_teshu').css('display', 'block');
     }
 
-
+    function zizhi_weitong(reasons) {
+        $('.jj_yuanying span').html(reasons);
+        $('.zizhi_weitong').css('display', 'block');
+    }
 
 
 
