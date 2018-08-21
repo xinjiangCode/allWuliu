@@ -167,10 +167,10 @@
         <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">操作人员</div>
         <div class="contBox">
             <div class="left ll">
-                <div>接&nbsp;&nbsp;单&nbsp;&nbsp;人：<span class="jiedan_person">新B</span></div>
+                <div>接&nbsp;&nbsp;单&nbsp;&nbsp;人：<span class="jiedan_person"></span></div>
             </div>
             <div class="left mm">
-                <div>发单人员：<span class="fadan_person">王小二</span></div>
+                <div>发单人员：<span class="fadan_person"></span></div>
             </div>
         </div>
     </div>
@@ -415,8 +415,8 @@
                     $('.wuliu_info_phone').text(json.data.sendPhone);
                     $('.wuliu_info_address').text(json.data.sendAddress);
 
-                    $('.fadan_person').text(json.data.createBy);
-                    $('.jiedan_person').text(json.data.tloCreateBy);
+                    $('.fadan_person').text(json.data.invoiceUser);
+                    $('.jiedan_person').text(json.data.receiptUser);
 
                     $('.car_no').text(json.data.carNo);
 

@@ -278,9 +278,7 @@
 
 
 
-
-        $(window.parent.document).on('click', '.modelBox37 .ok_shenqing', function() {
-
+        window.parent.$(".modelBox37 .ok_shenqing").click(function () {
             var orderid = $(this).attr('data-orderid');
             var companyname = $(this).attr('data-companyname');
 
@@ -320,16 +318,14 @@
                             window.location.reload();
                         })
                     }
-
-
                 },
                 error: function(err) {
                     console.log(err);
                 }
 
             });
+        })
 
-        });
 
         //上传合同
         $(document).on('click', '.update', function() {
