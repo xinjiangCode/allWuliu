@@ -7,7 +7,7 @@ img{float: left;}
 a{color: #282828;}
 .containerTitle{height: 50px;line-height: 50px;font-size: 16px;color: #282828;border-bottom: 1px solid #f1f1f1;padding: 0 14px;}
 .containerTitle::after{content: "";display: block;clear: both;}
-input{background-color: #fafafa;border: 1px solid #eaeaea;}
+input{background-color: #fafafa;border: 1px solid #e7e7e7;}
 html,body{min-width: 988px;width: 988px;background-color: white;overflow: hidden;margin: auto;font-size: 14px;}
 .container{width:974px;border: 1px solid #f1f1f1;}
 .header{padding-top:21px;padding-left:61px;height:62px;box-sizing:border-box;border-bottom: 1px solid #f1f1f1;}

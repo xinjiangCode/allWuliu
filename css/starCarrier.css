@@ -105,10 +105,11 @@ body{
 }
 /* list */
 .carrierList>li{
-    border: 1px solid #dedede;
+    border: 1px solid #e7e7e7;
     overflow: hidden;
     min-height: 262px;
     margin-bottom: 12px;
+    cursor: pointer;
 }
 .carrierList>li>img{
     margin-top: 17px;

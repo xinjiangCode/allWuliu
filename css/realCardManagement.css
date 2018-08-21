@@ -177,7 +177,8 @@ body{
 }
 .salesvolume{
 	color: #6ba1ff;
-	font-size: 14px;
+    font-size: 14px;
+    cursor: pointer;
 }
 /*开关按钮样式*/
 	.chooseswitch .switch{
@@ -331,7 +332,7 @@ body{
     width: 180px;
     height: 34px;
     line-height: 34px;
-    border: 1px solid #dedede;
+    border: 1px solid #e7e7e7;
 }
 
 .ll{

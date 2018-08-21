@@ -48,7 +48,7 @@ body{
     box-sizing: border-box;
     margin-right: 12px;
     padding-left: 10px;
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
 }
 .inputBox>.orderNo{
     width: 180px;
@@ -58,7 +58,7 @@ body{
     display: inline-block;
     width: 160px;
     position: relative;
-    color: #999;
+    color: #666666;
     background: #fff;
     cursor: pointer;
     float: none;
@@ -193,7 +193,7 @@ td{
     margin-top: 9px;
     margin-right: 9px;
     text-align: center;
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
     width: 93px;
     height: 37px;
     box-sizing: border-box;

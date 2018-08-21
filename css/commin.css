@@ -417,10 +417,10 @@ button{
 	width: 145px;
 	height: 37px;
 	line-height: 37px;
-	border: 1px solid #ebe9ea;
+	border: 1px solid #e7e7e7;
 	box-sizing: border-box;
 	padding-left: 10px;
-	color: #999;
+	color: #666666;
 	cursor: pointer;
 }
 .select>img{
@@ -968,6 +968,7 @@ input{line-height: 100%;}
 	height: 13px;
 	background: url("../img/cf_noselect.png") no-repeat;
 	background-size: 100% 100%;
+	cursor: pointer;
 }
 .cf_select.on{
 	background: url("../img/cf_selct.png") no-repeat;
@@ -990,7 +991,7 @@ thead td,thead th{
 .listBox{
 	min-height: 645px;height: 645px;
 }
-.cfRefresh{text-align: center;}
+.cfRefresh{text-align: center;cursor: pointer;}
 .messages .select{width: 160px;}
 button{outline: none;}
 
