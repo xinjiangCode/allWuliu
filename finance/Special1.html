@@ -23,9 +23,9 @@
         .center1{margin-left: 70px;}
         .btn1{height: 30px;line-height: 30px;width: 60px;margin-top: 5px;font-size: 12px;color: white;background-color: #78A9FF;text-align: center;border-radius: 3px;margin-left: 17px;}
         .weihua{display: none;}
-        .container {
-            height: 680px;
-        }
+        /*.container {
+            height: 725px;
+        }*/
 
         .uploade {
             background: #FAFAFA;
@@ -87,6 +87,14 @@
             width: 25px;
         }
 
+        .parent_div {
+            height: 595px;
+        }
+
+        .container {
+            padding-bottom: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -111,92 +119,94 @@
             </li>
         </ul>
     </div>
-    <div class="clearfix shenhe" style="display: none;"><img src="../img/shenhe.png" alt=""></div>
-    <div id="center" style="font-size: 14px;">
-        <div class="center1 c0">
-            <ul>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>运输资质:</div>
-                    <div class="right1 Lf" style="">
-                        <input type="radio" value="pu" name="ZZtype" style="height: 17px;width: 17px;vertical-align: sub" checked="checked"><span style="display:inline-block;line-height: 38px;height: 38px;">普货</span>
-                        <input type="radio" value="wei" name="ZZtype" style="height: 17px;width: 17px;vertical-align: sub;margin-left: 35px;"><span>危货</span>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>道路运输许可证号:</div>
-                    <div class="right1 Lf"><input type="text" class="zizhi_num" value="" id="zizhi_num0"/></div>
-                    <span class="ts">道路运输许可证号不能为空</span>
-                </li>
+    <div class="parent_div">
+        <div class="clearfix shenhe" style="display: none;"><img src="../img/shenhe.png" alt=""></div>
+        <div id="center" style="font-size: 14px;">
+            <div class="center1 c0">
+                <ul>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>运输资质:</div>
+                        <div class="right1 Lf" style="">
+                            <input type="radio" value="pu" name="ZZtype" style="height: 17px;width: 17px;vertical-align: sub" checked="checked"><span style="display:inline-block;line-height: 38px;height: 38px;">普货</span>
+                            <input type="radio" value="wei" name="ZZtype" style="height: 17px;width: 17px;vertical-align: sub;margin-left: 35px;"><span>危货</span>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>道路运输许可证号:</div>
+                        <div class="right1 Lf"><input type="text" class="zizhi_num" value="" id="zizhi_num0"/></div>
+                        <span class="ts">道路运输许可证号不能为空</span>
+                    </li>
 
-                <li  style="overflow: visible;" class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>证件上传:</div>
-                    <div class="right1 Lf">
-                        <div class="uploade" style="">
-                            <i style=""></i>
-                            <!-- <img src="../img/list_logo.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片"> -->
-                            <input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
-                            <input type="hidden" name="" value="" id="yingye_zhizhao_hidden">
-                            <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                    <li  style="overflow: visible;" class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>证件上传:</div>
+                        <div class="right1 Lf">
+                            <div class="uploade" style="">
+                                <i style=""></i>
+                                <!-- <img src="../img/list_logo.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片"> -->
+                                <input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+                                <input type="hidden" name="" value="" id="yingye_zhizhao_hidden">
+                                <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                            </div>
                         </div>
-                    </div>
-                    <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
-                    <span class="ts" style="margin-top: 32px;">证件不能为空</span>
-                </li>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>有效期:</div>
-                    <div class="right1 Lf">
-                        <input type="text" class="date-input laydate-icon kuang start"  placeholder="请选择日期" id="test1">
-                        <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
-                        <input type="text" class="date-input laydate-icon kuang end"  placeholder="请选择日期" id="test2">
-                    </div>
-                    <span class="ts">有效期不能为空</span>
-                </li>
-                <li class="clearfix weihua">
-                    <div class="left1 Lf"><i class="red">*</i>营业范围:</div>
-                    <div class="right1 Lf clearFloat">
-                        <div class="Lf" style="height: 38px;line-height: 38px;margin-right: 10px;">类</div>
-                        <div class="select Lf lei" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
-                            <span>请选择</span>
-                            <img src="../img/prl-select.jpg" alt="">
-                            <ul class="lei_ul">
-                                <li data-index="1">10</li>
-                                <li data-index="2">20</li>
-                                <li data-index="3">30</li>
-                            </ul>
+                        <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
+                        <span class="ts" style="margin-top: 32px;">证件不能为空</span>
+                    </li>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>有效期:</div>
+                        <div class="right1 Lf">
+                            <input type="text" class="date-input laydate-icon kuang start"  placeholder="请选择日期" id="test1">
+                            <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
+                            <input type="text" class="date-input laydate-icon kuang end"  placeholder="请选择日期" id="test2">
                         </div>
-                        <div class="Lf"  style="height: 38px;line-height: 38px;margin: 0 8px;">-项</div>
-                        <div class="select Lf xiang" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
-                            <span>请选择</span>
-                            <img src="../img/prl-select.jpg" alt="">
-                            <ul class="xiang_ul">
-                                <li data-index="1">10</li>
-                                <li data-index="2">20</li>
-                                <li data-index="3">30</li>
-                            </ul>
+                        <span class="ts">有效期不能为空</span>
+                    </li>
+                    <li class="clearfix weihua">
+                        <div class="left1 Lf"><i class="red">*</i>营业范围:</div>
+                        <div class="right1 Lf clearFloat">
+                            <div class="Lf" style="height: 38px;line-height: 38px;margin-right: 10px;">类</div>
+                            <div class="select Lf lei" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
+                                <span>请选择</span>
+                                <img src="../img/prl-select.jpg" alt="">
+                                <ul class="lei_ul">
+                                    <li data-index="1">10</li>
+                                    <li data-index="2">20</li>
+                                    <li data-index="3">30</li>
+                                </ul>
+                            </div>
+                            <div class="Lf"  style="height: 38px;line-height: 38px;margin: 0 8px;">-项</div>
+                            <div class="select Lf xiang" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
+                                <span>请选择</span>
+                                <img src="../img/prl-select.jpg" alt="">
+                                <ul class="xiang_ul">
+                                    <li data-index="1">10</li>
+                                    <li data-index="2">20</li>
+                                    <li data-index="3">30</li>
+                                </ul>
+                            </div>
+                            <div class="add btn1 Lf">增加</div>
                         </div>
-                        <div class="add btn1 Lf">增加</div>
-                    </div>
-                    <!--<span class="ts">有效期不能为空</span>-->
-                </li>
-                <li class="clearfix weihua">
-                    <div class="left1 Lf"></div>
-                    <div class="right1 Lf clearFloat">
-                        <div class="textarea_div" name="" id="" cols="30" rows="10" style="width: 359px;height: 100px; border: 1px solid #EAEAEA; background: #FAFAFA;padding-top: 5px; padding-left: 5px; box-sizing: border-box; overflow-y: auto;"></div>
-                    </div>
-                    <span class="ts">营业范围不能为空</span>
-                </li>
-            </ul>
+                        <!--<span class="ts">有效期不能为空</span>-->
+                    </li>
+                    <li class="clearfix weihua">
+                        <div class="left1 Lf"></div>
+                        <div class="right1 Lf clearFloat">
+                            <div class="textarea_div" name="" id="" cols="30" rows="10" style="width: 359px;height: 100px; border: 1px solid #EAEAEA; background: #FAFAFA;padding-top: 5px; padding-left: 5px; box-sizing: border-box; overflow-y: auto;"></div>
+                        </div>
+                        <span class="ts">营业范围不能为空</span>
+                    </li>
+                </ul>
 
-            <div class="btn weiRenZheng next_btn" style="font-size: 16px;margin-left: 155px;">下一步</div>
-            <div class="btn yiRenZheng update_info_btn" style="font-size: 16px;margin-left: 155px;">修改信息</div>
-            <div class="btn yiRenZheng update_btn" style="font-size: 16px;margin-left: 155px;">修改完成</div>
-            
-            <div class="puhua" style="margin-left: 210px;margin-top: 32px; ">
-                <img src="../img/qq.png" alt="" style="float: none; vertical-align: bottom;">
-                <a href="##" style="color: #5590f6;">客服QQ</a>
-                <span>(工作日10 : 00 - 19 : 00)</span>
+                <div class="btn weiRenZheng next_btn" style="font-size: 16px;margin-left: 155px;">下一步</div>
+                <div class="btn yiRenZheng update_info_btn" style="font-size: 16px;margin-left: 155px;">修改信息</div>
+                <div class="btn yiRenZheng update_btn" style="font-size: 16px;margin-left: 155px;">修改完成</div>
+                
+                <div class="puhua" style="margin-left: 210px;margin-top: 32px; ">
+                    <img src="../img/qq.png" alt="" style="float: none; vertical-align: bottom;">
+                    <a href="##" style="color: #5590f6;">客服QQ</a>
+                    <span>(工作日10 : 00 - 19 : 00)</span>
+                </div>
+                <div class="puhua" style="margin-left: 210px;margin-top: 5px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">400-1234567</a></div>
             </div>
-            <div class="puhua" style="margin-left: 210px;margin-top: 5px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">400-1234567</a></div>
         </div>
     </div>
     
@@ -576,16 +586,12 @@
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
 
-                        $('.update_btn').attr('flag', '1');
-
                         getInfo(4);
                     }else {
                         $('.update_btn').hide();
                         $(".shenhe").hide();
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
-
-                        $('.update_btn').attr('flag', '1');
 
                         getInfo(4);
                     }
@@ -813,6 +819,10 @@
         $('#test2').attr('disabled', false);
         $('.lei').attr('disabled', false);
         $('.xiang').attr('disabled', false);
+
+        $('.update_btn').attr('flag', '1');
+        $('.delete_info').addClass('delete_div');
+        $('.delete_div').css('cursor', 'pointer');
 
         $('.add').attr('disabled', false);
         $(this).hide();
