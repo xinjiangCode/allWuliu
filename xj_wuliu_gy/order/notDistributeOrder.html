@@ -288,9 +288,7 @@
 
         });
 
-
-        $(window.parent.document).on('click', '.modelBox37 .ok_shenqing', function() {
-
+        window.parent.$(".modelBox37 .ok_shenqing").click(function () {
             var orderid = $(this).attr('data-orderid');
             var companyname = $(this).attr('data-companyname');
 
@@ -324,7 +322,7 @@
                         $(window.parent.document).find('.modelBox37').css('display', 'none');
                         window.parent.showModelBox('.modelBoxdiaoling');
                     }
-                    
+
 
                 },
                 error: function(err) {
@@ -332,8 +330,7 @@
                 }
 
             });
-
-        });
+        })
 
 
         //显示条数
