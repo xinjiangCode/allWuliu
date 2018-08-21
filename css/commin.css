@@ -1019,3 +1019,10 @@ button{outline: none;}
 }
 .uploade input,.btn,.showjieshi{cursor: pointer;}
 .date-input{width: 140px;}
+.select span{
+	display: inline-block;
+	width: 70%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

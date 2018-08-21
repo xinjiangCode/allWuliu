@@ -1034,3 +1034,10 @@ input{
     -moz-appearance:textfield;
 }
 .addLiShi,.sub,.cf_sel,.sub_btn,.exportDemandBtn,.add_apartment,.btn,.contentslist input{cursor: pointer;}
+.select span{
+	display: inline-block;
+	width: 70%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
