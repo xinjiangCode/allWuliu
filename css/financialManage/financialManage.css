@@ -163,13 +163,13 @@ body{
     width: 300px;
     height: 38px;
     box-sizing: border-box;
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
 }
 .timeBox>input{
     width: 150px;
     height: 38px;
     box-sizing: border-box;
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
 }
 .timeBox>.transverseLine{
     display: inline-block;

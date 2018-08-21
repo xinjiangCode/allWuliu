@@ -23,9 +23,9 @@
         .center1{margin-left: 70px;}
         .btn1{height: 30px;line-height: 30px;width: 60px;margin-top: 5px;font-size: 12px;color: white;background-color: #78A9FF;text-align: center;border-radius: 3px;margin-left: 17px;}
         .weihua{display: none;}
-        .container {
-            height: 680px;
-        }
+        /*.container {
+            height: 725px;
+        }*/
 
         .uploade {
             background: #FAFAFA;
@@ -87,6 +87,20 @@
             width: 25px;
         }
 
+        .parent_div {
+            height: 595px;
+        }
+
+        .container {
+            padding-bottom: 5px;
+            height: 700px;
+        }
+
+        .btn.btn2 {
+            width: 150px;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body>
@@ -111,93 +125,95 @@
             </li>
         </ul>
     </div>
-    <div class="clearfix shenhe" style="display: none;"><img src="../img/shenhe.png" alt=""></div>
-    <div id="center" style="font-size: 14px;">
-        <div class="center1 c0">
-            <ul>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>运输资质:</div>
-                    <div class="right1 Lf" style="">
-                        <input type="radio" value="pu" name="ZZtype" style="height: 17px;width: 17px;vertical-align: sub" checked="checked"><span style="display:inline-block;line-height: 38px;height: 38px;">普货</span>
-                        <input type="radio" value="wei" name="ZZtype" style="height: 17px;width: 17px;vertical-align: sub;margin-left: 35px;"><span>危货</span>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>道路运输许可证号:</div>
-                    <div class="right1 Lf"><input type="text" class="zizhi_num" value="" id="zizhi_num0"/></div>
-                    <span class="ts">道路运输许可证号不能为空</span>
-                </li>
+    <div class="parent_div">
+        <div class="clearfix shenhe" style="display: none;"><img src="../img/shenhe.png" alt=""></div>
+        <div id="center" style="font-size: 14px;">
+            <div class="center1 c0">
+                <ul>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>运输资质:</div>
+                        <div class="right1 Lf" style="">
+                            <input type="radio" value="pu" name="ZZtype" style="height: 17px;width: 17px;cursor:pointer;vertical-align: sub" checked="checked"><span style="display:inline-block;line-height: 38px;height: 38px;">普货</span>
+                            <input type="radio" value="wei" name="ZZtype" style="height: 17px;width: 17px;cursor:pointer;vertical-align: sub;margin-left: 35px;"><span>危货</span>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>道路运输许可证号:</div>
+                        <div class="right1 Lf"><input type="text" class="zizhi_num" value="" id="zizhi_num0"/></div>
+                        <span class="ts">道路运输许可证号不能为空</span>
+                    </li>
 
-                <li  style="overflow: visible;" class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>证件上传:</div>
-                    <div class="right1 Lf">
-                        <div class="uploade" style="">
-                            <i style=""></i>
-                            <!-- <img src="../img/list_logo.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片"> -->
-                            <input type="file" id="yingye_zhizhao_pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
-                            <input type="hidden" name="" value="" id="yingye_zhizhao_hidden">
-                            <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                    <li  style="overflow: visible;" class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>证件上传:</div>
+                        <div class="right1 Lf">
+                            <div class="uploade" style="">
+                                <i style=""></i>
+                                <!-- <img src="../img/list_logo.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片"> -->
+                                <input type="file" id="yingye_zhizhao_pic" class="pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+                                <input type="hidden" name="" value="" class="hd" id="yingye_zhizhao_hidden">
+                                <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                            </div>
                         </div>
-                    </div>
-                    <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
-                    <span class="ts" style="margin-top: 32px;">证件不能为空</span>
-                </li>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>有效期:</div>
-                    <div class="right1 Lf">
-                        <input type="text" class="date-input laydate-icon kuang start"  placeholder="请选择日期" id="test1">
-                        <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
-                        <input type="text" class="date-input laydate-icon kuang end"  placeholder="请选择日期" id="test2">
-                    </div>
-                    <span class="ts">有效期不能为空</span>
-                </li>
-                <li class="clearfix weihua">
-                    <div class="left1 Lf"><i class="red">*</i>营业范围:</div>
-                    <div class="right1 Lf clearFloat">
-                        <div class="Lf" style="height: 38px;line-height: 38px;margin-right: 10px;">类</div>
-                        <div class="select Lf lei" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
-                            <span>请选择</span>
-                            <img src="../img/prl-select.jpg" alt="">
-                            <ul class="lei_ul">
-                                <li data-index="1">10</li>
-                                <li data-index="2">20</li>
-                                <li data-index="3">30</li>
-                            </ul>
+                        <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
+                        <span class="ts" style="margin-top: 32px;">证件不能为空</span>
+                    </li>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>有效期:</div>
+                        <div class="right1 Lf">
+                            <input type="text" class="date-input laydate-icon kuang start"  placeholder="请选择日期" id="test1">
+                            <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
+                            <input type="text" class="date-input laydate-icon kuang end"  placeholder="请选择日期" id="test2">
                         </div>
-                        <div class="Lf"  style="height: 38px;line-height: 38px;margin: 0 8px;">-项</div>
-                        <div class="select Lf xiang" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
-                            <span>请选择</span>
-                            <img src="../img/prl-select.jpg" alt="">
-                            <ul class="xiang_ul">
-                                <li data-index="1">10</li>
-                                <li data-index="2">20</li>
-                                <li data-index="3">30</li>
-                            </ul>
+                        <span class="ts">有效期不能为空</span>
+                    </li>
+                    <li class="clearfix weihua">
+                        <div class="left1 Lf"><i class="red">*</i>营业范围:</div>
+                        <div class="right1 Lf clearFloat">
+                            <div class="Lf" style="height: 38px;line-height: 38px;margin-right: 10px;">类</div>
+                            <div class="select Lf lei" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
+                                <span>请选择</span>
+                                <img src="../img/prl-select.jpg" alt="">
+                                <ul class="lei_ul">
+                                    <li data-index="1">10</li>
+                                    <li data-index="2">20</li>
+                                    <li data-index="3">30</li>
+                                </ul>
+                            </div>
+                            <div class="Lf"  style="height: 38px;line-height: 38px;margin: 0 8px;">-项</div>
+                            <div class="select Lf xiang" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">
+                                <span>请选择</span>
+                                <img src="../img/prl-select.jpg" alt="">
+                                <ul class="xiang_ul">
+                                    <li data-index="1">10</li>
+                                    <li data-index="2">20</li>
+                                    <li data-index="3">30</li>
+                                </ul>
+                            </div>
+                            <div class="add btn1 Lf">增加</div>
                         </div>
-                        <div class="add btn1 Lf">增加</div>
-                    </div>
-                    <!--<span class="ts">有效期不能为空</span>-->
-                </li>
-                <li class="clearfix weihua">
-                    <div class="left1 Lf"></div>
-                    <div class="right1 Lf clearFloat">
-                        <div class="textarea_div" name="" id="" cols="30" rows="10" style="width: 359px;height: 100px; border: 1px solid #EAEAEA; background: #FAFAFA;padding-top: 5px; padding-left: 5px; box-sizing: border-box; overflow-y: auto;"></div>
-                    </div>
-                    <span class="ts">营业范围不能为空</span>
-                </li>
-            </ul>
-
-            <div class="btn weiRenZheng next_btn" style="font-size: 16px;margin-left: 155px;">下一步</div>
-            <div class="btn yiRenZheng update_info_btn" style="font-size: 16px;margin-left: 155px;">修改信息</div>
-            <div class="btn yiRenZheng update_btn" style="font-size: 16px;margin-left: 155px;">修改完成</div>
-            
-            <div class="puhua" style="margin-left: 210px;margin-top: 32px; ">
-                <img src="../img/qq.png" alt="" style="float: none; vertical-align: bottom;">
-                <a href="##" style="color: #5590f6;">客服QQ</a>
-                <span>(工作日10 : 00 - 19 : 00)</span>
+                        <!--<span class="ts">有效期不能为空</span>-->
+                    </li>
+                    <li class="clearfix weihua">
+                        <div class="left1 Lf"></div>
+                        <div class="right1 Lf clearFloat">
+                            <div class="textarea_div" name="" id="" cols="30" rows="10" style="width: 359px;height: 100px; border: 1px solid #EAEAEA; background: #FAFAFA;padding-top: 5px; padding-left: 5px; box-sizing: border-box; overflow-y: auto;"></div>
+                        </div>
+                        <span class="ts">营业范围不能为空</span>
+                    </li>
+                </ul>  
             </div>
-            <div class="puhua" style="margin-left: 210px;margin-top: 5px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">400-1234567</a></div>
         </div>
+        <div class="btn btn2 add_zizhi" style="margin-left: 366px;">添加其他资质</div>
+        <div class="btn btn2 weiRenZheng next_btn" style="font-size: 16px;margin-left: 54px;">提交</div>
+        <div class="btn btn2 yiRenZheng update_info_btn" style="font-size: 16px;margin-left: 54px;">修改信息</div>
+        <div class="btn btn2 yiRenZheng update_btn" style="font-size: 16px;margin-left: 155px;">修改完成</div>
+        
+        <div class="puhua" style="margin-left: 430px;margin-top: 32px; ">
+            <img src="../img/qq.png" alt="" style="float: none; vertical-align: bottom;">
+            <a href="##" style="color: #5590f6;">客服QQ</a>
+            <span>(工作日10 : 00 - 19 : 00)</span>
+        </div>
+        <div class="puhua" style="margin-left: 405px;margin-top: 5px; margin-bottom: 40px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">400-1234567</a></div>
     </div>
     
 
@@ -253,6 +269,8 @@
         }
     })
 
+    
+
     function lay(id) {
         laydate({
             elem: '#'+id,
@@ -265,14 +283,25 @@
     }
 //单选按钮 选择类型
     $('input[type=radio][name=ZZtype]').change(function() {
+        $('.c1').remove();
+        // $('.next_btn').show();
+        $('.next_btn').addClass('btn2');
+        $('.next_btn').css({
+            'margin-left': '54px'
+        });
+        $('.add_zizhi').show();
+
         if (this.value == 'pu') {
-            $(".puhua").css("display","block");
-            $(".weihua").css("display","none");
+            $(this).parents('.c0').find('.puhua').css("display","block");
+            $(this).parents('.c0').find('.weihua').css("display","none");
+            
         }else{
-            $(".weihua").css("display","block");
-            $(".puhua").css("display","none");
+            $(this).parents('.c0').find('.puhua').css("display","none");
+            $(this).parents('.c0').find('.weihua').css("display","block");
         }
     });
+
+    
 
     //不同浏览器下的路径不同
     function getObjectURL(file) {
@@ -293,11 +322,12 @@
         return url;
     }
 
-    $(document).on('change','#yingye_zhizhao_pic',function(){
+    $(document).on('change','#yingye_zhizhao_pic, #yingye_zhizhao_pic1',function(){
             xmTanUploadImg11(this);
         })
 
     function xmTanUploadImg11(obj) {
+
         var file = obj.files[0];
         if (file.size >= 2097152) {
             alert('上传的图片超过了2MB');
@@ -334,48 +364,98 @@
 
     }
 
-    //获取类
-    $.ajax({
-        url: pubIP + 'chemicalType/getChemicalType',
-        type: 'get',
-        headers: {
-            Accept: "application/json; charset=utf-8",
-            token: token
-        },
-        cache: false,
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
-
-            var str = '';
-
-            for (var i = 0; i < data.data.length; i++) {
-                str += '<li data-type_id = "'+data.data[i].type_id+'">'+data.data[i].type_name+'</li>';
+    function lay(id) {
+        laydate({
+            elem: '#'+id,
+            format: 'YYYY-MM-DD',
+            istime: false,
+            choose: function(dates){ //选择好日期的回调
+                $('#'+id).parent().next().css('display', 'none');
+                startTime1 = dates;
             }
+        })
+    }
 
-            $('.lei_ul').html(str);
+    lei();
+    //获取类
+    function lei() {
+        $.ajax({
+            url: pubIP + 'chemicalType/getChemicalType',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
 
-            $('.select ul li').click(function(){
-                event.stopPropagation();
-                $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                $(this).parent().parent().find('span').text($(this).text());
-                $(this).parent().parent().find('span').attr('data-spanvalue', $(this).attr('data-type_id'));
-                $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                $(this).parent().css('display','none');
+                var str = '';
 
-                if ($(this).parent().parent().find('span').attr('data-spanvalue')) {
-                    selectXiang($(this).parent().parent().find('span').attr('data-spanvalue'));
+                for (var i = 0; i < data.data.length; i++) {
+                    str += '<li data-type_id = "'+data.data[i].type_id+'">'+data.data[i].type_name+'</li>';
                 }
 
-            });
+                $('.lei_ul').html(str);
+
+                $('.c1 .lei').click(function(event){
+
+
+                    if($(this).attr("disabled")=="disabled"){ //判断是否可以点击
+                        return;
+                    }
+
+                    if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
+                        $(this).children('img').attr('src', '../img/prl-select.jpg')
+                    } else {
+                        $(this).children('img').attr('src', '../img/prl-selected.jpg')
+                    }
+
+                    event.stopPropagation();
+
+                    $(this).children('ul').toggle();
+                    var that = $(this);
+                    that.find('li').each(function(){
+                        $(this).mouseover(function(){
+                            $(this).addClass('hovered')
+                        });
+                        $(this).mouseleave(function(){
+                            $(this).removeClass('hovered')
+                        });
+                        if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                            $(this).css({'background': '#6ea3ff','color': '#fff'});
+                            $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                        }
+                    });
+
+                }).mouseleave(function (event) {
+                    $(this).children('img').attr('src', '../img/prl-select.jpg');
+                    $(this).children('ul').hide();
+                });
+
+                $('.select ul li').click(function(){
+                    event.stopPropagation();
+                    $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                    $(this).parent().parent().find('span').text($(this).text());
+                    $(this).parent().parent().find('span').attr('data-spanvalue', $(this).attr('data-type_id'));
+                    $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                    $(this).parent().css('display','none');
+
+                    if ($(this).parent().parent().find('span').attr('data-spanvalue')) {
+                        selectXiang($(this).parent().parent().find('span').attr('data-spanvalue'));
+                    }
+
+                });
 
 
 
-        },
-        error: function(err) {
-            console.log(err);
-        }
-    });
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 
     // 获取项
     function selectXiang(select_id) {
@@ -404,6 +484,41 @@
 
                 $('.xiang').find('span').text('请选择');
                 $('.xiang').attr('data-selectedindex', '-1');
+
+                $('.c1 .xiang').click(function(event){
+                    
+
+                    if($(this).attr("disabled")=="disabled"){ //判断是否可以点击
+                        return;
+                    }
+
+                    if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
+                        $(this).children('img').attr('src', '../img/prl-select.jpg')
+                    } else {
+                        $(this).children('img').attr('src', '../img/prl-selected.jpg')
+                    }
+
+                    event.stopPropagation();
+
+                    $(this).children('ul').toggle();
+                    var that = $(this);
+                    that.find('li').each(function(){
+                        $(this).mouseover(function(){
+                            $(this).addClass('hovered')
+                        });
+                        $(this).mouseleave(function(){
+                            $(this).removeClass('hovered')
+                        });
+                        if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                            $(this).css({'background': '#6ea3ff','color': '#fff'});
+                            $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                        }
+                    });
+
+                }).mouseleave(function (event) {
+                    $(this).children('img').attr('src', '../img/prl-select.jpg');
+                    $(this).children('ul').hide();
+                });
 
                 $('.select ul li').click(function(){
                     event.stopPropagation();
@@ -516,7 +631,189 @@
         });
     }
 
+    $('.add_zizhi').click(function () {
+        var str = '';
+        str += '<div class="center1 c1">'
+                +'<ul>'
+                    +'<li class="clearfix">'
+                        +'<div class="left1 Lf"><i class="red">*</i>运输资质:</div>'
+                        +'<div class="right1 Lf" style="">'
+                            +'<input type="radio" value="pu" name="ZZtype1" style="height: 17px;width: 17px;vertical-align: sub"><span style="display:inline-block;line-height: 38px;height: 38px;">普货</span>'
+                            +'<input type="radio" value="wei" name="ZZtype1" style="height: 17px;width: 17px;vertical-align: sub;margin-left: 35px;"><span>危货</span>'
+                        +'</div>'
+                    +'</li>'
+                    +'<li class="clearfix">'
+                        +'<div class="left1 Lf"><i class="red">*</i>道路运输许可证号:</div>'
+                        +'<div class="right1 Lf"><input type="text" class="zizhi_num" value="" id="zizhi_num1"/></div>'
+                        +'<span class="ts">道路运输许可证号不能为空</span>'
+                    +'</li>'
 
+                    +'<li  style="overflow: visible;" class="clearfix">'
+                        +'<div class="left1 Lf"><i class="red">*</i>证件上传:</div>'
+                        +'<div class="right1 Lf">'
+                            +'<div class="uploade" style="">'
+                                +'<i style=""></i>'
+                                +'<input type="file" id="yingye_zhizhao_pic1" class="pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">'
+                                +'<input type="hidden" name="" value="" class="hd" id="yingye_zhizhao_hidden1">'
+                                +'<div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>'
+                            +'</div>'
+                        +'</div>'
+                        +'<span class="ts" style="margin-top: 32px;">证件不能为空</span>'
+                    +'</li>'
+                    +'<li class="clearfix">'
+                        +'<div class="left1 Lf"><i class="red">*</i>有效期:</div>'
+                        +'<div class="right1 Lf">'
+                            +'<input type="text" class="date-input laydate-icon kuang start"  placeholder="请选择日期" onclick="lay(this.id)" id="test3">'
+                            +'<span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>'
+                            +'<input type="text" class="date-input laydate-icon kuang end"  placeholder="请选择日期" onclick="lay(this.id)" id="test4">'
+                        +'</div>'
+                        +'<span class="ts">有效期不能为空</span>'
+                    +'</li>'
+                    +'<li class="clearfix weihua">'
+                        +'<div class="left1 Lf"><i class="red">*</i>营业范围:</div>'
+                        +'<div class="right1 Lf clearFloat">'
+                            +'<div class="Lf" style="height: 38px;line-height: 38px;margin-right: 10px;">类</div>'
+                            +'<div class="select Lf lei" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">'
+                                +'<span>请选择</span>'
+                                +'<img src="../img/prl-select.jpg" alt="">'
+                                +'<ul class="lei_ul">'
+                                    +'<li data-index="1">10</li>'
+                                    +'<li data-index="2">20</li>'
+                                    +'<li data-index="3">30</li>'
+                                +'</ul>'
+                            +'</div>'
+                            +'<div class="Lf"  style="height: 38px;line-height: 38px;margin: 0 8px;">-项</div>'
+                            +'<div class="select Lf xiang" style="float: left;margin-top: 0;width: 100px;" data-selectedindex="-1">'
+                                +'<span>请选择</span>'
+                                +'<img src="../img/prl-select.jpg" alt="">'
+                                +'<ul class="xiang_ul">'
+                                    +'<li data-index="1">10</li>'
+                                    +'<li data-index="2">20</li>'
+                                    +'<li data-index="3">30</li>'
+                                +'</ul>'
+                            +'</div>'
+                            +'<div class="add btn1 Lf">增加</div>'
+                        +'</div>'
+                        
+                    +'</li>'
+                    +'<li class="clearfix weihua">'
+                        +'<div class="left1 Lf"></div>'
+                        +'<div class="right1 Lf clearFloat">'
+                            +'<div class="textarea_div" name="" id="" cols="30" rows="10" style="width: 359px;height: 100px; border: 1px solid #EAEAEA; background: #FAFAFA;padding-top: 5px; padding-left: 5px; box-sizing: border-box; overflow-y: auto;"></div>'
+                        +'</div>'
+                        +'<span class="ts">营业范围不能为空</span>'
+                    +'</li>'
+                +'</ul>'  
+            +'</div>'
+
+        $('#center').append(str);
+
+        $(document).on('change','#yingye_zhizhao_pic, #yingye_zhizhao_pic1',function(){
+           
+            xmTanUploadImg11(this);
+        })
+
+        lei();
+
+        $('.lei', '.xiang').click(function(event){
+
+            if($(this).attr("disabled")=="disabled"){ //判断是否可以点击
+                return;
+            }
+
+            if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
+                $(this).children('img').attr('src', '../img/prl-select.jpg')
+            } else {
+                $(this).children('img').attr('src', '../img/prl-selected.jpg')
+            }
+
+            event.stopPropagation();
+
+            $(this).children('ul').toggle();
+            var that = $(this);
+            that.find('li').each(function(){
+                $(this).mouseover(function(){
+                    $(this).addClass('hovered')
+                });
+                $(this).mouseleave(function(){
+                    $(this).removeClass('hovered')
+                });
+                if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                    $(this).css({'background': '#6ea3ff','color': '#fff'});
+                    $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                }
+            });
+
+        }).mouseleave(function (event) {
+            $(this).children('img').attr('src', '../img/prl-select.jpg');
+            $(this).children('ul').hide();
+        });
+
+        $('.lei', '.xiang').find('ul li').click(function(){
+            event.stopPropagation();
+            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+            $(this).parent().parent().find('span').text($(this).text());
+            $(this).parent().parent().find('span').attr('data-spanvalue', $(this).attr('data-ids'));
+            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+            $(this).parent().css('display','none');
+        });
+
+        $('input[type=radio][name=ZZtype1]').change(function() {
+            if (this.value == 'pu') {
+                $(this).parents('.c1').find('.puhua').css("display","block");
+                $(this).parents('.c1').find('.weihua').css("display","none");
+            }else{
+                $(this).parents('.c1').find('.puhua').css("display","none");
+                $(this).parents('.c1').find('.weihua').css("display","block");
+            }
+        });
+
+        if($('input[name="ZZtype"]:checked').val() == 'wei'){
+            $('input[name="ZZtype1"][value="pu"]').click();
+            $('input[name="ZZtype1"][value="pu"]').attr('checked', true);
+            $('input[name="ZZtype1"]').attr('disabled', true);
+        } else {
+            $('input[name="ZZtype1"][value="wei"]').click();
+            $('input[name="ZZtype1"][value="wei"]').attr('checked', true);
+            $('input[name="ZZtype1"]').attr('disabled', true);
+        }
+
+
+        $(this).hide();
+
+        if ($('.next_btn').css('display') == 'none') {
+            $('.zizhi_num').attr('readonly', 'readonly');
+            $('#yingye_zhizhao_pic1').attr('disabled', true);
+
+            $('#test3').attr('disabled', true);
+            $('#test4').attr('disabled', true);
+
+            $('.lei').attr('disabled', true);
+            $('.xiang').attr('disabled', true);
+
+            $('.add').attr('disabled', true);
+        }
+
+        $('.update_info_btn').removeClass('btn2');
+        $('.update_info_btn').css({
+            'margin-left': '365px',
+            'margin-bottom': '5px'
+        });
+
+        
+        $('.update_btn').removeClass('btn2');
+        $('.update_btn').css({
+            'margin-left': '365px',
+            'margin-bottom': '5px'
+        });
+
+        $('.next_btn').removeClass('btn2');
+        $('.next_btn').css({
+            'margin-left': '365px',
+            'margin-bottom': '5px'
+        });
+
+    });
 
 
     stateAjax();
@@ -558,7 +855,7 @@
                         $(".shenhe").show();
                         $('.update_info_btn').hide();
                         
-                        $('.zizhi_num').attr('disabled', true);
+                        $('.zizhi_num').attr('readonly', 'readonly');
                         $('#yingye_zhizhao_pic').attr('disabled', true);
                         $('#test1').attr('disabled', true);
                         $('#test2').attr('disabled', true);
@@ -576,16 +873,12 @@
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
 
-                        $('.update_btn').attr('flag', '1');
-
                         getInfo(4);
                     }else {
                         $('.update_btn').hide();
                         $(".shenhe").hide();
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
-
-                        $('.update_btn').attr('flag', '1');
 
                         getInfo(4);
                     }
@@ -603,7 +896,7 @@
 
                         $('.update_info_btn').hide();
 
-                        $('.zizhi_num').attr('disabled', true);
+                        $('.zizhi_num').attr('readonly', 'readonly');
                         $('#yingye_zhizhao_pic').attr('disabled', true);
                         $('#test1').attr('disabled', true);
                         $('#test2').attr('disabled', true);
@@ -633,12 +926,55 @@
                     }
 
                 } else if (data.data.eType == null && data.data.dType == null) {
+                    $('input[value="pu"]').click();
+                    $('input[name="ZZtype"]').attr('disabled', true);
+
                     $('.update_btn').hide();
 
                     $(".shenhe").hide();
                     $(".next_btn").show();
 
-                    $('.update_info_btn').show();
+                    $('.update_info_btn').hide();
+                } else if (data.data.eType != null && data.data.dType != null) {
+
+                    $('input[value="pu"]').click();
+                    $('input[name="ZZtype"]').attr('disabled', true);
+
+                    if (data.data.dState == 0 || data.data.eState == 0) { //未审核
+                        $(".next_btn").hide();
+                        $('.update_btn').hide();
+                        $(".shenhe").show();
+
+                        $('.update_info_btn').hide();
+                        $('.add_zizhi').hide();
+
+                      
+                    } else if (data.data.dState == 2 || data.data.eState == 2) { //已拒绝
+                        $(".shenhe").hide();
+                        $('.update_btn').hide();
+                        $(".next_btn").hide();
+                        $('.update_info_btn').show();
+
+                       
+                    } else {
+                        $('.update_btn').hide();
+                        $(".shenhe").hide();
+                        $(".next_btn").hide();
+
+                        $('.update_info_btn').show();
+                    }
+
+                    getInfo(3);
+
+                    $('.zizhi_num').attr('readonly', 'readonly');
+                    $('#yingye_zhizhao_pic').attr('disabled', true);
+                    $('#test1').attr('disabled', true);
+                    $('#test2').attr('disabled', true);
+                    $('.lei').attr('disabled', true);
+                    $('.xiang').attr('disabled', true);
+
+                    $('.add').attr('disabled', true);
+                    
                 }
                 
 
@@ -663,11 +999,11 @@
             return false;
         }
 
-        var lei_text = $('.lei span').text();
-        var xiang_text = $('.xiang span').text();
+        var lei_text = $(this).parent().find('.lei span').text();
+        var xiang_text = $(this).parent().find('.xiang span').text();
 
-        var lei_id = $('.lei span').attr('data-spanvalue');
-        var xiang_id = $('.xiang span').attr('data-spanvalue');
+        var lei_id = $(this).parent().find('.lei span').attr('data-spanvalue');
+        var xiang_id = $(this).parent().find('.xiang span').attr('data-spanvalue');
 
         if (lei_text != '请选择' && xiang_text != '请选择') {
             $(this).parent().parent().next().find('.ts').css('display', 'none');
@@ -678,7 +1014,7 @@
 
         // $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+lei_text+'--'+xiang_text +'</div>');
 
-        $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+xiang_text +'<span class="delete_info delete_div">x</span></div>');
+        $(this).parents('.center1').find('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+xiang_text +'<span class="delete_info delete_div">x</span></div>');
 
         $('.delete_div').css('cursor','pointer');
 
@@ -688,71 +1024,140 @@
     // 添加资质
     $(document).on('click', '.next_btn', function() {  
 
-        var zizhi_num = $('.zizhi_num').val();
+        //var zizhi_num = $('.zizhi_num').val();
 
-        var starttime = $('#test1').val();
-        var endtime = $('#test2').val();
+        var json = {
+            companyId:companyId,
+        };
 
-        var img = $('#yingye_zhizhao_hidden').val();
+        var isOk = true;
 
-        if(zizhi_num == ''){
-            $('.zizhi_num').parent().next().css('display', 'inline-block');
+        
+
+        if ($('input[name="ZZtype1"]:checked').val()) {
+            if ($('input[name="ZZtype1"]:checked').val() == 'pu') {
+                json['type2'] = 3
+            } else {
+                json['type2'] = 4
+            }
+            json['qualificationType2'] = 1;
+        }
+
+        if ($('input[name="ZZtype"]:checked').val()) {
+            if ($('input[name="ZZtype"]:checked').val() == 'pu') {
+                json['type1'] = 3
+            } else {
+                json['type1'] = 4
+            }
+            json['qualificationType1'] = 1;
+        }
+
+        $('.zizhi_num').each(function(index, elem) {
+
+            var zizhi_num1 = $(this).val().trim();
+            // var zizhi_num1_reg = /^\d+$/;
+
+            if (zizhi_num1 == '') {
+                $(this).parent().next().css('display', 'inline-block');
+                isOk = false;
+                return false;
+            } else {
+                json['qualificationNum'+(index+1)] = $(this).val();
+            }
+        });
+
+        if (!isOk) {
             return false;
         }
+
+        var center1 = $('.center1');
+        
+        for (var y = 0; y < center1.length; y++) {
+            if ($(center1[y]).attr('data-qiyeid')) {
+                json['qualificationId'+(y+1)] = $(center1[y]).attr('data-qiyeid');
+            }
+        }
+
+        var img = $('#yingye_zhizhao_hidden').val();
+        var img2 = $('#yingye_zhizhao_hidden1').val();
 
         if (img == '') {
             $('#yingye_zhizhao_hidden').parent().parent().next().css('display', 'inline-block');
             return false;
-        }
-        
-        if(starttime =='' || endtime ==''){
-            $('#test1').parent().next().text('有效期不能为空!');
-            $('#test1').parent().next().css('display', 'inline-block');
-            return false;
-        } else if (starttime > endtime) {
-            $('#test1').parent().next().text('开始时间不能大于结束时间');
-            $('#test1').parent().next().css('display', 'inline-block');
-            return false;
-        }
-
-
-
-        if ($('input[name="ZZtype"]:checked').val() == 'pu') {
-
-            $.ajax({
-                url: pubIP + 'companyCertification/addQualificationsBaseInfo',
-                type: 'post',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    type: 3,
-                    companyId: companyId,
-                    qualificationNum1: zizhi_num,
-                    qualificationDataBegin1: starttime,
-                    qualificationDataExpire1: endtime,
-                    imgs1: img,
-                    qualificationType1: 1
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data);
-
-                    if (data.code == 1) {
-                        window.location.href="Special2.html";
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-
         } else {
+            if ($('#yingye_zhizhao_pic').attr('data-picids')) {
+                json['imgs1'] = $('#yingye_zhizhao_pic').attr('data-picids')+','+ $('#yingye_zhizhao_hidden').val();
+            }
+            json['imgs1'] = $('#yingye_zhizhao_hidden').val();
+        }
+
+        if (img2 == '') {
+            $('#yingye_zhizhao_hidden1').parent().parent().next().css('display', 'inline-block');
+            return false;
+        } else {
+            if ($('#yingye_zhizhao_pic1').attr('data-picids')) {
+                json['imgs2'] = $('#yingye_zhizhao_pic1').attr('data-picids')+','+ $('#yingye_zhizhao_hidden1').val();
+            }
+            json['imgs2'] = $('#yingye_zhizhao_hidden1').val();
+        }
 
 
+        // var starttime = $('#test1').val();
+        // var endtime = $('#test2').val();
+        // if(starttime =='' || endtime ==''){
+        //     $('#test1').parent().next().text('有效期不能为空!');
+        //     $('#test1').parent().next().css('display', 'inline-block');
+        //     return false;
+        // } else if (starttime > endtime) {
+        //     $('#test1').parent().next().text('开始时间不能大于结束时间');
+        //     $('#test1').parent().next().css('display', 'inline-block');
+        //     return false;
+        //     json['qualificationDataBegin'] = $(this).val();
+        // }
+
+        $('.start').each(function (i, ele) {
+            if ($(this).val() == '') {
+                $(this).parent().next().text('有效期不能为空');
+                $(this).parent().next().css('display', 'inline-block');
+                isOk = false;
+                return false;
+            } else {
+                json['qualificationDataBegin' + (i+1)] = $(this).val();
+                // $(this).attr('data-f', 'true');
+            }
+            
+        });
+
+        if (!isOk) {
+            return false;
+         }
+
+        $('.end').each(function (i, ele) {
+
+            if ($(this).val() == '') {
+                $(this).parent().next().text('有效期不能为空');
+                $(this).parent().next().css('display', 'inline-block');
+                isOk = false;
+                return false;
+            } else {
+                json['qualificationDataExpire' + (i+1)] = $(this).val();
+                // $(this).attr('data-f', 'true');
+            }
+
+            if ($(this).val() < $(this).prev().prev().val()) {
+                $(this).parent().next().text('结束日期小于开始日期');
+                $(this).parent().next().css('display', 'inline-block');
+
+                isOk = false;
+            }
+
+        });
+
+        if (!isOk) {
+            return false;
+        }
+
+        if ($('input[name="ZZtype"]:checked').val() == 'wei') {
             if ($('.textarea_div').text() == '') {
                 $('.textarea_div').parent().next().css('display', 'inline-block');
                 return false;
@@ -764,42 +1169,148 @@
             $('.textarea_div div').each(function(index, ele) {
                 str2 += $(this).attr('data-leiid')+';';
                 str3 += $(this).attr('data-xiangid')+';';
-            }); 
-
-            $.ajax({
-                url: pubIP + 'companyCertification/addQualificationsBaseInfo',
-                type: 'post',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    type: 4,
-                    companyId: companyId,
-                    qualificationNum1: zizhi_num,
-                    qualificationDataBegin1: starttime,
-                    qualificationDataExpire1: endtime,
-                    imgs1: img,
-                    classType: str2,
-                    operationLimit1: str3,
-                    qualificationType1: 1
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data);
-
-                    if (data.code == 1) {
-                        window.location.href="Special2.html";
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
             });
 
+            json['operationLimit1'] = str3;
+            json['classType'] = str2;
+
         }
+
+        if ($('input[name="ZZtype1"]:checked').val() == 'wei') {
+            if ($('.textarea_div').text() == '') {
+                $('.textarea_div').parent().next().css('display', 'inline-block');
+                return false;
+            }
+
+            
+            var str2 = ';';
+            var str3 = ';';
+            $('.textarea_div div').each(function(index, ele) {
+                str2 += $(this).attr('data-leiid')+';';
+                str3 += $(this).attr('data-xiangid')+';';
+            });
+
+            json['operationLimit2'] = str3;
+            json['classType'] = str2;
+
+        }
+
+
+        console.log(json);
+
+
+        $.ajax({
+            url: pubIP + 'companyCertification/addQualificationsBaseInfo',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: json,
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                // if (data.code == 1) {
+                //     //window.location.href="Special2.html";
+
+                //     window.location.reload();
+                // }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+
+
+
+        // if ($('input[name="ZZtype"]:checked').val() == 'pu') {
+
+        //     $.ajax({
+        //         url: pubIP + 'companyCertification/addQualificationsBaseInfo',
+        //         type: 'post',
+        //         headers: {
+        //             Accept: "application/json; charset=utf-8",
+        //             token: token
+        //         },
+        //         data: {
+        //             type: 3,
+        //             companyId: companyId,
+        //             qualificationNum1: zizhi_num,
+        //             qualificationDataBegin1: starttime,
+        //             qualificationDataExpire1: endtime,
+        //             imgs1: img,
+        //             qualificationType1: 1
+        //         },
+        //         cache: false,
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log(data);
+
+        //             if (data.code == 1) {
+        //                 //window.location.href="Special2.html";
+
+        //                 window.location.reload();
+        //             }
+
+        //         },
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     });
+
+        // } else {
+
+
+        //     if ($('.textarea_div').text() == '') {
+        //         $('.textarea_div').parent().next().css('display', 'inline-block');
+        //         return false;
+        //     }
+
+            
+        //     var str2 = ';';
+        //     var str3 = ';';
+        //     $('.textarea_div div').each(function(index, ele) {
+        //         str2 += $(this).attr('data-leiid')+';';
+        //         str3 += $(this).attr('data-xiangid')+';';
+        //     }); 
+
+        //     $.ajax({
+        //         url: pubIP + 'companyCertification/addQualificationsBaseInfo',
+        //         type: 'post',
+        //         headers: {
+        //             Accept: "application/json; charset=utf-8",
+        //             token: token
+        //         },
+        //         data: {
+        //             type: 4,
+        //             companyId: companyId,
+        //             qualificationNum1: zizhi_num,
+        //             qualificationDataBegin1: starttime,
+        //             qualificationDataExpire1: endtime,
+        //             imgs1: img,
+        //             classType: str2,
+        //             operationLimit1: str3,
+        //             qualificationType1: 1
+        //         },
+        //         cache: false,
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log(data);
+
+        //             if (data.code == 1) {
+        //                 window.location.href="Special2.html";
+        //             }
+
+        //         },
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     });
+
+        // }
 
         
 
@@ -808,16 +1319,27 @@
     //点击可修改
     $('.update_info_btn').click(function() {
         $('#yingye_zhizhao_pic').attr('disabled', false);
-        $('.zizhi_num').attr('disabled', false);
+        $('#yingye_zhizhao_pic1').attr('disabled', false);
+        $('.zizhi_num').attr('readonly', false);
         $('#test1').attr('disabled', false);
         $('#test2').attr('disabled', false);
+
+        $('#test3').attr('disabled', false);
+        $('#test4').attr('disabled', false);
+
         $('.lei').attr('disabled', false);
         $('.xiang').attr('disabled', false);
+
+        $('.update_btn').attr('flag', '1');
+        $('.delete_info').addClass('delete_div');
+        $('.delete_div').css('cursor', 'pointer');
 
         $('.add').attr('disabled', false);
         $(this).hide();
         $('.update_btn').show();
     });
+
+
 
     // 回显数据
     function getInfo(type) {
@@ -838,48 +1360,85 @@
             success: function (data) {
                 console.log(data);
 
-                data.data[0].qualificationDataBegin = new Date(data.data[0].qualificationDataBegin).Format("yyyy-MM-dd");
-                data.data[0].qualificationDataExpire = new Date(data.data[0].qualificationDataExpire).Format("yyyy-MM-dd");
-                
-                $('#yingye_zhizhao_pic').parent().css({
-                    'background':'url('+data.data[0].picInfos[0].picUrl+') no-repeat',
-                    'background-position':'center',
-                    'background-size':'contain',
-                    'background-color':'#f6f6f6'
-                });
+                if (data.data.length == 2) {
+                    $('.add_zizhi').click();
+                }
 
-                $('#yingye_zhizhao_pic').attr('disabled', true);
+                for (var i = 0; i < data.data.length; i++) {
 
-                $('#yingye_zhizhao_hidden').val(data.data[0].picInfos[0].picUrl);
-                $('#yingye_zhizhao_hidden').attr('data-picids', data.data[0].picInfos[0].ids);
+                    $('.c'+i).attr('data-qiyeId', data.data[i].ids);
 
-                $('.zizhi_num').val(data.data[0].qualificationNum);
 
-                $('.zizhi_num').attr('disabled', true);
+                    data.data[i].qualificationDataBegin = new Date(data.data[i].qualificationDataBegin).Format("yyyy-MM-dd");
+                    data.data[i].qualificationDataExpire = new Date(data.data[i].qualificationDataExpire).Format("yyyy-MM-dd");
 
-                $('#test1').val(data.data[0].qualificationDataBegin);
-                $('#test2').val(data.data[0].qualificationDataExpire);
+                    
 
-                $('#test1').attr('disabled', true);
-                $('#test2').attr('disabled', true);
+                    //许可证号
+                    $('#zizhi_num'+i).val(data.data[i].qualificationNum);
+                    $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#fafafa");
 
-                $('.textarea_div').attr('data-leiid', data.data[0].classType);
-                $('.textarea_div').attr('data-xiangid', data.data[0].operationLimit);
+                    
+                    // $('#yingye_zhizhao_pic').parent().css({
+                    //     'background':'url('+data.data[0].picInfos[0].picUrl+') no-repeat',
+                    //     'background-position':'center',
+                    //     'background-size':'contain',
+                    //     'background-color':'#f6f6f6'
+                    // });
 
-                $('.center1 ul').attr('data-ids', data.data[0].ids);
+                    // $('#yingye_zhizhao_pic').attr('disabled', true);
 
-                $('.textarea_div').attr('display',true);
+                    // $('#yingye_zhizhao_hidden').val(data.data[0].picInfos[0].picUrl);
+                    // $('#yingye_zhizhao_hidden').attr('data-picids', data.data[0].picInfos[0].ids);
 
-                $('.lei').attr('disabled', true);
-                $('.xiang').attr('disabled', true);
+                    for (var j = 0; j < data.data[i].picInfos.length; j++) {
+                        $('.c'+i+' .pic').attr('data-picids', data.data[i].picInfos[j].ids);
+                        
+                        $('.c'+i+' .pic').parent().css({
+                            'background':'url('+data.data[i].picInfos[j].picUrl+') no-repeat',
+                            'background-position':'center',
+                            'background-size':'contain',
+                            'background-color':'#f6f6f6'
+                        });
 
-                $('.add').attr('disabled', true);
+                        $('.c'+i+' .hd').val(data.data[i].picInfos[j].picUrl);
 
+                        $('.c'+i+' .pic').attr('data-flag', '0');
+
+                        $('.c'+i+' .pic').attr('disabled', 'disabled');
+                        
+                    }
+
+                    //时间
+                    $('.c'+i+ ' .start').val(data.data[i].qualificationDataBegin).attr('disabled', "disabled").css("background-color","#fafafa");
+                    $('.c'+i+ ' .end').val(data.data[i].qualificationDataExpire).attr('disabled', "disabled").css("background-color","#fafafa");
+
+                    // $('#test1').val(data.data[0].qualificationDataBegin);
+                    // $('#test2').val(data.data[0].qualificationDataExpire);
+
+                    // $('#test1').attr('disabled', true);
+                    // $('#test2').attr('disabled', true);
+                    if (data.data[i].classType) {
+                        $('.textarea_div').attr('data-leiid', data.data[i].classType);
+                        $('.textarea_div').attr('data-xiangid', data.data[i].operationLimit);
+                    }
+                    // $('.textarea_div').attr('data-leiid', data.data[0].classType);
+                    // $('.textarea_div').attr('data-xiangid', data.data[0].operationLimit);
+
+                    $('.c'+i+' ul').attr('data-ids', data.data[i].ids);
+
+                    $('.textarea_div').attr('display',true);
+
+                    $('.lei').attr('disabled', true);
+                    $('.xiang').attr('disabled', true);
+
+                    $('.add').attr('disabled', true);
+                }
 
                 var that = this;
                 var idArr =  $('.textarea_div').attr('data-xiangid');
                 var leiId = $('.textarea_div').attr('data-leiid');
-                // console.log(leiId);
+                //console.log(leiId);
                 if (leiId) {
                     leiId = leiId.split(';');
                     idArr = idArr.split(';');
@@ -905,118 +1464,321 @@
     // 编辑资质
     $(document).on('click', '.update_btn', function() {
 
-        var zizhi_num = $('.zizhi_num').val();
 
-        var starttime = $('#test1').val();
-        var endtime = $('#test2').val();
+        //var zizhi_num = $('.zizhi_num').val();
 
-        var img = $('#yingye_zhizhao_hidden').attr('data-picids') + ',' + $('#yingye_zhizhao_hidden').val();
+        var json = {
+            companyId:companyId,
 
-        var ids = $('.center1 ul').attr('data-ids');
+        };
 
-        if(zizhi_num == ''){
-            $('.zizhi_num').parent().next().css('display', 'inline-block');
+        var isOk = true;
+
+
+
+        if ($('input[name="ZZtype1"]:checked').val()) {
+            if ($('input[name="ZZtype1"]:checked').val() == 'pu') {
+                json['type2'] = 3
+            } else {
+                json['type2'] = 4
+            }
+            json['qualificationType2'] = 1;
+        }
+
+        if ($('input[name="ZZtype"]:checked').val()) {
+            if ($('input[name="ZZtype"]:checked').val() == 'pu') {
+                json['type1'] = 3
+            } else {
+                json['type1'] = 4
+            }
+            json['qualificationType1'] = 1;
+        }
+
+        $('.zizhi_num').each(function(index, elem) {
+
+            var zizhi_num1 = $(this).val().trim();
+            // var zizhi_num1_reg = /^\d+$/;
+
+            if (zizhi_num1 == '') {
+                $(this).parent().next().css('display', 'inline-block');
+                isOk = false;
+                return false;
+            } else {
+                json['qualificationNum'+(index+1)] = $(this).val();
+            }
+        });
+
+        if (!isOk) {
             return false;
         }
 
+        var center1 = $('.center1');
+        
+        for (var y = 0; y < center1.length; y++) {
+            if ($(center1[y]).attr('data-qiyeid')) {
+                json['qualificationId'+(y+1)] = $(center1[y]).attr('data-qiyeid');
+            }
+        }
+        
+        
+
+        var img = $('#yingye_zhizhao_hidden').val();
+        var img2 = $('#yingye_zhizhao_hidden1').val();
+        // debugger;
         if (img == '') {
             $('#yingye_zhizhao_hidden').parent().parent().next().css('display', 'inline-block');
             return false;
-        }
-        
-        if(starttime =='' || endtime ==''){
-            $('#test1').parent().next().text('有效期不能为空!');
-            $('#test1').parent().next().css('display', 'inline-block');
-            return false;
-        } else if (starttime > endtime) {
-            $('#test1').parent().next().text('开始时间不能大于结束时间');
-            $('#test1').parent().next().css('display', 'inline-block');
-            return false;
-        }
-
-        if ($('input[name="ZZtype"]:checked').val() == 'pu') {
-
-            $.ajax({
-                url: pubIP + 'companyCertification/addQualificationsBaseInfo',
-                type: 'post',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    type: 3,
-                    companyId: companyId,
-                    qualificationNum1: zizhi_num,
-                    qualificationDataBegin1: starttime,
-                    qualificationDataExpire1: endtime,
-                    imgs1: img,
-                    qualificationType1: 1,
-                    qualificationId1: ids
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data);
-
-                    if (data.code == 1) {
-                        window.location.href="Special2.html";
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-
         } else {
+            if ($('#yingye_zhizhao_pic').attr('data-picids')) {
+                json['imgs1'] = $('#yingye_zhizhao_pic').attr('data-picids')+','+ $('#yingye_zhizhao_hidden').val();
+            }
+            json['imgs1'] = $('#yingye_zhizhao_hidden').val();
+        }
 
+        if (img2 == '') {
+            $('#yingye_zhizhao_hidden1').parent().parent().next().css('display', 'inline-block');
+            return false;
+        } else {
+            if ($('#yingye_zhizhao_pic1').attr('data-picids')) {
+                json['imgs2'] = $('#yingye_zhizhao_pic1').attr('data-picids')+','+ $('#yingye_zhizhao_hidden1').val();
+            }
+            json['imgs2'] = $('#yingye_zhizhao_hidden1').val();
+        }
+
+
+        // var starttime = $('#test1').val();
+        // var endtime = $('#test2').val();
+        // if(starttime =='' || endtime ==''){
+        //     $('#test1').parent().next().text('有效期不能为空!');
+        //     $('#test1').parent().next().css('display', 'inline-block');
+        //     return false;
+        // } else if (starttime > endtime) {
+        //     $('#test1').parent().next().text('开始时间不能大于结束时间');
+        //     $('#test1').parent().next().css('display', 'inline-block');
+        //     return false;
+        //     json['qualificationDataBegin'] = $(this).val();
+        // }
+
+        $('.start').each(function (i, ele) {
+            if ($(this).val() == '') {
+                $(this).parent().next().text('有效期不能为空');
+                $(this).parent().next().css('display', 'inline-block');
+                isOk = false;
+                return false;
+            } else {
+                json['qualificationDataBegin' + (i+1)] = $(this).val();
+                // $(this).attr('data-f', 'true');
+            }
+            
+        });
+
+        if (!isOk) {
+            return false;
+         }
+
+        $('.end').each(function (i, ele) {
+
+            if ($(this).val() == '') {
+                $(this).parent().next().text('有效期不能为空');
+                $(this).parent().next().css('display', 'inline-block');
+                isOk = false;
+                return false;
+            } else {
+                json['qualificationDataExpire' + (i+1)] = $(this).val();
+                // $(this).attr('data-f', 'true');
+            }
+
+            if ($(this).val() < $(this).prev().prev().val()) {
+                $(this).parent().next().text('结束日期小于开始日期');
+                $(this).parent().next().css('display', 'inline-block');
+
+                isOk = false;
+            }
+
+        });
+
+        if (!isOk) {
+            return false;
+        }
+
+        if ($('input[name="ZZtype"]:checked').val() == 'wei') {
             if ($('.textarea_div').text() == '') {
                 $('.textarea_div').parent().next().css('display', 'inline-block');
                 return false;
             }
 
-            var str2 = ';'; //一级
+            
+            var str2 = ';';
             var str3 = ';';
-            $('.textarea_div div').each(function(index, ele) {
+            $('input[name="ZZtype"]').parents('.center1').find('.textarea_div div').each(function(index, ele) {
                 str2 += $(this).attr('data-leiid')+';';
                 str3 += $(this).attr('data-xiangid')+';';
-            }); 
-
-            $.ajax({
-                url: pubIP + 'companyCertification/addQualificationsBaseInfo',
-                type: 'post',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    type: 4,
-                    companyId: companyId,
-                    qualificationNum1: zizhi_num,
-                    qualificationDataBegin1: starttime,
-                    qualificationDataExpire1: endtime,
-                    imgs1: img,
-                    classType: str2,
-                    operationLimit1: str3,
-                    qualificationType1: 1,
-                    qualificationId1: ids
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data);
-
-                    if (data.code == 1) {
-                        window.location.href="Special2.html";
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
             });
 
+            json['operationLimit1'] = str3;
+            json['classType'] = str2;
         }
+
+        if ($('input[name="ZZtype1"]:checked').val() == 'wei') {
+            if ($('.textarea_div').text() == '') {
+                $('.textarea_div').parent().next().css('display', 'inline-block');
+                return false;
+            }
+
+            
+            var str2 = ';';
+            var str3 = ';';
+            $('input[name="ZZtype1"]').parents('.center1').find('.textarea_div div').each(function(index, ele) {
+                str2 += $(this).attr('data-leiid')+';';
+                str3 += $(this).attr('data-xiangid')+';';
+            });
+
+            json['operationLimit2'] = str3;
+            json['classType'] = str2;
+
+        }
+
+
+        console.log(json);
+        return false;
+
+        $.ajax({
+            url: pubIP + 'companyCertification/addQualificationsBaseInfo',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: json,
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                // if (data.code == 1) {
+                //     //window.location.href="Special2.html";
+
+                //     window.location.reload();
+                // }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+
+        // var zizhi_num = $('.zizhi_num').val();
+
+        // var starttime = $('#test1').val();
+        // var endtime = $('#test2').val();
+
+        // var img = $('#yingye_zhizhao_hidden').attr('data-picids') + ',' + $('#yingye_zhizhao_hidden').val();
+
+        // var ids = $('.center1 ul').attr('data-ids');
+
+        // if(zizhi_num == ''){
+        //     $('.zizhi_num').parent().next().css('display', 'inline-block');
+        //     return false;
+        // }
+
+        // if (img == '') {
+        //     $('#yingye_zhizhao_hidden').parent().parent().next().css('display', 'inline-block');
+        //     return false;
+        // }
+        
+        // if(starttime =='' || endtime ==''){
+        //     $('#test1').parent().next().text('有效期不能为空!');
+        //     $('#test1').parent().next().css('display', 'inline-block');
+        //     return false;
+        // } else if (starttime > endtime) {
+        //     $('#test1').parent().next().text('开始时间不能大于结束时间');
+        //     $('#test1').parent().next().css('display', 'inline-block');
+        //     return false;
+        // }
+
+        // if ($('input[name="ZZtype"]:checked').val() == 'pu') {
+
+        //     $.ajax({
+        //         url: pubIP + 'companyCertification/addQualificationsBaseInfo',
+        //         type: 'post',
+        //         headers: {
+        //             Accept: "application/json; charset=utf-8",
+        //             token: token
+        //         },
+        //         data: {
+        //             type: 3,
+        //             companyId: companyId,
+        //             qualificationNum1: zizhi_num,
+        //             qualificationDataBegin1: starttime,
+        //             qualificationDataExpire1: endtime,
+        //             imgs1: img,
+        //             qualificationType1: 1,
+        //             qualificationId1: ids
+        //         },
+        //         cache: false,
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log(data);
+
+        //             if (data.code == 1) {
+        //                 window.location.href="Special2.html";
+        //             }
+
+        //         },
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     });
+
+        // } else {
+
+        //     if ($('.textarea_div').text() == '') {
+        //         $('.textarea_div').parent().next().css('display', 'inline-block');
+        //         return false;
+        //     }
+
+        //     var str2 = ';'; //一级
+        //     var str3 = ';';
+        //     $('.textarea_div div').each(function(index, ele) {
+        //         str2 += $(this).attr('data-leiid')+';';
+        //         str3 += $(this).attr('data-xiangid')+';';
+        //     }); 
+
+        //     $.ajax({
+        //         url: pubIP + 'companyCertification/addQualificationsBaseInfo',
+        //         type: 'post',
+        //         headers: {
+        //             Accept: "application/json; charset=utf-8",
+        //             token: token
+        //         },
+        //         data: {
+        //             type: 4,
+        //             companyId: companyId,
+        //             qualificationNum1: zizhi_num,
+        //             qualificationDataBegin1: starttime,
+        //             qualificationDataExpire1: endtime,
+        //             imgs1: img,
+        //             classType: str2,
+        //             operationLimit1: str3,
+        //             qualificationType1: 1,
+        //             qualificationId1: ids
+        //         },
+        //         cache: false,
+        //         dataType: 'json',
+        //         success: function (data) {
+        //             console.log(data);
+
+        //             if (data.code == 1) {
+        //                 window.location.href="Special2.html";
+        //             }
+
+        //         },
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     });
+
+        // }
 
         
 

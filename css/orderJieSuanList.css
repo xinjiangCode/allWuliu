@@ -48,7 +48,7 @@ body{
     box-sizing: border-box;
     margin-right: 12px;
     /*padding-left: 10px;*/
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
 }
 .inputBox>.orderNo{
     width: 180px;

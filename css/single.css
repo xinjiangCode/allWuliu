@@ -16,7 +16,7 @@ body{
 }
 .topTitle>.fr{
     float: right;
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
     width: 92px;
     height: 36px;
     line-height: 36px;
@@ -48,7 +48,7 @@ body{
     box-sizing: border-box;
     margin-right: 12px;
     padding-left: 10px;
-    border: 1px solid #ebe9ea;
+    border: 1px solid #e7e7e7;
 }
 .inputBox>.orderNo{
     width: 180px;
@@ -58,7 +58,7 @@ body{
     display: inline-block;
     width: 160px;
     position: relative;
-    color: #999;
+    color: #666666;
     background: #fff;
     cursor: pointer;
     /*float: none;*/
