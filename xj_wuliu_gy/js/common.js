@@ -98,7 +98,7 @@ if(adct=="account"){
         "\t<div class=\"cont\" >\n" +
         "\t\t<div class=\"cance2\" >\n" +
         "\t\t\t<span class=\"popTitle Lf\" >提示</span>\n" +
-        "\t\t\t<div class=\"close Rt\" style=\"width:46px;height:48px;margin-right: -20px;margin-top: 0; background: url('img/gsxq_del.png') no-repeat ; background-size: contain;\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
+        "\t\t\t<div class=\"close Rt\" style=\"width:46px;height:48px;margin-right: -20px;margin-top: 0; background: url('../img/gsxq_del.png') no-repeat ; background-size: contain;\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
         "\t\t</div>\n" +
         "\t\t<div class=\"deanger\"></div>\n" +
         "\t\t<div class=\"contTitle\">您好，<span>您的登陆已经过期</span>,请先<i onclick=\"popEffectLogin()\" style=\"color: #00a0e9;\">登陆</i>，以便使用更多功能。</div>\n" +
@@ -127,23 +127,23 @@ function popEffectLogin() {
 
 
 
-	if(isOld == '0' || isOld == '1'){
-		//if(adct=="首页"){
-	        window.location.href='login.html';
-		// }else{
-		// 	if(location.href.indexOf('account') != -1){
-		// 		parent.location.href = '../login/login.html';
-		// 	}else{
-		// 		window.location.href='../login/login.html';
-		// 	}
-		// }
-	}else if(isOld == '-1'){
-		if(adct=="首页"){
-	        window.location.href='account/account.html';
-		}else{
-			window.location.href='../account/account.html';
-		}
-	}
+	// if(isOld == '0' || isOld == '1'){
+	// 	//if(adct=="首页"){
+	//         window.location.href='login.html';
+	// 	// }else{
+	// 	// 	if(location.href.indexOf('account') != -1){
+	// 	// 		parent.location.href = '../login/login.html';
+	// 	// 	}else{
+	// 	// 		window.location.href='../login/login.html';
+	// 	// 	}
+	// 	// }
+	// }else if(isOld == '-1'){
+	// 	if(adct=="首页"){
+	//         window.location.href='account/account.html';
+	// 	}else{
+	// 		window.location.href='../account/account.html';
+	// 	}
+	// }
 }
 
 function cf_popEffectClose1(that) {
