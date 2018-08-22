@@ -119,8 +119,10 @@
         <div class="topTitle">确认收货订单<div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
-            <label for="">货物类型</label>
-            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+            <!--<label for="">货物类型</label>-->
+            <label for="">商品名称</label>
+            <input id="cf_goodsName" type="text" style="height: 38px;box-sizing: border-box;margin-right: 12px;border: 1px solid #e7e7e7;" placeholder="输入搜索">
+            <div style="display: none" class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
                 <ul>
                     <li data-index="1">全部</li>
                     <li data-index="2">普化品</li>
@@ -382,7 +384,8 @@
                     orderNo: orderNo,
                     time: publishTime,
                     endTime:$("#test2").val(),
-                    goodType: goodsType
+                    goodType: goodsType,
+                    goodsName:$("#cf_goodsName").val()
                 },
                 cache: false,
                 dataType: 'json',
