@@ -1,5 +1,5 @@
 .xiaoshi{display: none;}
-input,.textarea{background-color: #fafafa;border: 1px solid #eaeaea;}
+input,.textarea{background-color: #fafafa;border: 1px solid #e7e7e7;}
 input[type='text'].input_width{
     padding-left: 30px;
 }
