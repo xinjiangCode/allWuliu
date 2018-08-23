@@ -781,18 +781,25 @@
 
         $(this).hide();
 
-        if ($('.next_btn').css('display') == 'none') {
-            $('.zizhi_num').attr('readonly', 'readonly');
-            $('#yingye_zhizhao_pic1').attr('disabled', true);
-
-            $('#test3').attr('disabled', true);
-            $('#test4').attr('disabled', true);
-
-            $('.lei').attr('disabled', true);
-            $('.xiang').attr('disabled', true);
-
-            $('.add').attr('disabled', true);
+        if ($('.add_zizhi').attr('add_flag') == 1) {
+            $('.next_btn').show();
+            $('#zizhi_num0').attr('readonly', 'readonly');
         }
+        // if ($('.next_btn').css('display') == 'none') {
+        //     if ($('.add_zizhi').attr('add_flag') == 1) {
+        //         $('#zizhi_num0').attr('readonly', 'readonly');
+        //     }else {
+        //         $('.zizhi_num').attr('readonly', 'readonly');
+        //         $('#yingye_zhizhao_pic1').attr('disabled', true);
+        //         $('#test3').attr('disabled', true);
+        //         $('#test4').attr('disabled', true);
+        //         $('.lei').attr('disabled', true);
+        //         $('.xiang').attr('disabled', true);
+
+        //         $('.add').attr('disabled', true);
+        //     }
+   
+        // }
 
         $('.update_info_btn').removeClass('btn2');
         $('.update_info_btn').css({
@@ -902,14 +909,21 @@
 
                         $('.update_info_btn').hide();
 
-                        $('.zizhi_num').attr('readonly', 'readonly');
-                        $('#yingye_zhizhao_pic').attr('disabled', true);
-                        $('#test1').attr('disabled', true);
-                        $('#test2').attr('disabled', true);
-                        $('.lei').attr('disabled', true);
-                        $('.xiang').attr('disabled', true);
+                        $('.add_zizhi').removeClass('btn2');
+                        // $('.add_zizhi').css({
 
-                        $('.add').attr('disabled', true);
+                        // });
+
+                        
+
+                        // $('.zizhi_num#zizhi_num1').attr('readonly', false);
+                        // $('#yingye_zhizhao_pic').attr('disabled', true);
+                        // $('#test1').attr('disabled', true);
+                        // $('#test2').attr('disabled', true);
+                        // $('.lei').attr('disabled', true);
+                        // $('.xiang').attr('disabled', true);
+
+                        // $('.add').attr('disabled', true);
 
                         getInfo(3);
 
@@ -981,7 +995,7 @@
                         $('.update_info_btn').show();
                     }
 
-                    getInfo(3);
+                    getInfo(4);
 
                     $('.zizhi_num').attr('readonly', 'readonly');
                     $('#yingye_zhizhao_pic').attr('disabled', true);
@@ -1393,7 +1407,15 @@
 
                     //许可证号
                     $('#zizhi_num'+i).val(data.data[i].qualificationNum);
-                    $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#fafafa");
+                    if (type == 3) {
+                        $('.add_zizhi').attr('add_flag', '1');
+                    }
+
+                    //     $('#zizhi_num0').attr('readonly', 'readonly').css("background-color","#fafafa");
+                    // } else {
+                        $('#zizhi_num'+i).attr('readonly', 'readonly').css("background-color","#fafafa");
+                    // }
+                    
 
                     
                     // $('#yingye_zhizhao_pic').parent().css({
