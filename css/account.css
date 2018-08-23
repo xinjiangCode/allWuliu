@@ -123,7 +123,7 @@ header>.headerBot{display: none;}
 .pop>.cont>div{overflow: hidden;padding: 0;margin-top: 10px;}
 .pop>.cont>div>.leftTitle{margin-left:53px;width: 120px;text-align: right;margin-right: 18px;height:36px;line-height: 36px;}
 .pop>.cont>div>.popInput{width: 337px;height:38px;}
-.pop>.cont>div>.popInput>input{width: 100%;height:28px; color: #C6C6C6;margin-top: 1px;border: 1px solid #e7e7e7;text-indent: 10px;}
+.pop>.cont>div>.popInput>input{width: 100%;height:28px; color: #666666;margin-top: 1px;border: 1px solid #e7e7e7;text-indent: 10px;}
 .pop>.cont>.forget2{text-align: right;margin-right: 100px;margin-top: 10px;}
 .pop>.cont>.forget2>a{color: #007aff;}
 .pop>.cont>.popBottom{margin-left: 90px;margin-top: 35px;}
@@ -296,7 +296,7 @@ header>.headerBot{display: none;}
     float: right;
 }
 
-.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #dbdbdc; }
+.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #e7e7e7; }
 .modelBox34 .cfClose:hover,.modelBox35 .cfClose:hover,.modelBox36 .cfClose:hover,.modelBox37 .cfClose:hover,.modelBox38 .cfClose:hover,.modelBox39 .cfClose:hover,.modelBox40 .cfClose:hover,.modelBox41 .cfClose:hover,.modelBox42 .cfClose:hover,.modelBox43 .cfClose:hover,.modelBox44 .cfClose:hover,.modelBox45 .cfClose:hover,.modelBox46 .cfClose:hover,.modelBox47 .cfClose:hover{color: white;background-color: #5388ff;border-color: #5388ff;}
 /*蓝色字体返回*/
 .modelBox42 .cfClose,.modelBox43 .cfClose {
@@ -354,6 +354,7 @@ header>.headerBot{display: none;}
     line-height: 40px;
     outline: none;
     margin-left: 20px;
+    border: 1px solid #e7e7e7;
 }
 .ff_beizhu{
     width: 100%;
@@ -385,6 +386,7 @@ header>.headerBot{display: none;}
     background: #026ee4;
     margin: 0 auto;
     margin-top: 30px;
+    cursor: pointer;
 }
 .jiesuan_type{
     font-size: 16px;
