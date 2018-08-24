@@ -32,6 +32,7 @@
         #effect1>.cont>.contTitle{margin-top: 20px;font-size: 14px;text-align: center;}
         #effect1>.cont>.popLogin{width: 140px;height: 45px; line-height: 45px;background-color: #88b0f9;color: white;text-align: center;margin: 0 auto;border-radius: 5px;font-size: 18px;margin-top: 35px; }
         #effect1>.cont>.popLogin:hover{background-color: #7ea9f9;}
+        .itemcont{cursor: pointer;}
     </style>
 </head>
 <body>
@@ -235,7 +236,7 @@
                 </div>
                 <div class="front itemcont">
                     <div>
-                        <div class="imgBox" style="background: url(./img/in-product1.jpg) no-repeat center center/88px 71px;"></div>
+                        <div class="imgBox" style="background: url(./img/in-product1.png) no-repeat center center/88px 71px;"></div>
                         <p class="front-title">明星产品</p>
                         <p>STAR PRODUCT</p>
                     </div>
@@ -255,7 +256,7 @@
                 </div>
                 <div class="front itemcont">
                     <div>
-                        <div class="imgBox" style="background: url(./img/in-product2.jpg) no-repeat center center/85px 74px;"></div>
+                        <div class="imgBox" style="background: url(./img/in-product2.png) no-repeat center center/85px 74px;"></div>
                         <p class="front-title">明星车源</p>
                         <p>VEHICLE SOURCE</p>
                     </div>
@@ -700,77 +701,77 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
 
 
 $('.goUser').click(function() {
-        // var company_type = localStorage.getItem('company_type');
-        // console.log(company_type);
+        var company_type = localStorage.getItem('company_type');
+        console.log(company_type);
         // debugger;
-        $.ajax({
-            type: "get",
-            url: pubIP + "chemicalType/findUserCompanyInfo",//v1.0
-            cache: false,
-            dataType: "json",
-            headers: {
-                token: token
-            },
-            success: function(json){
-                console.log(json);
+        // $.ajax({
+        //     type: "get",
+        //     url: pubIP + "chemicalType/findUserCompanyInfo",//v1.0
+        //     cache: false,
+        //     dataType: "json",
+        //     headers: {
+        //         token: token
+        //     },
+        //     success: function(json){
+        //         console.log(json);
 
-            },
-            error: function(err) {
-                console.log(err);
+        //     },
+        //     error: function(err) {
+        //         console.log(err);
+        //     }
+        // });
+
+
+        if (company_type == '1') { //供应商
+            
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
             }
-        });
-
-
-        // if (company_type == '1') { //供应商
+            $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+        } else if (company_type == '2') {
             
-        //     if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-        //         window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
-        //     }
-        //     $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
-        // } else if (company_type == '2') {
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+            }
+            $('.goUser').attr('href', 'account.html');
+        } else if (company_type == '-1') {
             
-        //     if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-        //         window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-        //     }
-        //     $('.goUser').attr('href', 'account.html');
-        // } else if (company_type == '-1') {
-            
-        //     window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-        //     $('.goUser').attr('href', 'account.html');
-        // }
+            window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+            $('.goUser').attr('href', 'account.html');
+        }
 
     });
 
     //拦截链接
-    // $(document).on('click','a',function(e){
-    //     e.preventDefault();
-    //     var isOld = localStorage.getItem('isOld');
-    //     if(isOld != '2'){
-    //         var ttxt = $.trim($(this).text());
-    //         console.log(ttxt);
-    //         if(ttxt == '用户中心' || ttxt == '立即下单'){
-    //             if(isOld == '1'){
-    //                 $('#effect .contTitle span').text('您尚未登录');
-    //                 missedLogin() ;
-    //             }else if(isOld == '0'){
-    //                 missedLogin() ;
-    //             }else if(isOld == '-1'){
-    //                 $('#effect .contTitle span').text('您尚未认证');
-    //                 $('#effect .contTitle i').text('认证');
-    //                 $('#popLogin').text('认证');
-    //                 missedLogin() ;
-    //             }else if(isOld == '-2'){
+    $(document).on('click','a',function(e){
+        e.preventDefault();
+        var isOld = localStorage.getItem('isOld');
+        if(isOld != '2'){
+            var ttxt = $.trim($(this).text());
+            console.log(ttxt);
+            if(ttxt == '用户中心' || ttxt == '立即下单'){
+                if(isOld == '1'){
+                    $('#effect .contTitle span').text('您尚未登录');
+                    missedLogin() ;
+                }else if(isOld == '0'){
+                    missedLogin() ;
+                }else if(isOld == '-1'){
+                    $('#effect .contTitle span').text('您尚未认证');
+                    $('#effect .contTitle i').text('认证');
+                    $('#popLogin').text('认证');
+                    missedLogin() ;
+                }else if(isOld == '-2'){
 
-    //                 window.location.href = this.href;
-    //             }
+                    window.location.href = this.href;
+                }
                 
-    //         }else{
-    //             window.location.href = this.href;
-    //         }
-    //     }else{
-    //         window.location.href = this.href;
-    //     }
-    // })
+            }else{
+                window.location.href = this.href;
+            }
+        }else{
+            window.location.href = this.href;
+        }
+    })
 </script>
 </body>
 </html>

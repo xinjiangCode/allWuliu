@@ -168,6 +168,7 @@ button{
 	background: url(../img/logo.png) no-repeat;
 	background-size:contain ;
 	background-position:center ;
+	cursor: pointer;
 }
 
 
@@ -968,6 +969,7 @@ thead td,thead th{
 }
 .cfRefresh{
 	text-align: center;
+	cursor: pointer;
 }
 /*.select{text-indent: 10px;}*/
 .contbox .inputBox .orderNo,.contbox .inputBox .select,.contbox .inputBox .select ul,.contbox .opciationBox .select,.contbox .opciationBox .select ul{width: 145px;}
@@ -1034,3 +1036,10 @@ input{
     -moz-appearance:textfield;
 }
 .addLiShi,.sub,.cf_sel,.sub_btn,.exportDemandBtn,.add_apartment,.btn,.contentslist input{cursor: pointer;}
+.select span{
+	display: inline-block;
+	width: 70%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

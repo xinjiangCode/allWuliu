@@ -155,12 +155,12 @@ body{
 .messages div input{
 	width: 227px;
 	height: 34px;
-	border: 1px solid #ebe9ea;
+	border: 1px solid #e7e7e7;
 }
 .messages div>div{
 	width: 227px;
 	height: 36px;
-	border: 1px solid #ebe9ea;
+	border: 1px solid #e7e7e7;
 	display: inline-block;
 	margin-top: 20px;
 	line-height: 36px;
@@ -210,7 +210,7 @@ body{
 	height: 34px;
 	/*text-align: center;*/
 	line-height: 34px;
-	border: 1px solid #ebe8ea;
+	border: 1px solid #e7e7e7;
 	margin-right: 13px;
 	font-size: 14px;
 	position: relative;
@@ -331,4 +331,7 @@ body{
 }
 .clearfix {
     zoom: 1;
+}
+.contentslist input{
+	cursor: pointer;
 }

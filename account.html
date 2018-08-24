@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/account.css"/>
     <style>
 
-        .kquan_caozuo,.modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert {
+        .kquan_caozuo,.modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert, .zizhi_weitong {
             z-index: 9999;
             display: none;
             position: fixed;
@@ -24,7 +24,7 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
 
-        .modelBoxdiaoling p, .modelBoxshenhezhong p, .modelBoxyijujue p, .modelBoxqiyesecond p, .modelBoxchujinsecond p, .modelBoxaddsuccess p, .modelBoxaddteshu p, .modelBoxaddqita p, .modelBoxtiao_tan p, .modelBoxupdate_chujin p, .modelBoxupdate_qiye p, .modelBoxupdate_runPerson p, .modelBoxupdate_runFapiao p, .modelBoxupdate_runcaiwu p, .modelBoxdelzizhi p, .modelBoxzihzishenhe p, .modelBoxweipass p, .modelBoxjujue_teshu p, .modelBox0 p, .modelBoxweixian p, .modelBoxweirenzheng p, .modelBoxdengdai p, .no_zizhi p {
+        .modelBoxdiaoling p, .modelBoxshenhezhong p, .modelBoxyijujue p, .modelBoxqiyesecond p, .modelBoxchujinsecond p, .modelBoxaddsuccess p, .modelBoxaddteshu p, .modelBoxaddqita p, .modelBoxtiao_tan p, .modelBoxupdate_chujin p, .modelBoxupdate_qiye p, .modelBoxupdate_runPerson p, .modelBoxupdate_runFapiao p, .modelBoxupdate_runcaiwu p, .modelBoxdelzizhi p, .modelBoxzihzishenhe p, .modelBoxweipass p, .modelBoxjujue_teshu p, .modelBox0 p, .modelBoxweixian p, .modelBoxweirenzheng p, .modelBoxdengdai p, .no_zizhi p, .zizhi_weitong p {
             text-align: center;
 
         }
@@ -85,7 +85,7 @@
             border: 1px solid #e7e7e7;
             box-sizing: border-box;
             padding-left: 10px;
-            color: #999;
+            color: #666666;
             cursor: pointer;
         }
         .selectPub>img{
@@ -273,7 +273,7 @@
             display: inline-block;
             width: 160px;
             position: relative;
-            color: #999;
+            color: #666666;
             background: #fff;
             cursor: pointer;
             float: none;
@@ -649,7 +649,8 @@
 
         .modelBox31_3 .item{margin-bottom: 20px;}
         .modelBox31_3 .itemLeftTitle{width: 190px;height: 37px;line-height: 37px;text-align: right;font-size: 16px;color: #333333;}
-
+         
+        
     </style>
 
 
@@ -1519,12 +1520,12 @@
                 <span style="margin-left: 5px;">订单已提交成功</span>
             </div>
             <div style="margin-top: 15px;color: #666666; font-size: 14px;"><span style="color: #282828;" class="span_width modelBox34LeftTitle fl">支付方式：&nbsp;</span>
-                <input type="radio" name="pay_method">现汇
-                <input type="radio" name="pay_method">承兑
+                <input type="radio" name="pay_method"style="cursor: pointer;">现汇
+                <input type="radio" name="pay_method"style="cursor: pointer;">承兑
             </div>
             <div style="margin-top: 15px;color: #666666; font-size: 14px;"><span style="color: #282828;" class="span_width modelBox34LeftTitle fl">承兑方式：&nbsp;</span>
-                <input type="radio" name="chengdui_method">中信银行
-                <input type="radio" name="chengdui_method">库尔勒银行
+                <input type="radio" name="chengdui_method"style="cursor: pointer;">中信银行
+                <input type="radio" name="chengdui_method"style="cursor: pointer;">库尔勒银行
             </div>
             <div style="margin-top: 15px;color: #666666; font-size: 14px; line-height: 40px;"><span style="color: #282828;" class="span_width modelBox34LeftTitle fl">现汇金额：&nbsp;</span>
                 <input type="text" placeholder="" style="height: 36px;width: 190px;border: 1px solid #e7e7e7; margin-left: 5px;">
@@ -2324,7 +2325,7 @@
                         </div>
                         <div style="margin-top: 32px;color: #666666; font-size: 14px; line-height: 36px;" class="fr"><span style="color: #282828;" class="modelBox34LeftTitle">预计发货时间：</span>
                             <!--<input type="text" placeholder="111" id="selectInput" style="height: 34px;width: 190px;border: 1px solid #dbdbdc; ">-->
-                            <input type="text" class="date-input laydate-icon publishTime input time_inp" placeholder="请选择日期" id="test1"  style="height: 34px;width: 170px;border: 1px solid #dbdbdc; ">
+                            <input type="text" class="date-input laydate-icon publishTime input time_inp" placeholder="请选择日期" id="test1"  style="height: 34px;width: 170px;border: 1px solid #e7e7e7; ">
                         </div>
                     </div>
                     <div class="clearfix">
@@ -3090,8 +3091,28 @@
         <div class="modelcontent">
             <div class="info">
                 <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
-                <p><span>危险化学品资质认证审核未通过</span>，请您重新填写进行认证！</p>
-                <p class="jj_yuanying" style="color: red;font-size: 14px;text-align: left;">拒绝理由：<span></span></p>
+                <p class="p"><span>危险化学品资质认证审核未通过</span>，请您重新填写进行认证！</p>
+                <p class="jj_yuanying" style="color: red;font-size: 14px;text-align: left; text-align: center;">拒绝理由：<span></span></p>
+            </div>
+            <div class="modelBtnBox">
+                <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 资质审核未通过 -->
+<div class="zizhi_weitong">
+    <div class="modelCont">
+        <div class="modeltitle">
+            <span>消息提示</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent">
+            <div class="info">
+                <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
+                <p><span>资质审核未通过</span>，请您重新填写进行认证！</p>
+                <p class="jj_yuanying" style="color: red;font-size: 14px;text-align: left; text-align: center;">拒绝理由：<span></span></p>
             </div>
             <div class="modelBtnBox">
                 <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -3111,7 +3132,7 @@
             <div class="info">
                 <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
                 <p><span>特殊资质认证审核未通过</span>，请您重新填写进行认证！</p>
-                <p class="jj_yuanying2" style="color: red;font-size: 14px;text-align: left;">拒绝理由：<span></span></p>
+                <p class="jj_yuanying2" style="color: red;font-size: 14px;text-align: left; text-align: center;">拒绝理由：<span></span></p>
             </div>
             <div class="modelBtnBox">
                 <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -3187,7 +3208,7 @@
                 <p class="innerErrmsg">是否确认删除？</p>
             </div>
             <div class="modelBtnBox" style="width: 321px;margin-top: 30px;">
-                <div style="border:1px solid #5690f6;color: #333;margin: 0;" class="modelbtn confirm" class="allCancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+                <div style="border:1px solid #5690f6;color: #666666;margin: 0;" class="modelbtn confirm" class="allCancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
 
                 <div style="background:#5690f6;margin-top: 0px;margin-left: 30px;" class="modelbtn confirm allSure all_sure">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
                 
@@ -3196,7 +3217,7 @@
     </div>
 </div>
 <!-- 结算 -->
-<div class="jiesuan_alert">
+<div class="jiesuan_alert" >
     <div class="modelCont" style="width: 550px;height: 370px;background: white;">
         <div class="modeltitle" style="width: 550px;">
             <span class="jstitle">工资结算</span>
@@ -3216,9 +3237,9 @@
                 <textarea></textarea>
             </div> -->
             <div class="jiesuan_type">
-                <input type="radio" name="xuan_type" id="xuan_type1" value="0" checked>
+                <input type="radio" name="xuan_type" id="xuan_type1" value="0" style="cursor: pointer;" checked>
                 <label for="xuan_type1">全部结算</label>
-                <input type="radio" name="xuan_type" id="xuan_type2" value="1" style="margin-left: 20px;">
+                <input type="radio" name="xuan_type" id="xuan_type2" value="1" style="margin-left: 20px;cursor: pointer;">
                 <label for="xuan_type2">暂时结算</label>
             </div>
             <div class="js_btn">立即结算</div>
@@ -3234,7 +3255,7 @@
             <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
         </div> 
         <div class="shenpi_main">
-            <div class="allfpmoney" style="font-size: 16px;color: #666;width: 470px;margin: 0 auto;line-height: 60px;">本次上传发票总金额：<input style="width: 160px;height: 36px;outline: none;border: 1px solid #dbdbdc;" type="text" placeholder="请输入金额"></div>
+            <div class="allfpmoney" style="font-size: 16px;color: #666;width: 470px;margin: 0 auto;line-height: 60px;">本次上传发票总金额：<input style="width: 160px;height: 36px;outline: none;border: 1px solid #e7e7e7;" type="text" placeholder="请输入金额"></div>
             <div class="clearfix">
                 <div class="fl">
                     <div class="upload_div upload_1">
@@ -3242,8 +3263,8 @@
                     </div>
                     <div class="parent_div">
                     上传发票1
-                        <input type="file" id="fapiao_input1">  
-                        <input type="hidden" id="fapiao_hidden1" class="fapiao_inp">
+                        <input type="file" id="fapiao_input1" style="cursor: pointer;">  
+                        <input type="hidden" id="fapiao_hidden1" class="fapiao_inp" style="cursor: pointer;">
                     </div>
                 </div>
                 <div class="fl">
@@ -3252,8 +3273,8 @@
                     </div>
                     <div class="parent_div">
                     上传发票2
-                        <input type="file" id="fapiao_input2">  
-                        <input type="hidden" id="fapiao_hidden2" class="fapiao_inp">
+                        <input type="file" id="fapiao_input2"style="cursor: pointer;">  
+                        <input type="hidden" id="fapiao_hidden2" class="fapiao_inp"style="cursor: pointer;">
                     </div>
                 </div>
                 <div class="fl">
@@ -3262,8 +3283,8 @@
                     </div>
                     <div class="parent_div">
                     上传发票3
-                        <input type="file" id="fapiao_input3">  
-                        <input type="hidden" id="fapiao_hidden3" class="fapiao_inp">
+                        <input type="file" id="fapiao_input3"style="cursor: pointer;">  
+                        <input type="hidden" id="fapiao_hidden3" class="fapiao_inp"style="cursor: pointer;">
                     </div>
                 </div>
             </div>
@@ -3299,15 +3320,15 @@
             <div class="kaquan_main" style="width: 360px;margin: 0 auto;margin-top: 50px;">
                 <div>
                     <span style="font-size: 16px;color: #666;">卡券名称：</span>
-                    <input type="text" class="kaquan_name" style="width: 200px;height: 30px;outline: none;">
+                    <input type="text" class="kaquan_name" style="width: 200px;height: 30px;outline: none;border:1px solid #e7e7e7;">
                 </div>
                 <div style="margin-top: 30px;">
                     <span style="font-size: 16px;color: #666;">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：</span>
-                    <input class="kaquan_money" type="text" style="width: 200px;height: 30px;outline: none;">
+                    <input class="kaquan_money" type="text" style="width: 200px;height: 30px;outline: none;border:1px solid #e7e7e7;">
                 </div>
                 <div class="ErrMsg" style="color: red;text-align: center;margin: 5px 0;font-size: 14px;"></div>
                 <div>
-                    <span class="sureKaQuan" style="display: block;width: 130px;height: 35px;margin: 0 auto;margin-top: 30px;border-radius: 2px;text-align: center;line-height: 35px;font-size: 16px;color: white;background: #5690f6">确定</span>
+                    <span class="sureKaQuan" style="display: block;width: 130px;height: 35px;margin: 0 auto;margin-top: 30px;border-radius: 2px;text-align: center;line-height: 35px;font-size: 16px;color: white;background: #5690f6;cursor: pointer;">确定</span>
                 </div>
             </div>
         </div>
@@ -3315,7 +3336,7 @@
 
 
 <!--提现-->
-<div class="modelBox31_3" style="font-size: 14px; ">
+<div class="modelBox31_3" style="font-size: 14px;">
     <div class="modelCont" style="width: 633px;height: 470px;">
         <div class="modeltitle" style="width: 100%;">
             <span>提现</span>
@@ -4180,7 +4201,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         $('.modelBoxjujue_teshu').css('display', 'block');
     }
 
-
+    function zizhi_weitong(reasons) {
+        $('.jj_yuanying span').html(reasons);
+        $('.zizhi_weitong').css('display', 'block');
+    }
 
 
 

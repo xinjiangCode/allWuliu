@@ -1,5 +1,5 @@
 .xiaoshi{display: none;}
-input,.textarea{background-color: #fafafa;border: 1px solid #eaeaea;}
+input,.textarea{background-color: #fafafa;border: 1px solid #e7e7e7;}
 input[type='text'].input_width{
     padding-left: 30px;
 }
@@ -238,14 +238,14 @@ span.quxiao_add {
 }
 
 .modelbtn{
-    width: 145px;
-    height: 45px;
-    border: 1px solid #5690f6;
-    font-size: 18px;
+    width: 130px;
+    height: 35px;
+    border:1px solid #5690f6;
+    font-size: 16px;
     color: #fff;
     box-sizing: border-box;
     text-align: center;
-    line-height: 45px;
+    line-height: 35px;
     border-radius: 3px;
     cursor: pointer;
     margin: 18px auto 0 auto;

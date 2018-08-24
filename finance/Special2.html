@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" type="text/css" href="../css/Special2.css"/>
     <style type="text/css">
-        .container {
+        /*.container {
             height: 700px;
-        }
+        }*/
 
         .header {
             padding: 18px 61px;
@@ -73,6 +73,23 @@
             margin-top: 40px;
         }
 
+        /*.container {
+            height: 700px;
+        }*/
+
+        .container {
+            width: 947px;
+            overflow: hidden;
+        }
+
+        .parent_div {
+            height: 600px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* overflow: hidden; */
+            width: 967px;
+        }
+
     </style>
 </head>
 <body>
@@ -98,76 +115,85 @@
         </ul>
     </div>
 
-    <div id="center">
-        <div class="center1 c0">
-            <ul>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>资质类型:</div>
-                    <div class="right1 Lf">
-                        <div class="select zizhi_type zizhi_type0" id="zizhi_type0" data-selectedindex="">
-                            <span></span>
-                            <img src="../img/prl-select.jpg" alt="">
-                            <ul>
-                                <li data-index="1">10</li>
-                                <li data-index="2">20</li>
-                                <li data-index="3">30</li>
-                            </ul>
-                        </div>
-                        <!--<select name="" class="zizhi_type zizhi_type0" id="zizhi_type0">-->
+    <div class="parent_div">
+        <div id="center">
+            <div class="center1 c0">
+                <ul>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>资质类型:</div>
+                        <div class="right1 Lf">
+                            <div class="select zizhi_type zizhi_type0" id="zizhi_type0" data-selectedindex="">
+                                <span></span>
+                                <img src="../img/prl-select.jpg" alt="">
+                                <ul>
+                                    <li data-index="1">10</li>
+                                    <li data-index="2">20</li>
+                                    <li data-index="3">30</li>
+                                </ul>
+                            </div>
+                            <!--<select name="" class="zizhi_type zizhi_type0" id="zizhi_type0">-->
 
-                        <!--</select>-->
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>资质编号:</div>
-                    <div class="right1 Lf"><input type="text" class="zizhi_num" id="zizhi_num0"></div>
-                    <span class="ts">资质编号不能为空</span>
-                </li>
-                
-                <li   style="overflow: visible;" class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>许可经营范围:</div>
-                    <div class="right1 Lf">
-                        <textarea name="" id="textarea0"  class="textarea"  style="width: 359px;height: 88px; border: 1px solid #ebe9ea;" ></textarea>
-                    </div>
-                    <span class="ts2">许可经营不能为空</span>
+                            <!--</select>-->
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>资质编号:</div>
+                        <div class="right1 Lf"><input type="text" class="zizhi_num" id="zizhi_num0"></div>
+                        <span class="ts">资质编号不能为空</span>
+                    </li>
                     
-                </li>
-                <li class="clearfix">
-                    <div class="left1 Lf"><i class="red">*</i>有效期起:</div>
-                    <div class="right1 Lf">
-                        <input type="text" class="date-input laydate-icon kuang start" style="text-indent: 10px;" placeholder="请选择日期" id="test1">
-                        <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
-                        <input type="text" class="date-input laydate-icon kuang end" style="text-indent: 10px;" placeholder="请选择日期" id="test2">
-                    </div>
-                    <span class="ts">有效期不能为空</span>
-                </li>
-                <li class="clearfix" style="position: relative;">
-                    <div class="left1 Lf"><i class="red">*</i>资质图片:</div>
-                    <div class="right1 Lf pic_div">
-                        <div class="uploade" style="float: left;">
-                            <i style=""></i>
-                            <input type="file" class="input_blur preview pic1" id="uploade_preview0">
-                            <input type="hidden" class="hd0" id="hidden">
-                            <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                    <li   style="overflow: visible;" class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>许可经营范围:</div>
+                        <div class="right1 Lf">
+                            <textarea name="" id="textarea0"  class="textarea"  style="width: 359px;height: 88px; border: 1px solid #ebe9ea;" ></textarea>
                         </div>
-                        <div class="ts1">至少添加一张图片</div>
-                        <a href="##" class="add_pic add_pic1" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>
-                    </div>
+                        <span class="ts2">许可经营不能为空</span>
+                        
+                    </li>
+                    <li class="clearfix">
+                        <div class="left1 Lf"><i class="red">*</i>有效期起:</div>
+                        <div class="right1 Lf">
+                            <input type="text" class="date-input laydate-icon kuang start" style="text-indent: 10px;" placeholder="请选择日期" id="test1">
+                            <span style="height: 38px;line-height: 38px;">&nbsp;至&nbsp; </span>
+                            <input type="text" class="date-input laydate-icon kuang end" style="text-indent: 10px;" placeholder="请选择日期" id="test2">
+                        </div>
+                        <span class="ts">有效期不能为空</span>
+                    </li>
+                    <li class="clearfix" style="position: relative;">
+                        <div class="left1 Lf"><i class="red">*</i>资质图片:</div>
+                        <div class="right1 Lf pic_div">
+                            <div class="uploade" style="float: left;">
+                                <i style=""></i>
+                                <input type="file" class="input_blur preview pic1" id="uploade_preview0">
+                                <input type="hidden" class="hd0" id="hidden">
+                                <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                            </div>
+                            <div class="ts1">至少添加一张图片</div>
+                            <a href="##" class="add_pic add_pic1" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>
+                        </div>
 
-                </li>
-            </ul>
-            <i class="red" style="display: block;margin-top: 22px;font-size: 14px;margin-left: 155px;">请上传资质证书照片或者扫描件！ 照片大小 < 2MB</i>
+                    </li>
+                </ul>
+                <i class="red" style="display: block;margin-top: 22px;font-size: 14px;margin-left: 155px; color: rgb(0, 122, 255);">请上传资质证书照片或者扫描件！ 照片大小 < 2MB</i>
+            </div>
         </div>
-    </div>
-    
+        
 
-    <div class="bottom1 edit_btn">
-        <div class="btn edit_edit">编辑</div>
-    </div>
+        <div class="bottom1 edit_btn">
+            <div class="btn edit_edit">编辑</div>
+        </div>
 
-    <div class="bottom1 add_submit">
-        <div class="btn Lf add add1">继续添加其他资质</div>
-        <div class="btn Lf sub">提交</div>
+        <div class="bottom1 add_submit">
+            <div class="btn Lf add add1">继续添加其他资质</div>
+            <div class="btn Lf sub">提交</div>
+        </div>
+
+        <div class="puhua" style="margin-left: 355px;margin-top: 32px; ">
+            <img src="../img/qq.png" alt="" style="float: none; vertical-align: bottom;">
+            <a href="##" style="color: #5590f6;">客服QQ</a>
+            <span>(工作日10 : 00 - 19 : 00)</span>
+        </div>
+        <div class="puhua" style="margin-left: 330px;margin-top: 5px; margin-bottom: 40px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">400-1234567</a></div>
     </div>
 
     

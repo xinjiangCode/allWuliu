@@ -123,15 +123,17 @@
             <div class="fr cfRefresh">导出</div></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
-            <label for="">货物类型</label>
-            <div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
-                <ul>
-                    <li data-index="1">全部</li>
-                    <li data-index="2">普化品</li>
-                    <li data-index="3">危化品</li>
-                    <li data-index="4">特殊品</li>
-                </ul>
-            </div>
+            <label for="">商品名称</label>
+            <input id="cf_goodsName" type="text" style="height: 38px;box-sizing: border-box;margin-right: 12px;border: 1px solid #e7e7e7;" placeholder="输入搜索">
+            <!--<label for="">货物类型</label>-->
+            <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
+                <!--<ul>-->
+                    <!--<li data-index="1">全部</li>-->
+                    <!--<li data-index="2">普化品</li>-->
+                    <!--<li data-index="3">危化品</li>-->
+                    <!--<li data-index="4">特殊品</li>-->
+                <!--</ul>-->
+            <!--</div>-->
             <label for="">发车时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
             <span>-</span>
             <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
@@ -528,7 +530,8 @@
                     orderNo: orderNo,
                     time: publishTime,
                     endTime:$("#test2").val(),
-                    goodType: goodsType
+                    goodsName:$("#cf_goodsName").val()
+//                    goodType: goodsType
                 },
                 cache: false,
                 dataType: 'json',

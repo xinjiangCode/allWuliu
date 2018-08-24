@@ -130,13 +130,13 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
         .shouyeTankuang1 .cancel,.shouyeTankuang2 .cancel{
-            display: inline-block; width: 130px;height: 35px;line-height: 35px; background-color: #cccccc;color: white; font-size: 16px;
+            cursor:pointer;display: inline-block; width: 130px;height: 35px;line-height: 35px; background-color: #cccccc;color: white; font-size: 16px;
         }
         .shouyeTankuang1 .cancel:hover,.shouyeTankuang2 .cancel:hover{
             background-color: #b8b8b8;
         }
         .shouyeTankuang1 .sureBtn,.shouyeTankuang2 .sureBtn{
-            display: inline-block; width: 130px;height: 35px;line-height: 35px; margin-left: 20px; background-color: #6a9ef7;color: white; font-size: 16px;
+            cursor:pointer;display: inline-block; width: 130px;height: 35px;line-height: 35px; margin-left: 20px; background-color: #6a9ef7;color: white; font-size: 16px;
         }
         .shouyeTankuang1 .sureBtn:hover,.shouyeTankuang2 .sureBtn:hover{
             background-color: #558ff8;
@@ -295,7 +295,7 @@
         <div class="cont">
             <div class="cance2">
                 <span class="popTitle Lf">修改密码</span>
-                <span class="close Rt" onclick="close1(this)"><img src="./img/gsxq_del.png" alt=""></span>
+                <span class="close Rt" onclick="close1(this)"><img src="./img/gsxq_del.png" alt="" style="cursor: pointer;"></span>
             </div>
 
             <div style="margin-bottom: 20px;">
@@ -409,7 +409,7 @@
         <div class="cont" style="width: 650px;">
             <div class="cance2">
                 <span class="popTitle Lf">获取验证码</span>
-                <span class="close Rt" onclick="close1(this)"><img src="./img/cf_close1.png" alt=""></span>
+                <span class="close Rt" onclick="close1(this)"><img src="./img/gsxq_del.png" alt=""></span>
             </div>
             <div style="width: 650px; height: 35px;line-height: 35px;color: #fb6047;background-color: #fff7e9;font-size: 14px;margin: auto;text-align: center;margin-bottom: 20px;">提示：若手机丢失或者损坏，则不能直接更换手机，请联系客服400-0012-556（10:00～19:00）</div>
             <div>
@@ -452,7 +452,7 @@
         <div class="cont" style="width: 650px;">
             <div class="cance2">
                 <span class="popTitle Lf">新手机号更换</span>
-                <span class="close Rt" onclick="close1(this)"><img src="./img/cf_close1.png" alt=""></span>
+                <span class="close Rt" onclick="close1(this)"><img src="./img/gsxq_del.png" alt="" style="cursor: pointer;"></span>
             </div>
             <div style="width: 650px; height: 35px;line-height: 35px;color: #fb6047;background-color: #fff7e9;font-size: 14px;margin: auto;text-align: center;margin-bottom: 20px;">提示：若手机丢失或者损坏，则不能直接更换手机，请联系客服400-0012-556（10:00～19:00）</div>
             <div>
@@ -1226,7 +1226,7 @@
                 <div class="clearFloat" style="padding-right: 124px;margin-top: 10px;">
                     <div style="margin-left: 47px;line-height: 31px;">
                         <span>现汇方式：</span>
-                        <input type="radio" name="xuNi" value="虚拟账户" style="margin-left: 20px;">虚拟账户
+                        <input type="radio" name="xuNi" value="虚拟账户" style="margin-left: 20px;cursor: pointer;">虚拟账户
                         <span style="margin-left: 35px;">可用余额：</span><span class="accountBalance">0.00</span>
                         <span class="cf_btnA" style="margin-left: 18px;">充值</span>
                         <span style="margin-left: 35px;">支付金额: </span>
@@ -1234,7 +1234,7 @@
                         <span style="float: right;color: #ff6d6d;">待支付</span>
                     </div>
                     <div class="clearFloat">
-                        <div class="cf_btn Rt XuNiGoPay"  style="margin-top: 14px;">立即支付</div>
+                        <div class="cf_btn Rt XuNiGoPay"  style="margin-top: 14px;cursor: pointer;">立即支付</div>
 
                     </div>
                     <div class="Rt ErrorMsg1" style="color: #ff6d6d;margin-top: 6px;"></div>
@@ -1242,9 +1242,9 @@
                 <div class="clearFloat" style="padding-right: 124px;margin-top: 10px;">
                     <div style="margin-left: 47px;">
                         <span>承兑方式：</span>
-                        <input type="radio" name="chengDui" value="中信银行" style="margin-left: 25px;">中信银行
-                        <input type="radio" name="chengDui" value="库尔勒银行" style="margin-left: 30px;">库尔勒银行
-                        <input type="radio" name="chengDui" value="招商银行" style="margin-left: 30px;">招商银行
+                        <input type="radio" name="chengDui" value="中信银行" style="margin-left: 25px;cursor: pointer;">中信银行
+                        <input type="radio" name="chengDui" value="库尔勒银行" style="margin-left: 30px;cursor: pointer;">库尔勒银行
+                        <input type="radio" name="chengDui" value="招商银行" style="margin-left: 30px;cursor: pointer;">招商银行
 
                         <span style="margin-left: 40px;">支付金额</span>
                         <span>10.00</span>
@@ -1253,9 +1253,9 @@
                         <span style="float: right;color: #ff6d6d;">待支付</span>
                     </div>
                     <div class="clearFloat">
-                        <div class="cf_btn Rt"  style="margin-top: 14px;margin-left: 18px;">立即支付</div>
+                        <div class="cf_btn Rt"  style="margin-top: 14px;margin-left: 18px;cursor: pointer;">立即支付</div>
                         <div class="Rt" style="font-size: 14px;line-height: 40px;margin-top: 14px;">
-                            <input type="radio" name="beishu" style="vertical-align: sub;"> 背书
+                            <input type="radio" name="beishu" style="vertical-align: sub;cursor: pointer;"> 背书
                         </div>
                     </div>
                     <div class="Rt" style="color: #ff6d6d;margin-top: 6px;display: none;">余额不足，请充值</div>
@@ -1293,7 +1293,7 @@
                     <div class="itemLeftTitle Lf">手机号：</div>
                     <div class="itemRight Lf">
                         <input type="text" class="phone" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #e7e7e7" disabled="disabled">
-                        <span class="cf_btn getSMSCode" style="width: 102px;display: inline-block;height: 35px;line-height: 35px;">获取验证码</span>
+                        <span class="cf_btn getSMSCode" style="width: 102px;display: inline-block;height: 35px;line-height: 35px;cursor: pointer;">获取验证码</span>
                     </div>
                 </div>
                 <div class="item clearfix">
@@ -1301,7 +1301,7 @@
                     <div class="itemRight Lf"><input type="text" class="SMScode"  style="width: 336px;height: 33px;line-height: 33px;border: 1px solid #e7e7e7"></div>
                 </div>
 
-                <div class="cf_btn " id="surePay" style="margin: 0 auto;background-color: #c2ccd1;" data-isok="0" data-isok1="0" data-isok2="0">确认支付</div>
+                <div class="cf_btn " id="surePay" style="margin: 0 auto;background-color: #c2ccd1;cursor: pointer;" data-isok="0" data-isok1="0" data-isok2="0">确认支付</div>
             </div>
 
         </div>
@@ -1472,8 +1472,8 @@
                             <div>报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span>120元/吨</span></div>
                         </div>
                         <div class="Lf rr" style="width: 268px;">
-                            <div><span class="cf_btnA">选择</span><span style="margin-left: 10px;">删除</span></div>
-                            <div><span class="cf_btnA">选择</span><span style="margin-left: 10px;">删除</span></div>
+                            <div><span class="cf_btnA" style="cursor: pointer;">选择</span><span style="margin-left: 10px;cursor: pointer;">删除</span></div>
+                            <div><span class="cf_btnA" style="cursor: pointer;">选择</span><span style="margin-left: 10px;cursor: pointer;">删除</span></div>
                         </div>
                     </div>
                 </div>
@@ -1528,8 +1528,8 @@
                     </table>
                 </div>
                 <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">总&nbsp;&nbsp;订&nbsp;&nbsp;单</span>：<span>订单已提交成功</span></div>
-                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">支付方式</span>：<input type="radio" name="ZFtype">现汇 <input type="radio" name="ZFtype">承兑</div>
-                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">承兑方式</span>：<input type="radio" name="CDtype">中信银行 <input type="radio" name="CDtype">库尔勒银行</div>
+                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">支付方式</span>：<input type="radio" name="ZFtype"style="cursor: pointer;">现汇 <input type="radio" name="ZFtype"style="cursor: pointer;">承兑</div>
+                <div style="margin-top: 20px;color: #666666;"><span class="modelBox34LeftTitle">承兑方式</span>：<input type="radio" name="CDtype"style="cursor: pointer;">中信银行 <input type="radio" name="CDtype"style="cursor: pointer;">库尔勒银行</div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;"><span class="modelBox34LeftTitle">现汇金额</span>：<input type="text" style="height: 36px;width: 205px;border: 1px solid #e7e7e7;"> <span class="modelBox34LeftTitle" style="margin-left: 20px;">可用余额</span>：<span>¥1111212</span></div>
 
                 <div class="clearFloat" style="text-align: center;margin-top: 32px;">

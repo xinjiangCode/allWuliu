@@ -160,12 +160,12 @@ body{
 	display: inline-block;
 	float: left;
 	margin-top: 20px;
-	border: 1px solid #ebe9ea;
+	border: 1px solid #e7e7e7;
 }
 .messages div>div{
 	width: 160px;
 	height: 36px;
-	border: 1px solid #ebe9ea;
+	border: 1px solid #e7e7e7;
 	display: inline-block;
 	margin-top: 20px;
 	line-height: 36px;

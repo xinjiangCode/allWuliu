@@ -114,11 +114,11 @@ body{
 	height: 34px;
 	/*text-align: center;*/
 	line-height: 34px;
-	border: 1px solid #ebe8ea;
+	border: 1px solid #e7e7e7;
 	margin-right: 13px;
 	font-size: 14px;
 	position: relative;
-	margin-top: 8px;
+	margin-top: 8px;cursor: pointer;
 }
 .select ul{
     top:33px;}
