@@ -783,7 +783,7 @@ i.ts {
     vertical-align: middle;
 }
 
-.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #e7e7e7; }
+.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #d3d3d3; }
 .modelBox34 .cfClose:hover,.modelBox35 .cfClose:hover,.modelBox36 .cfClose:hover,.modelBox37 .cfClose:hover,.modelBox38 .cfClose:hover,.modelBox39 .cfClose:hover,.modelBox40 .cfClose:hover,.modelBox41 .cfClose:hover,.modelBox42 .cfClose:hover,.modelBox43 .cfClose:hover,.modelBox44 .cfClose:hover,.modelBox45 .cfClose:hover,.modelBox46 .cfClose:hover,.modelBox47 .cfClose:hover{color: white;background-color: #5388ff;border-color: #5388ff;}
 /*蓝色字体返回*/
 .modelBox42 .cfClose,.modelBox43 .cfClose{
@@ -799,3 +799,4 @@ i.ts {
     background-color: #5690f6;
 }
 .modelBox48 .modelbtn,.modelBox49 .modelbtn {background-color: #5690f6;}
+.close{cursor: pointer;}

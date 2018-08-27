@@ -1162,7 +1162,7 @@
                 <input type="hidden" value="" id="upload_hetong_hidden">
                 <div style="position: relative; height: 130px;width: 130px; margin-left: 5px; border: 1px solid #e7e7e7; float: left;">
                 </div>
-                <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_hetong" accept=".pdf"><span style="color: #6ea3ff;">上传</span></div>
+                <div style="position: relative; display: inline-block;margin-top: 114px; margin-left: 10px; cursor: pointer;"><input type="file" id="upload_hetong" accept=".pdf" style="cursor: pointer;"><span style="color: #6ea3ff;cursor: pointer;">上传</span></div>
             </div>
             <div class="errMsg" style="height: 20px;margin: 40px 0;color: red;font-size: 14px;text-align: center;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 60px;">
@@ -2140,8 +2140,8 @@
 
             <div class="clearfix" style="margin-top: 17px; margin-bottom: 11px;">
                 <div class="fr">
-                    <span class="btn_moban">批量模版</span>
-                    <span class="btn_moban" style="margin-left: 10px;">模版上传</span>
+                    <span class="btn_moban" style="cursor: pointer;">批量模版</span>
+                    <span class="btn_moban" style="margin-left: 10px;cursor: pointer;">模版上传</span>
                 </div>
             </div>
             <div style="height: 216px; width: 547px; border: 1px solid #e7e7e7;">
@@ -3217,7 +3217,7 @@
     </div>
 </div>
 <!-- 结算 -->
-<div class="jiesuan_alert" >
+<div class="jiesuan_alert">
     <div class="modelCont" style="width: 550px;height: 370px;background: white;">
         <div class="modeltitle" style="width: 550px;">
             <span class="jstitle">工资结算</span>
@@ -4691,7 +4691,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 
             $("#che").attr("data-id",listCar[$(this).index()].car.carid)
             $("#che").text(listCar[$(this).index()].car.carNo)
-                debugger
+            
             $("#test1").val(timestampToTime(listCar[$(this).index()].car.planStartDate))
             $("#test2").val(timestampToTime(listCar[$(this).index()].car.planEndDate))
             $("#kmNum").val(listCar[$(this).index()].car.kmNum)

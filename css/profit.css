@@ -55,14 +55,15 @@ body{
 }
 .inputBox>.goodsType{
     line-height: 38px;
-    display: inline-block;
+    /* display: inline-block; */
     width: 160px;
     position: relative;
     color: #999;
     background: #fff;
     cursor: pointer;
-    float: none;
+    float: left;
 }
+.select{margin-top: 11px;}
 .inputBox>.goodsType>img{
     float: right;
     width: 13px;
