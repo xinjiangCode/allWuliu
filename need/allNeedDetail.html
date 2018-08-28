@@ -372,7 +372,7 @@
         })
         //渲染更改报价弹框数据
         function cf_dataRenderSelect(data) {
-            debugger
+          
             window.parent.$(".modelBox0 .demandNo").text(data.demandNo);
             window.parent.$(".modelBox0 .createTime").text(timestampToTime1(data.createTime));
             window.parent.$(".modelBox0 .sendAddress").eq(0).text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);

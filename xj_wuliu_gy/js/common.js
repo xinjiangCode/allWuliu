@@ -1,7 +1,7 @@
 // var pubIP = 'http://192.168.1.216:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
-
-//  var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://api.hdlsuper.com/service/';
+ // var pubIP = 'http://wl.api.xjv56.com/service/';
 
 
 var ip = pubIP;
@@ -98,11 +98,11 @@ if(adct=="account"){
         "\t<div class=\"cont\" >\n" +
         "\t\t<div class=\"cance2\" >\n" +
         "\t\t\t<span class=\"popTitle Lf\" >提示</span>\n" +
-        "\t\t\t<div class=\"close Rt\" style=\"width:46px;height:48px;margin-right: -20px;margin-top: 0; background: url('../img/gsxq_del.png') no-repeat ; background-size: contain;\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
+        "\t\t\t<div class=\"close Rt\" style=\"cursor:pointer;width:46px;height:48px;margin-right: -20px;margin-top: 0; background: url('../img/gsxq_del.png') no-repeat ; background-size: contain;\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
         "\t\t</div>\n" +
         "\t\t<div class=\"deanger\"></div>\n" +
-        "\t\t<div class=\"contTitle\">您好，<span>您的登陆已经过期</span>,请先<i onclick=\"popEffectLogin()\" style=\"color: #00a0e9;\">登陆</i>，以便使用更多功能。</div>\n" +
-        "\t\t<div class=\"popLogin\" style=\"width:130px;height:35px;line-height:35px;font-size:16px;\" id=\"popLogin\" onclick=\"popEffectLogin()\">登录</div>\n" +
+        "\t\t<div class=\"contTitle\">您好，<span>您的登陆已经过期</span>,请先<i onclick=\"popEffectLogin()\" style=\"color: #00a0e9;cursor:pointer;\">登陆</i>，以便使用更多功能。</div>\n" +
+        "\t\t<div class=\"popLogin\" style=\"width:130px;height:35px;line-height:35px;font-size:16px;cursor:pointer;\" id=\"popLogin\" onclick=\"popEffectLogin()\">登录</div>\n" +
         "\t</div>\n" +
         "</div>");
 }
