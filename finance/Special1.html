@@ -965,6 +965,7 @@
                     $('.update_info_btn').hide();
                 } else if (data.data.eType != null && data.data.dType != null) {
 
+
                     $('input[value="pu"]').click();
                     $('input[name="ZZtype"]').attr('disabled', true);
 
@@ -1448,7 +1449,7 @@
             success: function (data) {
                 console.log(data);
 
-                if (data.data.length == 2) {
+                if (data.data.length >= 2) {
                     $('.add_zizhi').click();
                 }
 
@@ -1589,6 +1590,7 @@
 
     // 编辑资质
     $(document).on('click', '.update_btn', function() {
+
 
 
         //var zizhi_num = $('.zizhi_num').val();
