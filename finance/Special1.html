@@ -213,7 +213,7 @@
             <a href="##" style="color: #5590f6;">客服QQ</a>
             <span>(工作日10 : 00 - 19 : 00)</span>
         </div>
-        <div class="puhua" style="margin-left: 405px;margin-top: 5px; margin-bottom: 40px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">400-1234567</a></div>
+        <div class="puhua" style="margin-left: 405px;margin-top: 5px; margin-bottom: 40px; ">认证过程中如有疑问，可致电 <a href="##" style="color: #5590f6;">4000-012-556</a></div>
     </div>
     
 
@@ -485,8 +485,15 @@
                 $('.xiang').find('span').text('请选择');
                 $('.xiang').attr('data-selectedindex', '-1');
 
+                if (data.data.length == 0) {
+                    $('.add').attr('data-addFlag', '0');
+                } else {
+                    $('.add').attr('data-addFlag', '1');
+                }
+
+                $('.c1 .xiang').unbind();
                 $('.c1 .xiang').click(function(event){
-                    
+
 
                     if($(this).attr("disabled")=="disabled"){ //判断是否可以点击
                         return;
@@ -538,10 +545,50 @@
     }
 
     // 获取项
-    function selectXiang1(select_id, idArr) {
+    // function selectXiang1(select_id, idArr) {
+    //     $.ajax({
+    //         url: pubIP + 'chemicalType/getChemicalTypeByid',
+    //         type: 'post',
+    //         headers: {
+    //             Accept: "application/json; charset=utf-8",
+    //             token: token
+    //         },
+    //         data: {
+    //             id: select_id
+    //         },
+    //         cache: false,
+    //         dataType: 'json',
+    //         success: function (data) {
+    //             console.log(data);
+
+
+    //             if (idArr) {
+
+    //                 $.each(data.data, function(i, e) {
+                        
+    //                     if (idArr == $(e)[0].type_id) {
+    //                         $('.textarea_div').append('<div data-leiid="'+select_id+'" data-xiangid="'+$(e)[0].type_id+'"><span class="span_text">'+$(e)[0].type_name + '</span><span class="delete_info">x</span></div>');
+    //                     }
+
+    //                     if ($('.update_btn').attr('flag') == '1') {
+    //                         $('.delete_info').addClass('delete_div');
+    //                         $('.delete_div').css('cursor', 'pointer');
+    //                     }
+    //                 });
+                            
+    //             }
+
+    //         },
+    //         error: function(err) {
+    //             console.log(err);
+    //         }
+    //     });
+    // }
+
+    function selectXiang1(select_id) {
         $.ajax({
-            url: pubIP + 'chemicalType/getChemicalTypeByid',
-            type: 'post',
+            url: pubIP + 'chemicalType/findChemicalInfo',
+            type: 'get',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
@@ -554,75 +601,30 @@
             success: function (data) {
                 console.log(data);
 
-
-                if (idArr) {
-
-                    // $.each(idArr,function(i,t){
-
-                        // if (t != '') {
-                            
-                            $.each(data.data, function(i, e) {
-                                
-
-                                if (idArr == $(e)[0].type_id) {
-                                    $('.textarea_div').append('<div data-leiid="'+select_id+'" data-xiangid="'+$(e)[0].type_id+'">'+$(e)[0].type_name + '<span class="delete_info">x</span></div>');
-                                }
-
-                                if ($('.update_btn').attr('flag') == '1') {
-                                    $('.delete_info').addClass('delete_div');
-                                    $('.delete_div').css('cursor', 'pointer');
-                                }
-
-
-                                
-                            });
-                            
-                         
-                        // }
-                    // });
+                if (data.code == 1) {
+                    if (data.data.type_pid == null) {
+                        $('.textarea_div').append('<div data-leiid="'+data.data.type_id+'" data-xiangid=""><span class="span_text">'+data.data.type_name+ '</span><span class="delete_info">x</span></div>');
+                    } else {
+                        $('.textarea_div').append('<div data-leiid="'+data.data.type_pid+'" data-xiangid="'+data.data.type_id+'"><span class="span_text">'+data.data.type_name+ '</span><span class="delete_info">x</span></div>');
+                    }
+                    
                 }
 
-
                 // if (idArr) {
-                //     idArr = idArr.split(';');
 
-                //     $(this).attr('contenteditable', 'false');
-                //     $.each(idArr,function(i,t){
+                //     $.each(data.data, function(i, e) {
+                        
+                //         if (idArr == $(e)[0].type_id) {
+                //             $('.textarea_div').append('<div data-leiid="'+select_id+'" data-xiangid="'+$(e)[0].type_id+'"><span class="span_text">'+$(e)[0].type_name + '</span><span class="delete_info">x</span></div>');
+                //         }
 
-                //         if (t != '') {
-                //             console.log(t);
-                //             $.each(data.data, function(i, e) {
-                //                 console.log(t);
-
-                //                 if (t == $(e)[0].type_id) {
-                //                     $('.textarea_div').append('<div data-leiid="'+select_id+'" data-xiangid="'+$(e)[0].type_id+'">'+$(e)[0].type_name + '</div>');
-                //                 }
-
-                                
-                //             });
-                            
-                         
+                //         if ($('.update_btn').attr('flag') == '1') {
+                //             $('.delete_info').addClass('delete_div');
+                //             $('.delete_div').css('cursor', 'pointer');
                 //         }
                 //     });
+                            
                 // }
-
-                // var str1 = '';
-
-                // for (var i = 0; i < data.data.length; i++) {
-                //     str1 += '<li data-type_id = "'+data.data[i].type_id+'">'+data.data[i].type_name+'</li>';
-                // }
-
-                // $('.xiang_ul').html(str1);
-
-                // $('.select ul li').click(function(){
-                //     event.stopPropagation();
-                //     $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                //     $(this).parent().parent().find('span').text($(this).text());
-                //     $(this).parent().parent().find('span').attr('data-spanvalue', $(this).attr('data-type_id'));
-                //     $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                //     $(this).parent().css('display','none');
-
-                // });
 
             },
             error: function(err) {
@@ -782,8 +784,11 @@
         $(this).hide();
 
         if ($('.add_zizhi').attr('add_flag') == 1) {
-            $('.next_btn').show();
-            $('#zizhi_num0').attr('readonly', 'readonly');
+            if (!($('.c0').attr('data-qiyeid'))) {
+                $('.next_btn').show();
+                $('#zizhi_num0').attr('readonly', 'readonly');
+            }
+            
         }
         // if ($('.next_btn').css('display') == 'none') {
         //     if ($('.add_zizhi').attr('add_flag') == 1) {
@@ -910,9 +915,6 @@
                         $('.update_info_btn').hide();
 
                         $('.add_zizhi').removeClass('btn2');
-                        // $('.add_zizhi').css({
-
-                        // });
 
                         
 
@@ -934,8 +936,8 @@
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
 
-                        if (data.data.refuseReason) {
-                            window.parent.zizhi_weitong(data.data.refuseReason); 
+                        if (data.data.dRefuse) {
+                            window.parent.zizhi_weitong(data.data.dRefuse); 
                         } else {
                             window.parent.zizhi_weitong('无');
                         }
@@ -981,8 +983,8 @@
                         $(".next_btn").hide();
                         $('.update_info_btn').show();
 
-                        if (data.data.refuseReason) {
-                            window.parent.zizhi_weitong(data.data.refuseReason); 
+                        if (data.data.dRefuse) {
+                            window.parent.zizhi_weitong(data.data.dRefuse); 
                         } else {
                             window.parent.zizhi_weitong('无');
                         }
@@ -1030,22 +1032,65 @@
             return false;
         }
 
+
+
         var lei_text = $(this).parent().find('.lei span').text();
         var xiang_text = $(this).parent().find('.xiang span').text();
 
         var lei_id = $(this).parent().find('.lei span').attr('data-spanvalue');
         var xiang_id = $(this).parent().find('.xiang span').attr('data-spanvalue');
 
-        if (lei_text != '请选择' && xiang_text != '请选择') {
+
+        if (lei_text != '请选择') {
             $(this).parent().parent().next().find('.ts').css('display', 'none');
         } else {
-            $(this).parent().parent().next().find('.ts').css('display', 'inline-block');
+            $(this).parent().parent().next().find('.ts').text('营业范围不能为空').css('display', 'inline-block');
             return false;
         }
 
-        // $('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+lei_text+'--'+xiang_text +'</div>');
+        //  
+        var span_text = $(this).parents('.weihua').next().find('.textarea_div div');
 
-        $(this).parents('.center1').find('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'">'+xiang_text +'<span class="delete_info delete_div">x</span></div>');
+        console.log(span_text.find('.span_text').text().indexOf(xiang_text) != -1);
+
+        for (var i = 0; i < span_text.length; i++) {
+            if (span_text.find('.span_text').text().indexOf(lei_text) != -1 && xiang_text == '请选择') {
+                return false;
+            } else if (span_text.find('.span_text').text().indexOf(xiang_text) != -1 ) {
+                return false;
+            }
+        }
+
+
+        // if (lei_text != '请选择' && xiang_text != '请选择') {
+        //     $(this).parent().parent().next().find('.ts').css('display', 'none');
+        // } else {
+        //     $(this).parent().parent().next().find('.ts').css('display', 'inline-block');
+        //     return false;
+        // }
+
+
+        // 可以直接添加类选项
+        // if ($(this).attr('data-addFlag') == 0) {
+        //     $(this).parents('.center1').find('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId=""><span class="span_text">'+lei_text +'</span><span class="delete_info delete_div">x</span></div>');
+        // } else {
+        //     if (xiang_text != '请选择') {
+        //         $(this).parents('.center1').find('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'"><span class="span_text">'+xiang_text +'</span><span class="delete_info delete_div">x</span></div>');         
+        //     } else {
+        //         $(this).parent().parent().next().find('.ts').text('请选择项').css('display', 'inline-block');
+        //         return false;
+        //     }
+            
+        // }
+
+
+
+        if (xiang_text != '请选择') {
+            $(this).parents('.center1').find('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId="'+xiang_id+'"><span class="span_text">'+xiang_text +'</span><span class="delete_info delete_div">x</span></div>');
+        } else {
+            $(this).parents('.center1').find('.textarea_div').append('<div data-leiId= "'+lei_id+'" data-xiangId=""><span class="span_text">'+lei_text +'</span><span class="delete_info delete_div">x</span></div>');
+        }
+        
 
         $('.delete_div').css('cursor','pointer');
 
@@ -1053,7 +1098,8 @@
 
 
     // 添加资质
-    $(document).on('click', '.next_btn', function() {  
+    $('.next_btn').unbind();
+    $('.next_btn').click(function() {  
 
         //var zizhi_num = $('.zizhi_num').val();
 
@@ -1198,8 +1244,15 @@
             var str2 = ';';
             var str3 = ';';
             $('.textarea_div div').each(function(index, ele) {
-                str2 += $(this).attr('data-leiid')+';';
-                str3 += $(this).attr('data-xiangid')+';';
+                if ($(this).attr('data-xiangid') == '') {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-leiid')+';';
+                } else {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-xiangid')+';';
+                }
+                
+
             });
 
             json['operationLimit1'] = str3;
@@ -1217,8 +1270,13 @@
             var str2 = ';';
             var str3 = ';';
             $('.textarea_div div').each(function(index, ele) {
-                str2 += $(this).attr('data-leiid')+';';
-                str3 += $(this).attr('data-xiangid')+';';
+                if ($(this).attr('data-xiangid') == '') {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-leiid')+';';
+                } else {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-xiangid')+';';
+                }
             });
 
             json['operationLimit2'] = str3;
@@ -1228,7 +1286,6 @@
 
 
         console.log(json);
-
 
         $.ajax({
             url: pubIP + 'companyCertification/addQualificationsBaseInfo',
@@ -1457,10 +1514,22 @@
 
                     // $('#test1').attr('disabled', true);
                     // $('#test2').attr('disabled', true);
-                    if (data.data[i].classType) {
-                        $('.textarea_div').attr('data-leiid', data.data[i].classType);
-                        $('.textarea_div').attr('data-xiangid', data.data[i].operationLimit);
+
+
+
+                    // 后修改
+                    // if (data.data[i].classType) {
+                    //     $('.textarea_div').attr('data-leiid', data.data[i].classType);
+                    //     $('.textarea_div').attr('data-xiangid', data.data[i].operationLimit);
+                    // }
+
+                    if (data.data[i].operationLimit) {
+                        //$('.textarea_div').attr('data-leiid', data.data[i].classType);
+                        $('.textarea_div').attr('data-id', data.data[i].operationLimit);
                     }
+
+
+
                     // $('.textarea_div').attr('data-leiid', data.data[0].classType);
                     // $('.textarea_div').attr('data-xiangid', data.data[0].operationLimit);
 
@@ -1474,20 +1543,38 @@
                     $('.add').attr('disabled', true);
                 }
 
+
                 var that = this;
-                var idArr =  $('.textarea_div').attr('data-xiangid');
-                var leiId = $('.textarea_div').attr('data-leiid');
-                //console.log(leiId);
+                
+                var leiId = $('.textarea_div').attr('data-id');
+                
                 if (leiId) {
                     leiId = leiId.split(';');
-                    idArr = idArr.split(';');
                     $('.textarea_div').attr('contenteditable', 'false');
                     $.each(leiId,function(i,t){
                         if (t != '') {
-                            selectXiang1(t, idArr[i]);  
+                            selectXiang1(t);  
                         }
                     });
                 }
+
+
+
+                // var that = this;
+                // var idArr =  $('.textarea_div').attr('data-xiangid');
+                // var leiId = $('.textarea_div').attr('data-leiid');
+                
+                // if (leiId) {
+                //     leiId = leiId.split(';');
+                //     idArr = idArr.split(';');
+                //     console.log(idArr);
+                //     $('.textarea_div').attr('contenteditable', 'false');
+                //     $.each(leiId,function(i,t){
+                //         if (t != '') {
+                //             selectXiang1(t, idArr[i]);  
+                //         }
+                //     });
+                // }
 
                 
 
@@ -1658,8 +1745,15 @@
             var str2 = ';';
             var str3 = ';';
             $('input[name="ZZtype"]').parents('.center1').find('.textarea_div div').each(function(index, ele) {
-                str2 += $(this).attr('data-leiid')+';';
-                str3 += $(this).attr('data-xiangid')+';';
+                if ($(this).attr('data-xiangid') == '') {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-leiid')+';';
+                } else {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-xiangid')+';';
+                }
+
+
             });
 
             json['operationLimit1'] = str3;
@@ -1676,8 +1770,13 @@
             var str2 = ';';
             var str3 = ';';
             $('input[name="ZZtype1"]').parents('.center1').find('.textarea_div div').each(function(index, ele) {
-                str2 += $(this).attr('data-leiid')+';';
-                str3 += $(this).attr('data-xiangid')+';';
+                if ($(this).attr('data-xiangid') == '') {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-leiid')+';';
+                } else {
+                    str2 += $(this).attr('data-leiid')+';';
+                    str3 += $(this).attr('data-xiangid')+';';
+                }
             });
 
             json['operationLimit2'] = str3;
@@ -1687,7 +1786,7 @@
 
 
         console.log(json);
-        
+
 
         $.ajax({
             url: pubIP + 'companyCertification/addQualificationsBaseInfo',
