@@ -50,18 +50,19 @@ body{
     padding-left: 10px;
     border: 1px solid #e7e7e7;
 }
+.select {margin-top: 11px;}
 .inputBox>.orderNo{
     width: 180px;
 }
 .inputBox>.goodsType{
     line-height: 38px;
-    display: inline-block;
+    /* display: inline-block; */
     width: 160px;
     position: relative;
     color: #666666;
     background: #fff;
     cursor: pointer;
-    float: none;
+    float: left;
 }
 .inputBox>.goodsType>img{
     float: right;

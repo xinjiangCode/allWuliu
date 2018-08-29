@@ -297,7 +297,7 @@
             <li>
                 <div class="left1 Lf"><i class="red">*</i>企业认证协议(盖章pdf文件):</div>
                 <div class="right1 Lf weiRenZheng" style="position: relative;">
-                    <input type="text" placeholder="盖章资料上传" id="wenjian_name"><span onclick="down_moban()" style="margin-left: 55px;color: #80acf8;">《下载企业认证协议模板》</span>
+                    <input type="text" placeholder="盖章资料上传" id="wenjian_name"><span onclick="down_moban()" style="margin-left: 55px;color: #80acf8;cursor:pointer;">《下载企业认证协议模板》</span>
                     <input type="file" id="wenjian" onchange="upload_file(this);" accept="application/pdf" readonly>
                 </div>
                 <div class="right1 Lf yiRenZheng"><span  id="file_look" style="line-height: 38px; color: rgb(0, 122, 255);">在线查看</span></div>
@@ -1337,8 +1337,16 @@
                         console.log("++++++++++++++++++");
                         console.log(data);
                         //下载上传过的企业协议
+                        if (data.data.files.length != 0) {
+                            var thisUrls = data.data.files[0].fileUrl; 
+                            $('#file_look').attr('href', data.data.files[0].fileUrl);
+                            $('#file_look').attr('download', data.data.files[0].fileName);   
 
-                        var thisUrls = data.data.files[0].fileUrl;
+                            $('#wenjian_name').val(data.data.files[0].fileName);
+                            $('#wenjian_name').attr('data-wj', data.data.files[0].dbid);
+                            $('#wenjian_name').attr('data-url', data.data.files[0].fileUrl);
+                        }
+                        // var thisUrls = data.data.files[0].fileUrl;
                         $("#file_look").on("click",function () {
                             //window.downloadFile("http://zhongshunxinhe.oss-cn-beijing.aliyuncs.com/jy/adv/imgs/201808213/48a3f6672c51d6fc1dee7e0cdee082b3.pdf");
                             // $.ajax({
@@ -1353,7 +1361,12 @@
                             //         window.downloadFile(data);
                             //     }
                             // });
-                            openWin("../generic/web/viewer.html?thisUrl="+thisUrls);
+                            // openWin("../generic/web/viewer.html?thisUrl="+thisUrls);
+                            if (data.data.files.length != 0) {
+                                openWin("../generic/web/viewer.html?thisUrl="+thisUrls);
+                            } else {
+                                window.parent.cf_alert01(2, '无协议');
+                            }
                         });
                         $('#qiye_name').val(data.data.company.companyName);
                         $('#zhuce_money').val(data.data.company.registeredCapital);
@@ -1367,9 +1380,9 @@
 
                         $('#test3').val(data.data.company.operatingPeriod);
 
-                        $('#wenjian_name').val(data.data.files[0].fileName);
-                        $('#wenjian_name').attr('data-wj', data.data.files[0].dbid);
-                        $('#wenjian_name').attr('data-url', data.data.files[0].fileUrl);
+                        // $('#wenjian_name').val(data.data.files[0].fileName);
+                        // $('#wenjian_name').attr('data-wj', data.data.files[0].dbid);
+                        // $('#wenjian_name').attr('data-url', data.data.files[0].fileUrl);
                         
                         $('#company_address').val(data.data.company.companyAddress2);
 
@@ -1391,8 +1404,8 @@
 
                         /*$('#file_look').attr('data-wj', data.data.files[0].fileUrl.split("/")[img_weizhi]);*/
 
-                        $('#file_look').attr('href', data.data.files[0].fileUrl);
-                        $('#file_look').attr('download', data.data.files[0].fileName);
+                        // $('#file_look').attr('href', data.data.files[0].fileUrl);
+                        // $('#file_look').attr('download', data.data.files[0].fileName);
 
                         $('#yingye_zhizhao_pic').parent().css({
                             'background': 'url('+data.data.picInfos[0].picUrl+') no-repeat',

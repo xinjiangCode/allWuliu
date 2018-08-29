@@ -324,6 +324,7 @@ body{
     margin-top: 8px;
     color: white;
     border-radius: 3px;
+    cursor: pointer;
 }
 .ykcz>div>input{
     outline: none;

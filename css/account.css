@@ -118,8 +118,8 @@ header>.headerBot{display: none;}
 .pop{position: fixed;top: 0;left: 0;right:0;bottom: 0;width: 100%;height: 100%;z-index: 999;background-color: rgba(102,102,102,0.5);}
 .pop>.cont{position: fixed;top: 50%;left: 50%;width: 628px;height: 363px;background-color: #ffffff;transform: translate(-50%,-50%);}
 .pop>.cont>.cancel{text-align: right;color: #9E9E9E;margin-bottom: 37px;margin-top: 18px;margin-right: 18px;}
-.pop>.cont>.cance2{margin: 0;padding: 0 20px;height: 50px;line-height: 50px;background: url("../img/cf_popbackgr.png") no-repeat ; margin-bottom: 27px;background-size: contain;}
-.pop>.cont>.cance2>.popTitle{color:#5992f3;font-size: 16px;}
+.pop>.cont>.cance2{margin: 0;height: 50px;line-height: 50px;background: url("../img/cf_popbackgr.png") no-repeat ; margin-bottom: 27px;background-size: contain;}
+.pop>.cont>.cance2>.popTitle{color:#5992f3;font-size: 16px;padding-left: 20px;}
 .pop>.cont>div{overflow: hidden;padding: 0;margin-top: 10px;}
 .pop>.cont>div>.leftTitle{margin-left:53px;width: 120px;text-align: right;margin-right: 18px;height:36px;line-height: 36px;}
 .pop>.cont>div>.popInput{width: 337px;height:38px;}
@@ -296,7 +296,7 @@ header>.headerBot{display: none;}
     float: right;
 }
 
-.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #e7e7e7; }
+.modelBox34 .cfClose,.modelBox35 .cfClose,.modelBox36 .cfClose,.modelBox37 .cfClose,.modelBox38 .cfClose,.modelBox39 .cfClose,.modelBox40 .cfClose,.modelBox41 .cfClose,.modelBox42 .cfClose,.modelBox43 .cfClose,.modelBox44 .cfClose,.modelBox48 .cfClose{color: #666666;background-color: white;width: 130px;height: 35px;line-height: 35px;font-size:16px;margin-right: 20px;border: 1px solid #d3d3d3; }
 .modelBox34 .cfClose:hover,.modelBox35 .cfClose:hover,.modelBox36 .cfClose:hover,.modelBox37 .cfClose:hover,.modelBox38 .cfClose:hover,.modelBox39 .cfClose:hover,.modelBox40 .cfClose:hover,.modelBox41 .cfClose:hover,.modelBox42 .cfClose:hover,.modelBox43 .cfClose:hover,.modelBox44 .cfClose:hover,.modelBox45 .cfClose:hover,.modelBox46 .cfClose:hover,.modelBox47 .cfClose:hover{color: white;background-color: #5388ff;border-color: #5388ff;}
 /*蓝色字体返回*/
 .modelBox42 .cfClose,.modelBox43 .cfClose {
@@ -395,7 +395,7 @@ header>.headerBot{display: none;}
     margin: 0 auto;
     margin-top: 30px;
 }
-
+.close {cursor: pointer;}
 
 
 
