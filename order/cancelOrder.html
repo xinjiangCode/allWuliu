@@ -331,11 +331,11 @@
 
         order_list(1 , '', '', '', 10);
 
-        //待分配订单列表
+        //取消订单列表
         function order_list(num, orderNo, goodsType, publishTime, size) {
             $('#orderListInfo').html('');
             $.ajax({
-                url: ip + 'order/getSupplierCancelOrderList',
+                url: pubIP + 'order/getSupplierCancelOrderList',
                 type: 'post',
                 headers: {
                     Accept: "application/json; charset=utf-8",

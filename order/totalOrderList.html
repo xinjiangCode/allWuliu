@@ -240,6 +240,127 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
+
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");
+            $.ajax({
+                url: pubIP + 'order/getMoreOrderList', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    orderNo:$(".orderNo").val(),
+                    status:1,//公司类型 0 供应商 1 承运商
+                    time:$("#test1").val(),
+                    endTime:$("#test2").val(),
+                    sort:$(".sort").attr("data-selectedindex"),
+                    size:pageSize,
+                    page:currentPage,
+                    goodsName:$("#cf_goodsName").val(),
+                    parentId:0
+                },
+                success: function (res) {
+                    if(res.code===1){
+                        //首次请求时 改变分页数据
+                        if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                        $(".pagination").parent().css("display","block");
+                        if(currentPage==1){
+                            //修改底部分页
+                            var pageNum=Math.ceil(res.count/pageSize);
+                            $(".allPageN").attr("pageTotal",pageNum);
+                            $(".pageJump i").text("共"+pageNum+"页");
+                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                            Page({
+                                num: pageNum,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    // console.log(n);
+                                    getData(n);//加载n页数据
+                                }
+                            });
+                        }
+                        //修改底部页数
+                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                        cf_dataRender(res.data)
+                    }else{
+
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-id="'+item.id+'">';
+                str+='<td>'+item.orderNo+'</td>';
+                str+='<td>'+item.carrierCompanyName+'</td>';
+                str+='<td>'+item.orderType+'</td>';
+                str+='<td>'+' '+'</td>';
+                if(item.tlosettlementAmount==null){
+                    str+='<td>'+0+'</td>';
+                }else{
+                    str+='<td>'+item.tlosettlementAmount+'</td>';
+                }
+                str+='<td>'+''+'</td>';
+
+
+
+                str+=' <td><span class="addOrder ll">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>';
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+            //详情
+            $(".seeDetail").click(function () {
+//                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
+//                window.location.href="./vehicleDetail.html";
+            })
+//		编辑
+            $(".editList").click(function () {
+                resetModelBox12()//先清空框
+                window.parent.$(".modelBox12").show();
+                window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
+                returnShow($(this).parents("tr").attr("data-id"));
+
+                window.parent.$("#addCarNo").attr("readonly","readonly");
+
+            })
+            //删除
+            $(".delect").click(function () {
+                upadtaState(1,this);
+            })
+            //启用和禁用
+            $(".chooseswitch input[type='checkbox']").change(function() {
+                console.log($(this).prop("checked"));
+                if($(this).prop("checked")){
+                    upadtaState(2,this);
+                }else {
+                    upadtaState(3,this);
+                }
+
+            });
+        }
+        //选择排序方式
+        $(".select ul li").click(function () {
+            getData(1);
+        })
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage1 = $('.pageCont li.active>a').text();
+            getData(currentPage1);
+        })
+
     </script>
 </body>
 </html>

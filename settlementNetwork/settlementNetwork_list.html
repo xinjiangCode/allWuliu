@@ -119,6 +119,123 @@
             console.log(n);
         }
     });
+    //进入页面加载数据
+    getData(1);
+    //获取数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");
+        $.ajax({
+            url: pubIP + 'carrierDot/dotList', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                iDisplayLength:pageSize,
+                iDisplayStart:currentPage,
+                token:token
+            },
+            success: function (res) {
+
+                    //首次请求时 改变分页数据
+                    if(res.aData.length==0 || res.aData==null ){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.aData)
+
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+            str+='<tr data-id="'+item.id+'">';
+            str+='<td>'+item.dot_name+'</td>';
+            str+='<td>'+item.dot_addr+'</td>';
+            str+='<td>'+item.dot_contacts+'</td>';
+            str+='<td>'+item.dot_ConNumber+'</td>';
+            if(item.dot_balance==null){
+                str+='<td>0</td>'
+			}else{
+                str+='<td>'+item.dot_balance+'</td>'
+			}
+
+			if(item.attr_1==1 && item.dot_status==0){
+                str+='<td>开启</td>'
+			}else if(item.attr_1==1 && item.dot_status==1){
+                str+='<td>关闭</td>'
+            }else if(item.attr_1==0){
+                str+='<td>待审批</td>'
+            }else if(item.attr_1==2){
+                str+='<td>审批拒绝</td>'
+            }
+            str+='<td><a class="btn seeDetail">查看</a><a class="btn">编辑</a><a class="btn">删除</a><a class="btn">关闭</a></td>';
+            str+='</tr>';
+        })
+        $(".listBox tbody").html(str);
+        //详情
+        $(".seeDetail").click(function () {
+//                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
+//                window.location.href="./vehicleDetail.html";
+        })
+//		编辑
+        $(".editList").click(function () {
+            resetModelBox12()//先清空框
+            window.parent.$(".modelBox12").show();
+            window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
+            returnShow($(this).parents("tr").attr("data-id"));
+
+            window.parent.$("#addCarNo").attr("readonly","readonly");
+
+        })
+        //删除
+        $(".delect").click(function () {
+            upadtaState(1,this);
+        })
+        //启用和禁用
+        $(".chooseswitch input[type='checkbox']").change(function() {
+            console.log($(this).prop("checked"));
+            if($(this).prop("checked")){
+                upadtaState(2,this);
+            }else {
+                upadtaState(3,this);
+            }
+
+        });
+    }
+    //选择排序方式
+    $(".select ul li").click(function () {
+        getData(1);
+    })
+    // 点击go刷新数据
+    $('.pageCont').on('click', '.button',function(){
+        var currentPage1 = $('.pageCont li.active>a').text();
+        getData(currentPage1);
+    })
 </script>
 </body>
 </html>
