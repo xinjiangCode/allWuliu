@@ -563,8 +563,9 @@
     //确认提现
     window.parent.$("#sureTiXian").unbind();
     window.parent.$("#sureTiXian").click(function () {
+        debugger
 //            未提供提现接口
-        return;
+//        return;
         if($(this).attr("data-isok")==0){
             return;
         }
@@ -574,18 +575,18 @@
                 Accept: "application/json; charset=utf-8",
                 token: token
             },
-            url: pubIP+"payment/cashOut",//v1.0
+            url: pubIP+"finance/putForward",//v1.0
             cache:false,
             data:{
                 payPassword:window.parent.$(".modelBox31_3 .payPassWord").val(),
                 amount:window.parent.$(".modelBox31_3 .tiXianMoney").val()
             },
             success: function(res){
-                if(res.code == 1){
-                    window.parent.$(".modelBox31_3").hide();//支付成功
-                    alert(res.msg);
+                if(res.code == 0){
+//                        window.parent.$(".modelBox31_3").hide();//支付成功
+                    cf_alert(1,res.msg)
                 }else{
-                    alert(res.msg);
+                    cf_alert01(0,res.msg)
                 }
             },
             error: function(err){

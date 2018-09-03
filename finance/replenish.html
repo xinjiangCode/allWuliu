@@ -11,22 +11,19 @@
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" href="../css/replenish.css">
     <style>
-
+.btn{margin: 0 5px;}
     </style>
     
     
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">油卡补充申请
-            <!--<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">-->
-            <!--刷新</div-->
-        ></div>
-        <div class="inputBox">
-            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
-            <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 345px;">
-        </div>
+        <div class="topTitle">网点卡券申请</div>
+        <!--<div class="inputBox">-->
+            <!--<label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">-->
+            <!--<label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">-->
+            <!--<input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 345px;">-->
+        <!--</div>-->
         <!--<div class="opciationBox clearFloat">-->
             <!--<div class="Lf">数据列表</div>-->
         <!--</div>-->
@@ -34,18 +31,19 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 56px;text-align: center;"></th>
+                        <!--<th style="width: 56px;text-align: center;"></th>-->
+                        <th>网点名称</th>
                         <th>申请金额</th>
                         <th>申请人</th>
                         <th>联系信息</th>
-                        <th>申请备注</th>
+                        <th>卡券类型</th>
                         <th>申请时间</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><div class="cf_select"></div></td>
+                        <!--<td><div class="cf_select"></div></td>-->
                         <td>¥200.00</td>
                         <td>王小二</td>
                         <td>18500000000</td>
@@ -65,12 +63,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="bottomOperiat">
-            <span class="squre"></span>
-            <span class="selsectAll">全选</span>
-            <span class="closeBtn">批量通过</span>
-            <span class="delBtn">批量驳回</span>
-        </div>
+        <!--<div class="bottomOperiat">-->
+            <!--<span class="squre"></span>-->
+            <!--<span class="selsectAll">全选</span>-->
+            <!--<span class="closeBtn">批量通过</span>-->
+            <!--<span class="delBtn">批量驳回</span>-->
+        <!--</div>-->
         <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
             <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
             <div class="pageJump">
@@ -134,6 +132,132 @@
         $('.bottomOperiat .selsectAll').click(function(){
             $('.bottomOperiat .squre').toggleClass('active');
         });
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");
+            $.ajax({
+                url: pubIP + 'carrierDot/dotRechargeList', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayLength:pageSize,
+                    iDisplayStart:currentPage,
+                    token:token
+                },
+                success: function (res) {
+
+                    //首次请求时 改变分页数据
+                    if(res.aData.length==0 || res.aData==null ){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.aData)
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-id="'+item.applyId+'">';
+                str+='<td>'+item.dotName+'</td>';
+                if(item.applyMoney==null){
+                    str+='<td>0</td>'
+                }else{
+                    str+='<td>'+item.applyMoney+'</td>'
+                }
+                str+='<td>'+item.dotContacts+'</td>';
+                str+='<td>'+item.dotConNumber+'</td>';
+                str+='<td>'+item.couponName+'</td>';
+
+                if(item.applyTime==null){
+                    str+='<td></td>'
+                }else{
+                    str+='<td>'+timestampToTime1(item.applyTime)+'</td>'
+                }
+
+
+                str+='<td><span class="btn ll aggree">通过</span><span class="btn reject" >驳回</span></td>';
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+            //拒绝
+            $(".reject").unbind()
+            $(".reject").click(function () {
+                updataStatus($(this).parents("tr").attr("data-id"),2)
+            })
+            //		通过
+            $(".aggree").unbind()
+            $(".aggree").click(function () {
+                updataStatus($(this).parents("tr").attr("data-id"),1)
+            })
+
+        }
+        //选择排序方式
+        $(".select ul li").click(function () {
+            getData(1);
+        })
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage1 = $('.pageCont li.active>a').text();
+            getData(currentPage1);
+        })
+        function updataStatus(id,sta) {
+            $.ajax({
+                url: pubIP + 'carrierDot/dotRechargeExamine', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    applyId:id,
+                    status:sta,
+                    token:token
+                },
+                success: function (res) {
+                    if(res.code==0){
+                        cf_alert(1,res.msg)
+                    }else{
+                        cf_alert(0,res.msg)
+                    }
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
     </script>
 </body>
 </html>

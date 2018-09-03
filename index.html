@@ -500,7 +500,7 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
                 token: localStorage.getItem("token")
             },
             success: function(json){
-                //console.log(json);
+                //console.log(json);  1  2  4  8  16  32
                 if(json.code == '1'){
                     $("#loginPub").hide();
                     $(".exit").show();
