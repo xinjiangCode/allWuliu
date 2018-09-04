@@ -47,7 +47,7 @@
 			</div>
     		<!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
     		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
-    		<div style="width: 102px;">新增网点</div>
+    		<div style="width: 102px;" class="addWangDian">新增网点</div>
     	</div>
     	<div class="listBox">
 			<table class="contentslist">
@@ -119,6 +119,71 @@
             console.log(n);
         }
     });
+//    添加网点
+    $(".addWangDian").unbind();
+    $(".addWangDian").click(function () {
+		window.parent.getProvence(2)
+        getKaQuanList();
+		window.parent.$(".modelBox24").show()
+        window.parent.$("#province2").attr('data-isselect',0);
+    })
+    //					卡券点击添加
+    window.parent.$(".modelBox24 .addKaQuan").unbind();
+    window.parent.$(".modelBox24 .addKaQuan").click(function () {
+        debugger
+        $(this).parents(".coupList").append($(this).parents(".item"))
+
+    })
+//	获取卡券列表
+    function getKaQuanList() {
+        $.ajax({
+            url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                iDisplayStart: 1,
+                iDisplayLength: 10000,
+            },
+            success: function (res) {
+                console.log(res)
+                if (res.aData.length != 0) {
+                    var str='';
+                    $.each(res.aData,function (idx,item) {
+//                        if(item.attr_2==1){
+//                            $("#money").attr("data-allMoney",item.money);
+//                            $("#money").attr("data-dot-id",item.dot_id);
+//                            $("#money").attr("data-zijin-id",item.id);
+//                        }else{
+                            str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+//                        }
+                    })
+                    window.parent.$(".modelBox24 .cardList ul").html(str);
+                    window.parent.$(".modelBox24 .cardList li").unbind();
+                    window.parent.$(".modelBox24 .cardList li").click(function () {
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                        $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                    })
+
+
+                }
+
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
     //进入页面加载数据
     getData(1);
     //获取数据
@@ -236,6 +301,8 @@
         var currentPage1 = $('.pageCont li.active>a').text();
         getData(currentPage1);
     })
+
+
 </script>
 </body>
 </html>

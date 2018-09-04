@@ -544,6 +544,7 @@
             line-height: 39px;
             margin-right: 20px;
             border: 1px solid #dbdbdc;
+            cursor: pointer;
         }
 
         #dynamic>li{
@@ -649,8 +650,31 @@
 
         .modelBox31_3 .item{margin-bottom: 20px;}
         .modelBox31_3 .itemLeftTitle{width: 190px;height: 37px;line-height: 37px;text-align: right;font-size: 16px;color: #333333;}
-         
-        
+
+        .wangDianIpt{
+            height: 33px;
+            width: 232px;
+        }
+        .addKaQuan{
+            margin-top: 23px;
+            margin-left: 10px;
+            font-size: 22px;
+            border: 1px solid #666666;
+            border-radius: 50%;
+            width: 21px;
+            height: 21px;
+            text-align: center;
+            line-height: 19px;
+        }
+        .modelBox24 .selectPub{width: 110px;}
+        .modelBox24 .modelBox34LeftTitle{
+            width: 90px;
+            text-align: right;
+        }
+        .coupList .item{
+            margin-left: 90px;
+        }
+        .wangDianLine{margin-top: 7px;}
     </style>
 
 
@@ -2700,75 +2724,98 @@
 
 <!-- 新增网点-->
 <div class="modelBox24" style="font-size: 14px; display: block">
-    <div class="modelCont" style="width: 846px;height: 475px;">
+    <div class="modelCont" style="width: 754px;height: 570px;">
         <div class="modeltitle" style="width: 100%;">
             <span>新增网点</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 744px; font-size: 14px; height: 425px; border: 1px solid #e7e7e7;padding: 0px 50px 0 50px; ">
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">网点名称：&nbsp;</span>
-                    <input type="text">
-            </div>
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">网点地址：&nbsp;</span>
-                    <div id="province" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
-                        <span>请选择</span>
-                        <img src="img/prl-select.jpg" alt="">
-                        <ul>
-                        </ul>
+        <div class="modelcontent clearFloat" style="width: 652px; font-size: 14px; height: 520px; border: 1px solid #e7e7e7;padding: 0px 50px 0 50px; ">
+            <div style="height: 430px;overflow-y: auto;">
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine">
+                        <span class="modelBox34LeftTitle fl">网点名称：&nbsp;</span>
+                        <input type="text" class="wangDianIpt">
                     </div>
-                    <div id="city" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
-                        <span>请选择</span>
-                        <img src="img/prl-select.jpg" alt="">
-                        <ul>
+                </div>
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">网点地址：&nbsp;</span>
+                        <div id="province2" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;margin-top: 0">
+                            <span>请选择</span>
+                            <img src="img/prl-select.jpg" alt="">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="city2" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;margin-top: 0">
+                            <span>请选择</span>
+                            <img src="img/prl-select.jpg" alt="">
+                            <ul>
 
-                        </ul>
+                            </ul>
+                        </div>
+                        <div id="area2" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;margin-top: 0">
+                            <span>请选择</span>
+                            <img src="img/prl-select.jpg" alt="">
+                            <ul>
+
+                            </ul>
+                        </div>
+                        <div class="Lf"><input id="sendAddress2" type="text" style="border: 1px solid #e7e7e7;width: 203px;height: 33px;line-height: 33px;float: left;"></div>
                     </div>
-                    <div id="area" data-isselect="0" class="selectPub Lf" data-selectedindex="-1" style="float: left;">
-                        <span>请选择</span>
-                        <img src="img/prl-select.jpg" alt="">
-                        <ul>
-
-                        </ul>
+                </div>
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">联系人：&nbsp;</span>
+                        <input type="text" class="wangDianIpt">
                     </div>
-                    <div class="Lf"><input id="sendAddress1" type="text" style="border: 1px solid #e7e7e7;width: 230px;height: 33px;line-height: 33px;float: left;"></div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">联系人：&nbsp;</span>
-                    <input type="text">
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">联系电话：&nbsp;</span>
+                        <input type="text" class="wangDianIpt">
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">联系电话：&nbsp;</span>
-                    <input type="text">
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">初始资金：&nbsp;</span>
+                        <input type="text" class="wangDianIpt">
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">初始资金：&nbsp;</span>
-                    <input type="text">
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">绑定银行卡：&nbsp;</span>
+                        <input type="text" class="wangDianIpt">
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">绑定银行卡：&nbsp;</span>
-                    <input type="text">
-                </div>
-            </div>
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine">
+                        <span class="modelBox34LeftTitle fl">优惠券：&nbsp;</span>
+                        <!--<input type="text" class="wangDianIpt">-->
+                    </div>
+                    <div class="coupList clearfix">
+                        <div class="item clearfix">
+                            <div  data-isselect="0" class="selectPub Lf cardList" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">
+                                <span>请选择</span>
+                                <img src="img/prl-select.jpg" alt="">
+                                <ul class="">
+                                </ul>
+                            </div>
+                            <input type="text" placeholder="数量" class="wangDianIpt Lf" style="margin-top: 7px;">
+                            <div class="Lf addKaQuan" style="margin-top: 14px;">+</div>
+                        </div>
+                        <div class="item clearfix cardList">
+                            <div  data-isselect="0" class="selectPub Lf " data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">
+                                <span>请选择</span>
+                                <img src="img/prl-select.jpg" alt="">
+                                <ul class="">
+                                </ul>
+                            </div>
+                            <input type="text" placeholder="数量" class="wangDianIpt Lf" style="margin-top: 7px;">
+                        </div>
 
-            <div class="clearfix">
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fl clearfix"><span class="modelBox34LeftTitle fl">预计时长：&nbsp;</span>
-                    <input type="text" id="expectedDuration" style="height: 36px;width: 248px;border: 1px solid #e7e7e7;">
-                </div>
-                <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">路线名：&nbsp;</span>
-                    <input type="text" id="routeName" style="height: 36px;width: 253px;border: 1px solid #e7e7e7;">
-                    <!--占位-->
-                    <span style="color: transparent;">千米</span>
+                    </div>
+
                 </div>
             </div>
-            <div id="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
-            <div class="clearFloat" style="text-align: center;margin-top: 30px;">
-                <span class=" cf_btn" id="addRoute" style="display: inline-block;">确认</span>
+            <div class="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 7px;">
+                <span class="cf_btn cancel" style="display: inline-block;margin-right: 20px;">取消</span>
+                <span class="cf_btn sure" style="display: inline-block;">确认</span>
             </div>
         </div>
     </div>
@@ -5316,38 +5363,38 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                     }
                     selectCity(type,$("#province").attr('data-proviceid'));
 
-                }else if(type==1){
-                    $('#province1 ul').html(str);
-                    $('#province1 ul li').click(function(){
+                }else{
+                    $('#province'+type+' ul').html(str);
+                    $('#province'+type+' ul li').click(function(){
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().attr('data-proviceid', $(this).attr('data-proviceid'));
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
                         $(this).parent().css('display','none');
-                        var provinceID =$("#province1").attr('data-proviceid');
-                        $('#city1 span').text('请选择市');
-                        $('#area1 span').html('请选择区');
-                        $('#area1 ul').html("");
+                        var provinceID =$("#province"+type).attr('data-proviceid');
+                        $('#city'+type+' span').text('请选择市');
+                        $('#area'+type+' span').html('请选择区');
+                        $('#area'+type+' ul').html("");
                         selectCity(type,provinceID);
                     });
 
-                    if($("#province1").attr('data-isselect')==0){
+                    if($("#province"+type).attr('data-isselect')==0){
                         //选中第一个
-                        $("#province1").attr('data-selectedindex',0);
-                        $("#province1").attr('data-proviceid', data.data[0].provinceid);
-                        $("#province1").find('span').text(data.data[0].province);
+                        $("#province"+type).attr('data-selectedindex',0);
+                        $("#province"+type).attr('data-proviceid', data.data[0].provinceid);
+                        $("#province"+type).find('span').text(data.data[0].province);
                     }else{
-                        $("#province1").attr('data-proviceid', $("#province1").attr('data-isselect'));
-                        $("#province1 li").each(function (idx,item) {
-                            if($(item).attr("data-proviceid")==$("#province1").attr('data-isselect')){
-                                $("#province1").attr('data-selectedindex',$(item).attr("data-index"))
-                                $("#province1 span").text($(item).attr("data-province"));
+                        $("#province"+type).attr('data-proviceid', $("#province"+type).attr('data-isselect'));
+                        $("#province"+type+" li").each(function (idx,item) {
+                            if($(item).attr("data-proviceid")==$("#province"+type).attr('data-isselect')){
+                                $("#province"+type).attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#province"+type+" span").text($(item).attr("data-province"));
                             }
                         })
-                        $("#province1").attr('data-isselect',0);
+                        $("#province"+type).attr('data-isselect',0);
                     }
-                    selectCity(type,$("#province1").attr('data-proviceid'));
+                    selectCity(type,$("#province"+type).attr('data-proviceid'));
                     //选中第一个
 //                    $("#province1").attr('data-selectedindex',0);
 //                    $("#province1").attr('data-proviceid', data.data[0].provinceid);
@@ -5414,39 +5461,39 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                         $("#city").attr('data-isselect',0);
                     }
                     selectArea(type,$("#city").attr('data-cityid'));
-                }else if(type==1) {
-                    $('#city1 ul').html(str);
-                    $('#city1 ul li').click(function () {
+                }else{
+                    $('#city'+type+' ul').html(str);
+                    $('#city'+type+' ul li').click(function () {
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().attr('data-cityid', $(this).attr('data-cityid'));
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
                         $(this).parent().css('display', 'none');
-                        var cityID = $("#city1").attr('data-cityid');
-                        $('#area1 span').text('请选择区');
+                        var cityID = $("#city"+type).attr('data-cityid');
+                        $('#area'+type+' span').text('请选择区');
                         selectArea(type,cityID);
                     })
 
-                    if($("#city1").attr('data-isselect')==0){
+                    if($("#city"+type).attr('data-isselect')==0){
                         //选中第一个
-                        $("#city1").attr('data-selectedindex',0);
-                        $("#city1").attr('data-cityid', data.data[0].cityid);
-                        $("#city1").find('span').text(data.data[0].city);
+                        $("#city"+type).attr('data-selectedindex',0);
+                        $("#city"+type).attr('data-cityid', data.data[0].cityid);
+                        $("#city"+type).find('span').text(data.data[0].city);
 
                     }else{
-                        $("#city1").attr('data-cityid', $("#city1").attr('data-isselect'));
-                        $("#city1").attr('data-cityid', $("#city1").attr('data-isselect'))
-                        $("#city1 li").each(function (idx,item) {
-                            if($(item).attr("data-cityid")==$("#city1").attr('data-isselect')){
-                                $("#city1").attr('data-selectedindex',$(item).attr("data-index"))
-                                $("#city1 span").text($(item).attr("data-city"));
+                        $("#city"+type).attr('data-cityid', $("#city"+type).attr('data-isselect'));
+                        $("#city"+type).attr('data-cityid', $("#city"+type).attr('data-isselect'))
+                        $("#city"+type+" li").each(function (idx,item) {
+                            if($(item).attr("data-cityid")==$("#city"+type).attr('data-isselect')){
+                                $("#city"+type).attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#city"+type+" span").text($(item).attr("data-city"));
                             }
                         })
-                        $("#city1").attr('data-isselect',0);
+                        $("#city"+type).attr('data-isselect',0);
                     }
 
-                    selectArea(type,$("#city1").attr('data-cityid'));
+                    selectArea(type,$("#city"+type).attr('data-cityid'));
                     //选中第一个
 //                    $("#city1").attr('data-selectedindex',0);
 //                    $("#city1").attr('data-cityid', data.data[0].cityid);
@@ -5528,34 +5575,34 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
 //                    $("#area").attr('data-selectedindex',0);
 //                    $("#area").attr('data-areaId', data.data[0].areaid);
 //                    $("#area").find('span').text(data.data[0].area);
-                }else if(type==1){
-                    $('#area1 ul').html(str);
-                    $('#area1 ul li').click(function(){
+                }else{
+                    $('#area'+type+' ul').html(str);
+                    $('#area'+type+' ul li').click(function(){
                         event.stopPropagation();
                         $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
                         $(this).parent().parent().attr('data-areaId', $(this).attr('data-areaId'));
                         $(this).parent().parent().find('span').text($(this).text());
                         $(this).parent().parent().children('img').attr('src', '../../img/prl-select.jpg')
                         $(this).parent().css('display','none');
-                        var areaID =$("#area1").attr('data-cityid');
+                        var areaID =$("#area"+type).attr('data-cityid');
                     });
 
-                    if($("#area1").attr('data-isselect')==0){
+                    if($("#area"+type).attr('data-isselect')==0){
                         //选中第一个
-                        $("#area1").attr('data-selectedindex',0);
-                        $("#area1").attr('data-areaid', data.data[0].areaid);
-                        $("#area1").find('span').text(data.data[0].area);
+                        $("#area"+type).attr('data-selectedindex',0);
+                        $("#area"+type).attr('data-areaid', data.data[0].areaid);
+                        $("#area"+type).find('span').text(data.data[0].area);
 
                     }else{
-                        $("#area1").attr('data-areaid',  $("#area1").attr('data-isselect'));
-                        $("#area1 li").each(function (idx,item) {
-                            if($(item).attr("data-areaid")==$("#area1").attr('data-isselect')){
-                                $("#area1").attr('data-selectedindex',$(item).attr("data-index"))
-                                $("#area1").attr('data-areaid',$(item).attr("data-areaid"))
-                                $("#area1 span").text($(item).attr("data-area"));
+                        $("#area"+type).attr('data-areaid',  $("#area"+type).attr('data-isselect'));
+                        $("#area"+type+" li").each(function (idx,item) {
+                            if($(item).attr("data-areaid")==$("#area"+type).attr('data-isselect')){
+                                $("#area"+type).attr('data-selectedindex',$(item).attr("data-index"))
+                                $("#area"+type).attr('data-areaid',$(item).attr("data-areaid"))
+                                $("#area"+type+" span").text($(item).attr("data-area"));
                             }
                         })
-                        $("#area1").attr('data-isselect',0);
+                        $("#area"+type).attr('data-isselect',0);
                     }
                     //选中第一个
 //                    $("#area1").attr('data-selectedindex',0);
