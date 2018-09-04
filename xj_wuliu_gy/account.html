@@ -2343,6 +2343,7 @@
             // if (localStorage.getItem('company_type') == -1) {
 
                 if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+
                     sessionStorage.setItem("cfsrc","../finance/identification1.html");
                 }else {
                     sessionStorage.setItem("cfsrc","./personal/mine.html");
@@ -2403,6 +2404,13 @@
                 if (data.data.state && data.data.type == 1) {
                     $('.qiye_renzheng').attr('data-src', '../finance/identification'+data.data.state+'.html');
                     // location.href="personal/identification"+data.data.state+".html"; 
+                    $(document).on('click', '.qiye_renzheng', function() {
+                        if (companyId) {
+                            tiao_tan();
+                        }
+                    });
+                } else if (data.data.type == 2) {
+                    $('.qiye_renzheng').attr('data-src', '../finance/identification1.html');
                     $(document).on('click', '.qiye_renzheng', function() {
                         if (companyId) {
                             tiao_tan();
@@ -2509,7 +2517,8 @@
                     $(this).find('img').eq(0).attr('src',"./img/cf_close.png");
                 }
             })
-            //$('.cfnav1').click();
+            // $('.cfnav1').click();
+            
 
         }else{
             sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
@@ -2560,6 +2569,7 @@
     var iden = sessionStorage.getItem('cfsrc');
 
     if (iden.indexOf('identification') != -1) {
+
         $('.wrz').css('display', 'block');
         $('.wrz .manage').parent().find("ul").css('display', 'block');
         $('.wrz .manage').find('img').eq(0).attr('src',$(this).find('img').eq(0).attr('src')==="./img/cf_open.png"?"./img/cf_close.png":"./img/cf_open.png");

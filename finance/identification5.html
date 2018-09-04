@@ -603,6 +603,7 @@ function xmTanUploadImg2(obj) {
 
             console.log(img_url1);
 
+
             if (img_url1 != null && img_url2 != null) {
                 //v1.0
                 $.ajax({
@@ -628,7 +629,7 @@ function xmTanUploadImg2(obj) {
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);
-                        if(data.code == -1002){
+                        if(data.code == -1001){
                             $('#code').parent().next().text('验证码错误');
                             $('#code').parent().next().css('display', 'block');
                             return false;
@@ -1239,7 +1240,7 @@ function xmTanUploadImg2(obj) {
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
-                   if(data.code == -1002){
+                   if(data.code == -1001){
                         $('#new_code').parent().next().text('验证码错误');
                         $('#new_code').parent().next().css('display', 'block');
                         return false;

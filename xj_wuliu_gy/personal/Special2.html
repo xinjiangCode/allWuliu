@@ -137,6 +137,10 @@
             width: 970px;
         }
 
+        .cousuo_cont {
+            z-index: 900;
+        }
+
     </style>
 </head>
 <body>
@@ -634,6 +638,10 @@
                         
                     });
 
+                    if (data.data.length == 0) {
+                        $('.c0').attr('empty_data', 0);
+                    }
+
 
                     // 模拟下拉框
                     $('.zizhi_type0').click(function(event){
@@ -803,12 +811,17 @@
                         $('.quxiao_add').css('display', 'block');
                         $('.shou_pic').css('display', 'block');
                     }else {
-                        $('.edit_btn').css('display', 'block');
-                        $('.sub').attr('disabled', false);
-                        $('.quxiao_add').css('display', 'block');
-                        $('.shou_pic').css('display', 'block');
-                        $(".shenhe_btn").hide();
-                        $(".sub").show();
+                        if ($('.c0').attr('empty_data') == 0) {
+                            $('.edit_btn').css('display', 'none');
+                            $('.add_submit').show();
+                        } else {
+                            $('.edit_btn').css('display', 'block');
+                            $('.sub').attr('disabled', false);
+                            $('.quxiao_add').css('display', 'block');
+                            $('.shou_pic').css('display', 'block');
+                            $(".shenhe_btn").hide();
+                            $(".sub").show();
+                        }
                     }
 
                 },

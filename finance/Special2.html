@@ -447,6 +447,10 @@
                         return false;
                     }
 
+                    if (data.data.length == 0) {
+                        $('.c0').attr('empty_data', 0);
+                    }
+
 
                     
                     for (var i = 0; i < data.data.length; i++) {
@@ -513,6 +517,8 @@
                         // $('.c'+i).append('<div class="btn edit_btn" style="width: 82px;height: 30px;line-height: 30px;margin: 45px 0 0 298px;">编辑</div>');
 
                         $('.input_blur').attr('disabled', true);
+
+                        
 
                     }
                     // $('.textarea').each(function(){
@@ -656,10 +662,21 @@
                     // console.log(data);
 
                     
-                    $('.btn.edit_btn').css('display', 'block');
-                    $('.sub').attr('disabled', false);
-                    $('.quxiao_add').css('display', 'block');
-                    $('.shou_pic').css('display', 'block');
+                    if ($('.c0').attr('empty_data') == 0) {
+                        $('.edit_btn').css('display', 'none');
+                        $('.add_submit').show();
+                    } else {
+                        $('.btn.edit_btn').css('display', 'block');
+                        $('.sub').attr('disabled', false);
+                        $('.quxiao_add').css('display', 'block');
+                        $('.shou_pic').css('display', 'block');
+                    }
+
+
+                    // $('.btn.edit_btn').css('display', 'block');
+                    // $('.sub').attr('disabled', false);
+                    // $('.quxiao_add').css('display', 'block');
+                    // $('.shou_pic').css('display', 'block');
                     
 
                 },
