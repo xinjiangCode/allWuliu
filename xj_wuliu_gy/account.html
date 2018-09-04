@@ -944,6 +944,7 @@
                 <div class="info">
                     <div class="img_div"><img style="float: none;" src="./img/cf_denger1.png" alt=""></div>
                     <p><span>资质审核未通过</span>，请您重新填写进行认证！</p>
+                    <div class="jujue_liyou">拒绝理由：<span>这是拒绝理由信息~</span></div>
                 </div>
                 <div class="modelBtnBox">
                     <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -2724,14 +2725,14 @@ function showModelBox(cls) {
 
     //危险化学品认证资质已拒绝
     function jujue_weixian(reasons) {
-        $(".jj_yuanying span").html(reasons);
+        $(".jujue_liyou span").html(reasons);
         $('.modelBox19').css('display', 'block');
     }
 
     //特殊认证资质已拒绝
     function jujue_teshu(reasons) {
-        $(".jj_yuanying2 span").html(reasons);
-        $('.modelBox190').css('display', 'block');
+        $(".jujue_liyou span").html(reasons);
+        $('.modelBox19').css('display', 'block');
     }
 
     $(document).on('click', '.confirm', function () {
