@@ -91,8 +91,10 @@
 
         .look_bigpic2 {
             position: absolute;
-            left: 486px;
-            bottom: 293px;
+            /*left: 486px;
+            bottom: 293px;*/
+            left: 126px;
+            bottom: 0px;
             color: rgb(0, 122, 255);
             cursor: pointer;
             z-index: 200;
@@ -100,8 +102,10 @@
 
         .look_bigpic3 {
             position: absolute;
-            left: 657px;
-            bottom: 293px;
+            /*left: 657px;
+            bottom: 293px;*/
+            left: 126px;
+            bottom: 0px;
             color: rgb(0, 122, 255);
             cursor: pointer;
             z-index: 200;
@@ -172,7 +176,7 @@
         <ul>
             <li>
                 <div class="left1 Lf"><i class="red">*</i>身份类型:</div>
-                <div class="right2 Lf">
+                <div class="right2 Lf type_radio">
                     <input type="radio" name="code_type" checked="checked" value="00">供应商
                     <input type="radio" name="code_type" value="4">承运商
                 </div>
@@ -331,16 +335,18 @@
                             <!-- <img src="../img/list_logo.png" alt="" id="zhengjian_preview1" title="点击更换图片"> -->
                             <input type="file" id="zhengjian_pic1" class="inputfile" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
                             <input type="hidden" name="" value="" class="smallimg" id="zhengjian_hidden1"> 
+                            <div class="look_bigpic2"><img src="../img/big_pic.png" alt=""></div>
+                        
                         </div>
                         <div class="uploade Lf">
                             <i style=""></i>
                             <!-- <img src="../img/list_logo.png" alt="" id="zhengjian_preview2" title="点击更换图片"> -->
                             <input type="file" id="zhengjian_pic2" class="inputfile" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
                             <input type="hidden" name="" value="" class="smallimg" id="zhengjian_hidden2">
+                            <div class="look_bigpic3"><img src="../img/big_pic.png" alt=""></div>
                         </div>
                         <span class="ts"></span>
-                        <div class="look_bigpic2"><img src="../img/big_pic.png" alt=""></div>
-                        <div class="look_bigpic3"><img src="../img/big_pic.png" alt=""></div>
+                        
                     </div>
                    
                 </li>
@@ -391,13 +397,13 @@
     $('.look_bigpic2').click(function(e) {
         e.stopPropagation();
         // console.log($(this).parent().find('.uploade').height());
-        window.parent.look_pic($(this).parent().find('.uploade').eq(0).width(), $(this).parent().find('.uploade').eq(0).height(), $(this).parent().find('.smallimg').eq(0).val());
+        window.parent.look_pic($(this).parent().width(), $(this).parent().height(), $(this).parent().parent().find('.smallimg').eq(0).val());
     });
 
     $('.look_bigpic3').click(function(e) {
         e.stopPropagation();
         // console.log($(this).parent().find('.uploade').height());
-        window.parent.look_pic($(this).parent().find('.uploade').eq(1).width(), $(this).parent().find('.uploade').eq(1).height(), $(this).parent().find('.smallimg').eq(1).val());
+        window.parent.look_pic($(this).parent().width(), $(this).parent().height(), $(this).parent().parent().find('.smallimg').eq(1).val());
     });
 
     $(document).on('change', 'input[name="code_type"]', function() {
@@ -911,6 +917,8 @@
                         $('#city').attr('disabled', true);
                         $('#area').attr('disabled', true);
 
+                        $('.type_radio').attr('data-radio', 0);
+
                     } else if (data.data.type == 5) {  //企业资料二次审核中
                         $(".weiRenZheng").addClass('xiaoshi');
                         $(".update_btn").css('display', 'none');
@@ -949,6 +957,40 @@
                              $(".next_btn_update").css('display', 'block');
                              $(".next_btn").css('display', 'none');
                         }
+                    } else if (data.data.type == 8) { //第一次提交审核拒绝
+                        $(".weiRenZheng").addClass('xiaoshi');
+                        $(".update_btn").css('display', 'block');
+                        $('.next_btn_update').css('display', 'none');
+
+                        data.data.reasons = JSON.parse(data.data.reasons);
+                        console.log(data.data.reasons);
+
+                        if (data.data.reasons.auditNum == '1') { //添加企业认证
+                            //企业认证的审核<span>未通过</span>，请重新修改提交
+                            $(window.parent.document).find('.jujue p').html('企业认证的审核<span>未通过</span>，请重新修改提交');
+                        } else if (data.data.reasons.auditNum == '2') {
+                            $(window.parent.document).find('.jujue p').html('企业基本信息的审核<span>未通过</span>，请重新修改提交');
+                        }
+
+                        if (data.data.reasons.reasons != '') {
+                            $(window.parent.document).find('.jujue_liyou span').html(data.data.reasons.reasons);
+                        } else {
+                            
+                            $(window.parent.document).find('.jujue_liyou span').html('无');
+                        }       
+
+                        window.parent.tan5();
+
+                        $('input[type=file]').attr('disabled',true);
+                        $('input[type=text]').attr('disabled',true);
+                        $('input[type=radio]').attr('disabled',true);
+
+                        $('#province').attr('disabled', true);
+                        $('#city').attr('disabled', true);
+                        $('#area').attr('disabled', true);
+
+                        $('.type_radio').attr('data-radio', 1);
+
                     }
 
                     
@@ -1646,7 +1688,11 @@
             var faren_name = $('#faren_name').val();
             var id_number = $('#id_number').val();
 
-            var radioIndex = $("input[name='type1']:checked").index();
+            if ($("input[name='code_type']:checked").val() == 4) {
+                var radioIndex = 4;
+            } else {
+                var radioIndex = $("input[name='type1']:checked").index();
+            }
 
             var picId1 = $('#yingye_zhizhao_pic').attr('data-picid1');
             var picId2 = $('#saomiaojian_pic').attr('data-picid2');
@@ -1894,7 +1940,9 @@
         $('#area').attr('disabled', false);
         $('.delete_btn').show();
         $('.delete_btn1').show();
-        $('input[name=code_type]').attr('disabled', true);
+        if ($('.type_radio').attr('data-radio') != 1) {
+            $('input[name=code_type]').attr('disabled', true);
+        }
         $(this).addClass('yiRenZheng1');
         $(this).text('修改完成');
     })
