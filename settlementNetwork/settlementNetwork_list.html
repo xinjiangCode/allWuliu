@@ -122,18 +122,46 @@
 //    添加网点
     $(".addWangDian").unbind();
     $(".addWangDian").click(function () {
+        window.parent.$(".modelBox24 .ErrorMsg").text("")
+        window.parent.$(".modelBox24 .name").val("")
+        window.parent.$("#sendAddress2").val("")
+		window.parent.$(".modelBox24 .contacts").val("")
+		window.parent.$(".modelBox24 .ConNumber").val("")
+		window.parent.$(".modelBox24 .money").val("")
+		window.parent.$(".modelBox24 .bankCard").val("")
+        var str='<div class="item clearfix">\n' +
+            '                            <div  data-isselect="0" class="selectPub Lf cardList selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
+            '                                <span>请选择</span>\n' +
+            '                                <img src="img/prl-select.jpg" alt="">\n' +
+            '                                <ul class="">\n' +
+            '                                </ul>\n' +
+            '                            </div>\n' +
+            '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
+            '                            <div class="Lf addKaQuan" style="margin-top: 14px;">+</div>\n' +
+            '                        </div>'
+        window.parent.$(".modelBox24 .coupList").html(str)
+        //					卡券点击添加
+        window.parent.$(".modelBox24 .addKaQuan").unbind();
+        window.parent.$(".modelBox24 .addKaQuan").click(function () {
+            var str='<div class="item clearfix cardList">\n' +
+                '                            <div  data-isselect="0" class="selectPub Lf selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
+                '                                <span>请选择</span>\n' +
+                '                                <img src="img/prl-select.jpg" alt="">\n' +
+                '                                <ul class="">\n' +
+                '                                </ul>\n' +
+                '                            </div>\n' +
+                '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
+                '                        </div>'
+            $(this).parents(".coupList").append(str)
+            getKaQuanList();
+        })
+
 		window.parent.getProvence(2)
         getKaQuanList();
 		window.parent.$(".modelBox24").show()
         window.parent.$("#province2").attr('data-isselect',0);
     })
-    //					卡券点击添加
-    window.parent.$(".modelBox24 .addKaQuan").unbind();
-    window.parent.$(".modelBox24 .addKaQuan").click(function () {
-        debugger
-        $(this).parents(".coupList").append($(this).parents(".item"))
 
-    })
 //	获取卡券列表
     function getKaQuanList() {
         $.ajax({
@@ -163,19 +191,62 @@
                             str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
 //                        }
                     })
-                    window.parent.$(".modelBox24 .cardList ul").html(str);
-                    window.parent.$(".modelBox24 .cardList li").unbind();
-                    window.parent.$(".modelBox24 .cardList li").click(function () {
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
-                        $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
+                    window.parent.$(".modelBox24 .coupList .item").each(function (idx,item) {
+						$(item).find("ul").html(str);
+                        $(item).find("li").unbind();
+                        $(item).find("li").click(function (event) {
+                            event.stopPropagation();
+                            var that=this;
+                            var isOk=0
+                            window.parent.$(".coupList .item").each(function (idx1,item1) {
+                                if($(item1).find(".selectPub").attr("data-selectedindex")==$(that).attr('data-index')&&$(that).parents(".item").index()!=idx1){
+                                    isOk=1;
+                                    cf_alert01(2,"不能重复添加卡券")
+                                    return;
+                                }
+                            })
+							if(isOk==1){
+                                return;
+							}
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                            $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
                     })
+                    // 模拟下拉框
+                    window.parent.$('.selectCoup').unbind()
+                    window.parent.$('.selectCoup').click(function(event){
+                        if($(this).attr("disabled")=="disabled"){return;}//不可选
+                        if($(this).children('img').attr('src') == 'img/prl-selected.jpg'){
+                            $(this).children('img').attr('src', 'img/prl-select.jpg')
+                        } else {
+                            $(this).children('img').attr('src', 'img/prl-selected.jpg')
+                        }
 
+                        event.stopPropagation();
 
+                        $(this).children('ul').toggle();
+                        var that = $(this);
+                        that.find('li').each(function(){
+                            $(this).mouseover(function(){
+                                $(this).addClass('hovered')
+                            });
+                            $(this).mouseleave(function(){
+                                $(this).removeClass('hovered')
+                            });
+                            if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                                $(this).css({'background': '#6ea3ff','color': '#fff'});
+                                $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                            }
+                        });
+
+                    }).mouseleave(function (event) {
+                        $(this).children('img').attr('src', 'img/prl-select.jpg');
+                        $(this).children('ul').hide();
+                    });
                 }
 
             },
@@ -302,6 +373,87 @@
         getData(currentPage1);
     })
 
+//	申请网点  确认按钮
+    window.parent.$(".modelBox24 .sure").unbind();
+	window.parent.$(".modelBox24 .sure").click(function () {
+
+        if(window.parent.$(".modelBox24 .name").val()==""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写网点名称")
+	        return;
+		}
+        if(window.parent.$("#sendAddress2").val()==""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写详细地址")
+            return;
+        }
+        if(window.parent.$(".modelBox24 .contacts").val()==""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写联系人")
+            return;
+        }
+        if(window.parent.$(".modelBox24 .ConNumber").val()==""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写联系电话")
+            return;
+        }
+        if(window.parent.$(".modelBox24 .money").val()==""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填初始资金")
+            return;
+        }
+        if(window.parent.$(".modelBox24 .bankCard").val()==""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写银行卡")
+            return;
+        }
+
+        var params=[];
+        var quanIsok=1;
+        window.parent.$(".coupList .item").each(function (idx1,item1) {
+            if($(item1).find(".selectPub").attr("data-selectedindex")==-1){
+                return;
+            }
+            if($(item1).find(".selectPub").attr("data-selectedindex")!=-1 && $(item1).find("input").val()==""){
+                quanIsok=0;
+                window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券金额")
+                return;
+            }
+            var obj={}
+            obj.couponId=$(item1).find(".selectPub").attr("data-selectedindex");
+            obj.applyMoney=$(item1).find("input").val();
+            params.push(obj)
+        })
+
+        if(quanIsok==0){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券数量")
+            return;
+        }
+        window.parent.$(".modelBox24 .ErrorMsg").text("")
+
+        $.ajax({
+            url: pubIP + 'carrierDot/dotApply', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                dot_name: window.parent.$(".modelBox24 .name").val(),
+                dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
+                dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
+                dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
+                dot_money:window.parent.$(".modelBox24 .money").val(),
+                dot_bankCard:window.parent.$(".modelBox24 .bankCard").val(),
+                params:JSON.stringify(params)
+            },
+            success: function (res) {
+				if(res.code==0){
+				    cf_alert(1,"申请网点成功");
+				}else{
+
+				}
+
+            }
+        })
+    })
 
 </script>
 </body>

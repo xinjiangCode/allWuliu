@@ -659,7 +659,8 @@
             margin-top: 23px;
             margin-left: 10px;
             font-size: 22px;
-            border: 1px solid #666666;
+            border: 1px solid #999;
+            color:#999;
             border-radius: 50%;
             width: 21px;
             height: 21px;
@@ -675,6 +676,7 @@
             margin-left: 90px;
         }
         .wangDianLine{margin-top: 7px;}
+        .selectCoup ul{max-height: 100px;}
     </style>
 
 
@@ -2729,12 +2731,12 @@
             <span>新增网点</span>
             <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
         </div>
-        <div class="modelcontent clearFloat" style="width: 652px; font-size: 14px; height: 520px; border: 1px solid #e7e7e7;padding: 0px 50px 0 50px; ">
-            <div style="height: 430px;overflow-y: auto;">
+        <div class="modelcontent clearFloat" style="width: 701px; font-size: 14px; height: 520px; border: 1px solid #e7e7e7;padding: 0px 0px 0 50px; ">
+            <div style="height: 330px;overflow-y: auto;padding-bottom: 100px;">
                 <div class="clearfix">
                     <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine">
                         <span class="modelBox34LeftTitle fl">网点名称：&nbsp;</span>
-                        <input type="text" class="wangDianIpt">
+                        <input type="text" class="wangDianIpt name">
                     </div>
                 </div>
                 <div class="clearfix">
@@ -2764,22 +2766,22 @@
                 </div>
                 <div class="clearfix">
                     <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">联系人：&nbsp;</span>
-                        <input type="text" class="wangDianIpt">
+                        <input type="text" class="wangDianIpt contacts">
                     </div>
                 </div>
                 <div class="clearfix">
                     <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">联系电话：&nbsp;</span>
-                        <input type="text" class="wangDianIpt">
+                        <input type="text" class="wangDianIpt ConNumber" maxlength="11">
                     </div>
                 </div>
                 <div class="clearfix">
                     <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">初始资金：&nbsp;</span>
-                        <input type="text" class="wangDianIpt">
+                        <input type="text" class="wangDianIpt money">
                     </div>
                 </div>
                 <div class="clearfix">
                     <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">绑定银行卡：&nbsp;</span>
-                        <input type="text" class="wangDianIpt">
+                        <input type="text" class="wangDianIpt bankCard">
                     </div>
                 </div>
                 <div class="clearfix">
@@ -2795,31 +2797,58 @@
                                 <ul class="">
                                 </ul>
                             </div>
-                            <input type="text" placeholder="数量" class="wangDianIpt Lf" style="margin-top: 7px;">
+                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">
                             <div class="Lf addKaQuan" style="margin-top: 14px;">+</div>
                         </div>
-                        <div class="item clearfix cardList">
-                            <div  data-isselect="0" class="selectPub Lf " data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">
-                                <span>请选择</span>
-                                <img src="img/prl-select.jpg" alt="">
-                                <ul class="">
-                                </ul>
-                            </div>
-                            <input type="text" placeholder="数量" class="wangDianIpt Lf" style="margin-top: 7px;">
-                        </div>
-
                     </div>
 
                 </div>
             </div>
             <div class="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
             <div class="clearFloat" style="text-align: center;margin-top: 7px;">
-                <span class="cf_btn cancel" style="display: inline-block;margin-right: 20px;">取消</span>
+                <span class="cf_btn cancel cfClose" style="display: inline-block;margin-right: 20px;" >取消</span>
                 <span class="cf_btn sure" style="display: inline-block;">确认</span>
             </div>
         </div>
     </div>
     </div>
+<!-- 充值卡券-->
+<div class="modelBox25" style="font-size: 14px; display: none">
+    <div class="modelCont" style="width: 754px;height: 570px;">
+        <div class="modeltitle" style="width: 100%;">
+            <span>充值申请</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="./img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent clearFloat" style="width: 701px; font-size: 14px; height: 520px; border: 1px solid #e7e7e7;padding: 0px 0px 0 50px; ">
+            <div style="height: 330px;overflow-y: auto;padding-bottom: 100px;">
+                <div class="clearfix">
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine">
+                        <span class="modelBox34LeftTitle fl">优惠券：&nbsp;</span>
+                        <!--<input type="text" class="wangDianIpt">-->
+                    </div>
+                    <div class="coupList clearfix">
+                        <div class="item clearfix">
+                            <div  data-isselect="0" class="selectPub Lf cardList" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">
+                                <span>请选择</span>
+                                <img src="img/prl-select.jpg" alt="">
+                                <ul class="">
+                                </ul>
+                            </div>
+                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">
+                            <div class="Lf addKaQuan" style="margin-top: 14px;">+</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="ErrorMsg" style="height: 20px;color: red;font-size: 14px;text-align: center;margin: 5px auto;"></div>
+            <div class="clearFloat" style="text-align: center;margin-top: 7px;">
+                <span class="cf_btn cancel cfClose" style="display: inline-block;margin-right: 20px;" >取消</span>
+                <span class="cf_btn sure" style="display: inline-block;">确认</span>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <!-- 我的首页弹框-->

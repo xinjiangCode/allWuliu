@@ -76,7 +76,7 @@
         </div>
         <div class="inputBox">
             <!--<input style="float: right;margin: 10px 13px 6px 0px;" class="searchResultBtn btn input" type="button" value="油卡充值">-->
-            <input style="float: right;margin: 10px 13px 6px 0px;" class="searchResultBtn btn input" type="button" value="申请充值">
+            <input style="float: right;margin: 10px 13px 6px 0px;" class="searchResultBtn btn input applay" type="button" value="申请充值">
         </div>
         <div class="opciationBox">
             <span style="margin-left: 20px;font-size: 14px;color: #282828;"></span>
@@ -170,6 +170,133 @@
         $('td .squre').click(function(){
             $(this).toggleClass('active');
         });
+        //点击申请充值
+        $(".applay").unbind();
+        $(".applay").click(function () {
+            var str='<div class="item clearfix">\n' +
+                '                            <div  data-isselect="0" class="selectPub Lf cardList selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
+                '                                <span>请选择</span>\n' +
+                '                                <img src="img/prl-select.jpg" alt="">\n' +
+                '                                <ul class="">\n' +
+                '                                </ul>\n' +
+                '                            </div>\n' +
+                '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
+                '                            <div class="Lf addKaQuan" style="margin-top: 14px;">+</div>\n' +
+                '                        </div>'
+            window.parent.$(".modelBox25 .coupList").html(str)
+            //					卡券点击添加
+            window.parent.$(".modelBox25 .addKaQuan").unbind();
+            window.parent.$(".modelBox25 .addKaQuan").click(function () {
+                var str='<div class="item clearfix cardList">\n' +
+                    '                            <div  data-isselect="0" class="selectPub Lf selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
+                    '                                <span>请选择</span>\n' +
+                    '                                <img src="img/prl-select.jpg" alt="">\n' +
+                    '                                <ul class="">\n' +
+                    '                                </ul>\n' +
+                    '                            </div>\n' +
+                    '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
+                    '                        </div>'
+                $(this).parents(".coupList").append(str)
+                getKaQuanList();
+            })
+
+            window.parent.getProvence(2)
+            getKaQuanList();
+            window.parent.$(".modelBox25").show();
+        })
+        //	获取卡券列表
+        function getKaQuanList() {
+            $.ajax({
+                url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayStart: 1,
+                    iDisplayLength: 10000,
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.aData.length != 0) {
+                        var str='';
+                        $.each(res.aData,function (idx,item) {
+//                        if(item.attr_2==1){
+//                            $("#money").attr("data-allMoney",item.money);
+//                            $("#money").attr("data-dot-id",item.dot_id);
+//                            $("#money").attr("data-zijin-id",item.id);
+//                        }else{
+                            str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+//                        }
+                        })
+                        window.parent.$(".modelBox25 .coupList .item").each(function (idx,item) {
+                            $(item).find("ul").html(str);
+                            $(item).find("li").unbind();
+                            $(item).find("li").click(function (event) {
+                                event.stopPropagation();
+                                var that=this;
+                                var isOk=0
+                                window.parent.$(".coupList .item").each(function (idx1,item1) {
+                                    if($(item1).find(".selectPub").attr("data-selectedindex")==$(that).attr('data-index')&&$(that).parents(".item").index()!=idx1){
+                                        isOk=1;
+                                        cf_alert01(2,"不能重复添加卡券")
+                                        return;
+                                    }
+                                })
+                                if(isOk==1){
+                                    return;
+                                }
+                                $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                                $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                                $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
+                                $(this).parent().parent().find('span').text($(this).text());
+                                $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                                $(this).parent().css('display','none');
+                            })
+                        })
+                        // 模拟下拉框
+                        window.parent.$('.selectCoup').unbind()
+                        window.parent.$('.selectCoup').click(function(event){
+                            if($(this).attr("disabled")=="disabled"){return;}//不可选
+                            if($(this).children('img').attr('src') == 'img/prl-selected.jpg'){
+                                $(this).children('img').attr('src', 'img/prl-select.jpg')
+                            } else {
+                                $(this).children('img').attr('src', 'img/prl-selected.jpg')
+                            }
+
+                            event.stopPropagation();
+
+                            $(this).children('ul').toggle();
+                            var that = $(this);
+                            that.find('li').each(function(){
+                                $(this).mouseover(function(){
+                                    $(this).addClass('hovered')
+                                });
+                                $(this).mouseleave(function(){
+                                    $(this).removeClass('hovered')
+                                });
+                                if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                                    $(this).css({'background': '#6ea3ff','color': '#fff'});
+                                    $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                                }
+                            });
+
+                        }).mouseleave(function (event) {
+                            $(this).children('img').attr('src', 'img/prl-select.jpg');
+                            $(this).children('ul').hide();
+                        });
+                    }
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
 
     </script>
 </body>
