@@ -518,9 +518,10 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
         if (token1.indexOf('index.html') != -1) {
             // token = token.substr(token.length - 10);
             token1 = token.replace('index.html', "");
+            localStorage.setItem('token', token1);
         }
 
-        localStorage.setItem('token', token1);
+        
 
         location.replace(location.href.replace(location.search, ""));
         
