@@ -469,6 +469,7 @@
 
     //查询所属角色
     function select_role(role_id) {
+        $('.suoshu_role_ul').html("");
         $.ajax({
             url: pubIP + 'tReceptionRole/getSelectRoleList',
             type: 'get',
