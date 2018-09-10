@@ -20,28 +20,32 @@
 <body>
     <div class="contbox">
         <div class="topTitle">单车利润
-            <div class="fr cfRefresh"></div>
+            <!--<div class="fr cfRefresh"></div>--></div>
         <div class="inputBox">
-            <input type="text" class="date-input laydate-icon kuang start" style="width: 139px;height: 34px;" placeholder="请选择日期" id="test1">
-            <span style="height: 38px;line-height: 38px;">&nbsp;-&nbsp; </span>
-            <input type="text" class="date-input laydate-icon kuang end" style="width: 139px;height: 34px;" placeholder="请选择日期" id="test2">
+            <label for="" style="float:left;">车牌号</label>
+            <input type="text" placeholder="输入搜索" style="height: 38px;box-sizing: border-box;margin-right: 12px;" class="carNo">
+
+            <input class="searchResultBtn btn input" onclick="getData(1);" type="button" value="查询结果" style="float: right;margin-top: 8px;">
+            <!--<input type="text" class="date-input laydate-icon kuang start" style="width: 139px;height: 34px;" placeholder="请选择日期" id="test1">-->
+            <!--<span style="height: 38px;line-height: 38px;">&nbsp;-&nbsp; </span>-->
+            <!--<input type="text" class="date-input laydate-icon kuang end" style="width: 139px;height: 34px;" placeholder="请选择日期" id="test2">-->
             <!--<span style="font-size: 16px;color: #282828;">数据列表</span>-->
-            <div class="goodsType input select Rt" data-selectedindex="0"><span>排序方式</span><img src="../img/prl-select.jpg" >
-                <ul>
-                    <li data-index="1">城市1</li>
-                    <li data-index="2">城市1</li>
-                    <li data-index="3">城市1</li>
-                    <li data-index="3">城市1</li>
-                </ul>
-            </div>
-            <div class="goodsType input select Rt" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" >
-                <ul>
-                    <li data-index="1">城市1</li>
-                    <li data-index="2">城市1</li>
-                    <li data-index="3">城市1</li>
-                    <li data-index="3">城市1</li>
-                </ul>
-            </div>
+            <!--<div class="goodsType input select Rt" data-selectedindex="0"><span>排序方式</span><img src="../img/prl-select.jpg" >-->
+                <!--<ul>-->
+                    <!--<li data-index="1">城市1</li>-->
+                    <!--<li data-index="2">城市1</li>-->
+                    <!--<li data-index="3">城市1</li>-->
+                    <!--<li data-index="3">城市1</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="goodsType input select Rt" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" >-->
+                <!--<ul>-->
+                    <!--<li data-index="1">城市1</li>-->
+                    <!--<li data-index="2">城市1</li>-->
+                    <!--<li data-index="3">城市1</li>-->
+                    <!--<li data-index="3">城市1</li>-->
+                <!--</ul>-->
+            <!--</div>-->
 
 
 
@@ -66,31 +70,31 @@
                         <th>总收入</th>
                         <th>总支出</th>
                         <th>单车利润</th>
-                        <th>类型</th>
-                        <th>操作</th>
+                        <!--<th>类型</th>-->
+                        <!--<th>操作</th>-->
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>新B ER3001</td>
-                        <td>内部车辆</td>
-                        <td>乙醚-罐车</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>内部车辆</td>
-                        <td><span class="seeDetail btn">查看详情</span><span class="del btn">删除</span></td>
-                    </tr>
-                    <tr>
-                        <td>新B ER3001</td>
-                        <td>内部车辆</td>
-                        <td>乙醚-罐车</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>内部车辆</td>
-                        <td><span class="seeDetail btn">查看详情</span></td>
-                    </tr>
+                <tbody class="myTbody">
+                    <!--<tr>-->
+                        <!--<td>新B ER3001</td>-->
+                        <!--<td>内部车辆</td>-->
+                        <!--<td>乙醚-罐车</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>内部车辆</td>-->
+                        <!--<td><span class="seeDetail btn">查看详情</span><span class="del btn">删除</span></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>新B ER3001</td>-->
+                        <!--<td>内部车辆</td>-->
+                        <!--<td>乙醚-罐车</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>内部车辆</td>-->
+                        <!--<td><span class="seeDetail btn">查看详情</span></td>-->
+                    <!--</tr>-->
                 </tbody>
             </table>
         </div>
@@ -127,14 +131,78 @@
             window.parent.$("#Iframe").css("height","923");
         })
 
-        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-        Page({
-            num: 200,
-            elem: $('#page1'),
-            callback: function(n) {
-                console.log(n);
-            }
-        });
+        //列表
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".mybody").html("");
+            $.ajax({
+                url: pubIP + 'statistics/carStatistics', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayLength:pageSize,
+                    iDisplayStart:currentPage,
+                    carNo:$(".carNo").val(),
+                    token:token
+                },
+                success: function (res) {
+                    console.log(res)
+                    var thisData = res.aData;
+                    var str = '';
+                    $.each(thisData,function (idx,item) {
+                        str+= '<tr data-id = "'+item.carId+'">';
+                        str+= '<td>'+item.carNo+'</td>';
+                        if(item.type == 0){
+                            str+= '<td>内部</td>';
+                        }else if(item.type == 1){
+                            str+= '<td>外部</td>';
+                        }
+                        str+= '<td>'+item.carType+'</td>';
+                        str+= '<td>'+item.incomeAll+'</td>';
+                        str+= '<td>'+item.outComeAll+'</td>';
+                        str+= '<td>'+item.profit+'</td>';
+                        str+= '</tr>';
+                    });
+                    $(".myTbody").html(str);
+
+
+
+                    //首次请求时 改变分页数据
+                    if(res.aData.length==0 || res.aData==null ){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
         //查看详情
         $(".seeDetail").click(function () {
 //            window.location.href="./onGoingOrder-detail.html";

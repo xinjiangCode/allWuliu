@@ -20,65 +20,62 @@
     <div class="contbox">
         <div class="topTitle">毛利统计
             <!--<div class="fr cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷新</div></div>-->
-        <div class="inputBox">
-            <input type="text" class="date-input laydate-icon kuang start" style="width: 139px;height: 34px;float:left;margin-top:11px;" placeholder="请选择日期" id="test1">
-            <span style="height: 38px;line-height: 38px;float:left;margin-top:11px;">&nbsp;-&nbsp; </span>
-            <input type="text" class="date-input laydate-icon kuang end" style="width: 139px;height: 34px;float:left;margin-top:11px;" placeholder="请选择日期" id="test2">
-            <label for="" style="float:left;margin-left:7px;">线路</label>
-            <div class="goodsType input select" data-selectedindex="0"><span>选择城市</span><img src="../img/prl-select.jpg" >
-                <ul>
-                    <li data-index="1">城市1</li>
-                    <li data-index="2">城市1</li>
-                    <li data-index="3">城市1</li>
-                    <li data-index="3">城市1</li>
-                </ul>
-            </div>
-            <label for="">企业</label>
-            <input type="text"  style="height: 32px;width: 180px;line-height: 32px;border:1px solid #e7e7e7;">
+        <!--<div class="inputBox">-->
+            <!--<input type="text" class="date-input laydate-icon kuang start" style="width: 139px;height: 34px;float:left;margin-top:11px;" placeholder="请选择日期" id="test1">-->
+            <!--<span style="height: 38px;line-height: 38px;float:left;margin-top:11px;">&nbsp;-&nbsp; </span>-->
+            <!--<input type="text" class="date-input laydate-icon kuang end" style="width: 139px;height: 34px;float:left;margin-top:11px;" placeholder="请选择日期" id="test2">-->
+            <!--<label for="" style="float:left;margin-left:7px;">线路</label>-->
+            <!--<div class="goodsType input select" data-selectedindex="0"><span>选择城市</span><img src="../img/prl-select.jpg" >-->
+                <!--<ul>-->
+                    <!--<li data-index="1">城市1</li>-->
+                    <!--<li data-index="2">城市1</li>-->
+                    <!--<li data-index="3">城市1</li>-->
+                    <!--<li data-index="3">城市1</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<label for="">企业</label>-->
+            <!--<input type="text"  style="height: 32px;width: 180px;line-height: 32px;border:1px solid #e7e7e7;">-->
 
 
 
 
         </div>
         <div class="opciationBox" style="padding-left: 20px;">
-            <label for="">商品</label>
-            <input type="text"  style="height: 32px;width: 180px;line-height: 32px;border:1px solid #e7e7e7;">
+            <label for="">输入搜索</label>
+            <input type="text" class="orderData" placeholder="订单编号/企业名称" style="height: 32px;width: 180px;line-height: 32px;border:1px solid #e7e7e7;">
 
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="float: right;margin-top: 8px;">
-            <input class="exportOrderBtn btn" type="button" value="导出">
+            <input class="searchResultBtn btn input" onclick="getData(1);" type="button" value="查询结果" style="float: right;">
+            <input class="exportOrderBtn btn" type="button" value="导出" style="margin-top: 11px;">
         </div>
         <div class="listBox" >
             <table >
                 <thead>
                     <tr>
-                        <th style="width: 56px;text-align: center;"></th>
                         <th>订单号</th>
                         <th>结算公司</th>
                         <th>订单款</th>
                         <th>回收金额</th>
-                        <th>其他</th>
-                        <th style="min-width: 100px;">备注</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><div class="cf_select"></div></td>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><div class="cf_select"></div></td>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td>¥200.00</td>
-                        <td></td>
-                    </tr>
+                <tbody class="myTbody">
+                    <!--<tr>-->
+                        <!--<td><div class="cf_select"></div></td>-->
+                        <!--<td>3001804091631062137</td>-->
+                        <!--<td>化动力有限公司</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><div class="cf_select"></div></td>-->
+                        <!--<td>3001804091631062137</td>-->
+                        <!--<td>化动力有限公司</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td>¥200.00</td>-->
+                        <!--<td></td>-->
+                    <!--</tr>-->
                 </tbody>
             </table>
         </div>
@@ -114,14 +111,72 @@
             window.parent.$("#Iframe").css("height","972");
         })
 
-        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-        Page({
-            num: 200,
-            elem: $('#page1'),
-            callback: function(n) {
-                console.log(n);
-            }
-        });
+        //列表
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".mybody").html("");
+            $.ajax({
+                url: pubIP + 'statistics/maoriStatistics', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayLength:pageSize,
+                    iDisplayStart:currentPage,
+                    orderData:$(".orderData").val(),
+                    token:token
+                },
+                success: function (res) {
+                    console.log(res)
+                    var thisData = res.aData;
+                    var str = '';
+                    $.each(thisData,function (idx,item) {
+                        str+= '<tr data-id = "'+item.orderId+'">';
+                        str+= '<td>'+item.orderNo+'</td>';
+                        str+= '<td>'+item.companyName+'</td>';
+                        str+= '<td>'+item.orderMoney+'</td>';
+                        str+= '<td>'+item.settlementMoney+'</td>';
+                        str+= '</tr>';
+                    });
+                    $(".myTbody").html(str);
+
+
+
+                    //首次请求时 改变分页数据
+                    if(res.aData.length==0 || res.aData==null ){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
         //查看详情
         $(".seeDetail").click(function () {
 //            window.location.href="./onGoingOrder-detail.html";
