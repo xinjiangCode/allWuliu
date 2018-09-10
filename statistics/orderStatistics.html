@@ -150,19 +150,19 @@
     <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
     <!--</div>-->
     <div class="listBox" style="overflow-x: auto">
-        <table style="width: 1024px;">
+        <table>
             <thead>
             <tr>
                 <!-- <th style="width: 56px;text-align: center;"></th> -->
                 <th>订单编号</th>
-                <th>提交时间</th>
+                <th>装车时间</th>
                 <th>化学品名</th>
                 <th>货物名称</th>
                 <th>重量／体积 </th>
                 <th>始发地</th>
                 <th>目的地</th>
                 <!--<th>车辆</th>-->
-                <th>操作</th>
+                <th>订单状态</th>
             </tr>
             </thead>
             <tbody id="orderListInfo">
@@ -233,12 +233,13 @@
         <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
         <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
         <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
-        <!--<td><%=list[i].car%></td>-->
-        <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看订单</span>
-            <span class="btn sure" data-tloId="<%=list[i].tloId%>">确认送达</span>
-            <span class="btn updata" onclick="fenPei('<%=list[i].tloId%>')">更改车辆</span>
-            <span class="btn cancel cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>
-        </td>
+        <%if (list[i].tloStatus == 1) {%>
+        <td>待分配</td>
+        <%} else if (list[i].tloStatus == 2) {%>
+        <td>已分配车辆</td>
+        <%} else if (list[i].tloStatus == 3) {%>
+        <td>已上传合同</td>
+        <%}%>
     </tr>
     <%}%>
 </script>
@@ -512,7 +513,7 @@
 
     order_list(1 , '', '', '', 10);
 
-    //待分配订单列表
+    //列表
     function order_list(num, orderNo, goodsType, publishTime, size) {
         $('#orderListInfo').html('');
         $.ajax({
