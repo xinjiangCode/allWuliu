@@ -53,58 +53,63 @@
             background-repeat: no-repeat;
             background-position: right center;
         }
+        .w33{
+            width: 33%;
+        }
     </style>
 </head>
 <body>
     <div class="contbox-prld">
         <div class="toptitle title">
             <span>结算网点详情</span>
-            <div class="fr closeBtn" style="margin-right:7px;" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11" 关&nbsp;&nbsp;闭</div>
+            <div class="fr closeBtn" style="margin-right:7px;" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11" >关&nbsp;&nbsp;闭</div>
             <!--<div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>-->
         </div>
 
-        <div class="requireInfo infoBox">
+        <div class="requireInfo infoBox dotInfo">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">结算网点详情</div>
             <div class="contBox">
                 <div class="contlist contlistone">
                     <div class="left ll">
-                        <div>结算网点名称：<span>王小二结算网点</span></div>
-                        <div>创&nbsp;建&nbsp;时&nbsp;间：<span>2015-09-08 23:00</span></div>
-                        <div>联系人：<span>危化</span></div>
+                        <div>结算网点名称：<span id="dot_name">王小二结算网点</span></div>
+                        <div>创&nbsp;建&nbsp;时&nbsp;间：<span id="createtime">2015-09-08 23:00</span></div>
+                        <div>联系人：<span id="dot_contacts">危化</span></div>
                     </div>
                     <div class="left rr">
-                        <div class="desti">网点地址：<span class="destination">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
-                        <div>联系方式：<span>18500000000</span></div>
+                        <div class="desti">网点地址：<span class="destination" id="dot_addr">新疆-乌鲁木齐-xxxx区-xxxx路-xxxx号xxx详情中华人民共和国北京市东城区朝阳花园</span></div>
+                        <div>联系方式：<span id="dot_ConNumber"></span></div>
                     </div>
                 </div>
-                
             </div>
         </div>
-        <div class="dangerIntroduce infoBox">
-            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">结算网点数据</div>
+        <div class="dangerIntroduce infoBox couponInfo">
+            <div class="title  couponInfo1"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">结算网点数据</div>
             <div class="contBox">
-                <div class="left ll">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：<span>片碱</span></div>
-                <div class="left mm">蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;券：<span>氢氧化钠</span></div>
-                <div class="left rr">轮&nbsp;&nbsp;胎&nbsp;&nbsp;券：<span>重度危险</span></div>
+                <!--<div class="clearfix">-->
+                    <!--<div class="left">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：<span>片碱</span></div>-->
+                    <!--<div class="left">蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;券：<span>氢氧化钠</span></div>-->
+                    <!--<div class="left">轮&nbsp;&nbsp;胎&nbsp;&nbsp;券：<span>重度危险</span></div>-->
+                <!--</div>-->
             </div>
         </div>
-        <div class="dangerIntroduce infoBox">
+        <div class="dangerIntroduce infoBox  couponInfo2 couponInfo">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">初始数据</div>
             <div class="contBox">
-                <div class="left ll">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：<span>片碱</span></div>
-                <div class="left mm">蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;券：<span>氢氧化钠</span></div>
-                <div class="left rr">轮&nbsp;&nbsp;胎&nbsp;&nbsp;券：<span>重度危险</span></div>
+                <!--<div class="left ll">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：<span>片碱</span></div>-->
+                <!--<div class="left mm">蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;券：<span>氢氧化钠</span></div>-->
+                <!--<div class="left rr">轮&nbsp;&nbsp;胎&nbsp;&nbsp;券：<span>重度危险</span></div>-->
             </div>
         </div>
-        <div class="dangerIntroduce infoBox">
+        <div class="dangerIntroduce infoBox couponInfo couponInfo3">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">统计数据</div>
             <div class="contBox">
-                <div class="left ll">总&nbsp;&nbsp;金&nbsp;&nbsp;额：<span>片碱</span></div>
-                <div class="left mm">总&nbsp;&nbsp;蓝&nbsp;&nbsp;券：<span>氢氧化钠</span></div>
-                <div class="left rr">总轮胎券：<span>重度危险</span></div>
+                <!--<div class="left ll">总&nbsp;&nbsp;金&nbsp;&nbsp;额：<span>片碱</span></div>-->
+                <!--<div class="left mm">总&nbsp;&nbsp;蓝&nbsp;&nbsp;券：<span>氢氧化钠</span></div>-->
+                <!--<div class="left rr">总轮胎券：<span>重度危险</span></div>-->
             </div>
         </div>
-        <div class="infoBox">
+        <!--暂时接口未提供-->
+        <div class="infoBox" style="display: none">
             <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">流水数据</div>
             <table class="myTable">
                 <thead>
@@ -156,10 +161,70 @@
                 ansyc: true,
                 dataType: 'json',
                 data:{
-                    dot_id:sessionStorage.getItem("detailId")
+                    id:sessionStorage.getItem("detailId")
                 },
                 success: function (res) {
                     if(res.code==0){
+                        if(res.data.dotInfo==null || res.data.dotInfo==""){
+                            $(".dotInfo").hide()
+                        }else{
+                            var addressList=res.data.dotInfo.dot_addr.split("-");
+                            $(".dotInfo").show()
+                            $("#dot_ConNumber").text(res.data.dotInfo.dot_ConNumber)
+                            $("#dot_contacts").text(res.data.dotInfo.dot_contacts)
+                            $("#dot_addr").text(addressList[0]+addressList[1]+addressList[2]+addressList[3])
+                            $("#dot_name").text(res.data.dotInfo.dot_name)
+                            if(res.data.dotInfo.createtime==null){
+                                $("#createtime").text()
+                            }else{
+                                $("#createtime").text(timestampToTime1(res.data.dotInfo.createtime))
+                            }
+                        }
+
+                        if(res.data.couponInfo==null || res.data.couponInfo=="" || res.data.couponInfo.length==0){
+                            $(".couponInfo").hide()
+                        }else{
+                            $(".couponInfo").show()
+                                var str1=''
+                                var str2=''
+                                var str3=''
+                            $.each(res.data.couponInfo,function (idx,item) {
+                                str1+='<div class="clearfix">'
+                                if(item.money==null || item.money==""){
+                                    item.money="0";
+                                }
+                                if(item.moneyBegin==null || item.moneyBegin==""){
+                                    item.moneyBegin="0";
+                                }
+                                if(item.moneyAll==null || item.moneyAll==""){
+                                    item.moneyAll="0";
+                                }
+                                str1+='<div class="left w33">'+item.couponName+'：<span>'+item.money+'</span></div>'
+                                str1+='</div>'
+
+                                str2+='<div class="clearfix">'
+                                str2+='<div class="left w33">'+item.couponName+'：<span>'+item.moneyBegin+'</span></div>'
+                                str2+='</div>'
+
+                                str3+='<div class="clearfix">'
+                                str3+='<div class="left w33">'+item.couponName+'：<span>'+item.moneyAll+'</span></div>'
+                                str3+='</div>'
+                            })
+                            $(".couponInfo1 .contBox").html(str1)
+                            $(".couponInfo2 .contBox").html(str2)
+                            $(".couponInfo3 .contBox").html(str3)
+
+                            $("#dot_ConNumber").text(res.data.dotInfo.dot_ConNumber)
+                            $("#dot_contacts").text(res.data.dotInfo.dot_contacts)
+                            $("#dot_addr").text(res.data.dotInfo.dot_addr.split("-")[0]+res.data.dotInfo.dot_addr.split("-")[1]+res.data.dotInfo.dot_addr.split("-")[2]+res.data.dotInfo.dot_addr.split("-")[3])
+                            $("#dot_name").text(res.data.dotInfo.dot_name)
+                            if(res.data.dotInfo.createtime==null){
+                                $("#createtime").text()
+                            }else{
+                                $("#createtime").text(timestampToTime1(res.data.dotInfo.createtime))
+                            }
+                        }
+
 
                     }else{
 

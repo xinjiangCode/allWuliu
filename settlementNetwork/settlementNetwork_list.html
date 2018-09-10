@@ -63,24 +63,24 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>新疆结算网点</td>
-					<td>新疆-乌鲁木齐</td>
-					<td>王小二</td>
-					<td>15311057789</td>
-					<td>￥5000.00</td>
-					<td>开启</td>
-					<td><a class="btn">查看</a><a class="btn">编辑</a><a class="btn">删除</a><a class="btn">关闭</a></td>
-				</tr>
-				<tr>
-					<td>新疆结算网点</td>
-					<td>新疆-乌鲁木齐</td>
-					<td>王小二</td>
-					<td>15311057789</td>
-					<td>￥5000.00</td>
-					<td>开启</td>
-					<td><a class="btn">查看</a><a class="btn">编辑</a><a class="btn">删除</a><a class="btn">关闭</a></td>
-				</tr>
+					<!--<tr>-->
+						<!--<td>新疆结算网点</td>-->
+						<!--<td>新疆-乌鲁木齐</td>-->
+						<!--<td>王小二</td>-->
+						<!--<td>15311057789</td>-->
+						<!--<td>￥5000.00</td>-->
+						<!--<td>开启</td>-->
+						<!--<td><a class="btn">查看</a><a class="btn">编辑</a><a class="btn">删除</a><a class="btn">关闭</a></td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td>新疆结算网点</td>-->
+						<!--<td>新疆-乌鲁木齐</td>-->
+						<!--<td>王小二</td>-->
+						<!--<td>15311057789</td>-->
+						<!--<td>￥5000.00</td>-->
+						<!--<td>开启</td>-->
+						<!--<td><a class="btn">查看</a><a class="btn">编辑</a><a class="btn">删除</a><a class="btn">关闭</a></td>-->
+					<!--</tr>-->
 				</tbody>
 			</table>
 		</div>
@@ -111,14 +111,14 @@
     })
 
 
-    $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-    Page({
-        num: 200,
-        elem: $('#page1'),
-        callback: function(n) {
-            console.log(n);
-        }
-    });
+//    $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+//    Page({
+//        num: 200,
+//        elem: $('#page1'),
+//        callback: function(n) {
+//            console.log(n);
+//        }
+//    });
 //    添加网点
     $(".addWangDian").unbind();
     $(".addWangDian").click(function () {
@@ -133,6 +133,9 @@
         window.parent.$("#province2").attr("data-isselect",0)
         window.parent.$("#city2").attr("data-isselect",0)
         window.parent.$("#area2").attr("data-isselect",0)
+
+        window.parent.$("#fuzeren").attr("data-isselect",0)
+
         var str='<div class="item clearfix">\n' +
             '                            <div  data-isselect="0" class="selectPub Lf cardList selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
             '                                <span>请选择</span>\n' +
@@ -162,6 +165,7 @@
         window.parent.$(".coupList").parents(".clearfix").show()
 		window.parent.getProvence(2)
         getKaQuanList();
+        getFuZeRen();
 		window.parent.$(".modelBox24").show()
         window.parent.$("#province2").attr('data-isselect',0);
     })
@@ -259,6 +263,54 @@
             }
         });
     }
+    //	获取负责人
+    function getFuZeRen() {
+        window.parent.$("#fuzeren ul").html("")
+        $.ajax({
+            url: pubIP + 'carrierDot/getCompanyUser', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+
+            },
+            success: function (res) {
+				if(res.code==0){
+					var str='';
+					$.each(res.data,function (idx,item) {
+
+						if(window.parent.$("#fuzeren").attr("data-isselect")==0){
+                            window.parent.$("#fuzeren").attr("data-selectedindex","-1");
+                            window.parent.$("#fuzeren span").text("请选择")
+						}else if(window.parent.$("#fuzeren").attr("data-isselect")==item.id){
+                            window.parent.$("#fuzeren").attr("data-selectedindex",item.id);
+                            window.parent.$("#fuzeren span").text(item.name)
+						}
+						str+='<li data-id="'+item.id+'" data-index="'+item.id+'">'+item.name+'</li>';
+					})
+					window.parent.$("#fuzeren ul").html(str)
+
+                    window.parent.$("#fuzeren ul li").unbind();
+                    window.parent.$("#fuzeren ul li").click(function(event){
+                        event.stopPropagation();
+                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                        $(this).parent().parent().find('span').text($(this).text());
+                        $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
+                        $(this).parent().css('display','none');
+                    });
+				}
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
     //进入页面加载数据
     getData(1);
     //获取数据
@@ -315,7 +367,7 @@
         $.each(data,function (idx,item) {
             str+='<tr data-id="'+item.id+'">';
             str+='<td>'+item.dot_name+'</td>';
-            str+='<td>'+item.dot_addr+'</td>';
+            str+='<td>'+item.dot_addr.split("-")[3]+'</td>';
             str+='<td>'+item.dot_contacts+'</td>';
             str+='<td>'+item.dot_ConNumber+'</td>';
             if(item.dot_balance==null){
@@ -392,6 +444,11 @@
             window.parent.$(".modelBox24 .ErrorMsg").text("请填写详细地址")
             return;
         }
+
+        if( window.parent.$("#fuzeren").attr("data-selectedindex")=="-1"){
+            window.parent.$(".modelBox24 .ErrorMsg").text("请选择负责人")
+            return;
+        }
         if(window.parent.$(".modelBox24 .contacts").val()==""){
             window.parent.$(".modelBox24 .ErrorMsg").text("请填写联系人")
             return;
@@ -451,11 +508,12 @@
             dataType: 'json',
             data:{
                 id:window.parent.$(".modelBox24").attr("data-id"),
+                userId:window.parent.$("#fuzeren").attr("data-selectedindex"),
                 dot_province:window.parent.$("#province2").attr("data-proviceid"),
                 dot_city:window.parent.$("#city2").attr("data-cityid"),
                 dot_county:window.parent.$("#area2").attr("data-areaid"),
                 dot_name: window.parent.$(".modelBox24 .name").val(),
-                dot_addr: window.parent.$("#sendAddress2").val(),
+                dot_addr: window.parent.$("#province2 span").text()+'-'+window.parent.$("#city2 span").text()+'-'+window.parent.$("#area2 span").text()+'-'+window.parent.$("#sendAddress2").val(),
                 dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
                 dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
                 dot_money:window.parent.$(".modelBox24 .money").val(),
@@ -485,42 +543,29 @@
             ansyc: true,
             dataType: 'json',
             data:{
-                id:id,
-//                dot_province:window.parent.$("#province2").attr("data-proviceid"),
-//                dot_city:window.parent.$("#city2").attr("data-cityid"),
-//                dot_county:window.parent.$("#area2").attr("data-areaid"),
-//                dot_name: window.parent.$(".modelBox24 .name").val(),
-//                dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
-//                dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
-//                dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
-//                dot_money:window.parent.$(".modelBox24 .money").val(),
-//                dot_bankCard:window.parent.$(".modelBox24 .bankCard").val(),
-//                params:JSON.stringify(params)
+                id:id
             },
             success: function (res) {
                 if(res.code==0){
                     window.parent.$(".modelBox24").attr("data-id",id);
                     window.parent.$(".modelBox24 .ErrorMsg").text("")
                     window.parent.$(".modelBox24 .name").val(res.data.dot_name)
-                    window.parent.$("#sendAddress2").val(res.data.dot_addr)
+                    window.parent.$("#sendAddress2").val(res.data.dot_addr.split("-")[3])
                     window.parent.$(".modelBox24 .contacts").val(res.data.dot_contacts)
                     window.parent.$(".modelBox24 .ConNumber").val(res.data.dot_ConNumber)
                     window.parent.$(".modelBox24 .money").val(res.data.dot_money)
                     window.parent.$(".modelBox24 .bankCard").val(res.data.dot_bankCard)
 
-
-
                     window.parent.$("#province2").attr("data-isselect",res.data.dot_province)
                     window.parent.$("#city2").attr("data-isselect",res.data.dot_city)
                     window.parent.$("#area2").attr("data-isselect",res.data.dot_county)
+                    window.parent.$("#fuzeren").attr("data-isselect",res.data.user_id)
 
                     window.parent.$(".coupList").parents(".clearfix").hide()
 
-
+                    getFuZeRen();
                     window.parent.getProvence(2)
                     window.parent.$(".modelBox24").show()
-
-
                 }else{
 
                 }
@@ -557,7 +602,7 @@
     }
     function del(that) {
         $.ajax({
-            url: pubIP + 'carrierDot/dotExamine', /*v1.0*/
+            url: pubIP + 'carrierDot/dotDelete', /*v1.0*/
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -567,7 +612,7 @@
             ansyc: true,
             dataType: 'json',
             data:{
-                dot_id:$(that).parents("tr").attr("data-id")
+                id:$(that).parents("tr").attr("data-id")
             },
             success: function (res) {
                 if(res.code==0){
