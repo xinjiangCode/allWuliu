@@ -329,16 +329,24 @@
             }else if(item.attr_1==2){
                 str+='<td>审批拒绝</td>'
             }
-            str+='<td><a class="btn seeDetail">查看</a><a class="btn">编辑</a><a class="btn">删除</a><a class="btn">关闭</a></td>';
+            str+='<td><a class="btn seeDetail">查看</a><a class="btn">编辑</a><a class="btn">删除</a>';
+				if(item.attr_1==1 && item.dot_status==0){
+					str+='<a class="btn guanbi">关闭</a>'
+				}else if(item.attr_1==1 && item.dot_status==1){
+					str+='<a class="btn kaiqi">开启</a>'
+				}
+				str+='</td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
         //详情
+        $(".seeDetail").unbind();
         $(".seeDetail").click(function () {
-//                sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
+                sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
                 window.location.href="./settlementNetwork_detil.html";
         })
 //		编辑
+        $(".editList").unbind();
         $(".editList").click(function () {
             resetModelBox12()//先清空框
             window.parent.$(".modelBox12").show();
@@ -349,19 +357,20 @@
 
         })
         //删除
+        $(".delect").unbind()
         $(".delect").click(function () {
+//            upadtaState(1,this);
+        })
+        //关闭
+        $(".guanbi").unbind();
+        $(".guanbi").click(function () {
             upadtaState(1,this);
         })
-        //启用和禁用
-        $(".chooseswitch input[type='checkbox']").change(function() {
-            console.log($(this).prop("checked"));
-            if($(this).prop("checked")){
-                upadtaState(2,this);
-            }else {
-                upadtaState(3,this);
-            }
-
-        });
+        //开启
+        $(".kaiqi").unbind();
+        $(".kaiqi").click(function () {
+            upadtaState(0,this);
+        })
     }
     //选择排序方式
     $(".select ul li").click(function () {
@@ -436,6 +445,9 @@
             ansyc: true,
             dataType: 'json',
             data:{
+                dot_province:window.parent.$("#province2").attr("data-proviceid"),
+                dot_city:window.parent.$("#city2").attr("data-cityid"),
+                dot_county:window.parent.$("#area2").attr("data-areaid"),
                 dot_name: window.parent.$(".modelBox24 .name").val(),
                 dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
                 dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
@@ -454,7 +466,68 @@
             }
         })
     })
+//用id 做回显upadtaState
+	function getInfoById(id) {
+        $.ajax({
+            url: pubIP + 'carrierDot/dotApply', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                id:id,
+                dot_province:window.parent.$("#province2").attr("data-proviceid"),
+                dot_city:window.parent.$("#city2").attr("data-cityid"),
+                dot_county:window.parent.$("#area2").attr("data-areaid"),
+                dot_name: window.parent.$(".modelBox24 .name").val(),
+                dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
+                dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
+                dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
+                dot_money:window.parent.$(".modelBox24 .money").val(),
+                dot_bankCard:window.parent.$(".modelBox24 .bankCard").val(),
+                params:JSON.stringify(params)
+            },
+            success: function (res) {
+                if(res.code==0){
 
+                }else{
+
+                }
+
+            }
+        })
+    }
+
+    //开启和关闭
+    function upadtaState(state,that) {
+        $.ajax({
+            url: pubIP + 'carrierDot/dotExamine', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                dot_id:$(that).parents("tr").attr("data-id"),
+                dot_status:state
+            },
+            success: function (res) {
+                if(res.code==0){
+					cf_alert(1,state==0?"开启成功":"关闭成功")
+                }else{
+
+                }
+
+            }
+        })
+    }
 </script>
 </body>
 </html>
