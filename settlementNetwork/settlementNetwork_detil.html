@@ -59,7 +59,7 @@
     <div class="contbox-prld">
         <div class="toptitle title">
             <span>结算网点详情</span>
-            <div class="fr closeBtn" style="margin-right:7px;" onclick="javascript:history.back(-1);">><img src="../img/prl-close.png" alt="" width="11" height="11" 关&nbsp;&nbsp;闭</div>
+            <div class="fr closeBtn" style="margin-right:7px;" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11" 关&nbsp;&nbsp;闭</div>
             <!--<div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>-->
         </div>
 
@@ -142,7 +142,32 @@
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","833");
+            getDetail()
         })
+        function getDetail() {
+            $.ajax({
+                url: pubIP + 'carrierDot/getDotInfo', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    dot_id:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+                    if(res.code==0){
+
+                    }else{
+
+                    }
+
+                }
+            })
+        }
     </script>
 </body>
 </html>

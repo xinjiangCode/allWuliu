@@ -122,6 +122,7 @@
 //    添加网点
     $(".addWangDian").unbind();
     $(".addWangDian").click(function () {
+        window.parent.$(".modelBox24").attr("data-id","");
         window.parent.$(".modelBox24 .ErrorMsg").text("")
         window.parent.$(".modelBox24 .name").val("")
         window.parent.$("#sendAddress2").val("")
@@ -129,6 +130,9 @@
 		window.parent.$(".modelBox24 .ConNumber").val("")
 		window.parent.$(".modelBox24 .money").val("")
 		window.parent.$(".modelBox24 .bankCard").val("")
+        window.parent.$("#province2").attr("data-isselect",0)
+        window.parent.$("#city2").attr("data-isselect",0)
+        window.parent.$("#area2").attr("data-isselect",0)
         var str='<div class="item clearfix">\n' +
             '                            <div  data-isselect="0" class="selectPub Lf cardList selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
             '                                <span>请选择</span>\n' +
@@ -155,7 +159,7 @@
             $(this).parents(".coupList").append(str)
             getKaQuanList();
         })
-
+        window.parent.$(".coupList").parents(".clearfix").show()
 		window.parent.getProvence(2)
         getKaQuanList();
 		window.parent.$(".modelBox24").show()
@@ -329,7 +333,7 @@
             }else if(item.attr_1==2){
                 str+='<td>审批拒绝</td>'
             }
-            str+='<td><a class="btn seeDetail">查看</a><a class="btn">编辑</a><a class="btn">删除</a>';
+            str+='<td><a class="btn seeDetail">查看</a><a class="btn editList">编辑</a><a class="btn delBtn">删除</a>';
 				if(item.attr_1==1 && item.dot_status==0){
 					str+='<a class="btn guanbi">关闭</a>'
 				}else if(item.attr_1==1 && item.dot_status==1){
@@ -348,18 +352,12 @@
 //		编辑
         $(".editList").unbind();
         $(".editList").click(function () {
-            resetModelBox12()//先清空框
-            window.parent.$(".modelBox12").show();
-            window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
-            returnShow($(this).parents("tr").attr("data-id"));
-
-            window.parent.$("#addCarNo").attr("readonly","readonly");
-
+            getInfoById($(this).parents("tr").attr("data-id"));
         })
         //删除
-        $(".delect").unbind()
-        $(".delect").click(function () {
-//            upadtaState(1,this);
+        $(".delBtn").unbind()
+        $(".delBtn").click(function () {
+           del(this);
         })
         //关闭
         $(".guanbi").unbind();
@@ -434,8 +432,15 @@
         }
         window.parent.$(".modelBox24 .ErrorMsg").text("")
 
+		var reqUrl="";
+		if(window.parent.$(".modelBox24").attr("data-id")==""){
+            reqUrl="carrierDot/dotApply";
+		}else{
+            reqUrl="carrierDot/dotEdite";
+		}
+
         $.ajax({
-            url: pubIP + 'carrierDot/dotApply', /*v1.0*/
+            url: pubIP + reqUrl, /*v1.0*/
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -445,11 +450,12 @@
             ansyc: true,
             dataType: 'json',
             data:{
+                id:window.parent.$(".modelBox24").attr("data-id"),
                 dot_province:window.parent.$("#province2").attr("data-proviceid"),
                 dot_city:window.parent.$("#city2").attr("data-cityid"),
                 dot_county:window.parent.$("#area2").attr("data-areaid"),
                 dot_name: window.parent.$(".modelBox24 .name").val(),
-                dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
+                dot_addr: window.parent.$("#sendAddress2").val(),
                 dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
                 dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
                 dot_money:window.parent.$(".modelBox24 .money").val(),
@@ -469,7 +475,7 @@
 //用id 做回显upadtaState
 	function getInfoById(id) {
         $.ajax({
-            url: pubIP + 'carrierDot/dotApply', /*v1.0*/
+            url: pubIP + 'carrierDot/getInfoById', /*v1.0*/
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
@@ -480,19 +486,40 @@
             dataType: 'json',
             data:{
                 id:id,
-                dot_province:window.parent.$("#province2").attr("data-proviceid"),
-                dot_city:window.parent.$("#city2").attr("data-cityid"),
-                dot_county:window.parent.$("#area2").attr("data-areaid"),
-                dot_name: window.parent.$(".modelBox24 .name").val(),
-                dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
-                dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
-                dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
-                dot_money:window.parent.$(".modelBox24 .money").val(),
-                dot_bankCard:window.parent.$(".modelBox24 .bankCard").val(),
-                params:JSON.stringify(params)
+//                dot_province:window.parent.$("#province2").attr("data-proviceid"),
+//                dot_city:window.parent.$("#city2").attr("data-cityid"),
+//                dot_county:window.parent.$("#area2").attr("data-areaid"),
+//                dot_name: window.parent.$(".modelBox24 .name").val(),
+//                dot_addr: window.parent.$("#province2 span").text()+window.parent.$("#city2 span").text()+window.parent.$("#area2 span").text()+window.parent.$("#sendAddress2").val(),
+//                dot_contacts:window.parent.$(".modelBox24 .contacts").val(),
+//                dot_ConNumber:window.parent.$(".modelBox24 .ConNumber").val(),
+//                dot_money:window.parent.$(".modelBox24 .money").val(),
+//                dot_bankCard:window.parent.$(".modelBox24 .bankCard").val(),
+//                params:JSON.stringify(params)
             },
             success: function (res) {
                 if(res.code==0){
+                    window.parent.$(".modelBox24").attr("data-id",id);
+                    window.parent.$(".modelBox24 .ErrorMsg").text("")
+                    window.parent.$(".modelBox24 .name").val(res.data.dot_name)
+                    window.parent.$("#sendAddress2").val(res.data.dot_addr)
+                    window.parent.$(".modelBox24 .contacts").val(res.data.dot_contacts)
+                    window.parent.$(".modelBox24 .ConNumber").val(res.data.dot_ConNumber)
+                    window.parent.$(".modelBox24 .money").val(res.data.dot_money)
+                    window.parent.$(".modelBox24 .bankCard").val(res.data.dot_bankCard)
+
+
+
+                    window.parent.$("#province2").attr("data-isselect",res.data.dot_province)
+                    window.parent.$("#city2").attr("data-isselect",res.data.dot_city)
+                    window.parent.$("#area2").attr("data-isselect",res.data.dot_county)
+
+                    window.parent.$(".coupList").parents(".clearfix").hide()
+
+
+                    window.parent.getProvence(2)
+                    window.parent.$(".modelBox24").show()
+
 
                 }else{
 
@@ -523,6 +550,30 @@
 					cf_alert(1,state==0?"开启成功":"关闭成功")
                 }else{
 
+                }
+
+            }
+        })
+    }
+    function del(that) {
+        $.ajax({
+            url: pubIP + 'carrierDot/dotExamine', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                dot_id:$(that).parents("tr").attr("data-id")
+            },
+            success: function (res) {
+                if(res.code==0){
+                    cf_alert(1,"删除成功")
+                }else{
+					cf_alert01(2,res.msg)
                 }
 
             }
