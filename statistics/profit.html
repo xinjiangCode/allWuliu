@@ -55,6 +55,7 @@
                         <th>结算公司</th>
                         <th>订单款</th>
                         <th>回收金额</th>
+                        <th>毛利</th>
                     </tr>
                 </thead>
                 <tbody class="myTbody">
@@ -143,6 +144,7 @@
                         str+= '<td>'+item.companyName+'</td>';
                         str+= '<td>'+item.orderMoney+'</td>';
                         str+= '<td>'+item.settlementMoney+'</td>';
+                        str+= '<td>'+item.maori+'</td>';
                         str+= '</tr>';
                     });
                     $(".myTbody").html(str);
