@@ -157,7 +157,7 @@
                 <div class="cfnav cfnav1 on" onclick="showMangeList('.cfidx1')"><a href="##">首页</a></div>
                 <div class="cfnav cfnav2 yrz" onclick="showMangeList('.cfidx2')"><a href="##">需求</a></div>
                 <div class="cfnav cfnav3 yrz" onclick="showMangeList('.cfidx3')"><a href="##">订单</a></div>
-                <div class="cfnav cfnav4 yrz" onclick="showMangeList('.cfidx4')"><a href="##">多单</a></div>
+                <div class="cfnav cfnav4 yrz erQi" onclick="showMangeList('.cfidx4')"><a href="##">多单</a></div>
                 <div class="cfnav cfnav5 yrz" onclick="showMangeList('.cfidx5')"><a href="##">财务</a></div>
                 <div class="cfnav cfnav6 yrz" onclick="showMangeList('.cfidx6')"><a href="##">设置</a></div>
             </div>
@@ -231,7 +231,7 @@
         </ul>
     </div>
     <!--多单-->
-    <div class="manageList Lf cfidx4" data-idx=".cfnav4">
+    <div class="manageList Lf cfidx4 erQi" data-idx=".cfnav4">
         <ul>
             <li>
                 <a href="##" class="manage"><strong>多单列表</strong> <div style="float: right;vertical-align: middle;margin-right: 15px;"><img  src="./img/cf_close.png" alt=""></div></a>
@@ -262,12 +262,12 @@
                 <ul>
                     <li><a href="##" class="manageItem" data-src="./setUp/setting-tradeContract.html" data-height="1442">贸易合同</a></li>
                     <li><a href="##" class="manageItem " data-src="./setUp/setUp_departmentManage.html" data-height="1054">部门管理</a></li>
-                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_roleManage.html" data-height="1054">角色管理</a></li>
-                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_staffManage.html" data-height="1126">员工管理</a></li>
-                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_automaticPush.html" data-height="1054">自动推送设置</a></li>
-                    <li><a href="##" class="manageItem " data-src="./setUp/setting-logManage.html" data-height="1050">日志管理</a></li>
-                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_messageManage.html" data-height="1110">消息管理</a></li>
-                    <li><a href="##" class="manageItem" data-src="./setUp/setUp_commonFunction.html" data-height="1111">常用功能设置</a></li>
+                    <li><a href="##" class="manageItem erQi" data-src="./setUp/setUp_roleManage.html" data-height="1054">角色管理</a></li>
+                    <li><a href="##" class="manageItem " data-src="./setUp/setUp_staffManage.html" data-height="1126">员工管理</a></li>
+                    <li><a href="##" class="manageItem erQi" data-src="./setUp/setUp_automaticPush.html" data-height="1054">自动推送设置</a></li>
+                    <li><a href="##" class="manageItem erQi" data-src="./setUp/setting-logManage.html" data-height="1050">日志管理</a></li>
+                    <li><a href="##" class="manageItem erQi" data-src="./setUp/setUp_messageManage.html" data-height="1110">消息管理</a></li>
+                    <li><a href="##" class="manageItem erQi" data-src="./setUp/setUp_commonFunction.html" data-height="1111">常用功能设置</a></li>
                 </ul>
             </li>
 
@@ -2314,6 +2314,11 @@
 <script src="./js/footer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/common.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
+
+//    $(function () {
+//        $(".erQi").hide()
+//        $(".cfnav.erQi").hide()
+//    })
 
 
     function look_pic(w, h, pic_url) {
