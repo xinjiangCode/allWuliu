@@ -530,15 +530,23 @@
         });
     });
 
-    
+
+    $("#goodsName").removeAttr("disabled");
+    $("#HuaxueType").removeAttr("disabled");
     //从编辑进来的
     if(sessionStorage.getItem("isAddRequireMent")==0){
+        if(sessionStorage.getItem("isTotailOrder")==1){//从多订单进来的就禁止修改  商品名称
+            $("#goodsName").attr("disabled","true");
+            $("#HuaxueType").attr("disabled","true");
+            sessionStorage.setItem("isTotailOrder","0")
+        }
         getDataDetail();
         sessionStorage.setItem("isRequireMent",0);
     }else{
         getProvence(0,true);//获取发货省市县
         getProvence(1,true);//获取收货省市县
     }
+
     //发布历史
     $(".addLiShi").click(function () {
         getDataLishi()
@@ -732,10 +740,15 @@ $(".cf_sel").eq(0).click(function () {
 
         //发布
         if(sessionStorage.getItem("isAddRequireMent")==1){
-            insertLogisticsVehicleEmpty();
+                insertLogisticsVehicleEmpty();
         }else{
-            //xiugai
-            upadaLogisticsVehicleEmpty();
+            if($("#goodsName").attr("disabled")=="disabled"){
+                //从多订单过来的  发布需求
+                fromTatolOrderAddRequire()
+            }else{
+                //编辑
+                upadaLogisticsVehicleEmpty();
+            }
         }
 
     }
@@ -859,11 +872,11 @@ $(".cf_sel").eq(0).click(function () {
 //                serviceChargeQuota:  //	是	String(50)	服务费 - 定额（元）
             },
             success: function (res) {
-                if(res.code===1){
+                if(res.code==1){
                     cf_alert01(1,"发布需求成功");
                     window.location.href="../requuire/publishRequireList.html";
                 }else{
-                    alert(res.msg);
+                    cf_alert01(2,res.msg);
                 }
             },
             error: function(err){
@@ -953,7 +966,97 @@ $(".cf_sel").eq(0).click(function () {
                     cf_alert01(1,"发布需求成功");
                     window.location.href="../requuire/publishRequireList.html";
                 }else{
-                    cf_alert(2,res.msg);
+                    cf_alert01(2,res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //从多订单过来的  发布需求
+    function fromTatolOrderAddRequire() {
+        var goodsUnit="";
+        if($("#goodsUnit").find("span").text()=="重量/吨"){
+            goodsUnit="吨";
+        }else{
+            goodsUnit="m³";
+        }
+        $.ajax({
+            url: pubIP + 'order/insert', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                logisticsOrderId:sessionStorage.getItem('logisticsOrderId'),//从多订单过来的   父订单id
+                chemicalId:$("#HuaxueType").attr("data-id"),
+                chemicalName:$("#HuaxueType").val(),
+                id:sessionStorage.getItem("detailId"),  //	主键Id
+                demandNo:sessionStorage.getItem("demandNo"),
+                demandType:$("#demandType").find("span").text(),  //是	String(8)	发单类型：（1 普通发单）（2 转包订单）
+                demandEndTime: $(".demandEndTime").val(), //	是	datetime	需求有效期
+                companyid:companyId,  //	是	String(50)	发需求公司Id - 可能为空
+//                companyname:  //	是	String(100)	发需求公司名称
+                goodsName: $("#goodsName").val(), //	是	String(50)	货物名称
+//                goodsType:  //	是	String(50)	货物类型
+                packageType:$("#packageType").find("span").text(),  //	是	String(8)	包装类型
+                goodsUnit:goodsUnit,  //	是	String(50)	货物单位：(重量/吨）（体积/m³）
+                goodsNum:$("#goodsNum").val(),  //	是	String(50)	货物单位数值
+                wishUnitPrice:$("#wishUnitPrice").val(),  //	是	String(50)	【数字】 - 期望单价（元/吨/km）
+//                unitPrice:  //	是	String(50)	元/吨/k【数字】 - 单价（m）
+                distance:$("#distance").val(),  //	是	String(50)	距离
+//                amount:  //	是	String(50)	金额：自动计算(货物单位数值单价距离)
+//                settlementAmount:  //	是	String(50)	结算金额：实际的结算金额
+                carType:$("#carType").find("span").text(),  //	是	String(50)	车辆类型
+                carLength:$("#carLength").val(),   //	是	String(50)	车辆长度
+                carWeight:$("#carWeight").val(),   //	是	String(50)	车辆宽度
+                carHeight:$("#carHeight").val(),   //	是	String(50)	车辆高度
+                invoiceType:$("#invoiceType").find("span").text(),  //	是	String(8)	发票类型：（普通发票）（增值发票）
+//                paymentMode:$("#paymentMode").find("span").text(),  //	是	String(8)	结算方式(付款方式)：（到付）（预付）
+                paymentType:$("#paymentType").find("span").text(),  //	是	String(8)	支付方式：（现汇）（承兑）（现汇+承兑）
+//                receipt:  //	是	String(8)	是否需要回执单：0 不需要；1 需要
+//                planStartDate:$("#planStartDate").val(),  //	是	datetime	计划发货时间
+                planEndDate:$(".planEndDate").val(), //	是	datetime	计划到货时间
+                startDate:$(".startDate").val(),  //	否	datetime	发货时间
+//                endDate:  //	否	datetime	到货时间
+                orderType:$("#orderType").find("span").text(),  //	是	String(8)	订单类型：单次运输订单 多次运输订单
+                goodsRemark:$("#goodsRemark").val(),  //	是	String(500)	货物备注
+//                sendCompanyid: "", //	否	String(50)	发货公司Id - 可能为空
+                sendCompanyname:$("#sendCompanyname").val(),   //	是	String(100)	发货公司名称
+                sendProvince:$("#province span").text(),  //	是	String(50)	发货省份
+                sendProvinceid:$("#province").attr("data-proviceid"),  //	是	String(50)	发货省份Id
+                sendCity:$("#city span").text(),  //	是	String(50)	发货城市
+                sendCityid:$("#city").attr("data-cityid"),  //	是	String(50)	发货城市Id
+                sendArea:$("#area span").text(),  //	是	String(50)	发货区镇
+                sendAreaid:$("#area").attr("data-areaid"),  //	是	String(50)	发货区镇Id
+                sendAddress: $("#sendAddress").val(),   //	是	String(200)	发货详细地址
+                sendUser:$("#sendUser").val(),  //	是	String(50)	发货联系人
+                sendPhone:$("#sendPhone").val(),  //	是	String(50)	发货联系人手机号
+//                receiveCompanyid:  //	否	String(50)	收货公司Id - 可能为空
+                receiveCompanyname:$("#receiveCompanyname").val(),  //	是	String(100)	收货公司名称
+                receiveProvince:$("#province1 span").text(),  //	是	String(50)	收货省份
+                receiveProvinceid:$("#province1").attr("data-proviceid"),  //	是	String(50)	收货省份Id
+                receiveCity: $("#city1 span").text(), //	是	String(50)	收货城市
+                receiveCityid:$("#city1").attr("data-cityid"),   //	是	String(50)	收货城市Id
+                receiveArea:$("#area1 span").text(),  //	是	String(50)	收货区镇
+                receiveAreaid:$("#area1").attr("data-areaid"),  //	是	String(50)	收货区镇Id
+                receiveAddress:$("#receiveAddress").val(),   //	是	String(200)	收货详细地址
+                receiveUser:$("#receiveUser").val(),  //	是	String(50)	收货联系人
+                receivePhone:$("#receivePhone").val(),  //	是	String(50)	收货联系人手机号
+//                serviceChargePercent:  //	是	String(50)	服务费 - 比例（%）
+//                serviceChargeQuota:  //	是	String(50)	服务费 - 定额（元）
+            },
+            success: function (res) {
+                if(res.code===1){
+                    cf_alert01(1,"发布需求成功");
+                    history.back(-1);
+                }else{
+                    cf_alert01(2,res.msg);
                 }
             },
             error: function(err){
@@ -1383,7 +1486,7 @@ console.log(provinceID)
                 id:sessionStorage.getItem("detailId")
             },
             success: function (res) {
-                if(res.code===1){
+                if(res.code==1){
                     cf_dataRenderDetail(res.data)
                 }else{
                     alert(res.msg);
@@ -1438,7 +1541,6 @@ console.log(provinceID)
             data.goodsUnit="体积/m³"
         }
         cf_selectRender("#goodsUnit",data.goodsUnit);
-
         cf_selectRender("#paymentType",data.paymentType);
         cf_selectRender("#orderType",data.orderType);
         cf_selectRender("#invoiceType",data.invoiceType);

@@ -16,7 +16,7 @@
             margin-top: 9px;
             margin-right: 9px;
             text-align: center;
-            border: 1px solid #e7e7e7;
+            border: 1px solid #ebe9ea;
             width: 93px;
             height: 37px;
             box-sizing: border-box;
@@ -38,7 +38,7 @@
             border-top: 1px solid #ebe9ea;
             border-bottom: 1px solid #ebe9ea;
             height: 60px;
-            box-sizing: border-box; 
+            box-sizing: border-box;
             font-size: 14px;
         }
         .bottomOperiat>span{
@@ -80,167 +80,301 @@
             box-sizing: border-box;
         }
         /*.listBox{height: 1116px;}*/
-        .date-input{width: 140px;}
     </style>
-    
-    
+
+
 </head>
 <body>
-    <div class="contbox">
-        <div class="topTitle">总订单列表<div class="fr cfRefresh">导出</div></div>
-        <div class="inputBox">
-            <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
-            <!--<label for="">订单状态</label>-->
-            <label for="">商品名称</label>
-            <input id="cf_goodsName" type="text" style="height: 38px;box-sizing: border-box;margin-right: 12px;border: 1px solid #e7e7e7;" placeholder="输入搜索">
-            <div style="display: none" class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
-                <ul>
-                    <li data-index="1">待分配订单</li>
-                    <li data-index="2">进行中订单</li>
-                    <li data-index="3">完成待审核订单</li>
-                    <li data-index="3">已完成订单</li>
-                </ul>
-            </div>
-            <label for="">提交时间</label>
-            <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;" >
-            <span>-</span>
-            <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 13px;">
-            <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
+<div class="contbox">
+    <div class="topTitle">总订单列表<div class="fr cfRefresh">导出</div></div>
+    <div class="inputBox">
+        <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
+        <label for="">商品名称</label>
+        <input id="cf_goodsName" type="text" style="height: 38px;box-sizing: border-box;margin-right: 12px;border: 1px solid #e7e7e7;" placeholder="输入搜索">
+        <!--<label for="">订单状态</label>-->
+        <div style="display: none" class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >
+            <ul>
+                <li data-index="1">待分配订单</li>
+                <li data-index="2">进行中订单</li>
+                <li data-index="3">完成待审核订单</li>
+                <li data-index="3">已完成订单</li>
+            </ul>
         </div>
-        <div class="opciationBox">
-            <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
-                <!--<ul>-->
-                    <!--<li data-index="1">10</li>-->
-                    <!--<li data-index="2">20</li>-->
-                    <!--<li data-index="3">30</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<input class="exportOrderBtn btn" type="button" value="导出订单">-->
-            <input class="addOrder btn" type="button" value="新增订单">
-        </div>
-        <div class="listBox">
-            <table>
-                <thead>
-                    <tr>
-                        <td>订单编号</td>
-                        <td>公司名称</td>
-                        <td>订单类型</td>
-                        <td>已运单数</td>
-                        <td>总金额</td>
-                        <td>待结金额</td>
-                        <td>操作</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>多次</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>多次</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>年订单</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>月订单</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!--<div class="bottomOperiat">-->
-            <!--<span class="squre"></span>-->
-            <!--<span class="selsectAll">全选</span>-->
-            <!--<span class="closeBtn">关闭订单</span>-->
-            <!--<span class="delBtn">删除订单</span>-->
-        <!--</div>-->
-        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
-            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
-            <div class="pageJump">
-                <span class="allPageN">1/200</span>
-                <i style="margin-left: 12px;">共200页</i>，
-                <span>到第</span>
-                <input type="text"/>
-                <span>页</span>
-                <button type="button" class="button">GO</button>
-            </div>
-        </div>
-        <!--<div class="pageBox">-->
-        <!--共100张 当前为1页 共5页-->
-        <!--</div>-->
+        <label for="">提交时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="margin-right: 0;width: 140px;">
+        <span>-</span>
+        <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2" style="width: 140px;">
+        <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
+        <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
     </div>
+    <!--<div class="opciationBox">-->
+    <!--<div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">-->
+    <!--<ul>-->
+    <!--<li data-index="1">10</li>-->
+    <!--<li data-index="2">20</li>-->
+    <!--<li data-index="3">30</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<input class="exportOrderBtn btn" type="button" value="导出订单">&ndash;&gt;-->
+    <!--<input class="addOrder btn" type="button" value="新增订单">-->
+    <!--</div>-->
+    <div class="listBox">
+        <table>
+            <thead>
+            <tr>
+
+                <td>订单编号</td>
+                <td>公司名称</td>
+                <td>订单类型</td>
+                <td>已运单数</td>
+                <td>总金额</td>
+                <td>待结金额</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr>-->
+                <!--<td>3001804091631062137</td>-->
+                <!--<td>化动力有限公司</td>-->
+                <!--<td>多次</td>-->
+                <!--<td>5</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>3001804091631062137</td>-->
+                <!--<td>化动力有限公司</td>-->
+                <!--<td>多次</td>-->
+                <!--<td>5</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>3001804091631062137</td>-->
+                <!--<td>化动力有限公司</td>-->
+                <!--<td>年订单</td>-->
+                <!--<td>5</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>3001804091631062137</td>-->
+                <!--<td>化动力有限公司</td>-->
+                <!--<td>月订单</td>-->
+                <!--<td>5</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td>¥10000.00</td>-->
+                <!--<td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+    <!--<div class="bottomOperiat">-->
+    <!--<span class="squre"></span>-->
+    <!--<span class="selsectAll">全选</span>-->
+    <!--<span class="closeBtn">关闭订单</span>-->
+    <!--<span class="delBtn">删除订单</span>-->
+    <!--</div>-->
+    <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+        <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+        <div class="pageJump">
+            <span class="allPageN">1/200</span>
+            <i style="margin-left: 12px;">共200页</i>，
+            <span>到第</span>
+            <input type="text"/>
+            <span>页</span>
+            <button type="button" class="button">GO</button>
+        </div>
+    </div>
+    <!--<div class="pageBox">-->
+    <!--共100张 当前为1页 共5页-->
+    <!--</div>-->
+</div>
 
 
-    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
-    <script type="text/javascript">
-        //Iframe 的高度
-        $(function () {
-            window.parent.$("#Iframe").css("height","917");
+<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+<script type="text/javascript">
+    //Iframe 的高度
+    $(function () {
+        window.parent.$("#Iframe").css("height","917");
+    })
+    //        时间初始化
+    var startTime = '';
+    var endTime = '';
+    laydate({
+        elem: '#test1',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+            startTime = dates;
+        }
+    });
+    laydate({
+        elem: '#test2',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+            endTime = dates;
+        }
+    });
+    laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
+
+    $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+    Page({
+        num: 200,
+        elem: $('#page1'),
+        callback: function(n) {
+            console.log(n);
+        }
+    });
+
+    // 模拟单选按钮
+    $('.bottomOperiat .squre').click(function(){
+        $(this).toggleClass('active');
+    });
+    $('.bottomOperiat .selsectAll').click(function(){
+        $('.bottomOperiat .squre').toggleClass('active');
+    });
+
+    //进入页面加载数据
+    getData(1);
+    //获取数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");
+        $.ajax({
+            url: pubIP + 'order/getMoreOrderList', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                orderNo:$(".orderNo").val(),
+                status:0,//公司类型 0 供应商 1 承运商
+                time:$("#test1").val(),
+                endTime:$("#test2").val(),
+                sort:$(".sort").attr("data-selectedindex"),
+                size:pageSize,
+                page:currentPage,
+                goodsName:$("#cf_goodsName").val(),
+                parentId:0
+            },
+            success: function (res) {
+                if(res.code===1){
+                    //首次请求时 改变分页数据
+                    if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.count/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.data)
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+            str+='<tr data-id="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'">';
+            str+='<td>'+item.orderNo+'</td>';
+            str+='<td>'+item.carrierCompanyName+'</td>';
+            str+='<td>'+item.orderType+'</td>';
+            str+='<td>'+' '+'</td>';
+            if(item.tlosettlementAmount==null){
+                str+='<td>'+0+'</td>';
+            }else{
+                str+='<td>'+item.tlosettlementAmount+'</td>';
+            }
+            str+='<td>'+''+'</td>';
+            str+=' <td><span class="addOrder ll">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>';
+            str+='</tr>';
         })
-        //        时间初始化
-        var startTime = '';
-        var endTime = '';
-        laydate({
-            elem: '#test1',
-            format: 'YYYY-MM-DD',
-            istime: true,
-            choose: function(dates){ //选择好日期的回调
-                startTime = dates;
-            }
-        });
-        laydate({
-            elem: '#test2',
-            format: 'YYYY-MM-DD',
-            istime: true,
-            choose: function(dates){ //选择好日期的回调
-                endTime = dates;
-            }
-        });
-        laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
+        $(".listBox tbody").html(str);
+        //详情
+        $(".seeDetail").unbind()
+        $(".seeDetail").click(function () {
+            window.localStorage.setItem('data-companyId', $(this).parents("tr").attr('data-companyId'));
+            window.localStorage.setItem('data-tloId', $(this).parents("tr").attr('data-id'));
+            window.localStorage.setItem('data-orderNo', $(this).parents("tr").attr('data-orderNo'));
+            sessionStorage.setItem("detailTitle","订单详情");
 
-        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-        Page({
-            num: 200,
-            elem: $('#page1'),
-            callback: function(n) {
-                console.log(n);
+            sessionStorage.setItem("isTotalOrderDetail","1");
+            window.location.href = "orderAllDetail.html";
+        })
+
+        //新增订单
+        $(".addOrder").unbind();
+        $(".addOrder").click(function () {
+            sessionStorage.setItem('logisticsOrderId',$(this).parents("tr").attr("data-id"));
+            sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-demandId"));
+            sessionStorage.setItem("isRequireMent",1);
+            sessionStorage.setItem("isAddRequireMent",0);
+            sessionStorage.setItem("isTotailOrder",1);//判断是不是从总订单过来的
+            window.location.href='../personal/addRequireMent.html'
+        })
+//		编辑
+        $(".editList").click(function () {
+            resetModelBox12()//先清空框
+            window.parent.$(".modelBox12").show();
+            window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
+            returnShow($(this).parents("tr").attr("data-id"));
+
+            window.parent.$("#addCarNo").attr("readonly","readonly");
+
+        })
+        //删除
+        $(".delect").click(function () {
+            upadtaState(1,this);
+        })
+        //启用和禁用
+        $(".chooseswitch input[type='checkbox']").change(function() {
+            console.log($(this).prop("checked"));
+            if($(this).prop("checked")){
+                upadtaState(2,this);
+            }else {
+                upadtaState(3,this);
             }
+
         });
-        
-        // 模拟单选按钮
-        $('.bottomOperiat .squre').click(function(){
-            $(this).toggleClass('active');
-        });
-        $('.bottomOperiat .selsectAll').click(function(){
-            $('.bottomOperiat .squre').toggleClass('active');
-        });
-    </script>
+    }
+    //选择排序方式
+    $(".select ul li").click(function () {
+        getData(1);
+    })
+    // 点击go刷新数据
+    $('.pageCont').on('click', '.button',function(){
+        var currentPage1 = $('.pageCont li.active>a').text();
+        getData(currentPage1);
+    })
+
+</script>
 </body>
 </html>
