@@ -1043,3 +1043,7 @@ input{
 	overflow: hidden;
 	white-space: nowrap;
 }
+
+.pageJump .allPageN,.pageJump input,.pageJump .button{
+	height: 39px;line-height: 39px;
+}

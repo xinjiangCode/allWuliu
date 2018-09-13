@@ -268,7 +268,7 @@
                 parentId:0
             },
             success: function (res) {
-                if(res.code===1){
+                if(res.code==1){
                     //首次请求时 改变分页数据
                     if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                     $(".pagination").parent().css("display","block");
@@ -335,6 +335,7 @@
         $(".addOrder").click(function () {
             sessionStorage.setItem('logisticsOrderId',$(this).parents("tr").attr("data-id"));
             sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-demandId"));
+            sessionStorage.setItem("demandNo",$(this).parents("tr").attr("data-orderNo"))
             sessionStorage.setItem("isRequireMent",1);
             sessionStorage.setItem("isAddRequireMent",0);
             sessionStorage.setItem("isTotailOrder",1);//判断是不是从总订单过来的
