@@ -177,8 +177,8 @@
             <li>
                 <div class="left1 Lf"><i class="red">*</i>身份类型:</div>
                 <div class="right2 Lf type_radio">
-                    <input type="radio" name="code_type" checked="checked" value="00">供应商
-                    <input type="radio" name="code_type" value="4">承运商
+                    <input type="radio" name="code_type" value="00">供应商
+                    <input type="radio" name="code_type" checked="checked" value="4">承运商
                 </div>
                 <span class="ts"></span>
             </li>
@@ -405,7 +405,12 @@
         // console.log($(this).parent().find('.uploade').height());
         window.parent.look_pic($(this).parent().width(), $(this).parent().height(), $(this).parent().parent().find('.smallimg').eq(1).val());
     });
+    if ($('input[name="code_type"]:checked').val() == '00') {
+        $('.company_type').css('display', 'block');
+    } else {
+        $('.company_type').css('display', 'none');
 
+    }
     $(document).on('change', 'input[name="code_type"]', function() {
         if ($('input[name="code_type"]:checked').val() == '00') {
             $('.company_type').css('display', 'block');
