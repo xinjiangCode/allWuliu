@@ -134,7 +134,7 @@
                 if (data.code == 1) {
                     if (data.data.length != 0) {
                         var str = '';
-                        for (var i = 0; i < data.data.length; i++) {debugger
+                        for (var i = 0; i < data.data.length; i++) {
                             if(carid==data.data[i].id){
                                 $("#carType").text(data.data[i].typeName);
                                 return;
@@ -188,7 +188,7 @@
         $("#carBrand").text(data.carBrand);
 
         getCarType(data.carType);
-        debugger
+
         $("#annualVerificationDate").text(timestampToTime(data.annualVerificationDate));
         $("#archivesNo").text(data.archivesNo);
         $("#firstDate").text(timestampToTime(data.firstDate));

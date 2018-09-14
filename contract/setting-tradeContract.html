@@ -12,347 +12,350 @@
     <link rel="stylesheet" href="../css/setting-tradeContract.css">
 </head>
 <body>
-    <div class="contbox">
-        <div class="topTitle">贸易合同</div>
-        <div class="inputBox">
-            <label for="">合同单号</label><input class="orderNo input" type="text" placeholder="输入搜索">
-            <!--<label for="">合同状态</label>-->
-            <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
-                <!--<ul>-->
-                    <!--<li data-index="1">1</li>-->
-                    <!--<li data-index="2">2</li>-->
-                    <!--<li data-index="3">3</li>-->
-                    <!--<li data-index="3">4</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <label for="">签订时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
-            <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
-            <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
-        </div>
-        <div class="opciationBox">
-            <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
-                <ul>
-                    <li data-index="1">10</li>
-                    <li data-index="2">20</li>
-                    <li data-index="3">30</li>
-                </ul>
-            </div>
-            <!--<input class="exportOrderBtn btn" type="button" value="导出列表">-->
-            <input class="addBtn btn" type="button" value="新增合同">
-        </div>
-        <div class="listBox">
-            <table>
-                <thead>
-                    <tr>
-                        <!-- <td style="width: 50px;"></td>
-                        <td style="width: 165px;">客户公司</td>
-                        <td style="width: 100px;">合同类型</td>
-                        <td style="width: 160px;">签订日期</td>
-                        <td style="width: 160px;">完成日期</td>
-                        <td style="width: 75px;">操作员</td>
-                        <td style="width: 75px;">状态</td>
-                        <td>操作</td> -->
-                        <td style="width: 50px;"></td>
-                        <td>合同编号</td>
-                        <td>客户公司</td>
-                        <!--<td>合同类型</td>-->
-                        <td>签订日期</td>
-                        <td>完成日期</td>
-                        <td>操作员</td>
-                        <td>状态</td>
-                        <td>操作</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="check_btn"></span></td>
-                        <td>化动力有限公司</td>
-                        <!--<td>对上合同</td>-->
-                        <td>2018-07-19 14:48:38</td>
-                        <td>2018-07-19 14:48:38</td>
-                        <td>王小二</td>
-                        <td class="">已完成</td>
-                        <td><span class="btn ll">查看订单</span><span class="btn ll">合同变更</span><span class="btn">删除</span></td>
-                    </tr>
-                    <tr>
-                            <td><span class="check_btn"></span></td>
-                            <td>化动力有限公司</td>
-                            <!--<td>对上合同</td>-->
-                            <td>2018-07-19 14:48:38</td>
-                            <td>2018-07-19 14:48:38</td>
-                            <td>王小二</td>
-                            <td class="">已完成</td>
-                            <td><span class="btn ll">查看订单</span><span class="btn ll">合同变更</span><span class="btn">删除</span></td>
-                        </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="bottomOperiat">
-            <span class="squre"></span>
-            <span class="selsectAll">全选</span>
-            <span class="closeBtn">关闭订单</span>
-            <span class="delBtn">删除订单</span>
-        </div>
-        <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
-            <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
-            <div class="pageJump">
-                <span class="allPageN">1/200</span>
-                <i style="margin-left: 12px;">共200页</i>，
-                <span>到第</span>
-                <input type="text"/>
-                <span>页</span>
-                <button type="button" class="button">GO</button>
-            </div>
-        </div>
-        <!--<div class="pageBox">-->
-        <!--共100张 当前为1页 共5页-->
+<div class="contbox">
+    <div class="topTitle">贸易合同</div>
+    <div class="inputBox">
+        <label>合同单号</label><input class="orderNo input" type="text" placeholder="输入搜索">
+        <!--<label for="">合同状态</label>-->
+        <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
+        <!--<ul>-->
+        <!--<li data-index="1">1</li>-->
+        <!--<li data-index="2">2</li>-->
+        <!--<li data-index="3">3</li>-->
+        <!--<li data-index="3">4</li>-->
+        <!--</ul>-->
         <!--</div>-->
+        <label>签订时间</label><input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+        <span>-</span>
+        <input type="text" class="date-input laydate-icon input" placeholder="请选择日期" id="test2">
+        <input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 100px;">
+        <!--<input class="advancedRetrievalBtn btn input" type="button" value="高级检索">-->
     </div>
+    <div class="opciationBox">
+        <div class="select displayNum" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" alt="">
+            <ul>
+                <li data-index="1">10</li>
+                <li data-index="2">20</li>
+                <li data-index="3">30</li>
+            </ul>
+        </div>
+        <!--<input class="exportOrderBtn btn" type="button" value="导出列表">-->
+        <input class="addBtn btn" type="button" value="新增合同">
+    </div>
+    <div class="listBox">
+        <table>
+            <thead>
+            <tr>
+                <!-- <td style="width: 50px;"></td>
+                <td style="width: 165px;">客户公司</td>
+                <td style="width: 100px;">合同类型</td>
+                <td style="width: 160px;">签订日期</td>
+                <td style="width: 160px;">完成日期</td>
+                <td style="width: 75px;">操作员</td>
+                <td style="width: 75px;">状态</td>
+                <td>操作</td> -->
+                <!--<td style="width: 50px;"></td>-->
+                <td>合同编号</td>
+                <td>客户公司</td>
+                <!--<td>合同类型</td>-->
+                <td>签订日期</td>
+                <td>完成日期</td>
+                <td>操作员</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr>-->
+            <!--<td><span class="check_btn"></span></td>-->
+            <!--<td>化动力有限公司</td>-->
+            <!--&lt;!&ndash;<td>对上合同</td>&ndash;&gt;-->
+            <!--<td>2018-07-19 14:48:38</td>-->
+            <!--<td>2018-07-19 14:48:38</td>-->
+            <!--<td>王小二</td>-->
+            <!--<td class="">已完成</td>-->
+            <!--<td><span class="btn ll">查看订单</span><span class="btn ll">合同变更</span><span class="btn">删除</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td><span class="check_btn"></span></td>-->
+            <!--<td>化动力有限公司</td>-->
+            <!--&lt;!&ndash;<td>对上合同</td>&ndash;&gt;-->
+            <!--<td>2018-07-19 14:48:38</td>-->
+            <!--<td>2018-07-19 14:48:38</td>-->
+            <!--<td>王小二</td>-->
+            <!--<td class="">已完成</td>-->
+            <!--<td><span class="btn ll">查看订单</span><span class="btn ll">合同变更</span><span class="btn">删除</span></td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+    <!--<div class="bottomOperiat">-->
+    <!--<span class="squre"></span>-->
+    <!--<span class="selsectAll">全选</span>-->
+    <!--<span class="closeBtn">关闭订单</span>-->
+    <!--<span class="delBtn">删除订单</span>-->
+    <!--</div>-->
+    <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+        <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+        <div class="pageJump">
+            <span class="allPageN">1/200</span>
+            <i style="margin-left: 12px;">共200页</i>，
+            <span>到第</span>
+            <input type="text"/>
+            <span>页</span>
+            <button type="button" class="button">GO</button>
+        </div>
+    </div>
+    <!--<div class="pageBox">-->
+    <!--共100张 当前为1页 共5页-->
+    <!--</div>-->
+</div>
 
 
-    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
-    <script type="text/javascript">
+<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
+<script type="text/javascript">
 
-        // TODO 全局变量
-        // 合同分页查询
-        var pageUrl = pubIP + 'tContractTrade/selectContractTradeList';
-        //链接：删除合同
-        var deleteUrl = pubIP + 'tContractTrade/updateDoStar';
-
-
-
-        //Iframe 的高度
-        $(function () {
-            window.parent.$("#Iframe").css("height","977");
-        })
-        sessionStorage.setItem("suerCarConWinHeihght",465);
-        sessionStorage.setItem("suerCarConWinWidth",653);
-        //        时间初始化
-        var startTime = '';
-        var endTime = '';
-        laydate({
-            elem: '#test1',
-            format: 'YYYY-MM-DD',
-            istime: true,
-            choose: function(dates){ //选择好日期的回调
-                startTime = dates;
-            }
-        });
-        laydate({
-            elem: '#test2',
-            format: 'YYYY-MM-DD',
-            istime: true,
-            choose: function(dates){ //选择好日期的回调
-                endTime = dates;
-            }
-        });
-        laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
-
-        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-        Page({
-            num: 200,
-            elem: $('#page1'),
-            callback: function(n) {
-                console.log(n);
-            }
-        });
-        // 模拟单选按钮
-        $('.bottomOperiat .squre').click(function(){
-            $(this).toggleClass('active');
-        });
-        $('.bottomOperiat .selsectAll').click(function(){
-            $('.bottomOperiat .squre').toggleClass('active');
-        });
+    // TODO 全局变量
+    // 合同分页查询
+    var pageUrl = pubIP + 'tContractTrade/selectContractTradeList';
+    //链接：删除合同
+    var deleteUrl = pubIP + 'tContractTrade/updateDoStar';
 
 
-        //  TODO
-        //  数据加载
 
-        //搜索按钮
-        $(".searchResultBtn").click(function () {
-            getData(1);
-        })
+    //Iframe 的高度
+    $(function () {
+        window.parent.$("#Iframe").css("height","977");
+    })
+    sessionStorage.setItem("suerCarConWinHeihght",465);
+    sessionStorage.setItem("suerCarConWinWidth",653);
+    //        时间初始化
+    var startTime = '';
+    var endTime = '';
+    laydate({
+        elem: '#test1',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+            startTime = dates;
+        }
+    });
+    laydate({
+        elem: '#test2',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+            endTime = dates;
+        }
+    });
+    laydate.skin('yahui');  //加载皮肤，参数lib为皮肤名
 
-        var currentPage=1;
-        //进入页面加载数据
+    $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+    Page({
+        num: 200,
+        elem: $('#page1'),
+        callback: function(n) {
+            console.log(n);
+        }
+    });
+    // 模拟单选按钮
+    $('.bottomOperiat .squre').click(function(){
+        $(this).toggleClass('active');
+    });
+    $('.bottomOperiat .selsectAll').click(function(){
+        $('.bottomOperiat .squre').toggleClass('active');
+    });
+
+
+    //  TODO
+    //  数据加载
+
+    //搜索按钮
+    $(".searchResultBtn").click(function () {
         getData(1);
-        //获取数据
-        function getData(currentPage) {
-            $(".listBox tbody").html("");//所有条件查询列表 必须先置空
-            $.ajax({
-                url: pageUrl,
-                type: 'post',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                cache: false,
-                ansyc: true,
-                dataType: 'json',
-                data:{
-                    size:pageSize,
-                    page:currentPage,
-                    companyId:companyId,
-                    num:$("input.orderNo.input").val(),
-                    addTime:$("#test1").val(),
-                },
-                success: function (res) {
-                    if(res.code==1){
-                        //首次请求时 改变分页数据
-                        if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
-                        $(".pagination").parent().css("display","block");
-                        if(currentPage==1){
-                            //修改底部分页
-                            var pageNum=Math.ceil(res.count/pageSize);
-                            $(".allPageN").attr("pageTotal",pageNum);
-                            $(".pageJump i").text("共"+pageNum+"页");
-                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
-                            Page({
-                                num: pageNum,
-                                elem: $('#page1'),
-                                callback: function(n) {
-                                    // console.log(n);
-                                    currentPage=n;
-                                    getData(n);//加载n页数据
-                                }
-                            });
-                        }
-                        //修改底部页数
-                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
-                        cf_dataRender(res.data)
-                    }else{
-                        alert(res.msg);
+    })
+
+    var currentPage=1;
+    //进入页面加载数据
+    getData(1);
+    //获取数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");//所有条件查询列表 必须先置空
+        $.ajax({
+            url: pageUrl,
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                size:pageSize,
+                page:currentPage,
+                companyId:companyId,
+                num:$("input.orderNo.input").val(),
+                addTime:$("#test1").val(),
+                endTime:$("#test2").val(),
+            },
+            success: function (res) {
+                if(res.code==1){
+                    //首次请求时 改变分页数据
+                    if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.count/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                currentPage=n;
+                                getData(n);//加载n页数据
+                            }
+                        });
                     }
-                },
-                error: function(err){
-                    console.log(err);
-                }
-            });
-        }
-        //渲染数据
-        function cf_dataRender(data) {
-            var str='';
-            $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.id+'">';
-                str+='<td><div class="cf_select"></div></td>';
-                if(item.contractNo==null){
-                    str+='<td>无</td>';
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.data)
                 }else{
-                    str+='<td>'+item.contractNo+'</td>';
+                    alert(res.msg);
                 }
-                if(item.receiveCompanyname==null){
-                    str+='<td>无</td>';
-                }else {
-                    str += '<td>' + item.receiveCompanyname + '</td>';
-                }
-                // if(item.var28==null){
-                //     str+='<td>无</td>';
-                // }else{
-                //     str+='<td>'+timestampToTime(item.var28)+'</td>';
-                // }
-                if(item.signDate){
-                    str+='<td>'+timestampToTime(item.signDate)+'</td>';
-                }else{
-                    str+='<td>无</td>';
-                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+            str+='<tr data-id="'+item.id+'">';
+            // str+='<td><div class="cf_select"></div></td>';
+            if(item.contractNo==null){
+                str+='<td>无</td>';
+            }else{
+                str+='<td>'+item.contractNo+'</td>';
+            }
+            if(item.receiveCompanyname==null){
+                str+='<td>无</td>';
+            }else {
+                str += '<td>' + item.receiveCompanyname + '</td>';
+            }
+            // if(item.var28==null){
+            //     str+='<td>无</td>';
+            // }else{
+            //     str+='<td>'+timestampToTime(item.var28)+'</td>';
+            // }
+            if(item.signDate){
+                str+='<td>'+timestampToTime(item.signDate)+'</td>';
+            }else{
+                str+='<td>无</td>';
+            }
 
-                if(item.endDate){
-                    str+='<td>'+timestampToTime(item.endDate)+'</td>';
-                }else{
-                    str+='<td>无</td>';
-                }
-                if(item.createBy==null || item.createBy==""){
-                    str+='<td>无</td>';
-                }else{
-                    str+='<td>'+item.createBy+'</td>';
-                }
+            if(item.endDate){
+                str+='<td>'+timestampToTime(item.endDate)+'</td>';
+            }else{
+                str+='<td>无</td>';
+            }
+            if(item.createBy==null || item.createBy==""){
+                str+='<td>无</td>';
+            }else{
+                str+='<td>'+item.createBy+'</td>';
+            }
 
-                if(item.status==1){
-                    str+='<td>进行中</td>';
-                }else{
-                    str+='<td>已完成</td>';
-                }
-                str+='<td>' +
-                    '<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>' +
-                    '<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>' +
-                    '<span class="ll deleteRec" data-id="'+item.id+'">删除</span>' +
-                    '</td>';
-                str+='</tr>';
-            })
-            $(".listBox tbody").html(str);
-            //模拟点击 框
-            $(".listBox .cf_select").click(function () {
-                $(this).toggleClass("on");
-            })
-            //详情
-            $(".seeDetail").unbind();
-            $(".seeDetail").click(function () {
-                var id = $(this).attr('data-id');
-                sessionStorage.setItem("contractId",id);
-                sessionStorage.setItem("contractMode",'detail');
-
-                window.parent.showModelBox('.modelBox18_01_ifrm');
-                window.parent.$("#suerCarConWin").attr("src","contract/maoyiWin.html");
-
-            })
-            $(".updataRec").unbind();
-            $(".updataRec").click(function () {
-                var id = $(this).attr('data-id');
-                sessionStorage.setItem("contractId",id);
-                sessionStorage.setItem("contractMode",'edit');
-
-                window.parent.showModelBox('.modelBox18_01_ifrm');
-                window.parent.$("#suerCarConWin").attr("src","contract/maoyiWin.html");
-            })
-            $(".deleteRec").unbind();
-            $(".deleteRec").click(function () {
-                var id = $(this).attr('data-id');
-
-                // 详情信息
-                $.ajax({
-                    url: deleteUrl,
-                    type: 'POST',
-                    headers: {
-                        Accept: "application/json; charset=utf-8",
-                        token: token
-                    },
-                    data: {
-                        id: id
-                    },
-                    cache: false,
-                    dataType: 'json',
-                    success: function (json) {
-                        console.log(json);
-                        cf_alert(1,"删除成功")
-//                        window.parent.$(".all_success_alert").show();
-//                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
-
-                    },
-                    error: function(err) {
-                        console.log(err);
-//                        window.parent.$(".all_error_alert").show();
-//                        window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
-                    }
-                });
-            })
-        }
-
-        // TODO
-        // 按钮处理
-        //新增合同
-        $(document).on('click', '.addBtn', function() {
-            sessionStorage.setItem("contractId","");
-            sessionStorage.setItem("contractMode",'add');
+            if(item.status==1){
+                str+='<td>进行中</td>';
+            }else{
+                str+='<td>已完成</td>';
+            }
+            str+='<td>' +
+                '<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>' +
+                '<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>' +
+                '<span class="ll deleteRec" data-id="'+item.id+'">删除</span>' +
+                '</td>';
+            str+='</tr>';
+        })
+        $(".listBox tbody").html(str);
+        //模拟点击 框
+        $(".listBox .cf_select").click(function () {
+            $(this).toggleClass("on");
+        })
+        //详情
+        $(".seeDetail").unbind();
+        $(".seeDetail").click(function () {
+            var id = $(this).attr('data-id');
+            sessionStorage.setItem("contractId",id);
+            sessionStorage.setItem("contractMode",'detail');
 
             window.parent.showModelBox('.modelBox18_01_ifrm');
             window.parent.$("#suerCarConWin").attr("src","contract/maoyiWin.html");
 
-        });
+        })
+        $(".updataRec").unbind();
+        $(".updataRec").click(function () {
+            var id = $(this).attr('data-id');
+            sessionStorage.setItem("contractId",id);
+            sessionStorage.setItem("contractMode",'edit');
+
+            window.parent.showModelBox('.modelBox18_01_ifrm');
+            window.parent.$("#suerCarConWin").attr("src","contract/maoyiWin.html");
+        })
+        $(".deleteRec").unbind();
+        $(".deleteRec").click(function () {
+            var id = $(this).attr('data-id');
+
+            // 详情信息
+            $.ajax({
+                url: deleteUrl,
+                type: 'POST',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: id
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    cf_alert(1,"删除成功")
+//                        window.parent.$(".all_success_alert").show();
+//                        window.parent.$(".all_success_alert").find(".innerSuccmsg").html( "删除成功!");
+
+                },
+                error: function(err) {
+                    console.log(err);
+//                        window.parent.$(".all_error_alert").show();
+//                        window.parent.$(".all_error_alert").find(".innerErrmsg").html(err.msg);
+                }
+            });
+        })
+    }
+
+    // TODO
+    // 按钮处理
+    //新增合同
+    $(document).on('click', '.addBtn', function() {
+        sessionStorage.setItem("contractId","");
+        sessionStorage.setItem("contractMode",'add');
+
+        window.parent.showModelBox('.modelBox18_01_ifrm');
+        window.parent.$("#suerCarConWin").attr("src","contract/maoyiWin.html");
+
+    });
 
 
-    </script>
+</script>
 </body>
 </html>
