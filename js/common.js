@@ -1,13 +1,15 @@
 
 // var pubIP = 'http://192.168.1.146:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
-
+var pubIP = 'http://api.test.hdlsuper.com/';
 // 上传图片路径
-var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+// var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+var uplodImgPath = 'file.test.xjv56.com/bfile/fileUpload.htm';
 //下载
-var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
+// var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
+var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
 
 
 //获取地址栏参数，name:参数名称
