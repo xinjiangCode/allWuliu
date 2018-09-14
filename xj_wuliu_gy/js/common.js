@@ -1,7 +1,8 @@
 
 // var pubIP = 'http://192.168.1.146:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
+var pubIP = 'http://api.test.hdlsuper.com/';
 
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 
@@ -25,7 +26,8 @@ var token=localStorage.getItem("token");
 // 上传图片路径
 // var uplodImgPath = 'http://192.168.1.80:8680/bfile/fileUpload.htm';
 // var uplodImgPath = 'http://172.17.210.188:8081/bfile/fileUpload.htm';
-var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+// var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 
 var pageSize=10;//分页的每页个数
 

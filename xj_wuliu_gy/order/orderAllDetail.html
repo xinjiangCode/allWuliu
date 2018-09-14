@@ -657,7 +657,7 @@
         function cf_dataRender(data) {
             var str='';
             $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'">';
+                str+='<tr data-id="'+item.tloId+'" data-tloId="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'" data-companyname="'+item.companyName+'" data-quotesSatus="'+item.goodsType+'" data-tloContractAmount="'+item.unitPrice+'"  data-tloContractAmount="'+item.tloContractAmount+'"  data-danjia="'+item.unitPrice+'" data-num="'+item.goodsNum%+'">';
                 str+='<td>'+item.orderNo+'</td>';
                 str+='<td>'+item.carrierCompanyName+'</td>';
                 str+='<td>'+item.orderType+'</td>';
@@ -668,48 +668,204 @@
                     str+='<td>'+item.tlosettlementAmount+'</td>';
                 }
                 str+='<td>'+''+'</td>';
-                if(item.tloStatus==	0){//未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==1){//承运商-待分配	1	ORDER_STATUS_ALLOT	供应商与承运商已签约
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==2){//承运商-已分配车辆	2	ORDER_STATUS_CAR	承运商为改商品分配车辆
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==3){//承运商-已上传合同	3	ORDER_STATUS_CONTRACT	承运商上传贸易合同
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==4){//承运商-带送达【进行中】	4	ORDER_STATUS_CONDUCT	承运商分配车辆并且上传合同
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==5){//供应商-待收货	5	ORDER_STATUS_GOODS	承运商货物确认送达时
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==6){//供应商-回款	6	ORDER_STATUS_MONEY	供应商确认货物送达
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==7){//承运商-回款待审核	7	ORDER_STATUS_AUDITING	承运商确认合同金额
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==8){//承运商 - 财务待结算	8	ORDER_STATUS_SETTLEMENT	供应商打款，承运商确认（财务）
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==9){//完成订单	9	ORDER_STATUS_COMPLETE	打款金额等于合同金额时
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==10){//供应商-取消订单	10	ORDER_STATUS_SUPPLY_CANCEL	供应商取消订单
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus==11){//承运商-取消订单	11	ORDER_STATUS_CARRIER_CANCEL	承运商取消订单
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
-                }else if(item.tloStatus=="-1"){//异常订单	-1	ORDER_STATUS_ERROR	平台记录订单异常
-                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+                if(item.tloStatus==	1 || item.tloStatus==2 || item.tloStatus==3){//未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商`
+                    str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll diaoling">发起调令</span><span class="ll cancel_order">取消订单</span>';
+                }else if(item.tloStatus==4){//进行中订单
+                    str+=' <td><span class="ll seeDetail">查看订单</span></td>';
+                }else if(item.tloStatus==5){//确认收货订单
+                    str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll ok_shouhuo">确认收货</span></td>';
+                }else if(item.tloStatus==7){//回款审核订单
+                    str+=' <td><span class="ll">查看详情</span></td>';
+                }else if(item.tloStatus==	6 || item.tloStatus==8){//财务待结算订单
+                    if(item.tLogisticsOrderstatus==6){
+                        str+=' <td><span class="ll">查看详情</span><span onclick="updateStates(this)">修改状态</span></td>';
+                    }else{
+                        str+=' <td><span class="ll">查看详情</span></td>';
+                    }
                 }
+                else if(item.tloStatus==5){//供应商-待收货	5	ORDER_STATUS_GOODS	承运商货物确认送达时
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus==6){//供应商-回款	6	ORDER_STATUS_MONEY	供应商确认货物送达
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus==7){//承运商-回款待审核	7	ORDER_STATUS_AUDITING	承运商确认合同金额
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus==8){//承运商 - 财务待结算	8	ORDER_STATUS_SETTLEMENT	供应商打款，承运商确认（财务）
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus==9){//完成订单	9	ORDER_STATUS_COMPLETE	打款金额等于合同金额时
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus==10){//供应商-取消订单	10	ORDER_STATUS_SUPPLY_CANCEL	供应商取消订单
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus==11){//承运商-取消订单	11	ORDER_STATUS_CARRIER_CANCEL	承运商取消订单
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }else if(item.tloStatus=="-1"){//异常订单	-1	ORDER_STATUS_ERROR	平台记录订单异常
+//                    str+=' <td><span class="ll">新增订单</span><span class="ll">查看订单</span><span class="ll">结束订单</span><span class="ll">金额结算</span></td>';
+//                }
 
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
-            //详情
+            //查看详情
             $(".seeDetail").unbind()
             $(".seeDetail").click(function () {
-                window.localStorage.setItem('data-companyId', $(this).attr('data-companyId'));
-                window.localStorage.setItem('data-tloId', $(this).attr('data-id'));
-                window.localStorage.setItem('data-orderNo', $(this).attr('data-orderNo'));
+                window.localStorage.setItem('data-companyId', $(this).parents("tr").attr('data-companyId'));
+                window.localStorage.setItem('data-tloId', $(this).parents("tr").attr('data-id'));
+                window.localStorage.setItem('data-orderNo', $(this).parents("tr").attr('data-orderNo'));
                 sessionStorage.setItem("detailTitle","订单详情");
-
-                sessionStorage.setItem("isTotalOrderDetail","1");
                 window.location.href = "orderAllDetail.html";
             })
+            // 取消订单
+            $(".cancel_order").unbind()
+            $(".cancel_order").click(function() {
+                $.ajax({
+                    url: ip + 'order/upCancelOrder',
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        id: $(this).parents("tr").attr('data-tloId')
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (json) {
+                        if (json.code == 1) {
+                            cf_alert(1,"订单取消成功!")
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+
+            });
+            // 发起调令
+            $(".diaoling").unbind();
+            $(".diaoling").click(function () {
+                $(window.parent.document).find('.ok_shenqing').attr('data-orderid', $(this).parents("tr").attr('data-id'));
+                $(window.parent.document).find('.hetongyuanjia').text($(this).parents("tr").attr('data-tloContractAmount'));
+                $(window.parent.document).find('.ok_shenqing').attr('data-companyname', $(this).parents("tr").attr('data-companyname'));
+                $(window.parent.document).find('.ok_shenqing').attr('data-quotesSatus', $(this).parents("tr").attr('data-quotesSatus'));
+                window.parent.showModelBox('.modelBox37');
+            })
+            // 发起调令  弹框
+            window.parent.$(".modelBox37 .ok_shenqing").unbind();
+            window.parent.$(".modelBox37 .ok_shenqing").click(function () {
+                var orderid = $(this).attr('data-orderid');
+                var companyname = $(this).attr('data-companyname');
+
+                var quotesSatus = $(this).attr('data-quotesSatus');
+
+                var oldPrice = $(window.parent.document).find('.hetongyuanjia').text();
+                var quotedPrice = $(window.parent.document).find('.update_unit').val();
+                var remark = $(window.parent.document).find('.tiaojia_yuanyin').val();
+
+                $.ajax({
+                    url: pubIP + 'OrderPricesChanged/addPricesChanged',
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        orderid: orderid,
+                        companyid: companyId,
+                        companyname: companyname,
+                        quotesSatus: quotesSatus,
+                        oldPrice: oldPrice,
+                        quotedPrice: quotedPrice,
+                        remark: remark
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (json) {
+                        console.log(json);
+                        if (json.code == 1) {
+//                            $(window.parent.document).find('.modelBox37').css('display', 'none');
+//                            window.parent.showModelBox('.modelBoxdiaoling');
+                            cf_alert(1,"发起调令成功！")
+                        }
+
+
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+
+                });
+            })
+
+
+            // 确认收货
+            $(".ok_shouhuo").unbind();
+            $(".ok_shouhuo").click(function() {
+
+                $(window.parent.document).find('.modelBox36 .hetong_jiesuan_money').text($(this).parents("tr").attr('data-danjia')*$(this).parents("tr").attr('data-num'));
+
+                $(window.parent.document).find('.modelBox36 .ok_shouhuo').attr('orderId', $(this).parents("tr").attr('data-tloId'));
+
+                $(window.parent.document).find('.modelBox36 .shiji_jiesuan_money').val('');
+
+                $(window.parent.document).find('.modelBox36 textarea').val('');
+
+                window.parent.showModelBox('.modelBox36');
+
+            });
+            // 点击弹框内的确认收货
+            window.parent.$(".modelBox37 .ok_shouhuo").unbind();
+            window.parent.$(".modelBox37 .ok_shouhuo").click( function() {
+                var money = $(this).parent().parent().find('.shiji_jiesuan_money').val();
+                var remark = $(this).parent().parent().find('textarea').val();
+                if(money==""){
+                    $(this).parent().parent().find('.shiji_jiesuan_money').css("border-color","red");
+                    return;
+                }else{
+                    $(this).parent().parent().find('.shiji_jiesuan_money').css("border-color","#dbdbdc");
+                }
+                if(remark==""){
+                    $(this).parent().parent().find('textarea').css("border-color","red");
+                    return;
+                }else{
+                    $(this).parent().parent().find('textarea').css("border-color","#dbdbdc");
+                }
+                var orderid = $(this).attr('orderid');
+
+                $.ajax({
+                    url: ip + 'order/confirmTakeGoodsOrder',
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        orderId: orderid,
+                        amount: money,
+                        remark: remark
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (json) {
+                        console.log(json);
+
+                        if (json.code == 1) {
+//                            $(window.parent.document).find('.modelBox36').css('display', 'none');
+//                            $(window.parent.document).find('.modelBox12 p').html('<span>确认收货成功!</span>');
+//                            window.parent.showModelBox('.modelBox12');
+                            cf_alert(1,"确认收货成功!")
+                        }else{
+                            cf_alert01(2,json.msg)
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+
+            });
+
+
+
+
 
             //新增订单
             $(".addOrder").unbind();
@@ -752,7 +908,36 @@
             getData(currentPage1);
         })
 
+        //修改订单状态  暂时   、、财务待结算订单的
+        function updateStates(that){
+            $.ajax({
+                url: pubIP + 'order/upOrderStatus',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    status:8,
+                    tLogisticsOrderId:$(that).parents("tr").attr("data-id"),
+                    tLogisticsOrderstatus:6,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
 
+                    if (json.code == 1) {
+                        alert(json.msg)
+                        window.location.reload();
+                    }
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
 
 
         //下载协议模板
