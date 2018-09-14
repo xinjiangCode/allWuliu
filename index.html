@@ -779,6 +779,9 @@ $('.goUser').click(function() {
             
             window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
             $('.goUser').attr('href', 'account.html');
+        }else{
+            $('#effect .contTitle span').text('您尚未登录');
+            missedLogin() ;
         }
 
     });
