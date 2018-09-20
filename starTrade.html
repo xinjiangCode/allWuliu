@@ -82,11 +82,11 @@
         </ul>
         <div class="btnBox">
             <div>
-                <input type="text" id="companyName" class="searchInput" placeholder="公司地址">
+                <input type="text" id="address" class="searchInput" placeholder="公司地址">
                 <input type="button" class="searchBtn" value="" onclick="getData(1)">
             </div>
             <div>
-                <input type="text" class="searchInput" id="address" placeholder="公司名称">
+                <input type="text" class="searchInput" id="companyName" placeholder="公司名称">
                 <input type="button" class="searchBtn" value="" onclick="getData(1)">
             </div>
         </div>
@@ -195,7 +195,7 @@
                 address:$("#address").val()
             },
             success: function (res) {
-                if(res.code===1){
+                if(res.code==1){
                     //首次请求时 改变分页数据
                     if(res.data.length==0){
                         $(".listBox tbody").html("");

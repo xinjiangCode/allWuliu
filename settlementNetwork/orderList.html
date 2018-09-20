@@ -123,8 +123,8 @@
         <div class="fr cfRefresh">导出</div></div>
     <div class="inputBox">
         <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
-        <label for="">商品名称</label>
-        <input id="cf_goodsName" type="text" style="height: 38px;box-sizing: border-box;margin-right: 12px;border: 1px solid #e7e7e7;" placeholder="输入搜索">
+        <!--<label for="">商品名称</label>-->
+        <!--<input id="cf_goodsName" type="text" style="height: 38px;box-sizing: border-box;margin-right: 12px;border: 1px solid #e7e7e7;" placeholder="输入搜索">-->
         <!--<label for="">货物类型</label>-->
         <!--<div class="goodsType input select" data-selectedindex="0"><span>全部</span><img src="../img/prl-select.jpg" >-->
         <!--<ul>-->
@@ -276,124 +276,344 @@
     //         console.log(n);
     //     }
     // });
+    getData(1)
+    //获取定单列表数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");
+        $.ajax({
+            url: pubIP + 'carrierDot/getDotOrderList', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+//                status:1,//公司类型 0 供应商 1 承运商
+                iDisplayLength:pageSize,
+                orderNo:$(".orderNo").val(),
+                time:$("#test1").val(),
+                endTime:$("#test2").val(),
+                iDisplayStart:currentPage,
+            },
+            success: function (res) {
+                if(res.code==1){
+                    //首次请求时 改变分页数据
+                    if(res.data==null || res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        window.parent.$("#Iframe").css("height","1834");
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.count/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+
+                    cf_dataRender(res.data)
+                }else{
+
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+            str+='<tr data-id="'+item.tloId+'" data-tloId="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'" data-companyname="'+item.companyName+'" data-quotesSatus="'+item.goodsType+'" data-tloContractAmount="'+item.unitPrice+'"  data-tloContractAmount="'+item.tloContractAmount+'"  data-danjia="'+item.unitPrice+'" data-num="'+item.goodsNum%+'"  data-sendCompanyId="'+item.sendCompanyId+'" data-sendCompanyName="'+item.sendCompanyName+'" data-receiveCompanyId="'+item.receiveCompanyId+'" data-receiveCompanyName="'+item.receiveCompanyName+'" data-tloContractAmount="'+item.tloContractAmount+'" data-tlosettlementAmount="'+item.tlosettlementAmount+'" data-tloId="'+item.tloId+'">';
+            str+='<td>'+item.orderNo+'</td>';
+            if(item.tloUpdateTime==null || item.tloUpdateTime=="" || item.tloUpdateTime==0){
+                str+='<td></td>';
+            }else{
+                str+='<td>'+timestampToTime1(item.tloUpdateTime)+'</td>';
+            }
+            str+='<td>'+item.chemicalName+'</td>';
+            str+='<td>'+item.goodsName+'</td>';
+//            str+='<td>'+item.goodsNum+item.goodsUnit+'</td>';
+            str+='<td>'+item.sendProvince+item.sendCity+'</td>';
+            str+='<td>'+item.receiveProvince+item.receiveCity+'</td>';
+            if(item.tloStatus==	1 || item.tloStatus==2 || item.tloStatus==3){//未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商`
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll" onclick="fenPei(\''+item.tloId+'\')">分配车辆</span><span class="ll cancel_order">取消订单</span><span class="ll update">上传合同</span><span class="ll diaoling">发起调令</span>';
+            }else if(item.tloStatus==4){//进行中订单
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll sure">确认送达</span><span class="ll " onclick="fenPei(\''+item.tloId+'\')">更改车辆</span></td>';
+            }else if(item.tloStatus==7){//回款审核订单
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll huikuan_shenhe">回款审核</span></td>';
+            }else if(item.tloStatus==5  || item.tloStatus==9 || item.tloStatus==10 || item.tloStatus==11 ){//回款审核订单
+                str+=' <td><span class="ll">查看详情</span></td>';
+            }else if(item.tloStatus==	6 || item.tloStatus==8){//财务待结算订单
+                if(item.tLogisticsOrderstatus==8){
+                    str+=' <td><span class="ll">查看详情</span><span onclick="updateStates(this)">修改状态</span></td>';
+                }else{
+                    str+=' <td><span class="ll">查看详情</span></td>';
+                }
+            }
+            str+='</tr>';
+        })
+        $(".listBox tbody").html(str);
+        //查看详情
+        $(".seeDetail").unbind()
+        $(".seeDetail").click(function () {
+            window.localStorage.setItem('data-companyId', $(this).parents("tr").attr('data-companyId'));
+            window.localStorage.setItem('data-tloId', $(this).parents("tr").attr('data-id'));
+            window.localStorage.setItem('data-orderNo', $(this).parents("tr").attr('data-orderNo'));
+            sessionStorage.setItem("detailTitle","订单详情");
+            window.location.href = "../order/orderAllDetail.html";
+        })
+        // 取消订单
+        $(".cancel_order").unbind()
+        $(".cancel_order").click(function() {
+            $.ajax({
+                url: ip + 'order/upCancelOrder',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: $(this).parents("tr").attr('data-tloId')
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    if (json.code == 1) {
+                        cf_alert(1,"订单取消成功!")
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+        });
+
+        //上传合同
+        $('.update').unbind();
+        $('.update').click( function() {
+            $(".update").removeClass("thisUpdate");
+            $(this).addClass("thisUpdate");
+            $(window.parent.document).find('#qianding_time').val('')
+            window.parent.$(".modelBox1 .errMsg").text("")
+            $(window.parent.document).find('.modelBox1 input[type="hidden"]').val('')
+            $(window.parent.document).find('.modelBox1 input[type="hidden"]').next().css('background', 'url("")')
+            window.parent.showModelBox('.modelBox1');
+        });
+        window.parent.$(".ok_upload").unbind()
+        window.parent.$(".ok_upload").click(function() {
+            if(window.parent.$("#qianding_time").val()==""){
+                window.parent.$(".modelBox1 .errMsg").text("请选择签订日期")
+                return;
+            }
+            if(window.parent.$("#upload_hetong_hidden").val()==""){
+                window.parent.$(".modelBox1 .errMsg").text("请上传合同")
+                return;
+            }
+            window.parent.$(".modelBox1 .errMsg").text("")
 
 
+            // console.log('..');
+            //debugger
+            $.ajax({
+                url: pubIP + 'tContractTrade/insertWLtContractTrade',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    orderid: $('.thisUpdate').parents('tr').attr('data-tloId'),
+                    orderNo: $('.thisUpdate').parents('tr').attr('data-orderNo'),
+                    sendCompanyid: $('.thisUpdate').parents('tr').attr('data-sendCompanyId'),
+                    sendCompanyname: $('.thisUpdate').parents('tr').attr('data-sendCompanyName'),
+                    receiveCompanyid: $('.thisUpdate').parents('tr').attr('data-receiveCompanyId'),
+                    receiveCompanyname: $('.thisUpdate').parents('tr').attr('data-receiveCompanyName'),
+                    url: $(window.parent.document).find('#upload_hetong_hidden').val(),
+                    type: 1,
+                    signDate: $(window.parent.document).find('.qianding_time').val()
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+//                        $(window.parent.document).find('.modelBox1').css('display', 'none');
+//                        $(window.parent.document).find('.modelBoxaddqita p span').html('合同上传成功！');
+//                        window.parent.showModelBox('.modelBoxaddqita');
+//                        window.location.reload();
+                        cf_alert(1,"合同上传成功!")
+                    }else{
+                        cf_alert01(2,json.msg)
+                    }
 
-    //确认送达
-    $(document).on('click', '.sure', function() {
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        });
+        // 发起调令
+        $(".diaoling").unbind();
+        $(".diaoling").click(function () {
+            console.log($(this).attr('data-tloContractAmount'));
+            $(window.parent.document).find('.ok_shenqing').attr('data-orderid', $(this).parents("tr").attr('data-orderId'));
+            $(window.parent.document).find('.hetongyuanjia').text($(this).parents("tr").attr('data-tloContractAmount'));
+            $(window.parent.document).find('.ok_shenqing').attr('data-companyname', $(this).parents("tr").attr('data-companyname'));
+            $(window.parent.document).find('.ok_shenqing').attr('data-quotesSatus', $(this).parents("tr").attr('data-quotesSatus'));
 
-        var tloId = $(this).attr('data-tloId');
-        sessionStorage.setItem("qrsd_tloId",tloId);
-        window.parent.showModelBox('.modelBox18_ifrm');
-        window.parent.$("#suerSongda").attr("src","order/querensongda.html");
-        // // 详情信息
-        // $.ajax({
-        //     url: pubIP + 'order/getOrderByid',
-        //     type: 'get',
-        //     headers: {
-        //         Accept: "application/json; charset=utf-8",
-        //         token: token
-        //     },
-        //     data: {
-        //         tloid: tloId
-        //     },
-        //     cache: false,
-        //     dataType: 'json',
-        //     success: function (json) {
-        //         console.log(json);
+            window.parent.showModelBox('.modelBox37');
+        })
+        window.parent.$(".modelBox37 .ok_shenqing").unbind();
+        window.parent.$(".modelBox37 .ok_shenqing").click(function () {
+            var orderid = $(this).parents("tr").attr('data-orderid');
+            var companyname = $(this).parents("tr").attr('data-companyname');
 
-        //         json.data.createTime = new Date(json.data.createTime).Format("yyyy-MM-dd hh:mm");
-        //         json.data.startDate = new Date(json.data.startDate).Format("yyyy-MM-dd hh:mm");
+            var quotesSatus = $(this).parents("tr").attr('data-quotesSatus');
 
-        //         $(window.parent.document).find('.order_no').text(json.data.orderNo);
-        //         $(window.parent.document).find('.publish_time').text(json.data.createTime);
-        //         $(window.parent.document).find('.zhuangche_time').text(json.data.startDate);
+            var oldPrice = $(window.parent.document).find('.hetongyuanjia').text();
+            var quotedPrice = $(window.parent.document).find('.update_unit').val();
+            var remark = $(window.parent.document).find('.tiaojia_yuanyin').val();
 
-        //         $(window.parent.document).find('.start_address').text(json.data.sendAddress);
-        //         $(window.parent.document).find('.end_address').text(json.data.receiveAddress);
-        //         $(window.parent.document).find('.good_type').text(json.data.goodsType);
-        //         $(window.parent.document).find('.zhongliang').text(json.data.goodsNum+json.data.goodsUnit);
+            $.ajax({
+                url: pubIP + 'OrderPricesChanged/addCarrierPricesChanged',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    orderid: orderid,
+                    companyid: companyId,
+                    companyname: companyname,
+                    quotesSatus: quotesSatus,
+                    oldPrice: oldPrice,
+                    quotedPrice: quotedPrice,
+                    remark: remark
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+                        $(window.parent.document).find('.modelBox37').css('display', 'none');
+                        $('.update_unit').val('');
+                        $('.tiaojia_yuanyin').val();
+                        window.parent.showModelBox('.modelBoxdiaoling');
 
-        //         $(window.parent.document).find('.pay_method2').text(json.data.paymentType);
+                        window.parent.$("#sureDiaoLingOver").click(function () {
+                            window.location.reload();
+                        })
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                }
 
-        //         $(window.parent.document).find('.baozhuang_type').text(json.data.packageType);
-        //         $(window.parent.document).find('.kaipiao').text(json.data.invoiceType);
-
-        //         $(window.parent.document).find('.good_name').text(json.data.goodsName);
-
-        //         $(window.parent.document).find('.car_type').text(json.data.carType);
-        //         $(window.parent.document).find('.beizhu').text(json.data.goodsRemark);
-
-        //     },
-        //     error: function(err) {
-        //         console.log(err);
-        //     }
-        // });
-
-        // //获取车辆信息
-        // $.ajax({
-        //     url: pubIP + 'order/getCarUserListByOrderId',
-        //     type: 'get',
-        //     headers: {
-        //         Accept: "application/json; charset=utf-8",
-        //         token: token
-        //     },
-        //     data: {
-        //         orderId: tloId
-        //     },
-        //     cache: false,
-        //     dataType: 'json',
-        //     success: function (json) {
-        //         console.log(json);
-
-        //         if (json.code == 1) {
-
-        //             var str = '';
-        //             for (var i = 0; i < json.data.length; i++) {
-        //                 json.data[i].planStartDate = new Date(json.data[i].planStartDate).Format("yyyy-MM-dd hh:mm");
-        //                 json.data[i].planEndDate = new Date(json.data[i].planEndDate).Format("yyyy-MM-dd hh:mm");
-
-        //                 if (json.data[i].tlvType == 0) {
-        //                     json.data[i].tlvType = '内部';
-        //                 } else if (json.data[i].tlvType == 1) {
-        //                     json.data[i].tlvType = '外部';
-        //                 }
-
-        //                 str += '<li>'+json.data[i].carNo+'（'+json.data[i].tlvType+'）</li>';
-
-        //             }
-        //             $(window.parent.document).find('.order_info_ul2').html(str);
-
-        //         }
-
-        //     },
-        //     error: function(err) {
-        //         console.log(err);
-        //     }
-
-        // });
+            });
+        })
 
 
+        //确认送达
+        $(".sure").unbind()
+        $(".sure").click(function() {
+            var tloId = $(this).parents("tr").attr('data-tloId');
+            sessionStorage.setItem("qrsd_tloId",tloId);
+            window.parent.showModelBox('.modelBox18_ifrm');
 
-    });
+            window.parent.$(".modelBox18_ifrm").attr("isDot","1");
 
+            window.parent.$("#suerSongda").attr("src","order/querensongda.html");
+        });
+
+        // 回款审核
+        $('.huikuan_shenhe').unbind()
+        $('.huikuan_shenhe').click(function() {
+            $(window.parent.document).find('.money_ok').attr('data-tloContractAmount', $(this).parents("tr").attr('data-tloContractAmount'));
+            $(window.parent.document).find('.money_ok').attr('data-tlosettlementAmount', $(this).parents("tr").attr('data-tlosettlementAmount'));
+            $(window.parent.document).find('.money_ok').attr('data-tloId', $(this).parents("tr").attr('data-tloId'));
+            window.parent.$(".modelBox9 .hetong").text("¥"+$(this).parents("tr").parents("tr").attr('data-tloContractAmount'))
+            window.parent.$(".modelBox9 .shiji").text("¥"+$(this).parents("tr").parents("tr").attr('data-tlosettlementAmount'))
+            window.parent.showModelBox('.modelBox9');
+        });
+
+        // 点击弹框的确认
+        window.parent.$('.money_ok').unbind()
+        window.parent.$('.money_ok').click( function() {
+
+            // var tlosettlementAmount = $(this).attr('data-tlosettlementAmount');
+            // var tloContractAmount = $(this).attr('data-tloContractAmount');
+
+            // var beizhu = $(window.parent.document).find('.beizhu_info').val();
+
+            var tloId = $(this).parents("tr").attr('data-tloId');
+
+            $.ajax({
+                url: pubIP + 'order/receivedPayments',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    id: tloId
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    console.log(json);
+                    if (json.code == 1) {
+//                        window.parent.showModelBox('.ok_success');
+//                        window.location.reload();
+                        cf_alert(1,"审核成功")
+                    }
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+        });
+    }
+    // 点击go刷新数据
+    $('.pageCont').on('click', '.button',function(){
+        var currentPage1 = $('.pageCont li.active>a').text();
+        getData(currentPage1);
+    })
     //分配车辆
     function fenPei(id){
         window.parent.$(".modelBox17").show();
         window.parent.$(".modelBox17").attr("orderId",id);
-        getData(id);
+
+        window.parent.$(".modelBox17").attr("isDot","1");
+
+        getData1(id);
         window.parent.$("#ok_fenpei").hide();
         window.parent.$("#car_info").hide();
-        //获取已选车  he  卡
-        window.parent.getCarCard()
         window.parent.getPeoples(1);
         window.parent.getPeoples(2);
         window.parent.getPeoples(3);
         window.parent.getDataLine(1);
+        //获取已选车  he  卡
+        window.parent.getCarCard()
         window.parent.getKaQuanList();
     }
     //获取数据
-    function getData(id) {
+    function getData1(id) {
         $.ajax({
             url: pubIP + 'order/getOrderByid', /*v1.0*/
             type: 'get',
@@ -408,8 +628,10 @@
                 tloid:id
             },
             success: function (res) {
-                if(res.code===1){
-                    cf_dataRender(res.data)
+                if(res.code==1){
+                    cf_dataRender1(res.data)
+                }else if(res.code==401){
+
                 }else{
                     alert(res.msg);
                 }
@@ -420,7 +642,7 @@
         });
     }
     //渲染上面数据
-    function cf_dataRender(data) {     //下需要重新写
+    function cf_dataRender1(data) {     //下需要重新写
         window.parent.$("#demandNo").text(data.demandNo);
         window.parent.$("#startDate").text(data.startDate);
         window.parent.$("#createTime").text(timestampToTime1(data.createTime));
@@ -429,109 +651,28 @@
         window.parent.$("#packageType").text(data.packageType);
         window.parent.$("#goodsName").text(data.goodsName);
         window.parent.$("#goodsweight").eq(0).text(data.goodsNum+data.goodsUnit);
+//              window.parent.$(".danjiadanwei").text("元/"+data.goodsUnit);
         window.parent.$("#sendAddress").text(data.sendProvince+"-"+data.sendCity+"-"+data.sendArea+"-"+data.sendAddress);
         window.parent.$("#receiveAddress").text(data.receiveProvince+"-"+data.receiveCity+"-"+data.receiveArea+"-"+data.receiveAddress);
-        window.parent.$("#carType1").text(data.carType1);
+        window.parent.$("#carType1").text(data.carType);
         window.parent.$("#paymentType1").text(data.paymentType);
         window.parent.$("#paymentType1").text(data.paymentType);
+        window.parent.$("#invoiceType").text(data.invoiceType);
     }
 
-    // 点击多选框
-    $(document).on('click', '.cf_select', function() {
-
-        if ($(this).find('img').attr('src') == '../img/cf_noselect.png') {
-            $(this).find('img').attr('src', '../img/cf_selct.png');
-        } else {
-            $(this).find('img').attr('src', '../img/cf_noselect.png');
-        }
-
-    });
-
-    // 点击全选
-    $(document).on('click', '.bottomOperiat .select_all', function(){
-
-        if ($(this).find('img').attr('src') == '../img/cf_noselect.png') {
-            $(this).find('img').attr('src', '../img/cf_selct.png');
-
-            $('#orderListInfo .cf_select img').each(function(i ,e) {
-                $(this).attr('src', '../img/cf_selct.png');
-            });
-
-        } else {
-            $(this).find('img').attr('src', '../img/cf_noselect.png');
-
-            $('#orderListInfo .cf_select img').each(function(i ,e) {
-                $(this).attr('src', '../img/cf_noselect.png');
-            });
-
-        }
-
-    });
-
-
-
-    var isFirst = true;
-
-    var isSearch = 0;
-
-    // 点击进入订单详情
-    $(document).on('click', '.seeDetail', function() {
-        window.localStorage.setItem('data-companyId', $(this).attr('data-companyId'));
-        window.localStorage.setItem('data-tloId', $(this).attr('data-tloId'));
-        window.localStorage.setItem('data-orderNo', $(this).attr('data-orderNo'));
-//            window.location.href = "onGoingOrder-detail.html";
-        sessionStorage.setItem("detailTitle","当前订单状态：订单详情");
-        window.location.href = "../order/orderAllDetail.html";
-    });
-
-
-    //显示条数
-    $('.displayNum ul li').click(function(){
-        isSearch=1;
-        order_list(1 , '', '', '', $('.displayNum span').text());
-    });
-
-
-    //点击查询
-    $(document).on('click', '.searchResultBtn', function() {
-
-        var orderNo = $('.orderNo').val();
-        var goodsType = $('.goodsType span').text();
-        var publishTime = $('.publishTime').val();
-        if (goodsType == '全部' ) {
-            console.log(goodsType);
-            goodsType = '';
-        }
-
-        isSearch=1;
-        order_list(1, orderNo, goodsType, publishTime, 10);
-
-    });
-
-
-
-    order_list(1 , '', '', '', 10);
-
-    //待分配订单列表
-    function order_list(num, orderNo, goodsType, publishTime, size) {
-        $('#orderListInfo').html('');
+    //修改订单状态  暂时
+    function updateStates(that){
         $.ajax({
-            url: pubIP + 'order/getHaveInhandList',
+            url: pubIP + 'order/upOrderStatus',
             type: 'post',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
             },
             data: {
-                companyId: companyId,
-                page: num,
-                size: size,
-                status: 1,
-                orderNo: orderNo,
-                time: publishTime,
-                endTime:$("#test2").val(),
-                goodsName:$("#cf_goodsName").val()
-//                    goodType: goodsType
+                status:9,
+                tLogisticsOrderId:$(that).parents("tr").attr("data-id"),
+                tLogisticsOrderstatus:8,
             },
             cache: false,
             dataType: 'json',
@@ -539,93 +680,8 @@
                 console.log(json);
 
                 if (json.code == 1) {
-                    if (json.data.length != 0) {
-                        for (var i = 0; i < json.data.length; i++) {
-
-                            json.data[i].tloUpdateTime = new Date(json.data[i].tloUpdateTime).Format("yyyy-MM-dd hh:mm:ss");
-                            json.data[i].tloCreateTime = new Date(json.data[i].tloCreateTime).Format("yyyy-MM-dd hh:mm:ss");
-                        }
-
-
-                        var result = template('orderListTpl', {list: json.data});
-                        $('#orderListInfo').html(result);
-
-
-                        if (isSearch == 1) {
-                            // if (isFirst) {
-                            Page({
-                                num: json.totalPage,
-                                elem: $('#page1'),
-                                callback: function(n) {
-                                    order_list(n, orderNo, goodsType, publishTime, size);
-                                }
-                            });
-
-                            $('.total').text(json.totalPage);
-                            isFirst = false;
-
-                            // }
-
-                            $('.allPageN').text(num+1+'/'+json.totalPage);
-                        }
-
-                        isSearch = 0;
-
-                        if (isFirst) {
-
-                            Page({
-                                num: json.totalPage,
-                                elem: $('#page1'),
-                                callback: function(n) {
-                                    order_list(n, orderNo, goodsType, publishTime, size);
-                                }
-                            });
-
-                            $('.total').text(json.totalPage);
-
-                            isFirst = false;
-                        }
-
-                        $('.allPageN').text(num+'/'+json.totalPage);
-                    } else {
-                        $('.pageJump').css('display', 'none');
-                    }
-                } else {
-                    $('.pageJump').css('display', 'none');
-                }
-
-            },
-            error: function (err) {
-                console.log(err);
-            }
-
-        });
-    }
-
-
-    // 取消订单
-    $(document).on('click', '.cancel_order', function() {
-
-        var tloId = $(this).attr('data-tloId');
-
-        $.ajax({
-            url: pubIP + 'order/updateCarrierCancelOrder',
-            type: 'post',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            data: {
-                id: tloId
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (json) {
-                console.log(json);
-
-                if (json.code == 1) {
-                    $(window.parent.document).find('.modelBox12 p').html('<span>订单取消成功!</span>');
-                    window.parent.showModelBox('.modelBox12');
+                    alert(json.msg)
+                    window.location.reload();
                 }
 
             },
@@ -633,28 +689,8 @@
                 console.log(err);
             }
         });
+    }
 
-    });
-
-    $(window.parent.document).on('click', '.modelBox12 .ook4', function() {
-
-        window.location.reload();
-    });
-
-    // 模拟单选按钮
-    // $('.bottomOperiat .squre').click(function(){
-    //     $(this).toggleClass('active');
-    // });
-    $('.bottomOperiat .selsectAll').click(function(){
-        $('.bottomOperiat .squre').toggleClass('active');
-    });
-
-    window.parent.$(".all_success_alert .confirm").unbind();
-    window.parent.$(".all_success_alert .confirm").click(function () {
-        $(this).parents(".modelCont").parent().hide();
-        window.top.$(".modelCont").parent().hide();
-        window.location.reload();
-    })
 
 </script>
 </body>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" href="../css/setUp_staffManage.css">
+    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 	<style>
         .record .Rt div{
             width: 85px;height: 32px;
@@ -35,7 +36,6 @@
 </head>
 <body>
 <!--员工管理-->
-
     <div class="rightContBox"  style="float: none">
         <!--头部-->
         <div class="boxHead">
@@ -159,15 +159,13 @@
 <script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="../js/jquery.ztree.all.min.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" >
     //Iframe 的高度
     $(function () {
         window.parent.$("#Iframe").css("height","932");
-
         window.sessionStorage.setItem('person_id', '');
-
     })
     $('.objListBox>div:nth-child(5n)').css('margin-right','0');
     // Page({
@@ -178,9 +176,7 @@
     //     }
     // });
 
-
     $('.search_input').change(function() {
-
         staff_list(1, 10, $(this).val(), '');
     });
 
@@ -213,7 +209,6 @@
                             $(this).parent().parent().find('span').text($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
-
                             if ($(this).text() == '全部') {
                                 staff_list(1, 10, '', '');  
                             } else {
@@ -270,9 +265,13 @@
                     if (json.data.length != 0) {
                         var str = '';
                         for (var i = 0; i < json.data.length; i++) {
-                        
                             json.data[i].createTime = new Date(json.data[i].createTime).Format("yyyy-MM-dd");
-                            json.data[i].updateTime = new Date(json.data[i].updateTime).Format("yyyy-MM-dd");
+                            if(json.data[i].updateTime==0 || json.data[i].updateTime==null){
+                                json.data[i].updateTime = "";
+                            }else{
+                                json.data[i].updateTime = new Date(json.data[i].updateTime).Format("yyyy-MM-dd");
+                            }
+
 
                             str += '<tr data-id="'+json.data[i].id+'">'
                                 +'<td>'+json.data[i].username+'</td>'
@@ -290,13 +289,20 @@
                                         +'<label for="checked_'+i+'"></label>'
                                     }
                                 str += '</td>'
-                                +'<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                                +'<td><a href="javascript:;" class="authorty" style="color: #6ba1ff;">分配权限</a><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
                             +'</tr>';
 
                         }
                         
                         $('#staffListInfo').html(str);
 
+//                        分配权限
+                        $(".authorty").unbind();
+                        $(".authorty").click(function () {
+                            sessionStorage.setItem("persionId",$(this).parents("tr").attr("data-id"));
+                            sessionStorage.setItem("isRole","0");
+                            window.location.href="./authorityManage.html"
+                        })
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);
 
@@ -411,9 +417,7 @@
     window.parent.$('.all_sure').unbind();
     // $(window.parent.document).on('click', '.all_sure', function() {
     window.parent.$('.all_sure').click(function() {
-
         del($(this).attr('data-this'));
-
     })
 
     function del(data_id) {
@@ -441,6 +445,8 @@
             }
         });
     }
+
 </script>
+
 </body>
 </html>

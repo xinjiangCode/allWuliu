@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <link rel="stylesheet" href="../css/settlementNetwork_detil.css">
+    <style>
+        /* baojiaCompany */
+        .baojiaCompany>.contBox{
+            overflow: hidden;
+        }
+        .baojiaCompany .ll{
+            width: 327px;
+        }
+        .baojiaCompany .mm{
+            width: 320px;
+        }
+        .baojiaCompany .rr{
+            width: 285px;
+        }
+        .baojiaCompany .rr .select{
+            margin-right: 15px;
+        }
+        /* operator */
+        .operator>.contBox{
+            overflow: hidden;
+        }
+        .operator .ll{
+            width: 327px;
+        }
+        .operator .mm{
+            width: 320px;
+        }
+        .operator .rr{
+            width: 285px;
+        }
+        /* 点击查看合同 */
+        div.seehetong {
+            float: right;
+            width: 48px;
+            margin-right: 28px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #038cd9;
+            background-image: url(../img/prl-right.png);
+            background-size: 9px 7px;
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+        .w33{
+            width: 33%;
+        }
+    </style>
+</head>
+<body>
+    <div class="contbox-prld">
+        <div class="toptitle title">
+            <span>资金流水</span>
+            <div class="fr closeBtn" style="margin-right:7px;" onclick="javascript:history.back(-1);"><img src="../img/prl-close.png" alt="" width="11" height="11" >关&nbsp;&nbsp;闭</div>
+            <!--<div class="fr freshBtn cfRefresh"><img src="../img/prl-refresh.png" alt="" width="27" height="34">刷&nbsp;&nbsp;新</div>-->
+        </div>
+
+        <!--暂时接口未提供-->
+        <div class="infoBox " >
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">流水数据</div>
+            <div class="listBox">
+                <table class="myTable">
+                    <thead>
+                    <tr>
+                        <th>流水项</th>
+                        <th>流水金额</th>
+                        <th>流水记录</th>
+                        <th>订单号</th>
+                        <th>时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr>-->
+                    <!--<td>新B WER123</td>-->
+                    <!--<td>¥1200.00</td>-->
+                    <!--<td>陈淮三</td>-->
+                    <!--<td>新B ERTY123</td>-->
+                    <!--<td>2017-07-19 14:48:38 </td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                    <!--<td>新B WER123</td>-->
+                    <!--<td>¥1200.00</td>-->
+                    <!--<td>陈淮三</td>-->
+                    <!--<td>新B ERTY123</td>-->
+                    <!--<td>2017-07-19 14:48:38 </td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
+            <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+                <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+                <div class="pageJump">
+                    <span class="allPageN">1/200</span>
+                    <i style="margin-left: 12px;">共200页</i>，
+                    <span>到第</span>
+                    <input type="text"/>
+                    <span>页</span>
+                    <button type="button" class="button">GO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        //Iframe 的高度
+        $(function () {
+            window.parent.$("#Iframe").css("height","865");
+
+        })
+
+        //进入页面加载数据
+        getData(1);
+        //获取数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");
+            $.ajax({
+                url: pubIP + 'carrierDot/getDotFlowList', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayLength:pageSize,
+                    iDisplayStart:currentPage,
+                    couponId:sessionStorage.getItem("detailId")
+                },
+                success: function (res) {
+
+                    //首次请求时 改变分页数据
+                    if(res.aData.length==0 || res.aData==null ){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                // console.log(n);
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.aData)
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-id="'+item.id+'">';
+                str+='<td>'+item.couponName+'</td>';
+                str+='<td>'+item.flowMoney+'</td>';
+                if(item.settRem==null){
+                    str+='<td></td>'
+                }else{
+                    str+='<td>'+item.settRem+'</td>'
+                }
+                if(item.orderNo==null){
+                    str+='<td></td>'
+                }else{
+                    str+='<td>'+item.orderNo+'</td>'
+                }
+                if(item.createTime==null || item.createTime=="" || item.createTime==0){
+                    str+='<td></td>'
+                }else{
+                    str+='<td>'+timestampToTime1(item.createTime)+'</td>'
+                }
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+        }
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage1 = $('.pageCont li.active>a').text();
+            getData(currentPage1);
+        })
+
+
+    </script>
+</body>
+</html>

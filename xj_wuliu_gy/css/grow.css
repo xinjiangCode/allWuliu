@@ -12,7 +12,7 @@ body{
 }
 .containerTop{border-bottom: 1px solid #ebe9ea;height: 126px;padding-top: 35px;}
 
-.Headimg{width: 96px;height: 96px;border-radius: 50%;margin-left: 42px;margin-right: 36px;}
+.Headimg{width: 96px;height: 96px;border-radius: 50%;margin-left: 42px;margin-right: 36px;background-color: #eee;}
 .Headimg img{width: 100%;height: 100%;}
 
 .containerTopRi{float: right;width:115px;height:36px;line-height: 36px;text-align: center;background-color: #6EA3FF;color: #ffffff;font-size:14px;border-radius: 3px;margin-top: 55px;margin-right: 20px;}

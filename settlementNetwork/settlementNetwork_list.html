@@ -122,6 +122,7 @@
 //    添加网点
     $(".addWangDian").unbind();
     $(".addWangDian").click(function () {
+        window.parent.$(".modelBox24 .moneyErr").text("")
         window.parent.$(".modelBox24").attr("data-id","");
         window.parent.$(".modelBox24 .ErrorMsg").text("")
         window.parent.$(".modelBox24 .name").val("")
@@ -143,7 +144,7 @@
             '                                <ul class="">\n' +
             '                                </ul>\n' +
             '                            </div>\n' +
-            '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
+            '                            <input type="text" placeholder="金额" class="wangDianIpt Lf coupMoney" style="margin-top: 7px;">\n' +
             '                            <div class="Lf addKaQuan" style="margin-top: 14px;">+</div>\n' +
             '                        </div>'
         window.parent.$(".modelBox24 .coupList").html(str)
@@ -157,7 +158,7 @@
                 '                                <ul class="">\n' +
                 '                                </ul>\n' +
                 '                            </div>\n' +
-                '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
+                '                            <input type="text" placeholder="金额" class="wangDianIpt Lf coupMoney" style="margin-top: 7px;">\n' +
                 '                        </div>'
             $(this).parents(".coupList").append(str)
             getKaQuanList();
@@ -191,13 +192,13 @@
                 if (res.aData.length != 0) {
                     var str='';
                     $.each(res.aData,function (idx,item) {
-//                        if(item.attr_2==1){
-//                            $("#money").attr("data-allMoney",item.money);
+                        if(item.attr_2==1){
+                            window.parent.$(".modelBox24 .money").attr("data-allMoney",item.money);
 //                            $("#money").attr("data-dot-id",item.dot_id);
 //                            $("#money").attr("data-zijin-id",item.id);
-//                        }else{
-                            str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
-//                        }
+                        }else{
+                            str+='<li data-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                        }
                     })
                     window.parent.$(".modelBox24 .coupList .item").each(function (idx,item) {
 						$(item).find("ul").html(str);
@@ -217,6 +218,7 @@
                                 return;
 							}
                             $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-money', $(this).attr('data-money'));
                             $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
                             $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
                             $(this).parent().parent().find('span').text($(this).text());
@@ -263,6 +265,18 @@
             }
         });
     }
+
+    //金额改变  显示
+    window.parent.$('.modelBox24 .money').bind('input propertychange',function () {
+        if($(this).attr("data-allmoney")-0<$(this).val()-0){
+			window.parent.$(".modelBox24 .moneyErr").text("剩余可用资金："+$(this).attr("data-allmoney"))
+		}else{
+            window.parent.$(".modelBox24 .moneyErr").text("")
+		}
+	});
+
+
+
     //	获取负责人
     function getFuZeRen() {
         window.parent.$("#fuzeren ul").html("")
@@ -289,9 +303,19 @@
                             window.parent.$("#fuzeren span").text("请选择")
 						}else if(window.parent.$("#fuzeren").attr("data-isselect")==item.id){
                             window.parent.$("#fuzeren").attr("data-selectedindex",item.id);
-                            window.parent.$("#fuzeren span").text(item.name)
+                            if(item.name==null || item.name==""){
+                                window.parent.$("#fuzeren span").text(item.loginName)
+							}else{
+                                window.parent.$("#fuzeren span").text(item.name)
+							}
+
 						}
-						str+='<li data-id="'+item.id+'" data-index="'+item.id+'">'+item.name+'</li>';
+						if(item.name==null || item.name==""){
+                            str+='<li data-id="'+item.id+'" data-index="'+item.id+'">'+item.loginName+'</li>';
+						}else{
+                            str+='<li data-id="'+item.id+'" data-index="'+item.id+'">'+item.name+'</li>';
+						}
+
 					})
 					window.parent.$("#fuzeren ul").html(str)
 
@@ -468,7 +492,8 @@
 
         var params=[];
         var quanIsok=1;
-        window.parent.$(".coupList .item").each(function (idx1,item1) {
+        var moneyLess=1;
+        window.parent.$(".modelBox24 .coupList .item").each(function (idx1,item1) {
             if($(item1).find(".selectPub").attr("data-selectedindex")==-1){
                 return;
             }
@@ -477,6 +502,9 @@
                 window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券金额")
                 return;
             }
+            if($(item1).find("input").val()-0>$(item1).find(".selectPub").attr("data-money")-0){
+                moneyLess=0;
+			}
             var obj={}
             obj.couponId=$(item1).find(".selectPub").attr("data-selectedindex");
             obj.applyMoney=$(item1).find("input").val();
@@ -484,17 +512,25 @@
         })
 
         if(quanIsok==0){
-            window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券数量")
+            window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券金额")
             return;
         }
-        window.parent.$(".modelBox24 .ErrorMsg").text("")
 
-		var reqUrl="";
-		if(window.parent.$(".modelBox24").attr("data-id")==""){
-            reqUrl="carrierDot/dotApply";
-		}else{
-            reqUrl="carrierDot/dotEdite";
+        if(moneyLess==0){
+            window.parent.$(".modelBox24 .ErrorMsg").text("优惠券金额不能大于可使用金额");
+            return;
 		}
+        window.parent.$(".modelBox24 .ErrorMsg").text("")
+        if(window.parent.$(".modelBox24 .moneyErr").text()!=""){
+            window.parent.$(".modelBox24 .ErrorMsg").text("");
+            return;
+        }
+		var reqUrl="";
+//		if(window.parent.$(".modelBox24").attr("data-id")==""){
+//            reqUrl="carrierDot/dotApply";
+//		}else{
+            reqUrl="carrierDot/dotEdite";
+//		}
 
         $.ajax({
             url: pubIP + reqUrl, /*v1.0*/
@@ -522,7 +558,7 @@
             },
             success: function (res) {
 				if(res.code==0){
-				    cf_alert(1,"申请网点成功");
+				    cf_alert(1,"编辑网点成功");
 				}else{
 
 				}
@@ -561,7 +597,7 @@
                     window.parent.$("#area2").attr("data-isselect",res.data.dot_county)
                     window.parent.$("#fuzeren").attr("data-isselect",res.data.user_id)
 
-                    window.parent.$(".coupList").parents(".clearfix").hide()
+                    window.parent.$(".modelBox24 .coupList").parents(".clearfix").hide()
 
                     getFuZeRen();
                     window.parent.getProvence(2)

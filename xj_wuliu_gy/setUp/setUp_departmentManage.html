@@ -306,12 +306,15 @@
             success: function (json) {
                 console.log(json);
                 if (json.code == 1) {
-                	$(window.parent.document).find('.modelBox35').hide();
-                	
-                	$(window.parent.document).find('.innerSuccmsg').html('<span>添加成功！</span>');
-                	
-                	window.parent.showModelBox('.all_success_alert');
-                }
+//                	$(window.parent.document).find('.modelBox35').hide();
+//
+//                	$(window.parent.document).find('.innerSuccmsg').html('<span>添加成功！</span>');
+//
+//                	window.parent.showModelBox('.all_success_alert');
+					cf_alert(1,"添加成功")
+                }else{
+                    cf_alert01(2,json.msg)
+				}
             },
             error: function(err){
             	console.log(err);

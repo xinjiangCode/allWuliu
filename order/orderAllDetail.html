@@ -695,10 +695,10 @@
                 str+='<td>'+item.tlosettlementAmount+'</td>';
             }
             str+='<td>'+''+'</td>';
-            if(item.tloStatus==	1 || item.tloStatus==2 || item.tloStatus==3){//未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商`
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll" onclick="fenPei('+item.tloId+')">分配车辆</span><span class="ll cancel_order">取消订单</span><span class="ll update">上传合同</span><span class="ll diaoling">发起调令</span>';
+            if(item.tloStatus==	1 || item.tloStatus==2 || item.tloStatus==3){   //未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商`
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll" onclick="fenPei(\''+item.tloId+'\')">分配车辆</span><span class="ll cancel_order">取消订单</span><span class="ll update">上传合同</span><span class="ll diaoling">发起调令</span>';
             }else if(item.tloStatus==4){//进行中订单
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll sure">确认送达</span><span class="ll " onclick="fenPei('+item.tloId+')">更改车辆</span></td>';
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll sure">确认送达</span><span class="ll " onclick="fenPei(\''+item.tloId+'\')">更改车辆</span></td>';
             }else if(item.tloStatus==7){//回款审核订单
                 str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll huikuan_shenhe">回款审核</span></td>';
             }else if(item.tloStatus==5  || item.tloStatus==9 || item.tloStatus==10 || item.tloStatus==11 ){//回款审核订单
@@ -877,7 +877,7 @@
         //确认送达
         $(".sure").unbind()
         $(".sure").click(function() {
-            var tloId = $(this).parents("tr").attr('data-tloId');
+            var tloId = $(this).parents("tr").attr('data-tloId');window.parent.$(".modelBox18_ifrm").attr("isDot","");
             sessionStorage.setItem("qrsd_tloId",tloId);
             window.parent.showModelBox('.modelBox18_ifrm');
             window.parent.$("#suerSongda").attr("src","order/querensongda.html");
@@ -941,7 +941,7 @@
     //分配车辆
     function fenPei(id){
         window.parent.$(".modelBox17").show();
-        window.parent.$(".modelBox17").attr("orderId",id);
+        window.parent.$(".modelBox17").attr("orderId",id);window.parent.$(".modelBox17").attr("isDot","");
         getData(id);
         window.parent.$("#ok_fenpei").hide();
         window.parent.$("#car_info").hide();

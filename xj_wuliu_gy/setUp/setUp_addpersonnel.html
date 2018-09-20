@@ -66,18 +66,18 @@
         </div>
         <!--内容-->
         <div class="boxContent">
-            
+            <div class="ctnsItem">
+                <span><em>*</em>成员手机号：</span>
+                <input type="" name="" class="user_phone" id="" value="" maxlength="11" />
+                <div class="ts"></div>
+            </div>
+
             <div class="ctnsItem clearfix">
                 <span class="fl"><em>*</em>用户名：</span>
                 <input type="" name="" class="username" id="" value="" />
                 <div class="ts"></div>
             </div>
 
-            <div class="ctnsItem">
-                <span><em>*</em>成员手机号：</span>
-                <input type="" name="" class="user_phone" id="" value="" maxlength="11" />
-                <div class="ts"></div>
-            </div>
 
             <div class="ctnsItem">
                 <span><em>*</em>姓名：</span>
@@ -167,8 +167,72 @@
     $(function () {
         window.parent.$("#Iframe").css("height","914");
     })
-
+//    //    手机号
+//    $('.user_phone').bind('input propertychange',function () {
+//        $(".username").val()
+//        $(".name").val()
+//        $(".email").val()
+//        if($(this).val()<10000000000){
+//            return;
+//        }
+//        $.ajax({
+//            url: pubIP + 'tReceptionDepartmentPersion/getQueryPersionInfo',
+//            type: 'get',
+//            headers: {
+//                Accept: "application/json; charset=utf-8",
+//                token: token
+//            },
+//            data:{
+//                mobile:$(this).val()
+//            },
+//            cache: false,
+//            dataType: 'json',
+//            success: function (json) {
+//                if (json.code == 1) {
+//                    $(".username").val(json.data[0].loginName)
+//                    $(".name").val(json.data[0].name)
+//                    $(".email").val(json.data[0].email)
+//
+//                }
+//            },
+//            error: function(err) {
+//                console.log(err);
+//            }
+//        });
+//    });
     //返回
+    // 判断用户是否注册过账号
+    $('.user_phone').change(function() {
+
+        var username = $(this).val();
+
+        $.ajax({
+            url: pubIP + 'tReceptionDepartmentPersion/getQueryPersion',
+            type: 'get',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                username: username
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                if (json.code == 1) {
+                    $('.user_phone').val(json.data.mobile);
+                    $('.user_phone').attr('disabled', true);
+                } else if (json.code == 0) {
+                    cf_alert(2, json.msg);
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+
     $('.back_btn').click(function() {
         window.location.href = "setUp_staffManage.html";
     });
