@@ -239,15 +239,15 @@
             <div class="listBox" style="width: 100%;">
                 <table style="width: 100%;">
                     <thead>
-                    <tr style="border-top: 1px solid #ebe9ea;">
-                        <th>订单编号</th>
-                        <th>公司名称</th>
-                        <th>订单类型</th>
-                        <th>已运单数</th>
-                        <th>总金额</th>
-                        <th>待结金额</th>
-                        <th>操作</th>
-                    </tr>
+                        <tr style="border-top: 1px solid #ebe9ea;">
+                            <th>订单编号</th>
+                            <th>公司名称</th>
+                            <th>订单类型</th>
+                            <th>已运单数</th>
+                            <th>总金额</th>
+                            <th>待结金额</th>
+                            <th>操作</th>
+                        </tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -657,13 +657,13 @@
         function cf_dataRender(data) {
             var str='';
             $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.tloId+'" data-tloId="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'" data-companyname="'+item.companyName+'" data-quotesSatus="'+item.goodsType+'" data-tloContractAmount="'+item.unitPrice+'"  data-tloContractAmount="'+item.tloContractAmount+'"  data-danjia="'+item.unitPrice+'" data-num="'+item.goodsNum%+'">';
+                str+='<tr data-id="'+item.tloId+'" data-tloId="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'" data-companyname="'+item.companyName+'" data-quotesSatus="'+item.goodsType+'" data-tloContractAmount="'+item.unitPrice+'"  data-tloContractAmount="'+item.tloContractAmount+'"  data-danjia="'+item.unitPrice+'" data-num="'+item.goodsNum+'">';
                 str+='<td>'+item.orderNo+'</td>';
                 str+='<td>'+item.carrierCompanyName+'</td>';
                 str+='<td>'+item.orderType+'</td>';
                 str+='<td>'+' '+'</td>';
                 if(item.tlosettlementAmount==null){
-                    str+='<td>'+0+'</td>';
+                    str+='<td>0</td>';
                 }else{
                     str+='<td>'+item.tlosettlementAmount+'</td>';
                 }

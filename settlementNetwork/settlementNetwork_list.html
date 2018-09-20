@@ -543,10 +543,9 @@
                     addMetwork(params)
                 }else if(res.code==1){
                     window.parent.$(".modelBox24_error").show();
+                    window.parent.$(".modelBox24_error .innerErrmsg").text(res.msg)
                     window.parent.$(".modelBox24_error .continue").unbind()
                     window.parent.$(".modelBox24_error .continue").click(function () {
-
-                        window.parent.$(".modelBox24_error .innerErrmsg").text(res.msg)
                         $(this).parents(".modelCont").parent().hide();
                         addMetwork(params);
                     })
