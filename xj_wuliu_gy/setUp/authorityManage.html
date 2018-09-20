@@ -135,6 +135,12 @@
         });
     })
     function getAuthority() {
+        var types = "";
+        if(sessionStorage.getItem("isRole")==1){//是角色
+            types = "role";
+        }else{//是员工
+            types = "all";
+        }
         $.ajax({
             url: pubIP + 'tReceptionRole/getTReceptionMenu',
             type: 'post',
@@ -143,7 +149,8 @@
                 token: token
             },
             data: {
-                companyStatus: 1
+                companyStatus: 1,
+                types: types
             },
             dataType: 'json',
             success: function (json) {

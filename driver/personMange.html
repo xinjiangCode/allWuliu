@@ -459,7 +459,9 @@
                 } else if (json.code == -1) { //身份证号有重复
                     $(window.parent.document).find('.prompt .ts_ts').text('身份证号已存在');
                     $(window.parent.document).find('.prompt .ts_ts').css('visibility', 'visible');
-                }
+                }else{
+                    cf_alert01(2,json.msg)
+				}
             },
             error: function(err){
             	console.log(err);

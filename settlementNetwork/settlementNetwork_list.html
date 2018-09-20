@@ -525,11 +525,47 @@
             window.parent.$(".modelBox24 .ErrorMsg").text("");
             return;
         }
-		var reqUrl="";
+        $.ajax({
+            url: pubIP + "carrierDot/checkCompanyUser", /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                userId:window.parent.$("#fuzeren").attr("data-selectedindex"),
+            },
+            success: function (res) {
+                if(res.code==0){
+                    addMetwork(params)
+                }else if(res.code==1){
+                    window.parent.$(".modelBox24_error").show();
+                    window.parent.$(".modelBox24_error .continue").unbind()
+                    window.parent.$(".modelBox24_error .continue").click(function () {
+
+                        window.parent.$(".modelBox24_error .innerErrmsg").text(res.msg)
+                        $(this).parents(".modelCont").parent().hide();
+                        addMetwork(params);
+                    })
+                }else{
+                    cf_alert01(2,res.msg)
+				}
+
+            }
+        })
+
+
+
+    })
+	function addMetwork(params){
+        var reqUrl="";
 //		if(window.parent.$(".modelBox24").attr("data-id")==""){
 //            reqUrl="carrierDot/dotApply";
 //		}else{
-            reqUrl="carrierDot/dotEdite";
+        reqUrl="carrierDot/dotEdite";
 //		}
 
         $.ajax({
@@ -557,15 +593,15 @@
                 params:JSON.stringify(params)
             },
             success: function (res) {
-				if(res.code==0){
-				    cf_alert(1,"编辑网点成功");
-				}else{
+                if(res.code==0){
+                    cf_alert(1,"编辑网点成功");
+                }else{
 
-				}
+                }
 
             }
         })
-    })
+	}
 //用id 做回显upadtaState
 	function getInfoById(id) {
         $.ajax({
