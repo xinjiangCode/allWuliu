@@ -146,7 +146,6 @@
                     $(".pagination").parent().css("display","block");
                     if(currentPage===1 ){
                         //修改底部分页
-                        //debugger
                         var pageNum=Math.ceil(res.count/pageSize);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");
@@ -192,7 +191,6 @@
         $(".listBox tbody").html(str);
         //	编辑扣款项
         $(".editDeductMoney").click(function () {
-            debugger
             window.parent.$(".modelBox8").show();
             window.parent.$(".modelBox8").attr("data-id",$(this).parents("tr").attr("data-id"));
             window.parent.$("#deductMoneyName").val($(this).parents("tr").attr("data-name"));
@@ -273,7 +271,6 @@
     })
 	//启用和禁用
     function upadtaState(type,that){
-        debugger
         $.ajax({
             url: pubIP + "buckle/upDeductMoney", /*v1.0*/
             type: 'post',

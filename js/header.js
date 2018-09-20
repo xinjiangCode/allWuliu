@@ -106,7 +106,6 @@ $(function () {
 
 
     // $('.goUser').click(function(){
-    //     debugger;
     //     var company_type = localStorage.getItem('company_type');
     //     console.log(company_type);
     //     if (company_type == '1') { //供应商

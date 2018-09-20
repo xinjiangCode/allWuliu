@@ -234,7 +234,6 @@
                     }
                     if(currentPage==1){
                         //修改底部分页
-                        //debugger
                         var pageNum=Math.ceil(json.iTotalRecords/10);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");
@@ -300,7 +299,6 @@
 //                    弹框立即支付
                     window.parent.$(".modelBox31 .XuNiGoPay").unbind();
                     window.parent.$(".modelBox31 .XuNiGoPay").click(function () {
-                        debugger
                         if( Number(window.parent.$(".modelBox31 .payMoney").val())>Number(window.parent.$(".modelBox31 .syMoney").text())){
                             window.parent.$(".modelBox31 .ErrorMsg1").text("支付金额不能大于总额")
                             return;

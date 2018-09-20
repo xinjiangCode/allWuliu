@@ -510,9 +510,6 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log("--------------------------------------");
-                    console.log(data.data[0]);
-                    //debugger;
                     var thisdata = data.data[0]
                     //折损率
                     $(".xx_ksl").val(thisdata.car.departureLoss);

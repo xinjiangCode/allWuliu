@@ -4802,7 +4802,6 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             $("#sureCarError").text("请填写现金");
             return;
         }
-//        debugger
         if( $("#money").val()-0>$("#money").attr("data-allMoney")-0){
             $("#sureCarError").text("现金不能大于可用余额");
             return;

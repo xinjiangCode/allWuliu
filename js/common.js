@@ -433,7 +433,6 @@ $(function () {
         //     },
         //     success: function(json){
         //         console.log(json);
-        //         // debugger;
         //         if (json.code == 1) {
         //             if (json.companyType == 1) { //供应商
         //                 localStorage.setItem('company_type', '1');
