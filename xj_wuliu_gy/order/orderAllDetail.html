@@ -85,6 +85,11 @@
             color: #0a76d0;
             margin: 0 5px;
         }
+        .contbox-prld{
+            height: 1100px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
     </style>
 </head>
 <body>
@@ -232,13 +237,12 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="operator infoBox orderList" style="width: 970px;">
-        <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">子订单列表</div>
-        <div class="contBox" style="padding-left: 0;">
-            <div class="listBox" style="width: 100%;">
-                <table style="width: 100%;">
-                    <thead>
+        <div class="operator infoBox orderList" style="width: 970px;">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">子订单列表</div>
+            <div class="contBox" style="padding-left: 0;">
+                <div class="listBox" style="width: 100%;">
+                    <table style="width: 100%;">
+                        <thead>
                         <tr style="border-top: 1px solid #ebe9ea;">
                             <th>订单编号</th>
                             <th>公司名称</th>
@@ -248,24 +252,26 @@
                             <th>待结金额</th>
                             <th>操作</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
-                <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
-                <div class="pageJump">
-                    <span class="allPageN"></span>
-                    <i style="margin-left: 12px;"></i>，
-                    <span>到第</span>
-                    <input type="text"/>
-                    <span>页</span>
-                    <button type="button" class="button">GO</button>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+                    <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+                    <div class="pageJump">
+                        <span class="allPageN"></span>
+                        <i style="margin-left: 12px;"></i>，
+                        <span>到第</span>
+                        <input type="text"/>
+                        <span>页</span>
+                        <button type="button" class="button">GO</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/template.js" type="text/javascript" charset="utf-8"></script>
@@ -625,7 +631,7 @@
                         if(res.data==null || res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                         $(".pagination").parent().css("display","block");
                         if(currentPage==1){
-                            window.parent.$("#Iframe").css("height","1834");
+//                            window.parent.$("#Iframe").css("height","1834");
                             //修改底部分页
                             var pageNum=Math.ceil(res.count/pageSize);
                             $(".allPageN").attr("pageTotal",pageNum);

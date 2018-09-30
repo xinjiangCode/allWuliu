@@ -526,10 +526,25 @@ function returnShow(id) {
                 window.parent.$("#archivesNo").val(data1.archivesNo)//	是	String	车辆档案号
                 window.parent.$("#frameNo").val(data1.frameNo)//	是	String	车架号
                 window.parent.$("#engineNo").val(data1.engineNo)//	是	String	发动机
-                window.parent.$("#annualVerificationDate").val(timestampToTime(data1.annualVerificationDate))//		是	date	年审日期
-                window.parent.$("#firstDate").val(timestampToTime(data1.firstDate))//		是	Sring	初次上牌日期
+				if(data1.annualVerificationDate==0 || data1.annualVerificationDate==null || data1.annualVerificationDate==""){
+                    window.parent.$("#annualVerificationDate").val("")//		是	date	年审日期
+				}else{
+                    window.parent.$("#annualVerificationDate").val(timestampToTime(data1.annualVerificationDate))//		是	date	年审日期
+				}
+
+				if(data1.firstDate==null && data1.firstDate==0 && data1.firstDate==""){
+                    window.parent.$("#firstDate").val("")//		是	Sring	初次上牌日期
+				}else{
+                    window.parent.$("#firstDate").val(timestampToTime(data1.firstDate))//		是	Sring	初次上牌日期
+				}
+                if(data1.insuranceDate==null && data1.insuranceDate==0 && data1.insuranceDate==""){
+                    window.parent.$("#insuranceDate").val("")//		是	String	保险日期
+                }else{
+                    window.parent.$("#insuranceDate").val(timestampToTime(data1.insuranceDate))//		是	String	保险日期
+                }
+
                 window.parent.$("#vehicleLoad").val(data1.vehicleLoad)//		是	String	车辆
-                window.parent.$("#insuranceDate").val(timestampToTime(data1.insuranceDate))//		是	String	保险日期
+
 //                window.parent.$("#chooseAbleLine").attr("data-id")//		是	String	线路id
                 window.parent.$("#purchaseAmount").val(data1.insuranceAmount)//		是	String	购买金额
                 window.parent.$("#insuranceAmount").val(data1.insuranceAmount)//		是	String	保险金额

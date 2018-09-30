@@ -74,9 +74,12 @@
     //头部状态
     $(function () {
         $(".cfnav").removeClass("on");
-        $(".cfnav3").addClass("on");
+        $.each($(".cfnav"),function (idx,item) {
+            if($(item).find("span").text()=="明星货运"){
+                $(item).addClass("on");
+            }
+        })
     })
-
     getTuijian();//获取tuijian
 
     getData();

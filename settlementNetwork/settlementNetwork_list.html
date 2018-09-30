@@ -394,12 +394,12 @@
             str+='<td>'+item.dot_addr.split("-")[3]+'</td>';
             str+='<td>'+item.dot_contacts+'</td>';
             str+='<td>'+item.dot_ConNumber+'</td>';
-            if(item.dot_balance==null){
+            if(item.dot_money==null){
                 str+='<td>0</td>'
 			}else{
-                str+='<td>'+item.dot_balance+'</td>'
+                str+='<td>'+item.dot_money+'</td>'
 			}
-
+0
 			if(item.attr_1==1 && item.dot_status==0){
                 str+='<td>开启</td>'
 			}else if(item.attr_1==1 && item.dot_status==1){

@@ -98,7 +98,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">财务待审核订单<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">财务待审核订单<a class="fr cfRefresh export" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="">订单状态</label>-->
@@ -198,6 +198,11 @@
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
     <script type="text/javascript">
+        //Iframe 的高度
+    $(function () {
+        window.parent.$("#Iframe").css("height","977");
+        exportOrder(1,5)//订单导出
+    })
         //修改订单状态  暂时
         function updateStates(that){
             $.ajax({
@@ -229,10 +234,7 @@
             });
         }
 
-        //Iframe 的高度
-        $(function () {
-            window.parent.$("#Iframe").css("height","977");
-        })
+
         //        时间初始化
         var startTime = '';
         var endTime = '';

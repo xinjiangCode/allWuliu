@@ -2531,8 +2531,10 @@
                     </div>
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">所在车辆：&nbsp;</span>
-                    <div class="selectPub suozai_car_select" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 120px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                    <div class="selectPub suozai_car_select" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;padding-left: 0;">
+                        <!--<span style="display: inline-block;max-width: 120px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span>-->
+                        <input type="text" id="cheLiangSelect" style="width: 164px;height: 30px;border: none;">
+                        <img src="img/prl-select.jpg" alt="">
                         <ul class="suozai_car_ul">
                             <!-- <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -3773,8 +3775,16 @@
     // if ($('.modelBox20').css('display') == 'block') {
     //     car_select();
     // }
-
+//cheLiangSelect
+    $('#cheLiangSelect').click(function (event) {
+        event.stopPropagation();
+    })
+    $('#cheLiangSelect').bind('input propertychange',function () {
+        $(".suozai_car_select").attr('data-selectedindex','-1')
+        car_select()
+    });
     function car_select() {
+        $('.suozai_car_ul').html("");
         $.ajax({
             url: pubIP + 'tLogisticsVehicle/selectLogisticsVehicleList',
             type: 'post',
@@ -3784,8 +3794,9 @@
             },
             data: {
                 page: 1,
-                size: 100,
-                sort: 4
+                size: 1000,
+                sort: 4,
+                carNo:$('#cheLiangSelect').val()
             },
             cache: false,
             dataType: 'json',
@@ -3800,11 +3811,11 @@
                         }
 
                         $('.suozai_car_ul').html(str);
-
+                        $('.suozai_car_select ul li').unbind();
                         $('.suozai_car_select ul li').click(function(){
                             event.stopPropagation();
                             $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().find('input').val($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
 

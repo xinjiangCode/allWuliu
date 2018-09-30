@@ -86,7 +86,7 @@
 </head>
 <body>
 <div class="contbox">
-    <div class="topTitle">总订单列表<div class="fr cfRefresh">导出</div></div>
+    <div class="topTitle">总订单列表<div class="fr cfRefresh authorityBtn">导出</div></div>
     <div class="inputBox">
         <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
         <label for="">商品名称</label>
@@ -305,7 +305,7 @@
                 str+='<td>'+item.tlosettlementAmount+'</td>';
             }
             str+='<td>'+''+'</td>';
-            str+=' <td><span class="addOrder ll">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll gameOver">结束订单</span><span class="btn">金额结算</span></td>';
+            str+=' <td><span class="addOrder ll authorityBtn">新增订单</span><span class="seeDetail ll authorityBtn">查看订单</span><span class="btn ll gameOver authorityBtn" >结束订单</span><span class="btn authorityBtn">金额结算</span></td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);

@@ -222,51 +222,28 @@
         <div class="zixun1 zixun">
             <div class="zixunTitle">平台资讯</div>
             <div class="zixunlist">
-                <div class="zixunItem" style="border: none;">
-                    <div class="yuan on"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
+                <!--<div class="zixunItem" style="border: none;">-->
+                    <!--<div class="yuan on"></div>-->
+                    <!--18.04.19 |受供需关系影响甲醇-->
+                <!--</div>-->
+                <!--<div class="zixunItem">-->
+                    <!--<div class="yuan"></div>-->
+                    <!--18.04.19 |受供需关系影响甲醇-->
+                <!--</div>-->
             </div>
         </div>
         <div class="zixun2 zixun">
-            <div class="zixunTitle">企业资讯</div>
+            <div class="zixunTitle">行业快讯</div>
             <div class="zixunlist">
-                <div class="zixunItem"  style="border: none;">
-                    <div class="yuan on"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
-                <div class="zixunItem">
-                    <div class="yuan"></div>
-                    18.04.19 |受供需关系影响甲醇
-                </div>
+                <!--<div class="zixunItem"  style="border: none;">-->
+                    <!--<div class="yuan on"></div>-->
+                    <!--18.04.19 |受供需关系影响甲醇-->
+                <!--</div>-->
+                <!--<div class="zixunItem">-->
+                    <!--<div class="yuan"></div>-->
+                    <!--18.04.19 |受供需关系影响甲醇-->
+                <!--</div>-->
+
             </div>
         </div>
     </div>
@@ -609,6 +586,66 @@
             }
         });
     })
+//    行业快讯  和企业咨询
+    getArticleByCategory(1)
+    getArticleByCategory(2)
+    function getArticleByCategory(articleType) {
+        $.ajax({
+            url: pubIP + 'platform/getArticleByCategory',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data:{
+                pageNum:0,
+                pageSize:5,
+                articleType:articleType
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (json) {
+                var str=""
+                var isFirst=true;
+                $.each(json.data.data,function (idx,item) {
+                    var timestamp=item.timestamp;
+                    if(timestamp/100000000000<0){
+                        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                    }else{
+                        var date = new Date(timestamp );//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                    }
+                    Y = date.getFullYear();
+                    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1);
+                    D = date.getDate();
+                    h = date.getHours() + ':';
+                    m = date.getMinutes() + ':';
+                    s = date.getSeconds();
+                    D=D<10?'0'+D:D;
+
+                    str+='<div class="zixunItem" style="border: none;">'
+                    if(isFirst==true){
+                        str+='<div class="yuan on"></div>'
+                        isFirst=false;
+                    }else{
+                        str+='<div class="yuan"></div>'
+                    }
+                    str+='<span>'+Y+'.'+M+'.'+D+' | '+item.title+'</span>'
+                    str+='</div>'
+
+                })
+                $(".zixun"+articleType+" .zixunlist").html(str)
+                $(".zixunlist .zixunItem").unbind()
+                $(".zixunlist .zixunItem").click(function () {
+                    sessionStorage.setItem("zixunId",$(this).attr("data-id"))
+
+                    window.parent.location.href="../../consultationDetail.html"
+                })
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>

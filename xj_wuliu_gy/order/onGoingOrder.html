@@ -96,7 +96,7 @@
 <body>
     <div class="contbox">
         <div class="topTitle">进行中订单
-            <div class="fr cfRefresh">导出</div></div>
+            <a class="fr cfRefresh export authorityBtn" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="">货物类型</label>-->
@@ -229,7 +229,7 @@
             <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
             <td><%=list[i].car%></td>
-            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看详情</a></span></td>
+            <td><span class="see seeDetail ll authorityBtn" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看详情</a></span></td>
         </tr>
         <%}%>
     </script>
@@ -237,6 +237,7 @@
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","917");
+            exportOrder(0,2)//订单导出
         })
         //        时间初始化
         var startTime = '';

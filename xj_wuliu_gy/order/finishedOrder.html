@@ -96,7 +96,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">完成订单<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">完成订单<a class="fr cfRefresh export authorityBtn" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="">订单状态</label>-->
@@ -229,13 +229,14 @@
             <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
             <td><%=list[i].car%></td>
-            <td><span class="btn ll seeDetail" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看详情</a></span></td>
+            <td><span class="btn ll seeDetail authorityBtn" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看详情</a></span></td>
         </tr>
         <%}%>
     </script>
     <script type="text/javascript">
         $(function () {
             window.parent.$("#Iframe").css("height","917");
+            exportOrder(0,6)//订单导出
         })
         var startTime = '';
         var endTime = '';

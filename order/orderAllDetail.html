@@ -73,6 +73,22 @@
         .companyInfo .ll {
             width: 303px;
         }*/
+        .contbox-prld{
+            height: 1150px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            /*padding-bottom: 200px;*/
+        }
+        .operator .blue{
+            color: #0072bc;
+            margin: 0 5px;
+        }
+        .listBox tr{
+            border-bottom: 1px solid #eeeeee;
+        }
+        .listBox td{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -219,42 +235,44 @@
                 <div>企业开户银行：<span class="qiye_kaihu_bank">2015-09-08 12：20</span></div>
             </div>
         </div>
-    </div>
-    <div class="operator orderList">
-        <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">子订单列表</div>
-        <div class="contBox">
-            <div class="listBox">
-                <table>
-                    <thead>
-                    <tr>
-                        <td>订单编号</td>
-                        <td>公司名称</td>
-                        <td>订单类型</td>
-                        <td>已运单数</td>
-                        <td>总金额</td>
-                        <td>待结金额</td>
-                        <td>操作</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
-                <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
-                <div class="pageJump">
-                    <span class="allPageN"></span>
-                    <i style="margin-left: 12px;"></i>，
-                    <span>到第</span>
-                    <input type="text"/>
-                    <span>页</span>
-                    <button type="button" class="button">GO</button>
+        <div class="operator orderList">
+            <div class="title"><img src="../img/prl-titlelogo.png" width="29" height="28" alt="">子订单列表</div>
+            <div class="contBox" style="padding: 0;">
+                <div class="listBox" style="overflow-x: scroll;" >
+                    <table style="width:1500px;">
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>公司名称</th>
+                            <th>订单类型</th>
+                            <th>已运单数</th>
+                            <th>总金额</th>
+                            <th>待结金额</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        </tbody>
+                    </table>
+                </div>
+                <div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+                    <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+                    <div class="pageJump">
+                        <span class="allPageN"></span>
+                        <i style="margin-left: 12px;"></i>，
+                        <span>到第</span>
+                        <input type="text"/>
+                        <span>页</span>
+                        <button type="button" class="button">GO</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/template.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/html" id="orderTpl">
@@ -338,7 +356,7 @@
 <script>
     //Iframe 的高度
     $(function () {
-        window.parent.$("#Iframe").css("height","1213");
+        window.parent.$("#Iframe").css("height","1450");
 
         if ($('.contbox-prld').height() > 1372) {
             $('.contbox-prld').css('width', '988px');
@@ -652,7 +670,7 @@
                     if(res.data==null || res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                     $(".pagination").parent().css("display","block");
                     if(currentPage==1){
-                        window.parent.$("#Iframe").css("height","1834");
+//                        window.parent.$("#Iframe").css("height","1834");
                         //修改底部分页
                         var pageNum=Math.ceil(res.count/pageSize);
                         $(".allPageN").attr("pageTotal",pageNum);
@@ -696,18 +714,18 @@
             }
             str+='<td>'+''+'</td>';
             if(item.tloStatus==	1 || item.tloStatus==2 || item.tloStatus==3){   //未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商`
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll" onclick="fenPei(\''+item.tloId+'\')">分配车辆</span><span class="ll cancel_order">取消订单</span><span class="ll update">上传合同</span><span class="ll diaoling">发起调令</span>';
+                str+=' <td><span class="blue seeDetail">查看订单</span><span class="blue" onclick="fenPei(\''+item.tloId+'\')">分配车辆</span><span class="blue cancel_order">取消订单</span><span class="blue update">上传合同</span><span class="blue diaoling">发起调令</span>';
             }else if(item.tloStatus==4){//进行中订单
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll sure">确认送达</span><span class="ll " onclick="fenPei(\''+item.tloId+'\')">更改车辆</span></td>';
+                str+=' <td><span class="blue seeDetail">查看订单</span><span class="blue sure">确认送达</span><span class="blue " onclick="fenPei(\''+item.tloId+'\')">更改车辆</span></td>';
             }else if(item.tloStatus==7){//回款审核订单
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll huikuan_shenhe">回款审核</span></td>';
+                str+=' <td><span class="blue seeDetail">查看订单</span><span class="blue huikuan_shenhe">回款审核</span></td>';
             }else if(item.tloStatus==5  || item.tloStatus==9 || item.tloStatus==10 || item.tloStatus==11 ){//回款审核订单
-                str+=' <td><span class="ll">查看详情</span></td>';
+                str+=' <td><span class="blue">查看详情</span></td>';
             }else if(item.tloStatus==	6 || item.tloStatus==8){//财务待结算订单
                 if(item.tLogisticsOrderstatus==8){
-                    str+=' <td><span class="ll">查看详情</span><span onclick="updateStates(this)">修改状态</span></td>';
+                    str+=' <td><span class="blue">查看详情</span><span onclick="updateStates(this)">修改状态</span></td>';
                 }else{
-                    str+=' <td><span class="ll">查看详情</span></td>';
+                    str+=' <td><span class="blue">查看详情</span></td>';
                 }
             }
             str+='</tr>';

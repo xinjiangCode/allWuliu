@@ -72,9 +72,18 @@
 
 <script type="text/javascript" >
     //控制头部状态
+//    $(function () {
+//        $(".cfnav").removeClass("on");
+//        $(".cfnav2").addClass("on");
+//    })
+    //头部状态
     $(function () {
         $(".cfnav").removeClass("on");
-        $(".cfnav2").addClass("on");
+        $.each($(".cfnav"),function (idx,item) {
+            if($(item).find("span").text()=="明星货主"){
+                $(item).addClass("on");
+            }
+        })
     })
 
     getTuijian();//获取tuijian

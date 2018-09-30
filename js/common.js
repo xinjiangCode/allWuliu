@@ -1,15 +1,15 @@
 
-// var pubIP = 'http://192.168.1.146:7777/service/';
+// var pubIP = 'http://192.168.1.83:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
 // 上传图片路径
-var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
-// var uplodImgPath = 'file.test.xjv56.com/bfile/fileUpload.htm';
+// var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 //下载
-var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
-// var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
+// var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
+var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
 
 
 //获取地址栏参数，name:参数名称
@@ -31,6 +31,9 @@ var companyId = null, userId = null ;
 
 //时间戳转时间格式
 function timestampToTime(timestamp) {
+    if(timestamp==0 || timestamp=="" || timestamp==null){
+        return "";
+    }
     if(timestamp/100000000000<0){
         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
     }else{
@@ -48,6 +51,9 @@ function timestampToTime(timestamp) {
 }
 //时间戳转时间
 function timestampToTime1(timestamp) {
+    if(timestamp==0 || timestamp=="" || timestamp==null){
+        return "";
+    }
     if(timestamp/100000000000<0){
         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
     }else{
@@ -374,17 +380,18 @@ $(function () {
     
     
 
-    $("header  .logo").click(function () {
-        
-        if (company_type == '1') { //供应商
-            $('.goUser').attr('href', '../index.html');
-        } else if (company_type == '2') {
-            $('.goUser').attr('href', 'index.html');
-        } else if (company_type == '-1') {
-            $('.goUser').attr('href', 'index.html');
-        }
-        window.location.href="./index.html";
-    })
+    // $("header  .logo").click(function () {
+    //
+    //     if (company_type == '1') { //供应商
+    //         debugger
+    //         $('.goUser').attr('href', '../index.html');
+    //     } else if (company_type == '2') {
+    //         $('.goUser').attr('href', 'index.html');
+    //     } else if (company_type == '-1') {
+    //         $('.goUser').attr('href', 'index.html');
+    //     }
+    //     window.location.href="/allWuliu/index.html";
+    // })
 
     if (companyId) {
         $.ajax({
@@ -838,3 +845,8 @@ var tableToExcel = (function() {
             window.location.href = uri + base64(format(template, ctx))
         }
     })()
+
+// 导出订单
+function exportOrder(status,type){
+    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+sessionStorage.getItem("token"))
+}

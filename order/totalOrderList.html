@@ -303,7 +303,7 @@
         function cf_dataRender(data) {
             var str='';
             $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'">';
+                str+='<tr data-id="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.carrierCompanyId+'"  data-orderNo="'+item.orderNo+'">';
                 str+='<td>'+item.orderNo+'</td>';
                 str+='<td>'+item.carrierCompanyName+'</td>';
                 str+='<td>'+item.orderType+'</td>';
@@ -314,7 +314,7 @@
                     str+='<td>'+item.tlosettlementAmount+'</td>';
                 }
                 str+='<td>'+''+'</td>';
-                str+=' <td><span class="addOrder ll">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll gameOver">结束订单</span><span class="btn">金额结算</span></td>';
+                str+=' <td><span class="addOrder ll" style="display: none;">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll gameOver">结束订单</span><span class="btn">金额结算</span></td>';
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
