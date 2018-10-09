@@ -738,7 +738,8 @@ function exportOrder(status,type){
     $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+sessionStorage.getItem("token"))
 }
 
-getAuthor11()
+//权限
+// getAuthor11()
 function getAuthor11() {
     if(window.parent.$("#Iframe").attr("data-parentid")==""){
         return;
