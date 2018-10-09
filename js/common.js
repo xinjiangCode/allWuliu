@@ -161,14 +161,22 @@ $(document).on('click', '.exit', function() {
         success: function (data) {
             console.log(data);
             if (data.code == 1) {
-                window.localStorage.removeItem('token');
-                console.log(window.localStorage.getItem('isOld'));
+                // window.localStorage.removeItem('token');
+                localStorage.setItem("token",'')
+                // console.log(window.localStorage.getItem('isOld'));
                 // window.localStorage.setItem('data-logout', 'true');
                 $('.exit').hide();
                 $("#loginPub").show();
                 $('#userNamePub').html('你好，游客');
                 
                 location.href = 'login.html';
+            }else{
+                localStorage.setItem("token",'')
+                // console.log(window.localStorage.getItem('isOld'));
+                // window.localStorage.setItem('data-logout', 'true');
+                $('.exit').hide();
+                $("#loginPub").show();
+                $('#userNamePub').html('你好，游客');
             }
 
         },

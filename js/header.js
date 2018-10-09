@@ -172,6 +172,7 @@ $(function () {
                     $("#loginPub").show();
                     $(".exit").hide();
                     $('#userNamePub').html('你好，游客');
+                    localStorage.setItem("token",'')
                 }
             },
             error:function(xhr,statues,error){
