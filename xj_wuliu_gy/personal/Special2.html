@@ -141,6 +141,10 @@
             z-index: 900;
         }
 
+        .look_bigpic {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -396,6 +400,8 @@
                 $(obj).attr('data-flag', '0');
 
                 $(obj).parent().parent().find('.delete_pic').css('visibility', 'visible');
+
+                $(obj).parent().find('.look_bigpic').show();
             },
             error: function (err) {
                 console.log(err);
@@ -586,6 +592,10 @@
 
                             $('.c'+i+' .hd'+j).val(data.data[i].picInfos[j].picUrl);
 
+                            if ($('.c'+i+' .hd'+j).val() != '') {
+                                $('.c'+i+' .hd'+j).next().show();
+                            }
+
                             $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
 
                             $('.c'+i+' .pic'+(j+1)).attr('disabled', 'disabled');
@@ -738,6 +748,7 @@
                 $(this).parent().find('.uploade').eq(0).css('background', 'url("")');
                 $(this).parent().find('.uploade').eq(0).find('input[type="hidden"]').val('');
                 $(this).css('visibility', 'hidden');
+                $(this).parent().find('.uploade').find('.look_bigpic').hide();
             }  
             
         });

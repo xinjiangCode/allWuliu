@@ -87,8 +87,10 @@ if(getUrlParms("type")!=null){
             $(".cfnav").unbind();
             $(".cfnav").click(function () {
                 // sessionStorage.setItem("activeClass",$(this).attr("data-class"))
-                if($(this).attr("data-href")){
-                    window.location.href=$(this).attr("data-href")
+                if(window.location.href.indexOf('index.html')!=-1){
+                    if($(this).attr("data-href")){
+                        window.location.href=$(this).attr("data-href")
+                    }
                 }
 
             })
@@ -148,6 +150,7 @@ if(getUrlParms("type")!=null){
 //     "</header>");
 
 $(function () {
+    console.log(localStorage.getItem('token'));
     if(localStorage.getItem("token")){
         //判断登录状态
         $.ajax({

@@ -90,6 +90,10 @@
             width: 967px;
         }
 
+        .look_bigpic {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -323,6 +327,7 @@
                 $(obj).next().val(data.url);
                 $(obj).parent().parent().find('.ts1').css('display', 'none');
                 $(obj).attr('data-flag', '0');
+                $(obj).parent().find('.look_bigpic').show();
             },
             error: function (err) {
                 console.log(err);
@@ -486,6 +491,10 @@
                             });
 
                             $('.c'+i+' .hd'+j).val(data.data[i].picInfos[j].picUrl);
+
+                            if ($('.c'+i+' .hd'+j).val() != '') {
+                                $('.c'+i+' .hd'+j).next().show();
+                            }
 
                             $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
                             

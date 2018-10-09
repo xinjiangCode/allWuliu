@@ -821,24 +821,25 @@ $('.goUser').click(function() {
         //         console.log(err);
         //     }
         // });
-
-
         if (company_type == '1') { //供应商
             
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
             }
-            $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+            // $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+            window.location.href = 'xj_wuliu_gy/account.html';
         } else if (company_type == '2') {
             
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
             }
-            $('.goUser').attr('href', 'account.html');
+            // $('.goUser').attr('href', 'account.html');
+            window.location.href = "account.html";
         } else if (company_type == '-1') {
             
             window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-            $('.goUser').attr('href', 'account.html');
+            // $('.goUser').attr('href', 'account.html');
+            window.location.href = "account.html";
         }else{
             $('#effect .contTitle span').text('您尚未登录');
             missedLogin() ;

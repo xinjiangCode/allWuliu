@@ -105,6 +105,10 @@
             z-index: 900
         }
 
+        .look_bigpic {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -155,7 +159,7 @@
                                 <!-- <img src="../img/list_logo.png" alt="" id="yingye_zhizhao_preview"  title="点击更换图片"> -->
                                 <input type="file" id="yingye_zhizhao_pic" class="pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
                                 <input type="hidden" name="" value="" class="hd" id="yingye_zhizhao_hidden">
-                                <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
+                                <div class="look_bigpic bigPic" ><img src="../img/big_pic.png" alt=""></div>
                             </div>
                         </div>
                         <!--<div class=" btn1 Lf" style="color: #999999;font-size: 14px;"><img style="width: 20px;height: 20px;" src="../img/cf_add.png" alt="">添加</div>-->
@@ -360,6 +364,7 @@
                 });
                 $(obj).parent().find('input[type="hidden"]').val(data.url);
                 $(obj).parent().parent().next().css('display', 'none');
+                $(obj).parent().find('.look_bigpic').show();
             },
             error: function (err) {
                 console.log(err);
@@ -661,7 +666,7 @@
                                 +'<i style=""></i>'
                                 +'<input type="file" id="yingye_zhizhao_pic1" class="pic" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">'
                                 +'<input type="hidden" name="" value="" class="hd" id="yingye_zhizhao_hidden1">'
-                                +'<div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>'
+                                +'<div class="look_bigpic bigPic" ><img src="../img/big_pic.png" alt=""></div>'
                             +'</div>'
                         +'</div>'
                         +'<span class="ts" style="margin-top: 32px;">证件不能为空</span>'
