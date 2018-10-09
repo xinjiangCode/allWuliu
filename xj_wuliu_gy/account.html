@@ -2357,7 +2357,9 @@
 //        $(".erQi").hide()
 //        $(".cfnav.erQi").hide()
 //    })
-    getAuthor()
+
+//权限
+//    getAuthor()
     function getAuthor() {
         $(".cfnav").css("display","none")
         $.ajax({
@@ -2531,47 +2533,50 @@
         $(this).attr('src', '');
     });
 
-    $(".manageList").css("display","none");
-function showMangeList(idx,that) {
-    if(idx==".cfidx1"){
-        // if (localStorage.getItem('company_type') == -1) {
-
-        if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-            sessionStorage.setItem("cfsrc","../finance/identification1.html");
-        }else {
-            sessionStorage.setItem("cfsrc","./personal/mine.html");
-        }
-
-        // }
-    }else{
-        sessionStorage.setItem("cfsrc",$(that).attr("data-url"));
-    }
-    showNav();
-}
-//    function showMangeList(idx) {
-//        if(idx==".cfidx1"){
-//            // if (localStorage.getItem('company_type') == -1) {
+//    权限部分
+   // $(".manageList").css("display","none");
+//function showMangeList(idx,that) {
+//    if(idx==".cfidx1"){
+//        // if (localStorage.getItem('company_type') == -1) {
 //
-//                if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-//                    sessionStorage.setItem("cfsrc","../finance/identification1.html");
-//                }else {
-//                    sessionStorage.setItem("cfsrc","./personal/mine.html");
-//                }
-//
-//            // }
-//        }else if(idx==".cfidx2"){
-//            sessionStorage.setItem("cfsrc","./requuire/publishRequireList.html");
-//        }else if(idx==".cfidx3"){
-//            sessionStorage.setItem("cfsrc","./order/notDistributeOrder.html");
-//        }else if(idx==".cfidx4"){
-//            sessionStorage.setItem("cfsrc","./order/totalOrderList.html");
-//        }else if(idx==".cfidx5"){
-//            sessionStorage.setItem("cfsrc","./financialManage/financialManage.html");
-//        }else if(idx==".cfidx6"){
-//            sessionStorage.setItem("cfsrc","./setUp/setting-tradeContract.html");
+//        if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+//            sessionStorage.setItem("cfsrc","../finance/identification1.html");
+//        }else {
+//            sessionStorage.setItem("cfsrc","./personal/mine.html");
 //        }
-//        showNav();
+//
+//        // }
+//    }else{
+//        sessionStorage.setItem("cfsrc",$(that).attr("data-url"));
 //    }
+//    showNav();
+//}
+
+//非权限
+    function showMangeList(idx) {
+        if(idx==".cfidx1"){
+            // if (localStorage.getItem('company_type') == -1) {
+
+                if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                    sessionStorage.setItem("cfsrc","../finance/identification1.html");
+                }else {
+                    sessionStorage.setItem("cfsrc","./personal/mine.html");
+                }
+
+            // }
+        }else if(idx==".cfidx2"){
+            sessionStorage.setItem("cfsrc","./requuire/publishRequireList.html");
+        }else if(idx==".cfidx3"){
+            sessionStorage.setItem("cfsrc","./order/notDistributeOrder.html");
+        }else if(idx==".cfidx4"){
+            sessionStorage.setItem("cfsrc","./order/totalOrderList.html");
+        }else if(idx==".cfidx5"){
+            sessionStorage.setItem("cfsrc","./financialManage/financialManage.html");
+        }else if(idx==".cfidx6"){
+            sessionStorage.setItem("cfsrc","./setUp/setting-tradeContract.html");
+        }
+        showNav();
+    }
 
 
     // 调用删除弹框
