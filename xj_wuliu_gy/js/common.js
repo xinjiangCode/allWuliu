@@ -1,5 +1,5 @@
 
-// var pubIP = 'http://192.168.1.146:7777/service/';
+// var pubIP = 'http://192.168.1.83:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
@@ -26,8 +26,8 @@ var token=localStorage.getItem("token");
 // 上传图片路径
 // var uplodImgPath = 'http://192.168.1.80:8680/bfile/fileUpload.htm';
 // var uplodImgPath = 'http://172.17.210.188:8081/bfile/fileUpload.htm';
-var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
-// var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
+// var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 
 var pageSize=10;//分页的每页个数
 
@@ -35,6 +35,9 @@ var companyId = null, userId = null ;
 
 //时间戳转时间
 function timestampToTime(timestamp) {
+    if(timestamp==0 || timestamp=="" || timestamp==null){
+        return "";
+    }
     if(timestamp/100000000000<0){
         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
     }else{
@@ -52,6 +55,9 @@ function timestampToTime(timestamp) {
 }
 //时间戳转时间
 function timestampToTime1(timestamp) {
+    if(timestamp==0 || timestamp=="" || timestamp==null){
+        return "";
+    }
     if(timestamp/100000000000<0){
         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
     }else{
@@ -727,3 +733,45 @@ function cf_alert01(aa,msg) {
 }
 //查询按钮 统一设置样式
 $(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"11px"});
+// 导出订单
+function exportOrder(status,type){
+    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+sessionStorage.getItem("token"))
+}
+
+//权限
+// getAuthor11()
+function getAuthor11() {
+    if(window.parent.$("#Iframe").attr("data-parentid")==""){
+        return;
+    }
+
+    $(".authorityBtn").hide()
+    $.ajax({
+        url: pubIP + 'tReceptionDepartmentPersion/getQueryUserMenu',
+        type: 'get',
+        headers: {
+            Accept: "application/json; charset=utf-8",
+            token: token
+        },
+        data:{
+            companyStatus:1,
+            parentId:window.parent.$("#Iframe").attr("data-parentid"),
+            types:"all"
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (json) {
+            $.each(json.data,function (idx,item) {
+                    $(".authorityBtn").each(function (idx1,item1) {
+                        // debugger
+                        if(item.name==$(item1).text() ||  item.name==$(item1).find("span").text() || item.name==$(item1).find("a").text()){
+                            $(item1).show();
+                        }
+                    })
+            })
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}

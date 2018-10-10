@@ -25,6 +25,18 @@
             overflow: hidden;
 
         }
+
+        #effect1{display:none;position: fixed;top: 0;left: 0;right:0;bottom: 0;width: 100%;height: 100%;z-index: 999;background-color: rgba(102,102,102,0.5);}
+        #effect1>.cont{position: fixed;top: 50%;left: 50%;width: 450px;height: 279px;background-color: #ffffff;transform: translate(-50%,-50%);background: url('./img/cf_popBackground.png') no-repeat ; background-size: contain;}
+        #effect1>.cont>.cance2{margin: 0;padding-left:20px;height: 50px;line-height: 50px;background: url('./img/cf_popbackgr.png') no-repeat ;background-size: contain;}
+        #effect1>.cont>.cance2>.popTitle{color:#5992f3;font-size: 16px;}
+        #effect1>.cont>.cance2>.close{width: 46px;height: 48px; background: url('./img/gsxq_del.png') no-repeat ; background-size: contain;}
+        #effect1>.cont>.deanger{width: 42px;height: 42px;background: url('./img/cf_denger1.png') no-repeat ; background-size: contain;margin: 0 auto;margin-top: 40px;}
+        #effect1>.cont>.contTitle{margin-top: 20px;font-size: 14px;text-align: center;}
+        #effect1>.cont>.popLogin{width: 130px;height: 35px; line-height: 35px;background-color: #88b0f9;color: white;text-align: center;margin: 0 auto;border-radius: 5px;font-size: 16px;margin-top: 35px; }
+        #effect1>.cont>.popLogin:hover{background-color: #7ea9f9;}
+        .itemcont{cursor: pointer;}
+        
     </style>
 </head>
 <body>
@@ -82,11 +94,11 @@
         </ul>
         <div class="btnBox">
             <div>
-                <input type="text" id="companyName" class="searchInput" placeholder="公司地址">
+                <input type="text" id="address" class="searchInput" placeholder="公司地址">
                 <input type="button" class="searchBtn" value="" onclick="getData(1)">
             </div>
             <div>
-                <input type="text" class="searchInput" id="address" placeholder="公司名称">
+                <input type="text" class="searchInput" id="companyName" placeholder="公司名称">
                 <input type="button" class="searchBtn" value="" onclick="getData(1)">
             </div>
         </div>
@@ -147,10 +159,31 @@
 <script src="js/pager.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
     //控制头部状态
+//    $(function () {
+//        $(".cfnav").removeClass("on");
+//        $(".cfnav2").addClass("on");
+//    })
+    //头部状态
     $(function () {
         $(".cfnav").removeClass("on");
-        $(".cfnav2").addClass("on");
+        $.each($(".cfnav"),function (idx,item) {
+            if($(item).find("span").text()=="明星货主"){
+                $(item).addClass("on");
+            }
+        })
     })
+
+    document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
+        "\t<div class=\"cont\" >\n" +
+        "\t\t<div class=\"cance2\" >\n" +
+        "\t\t\t<span class=\"popTitle Lf\" >提示</span>\n" +
+        "\t\t\t<div class=\"close Rt\" style=\"cursor:pointer;\" onclick=\"cf_popEffectClose1(this)\"></div>\n" +
+        "\t\t</div>\n" +
+        "\t\t<div class=\"deanger\"></div>\n" +
+        "\t\t<div class=\"contTitle\">您好，<span>您的登陆已经过期</span>,请先<i onclick=\"popEffectLogin()\" style=\"color: #00a0e9;cursor:pointer;\">登陆</i>，以便使用更多功能。</div>\n" +
+        "\t\t<div class=\"popLogin\" id=\"popLogin\" style=\"cursor:pointer;\" onclick=\"popEffectLogin()\">登录</div>\n" +
+        "\t</div>\n" +
+        "</div>");
 
 
     var currentPage=1;
@@ -195,7 +228,7 @@
                 address:$("#address").val()
             },
             success: function (res) {
-                if(res.code===1){
+                if(res.code==1){
                     //首次请求时 改变分页数据
                     if(res.data.length==0){
                         $(".listBox tbody").html("");
@@ -205,7 +238,6 @@
                     $(".pagination").parent().css("display","block");
                     if(currentPage===1){
                         //修改底部分页
-                        //debugger
                         var pageNum=Math.ceil(res.count/pageSize);
                         $(".allPageN").attr("pageTotal",pageNum);
                         $(".pageJump i").text("共"+pageNum+"页");

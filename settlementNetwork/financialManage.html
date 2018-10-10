@@ -78,7 +78,7 @@
             <!--<input style="float: right;margin: 10px 13px 6px 0px;" class="searchResultBtn btn input" type="button" value="油卡充值">-->
             <input style="float: right;margin: 10px 13px 6px 0px;" class="searchResultBtn btn input applay" type="button" value="申请充值">
         </div>
-        <div class="opciationBox">
+        <div class="opciationBox" style="display: none;">
             <span style="margin-left: 20px;font-size: 14px;color: #282828;"></span>
             <div class="select displayNum" style="margin-right: 13px;" data-selectedindex="0"><span>排列方式</span><img src="../img/prl-select.jpg" alt="">
                 <ul>
@@ -170,10 +170,11 @@
         $('td .squre').click(function(){
             $(this).toggleClass('active');
         });
+
         //点击申请充值
         $(".applay").unbind();
         $(".applay").click(function () {
-            var str='<div class="item clearfix">\n' +
+            var str='<div class="item clearfix cardList">\n' +
                 '                            <div  data-isselect="0" class="selectPub Lf cardList selectCoup" data-selectedindex="-1" style="float: left;background-color: white;margin-top: 7px;">\n' +
                 '                                <span>请选择</span>\n' +
                 '                                <img src="img/prl-select.jpg" alt="">\n' +
@@ -197,12 +198,65 @@
                     '                            <input type="text" placeholder="金额" class="wangDianIpt Lf" style="margin-top: 7px;">\n' +
                     '                        </div>'
                 $(this).parents(".coupList").append(str)
+
                 getKaQuanList();
             })
 
-            window.parent.getProvence(2)
+//            window.parent.getProvence(2)
             getKaQuanList();
             window.parent.$(".modelBox25").show();
+        })
+//        提交申请充值
+        window.parent.$(".modelBox25 .sure").unbind()
+        window.parent.$(".modelBox25 .sure").click(function () {
+            var params=[];
+            var quanIsok=1;
+            window.parent.$(".coupList .item").each(function (idx1,item1) {
+                if($(item1).find(".selectPub").attr("data-selectedindex")==-1){
+                    return;
+                }
+                if($(item1).find(".selectPub").attr("data-selectedindex")!=-1 && $(item1).find("input").val()==""){
+                    quanIsok=0;
+//                    window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券金额")
+
+                    return;
+                }
+                var obj={}
+                obj.couponId=$(item1).find(".selectPub").attr("data-selectedindex");
+                obj.applyMoney=$(item1).find("input").val();
+                params.push(obj)
+            })
+
+            if(quanIsok==0){
+//                window.parent.$(".modelBox24 .ErrorMsg").text("请填写优惠券数量")
+                cf_alert01(2,"请填写优惠券金额")
+                return;
+            }else if(params.length==0){
+                cf_alert01(2,"请选择充值优惠券")
+            }
+            $.ajax({
+                url: pubIP + "carrierDot/dotRechargeApply", /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    params:JSON.stringify(params)
+                },
+                success: function (res) {
+                    if(res.code==0){
+                        cf_alert(1,"充值申请提交成功！");
+                    }else{
+                        cf_alert01(2,res.msg);
+                    }
+
+                }
+            })
+
         })
         //	获取卡券列表
         function getKaQuanList() {
@@ -240,9 +294,9 @@
                                 event.stopPropagation();
                                 var that=this;
                                 var isOk=0
-                                window.parent.$(".coupList .item").each(function (idx1,item1) {
-                                    debugger
-                                    if($(item1).find(".selectPub").attr("data-selectedindex")==$(that).attr('data-index') && $(that).parents(".item").index()!=idx1){
+                                window.parent.$(".modelBox25 .coupList .item").each(function (idx1,item1) {
+//                                    $(that).parents(".item").index()
+                                    if($(item1).find(".selectPub").attr("data-selectedindex")==$(that).attr('data-index') && idx!=idx1){
                                         isOk=1;
                                         cf_alert01(2,"不能重复添加卡券")
                                         return;
@@ -298,10 +352,16 @@
                 }
             });
         }
-        function getKaQuanList1() {
+//
+        //进入页面加载数据
+        getData(1);
+        //获取  数据
+        function getData(currentPage) {
+            $(".listBox tbody").html("");
+            $(".pagination").parent().css("display","none");
             $.ajax({
-                url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
-                type: 'get',
+                url: pubIP + 'carrierDot/getDotCouponList', /*v1.0*/
+                type: 'post',
                 headers: {
                     Accept: "application/json; charset=utf-8",
                     token: token
@@ -310,87 +370,76 @@
                 ansyc: true,
                 dataType: 'json',
                 data:{
-                    iDisplayStart: 1,
-                    iDisplayLength: 10000,
+//                    startTime:$("#test1").val(),
+//                    endTime:$("#test2").val(),
+//                    source:$("#source").val(),
+                    iDisplayLength:pageSize,
+                    iDisplayStart:currentPage
                 },
                 success: function (res) {
-                    console.log(res)
-                    if (res.aData.length != 0) {
-                        var str='';
-                        $.each(res.aData,function (idx,item) {
-//                        if(item.attr_2==1){
-//                            $("#money").attr("data-allMoney",item.money);
-//                            $("#money").attr("data-dot-id",item.dot_id);
-//                            $("#money").attr("data-zijin-id",item.id);
-//                        }else{
-                            str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
-//                        }
-                        })
-                        window.parent.$(".modelBox25 .coupList .item").each(function (idx,item) {
-                            $(item).find("ul").html(str);
-                            $(item).find("li").unbind();
-                            $(item).find("li").click(function (event) {
-                                event.stopPropagation();
-                                var that=this;
-                                var isOk=0
-                                window.parent.$(".coupList .item").each(function (idx1,item1) {
-                                    if($(item1).find(".selectPub").attr("data-selectedindex")==$(that).attr('data-index')&&$(that).parents(".item").index()!=idx1){
-                                        isOk=1;
-                                        cf_alert01(2,"不能重复添加卡券")
-                                        return;
-                                    }
-                                })
-                                if(isOk==1){
-                                    return;
-                                }
-                                $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                                $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
-                                $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
-                                $(this).parent().parent().find('span').text($(this).text());
-                                $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
-                                $(this).parent().css('display','none');
-                            })
-                        })
-                        // 模拟下拉框
-                        window.parent.$('.selectCoup').unbind()
-                        window.parent.$('.selectCoup').click(function(event){
-                            if($(this).attr("disabled")=="disabled"){return;}//不可选
-                            if($(this).children('img').attr('src') == 'img/prl-selected.jpg'){
-                                $(this).children('img').attr('src', 'img/prl-select.jpg')
-                            } else {
-                                $(this).children('img').attr('src', 'img/prl-selected.jpg')
-                            }
-
-                            event.stopPropagation();
-
-                            $(this).children('ul').toggle();
-                            var that = $(this);
-                            that.find('li').each(function(){
-                                $(this).mouseover(function(){
-                                    $(this).addClass('hovered')
-                                });
-                                $(this).mouseleave(function(){
-                                    $(this).removeClass('hovered')
-                                });
-                                if($(this).attr('data-index') == that.attr('data-selectedindex')){
-                                    $(this).css({'background': '#6ea3ff','color': '#fff'});
-                                    $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                    if(res.aData && res.aData.length!=0){
+                        //首次请求时 改变分页数据
+//                    if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                        $(".pagination").parent().css("display","block");
+                        if(currentPage==1){
+                            //修改底部分页
+                            var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                            $(".allPageN").attr("pageTotal",pageNum);
+                            $(".pageJump i").text("共"+pageNum+"页");
+                            $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                            Page({
+                                num: pageNum,
+                                elem: $('#page1'),
+                                callback: function(n) {
+                                    getData(n);//加载n页数据
                                 }
                             });
-
-                        }).mouseleave(function (event) {
-                            $(this).children('img').attr('src', 'img/prl-select.jpg');
-                            $(this).children('ul').hide();
-                        });
+                        }
+                        //修改底部页数
+                        $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                        cf_dataRender(res.aData)
+                    }else{
+//                    alert(res.msg);
                     }
-
                 },
                 error: function(err){
                     console.log(err);
                 }
             });
         }
+        //渲染数据
+        function cf_dataRender(data) {
+            var str='';
+            $.each(data,function (idx,item) {
+                str+='<tr data-dotId="'+item.dotId+'" data-couponId="'+item.couponId+'">';
+                str+='<td>'+item.couponName+'</td>';
 
+                if(item.money==0 || item.money==null){
+                    str+='<td>0</td>';
+                }else{
+                    str+='<td style="color: #666666;">'+item.money+'</td>'
+                }
+
+                str+='<td><span class="see_liushui" style="font-size:12px;color: #6EA3FF;">查看流水</span></td>'
+//                    <span style="color: #6EA3FF;margin-right: 10px;">充值</span>
+                str+='</tr>';
+            })
+            $(".listBox tbody").html(str);
+            $(".see_liushui").unbind();
+            $(".see_liushui").click(function () {
+                sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-couponId"));
+                window.location.href="./financialManage_detil.html";
+            })
+        }
+        //搜索
+        $(".search").click(function () {
+            getData(1);
+        })
+        // 点击go刷新数据
+        $('.pageCont').on('click', '.button',function(){
+            var currentPage1 = $('.pageCont li.active>a').text();
+            getData(currentPage1);
+        })
     </script>
 </body>
 </html>

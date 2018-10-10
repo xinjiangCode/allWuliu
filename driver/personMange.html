@@ -260,6 +260,8 @@
 
     // 新增部门
     $(document).on('click', '.add_apartment', function() {
+        window.parent.$(".ts_ts").text("")
+
     	$(window.parent.document).find('.model20_ok_btn').attr('data-zhiwuId', '');
     	$(window.parent.document).find('.apartment_select1 span').text('请选择');
     	$(window.parent.document).find('.apartment_select1').attr('data-selectedindex', '-1');
@@ -268,7 +270,7 @@
     	$(window.parent.document).find('.zhiwu_select span').text('请选择');
         $(window.parent.document).find('.zhiwu_select ul').html('');
     	$(window.parent.document).find('.suozai_car_select').attr('data-selectedindex', '-1');
-    	$(window.parent.document).find('.suozai_car_select span').text('请选择');
+    	$(window.parent.document).find('.suozai_car_select input').text('');
     	$(window.parent.document).find('.person_name').val('');
     	$(window.parent.document).find('.person_cardID').val('');
     	$(window.parent.document).find('.person_address').val('');
@@ -308,6 +310,7 @@
     // 添加部门
     window.parent.$('.model20_ok_btn').unbind();
     window.parent.$('.model20_ok_btn').click(function() {
+        window.parent.$(".ts_ts").text("")
     // $(window.parent.document).on('click', '.model19_ok_btn', function() {
 
     	var driver_type_select = $(window.parent.document).find('.driver_type_select').attr('data-selectedindex');
@@ -316,7 +319,7 @@
     	var zhiwu_select = $(window.parent.document).find('.zhiwu_select').attr('data-selectedindex');
     	var zhiwu_select_span = $(window.parent.document).find('.zhiwu_select span').text();
     	var suozai_car_select = $(window.parent.document).find('.suozai_car_select').attr('data-selectedindex');
-    	var suozai_car_select_span = $(window.parent.document).find('.suozai_car_select span').text();
+    	var suozai_car_select_span = $(window.parent.document).find('.suozai_car_select input').text();
     	var person_name = $(window.parent.document).find('.person_name').val();
     	var person_cardID = $(window.parent.document).find('.person_cardID').val();
     	var person_address = $(window.parent.document).find('.person_address').val();
@@ -459,7 +462,9 @@
                 } else if (json.code == -1) { //身份证号有重复
                     $(window.parent.document).find('.prompt .ts_ts').text('身份证号已存在');
                     $(window.parent.document).find('.prompt .ts_ts').css('visibility', 'visible');
-                }
+                }else{
+                    cf_alert01(2,json.msg)
+				}
             },
             error: function(err){
             	console.log(err);
@@ -512,7 +517,7 @@
                 $(window.parent.document).find('.zhiwu_select span').text(json.data.jobName);
 
                 $(window.parent.document).find('.suozai_car_select').attr('data-selectedindex', json.data.carId);
-                $(window.parent.document).find('.suozai_car_select span').text(json.data.credentials5);
+                $(window.parent.document).find('.suozai_car_select input').val(json.data.credentials5);
 
                 $(window.parent.document).find('.person_name').val(json.data.userName);
 		    	$(window.parent.document).find('.person_cardID').val(json.data.card);

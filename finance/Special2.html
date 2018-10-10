@@ -90,6 +90,10 @@
             width: 967px;
         }
 
+        .look_bigpic {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -169,6 +173,7 @@
                                 <div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>
                             </div>
                             <div class="ts1">至少添加一张图片</div>
+                            <a href="##" class="delete_pic">删除</a>
                             <a href="##" class="add_pic add_pic1" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>
                         </div>
 
@@ -323,6 +328,10 @@
                 $(obj).next().val(data.url);
                 $(obj).parent().parent().find('.ts1').css('display', 'none');
                 $(obj).attr('data-flag', '0');
+
+                $(obj).parent().parent().find('.delete_pic').css('visibility', 'visible');
+
+                $(obj).parent().find('.look_bigpic').show();
             },
             error: function (err) {
                 console.log(err);
@@ -487,12 +496,19 @@
 
                             $('.c'+i+' .hd'+j).val(data.data[i].picInfos[j].picUrl);
 
+                            if ($('.c'+i+' .hd'+j).val() != '') {
+                                $('.c'+i+' .hd'+j).next().show();
+                            }
+
                             $('.c'+i+' .pic'+(j+1)).attr('data-flag', '0');
                             
                         }
 
                         //不让点击添加图片
                         $(".add_pic").hide();
+
+                        // 不让删除
+                        $('.delete_pic').css('visibility', 'hidden');
 
                         data.data[i].qualificationDataBegin = new Date(data.data[i].qualificationDataBegin).Format("yyyy-MM-dd");
 
@@ -549,7 +565,6 @@
                     //       return;
                     //     }
 
-                    //     // debugger;
 
                     //     if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
                     //         $(this).children('img').attr('src', '../img/prl-select.jpg')
@@ -637,6 +652,7 @@
            $(this).parent().find(".btn1").show();
            $(this).parent().find(".start").attr('disabled', false).css("background-color","#fff");
            $(this).parent().find(".end").attr('disabled', false).css("background-color","#fff");
+           $(this).parent().find(".delete_pic").css('visibility', 'visible').css('display', 'inline-block');
 
            $('.input_blur').attr('disabled', false);
 
@@ -697,7 +713,7 @@
         $(document).on('click', '.add_pic', function() {
             var pic = $(this).attr('data-pic');
 
-            var cla = $(this).prev().prev().find('input[type="file"]').attr('class');
+            var cla = $(this).prev().prev().prev().find('input[type="file"]').attr('class');
 
             //console.log(cla);
 
@@ -779,6 +795,7 @@
                                 +'<div class="look_bigpic" ><img src="../img/big_pic.png" alt=""></div>'
                             +'</div>'
                             +'<div class="ts1">至少添加一张图片</div>'
+                            +'<a href="##" class="delete_pic">删除</a>'
                             +'<a href="##" class="add_pic" data-pic="pic" style="float: left;font-size: 14px; position: absolute; bottom: 0px;">继续添加图片</a>'
                         +'</div>'
                     +'</li>'
@@ -886,6 +903,19 @@
         });
         
 
+    });
+
+    $(document).on('click', '.delete_pic', function() {
+        
+        if ($(this).parent().find('.uploade').length != 1) {
+            $(this).parent().find('.uploade').eq($(this).parent().find('.uploade').length-1).remove();
+        }  else {
+            $(this).parent().find('.uploade').eq(0).css('background', 'url("")');
+            $(this).parent().find('.uploade').eq(0).find('input[type="hidden"]').val('');
+            $(this).css('visibility', 'hidden');
+            $(this).parent().find('.uploade').find('.look_bigpic').hide();
+        }  
+        
     });
 
 

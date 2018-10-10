@@ -510,9 +510,6 @@
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log("--------------------------------------");
-                    console.log(data.data[0]);
-                    //debugger;
                     var thisdata = data.data[0]
                     //折损率
                     $(".xx_ksl").val(thisdata.car.departureLoss);
@@ -668,7 +665,7 @@
                     })
                     str2+='<li class="kk_thislist">'
                     str2+='<div class="lf lf_select">'
-                    str2+='<span>扣款项：</span>'
+                    str2+='<span style="float: left;">扣款项：</span>'
                     str2+='<div class="goodsType input select myselect" style="float: none;margin: 0" data-selectedindex="-1"><span  class="all_kkx">请选择</span><img src="../img/prl-select.jpg" >'
                     str2+='<ul style="top: 35px;">'+str3+'</ul>'
                     str2+='</div>'
@@ -802,101 +799,200 @@
         function add_djqclk(b){
             $(b).hide();
             $(b).next().show();
-            $.ajax({
-                url: pubIP + 'order/queryTCouponInfor',
-                type: 'get',
-                headers: {
-                    Accept: "application/json; charset=utf-8",
-                    token: token
-                },
-                data: {
-                    iDisplayStart: 1,
-                    iDisplayLength: 10000,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log("++++++++++++------------------+++++++++++++++");
-                    console.log(data);
-                    var data = data.aData;
-                    var str4 = '';
-                    var str5 = '';
-                    $.each(data,function(idx,item){
-                        if(item.attr_2 != 1){
-                            str4 += '<li data-index="'+idx+'" id="'+item.id+'" dotId="'+item.dot_id+'"  data-this-yue="'+item.money+'">'+item.coupon_name+'</li>';
-                        }
-                    })
-                    str5+='<li class="dj_thislist">'
-                    str5+='<div class="lf lfdj_select">'
-                    str5+='<span>代&nbsp;&nbsp;金&nbsp; 券：</span>'
-                    str5+='<div class="goodsType input select myselect2" style="float: none;margin-top: 0px; margin-right: 0px; margin-left: 9px;" data-selectedindex="-1"><span class="all_djq">请选择</span><img src="../img/prl-select.jpg" >'
-                    str5+='<ul style="top: 35px;">'+str4+'</ul>'
-                    str5+='</div>'
-                    str5+='</div>'
-                    str5+='<div class="inp_daijinquan fr">'
-                    str5+='<input class="dj_money jiajia" type="text" placeholder="请输入代金券金额">'
-                    str5+='<span class="add_this2" onclick="add_djqclk(this)">增加代金券</span>'
-                    str5+='<span style="display: none;" class="dele_this2" onclick="dele_djqclk(this)">删除代金券</span>'
-                    str5+='</div>'
-                    str5+='</li>'
-                    $(".daijinquan_type").append(str5);
-
-
-
-                    // 模拟下拉框
-                    $(".select").unbind();//解除所有绑定事件 再重新注册
-                    $('.select').click(function(event){
-                        if($(this).attr("disabled")=="disabled"){return;}//不可选
-                        if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
-                            $(this).children('img').attr('src', '../img/prl-select.jpg')
-                        } else {
-                            $(this).children('img').attr('src', '../img/prl-selected.jpg')
-                        }
-                        event.stopPropagation();
-                        $(this).children('ul').toggle();
-                        var that = $(this);
-                        that.find('li').each(function(){
-                            $(this).mouseover(function(){
-                                $(this).addClass('hovered')
-                            });
-                            $(this).mouseleave(function(){
-                                $(this).removeClass('hovered')
-                            });
-                            if($(this).attr('data-index') == that.attr('data-selectedindex')){
-                                $(this).css({'background': '#6ea3ff','color': '#fff'});
-                                $(this).siblings('li').css({'background': '#fff','color': '#999'});
+            if(window.top.$(".modelBox18_ifrm").attr("isdot")==1){
+                $.ajax({
+                    url: pubIP + 'carrierDot/getDotCouponList',
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        iDisplayStart: 1,
+                        iDisplayLength: 10000,
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log("++++++++++++------------------+++++++++++++++");
+                        console.log(data);
+                        var data = data.aData;
+                        var str4 = '';
+                        var str5 = '';
+                        $.each(data,function(idx,item){
+                            if(item.num != 1){
+                                str4 += '<li data-index="'+idx+'" id="'+item.dotCouponId+'" dotId="'+item.dotId+'"  data-this-yue="'+item.money+'">'+item.couponName+'</li>';
                             }
+                        })
+                        str5+='<li class="dj_thislist">'
+                        str5+='<div class="lf lfdj_select">'
+                        str5+='<span style="float: left;">代&nbsp;&nbsp;金&nbsp; 券：</span>'
+                        str5+='<div class="goodsType input select myselect2" style="float: none;margin-top: 0px; margin-right: 0px; margin-left: 9px;" data-selectedindex="-1"><span class="all_djq">请选择</span><img src="../img/prl-select.jpg" >'
+                        str5+='<ul style="top: 35px;">'+str4+'</ul>'
+                        str5+='</div>'
+                        str5+='</div>'
+                        str5+='<div class="inp_daijinquan fr">'
+                        str5+='<input class="dj_money jiajia" type="text" placeholder="请输入代金券金额">'
+                        str5+='<span class="add_this2" onclick="add_djqclk(this)">增加代金券</span>'
+                        str5+='<span style="display: none;" class="dele_this2" onclick="dele_djqclk(this)">删除代金券</span>'
+                        str5+='</div>'
+                        str5+='</li>'
+                        $(".daijinquan_type").append(str5);
+
+
+
+                        // 模拟下拉框
+                        $(".select").unbind();//解除所有绑定事件 再重新注册
+                        $('.select').click(function(event){
+                            if($(this).attr("disabled")=="disabled"){return;}//不可选
+                            if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
+                                $(this).children('img').attr('src', '../img/prl-select.jpg')
+                            } else {
+                                $(this).children('img').attr('src', '../img/prl-selected.jpg')
+                            }
+                            event.stopPropagation();
+                            $(this).children('ul').toggle();
+                            var that = $(this);
+                            that.find('li').each(function(){
+                                $(this).mouseover(function(){
+                                    $(this).addClass('hovered')
+                                });
+                                $(this).mouseleave(function(){
+                                    $(this).removeClass('hovered')
+                                });
+                                if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                                    $(this).css({'background': '#6ea3ff','color': '#fff'});
+                                    $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                                }
+                            });
+                        }).mouseleave(function (event) {
+                            $(this).children('img').attr('src', '../img/prl-select.jpg');
+                            $(this).children('ul').hide();
                         });
-                    }).mouseleave(function (event) {
-                        $(this).children('img').attr('src', '../img/prl-select.jpg');
-                        $(this).children('ul').hide();
-                    });
-                    $('.select ul li').click(function(){
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().find('span').attr('data-couponId', $(this).attr('id'));//券id  couponId
-                        $(this).parent().parent().find('span').attr('data-dotId', $(this).attr('dotId'));//结算网点id
-                        $(this).parent().parent().find('span').attr('data-this-yue', $(this).attr('data-this-yue'));//卡券余额
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-                    });
-                    //现金 //提成//工资
-                    $(".jiajia").unbind();
-                    $(".jiajia").on("input",function(){
-                        var quan_yue = Number($(this).parent().prev().find(".myselect2").find('span').attr('data-this-yue'));
-                        if(Number($(this).val())>quan_yue){
-                            window.parent.$(".all_error_alert").show();
-                            window.parent.$(".all_error_alert").find(".innerErrmsg").html("代金券金额不能大于该券的余额");
-                            return false;
-                        }
-                        fina_jiesuan();
-                    })
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            })
+                        $('.select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').attr('data-couponId', $(this).attr('id'));//券id  couponId
+                            $(this).parent().parent().find('span').attr('data-dotId', $(this).attr('dotId'));//结算网点id
+                            $(this).parent().parent().find('span').attr('data-this-yue', $(this).attr('data-this-yue'));//卡券余额
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        });
+                        //现金 //提成//工资
+                        $(".jiajia").unbind();
+                        $(".jiajia").on("input",function(){
+                            var quan_yue = Number($(this).parent().prev().find(".myselect2").find('span').attr('data-this-yue'));
+                            if(Number($(this).val())>quan_yue){
+                                window.parent.$(".all_error_alert").show();
+                                window.parent.$(".all_error_alert").find(".innerErrmsg").html("代金券金额不能大于该券的余额");
+                                return false;
+                            }
+                            fina_jiesuan();
+                        })
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }else{
+                $.ajax({
+                    url: pubIP + 'order/queryTCouponInfor',
+                    type: 'get',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        iDisplayStart: 1,
+                        iDisplayLength: 10000,
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log("++++++++++++------------------+++++++++++++++");
+                        console.log(data);
+                        var data = data.aData;
+                        var str4 = '';
+                        var str5 = '';
+                        $.each(data,function(idx,item){
+                            if(item.attr_2 != 1){
+                                str4 += '<li data-index="'+idx+'" id="'+item.id+'" dotId="'+item.dot_id+'"  data-this-yue="'+item.money+'">'+item.coupon_name+'</li>';
+                            }
+                        })
+                        str5+='<li class="dj_thislist">'
+                        str5+='<div class="lf lfdj_select">'
+                        str5+='<span style="float: left;">代&nbsp;&nbsp;金&nbsp; 券：</span>'
+                        str5+='<div class="goodsType input select myselect2" style="float: none;margin-top: 0px; margin-right: 0px; margin-left: 9px;" data-selectedindex="-1"><span class="all_djq">请选择</span><img src="../img/prl-select.jpg" >'
+                        str5+='<ul style="top: 35px;">'+str4+'</ul>'
+                        str5+='</div>'
+                        str5+='</div>'
+                        str5+='<div class="inp_daijinquan fr">'
+                        str5+='<input class="dj_money jiajia" type="text" placeholder="请输入代金券金额">'
+                        str5+='<span class="add_this2" onclick="add_djqclk(this)">增加代金券</span>'
+                        str5+='<span style="display: none;" class="dele_this2" onclick="dele_djqclk(this)">删除代金券</span>'
+                        str5+='</div>'
+                        str5+='</li>'
+                        $(".daijinquan_type").append(str5);
+
+
+
+                        // 模拟下拉框
+                        $(".select").unbind();//解除所有绑定事件 再重新注册
+                        $('.select').click(function(event){
+                            if($(this).attr("disabled")=="disabled"){return;}//不可选
+                            if($(this).children('img').attr('src') == '../img/prl-selected.jpg'){
+                                $(this).children('img').attr('src', '../img/prl-select.jpg')
+                            } else {
+                                $(this).children('img').attr('src', '../img/prl-selected.jpg')
+                            }
+                            event.stopPropagation();
+                            $(this).children('ul').toggle();
+                            var that = $(this);
+                            that.find('li').each(function(){
+                                $(this).mouseover(function(){
+                                    $(this).addClass('hovered')
+                                });
+                                $(this).mouseleave(function(){
+                                    $(this).removeClass('hovered')
+                                });
+                                if($(this).attr('data-index') == that.attr('data-selectedindex')){
+                                    $(this).css({'background': '#6ea3ff','color': '#fff'});
+                                    $(this).siblings('li').css({'background': '#fff','color': '#999'});
+                                }
+                            });
+                        }).mouseleave(function (event) {
+                            $(this).children('img').attr('src', '../img/prl-select.jpg');
+                            $(this).children('ul').hide();
+                        });
+                        $('.select ul li').click(function(){
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().find('span').attr('data-couponId', $(this).attr('id'));//券id  couponId
+                            $(this).parent().parent().find('span').attr('data-dotId', $(this).attr('dotId'));//结算网点id
+                            $(this).parent().parent().find('span').attr('data-this-yue', $(this).attr('data-this-yue'));//卡券余额
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        });
+                        //现金 //提成//工资
+                        $(".jiajia").unbind();
+                        $(".jiajia").on("input",function(){
+                            var quan_yue = Number($(this).parent().prev().find(".myselect2").find('span').attr('data-this-yue'));
+                            if(Number($(this).val())>quan_yue){
+                                window.parent.$(".all_error_alert").show();
+                                window.parent.$(".all_error_alert").find(".innerErrmsg").html("代金券金额不能大于该券的余额");
+                                return false;
+                            }
+                            fina_jiesuan();
+                        })
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }
+
         }
         //如果结算工资 计算税后金额
         $(".xianjin").on("input",function () {
@@ -1062,6 +1158,7 @@
                     deductMoneyList: deductMoneyListstr,
                     settlementCardList: settlementCardListstr,
                     cardList: cardListstr,
+                    isDot:window.parent.$(".modelBox18_ifrm").attr("isDot")
                 },
                 cache: false,
                 dataType: 'json',

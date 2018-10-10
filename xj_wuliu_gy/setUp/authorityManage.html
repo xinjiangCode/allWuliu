@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <title>新疆物流服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+    <!--<link rel="stylesheet" href="../css/setUp_staffManage.css">-->
+    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<style>
+        .record .Rt div{
+            width: 85px;height: 32px;
+            border: 1px solid #eceaeb;
+            text-align: center;
+            line-height: 32px;
+            margin-top: 10px;
+            margin-left: 6px;
+        }
+        .btn{
+            width: 106px;
+            height: 34px;
+            line-height: 34px;
+            border: 1px solid #e7e7e7;
+            text-align: center;
+            border-radius: 2px;
+            margin-right: 5px;
+            margin-top: 8px;
+        }
+        .select{margin-top: 8px;}
+        .rightContBox{
+            height: 800px;
+            overflow-y: auto;
+            /*background-color: #ffffff;*/
+            /*border: 1px solid #eeeeee;*/
+        }
+    </style>
+</head>
+<body>
+<!--员工管理-->
+
+    <div class="rightContBox"  style="float: none">
+        <div class="zTreeDemoBackground left">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="sure">确定</div>
+    </div>
+<!--</div>-->
+
+<!--<script src="../js/footer.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.ztree.all.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" >
+    //Iframe 的高度
+    $(function () {
+        window.parent.$("#Iframe").css("height","800");
+        getAuthority()
+    })
+
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        data:{
+            key:{
+                children:"childMenus"
+            }
+        },
+        check:{
+            chkboxType : { "Y" : "ps", "N" : "ps" },
+            enable: true
+        },
+        callback:{
+            beforeCheck:true,
+            onCheck:onCheck
+        }
+    };
+    $(".sure").click(function () {
+        var treeObj=$.fn.zTree.getZTreeObj("treeDemo")
+        nodes=treeObj.getCheckedNodes(true),
+        v="";
+        var isfirst=1;
+        for(var i=0;i<nodes.length;i++){
+            if(isfirst==1){
+                v+=nodes[i].id;
+                isfirst=0;
+            }else{
+                v+=","+nodes[i].id;
+            }
+        }
+        console.log(v); //获取选中节点的值
+//        tijiao
+        var url="";
+        var parmars={};
+        if(sessionStorage.getItem("isRole")==1){//是角色
+            url="tReceptionRole/addWLMenuRole"
+            parmars.roleId=sessionStorage.getItem("roleId")
+            parmars.menuIds=v
+            parmars.companyStatus=1
+        }else{//是员工
+            url="tReceptionDepartmentPersion/addWLMenuRole"
+            parmars.persionId=sessionStorage.getItem("persionId")
+            parmars.menuIds=v
+            parmars.companyStatus=1
+        }
+//        提交节点
+        $.ajax({
+            url: pubIP + url,
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: parmars,
+            dataType: 'json',
+            success: function (json) {
+                if (json.code == 1) {
+                    cf_alert(1,json.msg)
+                } else {
+                    cf_alert01(2,json.msg)
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    })
+    function getAuthority() {
+        var types = "";
+        if(sessionStorage.getItem("isRole")==1){//是角色
+            types = "role";
+        }else{//是员工
+            types = "all";
+        }
+        $.ajax({
+            url: pubIP + 'tReceptionRole/getTReceptionMenu',
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                companyStatus: 1,
+                types: types
+            },
+            dataType: 'json',
+            success: function (json) {
+                if (json.code == 1) {
+                    var zNodes=json.data;
+                    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                } else if (json.code == -1) {
+
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function onCheck(e,treeId,treeNode){
+        var treeObj=$.fn.zTree.getZTreeObj("treeDemo")
+            nodes=treeObj.getCheckedNodes(true),
+            v="";
+        for(var i=0;i<nodes.length;i++){
+            v+="节点id:"+nodes[i].id + ","+"节点名称:"+nodes[i].name + ";";
+        }
+        console.log(v); //获取选中节点的值
+    }
+
+</script>
+<SCRIPT type="text/javascript">
+
+
+</SCRIPT>
+</body>
+</html>

@@ -1,15 +1,15 @@
 
-// var pubIP = 'http://192.168.1.146:7777/service/';
+// var pubIP = 'http://192.168.1.83:7777/service/';
 var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
 // 上传图片路径
-var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
-// var uplodImgPath = 'file.test.xjv56.com/bfile/fileUpload.htm';
+// var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
+var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 //下载
-var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
-// var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
+// var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
+var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
 
 
 //获取地址栏参数，name:参数名称
@@ -31,6 +31,9 @@ var companyId = null, userId = null ;
 
 //时间戳转时间格式
 function timestampToTime(timestamp) {
+    if(timestamp==0 || timestamp=="" || timestamp==null){
+        return "";
+    }
     if(timestamp/100000000000<0){
         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
     }else{
@@ -48,6 +51,9 @@ function timestampToTime(timestamp) {
 }
 //时间戳转时间
 function timestampToTime1(timestamp) {
+    if(timestamp==0 || timestamp=="" || timestamp==null){
+        return "";
+    }
     if(timestamp/100000000000<0){
         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
     }else{
@@ -111,6 +117,7 @@ if(adct1=="acount"){
 function missedLogin() {
     // $("#effect").css("display","block");
     window.top.$("#effect").show();
+    localStorage.setItem('token', '');
 }
 
 //跳回登录页
@@ -155,14 +162,22 @@ $(document).on('click', '.exit', function() {
         success: function (data) {
             console.log(data);
             if (data.code == 1) {
-                window.localStorage.removeItem('token');
-                console.log(window.localStorage.getItem('isOld'));
+                // window.localStorage.removeItem('token');
+                localStorage.setItem("token",'')
+                // console.log(window.localStorage.getItem('isOld'));
                 // window.localStorage.setItem('data-logout', 'true');
                 $('.exit').hide();
                 $("#loginPub").show();
                 $('#userNamePub').html('你好，游客');
                 
                 location.href = 'login.html';
+            }else{
+                localStorage.setItem("token",'')
+                // console.log(window.localStorage.getItem('isOld'));
+                // window.localStorage.setItem('data-logout', 'true');
+                $('.exit').hide();
+                $("#loginPub").show();
+                $('#userNamePub').html('你好，游客');
             }
 
         },
@@ -237,8 +252,10 @@ if(token){
 		  			if(location.href.indexOf('index') == -1){
 		  				if(location.href.indexOf('account') != -1 || location.href.indexOf('shopManage') != -1){
 		  					$("#effect" , parent.document).show();
+                            localStorage.setItem('token', '');
 		  				}else{
-		  					missedLogin() ;
+		  					missedLogin();
+                            localStorage.setItem('token', '');
 		  				}
 		  			}
 		  		}
@@ -298,6 +315,7 @@ if(token){
 }else{
 	localStorage.setItem('isOld','1');
     missedLogin() ;
+    localStorage.setItem('token', '');
 }
 
 // else{
@@ -374,17 +392,18 @@ $(function () {
     
     
 
-    $("header  .logo").click(function () {
-        
-        if (company_type == '1') { //供应商
-            $('.goUser').attr('href', '../index.html');
-        } else if (company_type == '2') {
-            $('.goUser').attr('href', 'index.html');
-        } else if (company_type == '-1') {
-            $('.goUser').attr('href', 'index.html');
-        }
-        window.location.href="./index.html";
-    })
+    // $("header  .logo").click(function () {
+    //
+    //     if (company_type == '1') { //供应商
+    //         debugger
+    //         $('.goUser').attr('href', '../index.html');
+    //     } else if (company_type == '2') {
+    //         $('.goUser').attr('href', 'index.html');
+    //     } else if (company_type == '-1') {
+    //         $('.goUser').attr('href', 'index.html');
+    //     }
+    //     window.location.href="/allWuliu/index.html";
+    // })
 
     if (companyId) {
         $.ajax({
@@ -433,7 +452,6 @@ $(function () {
         //     },
         //     success: function(json){
         //         console.log(json);
-        //         // debugger;
         //         if (json.code == 1) {
         //             if (json.companyType == 1) { //供应商
         //                 localStorage.setItem('company_type', '1');
@@ -500,27 +518,29 @@ $(function () {
         //     }
 
         // });
-        
-        if (company_type == '1') { //供应商
-            window.location.href="xj_wuliu_gy/account.html";
-        } else if (company_type == '2') {
-            window.location.href="./account.html";
-        } else if (company_type == '-1') {
-            var url = window.location.href;
-            if (url.indexOf('login.html') != -1) {
-            
-                $('#effect2 .contTitle span').text('您尚未登录');
-                $('#effect2').css('display', 'block');
-                // missedLogin();
-                // $('.goUser').attr('href', 'javascript:;');
-            } else {
+        if (localStorage.getItem('token')) {
+            if (company_type == '1') { //供应商
+                window.location.href="xj_wuliu_gy/account.html";
+            } else if (company_type == '2') {
                 window.location.href="./account.html";
-                //window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-                // var url = window.location.href;
+            } else if (company_type == '-1') {
                 
-                // if (url.indexOf('account.html') == -1) {
+                var url = window.location.href;
+                if (url.indexOf('login.html') != -1) {
+                
+                    $('#effect2 .contTitle span').text('您尚未登录');
+                    $('#effect2').css('display', 'block');
+                    // missedLogin();
+                    // $('.goUser').attr('href', 'javascript:;');
+                } else {
+                        
+                    window.location.href="./account.html";
+                    //window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                    // var url = window.location.href;
+                    
+                    // if (url.indexOf('account.html') == -1) {
 
-                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                    window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
                     $.ajax({
                         url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
                         type: 'post',
@@ -547,7 +567,6 @@ $(function () {
                                         }
                                     // });
 
-
                                 }
                                 
                             }
@@ -558,13 +577,15 @@ $(function () {
                             console.log(err);
                         }
                     });
-                // }
+                    
+                }
+                
             }
 
-            
+        }  else {
+            $('#effect1 .contTitle span').text('您尚未登录');
+            $('#effect1').css('display', 'block');
         }
-
-        
         
     })
 
@@ -839,3 +860,8 @@ var tableToExcel = (function() {
             window.location.href = uri + base64(format(template, ctx))
         }
     })()
+
+// 导出订单
+function exportOrder(status,type){
+    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+sessionStorage.getItem("token"))
+}

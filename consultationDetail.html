@@ -29,10 +29,10 @@
                 <p>参与方式： 提供你的建议总书记写信，汇报乌兰牧骑60年来的发展情况，表达为繁荣发展社会主义文艺事业作贡献的决心。</p>
                 <p class="author">（责任编辑：佚名）</p>
             </div>
-            <div class="otherLink">
-                <a class="prev Lf" href="javascript:;"><i class="Lf">上一篇：</i><span class="Lf" style="width:360px;">你想在优品汇买到哪些养生膏？</span></a>
-                <a class="next Lf" href="javascript:;"><i class="Lf">下一篇：</i><span class="Lf">摩贝平台与中国（上海）自由贸易试验区中东欧16国国家馆签署战略合作协议</span></a>
-            </div>
+            <!--<div class="otherLink">-->
+                <!--<a class="prev Lf" href="javascript:;"><i class="Lf">上一篇：</i><span class="Lf" style="width:360px;">你想在优品汇买到哪些养生膏？</span></a>-->
+                <!--<a class="next Lf" href="javascript:;"><i class="Lf">下一篇：</i><span class="Lf">摩贝平台与中国（上海）自由贸易试验区中东欧16国国家馆签署战略合作协议</span></a>-->
+            <!--</div>-->
         </div>
         <div class="main-right">
             <div class="rightTitle">热门话题</div>
@@ -68,7 +68,31 @@
     <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
     
     <script type="text/javascript">
+        getArticleByCategory()
+        function getArticleByCategory() {
+            $.ajax({
+                url: pubIP + 'platform/getArticleInfoByid',
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data:{
+                    id:sessionStorage.getItem("zixunId")
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
 
+                    $(".mianCont .title").text(json.data.title)
+                    $(".mianCont .subtitle").text(timestampToTime1(json.data.timestamp)+" "+json.data.source)
+                    $(".mianCont .contInfo").html(json.data.content)
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
     </script>
 </body>
 </html>

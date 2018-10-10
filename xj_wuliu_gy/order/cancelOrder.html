@@ -85,9 +85,9 @@
         }
         /*.listBox{height: 1116px;}*/
 
-        .cfRefresh {
-            display: block; 
-        }
+        /*.cfRefresh {*/
+            /*display: block; */
+        /*}*/
         
         .pageJump input[type="text"] {
             text-align: center;
@@ -100,7 +100,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">取消订单<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">取消订单<div class="fr cfRefresh authorityBtn">导出</div></div>
         <div class="inputBox clearFloat">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="">货物类型</label>-->
@@ -253,7 +253,7 @@
                 <!--已合作-->
                 <!--<%}%>-->
             <!--</td>-->
-            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span></td>
+            <td><span class="see seeDetail ll authorityBtn" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span></td>
         </tr>
         <%}%>
     </script>
@@ -368,7 +368,7 @@
                             var result = template('orderListTpl', {list: json.data});
                             $('#orderListInfo').html(result);
 
-                           
+//                            getAuthor11()
                             if (isSearch == 1) {
                                 // if (isFirst) {
                                     Page({

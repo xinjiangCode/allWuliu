@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/account.css"/>
     <style>
 
-        .kquan_caozuo,.modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert, .zizhi_weitong {
+        .modelBox24_error,.kquan_caozuo,.modelBoxshenhezhong, .modelBoxyijujue, .modelBoxqiyesecond, .modelBoxchujinsecond, .modelBoxaddsuccess, .modelBoxaddteshu, .modelBoxaddqita, .modelBoxtiao_tan, .modelBoxupdate_chujin, .modelBoxupdate_qiye, .modelBoxupdate_runPerson, .modelBoxupdate_runFapiao, .modelBoxupdate_runcaiwu, .modelBoxdelzizhi, .modelBoxzihzishenhe, .modelBoxweipass, .modelBoxjujue_teshu, .modelBox0, .modelBoxweixian, .modelBoxweirenzheng, .modelBoxdengdai, .no_zizhi, .modelBox19, .shenpi_alert, .zizhi_weitong {
             z-index: 9999;
             display: none;
             position: fixed;
@@ -678,6 +678,9 @@
         .wangDianLine{margin-top: 7px;}
         .selectCoup ul{max-height: 100px;}
         .red{color: red;}
+        .modelBox17 .quanList input{
+            width: 206px;
+        }
     </style>
 
 
@@ -2528,8 +2531,10 @@
                     </div>
                 </div>
                 <div style="margin-top: 15px;color: #666666;line-height: 40px;" class="fr clearfix"><span class="modelBox34LeftTitle fl">所在车辆：&nbsp;</span>
-                    <div class="selectPub suozai_car_select" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;">
-                        <span style="display: inline-block;max-width: 120px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span><img src="img/prl-select.jpg" alt="">
+                    <div class="selectPub suozai_car_select" data-selectedindex="-1" style="float: left;width: 198px; margin-right: 0px; margin-top: 0px;padding-left: 0;">
+                        <!--<span style="display: inline-block;max-width: 120px;overflow: hidden;  white-space: nowrap;text-overflow: ellipsis;">请选择</span>-->
+                        <input type="text" id="cheLiangSelect" style="width: 164px;height: 30px;border: none;">
+                        <img src="img/prl-select.jpg" alt="">
                         <ul class="suozai_car_ul">
                             <!-- <li data-index="1">1</li>
                             <li data-index="2">2</li>
@@ -2787,8 +2792,10 @@
                     </div>
                 </div>
                 <div class="clearfix">
-                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine"><span class="modelBox34LeftTitle fl">初始资金：&nbsp;</span>
+                    <div style="color: #666666;line-height: 40px;" class="fl clearfix wangDianLine">
+                        <span class="modelBox34LeftTitle fl">初始资金：&nbsp;</span>
                         <input type="text" class="wangDianIpt money">
+                        <span class="moneyErr" style="color: red;font-size: 14px;"></span>
                     </div>
                 </div>
                 <div class="clearfix">
@@ -2824,6 +2831,25 @@
         </div>
     </div>
     </div>
+<!-- 所有错误提示 -->
+<div class="modelBox24_error" style="z-index: 99999;">
+    <div class="modelCont">
+        <div class="modeltitle">
+            <span>消息提示</span>
+            <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
+        </div>
+        <div class="modelcontent">
+            <div class="info">
+                <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
+                <p class="innerErrmsg"></p>
+            </div>
+            <div class="modelBtnBox">
+                <div style="background:#5690f6;float: left;margin-right: 0;margin-left: 0;" class="modelbtn cancel cfClose">取&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+                <div style="background:#5690f6;float: left;margin-right: 0;margin-left: 10px;" class="modelbtn continue">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- 充值卡券-->
 <div class="modelBox25" style="font-size: 14px; display: none">
     <div class="modelCont" style="width: 754px;height: 570px;">
@@ -3749,8 +3775,16 @@
     // if ($('.modelBox20').css('display') == 'block') {
     //     car_select();
     // }
-
+//cheLiangSelect
+    $('#cheLiangSelect').click(function (event) {
+        event.stopPropagation();
+    })
+    $('#cheLiangSelect').bind('input propertychange',function () {
+        $(".suozai_car_select").attr('data-selectedindex','-1')
+        car_select()
+    });
     function car_select() {
+        $('.suozai_car_ul').html("");
         $.ajax({
             url: pubIP + 'tLogisticsVehicle/selectLogisticsVehicleList',
             type: 'post',
@@ -3760,8 +3794,9 @@
             },
             data: {
                 page: 1,
-                size: 100,
-                sort: 4
+                size: 1000,
+                sort: 4,
+                carNo:$('#cheLiangSelect').val()
             },
             cache: false,
             dataType: 'json',
@@ -3776,11 +3811,11 @@
                         }
 
                         $('.suozai_car_ul').html(str);
-
+                        $('.suozai_car_select ul li').unbind();
                         $('.suozai_car_select ul li').click(function(){
                             event.stopPropagation();
                             $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().find('input').val($(this).text());
                             $(this).parent().parent().children('img').attr('src', 'img/prl-select.jpg')
                             $(this).parent().css('display','none');
 
@@ -4536,53 +4571,105 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
     //获取卡券列表
     getKaQuanList();
     function getKaQuanList() {
-//        先置空总金额
+        //        先置空总金额
         $("#money").attr("data-allMoney","0")
-        $.ajax({
-            url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
-            type: 'get',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            cache: false,
-            ansyc: true,
-            dataType: 'json',
-            data:{
-                iDisplayStart: 1,
-                iDisplayLength: 10000,
-            },
-            success: function (res) {
-                console.log(res)
-                if (res.aData.length != 0) {
-                    var str='';
-                    $.each(res.aData,function (idx,item) {
-                        if(item.attr_2==1){
-                            $("#money").attr("data-allMoney",item.money);
-                            $("#money").attr("data-dot-id",item.dot_id);
-                            $("#money").attr("data-zijin-id",item.id);
-                        }else{
-                            str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
-                        }
-                    })
-                    $("#kaQuan ul").html(str);
+        if($(".modelBox17").attr("isdot")==1){
+            $.ajax({
+                url: pubIP + 'carrierDot/getDotCouponList', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayLength:10000,
+                    iDisplayStart:1
+                },
+                success: function (res) {
+                    if(res.aData && res.aData.length!=0){
+                        var str='';
+                        $.each(res.aData,function (idx,item) {
+                            if(item.num==1){
+                                $("#money").attr("data-allMoney",item.money);
+                                $("#money").attr("data-dot-id",item.dotId);
+                                $("#money").attr("data-zijin-id",item.dotCouponId);
+                            }else{
+                                str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dotId+'" data-index="'+item.dotCouponId+'">'+item.couponName+'</li>';
+                            }
+                        })
+                        $("#kaQuan ul").html(str);
 
-                    $("#kaQuan li").click(function () {
-                        event.stopPropagation();
-                        $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
-                        $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
-                        $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
-                        $(this).parent().parent().find('span').text($(this).text());
-                        $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
-                        $(this).parent().css('display','none');
-                    })
+                        $("#kaQuan li").click(function () {
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                            $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
+                    }else{
+    //                    alert(res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
                 }
+            });
+        }else{
+            $.ajax({
+                url: pubIP + 'order/queryTCouponInfor', /*v1.0*/
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data:{
+                    iDisplayStart: 1,
+                    iDisplayLength: 10000,
+                },
+                success: function (res) {
+                    if (res.aData.length != 0) {
+                        var str='';
+                        $.each(res.aData,function (idx,item) {
+                            if(item.attr_2==1){
+                                $("#money").attr("data-allMoney",item.money);
+                                $("#money").attr("data-dot-id",item.dot_id);
+                                $("#money").attr("data-zijin-id",item.id);
+                            }else{
+                                str+='<li data-kq-money="'+item.money+'" data-dot-id="'+item.dot_id+'" data-index="'+item.id+'">'+item.coupon_name+'</li>';
+                            }
+                        })
+                        $("#kaQuan ul").html(str);
 
-            },
-            error: function(err){
-                console.log(err);
-            }
-        });
+                        $("#kaQuan li").click(function () {
+                            event.stopPropagation();
+                            $(this).parent().parent().attr('data-selectedindex', $(this).attr('data-index'));
+                            $(this).parent().parent().attr('data-dot-id', $(this).attr('data-dot-id'));
+                            $(this).parent().parent().attr('data-kq-money', $(this).attr('data-kq-money'));
+                            $(this).parent().parent().find('span').text($(this).text());
+                            $(this).parent().parent().children('img').attr('src', '../img/prl-select.jpg')
+                            $(this).parent().css('display','none');
+                        })
+                    }
+
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+
+        }
+
+
+
+
     }
 
     getCarType();
@@ -4657,7 +4744,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         var str='';
         str+='<li data-thisMoney="'+$(that).prev().attr("data-kq-money")+'" data-dot-id="'+$(that).prev().attr("data-dot-id")+'" data-name="'+$(that).prev().find("span").text()+'" data-id="'+$(that).prev().attr("data-selectedindex")+'">';
         str+='<span style="width: 70px;display: inline-block;text-align: right;">'+$(that).prev().find("span").text()+'：</span>';
-        str+='<input type="text" style="width: 194px;">';
+        str+='<input type="text" style="width: 206px;">';
         str+='<span onclick="delQuan(this)" style="color: #6ea3f4;margin-left: 10px;">删除</span>';
         str+='</li>';
         $("#quanList").append(str);
@@ -4726,7 +4813,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
             $("#sureCarError").text("请填写现金");
             return;
         }
-        if( $("#money").val()>$("#money").attr("data-allMoney")){
+        if( $("#money").val()-0>$("#money").attr("data-allMoney")-0){
             $("#sureCarError").text("现金不能大于可用余额");
             return;
         }
@@ -4877,9 +4964,9 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 $("#ok_car_info1").attr("data-updata",idx1);//先保存index
                 var str1="";
                 for(var i=0;i<listCar[idx1].listTCouponrec.length;i++){
-                    str1+='<li data-dot-id="'+listCar[idx1].listTCouponrec[i].dot_id+'" data-name="'+listCar[idx1].listTCouponrec[i].name+'" data-id="'+listCar[idx1].listTCouponrec[i].couponId+'">';
+                    str1+='<li data-dot-id="'+listCar[idx1].listTCouponrec[i].dot_id+'" data-name="'+listCar[idx1].listTCouponrec[i].name+'" data-id="'+listCar[idx1].listTCouponrec[i].couponId+'" data-kq-money="'+listCar[idx1].money+'">';
                     str1+='<span style="width: 70px;display: inline-block;text-align: right;">'+listCar[idx1].listTCouponrec[i].name+'：</span>';
-                    str1+='<input type="text" style="width: 194px;" value="'+listCar[idx1].listTCouponrec[i].money+'">';
+                    str1+='<input type="text"  value="'+listCar[idx1].listTCouponrec[i].money+'" style="width: 206px;">';
                     str1+='<span onclick="delQuan(this)">-</span>';
                     str1+='</li>';
                 }
@@ -4999,8 +5086,8 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                             for(var i=0;i<listCar[idx1].listTCouponrec.length;i++){
                                 str1+='<li data-dot-id="'+listCar[idx1].listTCouponrec[i].dot_id+'" data-name="'+listCar[idx1].listTCouponrec[i].name+'" data-id="'+listCar[idx1].listTCouponrec[i].couponId+'">';
                                 str1+='<span style="width: 70px;display: inline-block;text-align: right;">'+listCar[idx1].listTCouponrec[i].name+'：</span>';
-                                str1+='<input type="text" style="width: 194px;" value="'+listCar[idx1].listTCouponrec[i].money+'">';
-                                str1+='<span onclick="delQuan(this)">-</span>';
+                                str1+='<input type="text"  value="'+listCar[idx1].listTCouponrec[i].money+'" style="width: 206px;">';
+                                str1+='<span onclick="delQuan(this)">删除</span>';
                                 str1+='</li>';
                             }
                             $("#quanList").html(str1)
@@ -5025,10 +5112,10 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
         }else{
              $(".sureCarError1").text("");
         }
-        subFenPeiCar();
+        subFenPeiCar($(this).parents(".modelBox17").attr("isDot"));
     })
 
-    function subFenPeiCar() {
+    function subFenPeiCar(isDot) {
         $.ajax({
             url: pubIP + 'order/allotOrderCar', /*v1.0*/
             type: 'post',
@@ -5041,6 +5128,7 @@ if (sessionStorage.getItem('cf_showPage') == '1'){
                 tLogisticsOrderId:$(".modelBox17").attr("orderId"),
                 carAndTCouponrec:JSON.stringify(listCar),
                 zijinId:$("#money").attr("data-zijin-id"),
+                isDot:isDot
             },
             ansyc: false,
             dataType: 'json',

@@ -29,7 +29,6 @@
 
 
 
-//debugger;
 // var moban_url = localStorage.getItem("moban_url");
 // var DEFAULT_URL = moban_url;
 //var DEFAULT_URL = 'compressed.tracemonkey-pldi-09.pdf';

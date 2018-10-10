@@ -88,7 +88,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">调价列表<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">调价列表<div class="fr cfRefresh authorityBtn">导出</div></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="" style="margin-left: 25px;">调令类型</label>-->
@@ -258,7 +258,6 @@
                         $(".pagination").parent().css("display","block");
                         if(currentPage===1 ){
                             //修改底部分页
-                            //debugger
                             var pageNum=Math.ceil(res.count/pageSize);
                             $(".allPageN").attr("pageTotal",pageNum);
                             $(".pageJump i").text("共"+pageNum+"页");
@@ -286,7 +285,6 @@
         }
         //渲染数据
         function cf_dataRender(data) {
-//            debugger
             var str='';
             $.each(data,function (idx,item) {
                 str+='<tr data-id="'+item.id+'"  data-orderid="'+item.orderid+'" data-companyid="'+item.companyid+'" data-orderno="'+item.orderNo+'">';
@@ -297,9 +295,9 @@
                 str+='<td>'+item.quotedPrice+'</td>';
 //                str+='<td>'+item.quotesSatus+'</td>';
                 if(item.status==0 && item.type==1){
-                    str+='<td ><span class="btn agree" style="color: #6ba1ff;">同意</span> <span  class="btn bohui" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
+                    str+='<td ><span class="btn agree authorityBtn" style="color: #6ba1ff;">同意</span> <span  class="btn bohui authorityBtn" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail authorityBtn" style="color: #6ba1ff;">查看详情</span></td>';
                 }else{
-                    str+='<td> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
+                    str+='<td> <span class="btn seeDetail authorityBtn" style="color: #6ba1ff;">查看详情</span></td>';
                 }
                 str+='</tr>';
             })

@@ -96,7 +96,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">确认收货订单<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">确认收货订单<a class="fr cfRefresh export authorityBtn" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!--<label for="">货物类型</label>-->
@@ -229,7 +229,7 @@
             <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
             <td><%=list[i].car%></td>
-            <td><span class="btn ll seeDetail" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ok_shouhuo" data-tloContractAmount="<%=list[i].tloContractAmount%>" data-tloId="<%=list[i].tloId%>" data-danjia="<%=list[i].unitPrice%>" data-num="<%=list[i].goodsNum%>">确认收货</span></td>
+            <td><span class="btn ll seeDetail authorityBtn" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ok_shouhuo authorityBtn" data-tloContractAmount="<%=list[i].tloContractAmount%>" data-tloId="<%=list[i].tloId%>" data-danjia="<%=list[i].unitPrice%>" data-num="<%=list[i].goodsNum%>">确认收货</span></td>
         </tr>
         <%}%>
     </script>
@@ -237,6 +237,7 @@
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","917");
+            exportOrder(0,3)//订单导出
         })
         //        时间初始化
         var startTime = '';

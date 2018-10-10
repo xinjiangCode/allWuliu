@@ -120,7 +120,7 @@
 <body>
     <div class="contbox">
         <div class="topTitle">进行中订单
-            <div class="fr cfRefresh">导出</div></div>
+            <a class="fr cfRefresh export" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <label for="">商品名称</label>
@@ -246,6 +246,7 @@
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","977");
+            exportOrder(1,2)//订单导出
         })
         //        时间初始化
         var startTime = '';
@@ -282,7 +283,7 @@
         //确认送达
         $(document).on('click', '.sure', function() {
 
-            var tloId = $(this).attr('data-tloId');
+            var tloId = $(this).attr('data-tloId');window.parent.$(".modelBox18_ifrm").attr("isDot","");
             sessionStorage.setItem("qrsd_tloId",tloId);
             window.parent.showModelBox('.modelBox18_ifrm');
             window.parent.$("#suerSongda").attr("src","order/querensongda.html");
@@ -380,7 +381,7 @@
         //分配车辆
         function fenPei(id){
             window.parent.$(".modelBox17").show();
-            window.parent.$(".modelBox17").attr("orderId",id);
+            window.parent.$(".modelBox17").attr("orderId",id);window.parent.$(".modelBox17").attr("isDot","");
             getData(id);
             window.parent.$("#ok_fenpei").hide();
             window.parent.$("#car_info").hide();

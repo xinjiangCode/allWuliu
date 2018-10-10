@@ -118,7 +118,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">待分配订单<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">待分配订单<a class="fr cfRefresh export" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <label for="">商品名称</label>
@@ -237,8 +237,16 @@
             <td><%=list[i].companyName%></td>
             <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
             <td><%=list[i].unitPrice%></td>
+            <%if(list[i].tloStatus==1){%>
             <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看详情</span><span class="btn ll" onclick="fenPei('<%=list[i].tloId%>')">分配车辆</span><span class="btn cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>
                 <span class="btn update" style="margin-left: 12px;" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-sendCompanyId="<%=list[i].sendCompanyId%>" data-sendCompanyName="<%=list[i].sendCompanyName%>" data-receiveCompanyId="<%=list[i].receiveCompanyId%>" data-receiveCompanyName="<%=list[i].receiveCompanyName%>">上传合同</span><span class="btn ll diaoling" style="margin-left: 10px;" data-tloContractAmount="<%=list[i].unitPrice%>" data-orderId="<%=list[i].tloId%>" data-companyname="<%=list[i].companyName%>" data-quotesSatus="<%=list[i].goodsType%>">发起调令</span></td>
+            <% }else if(list[i].tloStatus==2){%>
+            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看详情</span><span class="btn cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>
+                <span class="btn update" style="margin-left: 12px;" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-sendCompanyId="<%=list[i].sendCompanyId%>" data-sendCompanyName="<%=list[i].sendCompanyName%>" data-receiveCompanyId="<%=list[i].receiveCompanyId%>" data-receiveCompanyName="<%=list[i].receiveCompanyName%>">上传合同</span><span class="btn ll diaoling" style="margin-left: 10px;" data-tloContractAmount="<%=list[i].unitPrice%>" data-orderId="<%=list[i].tloId%>" data-companyname="<%=list[i].companyName%>" data-quotesSatus="<%=list[i].goodsType%>">发起调令</span></td>
+            <% }else if(list[i].tloStatus==3){%>
+            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看详情</span><span class="btn ll" onclick="fenPei('<%=list[i].tloId%>')">分配车辆</span><span class="btn cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>
+                <span class="btn ll diaoling" style="margin-left: 10px;" data-tloContractAmount="<%=list[i].unitPrice%>" data-orderId="<%=list[i].tloId%>" data-companyname="<%=list[i].companyName%>" data-quotesSatus="<%=list[i].goodsType%>">发起调令</span></td>
+            <%}%>
         </tr>
         <%}%>
     </script>
@@ -246,6 +254,7 @@
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","977");
+            exportOrder(1,1)//订单导出
         })
         //        时间初始化
         var startTime = '';
@@ -350,10 +359,6 @@
                 return;
             }
             window.parent.$(".modelBox1 .errMsg").text("")
-
-
-            // console.log('..');
-            //debugger
             $.ajax({
                 url: pubIP + 'tContractTrade/insertWLtContractTrade',
                 type: 'post',
@@ -616,7 +621,7 @@
         //分配车辆
         function fenPei(id){
             window.parent.$(".modelBox17").show();
-            window.parent.$(".modelBox17").attr("orderId",id);
+            window.parent.$(".modelBox17").attr("orderId",id); window.parent.$(".modelBox17").attr("isDot","");
             getData(id);
             window.parent.$("#ok_fenpei").hide();
             window.parent.$("#car_info").hide();
@@ -702,41 +707,10 @@
 //           subFenPeiCar();
 //        })
 //
-//        function subFenPeiCar() {
-//            $.ajax({
-//                url: pubIP + 'order/allotOrderCar', /*v1.0*/
-//                type: 'post',
-//                headers: {
-//                    Accept: "application/json; charset=utf-8",
-//                    token: token
-//                },
-//                cache: false,
-//                data:{
-//                    tLogisticsOrderId:window.parent.$(".modelBox17").attr("orderId"),
-//                    carAndTCouponrec:JSON.stringify(listCar)
-//                },
-//                ansyc: false,
-//                dataType: 'json',
-//                success: function (res) {
-//                    if (res.code==1){
-//                        carCardReset()
-//                        $("#car_info").html("")
-//                        cf_alert(1,"分配车辆成功");
-////                    $(".modelBox17").hide();
-//                    }else if(res.code==401){
-//
-//                    }else if(res.code==401){
-//
-//                    }else{
-//                        //alert(res.msg);
-//                    }
-//
-//                },
-//                error: function(err){
-//                    console.log(err);
-//                }
-//            });
-//        }
+
+//        export
+
+
     </script>
 </body>
 </html>

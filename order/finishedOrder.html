@@ -105,7 +105,7 @@
 </head>
 <body>
     <div class="contbox">
-        <div class="topTitle">完成订单<div class="fr cfRefresh">导出</div></div>
+        <div class="topTitle">完成订单<a class="fr cfRefresh export" href="javascript:;">导出</a></div>
         <div class="inputBox">
             <label for="">订单编号</label><input class="orderNo input" type="text" placeholder="输入搜索">
             <!-- <label for="">订单状态</label>
@@ -198,6 +198,7 @@
         //Iframe 的高度
         $(function () {
             window.parent.$("#Iframe").css("height","977");
+            exportOrder(1,6)//订单导出
         })
         //        时间初始化
         var startTime = '';
@@ -263,7 +264,6 @@
                         $(".pagination").parent().css("display","block");
                         if(currentPage===1 ){
                             //修改底部分页
-                            //debugger
                             var pageNum=Math.ceil(res.count/pageSize);
                             $(".allPageN").attr("pageTotal",pageNum);
                             $(".pageJump i").text("共"+pageNum+"页");

@@ -24,28 +24,34 @@
     <div class="containerTitle">
         个人成长值
         <div style="float: right;">
-            <div class="Lf" style="width: 124px;height: 28px;">
-                <!--<input  style="width: 100%;height: 100%;" type="date">-->
-
+            <div class="Lf" style="width: 124px;height: 28px;margin-right: 20px;" >
                 <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1" style="width: 100%;height:28px;">
             </div>
+            <div class="Lf" style="margin: 0 8px;">-</div>
+            <div class="Lf" style="width: 124px;height: 28px;">
+                <input type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test2" style="width: 100%;height:28px;">
+            </div>
             <div class="search Lf" style="margin-left: 20px;">搜索</div>
-            <div class="Lf" style="width: 146px;height: 26px;"> <input style="width: 100%;height: 100%;" type="text"></div>
+            <div class="Lf" style="width: 146px;height: 26px;">
+                <input style="width: 100%;height: 100%;" type="text" id="source">
+            </div>
             <div class="search Lf">搜索</div>
         </div>
 
     </div>
     <div class="containerTop">
-        <div class="Headimg Lf">
-            <img src="../img/hsdfHeadImg.png" alt="">
+        <div class="Headimg Lf" style="position: relative;background-color: #eee">
+            <input type="file"  id="uploadFile" style="position:absolute;width: 100%;height: 100%;top: 0;left: 0;right: 0;bottom: 0;border-radius:50%;outline: none;opacity: 0; z-index: 1;">
+            <img src="" alt="" style="position:absolute;width: 100%;height: 100%;top: 0;left: 0;right: 0;bottom: 0;border-radius:50%;outline: none ">
         </div>
         <div class="containerTopCen Lf">
-            <div>贡献: <img style="vertical-align: sub;" src="../img/cf_jifen1.png" alt=""> <i id="GXnum">8000</i>分   <span style="margin-left: 36px;">可用积分: </span><img style="vertical-align: sub;" src="../img/cf_jifen2.png" alt=""><i id="jifen">300</i>分</div>
-            <div style="margin: 15px 0;line-height: 14px;">等级: <span id="grow"><span id="grow1"></span></span> <i style="font-size: 12px;color: #ADADAD;">还差</i> <i  style="font-size: 12px;color: #f66132;">6000</i> <i style="font-size: 12px;color: #ADADAD;">分升级</i></div>
-            <div>目前等级: <span class="huiyuandengji">黄金会员</span></div>
+            <div> <span style="margin-left: 36px;">可用积分: </span><img style="vertical-align: sub;" src="../img/cf_jifen2.png" alt=""><i id="jifen" style="margin: 0 10px;">300</i>分</div>
+            <!--<div>贡献: <img style="vertical-align: sub;" src="../img/cf_jifen1.png" alt=""> <i id="GXnum">8000</i>分   <span style="margin-left: 36px;">可用积分: </span><img style="vertical-align: sub;" src="../img/cf_jifen2.png" alt=""><i id="jifen">300</i>分</div>-->
+            <!--<div style="margin: 15px 0;line-height: 14px;">等级: <span id="grow"><span id="grow1"></span></span> <i style="font-size: 12px;color: #ADADAD;">还差</i> <i  style="font-size: 12px;color: #f66132;">6000</i> <i style="font-size: 12px;color: #ADADAD;">分升级</i></div>-->
+            <!--<div>目前等级: <span class="huiyuandengji">黄金会员</span></div>-->
         </div>
 
-        <div class="containerTopRi"><a href="./base.html" style="display: inline-block;height: 100%;width: 100%;">基本信息</a></div>
+        <div class="containerTopRi updataPWD"><a href="javaScript:;" style="display: inline-block;height: 100%;width: 100%;">修改密码</a></div>
     </div>
 
     <div class="jifenjilu listBox">
@@ -53,42 +59,42 @@
             <thead>
                 <tr>
                     <td style="width: 80px;margin-right: 100px;">排序</td>
-                    <td style="width: 100px;"></td>
+                    <!--<td style="width: 100px;"></td>-->
                     <td class="date" style="width: 200px;margin-right: 200px;">日期</td>
-                    <td style="width: 200px;"></td>
+                    <!--<td style="width: 200px;"></td>-->
                     <td style="">来源</td>
-                    <td style="width: 200px;"></td>
+                    <!--<td style="width: 200px;"></td>-->
                     <td style="width: 100px;">获得积分</td>
                 </tr>
             </thead>
             <tbody >
-                <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td style="color: #666666;">2018-01-02 10:02:30</td>
-                    <td></td>
-                    <td><i class="jifenSta red">签到</i></td>
-                    <td></td>
-                    <td><i class="red">100</i>分</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td style="color: #666666;">2018-01-02 10:02:30</td>
-                    <td></td>
-                    <td><i class="jifenSta red">签到</i></td>
-                    <td></td>
-                    <td><i class="red">100</i>分</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td style="color: #666666;">2018-01-02 10:02:30</td>
-                    <td></td>
-                    <td><i class="jifenSta red">签到</i></td>
-                    <td></td>
-                    <td><i class="red">100</i>分</td>
-                </tr>
+                <!--<tr>-->
+                    <!--<td>1</td>-->
+                    <!--<td></td>-->
+                    <!--<td style="color: #666666;">2018-01-02 10:02:30</td>-->
+                    <!--<td></td>-->
+                    <!--<td><i class="jifenSta red">签到</i></td>-->
+                    <!--<td></td>-->
+                    <!--<td><i class="red">100</i>分</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>1</td>-->
+                    <!--<td></td>-->
+                    <!--<td style="color: #666666;">2018-01-02 10:02:30</td>-->
+                    <!--<td></td>-->
+                    <!--<td><i class="jifenSta red">签到</i></td>-->
+                    <!--<td></td>-->
+                    <!--<td><i class="red">100</i>分</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>1</td>-->
+                    <!--<td></td>-->
+                    <!--<td style="color: #666666;">2018-01-02 10:02:30</td>-->
+                    <!--<td></td>-->
+                    <!--<td><i class="jifenSta red">签到</i></td>-->
+                    <!--<td></td>-->
+                    <!--<td><i class="red">100</i>分</td>-->
+                <!--</tr>-->
             </tbody>
         </table>
     </div>
@@ -118,6 +124,7 @@
     //Iframe 的高度
     $(function () {
         window.parent.$("#Iframe").css("height","962");
+        getUserInfo();
     })
     //        时间初始化
     var startTime = '';
@@ -156,6 +163,277 @@
         $(".jifenNav>div").removeClass("on");
         $(this).addClass("on");
     })
+
+    function getUserInfo() {
+        $.ajax({
+            url: pubIP + 'userInfo/mainUserInfo', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                id:$(this).parents("tr").attr("data-id")
+            },
+            success: function (res) {
+                if(res.code==0){
+                    if( res.data.userPhoto==null){
+                        $(".Headimg img").attr("src", "")
+                    }else{
+                        $(".Headimg img").attr("src", res.data.userPhoto)
+                    }
+                    $("#jifen").text(res.data.integral)
+
+//                  res.data.loginName
+
+
+                }else{
+                    cf_alert01(2,res.msg)
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
+//    修改密码
+    $(".updataPWD").click(function () {
+        window.parent.$("#oldPwd").val("");
+        window.parent.$("#newPwd1").val("");
+        window.parent.$("#newPwd2").val("");
+        window.parent.$("#updataPwd").css("display","block");
+    })
+    // 重置
+    window.parent.$("#updataPwd .popReset").unbind()
+    window.parent.$("#updataPwd .popReset").click(function () {
+        window.parent.$("#oldPwd").val("");
+        window.parent.$("#newPwd1").val("");
+        window.parent.$("#newPwd2").val("");
+    })
+
+    //确定修改
+    window.parent.$("#updataPwdSub").unbind()
+    window.parent.$("#updataPwdSub").click(function () {
+        if(window.parent.$("#oldPwd").val()==""){
+            cf_alert01(2,"旧密码不能为空")
+            return;
+        }
+        if(window.parent.$("#newPwd1").val()==""){
+            cf_alert01(2,"新密码不能为空")
+            return;
+        }
+        if(window.parent.$("#newPwd1").val()!=window.parent.$("#newPwd2").val()){
+            cf_alert01(2,"两次输入密码不一致")
+            return;
+        }
+
+        var pw=window.parent.$("#newPwd1").val();;
+        var leav=-1;
+        var numC=0;
+        var strC=0;
+        var str_C=0;
+        for(var i=0;i<pw.length;i++){
+            if(pw[i]<=9 && pw[i]>=0){
+                numC=1;
+            }else if(pw[i]=="_"){
+                str_C=1;
+            }else{
+                strC=1;
+            }
+        }
+        leav=leav+parseInt(numC)+parseInt(strC)+parseInt(str_C);//安全等级
+
+        $.ajax({
+            url: pubIP + 'userCarriers/editPassword', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                newPassword:pw,
+                oldPassword:window.parent.$("#oldPwd").val(),
+                securityGrade:leav
+            },
+            success: function (res) {
+                if(res.code==1){
+                    cf_alert(1,"修改密码成功");
+                    window.parent.$(".all_success_alert .confirm").click(function () {
+                        window.parent.$("#updataPwd").hide()
+                    })
+                }else{
+                    cf_alert01(2,res.msg)
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+
+    })
+
+
+//    $("#uploadFile").click(function () {
+//        xmTanUploadImg11(this)
+//    })
+    $(document).on('change','#uploadFile',function(){
+        xmTanUploadImg11(this);
+    })
+    // 上传图片
+    function xmTanUploadImg11(obj) {
+        var file = obj.files[0];
+        if (file.size >= 2097152) {
+            alert('上传的图片超过了2MB');
+            return;
+        }
+        var formdata=new FormData();
+        formdata.append('file', file);
+        $.ajax({
+            url: uplodImgPath,
+            type: 'post',
+            processData: false,  // 告诉jQuery不要去处理发送的数据
+            contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+            data: formdata,
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                setImg(data.url)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
+    }
+
+    //设置头像
+    function setImg(imgUrl) {
+        $.ajax({
+            url: pubIP + 'userInfo/updateUserHeadPhoto', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            data: {
+                picUrl:imgUrl
+            },
+            cache: false,
+            ansyc: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.code==0){
+                    $(".Headimg img").attr("src",imgUrl);
+                }else{
+                    cf_alert01(2,"上传头像失败")
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+
+
+    }
+    //进入页面加载数据
+    getData(1);
+    //获取 jifen 数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");
+        $(".pagination").parent().css("display","none");
+        $.ajax({
+            url: pubIP + 'userInfo/JfUserInfo', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                startTime:$("#test1").val(),
+                endTime:$("#test2").val(),
+                source:$("#source").val(),
+                iDisplayLength:pageSize,
+                iDisplayStart:currentPage
+            },
+            success: function (res) {
+                if(res.aData && res.aData.length!=0){
+                    //首次请求时 改变分页数据
+//                    if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                    $(".pagination").parent().css("display","block");
+                    if(currentPage==1){
+                        //修改底部分页
+                        var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                        $(".allPageN").attr("pageTotal",pageNum);
+                        $(".pageJump i").text("共"+pageNum+"页");
+                        $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                        Page({
+                            num: pageNum,
+                            elem: $('#page1'),
+                            callback: function(n) {
+                                getData(n);//加载n页数据
+                            }
+                        });
+                    }
+                    //修改底部页数
+                    $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                    cf_dataRender(res.aData)
+                }else{
+//                    alert(res.msg);
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    //渲染数据
+    function cf_dataRender(data) {
+        var str='';
+        $.each(data,function (idx,item) {
+            str+='<tr data-id="'+item.id+'">';
+            str+='<td>'+(idx+1)+'</td>';
+            if(item.time==0 || item.time==null){
+                str+='<td></td>';
+            }else{
+                str+='<td style="color: #666666;">'+timestampToTime1(item.time)+'</td>'
+            }
+
+            if(item.source== null){
+                str+='<td></td>';
+            }else{
+                str+='<td><i class="jifenSta red">'+item.source+'</i></td>';
+            }
+
+            if(item.score==null){
+                str+='<td></td>';
+            }else{
+                str+='<td><i class="red">'+item.score+'</i>分</td>'
+            }
+            str+='</tr>';
+        })
+        $(".listBox tbody").html(str);
+    }
+    //搜索
+    $(".search").click(function () {
+        getData(1);
+    })
+    // 点击go刷新数据
+    $('.pageCont').on('click', '.button',function(){
+        var currentPage1 = $('.pageCont li.active>a').text();
+        getData(currentPage1);
+    })
+
 
 </script>
 </body>
