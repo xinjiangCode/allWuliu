@@ -300,16 +300,17 @@
 						if (json.data.companyType == 1) { //供应商
 							
 							localStorage.setItem('company_type', '1');
-							window.location.href = "index.html";
+//							window.location.href = "index.html";
 						} else if (json.data.companyType == 2) { //承运商
 							localStorage.setItem('company_type', '2');
-							window.location.href = "index.html";
+//							window.location.href = "index.html";
 						} else if (json.data.companyType == -1) { //未认证和供应
 							localStorage.setItem('company_type', '-1');
-							window.location.href = "index.html";
+//							window.location.href = "index.html";
 							window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
 						}
 						$('#logout').show();
+                        getIsOk(json.data.token)
 	                }else{
 	                	//alert(json.msg)
 						$(".error").eq(0).text(json.msg);
@@ -321,6 +322,58 @@
 	        });
         })
 
+		function getIsOk(token){
+            //isOld token
+            //2 ok 已认证
+            //0 超时
+            //1 未登录
+            //-1 未认证
+            //-2 审核中
+			//是否认证
+			$.ajax({
+				type:"post",
+				url:pubIP+"companyCertification/getCompanyWriteStateByUserToken",//v1.0
+				cache:false,
+				dataType: "json",
+				headers: {
+					token: token
+				},
+				success: function(json){
+					//console.log(json.code);
+					var rzType = null;
+					switch(json.data.type){
+						case 1:
+							//未认证
+							rzType = '-1';
+							break;
+						case 2:
+							//审核
+							rzType = '-2';
+							break;
+						case 3:
+							//已认证
+							rzType = '2';
+							break;
+						case 4:
+							rzType = '-1';
+							break;
+						case 5:
+							rzType = '2';
+							break;
+						case 6:
+							rzType = '2';
+							break;
+						default:
+							rzType = '-1';
+					}
+					localStorage.setItem('isOld',rzType);
+                    window.location.href = "index.html";
+				},
+				error:function(xhr,statues,error){
+
+				}
+			});
+		}
      //    function companyType(token) {
      //    	$.ajax({ 
 	    //       	type:"post",

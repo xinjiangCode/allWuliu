@@ -204,7 +204,7 @@
         <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
         <div class="pageJump">
             <span class="allPageN">1/1</span>
-            <i style="margin-left: 12px;">共<span class="total">1</span>页</i>，
+            <i style="margin-left: 12px;">共<span class="total">1</span></i>，
             <span>到第</span>
             <input type="text" />
             <span>页</span>
@@ -572,7 +572,7 @@
                             //修改底部分页
                             var pageNum=Math.ceil(json.iTotalRecords/pageSize);
                             $(".allPageN").attr("pageTotal",pageNum);
-                            $(".pageJump i").text("共"+pageNum+"页");
+                            $(".pageJump i").text("共"+pageNum+"页,"+"共"+json.iTotalRecords+"条");
                             $('.objListBox>div:nth-child(5n)').css('margin-right','0');
                             Page({
                                 num: pageNum,

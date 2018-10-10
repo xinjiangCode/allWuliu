@@ -1,6 +1,8 @@
 // 公共头
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
-var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://api.test.hdlsuper.com/service/';
+
 $.ajax({
     type:"get",
     url:pubIP+"homePage/getFriendshipLink",//v1.0

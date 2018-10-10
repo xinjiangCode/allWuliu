@@ -272,8 +272,8 @@
                                         apartment_list(n, size);
                                     }
                                 });
-                                
-                                $('.total').text(json.totalPage);
+
+                            $('.total').text(json.totalPage+'页,共'+json.count+'条');
                                 isFirst = false;
 
                             // }
@@ -292,8 +292,8 @@
                                     apartment_list(n, size);
                                 }
                             });
-                            
-                            $('.total').text(json.totalPage);
+
+                            $('.total').text(json.totalPage+'页,共'+json.count+'条');
 
                             isFirst = false;
                         }

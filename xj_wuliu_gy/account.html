@@ -2735,9 +2735,9 @@
             
 
         }else{
-            sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
+//            sessionStorage.setItem("cfsrc","./systemIndex/mine.html");
 
-            $('.cfnav1').click();
+//            $('.cfnav1').click();
 //            $('.yrz').css('display', 'block');
             $(".weiRenZheng").addClass('xiaoshi');
             $(".yiRenZheng .manage").each(function (index) {
@@ -2795,16 +2795,19 @@
         $(".cfnav").removeClass("on");
         $(this).addClass("on");
     })
-    if(sessionStorage.getItem("cfsrc")){
 
-    }else{
-        sessionStorage.setItem("cfsrc","./personal/mine.html");
-    }
+//    if(sessionStorage.getItem("cfsrc")){
+//
+//    }else{
+//        sessionStorage.setItem("cfsrc","./personal/mine.html");
+//    }
     showNav();
     function showNav() {
         $(".manageItem").each(function (idx,item) {
             $(this).removeClass("active1");
+
             if($(this).attr("data-src")==sessionStorage.getItem("cfsrc")){
+                debugger
                 $(".manageList").css("display","none");
                 $(".cfnav").removeClass("on");
                 $($(this).parent().parent().parent().parent().parent().attr("data-idx")).addClass("on");

@@ -107,7 +107,7 @@
                         //修改底部分页
                         var pageNum=Math.ceil(json.iTotalRecords/10);
                         $(".allPageN").attr("pageTotal",pageNum);
-                        $(".pageJump i").text("共"+pageNum+"页");
+                        $(".pageJump i").text("共"+pageNum+"页,"+"共"+json.iTotalRecords+"条");
                         $('.objListBox>div:nth-child(5n)').css('margin-right','0');
                         Page({
                             num: pageNum,

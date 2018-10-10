@@ -204,7 +204,7 @@
         <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
         <div class="pageJump">
             <span class="allPageN">1/1</span>
-            <i style="margin-left: 12px;">共<span class="total">1</span>页</i>，
+            <i style="margin-left: 12px;">共<span class="total">1</span></i>，
             <span>到第</span>
             <input type="text" />
             <span>页</span>
@@ -245,7 +245,7 @@
 <script type="text/javascript">
     //Iframe 的高度
     $(function () {
-        window.parent.$("#Iframe").css("height","977");
+        window.parent.$("#Iframe").css("height","863");
     })
     //        时间初始化
     var startTime = '';
@@ -304,11 +304,11 @@
                     if(res.data==null || res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
                     $(".pagination").parent().css("display","block");
                     if(currentPage==1){
-                        window.parent.$("#Iframe").css("height","1834");
+//                        window.parent.$("#Iframe").css("height","1834");
                         //修改底部分页
                         var pageNum=Math.ceil(res.count/pageSize);
                         $(".allPageN").attr("pageTotal",pageNum);
-                        $(".pageJump i").text("共"+pageNum+"页");
+                        $(".pageJump i").text("共"+pageNum+"页,"+"共"+res.count+"条");
                         $('.objListBox>div:nth-child(5n)').css('margin-right','0');
                         Page({
                             num: pageNum,

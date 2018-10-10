@@ -204,7 +204,7 @@
             <ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
             <div class="pageJump">
                 <span class="allPageN">1/1</span>
-                <i style="margin-left: 12px;">共<span class="total">1</span>页</i>，
+                <i style="margin-left: 12px;">共<span class="total">1</span></i>，
                 <span>到第</span>
                 <input type="text" />
                 <span>页</span>
@@ -561,8 +561,8 @@
                                             order_list(n, orderNo, goodsType, publishTime, size);
                                         }
                                     });
-                                    
-                                    $('.total').text(json.totalPage);
+
+                                $('.total').text(json.totalPage+'页,共'+json.count+'条');
                                     isFirst = false;
 
                                 // }
@@ -581,8 +581,7 @@
                                         order_list(n, orderNo, goodsType, publishTime, size);
                                     }
                                 });
-                                
-                                $('.total').text(json.totalPage);
+                                $('.total').text(json.totalPage+'页,共'+json.count+'条');
 
                                 isFirst = false;
                             }

@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="swiper-pagination-custom"></div>
-        <div class="tobuybtn">立即开启</div>
+        <div class="tobuybtn"></div>
     </div>
     <!-- 精英介绍 -->
     <div class="jingyingBox">
@@ -777,7 +777,7 @@ function getImgLogo() {
             window.location.href="./account.html";
         } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
             sessionStorage.setItem("isAddRequireMent",1);
-            sessionStorage.setItem("cfsrc","./xj_wuliu_gy/requuire/publishRequireList.html");
+            sessionStorage.setItem("cfsrc","./requuire/publishRequireList.html");
             sessionStorage.setItem("isAdd","1");
             $('.tobuybtn').text('立即下单');
             window.location.href="./xj_wuliu_gy/account.html";
@@ -786,17 +786,21 @@ function getImgLogo() {
     });
 
 //    TODO 初始化 按钮展示字段 --start
-    if ( !localStorage.getItem('isOld') || localStorage.getItem('isOld') == '1') { //未登录
-        $('.tobuybtn').text('立即开启');
+//    debugger
+    $(function () {
+        if ( !localStorage.getItem('isOld') || localStorage.getItem('isOld') == '1') { //未登录
+            $('.tobuybtn').text('立即开启');
 
-    } else if (localStorage.getItem('company_type') == '2' || localStorage.getItem('company_type') == '-1') { //承运商
-        $('.tobuybtn').text('发布空车');
-        
-    } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
-        
-        $('.tobuybtn').text('立即下单');
-        
-    }
+        } else if (localStorage.getItem('company_type') == '2' || localStorage.getItem('company_type') == '-1') { //承运商
+            $('.tobuybtn').text('发布空车');
+
+        } else if (localStorage.getItem('company_type') == '1') {// 供应商 立即下单
+
+            $('.tobuybtn').text('立即下单');
+
+        }
+    })
+
     // TODO 初始化 按钮展示字段 --end
 
 
@@ -825,6 +829,8 @@ $('.goUser').click(function() {
             
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+            }else {
+                sessionStorage.setItem("cfsrc","./personal/mine.html");
             }
             // $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
             window.location.href = 'xj_wuliu_gy/account.html';
