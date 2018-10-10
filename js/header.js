@@ -87,7 +87,9 @@ if(getUrlParms("type")!=null){
             $(".cfnav").unbind();
             $(".cfnav").click(function () {
                 // sessionStorage.setItem("activeClass",$(this).attr("data-class"))
-                if(window.location.href.indexOf('index.html')!=-1){
+                if(window.location.href.indexOf('account.html')!=-1){
+                    
+                } else {
                     if($(this).attr("data-href")){
                         window.location.href=$(this).attr("data-href")
                     }

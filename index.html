@@ -507,6 +507,8 @@ document.writeln("<div class=\"pop\" id=\"effect1\">\n" +
             // token = token.substr(token.length - 10);
             token1 = token.replace('index.html', "");
             localStorage.setItem('token', token1);
+        }else{
+            localStorage.setItem('token', token1);
         }
 
         
@@ -825,31 +827,45 @@ $('.goUser').click(function() {
         //         console.log(err);
         //     }
         // });
-        if (company_type == '1') { //供应商
+//<<<<<<< HEAD
+//        if (company_type == '1') { //供应商
+//
+//            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+//                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+//            }else {
+//                sessionStorage.setItem("cfsrc","./personal/mine.html");
+//            }
+//            // $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+//            window.location.href = 'xj_wuliu_gy/account.html';
+//        } else if (company_type == '2') {
+//=======
+        if (localStorage.getItem('token')) {
+            if (company_type == '1') { //供应商
+//>>>>>>> ccc9f1a6ccafe7597c1d2fa2903bb4644f0b2fea
             
-            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-                window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
-            }else {
-                sessionStorage.setItem("cfsrc","./personal/mine.html");
-            }
-            // $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
-            window.location.href = 'xj_wuliu_gy/account.html';
-        } else if (company_type == '2') {
-            
-            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                    window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+                }
+                // $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
+                window.location.href = 'xj_wuliu_gy/account.html';
+            } else if (company_type == '2') {
+                
+                if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                    window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                }
+                // $('.goUser').attr('href', 'account.html');
+                window.location.href = "account.html";
+            } else if (company_type == '-1') {
+                
                 window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                // $('.goUser').attr('href', 'account.html');
+                window.location.href = "account.html";
             }
-            // $('.goUser').attr('href', 'account.html');
-            window.location.href = "account.html";
-        } else if (company_type == '-1') {
-            
-            window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-            // $('.goUser').attr('href', 'account.html');
-            window.location.href = "account.html";
-        }else{
+        } else {
             $('#effect .contTitle span').text('您尚未登录');
             missedLogin() ;
         }
+        
 
     });
 

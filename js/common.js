@@ -117,6 +117,7 @@ if(adct1=="acount"){
 function missedLogin() {
     // $("#effect").css("display","block");
     window.top.$("#effect").show();
+    localStorage.setItem('token', '');
 }
 
 //跳回登录页
@@ -251,8 +252,10 @@ if(token){
 		  			if(location.href.indexOf('index') == -1){
 		  				if(location.href.indexOf('account') != -1 || location.href.indexOf('shopManage') != -1){
 		  					$("#effect" , parent.document).show();
+                            localStorage.setItem('token', '');
 		  				}else{
-		  					missedLogin() ;
+		  					missedLogin();
+                            localStorage.setItem('token', '');
 		  				}
 		  			}
 		  		}
@@ -312,6 +315,7 @@ if(token){
 }else{
 	localStorage.setItem('isOld','1');
     missedLogin() ;
+    localStorage.setItem('token', '');
 }
 
 // else{
@@ -514,27 +518,29 @@ $(function () {
         //     }
 
         // });
-        
-        if (company_type == '1') { //供应商
-            window.location.href="xj_wuliu_gy/account.html";
-        } else if (company_type == '2') {
-            window.location.href="./account.html";
-        } else if (company_type == '-1') {
-            var url = window.location.href;
-            if (url.indexOf('login.html') != -1) {
-            
-                $('#effect2 .contTitle span').text('您尚未登录');
-                $('#effect2').css('display', 'block');
-                // missedLogin();
-                // $('.goUser').attr('href', 'javascript:;');
-            } else {
+        if (localStorage.getItem('token')) {
+            if (company_type == '1') { //供应商
+                window.location.href="xj_wuliu_gy/account.html";
+            } else if (company_type == '2') {
                 window.location.href="./account.html";
-                //window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
-                // var url = window.location.href;
+            } else if (company_type == '-1') {
                 
-                // if (url.indexOf('account.html') == -1) {
+                var url = window.location.href;
+                if (url.indexOf('login.html') != -1) {
+                
+                    $('#effect2 .contTitle span').text('您尚未登录');
+                    $('#effect2').css('display', 'block');
+                    // missedLogin();
+                    // $('.goUser').attr('href', 'javascript:;');
+                } else {
+                        
+                    window.location.href="./account.html";
+                    //window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                    // var url = window.location.href;
+                    
+                    // if (url.indexOf('account.html') == -1) {
 
-                window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                    window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
                     $.ajax({
                         url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
                         type: 'post',
@@ -561,7 +567,6 @@ $(function () {
                                         }
                                     // });
 
-
                                 }
                                 
                             }
@@ -572,13 +577,15 @@ $(function () {
                             console.log(err);
                         }
                     });
-                // }
+                    
+                }
+                
             }
 
-            
+        }  else {
+            $('#effect1 .contTitle span').text('您尚未登录');
+            $('#effect1').css('display', 'block');
         }
-
-        
         
     })
 
