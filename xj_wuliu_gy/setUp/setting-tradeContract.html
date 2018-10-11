@@ -278,11 +278,15 @@
             }else{
                 str+='<td>已完成</td>';
             }
-            str+='<td>' +
-                '<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>' +
-                '<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>' +
-                '<span class="ll deleteRec" data-id="'+item.id+'">删除</span>' +
-                '</td>';
+            str+='<td>'
+            str+='<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>'
+            str+='<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>'
+            if(item.contractNo==null || item.contractNo=="" ){
+            }else{
+                str+= '<span class="ll deleteRec" data-id="'+item.id+'">删除</span>'
+            }
+//            str+='<span class="ll deleteRec" data-id="'+item.id+'">删除</span>'
+            str+='</td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
