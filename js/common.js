@@ -1,9 +1,9 @@
 
-// var pubIP = 'http://192.168.1.83:7777/service/';
-// var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.69:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
-var pubIP = 'http://api.test.hdlsuper.com/service/';
+// var pubIP = 'http://api.test.hdlsuper.com/service/';
 // 上传图片路径
 // var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
 var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
