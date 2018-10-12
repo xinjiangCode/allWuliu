@@ -1,6 +1,6 @@
 
-// var pubIP = 'http://192.168.1.69:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://192.168.1.69:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
 
