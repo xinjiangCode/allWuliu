@@ -1,10 +1,10 @@
 
-var pubIP = 'http://192.168.1.69:7777/service/';
-// var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.69:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
 
-// var pubIP = 'http://wl.api.xjv56.com/service/';
+// var pubIP = 'http://wl.api.xjv56.com/srvice/';
 
 
 var ip = pubIP;
@@ -419,7 +419,6 @@ $(function () {
     $(".goUser").click(function () {
 
         if (company_type == '1') { //供应商
-            
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                 window.location.href="./account.html";
                 window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
@@ -735,7 +734,7 @@ function cf_alert01(aa,msg) {
 $(".searchResultBtn.btn.input").css({"float":"right","margin-top":"11px","margin-left":"0","margin-right":"11px"});
 // 导出订单
 function exportOrder(status,type){
-    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+sessionStorage.getItem("token"))
+    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+localStorage.getItem("token"))
 }
 
 //权限

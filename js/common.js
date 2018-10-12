@@ -1,6 +1,6 @@
 
-var pubIP = 'http://192.168.1.69:7777/service/';
-// var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.69:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
@@ -865,5 +865,5 @@ var tableToExcel = (function() {
 
 // 导出订单
 function exportOrder(status,type){
-    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+sessionStorage.getItem("token"))
+    $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+localStorage.getItem("token"))
 }
