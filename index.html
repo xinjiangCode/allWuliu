@@ -811,6 +811,7 @@ function getImgLogo() {
 
 
 $('.goUser').click(function() {
+
         var company_type = localStorage.getItem('company_type');
         console.log(company_type);
         // $.ajax({
@@ -841,6 +842,7 @@ $('.goUser').click(function() {
 //            window.location.href = 'xj_wuliu_gy/account.html';
 //        } else if (company_type == '2') {
 //=======
+        // debugger
         if (localStorage.getItem('token')) {
             if (company_type == '1') { //供应商
 //>>>>>>> ccc9f1a6ccafe7597c1d2fa2903bb4644f0b2fea
