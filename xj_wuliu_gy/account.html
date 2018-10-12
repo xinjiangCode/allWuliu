@@ -2808,7 +2808,6 @@
             $(this).removeClass("active1");
 
             if($(this).attr("data-src")==sessionStorage.getItem("cfsrc")){
-                debugger
                 $(".manageList").css("display","none");
                 $(".cfnav").removeClass("on");
                 $($(this).parent().parent().parent().parent().parent().attr("data-idx")).addClass("on");
