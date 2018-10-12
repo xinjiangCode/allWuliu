@@ -170,6 +170,7 @@ $(function () {
             },
             success: function(json){
                 //console.log(json);
+
                 if(json.code == '1'){
                     $("#loginPub").hide();
                     $(".exit").show();
