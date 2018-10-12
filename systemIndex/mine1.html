@@ -15,7 +15,13 @@
         .headerNavList div{display: none;}
         
     </style>
-
+    <script>
+        //在首页点击发布空车
+        if(sessionStorage.getItem("isAdd")==1){
+            window.location.href="../statistics/depart.html";
+            sessionStorage.setItem("isAdd",0);
+        }
+    </script>
 
 
 </head>

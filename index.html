@@ -774,6 +774,8 @@ function getImgLogo() {
             }
         } else if (localStorage.getItem('company_type') == '2') { //承运商
             sessionStorage.setItem("cfsrc","./statistics/dataIndex.html");
+            sessionStorage.setItem("cfsrc","./systemIndex/mine1.html");
+
             sessionStorage.setItem("isAdd","1");
             $('.tobuybtn').text('发布空车');
             window.location.href="./account.html";
@@ -845,6 +847,8 @@ $('.goUser').click(function() {
             
                 if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                     window.sessionStorage.setItem('cfsrc', "../finance/identification1.html");
+                }else{
+                    sessionStorage.setItem("cfsrc","./personal/mine.html");
                 }
                 // $('.goUser').attr('href', 'xj_wuliu_gy/account.html');
                 window.location.href = 'xj_wuliu_gy/account.html';
@@ -852,6 +856,8 @@ $('.goUser').click(function() {
                 
                 if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
                     window.sessionStorage.setItem('cfsrc', "./finance/identification1.html");
+                }else{
+                    sessionStorage.setItem("cfsrc","./systemIndex/mine1.html");
                 }
                 // $('.goUser').attr('href', 'account.html');
                 window.location.href = "account.html";

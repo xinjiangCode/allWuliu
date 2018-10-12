@@ -117,7 +117,7 @@ if(adct1=="acount"){
 function missedLogin() {
     // $("#effect").css("display","block");
     window.top.$("#effect").show();
-    localStorage.setItem('token', '');
+    // localStorage.setItem('token', '');
 }
 
 //跳回登录页
