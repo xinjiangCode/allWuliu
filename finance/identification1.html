@@ -38,7 +38,7 @@
             display: none;
         }
 
-        .delete_btn {
+        .delete_btn, .delete_btn2 {
             color: #80acf8;
             position: absolute;
             left: 380px;
@@ -72,8 +72,10 @@
 
         .look_bigpic {
             position: absolute;
-            left: 496px;
-            bottom: 1063px;
+            /*left: 496px;
+            bottom: 1063px;*/
+            left: 340px;
+            bottom: 42px;
             color: rgb(0, 122, 255);
             cursor: pointer;
             z-index: 200;
@@ -115,7 +117,7 @@
             width: 25px;
         }
 
-        .bigPic, .delete_btn, .delete_btn1 {
+        .bigPic, .delete_btn, .delete_btn1, .delete_btn2 {
             display: none;
         }
 
@@ -246,7 +248,7 @@
                 <div class="right1 Lf"><input type="text" id="company_address"></div>
                 <span class="ts"></span>
             </li>
-            <li>
+            <li style="position: relative;">
                 <div class="left1 Lf"><i class="red">*</i>营业执照:</div>
                 <div class="right1 Lf">
                     <div class="uploade" style="">
@@ -259,6 +261,7 @@
                 </div>
                 <span class="ts yingye"></span>
                 <div class="look_bigpic bigPic" ><img src="../img/big_pic.png" alt=""></div>
+                <span class="delete_btn2" style="position: absolute;">删除</span>
             </li>
             <li style="position: relative;">
                 <div class="left1 Lf">开户许可证扫描件:</div>
@@ -425,7 +428,7 @@
     });
 
 
-    $('.delete_btn1, .delete_btn').click(function() {
+    $('.delete_btn1, .delete_btn, .delete_btn2').click(function() {
         $(this).parent().find('.uploade').css('background', 'url("") rgb(246, 246, 246)');
         $(this).parent().find('.uploade').find('input[type="hidden"]').val('');
         $(this).hide();
@@ -693,7 +696,9 @@
                         $(obj).parent().parent().parent().find('.look_bigpic1').css('display', 'block');
                     }
 
+
                     if ($(obj).context.id == 'yingye_zhizhao_pic') {
+                        $('.delete_btn2').show();
                         $(obj).parent().parent().parent().find('.look_bigpic').css('display', 'block');
                     }
 
@@ -820,8 +825,9 @@
         /*修改*/
 
         //不能删除
-                        $('.delete_btn1').hide();
-                        $('.delete_btn').hide();
+                        // $('.delete_btn1').hide();
+                        // $('.delete_btn2').hide();
+                        // $('.delete_btn').hide();
         
         // $.ajax({
         //     url: pubIP + 'companyCertification/getCompanyWriteStateByUserToken',
@@ -991,8 +997,9 @@
                         if (companyId) {
                              $(".next_btn_update").css('display', 'block');
                              $(".next_btn").css('display', 'none');
-                             $('.delete_btn').show();
-                             $('.delete_btn1').show();
+                             // $('.delete_btn').show();
+                             // $('.delete_btn1').show();
+                             // $('.delete_btn2').show();
                         }
                     } else if (data.data.type == 8) { //第一次提交审核拒绝
                         $(".weiRenZheng").addClass('xiaoshi');
@@ -1112,10 +1119,10 @@
                 return;
             }
 
-            if ($('#yingye_zhizhao_hidden').val() == '') {
-                $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
-                return;
-            }
+            // if ($('#yingye_zhizhao_hidden').val() == '') {
+            //     $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
+            //     return;
+            // }
             if ($('#wenjian').val() == '') {
                 $('#wenjian').parent().parent().find('.ts').html('企业认证协议不能为空');
                 return;
@@ -1179,7 +1186,7 @@
 
             file_name = $('#wenjian_name').val();
             
-           if ($('#yingye_zhizhao_hidden').val() != '' ) {
+           // if ($('#yingye_zhizhao_hidden').val() != '' ) {
                 
                 if ($('#zhengjian_hidden2').val() != '' && $('#zhengjian_hidden1').val() != '') {
                     //v1.0
@@ -1235,9 +1242,9 @@
                     $('#zhengjian_pic2').parent().next().html('图片正在上传');
                 }
 
-            } else {
-                $('#yingye_zhizhao_pic').parent().parent().next().html('图片正在上传');
-            }
+            // } else {
+            //     $('#yingye_zhizhao_pic').parent().parent().next().html('图片正在上传');
+            // }
             
         });
 
@@ -1357,13 +1364,13 @@
 
         });
 
-        $('#yingye_zhizhao_pic').on('blur', function () {
-            if ($('#yingye_zhizhao_hidden').val() == '') {
-                $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
-            } else {
-                $('#yingye_zhizhao_hidden').parent().parent().next().html('');
-            }
-        });
+        // $('#yingye_zhizhao_pic').on('blur', function () {
+        //     if ($('#yingye_zhizhao_hidden').val() == '') {
+        //         $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
+        //     } else {
+        //         $('#yingye_zhizhao_hidden').parent().parent().next().html('');
+        //     }
+        // });
 
         $('#zhengjian_pic1').on('blur', function () {
             if ($('#zhengjian_hidden1').val() == '' && $('#zhengjian_hidden2').val() == '') {
@@ -1503,8 +1510,10 @@
 
                                     if ($('#yingye_zhizhao_hidden').val() != '') {
                                         $('#yingye_zhizhao_hidden').parent().parent().parent().find('.look_bigpic').css('display', 'block');
+                                        $('.delete_btn2').show();
                                     } else {
                                         $('#yingye_zhizhao_hidden').parent().parent().parent().find('.look_bigpic').css('display', 'none');
+                                        $('.delete_btn2').hide();
                                     }
                         
                                 }
@@ -1521,8 +1530,10 @@
 
                                     if ($('#saomiaojian_hidden').val() != '') {
                                         $('#saomiaojian_hidden').parent().parent().parent().find('.look_bigpic1').css('display', 'block');
+                                        $('.delete_btn').show();
                                     } else {
                                         $('#saomiaojian_hidden').parent().parent().parent().find('.look_bigpic1').css('display', 'none');
+                                        $('.delete_btn').hide();
                                     }
                         
                                 }
@@ -1539,8 +1550,10 @@
 
                                     if ($('#chajian_hidden').val() != '') {
                                         $('#chajian_hidden').parent().parent().parent().find('.look_bigpic1').css('display', 'block');
+                                        $('.delete_btn1').show();
                                     } else {
                                         $('#chajian_hidden').parent().parent().parent().find('.look_bigpic1').css('display', 'none');
+                                        $('.delete_btn1').hide();
                                     }
                         
                                 }
@@ -1732,10 +1745,10 @@
                 return false; 
             } 
 
-            if ($('#yingye_zhizhao_hidden').val() == '') {
-                $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
-                return;
-            }
+            // if ($('#yingye_zhizhao_hidden').val() == '') {
+            //     $('#yingye_zhizhao_hidden').parent().parent().next().html('营业执照不能为空');
+            //     return;
+            // }
 
             if ($('#zhengjian_hidden1').val() == '' && $('#zhengjian_hidden2').val() == '') {
                 $('#zhengjian_hidden2').parent().next().html('证件不能为空');
@@ -1792,7 +1805,7 @@
 
             
             if ($('.next_btn_update').css('display') == 'block') {
-                if ($('#yingye_zhizhao_hidden').val() != '' && $('#zhengjian_hidden2').val() != '' && $('#zhengjian_hidden1').val() != '' && file_url != null) {
+                if ($('#zhengjian_hidden2').val() != '' && $('#zhengjian_hidden1').val() != '' && file_url != null) {
                     $.ajax({
                         url: pubIP + 'companyCertification/addCompanyBaseInfo',
                         type: 'post',
@@ -1856,7 +1869,7 @@
                 }
                 
             } else {
-                if ($('#yingye_zhizhao_hidden').val() != '' && $('#zhengjian_hidden2').val() != '' && $('#zhengjian_hidden1').val() != '') {
+                if ($('#zhengjian_hidden2').val() != '' && $('#zhengjian_hidden1').val() != '') {
                     $.ajax({
                         url: pubIP + 'companyCertification/addCompanyBaseInfo',
                         type: 'post',
@@ -2007,6 +2020,7 @@
         $('#area').attr('disabled', false);
         $('.delete_btn').show();
         $('.delete_btn1').show();
+        $('.delete_btn2').show();
         if ($('.type_radio').attr('data-radio') != 1) {
             $('input[name=code_type]').attr('disabled', true);
         }
