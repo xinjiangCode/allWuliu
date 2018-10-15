@@ -655,7 +655,7 @@
                   }
               });
           }
-            //获短信取验证码
+            //注册  获短信取验证码
           function getSCode() {
               $.ajax({
                   url: pubIP + 'userCarriers/getMessageCode', /*v1.0*/
@@ -667,7 +667,10 @@
                   cache: false,
                   ansyc: true,
                   dataType: 'json',
-                  data: {mobile: $("#phone").val()},
+                  data: {
+                      mobile: $("#phone").val(),
+					  type:"3"
+				  },
                   success: function (data) {
                       if (data.code == 1) {
                           //alert("发送验证码成功");

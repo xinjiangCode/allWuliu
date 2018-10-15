@@ -449,7 +449,10 @@
                     cache: false,
                     ansyc: true,
                     dataType: 'json',
-                    data: {mobile: phone},
+                    data: {
+                        mobile: phone,
+                        type:"4"
+                    },
                     success: function (data) {
                         if (data.code == 1) {
                             //alert("发送验证码成功");
