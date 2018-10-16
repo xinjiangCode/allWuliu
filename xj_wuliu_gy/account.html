@@ -2359,7 +2359,10 @@
 //    })
 
 //权限
-//    getAuthor()
+if(AuthSwitch==1){//权限开关 开启
+    getAuthor()
+}
+//   获取权限菜单
     function getAuthor() {
         $(".cfnav").css("display","none")
         $.ajax({
@@ -2534,34 +2537,20 @@
     });
 
 //    权限部分
-   // $(".manageList").css("display","none");
-//function showMangeList(idx,that) {
-//    if(idx==".cfidx1"){
-//        // if (localStorage.getItem('company_type') == -1) {
-//
-//        if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-//            sessionStorage.setItem("cfsrc","../finance/identification1.html");
-//        }else {
-//            sessionStorage.setItem("cfsrc","./personal/mine.html");
-//        }
-//
-//        // }
-//    }else{
-//        sessionStorage.setItem("cfsrc",$(that).attr("data-url"));
-//    }
-//    showNav();
-//}
-
-//非权限
-    function showMangeList(idx) {
+if(AuthSwitch==1){//权限开关 关闭
+    $(".manageList").css("display","none");
+}
+   //
+function showMangeList(idx,that) {
+    if(AuthSwitch==0){//权限开关 关闭
         if(idx==".cfidx1"){
             // if (localStorage.getItem('company_type') == -1) {
 
-                if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-                    sessionStorage.setItem("cfsrc","../finance/identification1.html");
-                }else {
-                    sessionStorage.setItem("cfsrc","./personal/mine.html");
-                }
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                sessionStorage.setItem("cfsrc","../finance/identification1.html");
+            }else {
+                sessionStorage.setItem("cfsrc","./personal/mine.html");
+            }
 
             // }
         }else if(idx==".cfidx2"){
@@ -2575,8 +2564,25 @@
         }else if(idx==".cfidx6"){
             sessionStorage.setItem("cfsrc","./setUp/setting-tradeContract.html");
         }
-        showNav();
+    }else{
+        if(idx==".cfidx1"){
+            if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
+                sessionStorage.setItem("cfsrc","../finance/identification1.html");
+            }else {
+                sessionStorage.setItem("cfsrc","./personal/mine.html");
+            }
+        }else{
+            sessionStorage.setItem("cfsrc",$(that).attr("data-url"));
+        }
     }
+    showNav();
+}
+
+////非权限
+//    function showMangeList(idx) {
+//
+//        showNav();
+//    }
 
 
     // 调用删除弹框

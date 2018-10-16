@@ -1,14 +1,17 @@
 
 // var pubIP = 'http://192.168.1.69:7777/service/';
-// var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
-var pubIP = 'http://api.test.hdlsuper.com/service/';
+// var pubIP = 'http://api.test.hdlsuper.com/service/';
 
 // var pubIP = 'http://wl.api.xjv56.com/srvice/';
 
+// 权限开关
+var AuthSwitch=0
+//需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
+
 
 var ip = pubIP;
-
 
 //获取地址栏参数，name:参数名称
 function getUrlParms(name){
@@ -738,9 +741,13 @@ function exportOrder(status,type){
 }
 
 //权限
-// getAuthor11()
+ getAuthor11()
 function getAuthor11() {
+        if(AuthSwitch==0){//权限开关 关闭
+            return;
+        }
     if(window.parent.$("#Iframe").attr("data-parentid")==""){
+        // 因为需要拿parentID去请求权限，所以没有就不请求权限
         return;
     }
 

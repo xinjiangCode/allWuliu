@@ -289,18 +289,29 @@
 										str += '<input id="checked_'+i+'" type="checkbox" class="switch" />'
 										+'<label for="checked_'+i+'"></label>'
 									}
-								str += '</td>'
-								+'<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
-							+'</tr>';
+								str += '</td>';
+                            if(AuthSwitch==0){
+                                str +='<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                            }else{
+                                str +='<td><a href="javascript:;" class="authorty authorty1" style="color: #6ba1ff; margin-right: 5px;">分配权限</a><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                            }
+							str+='</tr>';
 
                         }
 						
                         $('#staffListInfo').html(str);
 
+
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);
 
-
+//                        分配权限
+                        $(".authorty1").unbind();
+                        $(".authorty1").click(function () {
+                            sessionStorage.setItem("persionId",$(this).parents("tr").attr("data-id"));
+                            sessionStorage.setItem("isRole","0");
+                            window.location.href="./authorityManage.html"
+                        })
                         //启用和禁用
 						$(".chooseswitch input[type='checkbox']").change(function() {
 						    console.log($(this).prop("checked"));

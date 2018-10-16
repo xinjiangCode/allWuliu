@@ -288,17 +288,24 @@
                                         str += '<input id="checked_'+i+'" type="checkbox" class="switch" />'
                                         +'<label for="checked_'+i+'"></label>'
                                     }
+
+
                                 str += '</td>'
-                                +'<td><a href="javascript:;" class="authorty" style="color: #6ba1ff;display: none;">分配权限</a><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
-                            +'</tr>';
+                            if(AuthSwitch==0){
+                                str+='<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                            }else{
+                                str+='<td><a href="javascript:;" class="authorty authorty1" style="color: #6ba1ff;">分配权限</a><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                            }
+
+                            str+='</tr>';
 
                         }
-                        
+
                         $('#staffListInfo').html(str);
 
 //                        分配权限
-                        $(".authorty").unbind();
-                        $(".authorty").click(function () {
+                        $(".authorty1").unbind();
+                        $(".authorty1").click(function () {
                             sessionStorage.setItem("persionId",$(this).parents("tr").attr("data-id"));
                             sessionStorage.setItem("isRole","0");
                             window.location.href="./authorityManage.html"
