@@ -11,7 +11,9 @@ var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 // var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
 var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
 
-
+// 权限开关
+var AuthSwitch=1
+//需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
 
 //获取地址栏参数，name:参数名称
 function getUrlParms(name){
@@ -866,4 +868,47 @@ var tableToExcel = (function() {
 // 导出订单
 function exportOrder(status,type){
     $(".export").attr("href",pubIP + 'uploadExcel/orderExcel?type='+type+'&status='+status+'&page=1&size=5000&orderNo='+$(".orderNo").text()+'&time='+$("#test1").val()+'&endTime='+$("#test2").val()+'&goodsName='+$("#cf_goodsName").val()+'&token='+localStorage.getItem("token"))
+}
+
+
+//权限
+getAuthor11()
+function getAuthor11() {
+    if(AuthSwitch==0){//权限开关 关闭
+        return;
+    }
+    if(window.parent.$("#Iframe").attr("data-parentid")==""){
+        // 因为需要拿parentID去请求权限，所以没有就不请求权限
+        return;
+    }
+
+    $(".authorityBtn").hide()
+    $.ajax({
+        url: pubIP + 'tReceptionDepartmentPersion/getQueryUserMenu',
+        type: 'get',
+        headers: {
+            Accept: "application/json; charset=utf-8",
+            token: token
+        },
+        data:{
+            companyStatus:1,
+            parentId:window.parent.$("#Iframe").attr("data-parentid"),
+            types:"all"
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (json) {
+            $.each(json.data,function (idx,item) {
+                $(".authorityBtn").each(function (idx1,item1) {
+                    // debugger
+                    if(item.name==$(item1).text() ||  item.name==$(item1).find("span").text() || item.name==$(item1).find("a").text()){
+                        $(item1).show();
+                    }
+                })
+            })
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }

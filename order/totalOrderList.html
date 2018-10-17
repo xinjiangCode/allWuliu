@@ -132,42 +132,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>多次</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>多次</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>年订单</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
-                    <tr>
-                        <td>3001804091631062137</td>
-                        <td>化动力有限公司</td>
-                        <td>月订单</td>
-                        <td>5</td>
-                        <td>¥10000.00</td>
-                        <td>¥10000.00</td>
-                        <td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td>3001804091631062137</td>-->
+                        <!--<td>化动力有限公司</td>-->
+                        <!--<td>多次</td>-->
+                        <!--<td>5</td>-->
+                        <!--<td>¥10000.00</td>-->
+                        <!--<td>¥10000.00</td>-->
+                        <!--<td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>3001804091631062137</td>-->
+                        <!--<td>化动力有限公司</td>-->
+                        <!--<td>多次</td>-->
+                        <!--<td>5</td>-->
+                        <!--<td>¥10000.00</td>-->
+                        <!--<td>¥10000.00</td>-->
+                        <!--<td><span class="see ll">查看订单</span><span class="btn ll">新增订单</span><span class="btn ll">结束订单</span><span class="btn">金额结算</span></td>-->
+                    <!--</tr>-->
+
                 </tbody>
             </table>
         </div>
@@ -314,7 +297,8 @@
                     str+='<td>'+item.tlosettlementAmount+'</td>';
                 }
                 str+='<td>'+''+'</td>';
-                str+=' <td><span class="addOrder ll" style="display: none;">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll gameOver">结束订单</span><span class="btn">金额结算</span></td>';
+//            <span class="addOrder ll" style="display: none;">新增订单</span>
+                str+=' <td><span class="seeDetail ll">查看订单</span><span class="btn ll gameOver">结束订单</span><span class="btn">金额结算</span></td>';
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);

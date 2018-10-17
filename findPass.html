@@ -527,7 +527,7 @@
             }
         });
 		
-		//获取短信验证码
+		//z找回登录密码 获取短信验证码
 		var canSend = true;
 		$('#sdphCode').click(function(){
 			if(canSend){
@@ -537,6 +537,7 @@
 		          cache:false,
 		          data:{
 		          	'mobile':$('#onlySwPhone').text(),
+					"type":"2"
 		          },
 		          dataType: "json",
 		          success: function(json){

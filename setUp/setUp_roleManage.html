@@ -205,8 +205,12 @@
 								}
 
 								str += '</td>'
-								+'<td><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
-							+'</tr>'
+                            if(AuthSwitch==0){
+                                str +='<td><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
+                            }else{
+                                str +='<td><a href="javascript:;" class="authorty authorty1" style="color: #6ba1ff; margin-right: 5px;">分配权限</a><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
+                            }
+							str+='</tr>'
 
                         }
 						
@@ -214,7 +218,13 @@
 
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);
-
+                        //分配权限
+                        $(".authorty1").unbind();
+                        $(".authorty1").click(function () {
+                            sessionStorage.setItem("roleId",$(this).parents("tr").attr("data-id"));
+                            sessionStorage.setItem("isRole","1");
+                            window.location.href="./authorityManage.html"
+                        })
 
                         //启用和禁用
 						$(".chooseswitch input[type='checkbox']").change(function() {
