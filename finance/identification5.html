@@ -600,8 +600,13 @@ function xmTanUploadImg2(obj) {
             //验证码
             if ($('#code').val().trim() == '') {
                 $('#code').parent().next().css('display', 'block');
-                return;
+                return false;
             }
+
+            if (!codeFlag) {
+                return false;
+            }
+
 
             var caiwu_name = $('#caiwu_name').val();
             var id_number = $('#id_number').val();
@@ -645,7 +650,15 @@ function xmTanUploadImg2(obj) {
                             $('#code').parent().next().text('验证码错误');
                             $('#code').parent().next().css('display', 'block');
                             return false;
-                        } else {
+                        }
+
+                        if (data.code == -1002) {
+                            $('#code').parent().next().text('验证码错误');
+                            $('#code').parent().next().css('display', 'block');
+                            return false;
+                        } 
+
+                        if (data.code == 1) {
                             /* code_num.val(data.data);*/
                             window.parent.add_tan();
                             $('.weiRenZheng').css('display', 'none');
@@ -675,6 +688,8 @@ function xmTanUploadImg2(obj) {
 
         //获取验证码
         $('#huoqu_code').on('click', function () {
+
+
             if(!phoneIshas){
                     return false;
                 }
@@ -738,6 +753,10 @@ function xmTanUploadImg2(obj) {
             });
 
         });
+
+
+
+
         var clickFlgCode = true;
         $('#huoqu_code1').on('click', function () {
             var mobile = $('#new_phone').val();
@@ -942,21 +961,113 @@ function xmTanUploadImg2(obj) {
             });
         }
 
+        var codeFlag = true;
+
         $('#code').on('blur', function () {
-            if ($('#code').val().trim() == '') {
-                $('#code').parent().next().css('display', 'block');
-                return;
-            } else {
-                $('#code').parent().next().css('display', 'none');
+
+            if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test($('#yanzheng_phone').val().trim()))) {
+                $('#yanzheng_phone').parent().next().text('手机号格式不正确').css('display', 'block');
+                return false;
             }
+
+            if (!phoneIshas) {
+                return false;
+            }
+
+            if ($('#code').val().trim() == '') {
+                    $('#code').parent().next().text('验证码不能为空').css('display', 'block');
+                    return;
+            } else {
+
+                var _that = $(this).val();
+                
+                $.ajax({
+                    url: pubIP + 'userSupplier/validSmsCode',
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        mobile: $('#yanzheng_phone').val(),
+                        smsRandomCode: _that
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        
+                        if (data.code == 1) {
+                            codeFlag = true;
+                            $('#code').parent().next().text('').css('display', 'none');
+                        } else if (data.code == -1002) {
+                            codeFlag = false;
+                            $('#code').parent().next().text('请先点击获取验证码').css('display', 'block');
+                        } else {
+                            codeFlag = false;
+                            $('#code').parent().next().text('验证码错误').css('display', 'block');
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+                
+            }
+            
         });
 
+        var codeFlag1 = true;
+
         $('#new_code').on('blur', function () {
-            if ($('#new_code').val().trim() == '') {
-                $('#new_code').parent().next().css('display', 'block');
-                return;
+            if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test($('#yanzheng_phone').val().trim()))) {
+                $('#yanzheng_phone').parent().next().text('手机号格式不正确').css('display', 'block');
+                return false;
+            }
+
+            if (!phoneIshas) {
+                return false;
+            }
+
+            if ($('#code').val().trim() == '') {
+                    $('#code').parent().next().text('验证码不能为空').css('display', 'block');
+                    return;
             } else {
-                $('#new_code').parent().next().css('display', 'none');
+
+                var _that = $(this).val();
+                
+                $.ajax({
+                    url: pubIP + 'userSupplier/validSmsCode',
+                    type: 'post',
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        token: token
+                    },
+                    data: {
+                        mobile: $('#yanzheng_phone').val(),
+                        smsRandomCode: _that
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        
+                        if (data.code == 1) {
+                            codeFlag1 = true;
+                            $('#code').parent().next().text('').css('display', 'none');
+                        } else if (data.code == -1002) {
+                            codeFlag1 = false;
+                            $('#code').parent().next().text('请先点击获取验证码').css('display', 'block');
+                        } else {
+                            codeFlag1 = false;
+                            $('#code').parent().next().text('验证码错误').css('display', 'block');
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+                
             }
         });
 
@@ -1217,6 +1328,14 @@ function xmTanUploadImg2(obj) {
                     return false;
                 }
 
+                if (!codeFlag) {
+                    return false;
+                }
+
+                if (!codeFlag1) {
+                    return false;
+                }
+
             }
 
             // if($('.update_yincang').css('visibility') != 'hidden'){
@@ -1276,7 +1395,9 @@ function xmTanUploadImg2(obj) {
                     if(data.code == 1) {
                         window.parent.update_runcaiwu();
                     } else {
-                        alert(data.msg);
+                        $('#new_code').parent().next().text('验证码错误');
+                        $('#new_code').parent().next().css('display', 'block');
+                        return false;
                     }
                     
                 },
