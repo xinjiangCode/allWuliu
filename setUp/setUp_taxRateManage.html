@@ -160,11 +160,16 @@
                 str+='<tr data-id="'+item.id+'" data-wageInterval="'+item.wageInterval+'" data-taxRate="'+item.taxRate+'">';
                 str+='<td>'+item.wageInterval+'</td>';
                 str+='<td>'+item.taxRate+'</td>';
-                str+='<td><a href="javascript:;" class="lookover edit">编辑</a><a href="javascript:;" class="delect">删除</a></td>';
+                str+='<td><a href="javascript:;" class="lookover edit authorityBtn">编辑</a><a href="javascript:;" class="delect authorityBtn">删除</a></td>';
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
-			//		编辑
+            //            权限控制
+            if(AuthSwitch==1){
+                getAuthor11()
+            }
+
+            //		编辑
             $(".edit").unbind();
             $(".edit").click(function () {
                 window.parent.$("#gongzidown").val($(this).parents("tr").attr("data-wageInterval").split("-")[0])

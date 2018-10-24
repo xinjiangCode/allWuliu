@@ -291,9 +291,9 @@
 									}
 								str += '</td>';
                             if(AuthSwitch==0){
-                                str +='<td><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                                str +='<td><a href="javascript:;" class="edits ">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
                             }else{
-                                str +='<td><a href="javascript:;" class="authorty authorty1" style="color: #6ba1ff; margin-right: 5px;">分配权限</a><a href="javascript:;" class="edits">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
+                                str +='<td><a href="javascript:;" class="authorty authorty1 authorityBtn" style="color: #6ba1ff; margin-right: 5px;">分配权限</a><a href="javascript:;" class="edits authorityBtn">编辑</a> <a href="javascript:;" class="delete">删除</a></td>'
                             }
 							str+='</tr>';
 
@@ -301,6 +301,10 @@
 						
                         $('#staffListInfo').html(str);
 
+                        //            权限控制
+                        if(AuthSwitch==1){
+                            getAuthor11()
+                        }
 
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);

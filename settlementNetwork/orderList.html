@@ -235,7 +235,7 @@
         <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
         <!--<td><%=list[i].car%></td>-->
         <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看订单</span>
-            <span class="btn sure" data-tloId="<%=list[i].tloId%>">确认收货</span>
+            <span class="btn sure " data-tloId="<%=list[i].tloId%>">确认收货</span>
             <!--<span class="btn updata" onclick="fenPei('<%=list[i].tloId%>')">更改车辆</span>-->
             <!--<span class="btn cancel cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>-->
         </td>
@@ -351,14 +351,14 @@
             if(item.tloStatus==	1 || item.tloStatus==2 || item.tloStatus==3){//未签约	0	ORDER_STATUS_UNSIGNED	供应商未确认承运商`
                 str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll" onclick="fenPei(\''+item.tloId+'\')">分配车辆</span><span class="ll cancel_order">取消订单</span><span class="ll update">上传合同</span><span class="ll diaoling">发起调令</span>';
             }else if(item.tloStatus==4){//进行中订单
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll sure">确认送达</span><span class="ll " onclick="fenPei(\''+item.tloId+'\')">更改车辆</span></td>';
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll sure authorityBtn">确认送达</span><span class="ll authorityBtn" onclick="fenPei(\''+item.tloId+'\')">更改车辆</span></td>';
             }else if(item.tloStatus==7){//回款审核订单
-                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll huikuan_shenhe">回款审核</span></td>';
+                str+=' <td><span class="ll seeDetail">查看订单</span><span class="ll huikuan_shenhe authorityBtn">回款审核</span></td>';
             }else if(item.tloStatus==5  || item.tloStatus==9 || item.tloStatus==10 || item.tloStatus==11 ){//回款审核订单
                 str+=' <td><span class="ll">查看详情</span></td>';
             }else if(item.tloStatus==	6 || item.tloStatus==8){//财务待结算订单
                 if(item.tLogisticsOrderstatus==8){
-                    str+=' <td><span class="ll">查看详情</span><span onclick="updateStates(this)">修改状态</span></td>';
+                    str+=' <td><span class="ll">查看详情</span><span class="authorityBtn" onclick="updateStates(this)">修改状态</span></td>';
                 }else{
                     str+=' <td><span class="ll">查看详情</span></td>';
                 }
@@ -366,6 +366,10 @@
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
+        //            权限控制
+        if(AuthSwitch==1){
+            getAuthor11()
+        }
         //查看详情
         $(".seeDetail").unbind()
         $(".seeDetail").click(function () {

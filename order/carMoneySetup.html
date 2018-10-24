@@ -184,11 +184,15 @@
                 str+='<td class="chooseswitch"><input id="checked_'+idx+'" type="checkbox"  name="status" class="switch" /><label for="checked_'+idx+'"></label></td>';
             }
 //            str+='<td>'+idx+'</td>';
-            str+='<td data-id="'+item.id+'"><a class="lookover editDeductMoney" style="color: #6ea3f4;">编辑</a></td>';
+            str+='<td data-id="'+item.id+'"><a class="lookover editDeductMoney authorityBtn" style="color: #6ea3f4;">编辑</a></td>';
 //        <a class="delect" style="color: #6ea3f4;">删除</a>
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
+        //            权限控制
+        if(AuthSwitch==1){
+            getAuthor11()
+        }
         //	编辑扣款项
         $(".editDeductMoney").click(function () {
             window.parent.$(".modelBox8").show();

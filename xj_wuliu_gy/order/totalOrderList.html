@@ -305,10 +305,14 @@
                 str+='<td>'+item.tlosettlementAmount+'</td>';
             }
             str+='<td>'+''+'</td>';
-            str+=' <td><span class="addOrder ll authorityBtn">新增订单</span><span class="seeDetail ll authorityBtn">查看订单</span><span class="btn ll gameOver authorityBtn" >结束订单</span><span class="btn authorityBtn">金额结算</span></td>';
+            str+=' <td><span class="addOrder ll authorityBtn">新增订单</span><span class="seeDetail ll">查看订单</span><span class="btn ll gameOver authorityBtn" >结束订单</span><span class="btn authorityBtn">金额结算</span></td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
+        //            权限控制
+        if(AuthSwitch==1){
+            getAuthor11()
+        }
         //详情
         $(".seeDetail").unbind()
         $(".seeDetail").click(function () {

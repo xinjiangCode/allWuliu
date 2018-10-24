@@ -409,16 +409,20 @@
             }else if(item.attr_1==2){
                 str+='<td>审批拒绝</td>'
             }
-            str+='<td><a class="btn seeDetail">查看</a><a class="btn editList">编辑</a><a class="btn delBtn">删除</a>';
+            str+='<td><a class="btn seeDetail">查看</a><a class="btn editList authorityBtn">编辑</a><a class="btn delBtn authorityBtn">删除</a>';
 				if(item.attr_1==1 && item.dot_status==0){
-					str+='<a class="btn guanbi">关闭</a>'
+					str+='<a class="btn guanbi authorityBtn">关闭</a>'
 				}else if(item.attr_1==1 && item.dot_status==1){
-					str+='<a class="btn kaiqi">开启</a>'
+					str+='<a class="btn kaiqi authorityBtn">开启</a>'
 				}
 				str+='</td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
+        //            权限控制
+        if(AuthSwitch==1){
+            getAuthor11()
+        }
         //详情
         $(".seeDetail").unbind();
         $(".seeDetail").click(function () {

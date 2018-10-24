@@ -4094,6 +4094,9 @@ function getAuthor() {
         cache: false,
         dataType: 'json',
         success: function (json) {
+            $(".cfnav1").show();
+            $(".cfnav1").addClass("on")
+
             if(json.data && json.data.length!=0){
                 $.each(json.data,function (idx,item) {
                     if(item.name=="需求"){
@@ -4104,7 +4107,7 @@ function getAuthor() {
                             $.each(item.childMenus,function (idx1,item1) {
                                 if(item1.status==0){
                                     if(isfirst==true){
-                                        $(".cfnav6").attr("data-url",item1.url)//将该菜单的第一个 URL 储存起来
+                                        $(".cfnav2").attr("data-url",item1.url)//将该菜单的第一个 URL 储存起来
                                         isfirst=false;
                                     }
                                     str+='<li><a href="javascript:;" class="manageItem" data-id="'+item1.id+'" data-src="'+item1.url+'" data-height="1442">'+item1.name+'</a></li>'
@@ -4302,6 +4305,7 @@ function getAuthor() {
                             $(".cfnav12").hide()
                         }
                     }
+//                    showNav();
                 })
 
                 $(".manage").unbind()
@@ -4381,9 +4385,9 @@ function showMangeList(idx,that) {
     }else{
         if(idx==".cfidx1"){
             if (localStorage.getItem('isOld') == -1 || localStorage.getItem('isOld') == -2) {
-                sessionStorage.setItem("cfsrc","../finance/identification1.html");
+                sessionStorage.setItem("cfsrc","./finance/identification1.html");
             }else {
-                sessionStorage.setItem("cfsrc","./personal/mine.html");
+                sessionStorage.setItem("cfsrc","./systemIndex/mine1.html");
             }
         }else{
             sessionStorage.setItem("cfsrc",$(that).attr("data-url"));

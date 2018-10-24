@@ -198,7 +198,7 @@
 									}
 										
 									str += '</td>'
-									+'<td><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" class="delect delete" style="color: #6ba1ff;">删除</a></td>'
+									+'<td><a href="javascript:;" class="lookover authorityBtn" style="color:#6ba1ff;">编辑</a><a href="javascript:;" class="delect delete authorityBtn" style="color: #6ba1ff;">删除</a></td>'
 								+'</tr>'
                         }
 						
@@ -206,7 +206,10 @@
 
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);
-
+//            权限控制
+                        if(AuthSwitch==1){
+                            getAuthor11()
+                        }
 
                         //启用和禁用
 						$(".chooseswitch input[type='checkbox']").change(function() {

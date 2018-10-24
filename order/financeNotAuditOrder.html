@@ -350,7 +350,7 @@
                 str+='<td>'+item.receiveProvince+'-'+item.receiveCity+'</td>';
                 str+='<td>'+item.tlosettlementAmount+'</td>';
                 if(item.tLogisticsOrderstatus==8){
-                    str+='<td><span class="btn seeDetail">查看订单</span><span onclick="updateStates(this)">修改状态</span></td>';
+                    str+='<td><span class="btn seeDetail">查看订单</span><span class="authorityBtn" onclick="updateStates(this)">修改状态</span></td>';
                 }else{
                     str+='<td><span class="btn seeDetail">查看订单</span></td>';
                 }
@@ -358,6 +358,10 @@
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
+            //            权限控制
+            if(AuthSwitch==1){
+                getAuthor11()
+            }
             //详情
             $(".seeDetail").click(function () {
                 window.localStorage.setItem('data-companyId', $(this).parents("tr").attr('data-companyId'));

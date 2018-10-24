@@ -235,8 +235,8 @@
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
             <td><%=list[i].car%></td>
             <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>">查看订单</span>
-                <span class="btn sure" data-tloId="<%=list[i].tloId%>">确认送达</span>
-                <span class="btn updata" onclick="fenPei('<%=list[i].tloId%>')">更改车辆</span>
+                <span class="btn sure authorityBtn" data-tloId="<%=list[i].tloId%>">确认送达</span>
+                <span class="btn updata authorityBtn" onclick="fenPei('<%=list[i].tloId%>')">更改车辆</span>
                 <!--<span class="btn cancel cancel_order" data-tloId="<%=list[i].tloId%>">取消订单</span>-->
             </td>
         </tr>
@@ -550,6 +550,10 @@
 
                             var result = template('orderListTpl', {list: json.data});
                             $('#orderListInfo').html(result);
+                            //            权限控制
+                            if(AuthSwitch==1){
+                                getAuthor11()
+                            }
 
                            
                             if (isSearch == 1) {

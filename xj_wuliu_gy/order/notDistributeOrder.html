@@ -237,7 +237,7 @@
             <td><%=list[i].carrierCompanyName%></td>
             <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
             <td><%=list[i].unitPrice%></td>
-            <td><span class="see seeDetail ll authorityBtn" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ll diaoling authorityBtn" data-tloContractAmount="<%=list[i].unitPrice%>" data-orderId="<%=list[i].tloId%>" data-companyname="<%=list[i].companyName%>" data-quotesSatus="<%=list[i].goodsType%>">发起调令</span><span class="btn cancel_order authorityBtn" data-tloId="<%=list[i].tloId%>">取消订单</span></td>
+            <td><span class="see seeDetail ll" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ll diaoling authorityBtn" data-tloContractAmount="<%=list[i].unitPrice%>" data-orderId="<%=list[i].tloId%>" data-companyname="<%=list[i].companyName%>" data-quotesSatus="<%=list[i].goodsType%>">发起调令</span><span class="btn cancel_order authorityBtn" data-tloId="<%=list[i].tloId%>">取消订单</span></td>
         </tr>
         <%}%>
     </script>
@@ -399,6 +399,10 @@
 
                             var result = template('orderListTpl', {list: json.data});
                             $('#orderListInfo').html(result);
+                            //            权限控制
+                            if(AuthSwitch==1){
+                                getAuthor11()
+                            }
 
                             // 发起调令
                             $(".diaoling").unbind();

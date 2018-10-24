@@ -229,7 +229,7 @@
             <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
             <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>
             <td><%=list[i].car%></td>
-            <td><span class="btn ll seeDetail authorityBtn" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ok_shouhuo authorityBtn" data-tloContractAmount="<%=list[i].tloContractAmount%>" data-tloId="<%=list[i].tloId%>" data-danjia="<%=list[i].unitPrice%>" data-num="<%=list[i].goodsNum%>">确认收货</span></td>
+            <td><span class="btn ll seeDetail" data-tloId="<%=list[i].tloId%>" data-orderNo="<%=list[i].orderNo%>" data-companyId="<%=list[i].companyId%>"><a href="##">查看订单</a></span><span class="btn ok_shouhuo authorityBtn" data-tloContractAmount="<%=list[i].tloContractAmount%>" data-tloId="<%=list[i].tloId%>" data-danjia="<%=list[i].unitPrice%>" data-num="<%=list[i].goodsNum%>">确认收货</span></td>
         </tr>
         <%}%>
     </script>
@@ -347,7 +347,6 @@
         });
 
         $(window.parent.document).on('click', '.modelBox12 .ook4', function() {
-            
             window.location.reload();
         });
 
@@ -413,7 +412,10 @@
 
                             var result = template('orderListTpl', {list: json.data});
                             $('#orderListInfo').html(result);
-
+                            //            权限控制
+                            if(AuthSwitch==1){
+                                getAuthor11()
+                            }
                            
                             if (isSearch == 1) {
                                 // if (isFirst) {

@@ -3,9 +3,9 @@
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
 // var headerip = 'http://192.168.1.69:7777/service/';
-// var headerip = 'http://192.168.1.199:7777/service/';
+var headerip = 'http://192.168.1.199:7777/service/';
 // var headerip = 'http://api.hdlsuper.com/service/';
-var headerip = 'http://api.test.hdlsuper.com/service/';
+// var headerip = 'http://api.test.hdlsuper.com/service/';
 // var headerip = 'http://wl.api.xjv56.com/service/'; //不需要了
 //
 
@@ -40,8 +40,9 @@ if(getUrlParms("type")!=null){
                 // if(idx==0){
                 //     str += '<div class="cfnav cfnav'+(idx+1)+' on" data-class="cfnav'+(idx+1)+'" data-href="'+item.navigationUrl+'"><span >'+item.navigationName+'</span></div>'
                 // }else{
+                if(item.navigationStatus==1){
                     str += '<div class="cfnav cfnav'+(idx+1)+'" data-class="cfnav'+(idx+1)+'" data-href="'+item.navigationUrl+'"><span>'+item.navigationName+'</span></div>'
-                // }
+                }
             })
             document.writeln("<header>\n" +
                 "    <div class=\"headerTop\">\n" +

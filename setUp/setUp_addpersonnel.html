@@ -235,40 +235,66 @@
     }
 
     // 判断用户是否注册过账号
-    $('.username').change(function() {
-
-        var username = $(this).val();
-
-        $.ajax({
-            url: pubIP + 'tReceptionDepartmentPersion/getQueryPersion',
-            type: 'get',
-            headers: {
-                Accept: "application/json; charset=utf-8",
-                token: token
-            },
-            data: {
-                username: username
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (json) {
-                console.log(json);
-                if (json.code == 1) {
-                    $('.user_phone').val(json.data.mobile);
-                    $('.user_phone').attr('disabled', true);
-                } else if (json.code == 0) {
-                    cf_alert(2, json.msg);
-                }
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    });
+//    $('.username').change(function() {
+//
+//        var username = $(this).val();
+//
+//        $.ajax({
+//            url: pubIP + 'tReceptionDepartmentPersion/getQueryPersion',
+//            type: 'get',
+//            headers: {
+//                Accept: "application/json; charset=utf-8",
+//                token: token
+//            },
+//            data: {
+//                username: username
+//            },
+//            cache: false,
+//            dataType: 'json',
+//            success: function (json) {
+//                console.log(json);
+//                if (json.code == 1) {
+//                    $('.user_phone').val(json.data.mobile);
+//                    $('.user_phone').attr('disabled', true);
+//                } else if (json.code == 0) {
+//                    cf_alert01(2, json.msg);
+//                }
+//            },
+//            error: function(err) {
+//                console.log(err);
+//            }
+//        });
+//    });
 
     $('.username').blur(function() {
+        var that=this;
         if ($(this).val() != '') {
-            $(this).parent().find('.ts').css('display', 'none');
+            $.ajax({
+                url: pubIP + 'tReceptionDepartmentPersion/getQueryPersion',
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    username: $(this).val()
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    if (json.code == 1) {
+                        $('.user_phone').val(json.data.mobile);
+                        $('.user_phone').attr('disabled', true);
+                        $('.user_phone').find('.ts').css('display', 'none');
+                        $(that).parent().find('.ts').css('display', 'none');
+                    } else if (json.code == "0") {
+                        $(that).parent().find('.ts').css('display', 'inline-block').text(json.msg);
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
         } else {
             $(this).parent().find('.ts').css('display', 'inline-block').text('用户名不能为空');
         }
@@ -276,8 +302,43 @@
     });
 
     $('.user_phone').blur(function() {
-        if ($(this).val() != '') {
-            $(this).parent().find('.ts').css('display', 'none');
+        var that=this;
+
+        if ($(this).val() != ''){
+            if($(this).val().length<11){
+                $(this).parent().find('.ts').css('display', 'inline-block').text('手机号格式不正确');
+                return;
+            }
+            $.ajax({
+                url: pubIP + 'tReceptionDepartmentPersion/getQueryPersionInfo',
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    mobile: $(this).val()
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (json) {
+                    if (json.code == 1) {
+                        if(json.data==null || json.data.length==0){
+                            $(that).parent().find('.ts').css('display', 'inline-block').text("无此用户");
+                        }else{
+                            $(".username").val(json.data.mobile)
+                        }
+//                        $('.user_phone').val(json.data.mobile);
+//                        $('.user_phone').attr('disabled', true);
+                        $(that).parent().find('.ts').css('display', 'none');
+                    } else if (json.code == "0") {
+                        $(that).parent().find('.ts').css('display', 'inline-block').text(json.msg);
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
         } else {
             $(this).parent().find('.ts').css('display', 'inline-block').text('手机号不能为空');
         }

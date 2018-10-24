@@ -371,10 +371,14 @@
                 str+="<td>"+item.goodsName+"</td>"
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
-                str+="<td><span class=\"seeDetail ll\">查看详情</span><span class=\"selectCompany ll\">选择公司</span></td>"
+                str+="<td><span class=\"seeDetail ll\">查看详情</span><span class=\"selectCompany ll authorityBtn\">选择公司</span></td>"
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
+            //            权限控制
+            if(AuthSwitch==1){
+                getAuthor11()
+            }
             //模拟点击 框
             $(".listBox .cf_select").click(function () {
                 $(this).toggleClass("on");

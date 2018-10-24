@@ -266,12 +266,17 @@
                         if(item.otherMoney=="0"){
                             str += '<span class="btn ll" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'"></span>'
                         }else{
-                            str += '<span class="btn ll shenhe" data-otherMoney="'+item.otherMoney+'" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'" data-orderid="'+item.orderId+'">打款</span>'
+                            str += '<span class="btn ll shenhe authorityBtn" data-otherMoney="'+item.otherMoney+'" id="'+item.carrierCompanyId+'" data-id = "'+item.id+'" data-orderid="'+item.orderId+'">打款</span>'
                         }
                         str += '<a class="btn ll seeDetail">查看详情</a></td>'
                         str += '</tr>'
                     })
                     $(".myTbody").html(str);
+                    //            权限控制
+                    if(AuthSwitch==1){
+                        getAuthor11()
+                    }
+
                     //详情
                     $(".seeDetail").unbind();
                     $(".seeDetail").click(function () {

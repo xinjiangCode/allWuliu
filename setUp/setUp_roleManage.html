@@ -206,16 +206,19 @@
 
 								str += '</td>'
                             if(AuthSwitch==0){
-                                str +='<td><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
+                                str +='<td><a href="javascript:;" class="lookover authorityBtn" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete authorityBtn" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
                             }else{
-                                str +='<td><a href="javascript:;" class="authorty authorty1" style="color: #6ba1ff; margin-right: 5px;">分配权限</a><a href="javascript:;" class="lookover" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
+                                str +='<td><a href="javascript:;" class="authorty authorty1 authorityBtn" style="color: #6ba1ff; margin-right: 5px;">分配权限</a><a href="javascript:;" class="lookover authorityBtn" style="color:#6ba1ff;">编辑</a><a href="javascript:;" href="" class="delect delete authorityBtn" style="color:#6ba1ff; margin-left: 10px;">删除</a></td>'
                             }
 							str+='</tr>'
 
                         }
 						
                         $('#apartmentListInfo').html(str);
-
+                        //            权限控制
+                        if(AuthSwitch==1){
+                            getAuthor11()
+                        }
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);
                         //分配权限

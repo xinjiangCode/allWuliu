@@ -129,12 +129,17 @@
 						str+='<td>'+item.money+'</td>'
 						str+='<td id="'+item.id+'">'
 						if(item.money==0 && item.attr_2!=1){
-							str+='<a class="salesvolume cq_dele" style="margin-right: 10px;">删除</a>'
+							str+='<a class="salesvolume cq_dele authorityBtn" style="margin-right: 10px;">删除</a>'
 						}
-						str+='<a class="salesvolume cq_eidt">充值</a></td>'
+						str+='<a class="salesvolume cq_eidt authorityBtn">充值</a></td>'
 						str+='</tr>'
 					})
 				$(".listBox .myTbody").html(str);
+
+                //            权限控制
+                if(AuthSwitch==1){
+                    getAuthor11()
+                }
                 //编辑
                 $(".cq_eidt").unbind();
                 $(".cq_eidt").click(function(){

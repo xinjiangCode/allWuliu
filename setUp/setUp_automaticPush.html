@@ -176,7 +176,7 @@
                                         str += '<input id="checked_'+i+'" type="checkbox" class="switch" />'
                                         +'<label for="checked_'+i+'"></label>'
                                     }
-                                    str += '<a href="##" data-editContentId="'+json.data[i].id+'" triggerId="'+json.data[i].triggerId+'" class="editmsg inforMation">编辑内容</a>'
+                                    str += '<a href="##" data-editContentId="'+json.data[i].id+'" triggerId="'+json.data[i].triggerId+'" class="editmsg inforMation authorityBtn">编辑内容</a>'
                                 +'</td>'
                                 // +'<td class="chooseswitch">'
                                 //     if (json.data[i].statu == '0') {
@@ -194,7 +194,10 @@
                         }
                         
                         $('#messagePushInfo').html(str);
-
+                        //            权限控制
+                        if(AuthSwitch==1){
+                            getAuthor11()
+                        }
                         // var result = template('apartmentListTpl', {list: json.data});
                         // $('#apartmentListInfo').html(result);
 

@@ -281,15 +281,21 @@
             str+='<td>'
             str+= '<span class="ll seeDetail" data-id="'+item.id+'">查看详情</span>'
 
-            str+='<span class="ll updataRec" data-id="'+item.id+'">合同变更</span>'
+            str+='<span class="ll updataRec authorityBtn" data-id="'+item.id+'">合同变更</span>'
             if(item.contractNo==null || item.contractNo=="" ){
             }else{
-                str+= '<span class="ll deleteRec" data-id="'+item.id+'">删除</span>'
+                str+= '<span class="ll deleteRec authorityBtn" data-id="'+item.id+'">删除</span>'
             }
             str+= '</td>';
             str+='</tr>';
         })
         $(".listBox tbody").html(str);
+
+        //            权限控制
+        if(AuthSwitch==1){
+            getAuthor11()
+        }
+
         //模拟点击 框
         $(".listBox .cf_select").click(function () {
             $(this).toggleClass("on");

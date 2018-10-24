@@ -295,13 +295,18 @@
                 str+='<td>'+item.quotedPrice+'</td>';
 //                str+='<td>'+item.quotesSatus+'</td>';
                 if(item.status==0 && item.type==1){
-                    str+='<td ><span class="btn agree authorityBtn" style="color: #6ba1ff;">同意</span> <span  class="btn bohui authorityBtn" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail authorityBtn" style="color: #6ba1ff;">查看详情</span></td>';
+                    str+='<td ><span class="btn agree authorityBtn" style="color: #6ba1ff;">同意</span> <span  class="btn bohui authorityBtn" style="color: #6ba1ff;">驳回</span> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
                 }else{
-                    str+='<td> <span class="btn seeDetail authorityBtn" style="color: #6ba1ff;">查看详情</span></td>';
+                    str+='<td> <span class="btn seeDetail" style="color: #6ba1ff;">查看详情</span></td>';
                 }
                 str+='</tr>';
             })
             $(".myTbody").html(str);
+            //            权限控制
+            if(AuthSwitch==1){
+                getAuthor11()
+            }
+
             //详情
             $(".seeDetail").click(function () {
                 // 订单id

@@ -299,7 +299,7 @@
                         str+='<td>已支付</td>';
                     }
                     if(item.payStatus==0){
-                        str+='<td style="color: #6ea3f4;" data-id="'+item.id+'"><a class="notAgree shenhe" style="margin: 0 5px;">支付</a><a class="seeDetail">查看详情</a></td>';
+                        str+='<td style="color: #6ea3f4;" data-id="'+item.id+'"><a class="notAgree shenhe authorityBtn" style="margin: 0 5px;">支付</a><a class="seeDetail">查看详情</a></td>';
                     }else{
                         str+='<td style="color: #6ea3f4;" data-id="'+item.id+'"><a class="seeDetail">查看详情</a></td>';
                     }
@@ -307,6 +307,11 @@
                     str+='</tr>';
                 })
                 $(".listBox tbody").html(str);
+                //            权限控制
+                if(AuthSwitch==1){
+                    getAuthor11()
+                }
+
                 //详情
                 $(".seeDetail").click(function () {
                     // 订单id

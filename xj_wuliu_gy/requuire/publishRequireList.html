@@ -398,14 +398,18 @@
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
                 str+='<td class="aountDown'+idx+'"></td>'
                 if(item.var9==1){
-                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll deletThis'>删除</span></td>"
+                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll deletThis authorityBtn'>删除</span></td>"
                 }else{
-                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll editThis'>编辑</span><span class='ll deletThis'>删除</span></td>"
+                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class='ll editThis authorityBtn'>编辑</span><span class='ll deletThis authorityBtn'>删除</span></td>"
                 }
 //                    <span class="selectCompany ll">选择公司</span>
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
+            //            权限控制
+            if(AuthSwitch==1){
+                getAuthor11()
+            }
             for(var i=0;i<data.length;i++){
                 aountDown(data[i].demandEndTime,'.aountDown'+i);
             }
