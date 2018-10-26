@@ -7,7 +7,7 @@ var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://wl.api.xjv56.com/srvice/';
 
 // 权限开关
-var AuthSwitch=0
+var AuthSwitch=1
 //需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
 
 

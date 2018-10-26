@@ -52,6 +52,7 @@
 			<table class="contentslist">
 				<thead>
 				<tr>
+					<th>序号</th>
 					<th>车牌号</th>
 					<th>车辆分类</th>
 					<th>车辆品牌</th>
@@ -64,32 +65,33 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>新B ER3001</td>
-					<td>内部车辆</td>
-					<td>XXXXX牌</td>
-					<td>乙醚-罐车</td>
-					<td class="">车辆档案号</td>
-					<td>2017-11-11 05：12</td>
-					<td class="chooseswitch">
-						<input id="checked_1" type="checkbox" class="switch"  checked="checked"/>
-						<label for="checked_1"></label>
-					</td>
-					<td><a>车辆详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>
-				</tr>
-				<tr>
-					<td>新B ER3001</td>
-					<td>内部车辆</td>
-					<td>XXXXX牌</td>
-					<td>乙醚-罐车</td>
-					<td class="">车辆档案号</td>
-					<td>2017-11-11 05：12</td>
-					<td class="chooseswitch">
-						<input id="checked_2" type="checkbox" class="switch" />
-						<label for="checked_1"></label>
-					</td>
-					<td><a>车辆详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>
-				</tr>
+					<!--<tr>-->
+						<!--<td>1</td>-->
+						<!--<td>新B ER3001</td>-->
+						<!--<td>内部车辆</td>-->
+						<!--<td>XXXXX牌</td>-->
+						<!--<td>乙醚-罐车</td>-->
+						<!--<td class="">车辆档案号</td>-->
+						<!--<td>2017-11-11 05：12</td>-->
+						<!--<td class="chooseswitch">-->
+							<!--<input id="checked_1" type="checkbox" class="switch"  checked="checked"/>-->
+							<!--<label for="checked_1"></label>-->
+						<!--</td>-->
+						<!--<td><a>车辆详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td>新B ER3001</td>-->
+						<!--<td>内部车辆</td>-->
+						<!--<td>XXXXX牌</td>-->
+						<!--<td>乙醚-罐车</td>-->
+						<!--<td class="">车辆档案号</td>-->
+						<!--<td>2017-11-11 05：12</td>-->
+						<!--<td class="chooseswitch">-->
+							<!--<input id="checked_2" type="checkbox" class="switch" />-->
+							<!--<label for="checked_1"></label>-->
+						<!--</td>-->
+						<!--<td><a>车辆详情</a><a class="lookover">编辑</a><a class="delect">删除</a></td>-->
+					<!--</tr>-->
 				</tbody>
 			</table>
 		</div>
@@ -183,6 +185,7 @@ var currentPage=1;
         var str='';
         $.each(data,function (idx,item) {
 			str+='<tr data-id="'+item.id+'">';
+            str+='<td>'+(idx+1)+'</td>';
             str+='<td>'+item.carNo+'</td>';
             if(item.type==0){
                 str+='<td>内部车辆</td>';

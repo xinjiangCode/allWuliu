@@ -2672,6 +2672,7 @@ function showMangeList(idx,that) {
     
     // 部门列表
     function department_list() {
+        $('.suoshu_department_ul').html("");
         $.ajax({
             url: pubIP + 'receptionDepartment/querySelectList',
             type: 'get',

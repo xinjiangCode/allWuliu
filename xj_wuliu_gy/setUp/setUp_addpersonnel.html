@@ -498,6 +498,8 @@
         dataType: 'json',
         success: function (json) {
             console.log(json);
+            $('.suoshu_department_ul').html("");
+
             if (json.code == 1) {
                 if (json.data.length != 0) {
                     var str = '<li data-departmentId="">请选择</li>';

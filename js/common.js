@@ -1,6 +1,6 @@
 
-// var pubIP = 'http://192.168.1.69:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://192.168.1.68:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
 // var pubIP = 'http://api.test.hdlsuper.com/service/';
@@ -12,7 +12,7 @@ var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
 
 // 权限开关
-var AuthSwitch=1;
+var AuthSwitch=0;
 //需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
 
 //获取地址栏参数，name:参数名称
@@ -912,3 +912,67 @@ function getAuthor11() {
         }
     });
 }
+
+//回顶部
+$("#gotop").click(function() {
+    $("html,body").animate({scrollTop:0}, 500);
+});
+
+/**
+ * [处理未读消息]
+ * @param  {[string, object]} msg [string: 'hasBeenRead',
+ object: 未读消息数据]
+ */
+function yourFunction(msg) {
+    var text = '',
+        num = 0;
+    if (msg === 'hasBeenRead') { // 消息已被阅读
+        num = 0;
+        $('#unreadNum').hide();
+    } else if (typeof(msg) === 'object') {
+        var unreadNum = document.getElementById('unreadNum').innerHTML,
+            lastMsg = msg[msg.length - 1];
+        num = isNaN(+unreadNum) ? msg.length : +unreadNum + msg.length;
+        // content_type 是消息的类型：
+        // text（文字）、photo（图片）、file（文件）
+        // content 是消息的内容
+        if (lastMsg.content_type === 'text') {
+            // 文字消息中可能会存在表情图片，由于路径问题
+            // 将文字消息中的图片处理为文字'[表情]'
+            text = lastMsg.content.replace(
+                /<img [^>]*src=['"]([^'"]+)[^>]*>/gi, '[表情]'
+            );
+        } else if (lastMsg.content_type === 'photo') {
+            text = '[图片]';
+        } else if (lastMsg.content_type === 'file') {
+            text = '[文件]';
+        } else {
+            text = '[新消息]';
+        }
+
+        $('#unreadNum').show();
+
+    }
+    // 未读消息数量
+    document.getElementById('unreadNum').innerHTML = num;
+    // 最后一条消息的内容
+    // document.getElementById('unreadMsg').innerHTML = text;
+}
+(function(m, ei, q, i, a, j, s) {
+    m[i] = m[i] || function() {
+        (m[i].a = m[i].a || []).push(arguments)
+    };
+    j = ei.createElement(q),
+        s = ei.getElementsByTagName(q)[0];
+    j.async = true;
+    j.charset = 'UTF-8';
+    j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+    s.parentNode.insertBefore(j, s);
+})(window, document, 'script', '_MEIQIA');
+_MEIQIA('entId', '127367');
+
+//无按钮
+_MEIQIA('withoutBtn');
+
+// 获取未读消息
+_MEIQIA('getUnreadMsg', yourFunction);

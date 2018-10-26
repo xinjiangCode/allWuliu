@@ -450,8 +450,8 @@
     })
 
     function del(_this) {
-   		var data_id = _this.parent().parent().attr('data-id');
-        
+//   		var data_id = _this.parent().parent().attr('data-id');
+        var data_id=_this;
    		$.ajax({
             url: pubIP + 'tReceptionRole/delWLTReceptionRoleInfo',
             type: 'post',

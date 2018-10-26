@@ -1028,3 +1028,284 @@ button{outline: none;}
 	overflow: hidden;
 	white-space: nowrap;
 }
+
+
+.fxd{
+	position: fixed;
+	/*top: 414px;*/
+	right: 0;
+	z-index: 20;
+	bottom:20%;
+}
+.fxd>a{
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	background: #5992f3;
+	display: block;
+	border-radius: 5px;
+	margin-bottom: 1px;
+	position: relative;
+}
+.fxd>a img{
+	margin-top: 12px;
+}
+.showCode{
+	position: absolute;
+	right: 54px;
+	background: #5992f3;
+	padding: 10px;
+	top: -18px;
+	height: 100px;
+	display: none;
+}
+.fxd .showCode img{
+	margin-top: 0;
+	height: 100%;
+}
+.showCode:after{
+	content: '';
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-left: 10px solid #5992f3;
+	border-bottom: 10px solid transparent;
+	position: absolute;
+	right: -8px;
+	top: 50%;
+	margin-top: -10px;
+}
+#showCd:hover .showCode{
+	display: block;
+}
+.tsBg{
+	width: 100%;
+	background: #000;
+	opacity: 0.7;
+	/* older safari/Chrome browsers */
+	-webkit-opacity: 0.7;
+	/* Netscape and Older than Firefox 0.9 */
+	-moz-opacity: 0.7;
+	/* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*/
+	-khtml-opacity: 0.7;
+	/* IE9 + etc...modern browsers */
+	opacity: .7;
+	/* IE 4-9 */
+	filter:alpha(opacity=70);
+	/*This works in IE 8 & 9 too*/
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	/*IE4-IE9*/
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	position: fixed;
+	/*z-index: 30;
+    top: 0;
+    display: none;*/
+	top: 0;
+	bottom: 0;
+	display: none;
+	left: 0;
+	right: 0;
+	height: 100%;
+}
+.tsBox{
+	background: #fff;
+	position: fixed;
+	left:50%;
+	top: 50%;
+	z-index: 31;
+	display: none;
+	width: 620px;
+	height: 430px;
+	margin-left: -325.5px;
+	margin-top: -227.5px;
+}
+/*#colseAlert{*/
+	/*position: absolute;*/
+	/*right: 0px;*/
+	/*top: 0px;*/
+/*}*/
+/*.tsBox>p{*/
+	/*font-size: 19px;*/
+	/*color:#282828;*/
+	/*text-align: center;*/
+	/*margin-top: 66px;*/
+	/*margin-bottom: 48px;*/
+/*}*/
+/*.modelcontent>div{*/
+	/*height: 35px;*/
+	/*width: 479px;*/
+	/*line-height: 35px;*/
+	/*margin: 0 auto;*/
+	/*overflow: hidden;*/
+	/*margin-bottom: 28px;*/
+/*}*/
+/*.modelcontent>div span{*/
+	/*width: 80px;*/
+	/*height: 35px;*/
+	/*line-height: 35px;*/
+	/*float: left;*/
+	/*font-size: 16px;*/
+	/*text-align: right;*/
+	/*margin-right: 14px;*/
+/*}*/
+/*.modelcontent>div input , .tsBox>div textarea , .tsBox>div select{*/
+	/*width: 385px;*/
+	/*background: #fff;*/
+	/*border: 1px #9FA0A0 solid;*/
+	/*height: 35px;*/
+	/*float: left;*/
+	/*outline: none;*/
+	/*font-size: 17px;*/
+	/*padding-left: 8px;*/
+	/*box-sizing: border-box;*/
+/*}*/
+/*.modelcontent>div select{*/
+	/*width:385px ;*/
+/*}*/
+/*.modelcontent>div textarea{*/
+	/*height: 101px;*/
+	/*resize: none;*/
+/*}*/
+/*.tsBox button{*/
+	/*width: 381px;*/
+	/*height: 54px;*/
+	/*color: #fff;*/
+	/*font-size: 19px;*/
+	/*background: #5992f3;*/
+	/*border: none;*/
+	/*border-radius: 2px;*/
+	/*margin-left: 96px;*/
+/*}*/
+/*.hideInfo{*/
+	/*width: 100%;*/
+	/*height: 100%;*/
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*left: 0;*/
+	/*display: none;*/
+	/*overflow: hidden;*/
+/*}*/
+/*.hideInfo>div{*/
+	/*background: #333;*/
+	/*width: 100%;*/
+	/*height: 100%;*/
+	/*opacity: 0.2;*/
+	/*!* older safari/Chrome browsers *!*/
+	/*-webkit-opacity: 0.2;*/
+	/*!* Netscape and Older than Firefox 0.9 *!*/
+	/*-moz-opacity: 0.2;*/
+	/*!* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*!*/
+	/*-khtml-opacity: 0.2;*/
+	/*!* IE9 + etc...modern browsers *!*/
+	/*opacity: .2;*/
+	/*!* IE 4-9 *!*/
+	/*filter:alpha(opacity=20);*/
+	/*!*This works in IE 8 & 9 too*!*/
+	/*-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";*/
+	/*!*IE4-IE9*!*/
+	/*filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=20);*/
+/*}*/
+/*.hideInfo>button{*/
+	/*position: absolute;*/
+	/*width: 142px;*/
+	/*height: 43px;*/
+	/*top: 50%;*/
+	/*left: 50%;*/
+	/*margin-top: -21px;*/
+	/*margin-left: -71px;*/
+	/*background: #66A7FF;*/
+	/*border-radius: 2px;*/
+	/*border: none;*/
+	/*font-size: 16px;*/
+	/*color: #fff;*/
+	/*outline: none;*/
+/*}*/
+/*.supplierBox>div:hover .hideInfo{*/
+	/*display: block;*/
+/*}*/
+/*.wcCtObjBox .hideInfo>div:first-child{*/
+	/*opacity: 0.65;*/
+	/*!* older safari/Chrome browsers *!*/
+	/*-webkit-opacity: 0.65;*/
+	/*!* Netscape and Older than Firefox 0.9 *!*/
+	/*-moz-opacity: 0.65;*/
+	/*!* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*!*/
+	/*-khtml-opacity: 0.65;*/
+	/*!* IE9 + etc...modern browsers *!*/
+	/*opacity: .65;*/
+	/*!* IE 4-9 *!*/
+	/*filter:alpha(opacity=65);*/
+	/*!*This works in IE 8 & 9 too*!*/
+	/*-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";*/
+	/*!*IE4-IE9*!*/
+	/*filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=65);*/
+/*}*/
+/*.wcCtObjBox .hideInfo{*/
+	/*color: #fff;*/
+/*}*/
+/*.wcCtObjBox .hidetxt{*/
+	/*position: absolute;*/
+	/*z-index: 1;*/
+	/*opacity: 1;*/
+	/*position: absolute;*/
+	/*line-height: 25px;*/
+	/*text-align: center;*/
+	/*top: 73px;*/
+	/*background: transparent;*/
+	/*font-size: 14px;*/
+	/*text-align: left;*/
+	/*left: 60px;*/
+/*}*/
+/*.wcCtObjBox .hidetxt h3{*/
+	/*margin-top: 43px;*/
+/*}*/
+
+/*!*.wcCtObjBox>div:hover .hideInfo{*/
+	/*display: block;*/
+/*}*!*/
+/*.wcleftBoxTit{font-size: 24px;}*/
+
+/*.wcleftBox .wcleftBoxTit{*/
+	/*margin-top: 14px;*/
+	/*max-height: 45px;*/
+	/*margin-bottom: 15px;*/
+	/*position: relative;*/
+	/*height: 45px;*/
+	/*font-weight: bold;*/
+/*}*/
+/*.wcleftBoxTit img{*/
+	/*float: left;*/
+	/*height: 6px;*/
+/*}*/
+/*.wcleftBoxTit p{*/
+	/*position: absolute;*/
+	/*left: 0;*/
+	/*top: 9px;*/
+	/*max-height:24px;*/
+	/*line-height: 24px;*/
+/*}*/
+/*.wcleftBoxTit img+p+img{*/
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*left: 0;*/
+/*}*/
+/*.wcObjType{*/
+	/*font-size: 17px;*/
+	/*font-weight: bold;*/
+/*}*/
+/*.wcleftBox>a{*/
+	/*font-size: 14px;*/
+/*}*/
+/*.wcleftBox>a:hover{*/
+	/*text-decoration: underline;*/
+/*}*/
+/*.purchaseLeft{*/
+	/*padding-left: 0;*/
+/*}*/
+/*.swiper-active-switch{*/
+	/*background: #5892f3;*/
+/*}*/
+/*.purchaseObjBox button:hover{*/
+	/*background: rgb(67,121,245);*/
+/*}*/
