@@ -306,6 +306,7 @@
 
         //获取订单id
         var tloId = sessionStorage.getItem("qrsd_tloId");
+        var orderNo = sessionStorage.getItem("qrsd_orderNo");
         //var tloId = "1";
         // 详情信息
         $.ajax({
@@ -1150,7 +1151,7 @@
                     extractMoney: $(".ticheng").val(),
                     grantMoney: $(".xianjin").val(),//税前工资   或者外部现金
                     grantAfterMoney: $(".xianjin2").val(),
-                    orderNo: tloId,
+                    orderNo: orderNo,
                     tLogisticsOrderId: tloId,
                     tlvType: $(".order_info_ul2 li.active").attr("data-type"),
                     type: $(".order_info_ul2 li.active").attr("data-type"),
