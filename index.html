@@ -91,8 +91,8 @@
     <div class="swiperBox">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="./img/in-lunbobg.png"></div>
-                <div class="swiper-slide"><img src="./img/oap-lunbo.png" alt=""></div>
+                <!--<div class="swiper-slide"><img src="./img/in-lunbobg.png"></div>-->
+                <!--<div class="swiper-slide"><img src="./img/oap-lunbo.png" alt=""></div>-->
             </div>
         </div>
         <div class="swiper-pagination-custom"></div>
@@ -986,12 +986,17 @@ getArticleByCategory(1)
  }
 
 
+
  //获取轮播图
-    getSlideShow(1)
+    $(function () {
+        getSlideShow(1)
+        getSlideShow(2)
+    })
+
     function getSlideShow(position) {
         $.ajax({
             url: pubIP + 'homePage/getBanner',
-            type: 'post',
+            type: 'get',
             headers: {
                 Accept: "application/json; charset=utf-8",
                 token: token
@@ -1005,10 +1010,15 @@ getArticleByCategory(1)
 
                 if(res.code==1){
                     var str="";
-                    $.each(res.data,function (idx,item) {
-                        str+='<a href="'+item.link+'"><div class="swiper-slide"><img src="'+item.picUrl+'"></div></a>';
-                    })
-                    $(".swiper-wrapper").html(str)
+                    if(position==1){
+                        $.each(res.data,function (idx,item) {
+                            str+='<a href="'+item.link+'" style="width: 100%;" target="_blank"><div class="swiper-slide"><img src="'+item.picUrl+'"></div></a>';
+                        })
+                        $(".swiper-wrapper").html(str)
+                    }else if(position==2){
+                        $(".dataAnalysis").css("background","url("+res.data[0].picUrl+") no-repeat center center/cover");
+                    }
+
                 }
 
             },

@@ -165,14 +165,50 @@
                             json.aData[i].creatTime = new Date(json.aData[i].creatTime).Format("yyyy-MM-dd");
 
                             str += '<tr data-id="'+json.aData[i].id+'">'
-								+'<td class="ord_name">'+json.aData[i].userName+'</td>'
-								+'<td>'+json.aData[i].org+'</td>'
-								+'<td>'+json.aData[i].jobName+'</td>'
-								+'<td>'+json.aData[i].card+'</td>'
-								+'<td>'+json.aData[i].phone+'</td>'
-								+'<td>'+json.aData[i].pay+'</td>'
-								+'<td>'+json.aData[i].creatTime+'</td>'
-								+'<td class="chooseswitch">'
+							if(json.aData[i].userName==null){
+                                str +='<td class="ord_name"></td>'
+							}else{
+                                str +='<td class="ord_name">'+json.aData[i].userName+'</td>'
+							}
+                            if(json.aData[i].org==null){
+                                str +='<td></td>'
+                            }else{
+                                str +='<td>'+json.aData[i].org+'</td>'
+                            }
+
+                            if(json.aData[i].jobName==null){
+                                str +='<td></td>'
+                            }else{
+                                str +='<td>'+json.aData[i].jobName+'</td>'
+                            }
+
+                            if(json.aData[i].card==null){
+                                str +='<td></td>'
+                            }else{
+                                str +='<td>'+json.aData[i].card+'</td>'
+                            }
+
+                            if(json.aData[i].userName==null){
+                                str +='<td></td>'
+                            }else{
+                                str +='<td>'+json.aData[i].phone+'</td>'
+                            }
+
+                            if(json.aData[i].pay==null){
+                                str +='<td></td>'
+                            }else{
+                                str +='<td>'+json.aData[i].pay+'</td>'
+                            }
+
+                            if(json.aData[i].creatTime==null || json.aData[i].creatTime==0){
+                                str +='<td></td>'
+                            }else{
+                                str +='<td>'+json.aData[i].creatTime+'</td>'
+                            }
+
+
+
+                            str +='<td class="chooseswitch">'
 									if (json.aData[i].obligate1 == '0') {
 										str += '<input id="checked_'+i+'" type="checkbox" class="switch" checked=""/>'
 										+'<label for="checked_'+i+'"></label>'
@@ -356,51 +392,51 @@
             window.parent.$(".ts_ts").text("请选择职务类型")
             return;
         }
-        if(suozai_car_select=="-1"){
-            window.parent.$(".ts_ts").text("请选择所在车辆")
-            return;
-        }
+//        if(suozai_car_select=="-1"){
+//            window.parent.$(".ts_ts").text("请选择所在车辆")
+//            return;
+//        }
         if(person_name ==""){
             window.parent.$(".ts_ts").text("请填写姓名")
             return;
         }
-        if(person_cardID==""){
-            window.parent.$(".ts_ts").text("请填写身份证号")
-            return;
-        }
-        if(person_address==""){
-            window.parent.$(".ts_ts").text("请填写住址")
-            return;
-        }
+//        if(person_cardID==""){
+//            window.parent.$(".ts_ts").text("请填写身份证号")
+//            return;
+//        }
+//        if(person_address==""){
+//            window.parent.$(".ts_ts").text("请填写住址")
+//            return;
+//        }
         if(person_phone==""){
             window.parent.$(".ts_ts").text("请填写电话")
             return;
         }
-        if(person_driver_num==""){
-            window.parent.$(".ts_ts").text("驾驶证号")
-            return;
-        }
-        if(person_huowu_num==""){
-            window.parent.$(".ts_ts").text("请填写货物资格证号")
-            return;
-        }
+//        if(person_driver_num==""){
+//            window.parent.$(".ts_ts").text("驾驶证号")
+//            return;
+//        }
+//        if(person_huowu_num==""){
+//            window.parent.$(".ts_ts").text("请填写货物资格证号")
+//            return;
+//        }
 
-        if(person_yihangka==""){
-            window.parent.$(".ts_ts").text("请填写银行卡号")
-            return;
-        }
-        if(suoshu_bank==""){
-            window.parent.$(".ts_ts").text("请填写所属银行")
-            return;
-        }
-        if(person_money==""){
-            window.parent.$(".ts_ts").text("请填写薪资")
-            return;
-        }
-        if(person_baoxian_status==""){
-            window.parent.$(".ts_ts").text("请填写保险状态")
-            return;
-        }
+//        if(person_yihangka==""){
+//            window.parent.$(".ts_ts").text("请填写银行卡号")
+//            return;
+//        }
+//        if(suoshu_bank==""){
+//            window.parent.$(".ts_ts").text("请填写所属银行")
+//            return;
+//        }
+//        if(person_money==""){
+//            window.parent.$(".ts_ts").text("请填写薪资")
+//            return;
+//        }
+//        if(person_baoxian_status==""){
+//            window.parent.$(".ts_ts").text("请填写保险状态")
+//            return;
+//        }
 
 
 

@@ -587,8 +587,11 @@
         });
     })
 //    行业快讯  和企业咨询
-    getArticleByCategory(1)
-    getArticleByCategory(2)
+    $(function () {
+        getArticleByCategory(1)
+        getArticleByCategory(2)
+    })
+
     function getArticleByCategory(articleType) {
         $.ajax({
             url: pubIP + 'platform/getArticleByCategory',

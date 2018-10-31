@@ -1,10 +1,10 @@
 // 公共头
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
-var headerip = 'http://192.168.1.199:7777/service/';
-// var headerip = 'http://192.168.1.69:7777/service/';
+// var headerip = 'http://192.168.1.199:7777/service/';
+// var headerip = 'http://192.168.1.72:7777/service/';
 // var headerip = 'http://api.hdlsuper.com/service/';
-// var headerip = 'http://api.test.hdlsuper.com/service/';
+var headerip = 'http://api.test.hdlsuper.com/service/';
 
 // var headerip = 'http://wl.api.xjv56.com/service/';
 
@@ -44,7 +44,7 @@ $.ajax({
             "            <div class=\"headerTopLeft Lf\">\n" +
             "                <div>收藏本站</div>\n" +
             "                <div id=\"userNamePub\"></div>\n" +
-            "                <div id=\"loginPub\" style=\"display: none;\"><a href=\"login.html\">登&nbsp;&nbsp;录</a><i style=\"margin: 0 20px;\">|</i><a href=\"registert.html\">注&nbsp;&nbsp;册</a></div>\n" +
+            "                <div id=\"loginPub\" style=\"display: none;\"><a href=\"../login.html\">登&nbsp;&nbsp;录</a><i style=\"margin: 0 20px;\">|</i><a href=\"registert.html\">注&nbsp;&nbsp;册</a></div>\n" +
             "                <div class=\"exit\" style=\"display: none;\">退出</div>\n" +
             "            </div>\n" +
             "            <div class=\"headerTopRight Rt\">\n" +

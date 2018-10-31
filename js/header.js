@@ -2,10 +2,10 @@
 
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
-// var headerip = 'http://192.168.1.68:7777/service/';
-var headerip = 'http://192.168.1.199:7777/service/';
+// var headerip = 'http://192.168.1.72:7777/service/';
+// var headerip = 'http://192.168.1.199:7777/service/';
 // var headerip = 'http://api.hdlsuper.com/service/';
-// var headerip = 'http://api.test.hdlsuper.com/service/';
+var headerip = 'http://api.test.hdlsuper.com/service/';
 // var headerip = 'http://wl.api.xjv56.com/service/'; //不需要了
 //
 

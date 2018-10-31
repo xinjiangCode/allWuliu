@@ -252,7 +252,7 @@
         function cf_dataRender(data) {
             var str='';
             $.each(data,function (idx,item) {
-                str+='<tr data-id="'+item.id+'">';
+                str+='<tr data-id="'+item.id+'" data-paymentType="'+item.paymentType+'" data-delFlag="'+item.delFlag+'" data-companyId="'+item.companyid+'"  data-orderId="'+item.orderId+'" data-orderNo="'+item.orderNo+'" data-otherMoney="'+item.settlementAmount +'">';
                 str+="<td>"+item.demandNo+"</td>"
                 str+="<td>"+timestampToTime1(item.createTime)+"</td>"
                 str+="<td>"+item.var9+"</td>"
@@ -262,6 +262,8 @@
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
                 str+="<td>"+item.var8+"</td>"
                 str+="<td><span class=\"seeDetail ll\">查看详情</span></td>"
+
+                str+="<td><span class=\"pay ll\">支付</span></td>"
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
@@ -274,6 +276,34 @@
                 sessionStorage.setItem("detailTitle","当前需求状态：历史记录详情");
                 sessionStorage.setItem("detailId",$(this).parents("tr").attr("data-id"));
                 window.location.href="./requireDetail.html";
+            })
+
+            //立即支付
+            $(".pay").unbind();
+            $(".pay").click(function () {
+                debugger
+                if($(this).parents("tr").attr("data-otherMoney")==null || $(this).parents("tr").attr("data-otherMoney")=="null"){
+                    cf_alert01(2,"支付金额错误")
+                    return;
+                }
+
+                window.parent.$(".modelBox31").show()
+                window.parent.$(".modelBox31 .cf_title").text("支付方式："+$(this).parents("tr").attr("data-paymentType"));
+                window.parent.$(".modelBox31 .ErrorMsg1").hide()
+                if($(this).parents("tr").attr("data-paymentType")=="现汇"){
+                    window.parent.$(".modelBox31 .chengdui").hide()
+                }
+
+
+                window.parent.$(".modelBox31 .syMoney").text($(this).parents("tr").attr("data-otherMoney"));
+                window.parent.$(".modelBox31 .payMoney").attr("data-slMoney",$(this).parents("tr").attr("data-otherMoney"));
+                window.parent.$(".modelBox31 .payMoney").attr("readonly","readonly")
+                window.parent.$(".modelBox31 .payMoney").val($(this).parents("tr").attr("data-otherMoney"))
+                window.parent.$(".modelBox31").attr("data-id",$(this).parents("tr").attr("data-delFlag"));
+                getAccountYuE();
+//                    现汇  将承兑隐藏
+                window.parent.$(".modelBox31 .chengDui").hide()
+                window.parent.$(".modelBox31 .XianHui").show()
             })
 
         }
@@ -327,6 +357,168 @@
         }
 
 
+
+
+        //                    弹框立即支付
+        window.parent.$(".modelBox31 .XuNiGoPay").unbind();
+        window.parent.$(".modelBox31 .XuNiGoPay").click(function () {
+            if( Number(window.parent.$(".modelBox31 .payMoney").val())>Number(window.parent.$(".modelBox31 .syMoney").text())){
+//                window.parent.$(".modelBox31 .ErrorMsg1").text("支付金额不能大于总额")
+                cf_alert01(2,"支付金额不能大于总额")
+                return;
+            }
+            if( Number(window.parent.$(".modelBox31 .payMoney").val())>Number(window.parent.$(".modelBox31 .accountBalance").text())){
+//                window.parent.$(".modelBox31 .ErrorMsg1").text("余额不足，请充值")
+                cf_alert01(2,"余额不足，请充值")
+                return;
+            }
+            window.parent.$(".modelBox31_2 .pay_pass_input").val("");
+            window.parent.$(".modelBox31_2 .SMScode").val("");
+            window.parent.$("#surePay").attr("data-isok","0");
+            window.parent.$("#surePay").attr("data-isok1","0");
+            window.parent.$("#surePay").attr("data-isok2","0");
+            window.parent. $("#surePay").css("backgroundColor","#c2ccd1");
+
+            window.parent.$(".modelBox31_2").show()
+            window.parent.$(".modelBox31_2 .paymoney").text(window.parent.$(".modelBox31 .payMoney").val());
+            getPhone();
+        })
+        //确认支付
+        window.parent.$("#surePay").unbind();
+        window.parent.$("#surePay").click(function () {
+            if($(this).attr("data-isok")==0){
+                return;
+            }
+            $.ajax({
+                type:"post",
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                url: pubIP+"finance/insertSettlementPay",//v1.0
+                cache:false,
+                data:{
+                    id: window.parent.$(".modelBox31").attr("data-id"),
+                    amount:window.parent.$(".modelBox31 .payMoney").val(),
+                    payPassword:window.parent.$(".modelBox31_2 .pay_pass_input").val()
+                },
+                success: function(res){
+                    if(res.code == 0){
+//                            window.parent.$(".modelBox31_2").hide();//支付成功
+                        cf_alert(1,"打款成功");
+                    }else{
+                        cf_alert01(2,res.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        })
+
+        //获取手机号
+        function getPhone(){
+            $.ajax({
+                url: pubIP + 'finance/getFinancePhone', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    if (data.code == 0) {
+                        window.parent.$(".modelBox31_2 .phone").val(data.data);
+                        window.parent.$(".modelBox31_2 .getSMSCode").unbind();
+                        window.parent.$(".modelBox31_2 .getSMSCode").click(function () {
+                            if($(this).attr("disabled")=="disabled"){
+                                return;
+                            }
+                            getSCode(data.data);
+                        })
+                    } else {
+                        return;
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+        //获短信取验证码
+        function getSCode(phone) {
+            $.ajax({
+                url: pubIP + 'userSupplier/getMessageCode', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data: {
+                    mobile: phone,
+                    type:"4"
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        //alert("发送验证码成功");
+//                    $(".modelBox34 .SMScode").removeAttr("disabled");
+                        var time=60;
+                        window.parent.$(".modelBox31_2 .getSMSCode").attr("disabled","disabled");
+                        window.parent.$(".modelBox31_2 .getSMSCode").css("background-color","#ddd");
+                        var timer=setInterval(function () {
+                            time--;
+                            window.parent.$(".modelBox31_2 .getSMSCode").text(""+time+"秒")
+                            if(time==0){
+                                clearInterval(timer);
+                                window.parent.$(".modelBox31_2 .getSMSCode").removeAttr("disabled");
+                                window.parent.$(".modelBox31_2 .getSMSCode").css("background-color","#3582F8");
+                                window.parent.$(".modelBox31_2 .getSMSCode").text("获取验证码")
+                            }
+                        },1000);
+
+                    } else {
+                        alert(data.msg);
+                        return;
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+
+        //获取手机号
+        function getAccountYuE(){
+            $.ajax({
+                url: pubIP + 'finance/getAccountBalance', /*v1.0*/
+                type: 'post',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                cache: false,
+                ansyc: true,
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    if (data.code == 0) {
+                        window.parent.$(".modelBox31 .accountBalance").text(data.data);
+                    } else {
+                        window.parent.$(".modelBox31 .accountBalance").text("");
+                        return;
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
     </script>
 </body>
 </html>
