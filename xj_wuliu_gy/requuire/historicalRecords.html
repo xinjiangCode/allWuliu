@@ -261,9 +261,11 @@
                 str+="<td>"+item.sendProvince+"-"+item.sendCity+"</td>"
                 str+="<td>"+item.receiveProvince+"-"+item.receiveCity+"</td>"
                 str+="<td>"+item.var8+"</td>"
-                str+="<td><span class=\"seeDetail ll\">查看详情</span></td>"
-
-                str+="<td><span class=\"pay ll\">支付</span></td>"
+                if(item.demandType=="普通需求"){
+                    str+="<td><span class=\"seeDetail ll\">查看详情</span></td>"
+                }else{
+                    str+="<td><span class=\"seeDetail ll\">查看详情</span><span class=\"pay ll\">支付</span></td>"
+                }
                 str+='</tr>';
             })
             $(".listBox tbody").html(str);
@@ -281,7 +283,6 @@
             //立即支付
             $(".pay").unbind();
             $(".pay").click(function () {
-                debugger
                 if($(this).parents("tr").attr("data-otherMoney")==null || $(this).parents("tr").attr("data-otherMoney")=="null"){
                     cf_alert01(2,"支付金额错误")
                     return;

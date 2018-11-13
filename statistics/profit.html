@@ -139,6 +139,12 @@
                     var thisData = res.aData;
                     var str = '';
                     $.each(thisData,function (idx,item) {
+                        item.orderNo=item.orderNo==null?"":item.orderNo
+                        item.companyName=item.companyName==null?"":item.companyName
+                        item.orderMoney=item.orderMoney==null?"0":item.orderMoney
+                        item.settlementMoney=item.settlementMoney==null?"0":item.settlementMoney
+                        item.maori=item.maori==null?"0":item.maori
+
                         str+= '<tr data-id = "'+item.orderId+'">';
                         str+= '<td>'+item.orderNo+'</td>';
                         str+= '<td>'+item.companyName+'</td>';

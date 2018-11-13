@@ -158,6 +158,12 @@
                     var thisData = res.aData;
                     var str = '';
                     $.each(thisData,function (idx,item) {
+                        item.carNo=item.carNo==null?"":item.carNo
+                        item.carType=item.carType==null?"":item.carType
+                        item.incomeAll=item.incomeAll==null?"0":item.incomeAll
+                        item.outComeAll=item.outComeAll==null?"0":item.outComeAll
+                        item.profit=item.profit==null?"0":item.profit
+
                         str+= '<tr data-id = "'+item.carId+'">';
                         str+= '<td>'+item.carNo+'</td>';
                         if(item.type == 0){

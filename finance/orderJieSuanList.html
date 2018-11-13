@@ -176,6 +176,8 @@
                     $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
                     var str = ''
                     $.each(data,function(idx,item){
+                        item.remarks=item.remarks==null?"":item.remarks;
+
                         str += '<tr>'
                         str += '<td>'+item.orderId+'</td>'
                         str += '<td>'+item.supplierCompanyName+'</td>'

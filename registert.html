@@ -170,7 +170,7 @@
 							<i style="color: #FB6047;vertical-align: middle;">*&nbsp;</i>
 							用户名:
 						</span>
-						<input type="text"  id="user" placeholder="长度5-16个字母、数字、下划线组成" onkeyup="this.value=chaneseCheck(this.value)" class="account" data-idx="1" maxlength="16" onchange="textBlur(this,1)" onFocus="textFocus(this,1)"/>
+						<input type="text"  id="user" placeholder="长度5-16个字母、数字、下划线组成" onkeyup="this.value=chaneseCheck(this.value)" class="account" data-idx="1" maxlength="16" onblur="yanZhengUser()" onchange="textBlur(this,1)" onFocus="textFocus(this,1)"/>
 						<i class="error error1"></i>
 					</li>
 					<li>
@@ -194,7 +194,7 @@
 							<i style="color: #FB6047;vertical-align: middle;">*&nbsp;</i>
 							验证手机:
 						</span>
-						<input type="text" id="phone" placeholder="请输入正确的手机号" onkeyup="this.value=chaneseCheck(this.value)" class="account" maxlength="11" data-idx="4"   onFocus="textFocus(this)"/>
+						<input type="text" id="phone" placeholder="请输入正确的手机号" onkeyup="this.value=chaneseCheck(this.value)" onblur="yanZhengPhone1()" class="account" maxlength="11" data-idx="4"   onFocus="textFocus(this)"/>
 						<i class="error error1"></i>
 					</li>
 					<li>
@@ -628,6 +628,34 @@
                  }
              });
          }
+             //获短信取验证码前验证手机号
+             function yanZhengPhone1() { //验证手机号是否存在
+                 $.ajax({
+                     url: pubIP + 'userCarriers/validMobile', /*v1.0*/
+                     type: 'post',
+                     headers: {
+                         Accept: "application/json; charset=utf-8",
+                         // token: token
+                     },
+                     cache: false,
+                     ansyc: true,
+                     dataType: 'json',
+                     data:{mobile:$("#phone").val()},
+                     success: function (data) {
+                         console.log(data.code);
+                         if(data.code==1){
+
+                         }else{
+                             $("#phone").parent().find(".error").text(data.msg);
+                             $("#phone").parent().find(".error").css('background', 'url(./img/input_error.png) no-repeat').css('background-position', 'left').text(data.msg);
+                             return;
+                         }
+                     },
+                     error: function(err){
+                         console.log(err);
+                     }
+                 });
+             }
             //获短信取验证码前验证手机号
           function yanZhengPhone() { //验证手机号是否存在
               $.ajax({

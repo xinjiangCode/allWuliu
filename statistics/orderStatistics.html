@@ -226,10 +226,11 @@
     <%for(i in list) {%>
     <tr>
         <!-- <td><div class="cf_select"><img src="../img/cf_noselect.png" alt=""></div></td> -->
-        <td><%=list[i].orderNo%></td>
+
+        <td><%=list[i].orderNo==null?"":list[i].orderNo%></td>
         <td><%=list[i].tloUpdateTime%></td>
-        <td><%=list[i].chemicalName%></td>
-        <td><%=list[i].goodsName%></td>
+        <td><%=list[i].chemicalName==null?"":list[i].chemicalName%></td>
+        <td><%=list[i].goodsName==null?"":list[i].goodsName%></td>
         <td><%=list[i].goodsNum%><%=list[i].goodsUnit%></td>
         <td><%=list[i].sendProvince%><%=list[i].sendCity%></td>
         <td><%=list[i].receiveProvince%><%=list[i].receiveCity%></td>

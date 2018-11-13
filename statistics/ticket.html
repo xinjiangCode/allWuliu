@@ -147,6 +147,12 @@
                     var thisData = res.aData;
                     var str = '';
                     $.each(thisData,function (idx,item) {
+                        item.couponName=item.couponName==null?"":item.couponName
+                        item.couponMoney=item.couponMoney==null?"0":item.couponMoney
+                        item.addUser=item.addUser==null?"":item.addUser
+                        item.addTime=item.addTime==null?"":item.addTime
+                        item.hasMoney=item.hasMoney==null?"0":item.hasMoney
+
                         str+= '<tr data-id = "'+item.couponId+'">';
                         str+= '<td>'+item.couponName+'</td>';
                         str+= '<td>'+item.couponMoney+'</td>';
