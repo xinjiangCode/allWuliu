@@ -892,33 +892,43 @@ $('.goUser').click(function() {
 
     //拦截链接
     $(document).on('click','a',function(e){
-        e.preventDefault();
-        var isOld = localStorage.getItem('isOld');
-        if(isOld != '2'){
-            var ttxt = $.trim($(this).text());
-            console.log(ttxt);
-            if(ttxt == '用户中心' || ttxt == '立即下单'){
-                if(isOld == '1'){
-                    $('#effect .contTitle span').text('您尚未登录');
-                    missedLogin() ;
-                }else if(isOld == '0'){
-                    missedLogin() ;
-                }else if(isOld == '-1'){
-                    $('#effect .contTitle span').text('您尚未认证');
-                    $('#effect .contTitle i').text('认证');
-                    $('#popLogin').text('认证');
-                    missedLogin() ;
-                }else if(isOld == '-2'){
+//
+        var reUrl01 = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+        debugger
+        if(reUrl01.test($(this).attr("href"))){//判断是不是  http（s）  ftp 网址
 
+        }else{
+
+            e.preventDefault();
+            var isOld = localStorage.getItem('isOld');
+            if(isOld != '2'){
+                var ttxt = $.trim($(this).text());
+                console.log(ttxt);
+                if(ttxt == '用户中心' || ttxt == '立即下单'){
+                    if(isOld == '1'){
+                        $('#effect .contTitle span').text('您尚未登录');
+                        missedLogin() ;
+                    }else if(isOld == '0'){
+                        missedLogin() ;
+                    }else if(isOld == '-1'){
+                        $('#effect .contTitle span').text('您尚未认证');
+                        $('#effect .contTitle i').text('认证');
+                        $('#popLogin').text('认证');
+                        missedLogin() ;
+                    }else if(isOld == '-2'){
+
+                        window.location.href = this.href;
+                    }
+
+                }else{
                     window.location.href = this.href;
                 }
-                
             }else{
                 window.location.href = this.href;
             }
-        }else{
-            window.location.href = this.href;
+
         }
+
     })
 
 // 点击切换咨询
@@ -1015,7 +1025,7 @@ getArticleByCategory(1)
                             str+='<a href="'+item.link+'" style="width: 100%;" target="_blank"><div class="swiper-slide"><img src="'+item.picUrl+'"></div></a>';
                         })
                         $(".swiper-wrapper").html(str)
-                    }else if(position==2){
+                    }else if(position==2 && res.data && res.data.length!=0){
                         $(".dataAnalysis").css("background","url("+res.data[0].picUrl+") no-repeat center center/cover");
                     }
 
@@ -1031,7 +1041,64 @@ getArticleByCategory(1)
 </script>
 
 <script>
+    /**
+     * [处理未读消息]
+     * @param  {[string, object]} msg [string: 'hasBeenRead',
+     object: 未读消息数据]
+     */
+    function yourFunction(msg) {
+        var text = '',
+            num = 0;
+        if (msg === 'hasBeenRead') { // 消息已被阅读
+            num = 0;
+            $('#unreadNum').hide();
+        } else if (typeof(msg) === 'object') {
+            var unreadNum = document.getElementById('unreadNum').innerHTML,
+                lastMsg = msg[msg.length - 1];
+            num = isNaN(+unreadNum) ? msg.length : +unreadNum + msg.length;
+            // content_type 是消息的类型：
+            // text（文字）、photo（图片）、file（文件）
+            // content 是消息的内容
+            if (lastMsg.content_type === 'text') {
+                // 文字消息中可能会存在表情图片，由于路径问题
+                // 将文字消息中的图片处理为文字'[表情]'
+                text = lastMsg.content.replace(
+                    /<img [^>]*src=['"]([^'"]+)[^>]*>/gi, '[表情]'
+                );
+            } else if (lastMsg.content_type === 'photo') {
+                text = '[图片]';
+            } else if (lastMsg.content_type === 'file') {
+                text = '[文件]';
+            } else {
+                text = '[新消息]';
+            }
 
+            $('#unreadNum').show();
+
+        }
+        // 未读消息数量
+        document.getElementById('unreadNum').innerHTML = num;
+        // 最后一条消息的内容
+        // document.getElementById('unreadMsg').innerHTML = text;
+    }
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', '127367');
+
+    //无按钮
+    _MEIQIA('withoutBtn');
+
+    // 获取未读消息
+    _MEIQIA('getUnreadMsg', yourFunction);
 </script>
 
 <script type='text/javascript'>

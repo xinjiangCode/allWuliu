@@ -232,6 +232,17 @@
             success: function (json) {
                 if (json.code == 1) {
                     var zNodes=json.data;
+                    console.log(zNodes)
+                    for(var i=0;i<zNodes.length;i++){
+                        zNodes[i]["pageUrl"] = zNodes[i]["url"];
+                        delete zNodes[i]["url"];
+                        if(zNodes[i].childMenus!=null){
+                        if(zNodes[i].childMenus.length>0){
+                            childMenu(zNodes[i].childMenus)
+                        }
+                        }
+                    }
+                    console.log(zNodes)
                     $.fn.zTree.init($("#treeDemo"), setting, zNodes);
                 } else if (json.code == -1) {
 
@@ -242,6 +253,17 @@
                 console.log(err);
             }
         });
+    }
+    function childMenu(obj) {
+        for(var i=0;i<obj.length;i++){
+            obj[i]["pageUrl"] = obj[i]["url"];
+            delete obj[i]["url"];
+            if(obj[i].childMenus!=null){
+                if(obj[i].childMenus.length>0){
+                    childMenu(obj[i].childMenus)
+                }
+            }
+        }
     }
 
     function onCheck(e,treeId,treeNode){

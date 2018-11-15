@@ -27,33 +27,33 @@
     <div class="containerTop">
         <div class="containerTopLe Lf">
 
-            <div class="containerTopLe1 Lf">
+            <div class="containerTopLe1 Lf" style="margin-left: 60px;">
                 <div class="containerTopLeImg Lf">
                     <img src="../img/cf_integral1.png" alt="">
                 </div>
                 <div class="Lf">
-                    <div style="font-size: 30px;color: #F66132;">8000</div>
+                    <div style="font-size: 30px;color: #F66132;" id="memberIntegralBefore"></div>
                     <div style="font-size: 14px;">总积分</div>
                 </div>
             </div>
-            <div class="containerTopLe1 Lf">
+            <div class="containerTopLe1 Lf" style="margin-left: 60px;">
                 <div class="containerTopLeImg Lf">
                     <img src="../img/cf_integral2.png" alt="">
                 </div>
                 <div class="Lf">
-                    <div style="font-size: 30px;color: #7CBA3F;">3600</div>
+                    <div style="font-size: 30px;color: #7CBA3F;" id="integral"></div>
                     <div style="font-size: 14px;">可用积分</div>
                 </div>
             </div>
-            <div class="containerTopLe1 Lf">
-                <div class="containerTopLeImg Lf">
-                    <img src="../img/cf_integral3.png" alt="">
-                </div>
-                <div class="Lf">
-                    <div style="font-size: 30px;color: #6EA3FF;">600</div>
-                    <div style="font-size: 14px;">已分配积分</div>
-                </div>
-            </div>
+            <!--<div class="containerTopLe1 Lf">-->
+            <!--<div class="containerTopLeImg Lf">-->
+            <!--<img src="../img/cf_integral3.png" alt="">-->
+            <!--</div>-->
+            <!--<div class="Lf">-->
+            <!--<div style="font-size: 30px;color: #6EA3FF;">600</div>-->
+            <!--<div style="font-size: 14px;">已分配积分</div>-->
+            <!--</div>-->
+            <!--</div>-->
 
 
         </div>
@@ -69,51 +69,42 @@
         </div>
     </div>
     <div class="jifenNav" style="overflow: hidden;">
-        <div class="Lf on" style="margin-left: 29px;">积分记录</div>
-        <div class="Lf">兑换记录</div>
+        <div class="Lf on" data-id="" style="margin-left: 29px;cursor: pointer;">积分记录</div>
+        <div class="Lf" data-id="2" style="cursor: pointer;">兑换记录</div>
     </div>
 
-    <div class="jifenjilu listBox">
+    <div class="jifenjilu listBox" style="height: 576px;min-height: 576px;">
         <table>
             <thead>
-                <tr>
-                    <td style="width: 220px;">时间</td>
-                    <td style="width: 90px;"></td>
-                    <td style="width: 274px;">行为</td>
-                    <td style="width: 90px;"></td>
-                    <td>积分数</td>
-                    <td style="width: 120px;"></td>
-                    <td>操作用户</td>
-                </tr>
+            <tr>
+                <td style="width: 220px;">时间</td>
+                <!--<td style="width: 90px;"></td>-->
+                <td style="width: 274px;">行为</td>
+                <!--<td style="width: 90px;"></td>-->
+                <td>积分数</td>
+                <!--<td style="width: 120px;"></td>-->
+                <td>操作用户</td>
+            </tr>
             </thead>
             <tbody >
-                <tr>
-                    <td style="color: #666666;">2018-01-02 10:02:30</td>
-                    <td></td>
-                    <td><i class="jifenSta green">完成任务</i>成功注册账户，获得积分：<i style="color: #f97646;">1</i></td>
-                    <td></td>
-                    <td class="jifenNum">+1</td>
-                    <td></td>
-                    <td>张三</td>
-                </tr>
-                <tr>
-                    <td style="color: #666666;">2018-01-02 10:02:30</td>
-                    <td></td>
-                    <td><i class="jifenSta green">完成任务</i>成功注册账户，获得积分：<i style="color: #f97646;">1</i></td>
-                    <td></td>
-                    <td class="jifenNum">+1</td>
-                    <td></td>
-                    <td>张三</td>
-                </tr>
-                <tr>
-                    <td style="color: #666666;">2018-01-02 10:02:30</td>
-                    <td></td>
-                    <td><i class="jifenSta green">完成任务</i>成功注册账户，获得积分：<i style="color: #f97646;">1</i></td>
-                    <td></td>
-                    <td class="jifenNum">+1</td>
-                    <td></td>
-                    <td>张三</td>
-                </tr>
+            <!--<tr>-->
+            <!--<td style="color: #666666;">2018-01-02 10:02:30</td>-->
+            <!--<td></td>-->
+            <!--<td><i class="jifenSta green">完成任务</i>成功注册账户，获得积分：<i style="color: #f97646;">1</i></td>-->
+            <!--<td></td>-->
+            <!--<td class="jifenNum">+1</td>-->
+            <!--<td></td>-->
+            <!--<td>张三</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td style="color: #666666;">2018-01-02 10:02:30</td>-->
+            <!--<td></td>-->
+            <!--<td><i class="jifenSta green">完成任务</i>成功注册账户，获得积分：<i style="color: #f97646;">1</i></td>-->
+            <!--<td></td>-->
+            <!--<td class="jifenNum">+1</td>-->
+            <!--<td></td>-->
+            <!--<td>张三</td>-->
+            <!--</tr>-->
             </tbody>
         </table>
     </div>
@@ -159,7 +150,105 @@
     $(".jifenNav>div").click(function () {
         $(".jifenNav>div").removeClass("on");
         $(this).addClass("on");
+        getData(1);
     })
+    getJiFen();
+    getData(1);
+    //获取数据
+    function getData(currentPage) {
+        $(".listBox tbody").html("");
+        $.ajax({
+            url: pubIP + 'userInfo/JfUserInfo', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+                iDisplayStart:currentPage,
+                iDisplayLength:pageSize,
+                startTime:'',
+                endTime:'',
+                integralType:$(".jifenNav .on").attr("data-id"),
+            },
+            success: function (res) {
+                //首次请求时 改变分页数据
+                if(res.aData.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
+                $(".pagination").parent().css("display","block");
+                if(currentPage==1){
+                    //修改底部分页
+                    var pageNum=Math.ceil(res.iTotalRecords/pageSize);
+                    $(".allPageN").attr("pageTotal",pageNum);
+                    $(".pageJump i").text("共"+pageNum+"页,"+"共"+res.iTotalRecords+"条");
+                    $('.objListBox>div:nth-child(5n)').css('margin-right','0');
+                    Page({
+                        num: pageNum,
+                        elem: $('#page1'),
+                        callback: function(n) {
+                            // console.log(n);
+                            getData(n);//加载n页数据
+                        }
+                    });
+                }
+                //修改底部页数
+                $(".allPageN").text((currentPage)+"/"+ $(".allPageN").attr("pageTotal"));
+                cf_dataRender(res.aData)
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
+    function cf_dataRender(list) {
+        console.log(list)
+        var str="";
+        $.each(list,function (idx,item) {
+            item.userName=item.userName==null?"":item.userName
+            item.score=item.score==null?"":item.score;
+            item.score=item.score==null?"0":item.score;
+            item.time=item.time==null?"":timestampToTime1(item.time);
+
+            str+='<tr>'
+            str+='<td style="color: #666666;">'+item.time+'</td>'
+            str+='<td><i class="jifenSta green" style="display: none;">'+item.source+'</i>'+item.source+'<i style="color: #f97646;">'+item.score+'</i></td>'
+            str+='<td class="jifenNum">'+item.score+'</td>'
+            str+='<td>'+item.userName+'</td>'
+            str+='</tr>'
+        })
+        $(".listBox tbody").html(str)
+    }
+
+    function getJiFen() {
+        $.ajax({
+            url: pubIP + 'userInfo/mainUserIntegralInfo', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+
+            },
+            success: function (res) {
+                if(res.code=="0"){
+                    $("#integral").text(res.data.integral==null?"0":res.data.integral)
+                    $("#memberIntegralBefore").text(res.data.memberIntegralBefore==null?"0":res.data.memberIntegralBefore)
+                }else{
+                    cf_alert01(2,res.msg)
+                }
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 </script>
 </body>
 </html>

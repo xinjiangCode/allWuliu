@@ -1,110 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Cache-Control" CONTENT="no-cache">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta name="format-detection" content="telephone=no" />
-    <title>新疆物流服务平台</title>
-    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
-    <link rel="stylesheet" href="../css/setUp_messageManage.css">
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Cache-Control" CONTENT="no-cache">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="format-detection" content="telephone=no" />
+	<title>新疆物流服务平台</title>
+	<link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/commin.css"/>
+	<link rel="stylesheet" href="../css/setUp_messageManage.css">
+	<style>
+		.searchResultBtn{
+			outline: none;
+			border: none;
+			padding: 0;
+			text-align: center;
+			width: 94px;
+			color: #fff;
+			background: #6ba1ff;
+			cursor: pointer;
+			border-radius: 3px;
+			height: 38px;
+			box-sizing: border-box;
+			margin-left: 0px;
+			float: right;
+			margin-top: 20px;
+			margin-right: 11px;
+		}
+	</style>
 </head>
 <body>
 <!--消息管理-->
-    <div class="rightContBox" style="float: none;">
-    	<!--头部-->
-    	<div class="boxHead">
-    		<div class="headLeft">消息管理</div>
-    		<!--<div class="headRight cfRefresh">-->
-    			<!--<img src="../img/yh_refresh2.png"/>-->
-    			<!--<span>刷新</span>-->
-    		<!--</div>-->
-    	</div>
-    	<!--<div class="filtersech">-->
-    		<!--<div class="filter1">筛选查询</div>-->
-    		<!---->
-    		<!--<div class="filter3">查询结果</div>-->
-    		<!--<div class="filter2"><input type="checkbox" name="" id="" value="" />收起筛选</div>-->
-    	<!--</div>-->
-    	<div class="messages">
-    		<div class="mesgfirst"><span>消息标题</span><input placeholder="消息标题" type="text" name="" id="" value="" /></div>
-    		<div><span>消息类型</span><div><img style="position: absolute;top: 11px;" src="../img/cf_open.png"/><label>全部</label></div></div>
-    		<div class="mesglast"><span>发布时间</span><div><img src="../img/yh_rili.png"/><input type="text" placeholder="请选择日期" name="" id="" value="" /></div></div>
-    	</div>
-    	<div class="record">
-    		<div></div>
-			<div class="goodsType input select" data-selectedindex="0"><span>排序方式</span><img src="../img/prl-select.jpg" >
-				<ul>
-					<li data-index="1">待分配订单</li>
-					<li data-index="2">进行中订单</li>
-					<li data-index="3">完成待审核订单</li>
-					<li data-index="3">已完成订单</li>
-				</ul>
-			</div>
-			<div class="goodsType input select" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" >
-				<ul>
-					<li data-index="1">待分配订单</li>
-					<li data-index="2">进行中订单</li>
-					<li data-index="3">完成待审核订单</li>
-					<li data-index="3">已完成订单</li>
-				</ul>
-			</div>
-    		<!--<div>排序方式<img src="../img/cf_open.png"/></div>-->
-    		<!--<div>显示条数<img src="../img/cf_open.png"/></div>-->
-    	</div>
-    	<div class="listBox">
-			<table class="contentslist">
-				<thead>
-				<tr>
-					<!--<th><input type="checkbox" name="" id="" value="" /></th>-->
-					<!--<th>编号</th>-->
-					<!--<th style="display: block;opacity: 0;">哈克斯</th>-->
-					<th>消息标题</th>
-					<th>发布时间</th>
-					<th>消息类型</th>
-					<th>操作</th>
-				</tr>
-				</thead>
-				<tbody>
-					<!--<tr>-->
-						<!--<td><input type="checkbox" name="" id="" value="" /></td>-->
-						<!--<td>10000001</td>-->
-						<!--<td style="display: block;opacity: 0;">阿酷</td>-->
-						<!--<td>消息推送</td>-->
-						<!--<td> 2017-09-23 10：30：23 </td>-->
-						<!--<td>系统推送</td>-->
-						<!--<td><a href="" class="lookover">查看</a><a href="" class="delect">删除</a></td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td><input type="checkbox" name="" id="" value="" /></td>-->
-						<!--<td>10000001</td>-->
-						<!--<td style="display: block;opacity: 0;">阿酷</td>-->
-						<!--<td>消息推送</td>-->
-						<!--<td> 2017-09-23 10：30：23 </td>-->
-						<!--<td>系统推送</td>-->
-						<!--<td><a href="" class="lookover">查看</a><a href="" class="delect">删除</a></td>-->
-					<!--</tr>-->
-				</tbody>
-			</table>
-		</div>
-
-		<div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
-			<ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
-			<div class="pageJump">
-				<span class="allPageN">1/200</span>
-				<i style="margin-left: 12px;">共200页</i>，
-				<span>到第</span>
-				<input type="text"/>
-				<span>页</span>
-				<button type="button" class="button">GO</button>
-			</div>
-		</div>
-
+<div class="rightContBox" style="float: none;">
+	<!--头部-->
+	<div class="boxHead">
+		<div class="headLeft">消息管理</div>
+		<!--<div class="headRight cfRefresh">-->
+		<!--<img src="../img/yh_refresh2.png"/>-->
+		<!--<span>刷新</span>-->
+		<!--</div>-->
 	</div>
+	<!--<div class="filtersech">-->
+	<!--<div class="filter1">筛选查询</div>-->
+	<!---->
+	<!--<div class="filter3">查询结果</div>-->
+	<!--<div class="filter2"><input type="checkbox" name="" id="" value="" />收起筛选</div>-->
+	<!--</div>-->
+	<div class="messages">
+		<div class="mesgfirst" style="width: 260px;"><span>消息标题</span><input placeholder="消息标题" type="text" name="" id="msgTitle"  style="width: 160px"></div>
+		<!--<div><span>消息类型</span>-->
+		<!--<div class="select" data-selectedindex="0"><span style="margin-left: 0;"></span><img src="../img/prl-select.jpg" alt="">-->
+		<!--<ul>-->
+		<!--<li data-index="1">10</li>-->
+		<!--<li data-index="2">20</li>-->
+		<!--<li data-index="3">30</li>-->
+		<!--</ul>-->
+		<!--</div>-->
+		<!--</div>-->
+		<div class="mesglast" style="width: 550px;">
+			<span>发布时间</span>
+			<div style="width: 182px;">
+				<input style="width: 89%;" type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test1">
+			</div>
+			<span style="margin: 0 5px;">-</span>
+			<div style="width: 182px;">
+				<input style="width: 89%;" type="text" class="date-input laydate-icon publishTime input" placeholder="请选择日期" id="test2">
+			</div>
+		</div>
+		<input class="searchResultBtn btn input" type="button" value="查询结果" style="margin-left: 0px; float: right; margin-top: 20px; margin-right: 11px;">
+	</div>
+	<!--<div class="record">-->
+	<!--<div></div>-->
+	<!--<div class="goodsType input select" data-selectedindex="0"><span>排序方式</span><img src="../img/prl-select.jpg" >-->
+	<!--<ul>-->
+	<!--<li data-index="1">待分配订单</li>-->
+	<!--<li data-index="2">进行中订单</li>-->
+	<!--<li data-index="3">完成待审核订单</li>-->
+	<!--<li data-index="3">已完成订单</li>-->
+	<!--</ul>-->
+	<!--</div>-->
+	<!--<div class="goodsType input select" data-selectedindex="0"><span>显示条数</span><img src="../img/prl-select.jpg" >-->
+	<!--<ul>-->
+	<!--<li data-index="1">待分配订单</li>-->
+	<!--<li data-index="2">进行中订单</li>-->
+	<!--<li data-index="3">完成待审核订单</li>-->
+	<!--<li data-index="3">已完成订单</li>-->
+	<!--</ul>-->
+	<!--</div>-->
+	<!--&lt;!&ndash;<div>排序方式<img src="../img/cf_open.png"/></div>&ndash;&gt;-->
+	<!--&lt;!&ndash;<div>显示条数<img src="../img/cf_open.png"/></div>&ndash;&gt;-->
+	<!--</div>-->
+	<div class="listBox">
+		<table class="contentslist">
+			<thead>
+			<tr>
+				<!--<th><input type="checkbox" name="" id="" value="" /></th>-->
+				<!--<th>编号</th>-->
+				<!--<th style="display: block;opacity: 0;">哈克斯</th>-->
+				<th>消息标题</th>
+				<th>发布时间</th>
+				<th>消息类型</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!--<tr>-->
+			<!--<td><input type="checkbox" name="" id="" value="" /></td>-->
+			<!--<td>10000001</td>-->
+			<!--<td style="display: block;opacity: 0;">阿酷</td>-->
+			<!--<td>消息推送</td>-->
+			<!--<td> 2017-09-23 10：30：23 </td>-->
+			<!--<td>系统推送</td>-->
+			<!--<td><a href="" class="lookover">查看</a><a href="" class="delect">删除</a></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td><input type="checkbox" name="" id="" value="" /></td>-->
+			<!--<td>10000001</td>-->
+			<!--<td style="display: block;opacity: 0;">阿酷</td>-->
+			<!--<td>消息推送</td>-->
+			<!--<td> 2017-09-23 10：30：23 </td>-->
+			<!--<td>系统推送</td>-->
+			<!--<td><a href="" class="lookover">查看</a><a href="" class="delect">删除</a></td>-->
+			<!--</tr>-->
+			</tbody>
+		</table>
+	</div>
+
+	<div class="" style="text-align: center;height: 75px;padding-top: 17px;margin-bottom: 0;border-top: 1px solid #ebe9ea;">
+		<ul class="pagination" id="page1" style="position: static;margin-bottom: 0;"></ul>
+		<div class="pageJump">
+			<span class="allPageN">1/200</span>
+			<i style="margin-left: 12px;">共200页</i>，
+			<span>到第</span>
+			<input type="text"/>
+			<span>页</span>
+			<button type="button" class="button">GO</button>
+		</div>
+	</div>
+
+</div>
 <!--</div>-->
 
 <!--<script src="../js/footer.js" type="text/javascript" charset="utf-8"></script>-->
@@ -112,13 +148,29 @@
 <script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/pager.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="../laydate/laydate.js"></script> <!-- 改成你的路径 -->
 
 <script type="text/javascript" >
     //Iframe 的高度
     $(function () {
         window.parent.$("#Iframe").css("height","922");
     })
+    laydate({
+        elem: '#test1',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+//            startTime = dates;
+        }
+    });
+    laydate({
+        elem: '#test2',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        choose: function(dates){ //选择好日期的回调
+//            startTime = dates;
+        }
+    });
 
     $('.objListBox>div:nth-child(5n)').css('margin-right','0');
     Page({
@@ -128,6 +180,10 @@
             console.log(n);
         }
     });
+    $(".searchResultBtn").unbind();
+    $(".searchResultBtn").click(function () {
+        getData(1);
+    })
     getData(1);
     //获取数据
     function getData(currentPage) {
@@ -145,11 +201,15 @@
             data:{
                 companyId:"9041805231046330013",
                 sort:$(".sort").attr("data-selectedindex"),
-                pageSize:2,
+                pageSize:pageSize,
                 page:currentPage,
-                token: token
+                token: token,
+                title:$("#msgTitle").val(),
+                startTime:$("#test1").val(),
+                endTime:$("#test2").val()
             },
             success: function (res) {
+                $(".searchResultBtn").css("margin-top","20px")
                 if(res.code==1){
                     //首次请求时 改变分页数据
                     if(res.data.length==0){ $(".listBox tbody").html("");$(".pagination").parent().css("display","none"); return;}
@@ -189,11 +249,11 @@
             str+='<tr data-id="'+item.id+'">';
             str+='<td>'+item.names+'</td>'
             str+='<td>'+item.addTimeStr+'</td>'
-			if(item.type=="0"){
+            if(item.type=="0"){
                 str+='<td>站内信</td>'
-			}else{
+            }else{
                 str+='<td>短信</td>'
-			}
+            }
             str+='<td><a href="" class="lookover">查看</a><a href="" class="delect">删除</a></td>'
             str+='</tr>'
         })
@@ -208,30 +268,10 @@
             sessionStorage.setItem("detailId",$(this).parent().attr("data-id"));
             window.location.href="./vehicleDetail.html";
         })
-//		编辑
-        $(".editList").click(function () {
-            resetModelBox12()//先清空框
-            window.parent.$(".modelBox12").show();
-            window.parent.$(".modelBox12").attr("data-id",$(this).parents("tr").attr("data-id"));
-            returnShow($(this).parents("tr").attr("data-id"));
-
-            window.parent.$("#addCarNo").attr("readonly","readonly");
-
-        })
         //删除
         $(".delect").click(function () {
             upadtaState(1,this);
         })
-        //启用和禁用
-        $(".chooseswitch input[type='checkbox']").change(function() {
-            console.log($(this).prop("checked"));
-            if($(this).prop("checked")){
-                upadtaState(2,this);
-            }else {
-                upadtaState(3,this);
-            }
-
-        });
     }
     //选择排序方式
     $(".select ul li").click(function () {

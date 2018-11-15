@@ -1,13 +1,18 @@
 
 // var pubIP = 'http://192.168.1.72:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
-// var pubIP = 'http://api.test.hdlsuper.com/service/';
+var pubIP = 'http://api.test.hdlsuper.com/service/';
 
 // var pubIP = 'http://wl.api.xjv56.com/srvice/';
 
+//交易ip
+var JiaoYiIp="http://web.test.xjv56.com/memberOfTheMall/memberOfTheMall.html"  //线上测试
+// var JiaoYiIp="http://web.xjv56.com/memberOfTheMall/memberOfTheMall.html"        //线上
+// var JiaoYiIp="http://192.168.1.80:8180/memberOfTheMall/memberOfTheMall.html"
+// var JiaoYiIp="http://web.test.xjv56.com/index.html"
 // 权限开关
-var AuthSwitch=0
+var AuthSwitch=1
 //需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
 
 
@@ -21,7 +26,14 @@ function getUrlParms(name){
         return unescape(r[2]);
     return null;
 }
-
+//获取top地址栏参数，name:参数名称
+function getUrlParmsTop(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.top.location.search.substr(1).match(reg);
+    if(r!=null)
+        return unescape(r[2]);
+    return null;
+}
 
 
 var token=localStorage.getItem("token");
@@ -177,8 +189,8 @@ $(document).on('click', '.exit', function() {
             token: localStorage.getItem("token")
         },
         success: function (data) {
-            console.log(data);
-            if (data.code == 1) {
+            // console.log(data);
+            // if (data.code == 1) {
                 window.localStorage.removeItem('token');
                 console.log(window.localStorage.getItem('isOld'));
                 // window.localStorage.setItem('data-logout', 'true');
@@ -191,7 +203,9 @@ $(document).on('click', '.exit', function() {
                 } else if (company_type == '2') {
                     location.href = 'login.html';
                 }
-            }
+            // }else{
+            //
+            // }
 
         },
         error: function (err) {
@@ -201,7 +215,8 @@ $(document).on('click', '.exit', function() {
 })
 
 
-if(token) {
+if(token && getUrlParmsTop("type")==null) {
+
     //底部信息ajax
     // $.ajax({
     //     type: "post",
@@ -308,7 +323,7 @@ if(token) {
               
           }
     });
-}else{
+}else if(getUrlParms("type")==null){
     localStorage.setItem('isOld','1');
     //if(adct=="acount"){
         missedLogin() ;
@@ -319,18 +334,20 @@ if(token) {
 
 
 $(function () {
-    // if(getUrlParms("type")!=null && getUrlParms("token")!=null && getUrlParms("orderId")!=null){
-    //     localStorage.setItem("company_type",1);
-    //     sessionStorage.setItem("jiaoYiType",getUrlParms("type"));
-    //     localStorage.setItem("token",getUrlParms("token"));
-    //     sessionStorage.setItem("isfromjiaoyi",1);
-    //     sessionStorage.setItem("fromjiaoyi_productName",decodeURI(getUrlParms("productName")));
-    //     sessionStorage.setItem("fromjiaoyi_sum",getUrlParms("sum"));
-    //     sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
-    //     sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
-    //     sessionStorage.setItem("fromjiaoyi_chemicalName",decodeURI(getUrlParms("chemicalName")));
-    //     window.location.href="account.html"
-    // }
+    if(getUrlParms("type")!=null){
+        // localStorage.setItem("company_type",1);
+        // sessionStorage.setItem("jiaoYiType",getUrlParms("type"));
+        // localStorage.setItem("token",getUrlParms("token"));
+        // sessionStorage.setItem("isfromjiaoyi",1);
+        // sessionStorage.setItem("fromjiaoyi_productName",decodeURI(getUrlParms("productName")));
+        // sessionStorage.setItem("fromjiaoyi_sum",getUrlParms("sum"));
+        // sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
+        // sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
+        // sessionStorage.setItem("fromjiaoyi_chemicalName",decodeURI(getUrlParms("chemicalName")));
+        // sessionStorage.setItem("cfsrc","./personal/mine.html")
+        // window.location.href="account.html"
+        return;
+    }
     var company_type = localStorage.getItem('company_type');
     var url = window.location.href;
     if (url.indexOf('account.html') != -1) {

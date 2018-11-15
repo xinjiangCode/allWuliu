@@ -1,17 +1,24 @@
 
 // var pubIP = 'http://192.168.1.72:7777/service/';
-var pubIP = 'http://192.168.1.199:7777/service/';
+// var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
-// var pubIP = 'http://api.test.hdlsuper.com/service/';
+var pubIP = 'http://api.test.hdlsuper.com/service/';
 // 上传图片路径
 // var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
 var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 //下载
 // var downIP = 'http://file.xjv56.com/bfile/fileDown.htm';
 var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
+
+//交易ip
+var JiaoYiIp="http://web.test.xjv56.com/memberOfTheMall/memberOfTheMall.html"  //线上测试
+// var JiaoYiIp="http://web.xjv56.com/memberOfTheMall/memberOfTheMall.html"        //线上
+// var JiaoYiIp="http://192.168.1.80:8180/memberOfTheMall/memberOfTheMall.html"
+// var JiaoYiIp="http://web.test.xjv56.com/index.html"
+
 // 权限开关
-var AuthSwitch=0;
+var AuthSwitch=1;
 //需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
 
 //获取地址栏参数，name:参数名称
@@ -180,6 +187,7 @@ $(document).on('click', '.exit', function() {
                 $('.exit').hide();
                 $("#loginPub").show();
                 $('#userNamePub').html('你好，游客');
+                location.href = 'login.html';
             }
 
         },

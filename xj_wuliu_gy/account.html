@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
 
     <style>
-        .modelBox11 p, .modelBox1 p, .modelBox12 p, .modelBoxdiaoling p, .no_zizhi p, .all_success_alert p, .all_error_alert p,  .all_warn_alert p {
+        .modelBox11 p, .modelBox1 p, .modelBox12 p, .modelBoxdiaoling p, .no_zizhi p, .all_success_alert p,.noInfo p,.all_error_alert p,  .all_warn_alert p {
             text-align: center;
         }
 
@@ -56,7 +56,7 @@
             text-align: center;
             margin-top: 7px;
         }
-        .modelBox55{
+        .modelBox55,.noInfo{
             z-index: 9999;
             display: none;
             position: fixed;
@@ -600,7 +600,7 @@
                 </div>
             </div>
 
-            <div class="forget2"><a href="##">忘记密码?</a></div>
+            <div class="forget2"><a href="../getPayPass.html">忘记密码?</a></div>
             <div class="popBottom">
                 <div class="btn Lf popCancel close" onclick="close1(this)">取消</div>
                 <div class="btn Lf popSure" style="margin-left: 20px;" id="updataPayPwdSub">确定</div>
@@ -1324,7 +1324,7 @@
                     <div class="itemLeftTitle Lf">支付密码：</div>
                     <div class="itemRight Lf">
                         <input class="pay_pass_input" type="password" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #e7e7e7">
-                        <a href="../findPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
+                        <a href="../getPayPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
                     </div>
                 </div>
                 <div class="item clearfix">
@@ -1364,7 +1364,7 @@
                     <div class="itemLeftTitle Lf "><i style="color: red;">* </i>支付密码：</div>
                     <div class="itemRight Lf">
                         <input type="password" class="payPassWord" style="width: 230px;height: 33px;line-height: 33px;border: 1px solid #e7e7e7">
-                        <a href="../findPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
+                        <a href="../getPayPass.html" style="font-size: 16px;color: #5690f6;margin-left: 20px;">忘记密码？</a>
                     </div>
                 </div>
                 <div class="item clearfix">
@@ -2066,6 +2066,24 @@
                 <div class="info">
                     <div class="img_div"><img style="float: none;" src="img/gsxq_success.gif" alt=""></div>
                     <p class="innerSuccmsg"></p>
+                </div>
+                <div class="modelBtnBox">
+                    <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="noInfo" style="z-index: 99999;display: none;">
+        <div class="modelCont">
+            <div class="modeltitle">
+                <span>消息提示</span>
+                <img class="close" style="float: right;cursor: pointer;" height="50" src="img/gsxq_del.png" alt="">
+            </div>
+            <div class="modelcontent">
+                <div class="info">
+                    <div class="img_div"><img style="float: none;" src="img/cf_denger1.png" alt=""></div>
+                    <p class="innerErrmsg"></p>
                 </div>
                 <div class="modelBtnBox">
                     <div style="background:#5690f6;" class="modelbtn confirm">确&nbsp;&nbsp;&nbsp;&nbsp;定</div>
@@ -2791,8 +2809,7 @@ function showMangeList(idx,that) {
 
     var iden = sessionStorage.getItem('cfsrc');
 
-    if (iden.indexOf('identification') != -1) {
-
+    if (iden!=null && iden.indexOf('identification') != -1) {
         $('.wrz').css('display', 'block');
         $('.wrz .manage').parent().find("ul").css('display', 'block');
         $('.wrz .manage').find('img').eq(0).attr('src',$(this).find('img').eq(0).attr('src')==="./img/cf_open.png"?"./img/cf_close.png":"./img/cf_open.png");
@@ -3142,7 +3159,6 @@ function showModelBox(cls) {
                 sessionStorage.setItem("isAddRequireMent",1)
                 sessionStorage.setItem("isfromjiaoyi",0);
             }else if(sessionStorage.getItem("jiaoYiType")==2){//去订单
-
                 $.ajax({
                     url: pubIP + 'wlLogisticsDemand/queryByIdOrNo', /*v1.0*/
                     type: 'get',
@@ -3158,7 +3174,12 @@ function showModelBox(cls) {
                     },
                     success: function (data) {
                         if(data.data==null){
-                            alert("未查询到该订单，无法查看详情")
+                            if( sessionStorage.getItem("isfromjiaoyi")!="0"){
+                                sessionStorage.setItem("cfsrc","./personal/mine.html");
+                                $(".noInfo").show();
+                                $(".noInfo .innerErrmsg").text("未查询到该订单，无法查看详情")
+                                sessionStorage.setItem("isfromjiaoyi","0");
+                            }
                         }else{
                             sessionStorage.setItem("detailId",data.data.id);
                             sessionStorage.setItem("detailTitle","需求详情");
@@ -3179,7 +3200,14 @@ function showModelBox(cls) {
 
         }
     })
-
+    //未查询到订单详情
+    $(".noInfo .confirm").unbind();
+    $(".noInfo .confirm").click(function () {
+//        $("#Iframe").attr("src","./personal/mine.html")
+        sessionStorage.setItem("cfsrc","./personal/mine.html");
+        $(".noInfo").hide();
+        window.location.reload();
+    })
 </script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 // 公共头
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
-var headerip = 'http://192.168.1.199:7777/service/';
+// var headerip = 'http://192.168.1.199:7777/service/';
 // var headerip = 'http://192.168.1.72:7777/service/';
 // var headerip = 'http://api.hdlsuper.com/service/';
-// var headerip = 'http://api.test.hdlsuper.com/service/';
+var headerip = 'http://api.test.hdlsuper.com/service/';
 
 // var headerip = 'http://wl.api.xjv56.com/service/';
 
@@ -147,9 +147,11 @@ window.onload=function () {
         sessionStorage.setItem("fromjiaoyi_orderId",getUrlParms("orderId"));
         sessionStorage.setItem("fromjiaoyi_chemicalId",getUrlParms("chemicalId"));
         sessionStorage.setItem("fromjiaoyi_chemicalName",hexToDec(getUrlParms("chemicalName")));
+        sessionStorage.setItem("cfsrc","./personal/mine.html")
         window.location.href="account.html"
+        return;
     }
-    if(localStorage.getItem("token")){
+    if(localStorage.getItem("token") && getUrlParms("type")==null){
         //判断登录状态
         $.ajax({
             type:"post",
@@ -176,7 +178,7 @@ window.onload=function () {
 
             }
         });
-    }else{
+    }else if(getUrlParms("type")==null){
         $("#loginPub").show();
         $(".exit").hide();
         $('#userNamePub').html('你好，游客');

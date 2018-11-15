@@ -840,9 +840,9 @@ $(".cf_sel").eq(0).click(function () {
 //                paymentMode:$("#paymentMode").find("span").text(),  //	是	String(8)	结算方式(付款方式)：（到付）（预付）
                 paymentType:$("#paymentType").find("span").text(),  //	是	String(8)	支付方式：（现汇）（承兑）（现汇+承兑）
 //                receipt:  //	是	String(8)	是否需要回执单：0 不需要；1 需要
-//                planStartDate:$("#planStartDate").val(),  //	是	datetime	计划发货时间
+                planStartDate:$(".startDate").val(),  //	是	datetime	计划发货时间
                 planEndDate:$(".planEndDate").val(), //	是	datetime	计划到货时间
-                startDate:$(".startDate").val(),  //	否	datetime	发货时间
+//                startDate:$(".startDate").val(),  //	否	datetime	发货时间
 //                endDate:  //	否	datetime	到货时间
                 orderType:$("#orderType").find("span").text(),  //	是	String(8)	订单类型：单次运输订单 多次运输订单
                 goodsRemark:$("#goodsRemark").val(),  //	是	String(500)	货物备注

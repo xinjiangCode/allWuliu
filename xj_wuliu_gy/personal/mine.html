@@ -146,21 +146,21 @@
             </div>
         </div>
 
-        <div style="margin-top: 10px;color: #666666;font-size: 14px;">常用功能</div>
+        <div class="GNTitle" style="margin-top: 10px;color: #666666;font-size: 14px;">常用功能</div>
         <div class="GNList">
-            <div class="GN1 GN" onclick=" sessionStorage.setItem('isAddRequireMent',1);window.location.href='./addRequireMent.html'">
+            <div class="GN1 GN" data-moduId="A" onclick=" sessionStorage.setItem('isAddRequireMent',1);window.location.href='./addRequireMent.html'">
                 <i>发布订单</i>
                 <img src="" alt="">
             </div>
-            <div class="GN2 GN" onclick="window.location.href='../order/priceAjustApplication.html'">
+            <div class="GN2 GN" data-moduId="B" onclick="window.location.href='../order/priceAjustApplication.html'">
                 <i>调价申请</i>
                 <img src="" alt="">
             </div>
-            <div class="GN3 GN" onclick="window.location.href='../financialManage/moneyChongZhi.html'">
+            <div class="GN3 GN" data-moduId="C" onclick="window.location.href='../financialManage/moneyChongZhi.html'">
                 <i>平台充值</i>
                 <img src="" alt="">
             </div>
-            <div class="GN4 GN" onclick="goTixian()">
+            <div class="GN4 GN" data-moduId="D" onclick="goTixian()">
                 <i>平台提现</i>
                 <img src="" alt="">
             </div>
@@ -202,13 +202,14 @@
                 <div class="EngTitle">Advertising display</div>
                 <div class="moreSer">更多商业机会 <img src="../img/cf_more.png" alt=""></div>
             </div>
-            <div class="ser ser3">
+            <div class="ser ser3" style="position: relative;">
                 <div class="imgs">
                     <img src="../img/cf_ser3.png" alt="">
                 </div>
                 <div class="chTitle">会员商城</div>
                 <div class="EngTitle">LOCATION</div>
                 <div class="moreSer">更快捷 更方便 <img src="../img/cf_more.png" alt=""></div>
+                <a id="goJiaoyi" href="" target="_blank" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;height: 100%;width: 100%;"></a>
             </div>
         </div>
     </div>
@@ -261,6 +262,9 @@
     $(function () {
         window.parent.$("#Iframe").css("height","858");
     })
+
+    //积分商城 路径
+    $("#goJiaoyi").attr("href",JiaoYiIp+"?token="+token+'&type=1')
 
     $(".cfnav").click(function () {
         $(".cfnav").removeClass("on");
@@ -543,7 +547,7 @@
                     },1000);
 
                 } else {
-                    alert(data.msg);
+                    cf_alert01(2,data.msg);
                     return;
                 }
             },
@@ -645,6 +649,77 @@
                 })
             },
             error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+
+    //进入页面加载数据
+    getDataState(1);
+    //获取数据
+    function getDataState(currentPage) {
+        $.ajax({
+            url: pubIP + 'modu/moduShow', /*v1.0*/
+            type: 'post',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+                token: token
+            },
+            cache: false,
+            ansyc: true,
+            dataType: 'json',
+            data:{
+
+            },
+            success: function (res) {
+                if(res.code==0){
+                    var isShowGNList=false;
+                    $.each(res.data,function (idx,item) {
+                        if(item.moduId=="A"){
+                            if(item.showFlag==1){
+                                $(".GNList .GN1").hide();
+                            }else{
+                                $(".GNList .GN1").show();
+                                isShowGNList=true;
+                            }
+                        }else if(item.moduId=="B"){
+                            if(item.showFlag==1){
+                                $(".GNList .GN2").hide();
+                            }else{
+                                $(".GNList .GN2").show();
+                                isShowGNList=true;
+                            }
+                        }else if(item.moduId=="C"){
+                            if(item.showFlag==1){
+                                $(".GNList .GN3").hide();
+                            }else{
+                                $(".GNList .GN3").show();
+                                isShowGNList=true;
+                            }
+                        }else if(item.moduId=="D"){
+                            if(item.showFlag==1){
+                                $(".GNList .GN4").hide();
+                            }else{
+                                $(".GNList .GN4").show();
+                                isShowGNList=true;
+                            }
+                        }
+                    })
+//                    判断列表是否显示
+                    if(isShowGNList==true){
+                        $(".GNList").show();
+                        $(".GNTitle").show();
+
+                    }else{
+                        $(".GNList").hide();
+                        $(".GNTitle").hide();
+                    }
+                }else{
+                    cf_alert01(2,res.msg);
+                }
+            },
+            error: function(err){
                 console.log(err);
             }
         });

@@ -3,9 +3,9 @@
 var adct = document.getElementsByTagName('title')[0].getAttribute('adct');
 //公共IP
 // var headerip = 'http://192.168.1.72:7777/service/';
-var headerip = 'http://192.168.1.199:7777/service/';
+// var headerip = 'http://192.168.1.199:7777/service/';
 // var headerip = 'http://api.hdlsuper.com/service/';
-// var headerip = 'http://api.test.hdlsuper.com/service/';
+var headerip = 'http://api.test.hdlsuper.com/service/';
 // var headerip = 'http://wl.api.xjv56.com/service/'; //不需要了
 //
 
@@ -41,7 +41,13 @@ if(getUrlParms("type")!=null){
                 //     str += '<div class="cfnav cfnav'+(idx+1)+' on" data-class="cfnav'+(idx+1)+'" data-href="'+item.navigationUrl+'"><span >'+item.navigationName+'</span></div>'
                 // }else{
                 if(item.navigationStatus==1){
-                    str += '<div class="cfnav cfnav'+(idx+1)+'" data-class="cfnav'+(idx+1)+'" data-href="'+item.navigationUrl+'"><span>'+item.navigationName+'</span></div>'
+
+                    if(item.navigationId==6){//交易
+                        str += '<div style="position: relative;" class="cfnav cfnav'+(idx+1)+'" data-class="cfnav'+(idx+1)+'" data-href=""><span>'+item.navigationName+'</span><a target="_blank" href="'+item.navigationUrl+'" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;height: 100%;width: 100%;"></a></div>'
+                    }else{
+                        str += '<div class="cfnav cfnav'+(idx+1)+'" data-class="cfnav'+(idx+1)+'" data-href="'+item.navigationUrl+'"><span>'+item.navigationName+'</span></div>'
+                    }
+
                 }
             })
             document.writeln("<header>\n" +
