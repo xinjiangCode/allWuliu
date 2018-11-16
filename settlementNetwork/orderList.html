@@ -545,8 +545,8 @@
             $(window.parent.document).find('.money_ok').attr('data-tloContractAmount', $(this).parents("tr").attr('data-tloContractAmount'));
             $(window.parent.document).find('.money_ok').attr('data-tlosettlementAmount', $(this).parents("tr").attr('data-tlosettlementAmount'));
             $(window.parent.document).find('.money_ok').attr('data-tloId', $(this).parents("tr").attr('data-tloId'));
-            window.parent.$(".modelBox9 .hetong").text("¥"+$(this).parents("tr").parents("tr").attr('data-tloContractAmount'))
-            window.parent.$(".modelBox9 .shiji").text("¥"+$(this).parents("tr").parents("tr").attr('data-tlosettlementAmount'))
+            window.parent.$(".modelBox9 .hetong").text("¥"+$(this).parents("tr").attr('data-tloContractAmount'))
+            window.parent.$(".modelBox9 .shiji").text("¥"+$(this).parents("tr").attr('data-tlosettlementAmount'))
             window.parent.showModelBox('.modelBox9');
         });
 
