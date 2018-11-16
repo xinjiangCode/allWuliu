@@ -12,7 +12,7 @@ var JiaoYiIp="http://web.test.xjv56.com/memberOfTheMall/memberOfTheMall.html"  /
 // var JiaoYiIp="http://192.168.1.80:8180/memberOfTheMall/memberOfTheMall.html"
 // var JiaoYiIp="http://web.test.xjv56.com/index.html"
 // 权限开关
-var AuthSwitch=1
+var AuthSwitch=0
 //需要在列表接口后调此方法 getAuthor11() 并且将权限按钮添加  类名authorityBtn
 
 
