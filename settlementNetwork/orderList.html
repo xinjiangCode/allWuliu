@@ -336,7 +336,7 @@
     function cf_dataRender(data) {
         var str='';
         $.each(data,function (idx,item) {
-            str+='<tr data-id="'+item.tloId+'" data-tloId="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'" data-companyname="'+item.companyName+'" data-quotesSatus="'+item.goodsType+'" data-tloContractAmount="'+item.unitPrice+'"  data-tloContractAmount="'+item.tloContractAmount+'"  data-danjia="'+item.unitPrice+'" data-num="'+item.goodsNum%+'"  data-sendCompanyId="'+item.sendCompanyId+'" data-sendCompanyName="'+item.sendCompanyName+'" data-receiveCompanyId="'+item.receiveCompanyId+'" data-receiveCompanyName="'+item.receiveCompanyName+'" data-tloContractAmount="'+item.tloContractAmount+'" data-tlosettlementAmount="'+item.tlosettlementAmount+'" data-tloId="'+item.tloId+'">';
+            str+='<tr data-id="'+item.tloId+'" data-tloId="'+item.tloId+'" data-demandId="'+item.demandId+'" data-companyId="'+item.companyId+'"  data-orderNo="'+item.orderNo+'" data-companyname="'+item.companyName+'" data-quotesSatus="'+item.goodsType+'"  data-tloContractAmount="'+item.tloContractAmount+'"  data-danjia="'+item.unitPrice+'" data-num="'+item.goodsNum%+'"  data-sendCompanyId="'+item.sendCompanyId+'" data-sendCompanyName="'+item.sendCompanyName+'" data-receiveCompanyId="'+item.receiveCompanyId+'" data-receiveCompanyName="'+item.receiveCompanyName+'" data-tloContractAmount="'+item.tloContractAmount+'" data-tlosettlementAmount="'+item.tlosettlementAmount+'" data-tloId="'+item.tloId+'">';
             str+='<td>'+item.orderNo+'</td>';
             if(item.tloUpdateTime==null || item.tloUpdateTime=="" || item.tloUpdateTime==0){
                 str+='<td></td>';
