@@ -1,9 +1,9 @@
 
 // var pubIP = 'http://192.168.1.72:7777/service/';
-// var pubIP = 'http://192.168.1.199:7777/service/';
+var pubIP = 'http://192.168.1.199:7777/service/';
 // var pubIP = 'http://api.hdlsuper.com/service/';
 // var pubIP = 'http://wl.api.xjv56.com/service/';
-var pubIP = 'http://api.test.hdlsuper.com/service/';
+// var pubIP = 'http://api.test.hdlsuper.com/service/';
 // 上传图片路径
 // var uplodImgPath = 'http://file.xjv56.com/bfile/fileUpload.htm';
 var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
@@ -12,9 +12,9 @@ var uplodImgPath = 'http://file.test.xjv56.com/bfile/fileUpload.htm';
 var downIP = 'http://file.test.xjv56.com/bfile/fileDown.htm';
 
 //交易ip
-var JiaoYiIp="http://web.test.xjv56.com/memberOfTheMall/memberOfTheMall.html"  //线上测试
+// var JiaoYiIp="http://web.test.xjv56.com/memberOfTheMall/memberOfTheMall.html"  //线上测试
 // var JiaoYiIp="http://web.xjv56.com/memberOfTheMall/memberOfTheMall.html"        //线上
-// var JiaoYiIp="http://192.168.1.80:8180/memberOfTheMall/memberOfTheMall.html"
+var JiaoYiIp="http://192.168.1.80:8180/memberOfTheMall/memberOfTheMall.html"
 // var JiaoYiIp="http://web.test.xjv56.com/index.html"
 
 // 权限开关

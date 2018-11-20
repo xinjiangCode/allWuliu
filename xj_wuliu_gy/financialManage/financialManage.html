@@ -10,11 +10,115 @@
     <title>新疆物流服务平台</title>
     <link rel="stylesheet" type="text/css" href="../css/commin.css"/>
     <link rel="stylesheet" href="../css/financialManage/financialManage.css">
-    
+    <style>
+        body{
+            background-color: #fff;
+        }
+        /* contBox */
+        .contbox{
+            width: 970px;
+            border: 1px solid #ebe9ea;
+        }
+        .topTitle{
+            border-bottom: 1px solid #ebe9ea;
+            color: #282828;
+            font-size: 16px;
+            line-height: 52px;
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+        .topTitle>.fr{
+            float: right;
+            border: 1px solid #ebe9ea;
+            width: 92px;
+            height: 36px;
+            line-height: 36px;
+            box-sizing: border-box;
+            margin-right: 13px;
+            margin-top: 9px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .topTitle>.fr>img{
+            float: left;
+            margin-left: 8px;
+        }
+        .listBox table{
+            border-bottom: 1px solid #ebe9ea;
+        }
+        .bottomOperiat{
+            border-top: 1px solid #ebe9ea;
+            border-bottom: 1px solid #ebe9ea;
+            height: 60px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .bottomOperiat>span{
+            float: left;
+            line-height: 60px;
+            cursor: pointer;
+        }
+        .bottomOperiat .squre{
+            border: 1px solid #ebe9ea;
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            margin-left: 20px;
+            margin-right: 8px;
+            margin-top: 23px;
+            border-radius: 3px;
+        }
+        .bottomOperiat .squre.active{
+            background: #6ba1ff;
+        }
+        .bottomOperiat>.selsectAll{
+            margin-right: 20px;
+        }
+        .bottomOperiat>.closeBtn{
+            margin-right: 16px;
+        }
+        .bottomOperiat>.delBtn, .bottomOperiat>.closeBtn{
+            margin-top: 10px;
+            width: 112px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            background: #6BA1FF;
+        }
+        .pageBox{
+            height: 76px;
+            line-height: 76px;
+            box-sizing: border-box;
+        }
+        .headerRight{float: right;}
+        .topHeader{padding: 20px;border-bottom: 1px solid #ebe9ea;font-size: 14px;}
+        .headerImg{width: 100px;height: 100px;margin-right: 20px;}
+        .headerImg img{width: 100%;height: 100%;}
+        .headerCent div{margin-bottom: 19px;}
+        .btn1{width: 100px;height: 25px;line-height: 25px;color: white;background-color: #6ba1ff;text-align: center;font-size: 14px;border-radius: 3px;}
+    </style>
 </head>
 <body>
     <div class="contbox">
         <div class="topTitle">财务管理</div>
+        <div class="topHeader clearFloat">
+            <div class="headerImg Lf" style="background-color: #e2e2e2;border: 1px solid #e2e2e2;">
+                <img src="../img/cf_headerImg.png" alt="">
+            </div>
+            <div class="Lf clearFloat headerCent">
+                <div><span style="margin-right: 14px;">企业名</span><span class="qiyeName"></span></div>
+                <div><span style="margin-right: 14px;">绑定银行</span><span class="bankName"></span></div>
+                <div style="margin-bottom: 0;">
+                    <span style="margin-right: 14px;">绑定卡号</span>
+                    <span class="bankCard"></span>
+                    <span style="margin-left: 15px;color: #6EA3FF;cursor:pointer;" onclick="window.location.href='./identification4.html'">更改绑定</span></div>
+            </div>
+            <div class=" clearFloat headerRight">
+                <!--<div class="btn1" onclick="window.location.href='../finance/Special1.html'">资质查看</div>-->
+                <!--<div class="btn1" onclick="window.location.href='../finance/Special1.html'" style="margin-top: 22px;">资质申请</div>-->
+            </div>
+        </div>
         <div class="inputBox">
             <div class="inputBoxItem inputBoxItemOne">
                 <div class="Lf">
@@ -506,6 +610,58 @@
                 }
             });
         })
+
+
+
+        getData5()
+        //企业基本信息
+        function getData5(){
+            $.ajax({
+                url: pubIP + "chemicalType/getInfoAboutAssets",
+                type: 'get',
+                headers: {
+                    Accept: "application/json; charset=utf-8",
+                    token: token
+                },
+                data: {
+                    companyId:companyId
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (res) {
+                    if(res.code==0){
+
+                        if(res.data.companyLogo==null || res.data.companyLogo==""){
+                            $(".headerImg img").attr("src","")
+                        }else{
+                            $(".headerImg img").attr("src",res.data.companyLogo);
+                        }
+                        if(res.data.accountBank==null || res.data.accountBank==""){
+                            $(".bankName").text("")
+                        }else{
+                            $(".bankName").text(res.data.accountBank)
+                        }
+                        if(res.data.accountId==null || res.data.accountId==""){
+                            $(".bankCard").text("")
+                        }else{
+                            $(".bankCard").text(res.data.accountId)
+                        }
+                        if(res.data.companyName==null || res.data.companyName==""){
+                            $(".qiyeName").text("");
+                        }else{
+                            $(".qiyeName").text(res.data.companyName);
+                        }
+
+
+                    }else{
+
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
     </script>
 </body>
 </html>
